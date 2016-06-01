@@ -1,0 +1,386 @@
+<?php
+
+/**
+ * ReportingCloud PHP Wrapper
+ *
+ * Official wrapper (authored by Text Control GmbH, publisher of ReportingCloud) to access ReportingCloud in PHP.
+ *
+ * @link      http://www.reporting.cloud to learn more about ReportingCloud
+ * @link      https://github.com/TextControl/ReportingCloud.PHP for the canonical source repository
+ * @license   https://github.com/TextControl/ReportingCloud.PHP/LICENSE.md New BSD License
+ * @copyright © 2016 Text Control GmbH
+ */
+namespace TXTextControl\ReportingCloud;
+
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\RequestOptions;
+use TXTextControl\ReportingCloud\Exception\RuntimeException;
+
+/**
+ * Abstract ReportingCloud
+ *
+ * @package TXTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
+abstract class AbstractReportingCloud
+{
+    /**
+     * Default base URI of backend
+     *
+     * @const DEFAULT_BASE_URI
+     */
+    const DEFAULT_BASE_URI = 'http://api.reporting.cloud';
+
+    /**
+     * Default version string of backend
+     *
+     * @const DEFAULT_VERSION
+     */
+    const DEFAULT_VERSION = 'v1';
+
+    /**
+     * Default timeout of backend in seconds
+     *
+     * @const DEFAULT_TIMEOUT
+     */
+    const DEFAULT_TIMEOUT = 120; // seconds
+
+    /**
+     * Default debug flag of REST client
+     *
+     * @const DEFAULT_DEBUG
+     */
+    const DEFAULT_DEBUG = false;
+
+    /**
+     * Backend username
+     *
+     * @var string
+     */
+    protected $username;
+
+    /**
+     * Backend password
+     *
+     * @var string
+     */
+    protected $password;
+
+    /**
+     * Backend base URI
+     *
+     * @var string
+     */
+    protected $baseUri;
+
+    /**
+     * Backend version string
+     *
+     * @var string
+     */
+    protected $version;
+
+    /**
+     * Backend timeout in seconds
+     *
+     * @var integer
+     */
+    protected $timeout;
+
+    /**
+     * REST client to backend
+     *
+     * @var Client
+     */
+    protected $client;
+
+    /**
+     * Debug flag of REST client
+     *
+     * @var boolean
+     */
+    protected $debug;
+
+    /**
+     * AbstractReportingCloud constructor
+     *
+     * @param array $options
+     */
+    public function __construct($options = [])
+    {
+        if (array_key_exists('username', $options)) {
+            $this->setUsername($options['username']);
+        }
+
+        if (array_key_exists('password', $options)) {
+            $this->setPassword($options['password']);
+        }
+
+        if (array_key_exists('base_uri', $options)) {
+            $this->setBaseUri($options['base_uri']);
+        }
+
+        if (array_key_exists('version', $options)) {
+            $this->setVersion($options['version']);
+        }
+
+        if (array_key_exists('timeout', $options)) {
+            $this->setTimeout($options['timeout']);
+        }
+
+        if (array_key_exists('debug', $options)) {
+            $this->setDebug($options['debug']);
+        }
+    }
+
+    /**
+     * Return the REST client of the backend web service
+     *
+     * @return \GuzzleHttp\Client
+     */
+    public function getClient()
+    {
+        if (null === $this->client) {
+
+            $usernamePassword = sprintf('%s:%s'   , $this->getUsername(), $this->getPassword());
+            $authorization    = sprintf('Basic %s', base64_encode($usernamePassword));
+
+            $client = new Client([
+                'base_uri'              => $this->getBaseUri(),
+                RequestOptions::TIMEOUT => $this->getTimeout(),
+                RequestOptions::DEBUG   => $this->getDebug(),
+                RequestOptions::HEADERS => [
+                    'Authorization' => $authorization,
+                ],
+            ]);
+
+            $this->setClient($client);
+        }
+
+        return $this->client;
+    }
+
+    /**
+     * Set the REST client of the backend web service
+     *
+     * @param Client $client REST client
+     *
+     * @return ReportingCloud
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Return the base URI of the backend web service
+     *
+     * @return string
+     */
+    public function getBaseUri()
+    {
+        if (null === $this->baseUri) {
+            $this->setBaseUri(self::DEFAULT_BASE_URI);
+        }
+
+        return $this->baseUri;
+    }
+
+    /**
+     * Set the base URI of the backend web service
+     *
+     * @param string $baseUri Base URI
+     *
+     * @return ReportingCloud
+     */
+    public function setBaseUri($baseUri)
+    {
+        $this->baseUri = $baseUri;
+
+        return $this;
+    }
+
+    /**
+     * Get the timeout (in seconds) of the backend web service
+     *
+     * @return integer
+     */
+    public function getTimeout()
+    {
+        if (null === $this->timeout) {
+            $this->setTimeout(self::DEFAULT_TIMEOUT);
+        }
+
+        return $this->timeout;
+    }
+
+    /**
+     * Set the timeout (in seconds) of the backend web service
+     *
+     * @param integer $timeout Timeout
+     *
+     * @return ReportingCloud
+     */
+    public function setTimeout($timeout)
+    {
+        $this->timeout = (integer) $timeout;
+
+        return $this;
+    }
+
+    /**
+     * Return the username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set the username
+     *
+     * @param string $username Username
+     *
+     * @return ReportingCloud
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Return the password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the password
+     *
+     * @param string $password Password
+     *
+     * @return ReportingCloud
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Return the debug flag
+     *
+     * @return mixed
+     */
+    public function getDebug()
+    {
+        if (null === $this->debug) {
+            $this->setDebug(self::DEFAULT_DEBUG);
+        }
+
+        return $this->debug;
+    }
+
+    /**
+     * Set the debug flag
+     *
+     * @param boolean $debug Debug flag
+     *
+     * @return ReportingCloud
+     */
+    public function setDebug($debug)
+    {
+        $this->debug = (boolean) $debug;
+
+        return $this;
+    }
+
+    /**
+     * Construct URI with version number
+     *
+     * @param string $uri URI
+     *
+     * @return string
+     */
+    protected function uri($uri)
+    {
+        return sprintf('/%s%s', $this->getVersion(), $uri);
+    }
+
+    /**
+     * Get the version string of the backend web service
+     *
+     * @return string
+     */
+    public function getVersion()
+    {
+        if (null === $this->version) {
+            $this->version = self::DEFAULT_VERSION;
+        }
+
+        return $this->version;
+    }
+
+    /**
+     * Set the version string of the backend web service
+     *
+     * @param string $version Version string
+     *
+     * @return ReportingCloud
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    /**
+     * Request the URI with options
+     *
+     * @param string $method  HTTP method
+     * @param string $uri     URI
+     * @param array  $options Options
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     *
+     * @throws InvalidArgumentException
+     */
+    protected function request($method, $uri, $options)
+    {
+        $ret = null;
+
+        $client = $this->getClient();
+
+        try {
+
+            $response = $client->request($method, $uri, $options);
+            $ret = $response;
+
+        } catch (ClientException $clientException) {
+
+            $message = (string) $clientException->getMessage();
+            $message = str_replace(PHP_EOL, null, $message);
+            $message = trim($message);
+
+            $code    = $clientException->getCode();
+
+            throw new RuntimeException($message, $code);
+        }
+
+        return $ret;
+    }
+
+}

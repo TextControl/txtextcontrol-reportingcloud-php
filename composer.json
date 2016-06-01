@@ -1,0 +1,31 @@
+{
+    "name": "textcontrol/reportingcloud",
+    "description": "",
+    "license": "Apache-2.0",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "TXTextControl\\ReportingCloud\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TXTextControlTest\\ReportingCloud\\": "test/"
+        }
+    },
+    "require": {
+        "php": "~5.5",
+        "symfony/var-dumper": "~3.0.0",
+        "guzzlehttp/guzzle": "~6.1.0",
+        "zendframework/zend-validator": "~2.8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8",
+        "phpdocumentor/phpdocumentor": "~2.9"
+    }
+}
