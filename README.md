@@ -43,7 +43,7 @@ define('REPORTING_CLOUD_USERNAME', 'your-username');
 define('REPORTING_CLOUD_PASSWORD', 'your-password');
 ```
 
-### Using environmental variables (for example in .bashrc)
+### Using environmental variables (for example in `.bashrc`)
 
 ```bash
 export REPORTING_CLOUD_USERNAME='your-username'
@@ -68,7 +68,7 @@ The resultant set of HTML files will be written to `/src-docs`.
  
 ## Unit tests
 
-100% unit test coverage is supplied by phpunit. To run the unit tests and build its report, simply execute the following from the shell:
+100% unit test coverage is supplied by phpunit. To run the unit tests, simply execute the following from the shell:
 
 ```bash
 rm -fr ./test-coverage && phpunit
@@ -85,3 +85,5 @@ This component library follows [PSR-2](http://www.php-fig.org/psr/psr-2/) coding
 
 * Uses lowercase underscore-separated keys names for associative arrays.
 * Uses camelCase for namespaces, class, method and property names.
+
+When contributing, please respect this standard with its two above mentioned additions.
