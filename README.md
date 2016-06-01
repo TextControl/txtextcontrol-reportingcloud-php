@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/TextControl/ReportingCloud.PHP/master/resource/rc_logo_512.png)
+![Logo](https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/resource/rc_logo_512.png)
 
 #  ReportingCloud PHP Wrapper
 
