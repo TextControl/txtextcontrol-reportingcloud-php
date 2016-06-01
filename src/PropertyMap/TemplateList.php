@@ -10,12 +10,12 @@
  * @license   https://github.com/TextControl/ReportingCloud.PHP/blob/master/LICENSE.md New BSD License
  * @copyright © 2016 Text Control GmbH
  */
-namespace TXTextControl\ReportingCloud\PropertyMap;
+namespace TxTextControl\ReportingCloud\PropertyMap;
 
 /**
  * TemplateList property map
  *
- * @package TXTextControl\ReportingCloud
+ * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
 class TemplateList extends AbstractPropertyMap

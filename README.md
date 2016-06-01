@@ -16,7 +16,7 @@ Before using ReportingCloud, please sign up to the service:
 The recommended way to install the ReportingCloud PHP wrapper in your project is using [Composer](http://getcomposer.org):
 
 ```bash
-composer require textcontrol/reportingcloud
+composer require textcontrol/txtextcontrol-reportingcloud
 ```
 
 After installing, you need to require Composer's autoloader:

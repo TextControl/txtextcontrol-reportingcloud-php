@@ -10,24 +10,24 @@
  * @license   https://github.com/TextControl/ReportingCloud.PHP/blob/master/LICENSE.md New BSD License
  * @copyright © 2016 Text Control GmbH
  */
-namespace TXTextControl\ReportingCloud;
+namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 
-use TXTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TXTextControl\ReportingCloud\PropertyMap;
-use TXTextControl\ReportingCloud\Validator\ImageFormats  as ImageFormatsValidator;
-use TXTextControl\ReportingCloud\Validator\Page          as PageValidator;
-use TXTextControl\ReportingCloud\Validator\ReturnFormats as ReturnFormatsValidator;
-use TXTextControl\ReportingCloud\Validator\TemplateName  as TemplateNameValidator;
-use TXTextControl\ReportingCloud\Validator\Timestamp     as TimeStampValidator;
-use TXTextControl\ReportingCloud\Validator\ZoomFactor    as ZoomFactorValidator;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\PropertyMap;
+use TxTextControl\ReportingCloud\Validator\ImageFormats  as ImageFormatsValidator;
+use TxTextControl\ReportingCloud\Validator\Page          as PageValidator;
+use TxTextControl\ReportingCloud\Validator\ReturnFormats as ReturnFormatsValidator;
+use TxTextControl\ReportingCloud\Validator\TemplateName  as TemplateNameValidator;
+use TxTextControl\ReportingCloud\Validator\Timestamp     as TimeStampValidator;
+use TxTextControl\ReportingCloud\Validator\ZoomFactor    as ZoomFactorValidator;
 
 /**
  * ReportingCloud
  *
- * @package TXTextControl\ReportingCloud
+ * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
 class ReportingCloud extends AbstractReportingCloud

@@ -1,8 +1,8 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud\TestAsset;
+namespace TxTextControlTest\ReportingCloud\TestAsset;
 
-use TXTextControl\ReportingCloud\AbstractReportingCloud;
+use TxTextControl\ReportingCloud\AbstractReportingCloud;
 
 class ConcreteReportingCloud extends AbstractReportingCloud
 {

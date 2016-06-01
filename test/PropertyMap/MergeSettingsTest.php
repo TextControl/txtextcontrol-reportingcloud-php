@@ -1,9 +1,9 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud\PropertyMap;
+namespace TxTextControlTest\ReportingCloud\PropertyMap;
 
 use PHPUnit_Framework_TestCase;
-use TXTextControl\ReportingCloud\PropertyMap\MergeSettings as PropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as PropertyMap;
 
 class MergeSettingsTest extends PHPUnit_Framework_TestCase
 {

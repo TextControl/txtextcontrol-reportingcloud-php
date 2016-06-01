@@ -10,12 +10,12 @@
  * @license   https://github.com/TextControl/ReportingCloud.PHP/blob/master/LICENSE.md New BSD License
  * @copyright © 2016 Text Control GmbH
  */
-namespace TXTextControl\ReportingCloud\Exception;
+namespace TxTextControl\ReportingCloud\Exception;
 
 /**
  * ExceptionInterface
  *
- * @package TXTextControl\ReportingCloud
+ * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
 interface ExceptionInterface

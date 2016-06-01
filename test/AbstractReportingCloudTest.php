@@ -1,10 +1,10 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud;
+namespace TxTextControlTest\ReportingCloud;
 
 use PHPUnit_Framework_TestCase;
 
-use TXTextControlTest\ReportingCloud\TestAsset\ConcreteReportingCloud;
+use TxTextControlTest\ReportingCloud\TestAsset\ConcreteReportingCloud;
 
 class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
 {

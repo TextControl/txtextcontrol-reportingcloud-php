@@ -10,14 +10,14 @@
  * @license   https://github.com/TextControl/ReportingCloud.PHP/blob/master/LICENSE.md New BSD License
  * @copyright © 2016 Text Control GmbH
  */
-namespace TXTextControl\ReportingCloud\Validator;
+namespace TxTextControl\ReportingCloud\Validator;
 
-use TXTextControl\ReportingCloud\Validator\TemplateFormats as TemplateFormatsValidator;
+use TxTextControl\ReportingCloud\Validator\TemplateFormats as TemplateFormatsValidator;
 
 /**
  * TemplateName validator
  *
- * @package TXTextControl\ReportingCloud
+ * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
 class TemplateName extends AbstractValidator

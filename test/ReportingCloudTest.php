@@ -1,12 +1,12 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud;
+namespace TxTextControlTest\ReportingCloud;
 
 use PHPUnit_Framework_TestCase;
 
-use TXTextControl\ReportingCloud\Exception\RuntimeException;
-use TXTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TXTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\ReportingCloud;
 
 class ReportingCloudTest extends PHPUnit_Framework_TestCase
 {

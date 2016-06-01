@@ -1,8 +1,8 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud\Validator\TestAsset;
+namespace TxTextControlTest\ReportingCloud\Validator\TestAsset;
 
-use TXTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap;
 
 class ConcretePropertyMap extends AbstractPropertyMap
 {

@@ -10,17 +10,17 @@
  * @license   https://github.com/TextControl/ReportingCloud.PHP/blob/master/LICENSE.md New BSD License
  * @copyright © 2016 Text Control GmbH
  */
-namespace TXTextControl\ReportingCloud;
+namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
-use TXTextControl\ReportingCloud\Exception\RuntimeException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 
 /**
  * Abstract ReportingCloud
  *
- * @package TXTextControl\ReportingCloud
+ * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
 abstract class AbstractReportingCloud

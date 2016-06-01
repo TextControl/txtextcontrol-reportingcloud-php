@@ -2,7 +2,7 @@
 
 include_once 'bootstrap.php';
 
-use TXTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\ReportingCloud;
 
 $reportingCloud = new ReportingCloud([
     'username' => reporting_cloud_username(),

@@ -6,7 +6,7 @@
          colors="true">
 
     <testsuites>
-        <testsuite name="TXTextControlTest\ReportingCloud">
+        <testsuite name="TxTextControlTest\ReportingCloud">
             <directory>./test</directory>
         </testsuite>
     </testsuites>

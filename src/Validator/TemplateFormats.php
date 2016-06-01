@@ -10,14 +10,14 @@
  * @license   https://github.com/TextControl/ReportingCloud.PHP/blob/master/LICENSE.md New BSD License
  * @copyright © 2016 Text Control GmbH
  */
-namespace TXTextControl\ReportingCloud\Validator;
+namespace TxTextControl\ReportingCloud\Validator;
 
 use Zend\Validator\InArray as InArrayValidator;
 
 /**
  * TemplateFormats validator
  *
- * @package TXTextControl\ReportingCloud
+ * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
 class TemplateFormats extends InArrayValidator

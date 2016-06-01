@@ -1,6 +1,6 @@
 <?php
 
-use TXTextControl\ReportingCloud\Exception\RuntimeException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 
 $filenameAutoload = realpath(__DIR__ . '/../vendor/autoload.php');
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud\Validator\TestAsset;
+namespace TxTextControlTest\ReportingCloud\Validator\TestAsset;
 
-use TXTextControl\ReportingCloud\Validator\AbstractValidator;
+use TxTextControl\ReportingCloud\Validator\AbstractValidator;
 
 class ConcreteValidator extends AbstractValidator
 {

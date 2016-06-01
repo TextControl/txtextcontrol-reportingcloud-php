@@ -1,5 +1,5 @@
 {
-    "name": "textcontrol/reportingcloud",
+    "name": "textcontrol/txtextcontrol-reportingcloud",
     "description": "Official PHP wrapper for ReportingCloud, which is authored, maintained and fully supported by Text Control.",
     "license": "BSD-3-Clause",
     "type": "library",
@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "TXTextControl\\ReportingCloud\\": "src/"
+            "TxTextControl\\ReportingCloud\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -15,7 +15,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "TXTextControlTest\\ReportingCloud\\": "test/"
+            "TxTextControlTest\\ReportingCloud\\": "test/"
         }
     },
     "require": {

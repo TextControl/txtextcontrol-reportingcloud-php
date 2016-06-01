@@ -10,12 +10,12 @@
  * @license   https://github.com/TextControl/ReportingCloud.PHP/blob/master/LICENSE.md New BSD License
  * @copyright © 2016 Text Control GmbH
  */
-namespace TXTextControl\ReportingCloud\Exception;
+namespace TxTextControl\ReportingCloud\Exception;
 
 /**
  * RuntimeException
  *
- * @package TXTextControl\ReportingCloud
+ * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
 class RuntimeException extends \RuntimeException implements ExceptionInterface

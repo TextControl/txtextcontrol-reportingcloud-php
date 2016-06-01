@@ -1,9 +1,9 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud\Validator;
+namespace TxTextControlTest\ReportingCloud\Validator;
 
 use PHPUnit_Framework_TestCase;
-use TXTextControl\ReportingCloud\Validator\TemplateFormats as Validator;
+use TxTextControl\ReportingCloud\Validator\TemplateFormats as Validator;
 
 class TemplateFormatsTest extends PHPUnit_Framework_TestCase
 {

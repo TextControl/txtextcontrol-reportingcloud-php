@@ -10,12 +10,12 @@
  * @license   https://github.com/TextControl/ReportingCloud.PHP/blob/master/LICENSE.md New BSD License
  * @copyright © 2016 Text Control GmbH
  */
-namespace TXTextControl\ReportingCloud\Exception;
+namespace TxTextControl\ReportingCloud\Exception;
 
 /**
  * InvalidArgumentException
  *
- * @package TXTextControl\ReportingCloud
+ * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
 class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface

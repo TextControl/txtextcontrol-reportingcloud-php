@@ -1,9 +1,9 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud\PropertyMap;
+namespace TxTextControlTest\ReportingCloud\PropertyMap;
 
 use PHPUnit_Framework_TestCase;
-use TXTextControl\ReportingCloud\PropertyMap\TemplateList as PropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\TemplateList as PropertyMap;
 
 class TemplateListTest extends PHPUnit_Framework_TestCase
 {

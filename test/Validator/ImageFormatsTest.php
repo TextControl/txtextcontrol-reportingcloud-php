@@ -1,9 +1,9 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud\Validator;
+namespace TxTextControlTest\ReportingCloud\Validator;
 
 use PHPUnit_Framework_TestCase;
-use TXTextControl\ReportingCloud\Validator\ImageFormats as Validator;
+use TxTextControl\ReportingCloud\Validator\ImageFormats as Validator;
 
 class ImageFormatsTest extends PHPUnit_Framework_TestCase
 {

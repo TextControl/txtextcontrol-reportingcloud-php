@@ -1,9 +1,9 @@
 <?php
 
-namespace TXTextControlTest\ReportingCloud\PropertyMap;
+namespace TxTextControlTest\ReportingCloud\PropertyMap;
 
 use PHPUnit_Framework_TestCase;
-use TXTextControl\ReportingCloud\PropertyMap\AccountSettings as PropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as PropertyMap;
 
 class AccountSettingsTest extends PHPUnit_Framework_TestCase
 {
