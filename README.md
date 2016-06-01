@@ -1,6 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/TextControl/ReportingCloud.PHP/master/resource/rc_logo_512.png)
 
-#  ReportingCloud PHP Wrapper 1.0
+#  ReportingCloud PHP Wrapper
 
 This is the official PHP wrapper for ReportingCloud, which is authored, maintained and fully supported by [Text Control](http://www.textcontrol.com).
 
