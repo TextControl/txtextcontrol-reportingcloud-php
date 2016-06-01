@@ -81,4 +81,7 @@ The resultant set of HTML files will be written to `/test-coverage`.
 
 ## Coding standards
 
-This component library follows PSR-2 coding standards (http://goo.gl/yM5Pe2), and additionally uses lowercase underscore separated keys names for associative arrays.
+This component library follows [PSR-2](http://www.php-fig.org/psr/psr-2/) coding standards, and additionally:
+
+* Uses lowercase underscore-separated keys names for associative arrays.
+* Uses camelCase for namespaces, class, method and property names.

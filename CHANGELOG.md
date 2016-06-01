@@ -6,12 +6,12 @@
 
 ## 1.0.3 - 2016-06-01
 
-* Implemented end point /v1/templates/pagecount
-* Implemented end point /v1/templates/exists
+* Implemented end point `/v1/templates/pagecount`
+* Implemented end point `/v1/templates/exists`
   
 ## 1.0.2 - 2016-05-30
 
-* Added 'size' key to templateList
+* Added `size` key to templateList
 
 ## 1.0.1 - 2016-05-29
 

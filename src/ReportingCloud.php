@@ -14,15 +14,14 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
-
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\PropertyMap;
-use TxTextControl\ReportingCloud\Validator\ImageFormats  as ImageFormatsValidator;
-use TxTextControl\ReportingCloud\Validator\Page          as PageValidator;
+use TxTextControl\ReportingCloud\Validator\ImageFormats as ImageFormatsValidator;
+use TxTextControl\ReportingCloud\Validator\Page as PageValidator;
 use TxTextControl\ReportingCloud\Validator\ReturnFormats as ReturnFormatsValidator;
-use TxTextControl\ReportingCloud\Validator\TemplateName  as TemplateNameValidator;
-use TxTextControl\ReportingCloud\Validator\Timestamp     as TimeStampValidator;
-use TxTextControl\ReportingCloud\Validator\ZoomFactor    as ZoomFactorValidator;
+use TxTextControl\ReportingCloud\Validator\TemplateName as TemplateNameValidator;
+use TxTextControl\ReportingCloud\Validator\Timestamp as TimeStampValidator;
+use TxTextControl\ReportingCloud\Validator\ZoomFactor as ZoomFactorValidator;
 
 /**
  * ReportingCloud
@@ -452,7 +451,8 @@ class ReportingCloud extends AbstractReportingCloud
      *
      * @return null|string
      */
-    public function mergeDocument($mergeData, $returnFormat, $templateName = null, $templateFilename = null, $append = null, $mergeSettings = null)
+    public function mergeDocument($mergeData, $returnFormat, $templateName = null, $templateFilename = null,
+                                  $append = null, $mergeSettings = null)
     {
         $ret = null;
 
