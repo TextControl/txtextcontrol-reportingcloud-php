@@ -71,7 +71,7 @@ The resultant set of HTML files will be written to `/src-docs`.
 100% unit test coverage is supplied by phpunit. To run the unit tests and build its report, simply execute the following from the shell:
 
 ```bash
-phpunit
+rm -fr ./test-coverage && phpunit
 ```
 
 The resultant set of HTML files will be written to `/test-coverage`.
