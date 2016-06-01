@@ -1,7 +1,7 @@
 {
     "name": "textcontrol/reportingcloud",
-    "description": "",
-    "license": "Apache-2.0",
+    "description": "Official PHP wrapper for ReportingCloud, which is authored, maintained and fully supported by Text Control.",
+    "license": "BSD-3-Clause",
     "type": "library",
     "minimum-stability": "dev",
     "prefer-stable": true,
