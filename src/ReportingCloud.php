@@ -452,7 +452,7 @@ class ReportingCloud extends AbstractReportingCloud
      * @return null|string
      */
     public function mergeDocument($mergeData, $returnFormat, $templateName = null, $templateFilename = null,
-                                  $append = null, $mergeSettings = null)
+                                  $append = null, $mergeSettings = [])
     {
         $ret = null;
 
@@ -501,13 +501,11 @@ class ReportingCloud extends AbstractReportingCloud
             }
         }
 
-        if (null !== $mergeSettings) {
-            if (!is_array($mergeSettings)) {
-                throw new InvalidArgumentException(
-                    sprintf("'mergeSettings' must a boolean value - '%s' was passed",
-                        gettype($append))
-                );
-            }
+        if (!is_array($mergeSettings)) {
+            throw new InvalidArgumentException(
+                sprintf("'mergeSettings' must an array - '%s' was passed",
+                    gettype($mergeSettings))
+            );
         }
 
         $headers = [

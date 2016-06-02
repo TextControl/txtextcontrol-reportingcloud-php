@@ -32,7 +32,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnails_InvalidTemplateName()
+    public function testGetTemplateThumbnailsInvalidTemplateName()
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.xx', 100, 1, 1, 'PNG');
     }
@@ -40,7 +40,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnails_InvalidZoomFactor()
+    public function testGetTemplateThumbnailsInvalidZoomFactor()
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', -1, 1, 1, 'PNG');
     }
@@ -48,7 +48,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnails_InvalidFromPage()
+    public function testGetTemplateThumbnailsInvalidFromPage()
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, -1, 1, 'PNG');
     }
@@ -56,7 +56,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnails_InvalidToPage()
+    public function testGetTemplateThumbnailsInvalidToPage()
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, 1, -1, 'PNG');
     }
@@ -64,7 +64,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnails_InvalidImageFormat()
+    public function testGetTemplateThumbnailsInvalidImageFormat()
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, 1, 1, 'XXX');
     }
@@ -85,7 +85,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testTemplateExists_InvalidTemplateName()
+    public function testTemplateExistsInvalidTemplateName()
     {
         $this->reportingCloud->templateExists('sample_invoice.xx');
     }
@@ -122,7 +122,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplatePageCount_InvalidTemplateName()
+    public function testGetTemplatePageCountInvalidTemplateName()
     {
         $this->reportingCloud->getTemplatePageCount('sample_invoice.xx');
     }
@@ -187,7 +187,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testConvertDocument_InvalidDocumentFilename()
+    public function testConvertDocumentInvalidDocumentFilename()
     {
         $this->reportingCloud->convertDocument('/invalid/path/document.doc', 'PDF');
     }
@@ -195,7 +195,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testConvertDocument_InvalidReturnFormat()
+    public function testConvertDocumentInvalidReturnFormat()
     {
         $documentFilename = $this->getTestTemplateFilename();
 
@@ -219,7 +219,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMerge_InvalidReturnFormat()
+    public function testMergeInvalidReturnFormat()
     {
         $mergeData = $this->getTestTemplateMergeData();
 
@@ -229,7 +229,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMerge_InvalidTemplateName()
+    public function testMergeInvalidTemplateName()
     {
         $mergeData = $this->getTestTemplateMergeData();
 
@@ -239,7 +239,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMerge_InvalidTemplateFilename()
+    public function testMergeInvalidTemplateFilename()
     {
         $mergeData = $this->getTestTemplateMergeData();
 
@@ -249,7 +249,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMerge_InvalidAppend()
+    public function testMergeInvalidAppend()
     {
         $mergeData        = $this->getTestTemplateMergeData();
         $templateFilename = $this->getTestTemplateFilename();
@@ -260,7 +260,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMerge_InvalidMergeSettings()
+    public function testMergeInvalidMergeSettingsIntegerInsteadOfArray()
     {
         $mergeData        = $this->getTestTemplateMergeData();
         $templateFilename = $this->getTestTemplateFilename();
@@ -271,7 +271,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMerge_InvalidMergeSettingsBooleanValues()
+    public function testMergeInvalidMergeSettingsStringsInsteadOfArray()
     {
         $mergeData            = $this->getTestTemplateMergeData();
         $mergeSettings        = $this->getTestTemplateMergeSettings();
@@ -288,7 +288,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMerge_InvalidMergeSettingsTimestampValues()
+    public function testMergeInvalidMergeSettingsTimestampValues()
     {
         $mergeData            = $this->getTestTemplateMergeData();
         $mergeSettings        = $this->getTestTemplateMergeSettings();
@@ -364,7 +364,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testUploadTemplate_InvalidTemplateFilename()
+    public function testUploadTemplateInvalidTemplateFilename()
     {
         $this->reportingCloud->uploadTemplate('/invalid/path/template.doc');
     }
@@ -372,7 +372,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testDownloadTemplate_InvalidTemplateName()
+    public function testDownloadTemplateInvalidTemplateName()
     {
         $templateFilename = $this->getTestTemplateFilename();   // should be templateName and not templateFilename
 
@@ -382,7 +382,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testDeleteTemplate_InvalidTemplateName()
+    public function testDeleteTemplateInvalidTemplateName()
     {
         $templateFilename = $this->getTestTemplateFilename();   // should be templateName and not templateFilename
 
