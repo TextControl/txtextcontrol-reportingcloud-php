@@ -271,7 +271,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidMergeSettingsStringsInsteadOfArray()
+    public function testMergeInvalidMergeSettingsStringInsteadOfBoolean()
     {
         $mergeData            = $this->getTestTemplateMergeData();
         $mergeSettings        = $this->getTestTemplateMergeSettings();
