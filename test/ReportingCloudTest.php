@@ -187,6 +187,30 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
+    public function testConvertDocumentInvalidDocumentFilenameUnsupportedExtension()
+    {
+        $this->reportingCloud->convertDocument('/invalid/path/document.xxx', 'PDF');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testConvertDocumentInvalidDocumentFilenameNoExtension()
+    {
+        $this->reportingCloud->convertDocument('/invalid/path/document', 'PDF');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testConvertDocumentInvalidDocumentFilenameNoFile()
+    {
+        $this->reportingCloud->convertDocument('/invalid/path/document/', 'PDF');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
     public function testConvertDocumentInvalidDocumentFilename()
     {
         $this->reportingCloud->convertDocument('/invalid/path/document.doc', 'PDF');
@@ -234,6 +258,36 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $mergeData = $this->getTestTemplateMergeData();
 
         $this->reportingCloud->mergeDocument($mergeData, 'PDF', '../invalid_template.tx');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testMergeInvalidTemplateFilenameUnsupportedExtension()
+    {
+        $mergeData = $this->getTestTemplateMergeData();
+
+        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, '/invalid/path/template.xxx');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testMergeInvalidTemplateFilenameNoExtension()
+    {
+        $mergeData = $this->getTestTemplateMergeData();
+
+        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, '/invalid/path/template');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testMergeInvalidTemplateFilenameNoFile()
+    {
+        $mergeData = $this->getTestTemplateMergeData();
+
+        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, '/invalid/path/template/');
     }
 
     /**
@@ -360,6 +414,30 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     }
 
     // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testUploadTemplateInvalidTemplateFilenameUnsupportedExtension()
+    {
+        $this->reportingCloud->uploadTemplate('/invalid/path/document.xxx');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testUploadTemplateInvalidTemplateFilenameNoExtension()
+    {
+        $this->reportingCloud->uploadTemplate('/invalid/path/document');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testUploadTemplateInvalidTemplateFilenameNoFile()
+    {
+        $this->reportingCloud->uploadTemplate('/invalid/path/document/');
+    }
 
     /**
      * @expectedException InvalidArgumentException

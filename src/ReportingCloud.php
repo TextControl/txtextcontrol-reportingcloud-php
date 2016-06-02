@@ -16,9 +16,12 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\PropertyMap;
+
+use TxTextControl\ReportingCloud\Validator\DocumentExtension as DocumentExtensionValidator;
 use TxTextControl\ReportingCloud\Validator\ImageFormats as ImageFormatsValidator;
 use TxTextControl\ReportingCloud\Validator\Page as PageValidator;
 use TxTextControl\ReportingCloud\Validator\ReturnFormats as ReturnFormatsValidator;
+use TxTextControl\ReportingCloud\Validator\TemplateExtension as TemplateExtensionValidator;
 use TxTextControl\ReportingCloud\Validator\TemplateName as TemplateNameValidator;
 use TxTextControl\ReportingCloud\Validator\Timestamp as TimeStampValidator;
 use TxTextControl\ReportingCloud\Validator\ZoomFactor as ZoomFactorValidator;
@@ -332,6 +335,16 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = false;
 
+        $templateExtensionValidator = new TemplateExtensionValidator();
+
+        if (!$templateExtensionValidator->isValid($templateFilename)) {
+            throw new InvalidArgumentException(
+                sprintf("'templateFilename' %s does not have a supported file extension",
+                    $templateFilename
+                )
+            );
+        }
+
         if (!is_readable($templateFilename)) {
             throw new InvalidArgumentException(
                 sprintf("'templateFilename' %s cannot be read from the local file system",
@@ -386,7 +399,16 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        $returnFormatsValidator = new ReturnFormatsValidator();
+        $documentExtensionValidator = new DocumentExtensionValidator();
+        $returnFormatsValidator     = new ReturnFormatsValidator();
+
+        if (!$documentExtensionValidator->isValid($documentFilename)) {
+            throw new InvalidArgumentException(
+                sprintf("'documentFilename' %s does not have a supported file extension",
+                    $documentFilename
+                )
+            );
+        }
 
         if (!is_readable($documentFilename)) {
             throw new InvalidArgumentException(
@@ -456,9 +478,10 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        $returnFormatsValidator = new ReturnFormatsValidator();
-        $templateNameValidator  = new TemplateNameValidator();
-        $timestampValidator     = new TimestampValidator();
+        $returnFormatsValidator     = new ReturnFormatsValidator();
+        $templateExtensionValidator = new TemplateExtensionValidator();
+        $templateNameValidator      = new TemplateNameValidator();
+        $timestampValidator         = new TimestampValidator();
 
         if (!$returnFormatsValidator->isValid($returnFormat)) {
             throw new InvalidArgumentException(
@@ -478,6 +501,13 @@ class ReportingCloud extends AbstractReportingCloud
         }
 
         if (null !== $templateFilename) {
+            if (!$templateExtensionValidator->isValid($templateFilename)) {
+                throw new InvalidArgumentException(
+                    sprintf("'templateFilename' %s does not have a supported file extension",
+                        $templateFilename
+                    )
+                );
+            }
             if (!is_readable($templateFilename)) {
                 throw new InvalidArgumentException(
                     sprintf("'templateFilename' %s cannot be read from the local file system",

@@ -1,8 +1,13 @@
 # CHANGELOG
 
+## 1.0.6 - 2016-06-02
+
+* Documentation fixes.
+* Added validation of file extension to all occurrences of $templateFilename and $documentFilename.
+
 ## 1.0.5 - 2016-06-01
 
-* Mainly documentation fixes.
+* Documentation fixes.
 
 ## 1.0.4 - 2016-06-01
 
@@ -10,8 +15,8 @@
 
 ## 1.0.3 - 2016-06-01
 
-* Implemented end point `/v1/templates/pagecount`.
-* Implemented end point `/v1/templates/exists`.
+* Implemented end-point `/v1/templates/pagecount`.
+* Implemented end-point `/v1/templates/exists`.
   
 ## 1.0.2 - 2016-05-30
 
