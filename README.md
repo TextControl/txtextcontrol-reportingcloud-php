@@ -53,9 +53,11 @@ export REPORTING_CLOUD_PASSWORD='your-password'
 Note, these instructions apply only to the sample applications and phpunit tests. When you use ReportingCloud in your application, set the username and password in your constructor or using the `setUsername($username)` and `setPassword($password)` methods. For an example of this case, see `demo/instantiation.php`.
 
 
-## Documentation generation
+## API documentation (phpdoc)
 
-All the source code in this component library is documented using [phpDocumentor](https://www.phpdoc.org/). To build the documentation, simply execute the following from the shell:
+All the source code in this component library is documented using [phpDocumentor](https://www.phpdoc.org/).
+
+You can read the [API documentation](https://goo.gl/mq7wPL) online, or build it yourself, using the following shell command:
 
 ```bash
 rm -fr ./src-docs && ./vendor/bin/phpdoc run --directory ./src --target ./src-docs --template clean
@@ -66,9 +68,11 @@ The resultant set of HTML files will be written to `/src-docs`.
 *phpDocumentor* is installed as a development dependency by Composer.
  
  
-## Unit tests
+## Code coverage (phpunit)
 
-100% unit test coverage is supplied by phpunit. To run the unit tests, simply execute the following from the shell:
+100% unit test coverage is supplied by phpunit.
+
+You can review the [code coverage report](https://goo.gl/KTX6lf) online, or build it yourself, using the following shell command:
 
 ```bash
 rm -fr ./test-coverage && phpunit
