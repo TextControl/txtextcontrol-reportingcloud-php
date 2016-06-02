@@ -551,11 +551,11 @@ class ReportingCloud extends AbstractReportingCloud
             $query['templateName'] = $templateName;
         }
 
-        $mergeSettingsRC = null;
+        $mergeSettingsRc = null;
 
-        if (is_array($mergeSettings)) {
+        if (count($mergeSettings) > 0) {
 
-            $mergeSettingsRC = [];  // 'RC' - this array is passed to reporting.cloud
+            $mergeSettingsRc = [];  // 'Rc' - this array is passed to ReportingCloud
 
             $propertyMap = new PropertyMap\MergeSettings();
 
@@ -577,7 +577,7 @@ class ReportingCloud extends AbstractReportingCloud
                         }
                         $value = date('r', $value);
                     }
-                    $mergeSettingsRC[$property] = $value;
+                    $mergeSettingsRc[$property] = $value;
                 }
             }
         }
@@ -595,8 +595,8 @@ class ReportingCloud extends AbstractReportingCloud
             $mergeBody['template'] = $template;
         }
 
-        if (null !== $mergeSettingsRC) {
-            $mergeBody['mergeSettings'] = $mergeSettingsRC;
+        if (null !== $mergeSettingsRc) {
+            $mergeBody['mergeSettings'] = $mergeSettingsRc;
         }
 
         $body = json_encode($mergeBody);

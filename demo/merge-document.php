@@ -74,18 +74,6 @@ for ($i = 0; $i < 10; $i++) {
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-// Template is in template storage on backend server
-
-$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', 'sample_invoice.tx');
-
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_merged_remote.pdf';
-
-file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
-
-dump($destinationFilename);
-
-// ---------------------------------------------------------------------------------------------------------------------
-
 // Template stored locally and uploaded to backend server on merge
 
 $sourceFilename = REPORTING_CLOUD_DEMO_RESOURCE_PATH . '/test_template.tx';
@@ -93,6 +81,22 @@ $sourceFilename = REPORTING_CLOUD_DEMO_RESOURCE_PATH . '/test_template.tx';
 $arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename);
 
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_merged_local.pdf';
+
+file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+
+dump($destinationFilename);
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Template is in template storage on backend server
+
+$sourceFilename = REPORTING_CLOUD_DEMO_RESOURCE_PATH . '/test_template.tx';
+
+$reportingCloud->uploadTemplate($sourceFilename);
+
+$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', 'test_template.tx');
+
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_merged_remote.pdf';
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 

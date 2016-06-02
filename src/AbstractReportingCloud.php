@@ -13,7 +13,6 @@
 namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 
@@ -369,13 +368,13 @@ abstract class AbstractReportingCloud
             $response = $client->request($method, $uri, $options);
             $ret      = $response;
 
-        } catch (ClientException $clientException) {
+        } catch (\Exception $exception) {
 
-            $message = (string) $clientException->getMessage();
-            $message = str_replace(PHP_EOL, null, $message);
-            $message = trim($message);
+            // \GuzzleHttp\Exception\ClientException
+            // \GuzzleHttp\Exception\ServerException
 
-            $code    = $clientException->getCode();
+            $message = (string)  $exception->getMessage();
+            $code    = (integer) $exception->getCode();
 
             throw new RuntimeException($message, $code);
         }

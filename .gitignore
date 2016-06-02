@@ -5,3 +5,4 @@ phpunit.xml
 test-coverage
 vendor
 src-docs
+gists

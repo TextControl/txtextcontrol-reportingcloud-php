@@ -24,9 +24,25 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testGetTemplateThumbnails()
     {
-        $response = $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, 1, 1, 'PNG');
+        $testTemplateFilename = $this->getTestTemplateFilename();
+        $tempTemplateFilename = $this->getTempTemplateFilename();
+        $tempTemplateName     = basename($tempTemplateFilename);
+
+        copy($testTemplateFilename, $tempTemplateFilename);
+
+        $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
+
+        $this->assertTrue($response);
+
+        $response = $this->reportingCloud->getTemplateThumbnails($tempTemplateName, 100, 1, 1, 'PNG');
 
         $this->assertArrayHasKey(0, $response);
+
+        $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
+
+        $this->assertTrue($response);
+
+        unlink($tempTemplateFilename);
     }
 
     /**
@@ -73,11 +89,27 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testGetTemplateCount()
     {
+        $testTemplateFilename = $this->getTestTemplateFilename();
+        $tempTemplateFilename = $this->getTempTemplateFilename();
+        $tempTemplateName     = basename($tempTemplateFilename);
+
+        copy($testTemplateFilename, $tempTemplateFilename);
+
+        $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
+
+        $this->assertTrue($response);
+
         $response = $this->reportingCloud->getTemplateCount();
 
         $this->assertTrue(is_integer($response));
 
         $this->assertGreaterThan(0, $response);
+
+        $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
+
+        $this->assertTrue($response);
+
+        unlink($tempTemplateFilename);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -155,6 +187,16 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testGetTemplateList()
     {
+        $testTemplateFilename = $this->getTestTemplateFilename();
+        $tempTemplateFilename = $this->getTempTemplateFilename();
+        $tempTemplateName     = basename($tempTemplateFilename);
+
+        copy($testTemplateFilename, $tempTemplateFilename);
+
+        $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
+
+        $this->assertTrue($response);
+
         $response = $this->reportingCloud->getTemplateList();
 
         $this->assertTrue(is_array($response));
@@ -164,6 +206,12 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('template_name', $response[0]);
         $this->assertArrayHasKey('modified'     , $response[0]);
         $this->assertArrayHasKey('size'         , $response[0]);
+
+        $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
+
+        $this->assertTrue($response);
+
+        unlink($tempTemplateFilename);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
