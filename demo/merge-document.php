@@ -84,7 +84,7 @@ $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_mer
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-dump($destinationFilename);
+var_dump($destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -100,7 +100,7 @@ $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_mer
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-dump($destinationFilename);
+var_dump($destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -135,7 +135,7 @@ $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_mer
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-dump($destinationFilename);
+var_dump($destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -150,7 +150,7 @@ $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merge
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-dump($destinationFilename);
+var_dump($destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -167,7 +167,7 @@ foreach ($arrayOfBinaryData as $documentNo => $binaryData) {
 
     file_put_contents($destinationFilename, $binaryData);
 
-    dump($destinationFilename);
+    var_dump($destinationFilename);
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

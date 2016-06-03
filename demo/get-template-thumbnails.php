@@ -37,7 +37,7 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     file_put_contents($destinationFilename, $binaryData);
 
-    dump("{$templateName} was written to {$destinationFilename}");
+    var_dump("{$templateName} was written to {$destinationFilename}");
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

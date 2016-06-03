@@ -2,6 +2,7 @@
 
 ## dev-master
 
+* Switched from dump() to var_dump() in demo directory, as symfony/var-dumper is a development dependency only.
 * Abstracted all date/time conversion to their own Filter components.
 
 ## 1.0.6 - 2016-06-02

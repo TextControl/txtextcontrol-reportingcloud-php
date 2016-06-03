@@ -23,15 +23,15 @@ $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . DIRECTORY_SEPARATOR 
 
 if (!$reportingCloud->templateExists($templateName)) {
 
-    dump("{$templateName} is not in template storage");
+    var_dump("{$templateName} is not in template storage");
 
     if ($reportingCloud->uploadTemplate($sourceFilename)) {
 
-        dump("Uploaded {$sourceFilename}");
+        var_dump("Uploaded {$sourceFilename}");
 
     } else {
 
-        dump("Error uploading {$sourceFilename}");
+        var_dump("Error uploading {$sourceFilename}");
     }
 }
 
@@ -41,7 +41,7 @@ if (!$reportingCloud->templateExists($templateName)) {
 
 $pageCount = $reportingCloud->getTemplatePageCount($templateName);
 
-dump("{$templateName} contains {$pageCount} page(s)");
+var_dump("{$templateName} contains {$pageCount} page(s)");
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -51,15 +51,15 @@ $binaryData = $reportingCloud->downloadTemplate($templateName);
 
 if ($binaryData) {
 
-    dump("{$templateName} was downloaded");
+    var_dump("{$templateName} was downloaded");
 
     file_put_contents($destinationFilename, $binaryData);
 
-    dump("{$templateName} was written to {$destinationFilename}");
+    var_dump("{$templateName} was written to {$destinationFilename}");
 
 } else {
 
-    dump("Error downloading {$templateName}");
+    var_dump("Error downloading {$templateName}");
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -68,21 +68,21 @@ if ($binaryData) {
 
 $templateCount = $reportingCloud->getTemplateCount();
 
-dump("There are {$templateCount} template(s) in template storage.");
+var_dump("There are {$templateCount} template(s) in template storage.");
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Get an array of all templates in template storage
 
-dump("They are as follows:");
+var_dump("They are as follows:");
 
 foreach ($reportingCloud->getTemplateList() as $record) {
 
     $templateName      = $record['template_name'];
     $modifiedFormatted = date('r', $record['modified']);    // modified is a unix timestamp
 
-    dump("- {$templateName}");
-    dump("- {$modifiedFormatted}");
+    var_dump("- {$templateName}");
+    var_dump("- {$modifiedFormatted}");
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -91,11 +91,11 @@ foreach ($reportingCloud->getTemplateList() as $record) {
 
 if ($reportingCloud->deleteTemplate($templateName)) {
 
-    dump("{$templateName} was deleted");
+    var_dump("{$templateName} was deleted");
 
 } else {
 
-    dump("Error deleting {$templateName}");
+    var_dump("Error deleting {$templateName}");
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

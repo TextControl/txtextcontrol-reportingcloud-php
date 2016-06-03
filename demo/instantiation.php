@@ -17,7 +17,7 @@ $reportingCloud = new ReportingCloud([
     'debug'    => true,
 ]);
 
-dump($reportingCloud);
+var_dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@ $reportingCloud->setVersion('v1');
 $reportingCloud->setTimeout(100);
 $reportingCloud->getDebug(true);
 
-dump($reportingCloud);
+var_dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -47,6 +47,6 @@ $reportingCloud->setUsername(reporting_cloud_username())
                ->setTimeout(100)
                ->getDebug(true);
 
-dump($reportingCloud);
+var_dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------

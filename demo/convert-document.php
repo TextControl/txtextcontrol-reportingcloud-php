@@ -20,15 +20,15 @@ $binaryData = $reportingCloud->convertDocument($sourceFilename, 'PDF');
 
 if ($binaryData) {
 
-    dump("{$sourceFilename} was converted");
+    var_dump("{$sourceFilename} was converted");
 
     file_put_contents($destinationFilename, $binaryData);
 
-    dump("And written to {$destinationFilename}");
+    var_dump("And written to {$destinationFilename}");
 
 } else {
 
-    dump("Error converting {$sourceFilename}");
+    var_dump("Error converting {$sourceFilename}");
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
