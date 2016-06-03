@@ -31,6 +31,12 @@ You can then later update the ReportingCloud PHP wrapper using Composer:
 composer update
 ```
 
+and for best auto-loading performance consequently execute:
+
+```bash
+composer dump-autoload --optimize
+```
+
 
 ## Username and password for demos and unittests
 
