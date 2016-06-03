@@ -26,8 +26,4 @@
         </whitelist>
     </filter>
 
-    <logging>
-        <log type="coverage-html" target="~/txtextcontrol-reportingcloud/test-coverage"/>
-    </logging>
-
 </phpunit>

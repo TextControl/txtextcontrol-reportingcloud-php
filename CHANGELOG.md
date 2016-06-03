@@ -2,6 +2,7 @@
 
 ## dev-master
 
+* Added empty CONTRIBUTING.md file.
 * Documentation update.
 * Switched from dump() to var_dump() in demo directory, as symfony/var-dumper is a development dependency only.
 * Abstracted all date/time conversion to their own Filter components.
