@@ -104,6 +104,41 @@ dump($destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
+// Template is in template storage on backend server
+// mergeSettings are set
+
+$mergeSettings = [
+
+    'creation_date'              => time(),
+    'last_modification_date'     => time(),
+
+    'remove_empty_blocks'        => true,
+    'remove_empty_fields'        => true,
+    'remove_empty_images'        => true,
+    'remove_trailing_whitespace' => true,
+
+    'author'                     => 'James Henry Trotter',
+    'creator_application'        => 'The Giant Peach',
+    'document_subject'           => 'The Old Green Grasshopper',
+    'document_title'             => 'James and the Giant Peach',
+
+    'user_password'              => '1',
+];
+
+$sourceFilename = REPORTING_CLOUD_DEMO_RESOURCE_PATH . '/test_template.tx';
+
+$reportingCloud->uploadTemplate($sourceFilename);
+
+$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', 'test_template.tx', null, true, $mergeSettings);
+
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_merged_remote_merge_settings.pdf';
+
+file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+
+dump($destinationFilename);
+
+// ---------------------------------------------------------------------------------------------------------------------
+
 // Template stored locally and uploaded to backend server on merge
 // append=true (also default, when not set)
 

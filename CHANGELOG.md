@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## dev-master
+
+* Abstracted all date/time conversion to their own Filter components.
+
 ## 1.0.6 - 2016-06-02
 
 * Documentation fixes.

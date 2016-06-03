@@ -14,17 +14,24 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\PropertyMap;
+
+use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp  as DateTimeToTimestampFilter;
+use TxTextControl\ReportingCloud\Filter\TimestampToDateTime  as TimestampToDateTimeFilter;
+
+use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\MergeSettings   as MergeSettingsPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\TemplateList    as TemplateListPropertyMap;
 
 use TxTextControl\ReportingCloud\Validator\DocumentExtension as DocumentExtensionValidator;
-use TxTextControl\ReportingCloud\Validator\ImageFormats as ImageFormatsValidator;
-use TxTextControl\ReportingCloud\Validator\Page as PageValidator;
-use TxTextControl\ReportingCloud\Validator\ReturnFormats as ReturnFormatsValidator;
+use TxTextControl\ReportingCloud\Validator\ImageFormats      as ImageFormatsValidator;
+use TxTextControl\ReportingCloud\Validator\Page              as PageValidator;
+use TxTextControl\ReportingCloud\Validator\ReturnFormats     as ReturnFormatsValidator;
 use TxTextControl\ReportingCloud\Validator\TemplateExtension as TemplateExtensionValidator;
-use TxTextControl\ReportingCloud\Validator\TemplateName as TemplateNameValidator;
-use TxTextControl\ReportingCloud\Validator\Timestamp as TimeStampValidator;
-use TxTextControl\ReportingCloud\Validator\ZoomFactor as ZoomFactorValidator;
+use TxTextControl\ReportingCloud\Validator\TemplateName      as TemplateNameValidator;
+use TxTextControl\ReportingCloud\Validator\Timestamp         as TimestampValidator;
+use TxTextControl\ReportingCloud\Validator\ZoomFactor        as ZoomFactorValidator;
 
 /**
  * ReportingCloud
@@ -142,7 +149,8 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        $propertyMap = new PropertyMap\TemplateList();
+        $propertyMap = new TemplateListPropertyMap();
+        $filter      = new DateTimeToTimestampFilter();
 
         $records = $this->get('/templates/list');
 
@@ -157,7 +165,7 @@ class ReportingCloud extends AbstractReportingCloud
                     if (isset($record[$property]) && strlen($record[$property]) > 0) {
                         $value = $record[$property];
                         if ('modified' == $key) {
-                            $value = strtotime($value);
+                            $value = $filter->filter($value);
                         }
                     }
                     $ret[$index][$key] = $value;
@@ -231,7 +239,8 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        $propertyMap = new PropertyMap\AccountSettings();
+        $propertyMap = new AccountSettingsPropertyMap();
+        $filter      = new DateTimeToTimestampFilter();
 
         $records = $this->get('/account/settings');
 
@@ -242,7 +251,7 @@ class ReportingCloud extends AbstractReportingCloud
                 if (isset($records[$property]) && strlen($records[$property]) > 0) {
                     $value = $records[$property];
                     if ('valid_until' == $key) {
-                        $value = strtotime($value);
+                        $value = $filter->filter($value);
                     }
                 }
                 $ret[$key] = $value;
@@ -555,9 +564,11 @@ class ReportingCloud extends AbstractReportingCloud
 
         if (count($mergeSettings) > 0) {
 
+            $filter = new TimestampToDateTimeFilter();
+
             $mergeSettingsRc = [];  // 'Rc' - this array is passed to ReportingCloud
 
-            $propertyMap = new PropertyMap\MergeSettings();
+            $propertyMap = new MergeSettingsPropertyMap();
 
             foreach ($propertyMap->getMap() as $property => $key) {
                 if (isset($mergeSettings[$key])) {
@@ -575,7 +586,7 @@ class ReportingCloud extends AbstractReportingCloud
                                 sprintf("'%s' must contain a valid unix timestamp - '%s' was passed", $key, $value)
                             );
                         }
-                        $value = date('r', $value);
+                        $value = $filter->filter($value);
                     }
                     $mergeSettingsRc[$property] = $value;
                 }
