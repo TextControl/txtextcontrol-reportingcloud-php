@@ -77,7 +77,7 @@ You can review the [code coverage report](https://goo.gl/KTX6lf) online, or buil
 
 ```bash
 rm -fr ~/txtextcontrol-reportingcloud/test-coverage
-phpunit --coverage-html ~/txtextcontrol-reportingcloud/test-coverage
+./vendor/phpunit/phpunit/phpunit --coverage-html ~/txtextcontrol-reportingcloud/test-coverage
 ```
 
 The resultant set of HTML files will be written to `~/txtextcontrol-reportingcloud/test-coverage`.
