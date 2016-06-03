@@ -32,15 +32,14 @@ class DateTimeToTimestamp extends AbstractFilter
      */
     public function filter($value)
     {
-        $ret = null;
-
-        $timestamp = strtotime("{$value}+00:00");
-
-        if (is_integer($timestamp)) {
-            $ret = $timestamp;
+        try {
+            $time = new DateTime($value, new DateTimeZone('UTC'));
+            $time->setTimzone(new DateTimeZone('UTC'));
+        } catch (Exception $e) {
+            return null;
         }
 
-        return $ret;
+        return $time->format('U');
     }
 
 }
