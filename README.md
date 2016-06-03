@@ -66,7 +66,6 @@ All the source code in this component library is documented using [phpDocumentor
 You can read the [API documentation](https://goo.gl/mq7wPL) online, or build it yourself, using the following shell command:
 
 ```bash
-rm -fr ~/txtextcontrol-reportingcloud/src-docs
 ./vendor/bin/phpdoc run --directory ./src --target ~/txtextcontrol-reportingcloud/src-docs --template clean
 ```
 
@@ -82,7 +81,6 @@ The resultant set of HTML files will be written to `~/txtextcontrol-reportingclo
 You can review the [code coverage report](https://goo.gl/KTX6lf) online, or build it yourself, using the following shell command:
 
 ```bash
-rm -fr ~/txtextcontrol-reportingcloud/test-coverage
 ./vendor/bin/phpunit --coverage-html ~/txtextcontrol-reportingcloud/test-coverage
 ```
 
