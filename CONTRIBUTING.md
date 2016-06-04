@@ -2,7 +2,7 @@
 
 # Contribute to the ReportingCloud PHP Wrapper
 
-## Setting up development environment
+## Configure development environment
 
 ```bash
 mkdir -p /var/www/textcontrol/txtextcontrol-reportingcloud
