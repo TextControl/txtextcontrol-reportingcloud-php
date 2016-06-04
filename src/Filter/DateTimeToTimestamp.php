@@ -81,6 +81,5 @@ class DateTimeToTimestamp extends AbstractFilter
         $dateTimeString = sprintf('%s+00:00', $dateTimeString);
 
         return $dateTimeString;
-
     }
 }
