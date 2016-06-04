@@ -37,7 +37,7 @@ class DateTimeToTimestamp extends AbstractFilter
      * Note: The 'ISO 8601' formatted date/time string, returned by the backend, does not have any timezone information
      *       in it. i.e. it returns '2016-06-02T15:49:57' and not '2016-06-02T15:49:57+00:00'.
      *
-     * @param $value 'ISO 8601' formatted date/time string, minus timezone, for example, '2016-06-02T15:49:57'
+     * @param string $value 'ISO 8601' formatted date/time string, minus timezone, for example, '2016-06-02T15:49:57'
      *
      * @return null|int
      */
