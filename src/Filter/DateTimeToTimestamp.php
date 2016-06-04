@@ -12,6 +12,10 @@
  */
 namespace TxTextControl\ReportingCloud\Filter;
 
+use DateTime;
+use DateTimeZone;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+
 /**
  * DateTimeToTimestamp filter
  *
@@ -20,6 +24,13 @@ namespace TxTextControl\ReportingCloud\Filter;
  */
 class DateTimeToTimestamp extends AbstractFilter
 {
+    /**
+     * Length of date/time string returned by backend
+     *
+     * @const DATE_TIME_STRING_LENGTH
+     */
+    const DATE_TIME_STRING_LENGTH = 19;
+
     /**
      * Convert a date/time string returned from the backend to a UNIX timestamp.
      *
@@ -32,14 +43,44 @@ class DateTimeToTimestamp extends AbstractFilter
      */
     public function filter($value)
     {
-        try {
-            $time = new DateTime($value, new DateTimeZone('UTC'));
-            $time->setTimzone(new DateTimeZone('UTC'));
-        } catch (Exception $e) {
-            return null;
+        $value = (string) $value;
+
+        if (self::DATE_TIME_STRING_LENGTH != strlen($value)) {
+            throw new InvalidArgumentException(
+                sprintf('%s is an invalid date/time string - it must have exactly %d characters',
+                    self::DATE_TIME_STRING_LENGTH,
+                    $value)
+            );
         }
 
-        return $time->format('U');
+        $dateTimeFormat = DateTime::ISO8601;
+        $dateTimeString = $this->addTimeZone($value);
+        $dateTimeZone   = new DateTimeZone('UTC');
+
+        $dateTime = DateTime::createFromFormat($dateTimeFormat, $dateTimeString, $dateTimeZone);
+
+        if (false === $dateTime) {
+            throw new InvalidArgumentException(
+                sprintf('%s is an invalid date/time string',
+                    $value)
+            );
+        }
+
+        return $dateTime->getTimestamp();
     }
 
+    /**
+     * Add timezone information to a date/time sting.
+     *
+     * @param string $dateTimeString Date/time string to which to add the time zone information.
+     *
+     * @return string
+     */
+    protected function addTimeZone($dateTimeString)
+    {
+        $dateTimeString = sprintf('%s+00:00', $dateTimeString);
+
+        return $dateTimeString;
+
+    }
 }
