@@ -88,7 +88,7 @@ Note, these instructions apply only to the phpunit and demo scripts. When you us
 
 For further assistance and customer service please refer to:
 
-    http:/reporting.cloud
+    http://www.reporting.cloud
 
 
 END;
