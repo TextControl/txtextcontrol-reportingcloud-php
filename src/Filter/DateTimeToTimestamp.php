@@ -25,44 +25,42 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 class DateTimeToTimestamp extends AbstractFilter
 {
     /**
-     * Length of date/time string returned by backend
+     * Convert the date/time format used by the backend (e.g. "2016-04-15T19:05:18+00:00") to a UNIX timestamp.
      *
-     * @const DATE_TIME_STRING_LENGTH
-     */
-    const DATE_TIME_STRING_LENGTH = 19;
-
-    /**
-     * Convert a date/time string returned from the backend to a UNIX timestamp.
-     *
-     * Note: The 'ISO 8601' formatted date/time string, returned by the backend, does not have any timezone information
-     *       in it. i.e. it returns '2016-06-02T15:49:57' and not '2016-06-02T15:49:57+00:00'.
-     *
-     * @param string $value 'ISO 8601' formatted date/time string, minus timezone, for example, '2016-06-02T15:49:57'
+     * @param string $dateTimeString Backend formatted date/time string
      *
      * @return null|int
      */
-    public function filter($value)
+    public function filter($dateTimeString)
     {
-        $value = (string) $value;
+        $requiredLength = $this->getRequiredLength();
 
-        if (self::DATE_TIME_STRING_LENGTH != strlen($value)) {
+        if ($requiredLength !== strlen($dateTimeString)) {
             throw new InvalidArgumentException(
-                sprintf('%s is an invalid date/time string - it must have exactly %d characters',
-                    self::DATE_TIME_STRING_LENGTH,
-                    $value)
+                sprintf('%s is an invalid date/time string - it must be exactly %d characters long',
+                    $dateTimeString,
+                    $requiredLength
+                )
             );
         }
 
-        $dateTimeFormat = DateTime::ISO8601;
-        $dateTimeString = $this->addTimeZone($value);
-        $dateTimeZone   = new DateTimeZone('UTC');
+        $dateTimeFormat = self::REPORTING_CLOUD_DATE_FORMAT;
+        $dateTimeZone   = new DateTimeZone(self::REPORTING_CLOUD_TIME_ZONE);
 
         $dateTime = DateTime::createFromFormat($dateTimeFormat, $dateTimeString, $dateTimeZone);
 
         if (false === $dateTime) {
             throw new InvalidArgumentException(
-                sprintf('%s is an invalid date/time string',
-                    $value)
+                sprintf('%s is an invalid date/time string - its syntax is invalid',
+                    $dateTimeString)
+            );
+        }
+
+        if (0 !== $dateTime->getOffset()) {
+            throw new InvalidArgumentException(
+                sprintf('%s is an invalid date/time string - its offset must be 0',
+                    $dateTimeString
+                )
             );
         }
 
@@ -70,16 +68,18 @@ class DateTimeToTimestamp extends AbstractFilter
     }
 
     /**
-     * Add timezone information to a date/time sting.
+     * Return the required length (in characters) of the date/time string
      *
-     * @param string $dateTimeString Date/time string to which to add the time zone information.
-     *
-     * @return string
+     * @return int
      */
-    protected function addTimeZone($dateTimeString)
+    protected function getRequiredLength()
     {
-        $dateTimeString = sprintf('%s+00:00', $dateTimeString);
+        $dateTimeFormat = self::REPORTING_CLOUD_DATE_FORMAT;
+        $dateTimeZone   = new DateTimeZone(self::REPORTING_CLOUD_TIME_ZONE);
 
-        return $dateTimeString;
+        $dateTime = new DateTime('now', $dateTimeZone);
+
+        return strlen($dateTime->format($dateTimeFormat));
     }
+    
 }

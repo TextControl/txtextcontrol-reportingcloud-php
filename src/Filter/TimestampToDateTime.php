@@ -26,62 +26,42 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 class TimestampToDateTime extends AbstractFilter
 {
     /**
-     * Convert a UNIX timestamp to a date/time string for return to the backend.
+     * Convert a UNIX timestamp to the date/time format used by the backend (e.g. "2016-04-15T19:05:18+00:00").
      *
-     * Note: The 'ISO 8601' formatted date/time string returned by the backend does not have any timezone information in
-     *       it. i.e. it returns '2016-06-02T15:49:57' and not '2016-06-02T15:49:57+00:00'. Therefore, this method
-     *       returns the date/time string also devoid of timezone information.
-     *
-     * @param integer $value UNIX timestamp
+     * @param integer $timestamp UNIX timestamp
      *
      * @return null|string
      */
-    public function filter($value)
+    public function filter($timestamp)
     {
         $dateTimeString = null;
 
-        if (!is_numeric($value) || $value < 0) {
+        if (!is_numeric($timestamp) || $timestamp < 0) {
             throw new InvalidArgumentException(
-                sprintf('%s is an invalid unix timestamp integer - it must be greater than 0',
-                    $value)
+                sprintf('%s is an invalid unix timestamp integer - it must be numeric and greater than 0',
+                    $timestamp)
             );
         }
 
         try {
 
-            $dateTimeFormat = DateTime::ISO8601;
-
-            $dateTimeZone   = new DateTimeZone('UTC');
+            $dateTimeFormat = self::REPORTING_CLOUD_DATE_FORMAT;
+            
+            $dateTimeZone   = new DateTimeZone(self::REPORTING_CLOUD_TIME_ZONE);
             $dateTime       = new DateTime();
 
-            $dateTime->setTimestamp($value);
+            $dateTime->setTimestamp($timestamp);
             $dateTime->setTimezone($dateTimeZone);
 
             $dateTimeString = $dateTime->format($dateTimeFormat);
-            $dateTimeString = $this->removeTimeZone($dateTimeString);
 
         } catch (Exception $e) {
             throw new InvalidArgumentException(
-                sprintf('%s is an invalid unix timestamp integer', $value)
+                sprintf('%s is an invalid unix timestamp integer', $timestamp)
             );
         }
 
         return $dateTimeString;
-
     }
 
-    /**
-     * Remove timezone information from a date/time sting.
-     *
-     * @param string $dateTimeString Date/time string from which to remove the time zone information.
-     *
-     * @return string
-     */
-    protected function removeTimeZone($dateTimeString)
-    {
-        $dateTimeString = strtok($dateTimeString, '+');
-
-        return $dateTimeString;
-
-    }
 }
