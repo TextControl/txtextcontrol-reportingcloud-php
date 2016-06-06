@@ -2,6 +2,7 @@
 
 ## dev-master
 
+* Updated composer.json to be installable on PHP 7.0.7
 * Added empty CONTRIBUTING.md file.
 * Documentation update.
 * Switched from dump() to var_dump() in demo directory, as symfony/var-dumper is a development dependency only.
@@ -24,7 +25,7 @@
 
 * Implemented end-point `/v1/templates/pagecount`.
 * Implemented end-point `/v1/templates/exists`.
-  
+
 ## 1.0.2 - 2016-05-30
 
 * Added `size` key to templateList.
