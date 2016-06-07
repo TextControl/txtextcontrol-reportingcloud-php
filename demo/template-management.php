@@ -82,6 +82,7 @@ foreach ($reportingCloud->getTemplateList() as $record) {
     $modifiedFormatted = date('r', $record['modified']);    // modified is a unix timestamp
 
     var_dump("- {$templateName}");
+    var_dump("- {$record['modified']}");
     var_dump("- {$modifiedFormatted}");
 }
 
