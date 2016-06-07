@@ -30,7 +30,7 @@ class TimestampToDateTime extends AbstractFilter
      *
      * @param integer $timestamp UNIX timestamp
      *
-     * @return null|string
+     * @return string
      */
     public function filter($timestamp)
     {

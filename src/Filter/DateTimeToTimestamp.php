@@ -30,7 +30,7 @@ class DateTimeToTimestamp extends AbstractFilter
      *
      * @param string $dateTimeString Backend formatted date/time string
      *
-     * @return null|int
+     * @return int
      */
     public function filter($dateTimeString)
     {
