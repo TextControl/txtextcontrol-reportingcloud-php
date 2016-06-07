@@ -15,6 +15,7 @@ class TimestampToDateTimeTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->filter = new Filter();
+
         $this->defaultTimezone = date_default_timezone_get();
     }
 
@@ -28,7 +29,7 @@ class TimestampToDateTimeTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider defaultProvider
      */
-    public function testDefault($timeZone, $dateTimeString, $timestamp)
+    public function testValid($timeZone, $dateTimeString, $timestamp)
     {
         date_default_timezone_set($timeZone);
 
@@ -49,9 +50,9 @@ class TimestampToDateTimeTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testTooSmall()
+    public function testInvalid()
     {
-        $this->filter->filter(-5000);
+        $this->filter->filter('invalid');
     }
 
 }

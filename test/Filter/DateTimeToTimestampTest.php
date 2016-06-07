@@ -15,6 +15,7 @@ class DateTimeToTimestampTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->filter = new Filter();
+
         $this->defaultTimezone = date_default_timezone_get();
     }
 
@@ -28,7 +29,7 @@ class DateTimeToTimestampTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider defaultProvider
      */
-    public function testDefault($timeZone, $dateTimeString, $timestamp)
+    public function testValid($timeZone, $dateTimeString, $timestamp)
     {
         date_default_timezone_set($timeZone);
 
@@ -49,49 +50,9 @@ class DateTimeToTimestampTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testNotDateTimeStringInteger()
-    {
-        $this->filter->filter(123456789);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testNotDateTimeStringBoolean()
-    {
-        $this->filter->filter(true);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testNotDateTimeStringString()
+    public function testInvalid()
     {
         $this->filter->filter('invalid');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testNotDateTimeInvalidOffset()
-    {
-        $this->filter->filter('2016-06-02T15:49:57+02:00');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testNotDateTimeStringTooLong()
-    {
-        $this->filter->filter('2016-06-06T13:05:05+00:00:00');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testNotDateTimeStringTooShort()
-    {
-        $this->filter->filter('2016-06-06T13:05:05');
     }
 
 }

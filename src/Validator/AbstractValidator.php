@@ -12,6 +12,7 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
+use TxTextControl\ReportingCloud\ReportingCloud;
 use Zend\Validator\AbstractValidator as AbstractValidatorValidatorZend;
 
 /**
@@ -22,4 +23,23 @@ use Zend\Validator\AbstractValidator as AbstractValidatorValidatorZend;
  */
 abstract class AbstractValidator extends AbstractValidatorValidatorZend
 {
+    /**
+     * Return backend date format
+     *
+     * @return string
+     */
+    protected function getDateFormat()
+    {
+        return ReportingCloud::DEFAULT_DATE_FORMAT;
+    }
+
+    /**
+     * Return backend time zone
+     *
+     * @return string
+     */
+    protected function getTimeZone()
+    {
+        return ReportingCloud::DEFAULT_TIME_ZONE;
+    }
 }

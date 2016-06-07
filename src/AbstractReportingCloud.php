@@ -25,6 +25,27 @@ use TxTextControl\ReportingCloud\Exception\RuntimeException;
 abstract class AbstractReportingCloud
 {
     /**
+     * Default date/time format of backend is 'ISO 8601'
+     *
+     * Note, last letter is 'P' and not 'O':
+     *
+     * O - Difference to Greenwich time (GMT) in hours (e.g. +0200)
+     * P - Difference to Greenwich time (GMT) with colon between hours and minutes (e.g. +02:00)
+     *
+     * Backend uses the 'P' variant
+     *
+     * @const DEFAULT_DATE_FORMAT
+     */
+    const DEFAULT_DATE_FORMAT = 'Y-m-d\TH:i:sP';
+
+    /**
+     * Default time zone of backend
+     *
+     * @const DEFAULT_TIME_ZONE
+     */
+    const DEFAULT_TIME_ZONE = 'UTC';
+
+    /**
      * Default base URI of backend
      *
      * @const DEFAULT_BASE_URI
@@ -381,5 +402,4 @@ abstract class AbstractReportingCloud
 
         return $ret;
     }
-
 }

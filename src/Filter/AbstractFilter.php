@@ -12,6 +12,7 @@
  */
 namespace TxTextControl\ReportingCloud\Filter;
 
+use TxTextControl\ReportingCloud\ReportingCloud;
 use Zend\Filter\AbstractFilter as AbstractFilterFilterZend;
 
 /**
@@ -23,24 +24,22 @@ use Zend\Filter\AbstractFilter as AbstractFilterFilterZend;
 abstract class AbstractFilter extends AbstractFilterFilterZend
 {
     /**
-     * ISO 8601 format
+     * Return backend date format
      *
-     * Note, last letter is 'P' and not 'O':
-     *
-     * O - Difference to Greenwich time (GMT) in hours (e.g. +0200)
-     * P - Difference to Greenwich time (GMT) with colon between hours and minutes (e.g. +02:00)
-     *
-     * Backend uses the 'P' variant
-     *
-     * @const REPORTING_CLOUD_DATE_FORMAT
+     * @return string
      */
-    const REPORTING_CLOUD_DATE_FORMAT = 'Y-m-d\TH:i:sP';
+    protected function getDateFormat()
+    {
+        return ReportingCloud::DEFAULT_DATE_FORMAT;
+    }
 
     /**
-     * Time zone of backend server, according to a statement by backend developers on June 06, 2016
+     * Return backend time zone
      *
-     * @const REPORTING_CLOUD_TIME_ZONE
+     * @return string
      */
-    const REPORTING_CLOUD_TIME_ZONE = 'UTC';
-
+    protected function getTimeZone()
+    {
+        return ReportingCloud::DEFAULT_TIME_ZONE;
+    }
 }

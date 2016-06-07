@@ -16,6 +16,7 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Validator\Timestamp as TimestampValidator;
 
 /**
  * TimestampToDateTime filter
@@ -36,32 +37,22 @@ class TimestampToDateTime extends AbstractFilter
     {
         $dateTimeString = null;
 
-        if (!is_numeric($timestamp) || $timestamp < 0) {
-            throw new InvalidArgumentException(
-                sprintf('%s is an invalid unix timestamp integer - it must be numeric and greater than 0',
-                    $timestamp)
-            );
-        }
+        $validator = new TimestampValidator();
 
-        try {
-
-            $dateTimeFormat = self::REPORTING_CLOUD_DATE_FORMAT;
-            
-            $dateTimeZone   = new DateTimeZone(self::REPORTING_CLOUD_TIME_ZONE);
-            $dateTime       = new DateTime();
-
-            $dateTime->setTimestamp($timestamp);
-            $dateTime->setTimezone($dateTimeZone);
-
-            $dateTimeString = $dateTime->format($dateTimeFormat);
-
-        } catch (Exception $e) {
+        if (!$validator->isValid($timestamp)) {
             throw new InvalidArgumentException(
                 sprintf('%s is an invalid unix timestamp integer', $timestamp)
             );
         }
 
+        $dateTimeZone = new DateTimeZone($this->getTimeZone());
+        $dateTime     = new DateTime();
+
+        $dateTime->setTimestamp($timestamp);
+        $dateTime->setTimezone($dateTimeZone);
+
+        $dateTimeString = $dateTime->format($this->getDateFormat());
+
         return $dateTimeString;
     }
-
 }

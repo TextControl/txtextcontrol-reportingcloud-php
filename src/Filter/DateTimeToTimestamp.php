@@ -15,6 +15,7 @@ namespace TxTextControl\ReportingCloud\Filter;
 use DateTime;
 use DateTimeZone;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Validator\DateTime as DateTimeValidator;
 
 /**
  * DateTimeToTimestamp filter
@@ -33,53 +34,18 @@ class DateTimeToTimestamp extends AbstractFilter
      */
     public function filter($dateTimeString)
     {
-        $requiredLength = $this->getRequiredLength();
+        $validator = new DateTimeValidator();
 
-        if ($requiredLength !== strlen($dateTimeString)) {
+        if (!$validator->isValid($dateTimeString)) {
             throw new InvalidArgumentException(
-                sprintf('%s is an invalid date/time string - it must be exactly %d characters long',
-                    $dateTimeString,
-                    $requiredLength
-                )
+                sprintf('%s is an invalid date/time string', $dateTimeString)
             );
         }
 
-        $dateTimeFormat = self::REPORTING_CLOUD_DATE_FORMAT;
-        $dateTimeZone   = new DateTimeZone(self::REPORTING_CLOUD_TIME_ZONE);
+        $dateTimeZone = new DateTimeZone($this->getTimeZone());
 
-        $dateTime = DateTime::createFromFormat($dateTimeFormat, $dateTimeString, $dateTimeZone);
-
-        if (false === $dateTime) {
-            throw new InvalidArgumentException(
-                sprintf('%s is an invalid date/time string - its syntax is invalid',
-                    $dateTimeString)
-            );
-        }
-
-        if (0 !== $dateTime->getOffset()) {
-            throw new InvalidArgumentException(
-                sprintf('%s is an invalid date/time string - its offset must be 0',
-                    $dateTimeString
-                )
-            );
-        }
+        $dateTime = DateTime::createFromFormat($this->getDateFormat(), $dateTimeString, $dateTimeZone);
 
         return $dateTime->getTimestamp();
     }
-
-    /**
-     * Return the required length (in characters) of the date/time string
-     *
-     * @return int
-     */
-    protected function getRequiredLength()
-    {
-        $dateTimeFormat = self::REPORTING_CLOUD_DATE_FORMAT;
-        $dateTimeZone   = new DateTimeZone(self::REPORTING_CLOUD_TIME_ZONE);
-
-        $dateTime = new DateTime('now', $dateTimeZone);
-
-        return strlen($dateTime->format($dateTimeFormat));
-    }
-    
 }

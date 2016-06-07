@@ -14,7 +14,7 @@ class TemplateFormatsTest extends PHPUnit_Framework_TestCase
         $this->validator = new Validator();
     }
 
-    public function testDefault()
+    public function testValid()
     {
         $this->assertTrue($this->validator->isValid('doc'));
         $this->assertTrue($this->validator->isValid('DOC'));

@@ -14,7 +14,7 @@ class PageTest extends PHPUnit_Framework_TestCase
         $this->validator = new Validator();
     }
 
-    public function testDefault()
+    public function testValid()
     {
         $this->assertTrue($this->validator->isValid(1));
         $this->assertTrue($this->validator->isValid(2));

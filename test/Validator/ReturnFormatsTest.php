@@ -14,7 +14,7 @@ class ReturnFormatsTest extends PHPUnit_Framework_TestCase
         $this->validator = new Validator();
     }
 
-    public function testDefault()
+    public function testValid()
     {
         $this->assertTrue($this->validator->isValid('pdf'));
         $this->assertTrue($this->validator->isValid('PDF'));

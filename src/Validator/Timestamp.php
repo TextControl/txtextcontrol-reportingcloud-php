@@ -23,18 +23,18 @@ use Zend\Validator\Between as BetweenValidator;
 class Timestamp extends AbstractValidator
 {
     /**
-     * Not numeric
+     * Invalid type
      *
-     * @const INVALID_NOT_NUMERIC
+     * @const INVALID_TYPE
      */
-    const INVALID_NOT_NUMERIC  = 'timestampNotNumeric';
+    const INVALID_TYPE  = 'timestampInvalidType';
 
     /**
-     * Not in range
+     * Invalid range
      *
-     * @const INVALID_NOT_IN_RANGE
+     * @const INVALID_RANGE
      */
-    const INVALID_NOT_IN_RANGE = 'timestampNotInRange';
+    const INVALID_RANGE = 'timestampInvalidRange';
 
     /**
      * Message templates
@@ -42,8 +42,8 @@ class Timestamp extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_NOT_NUMERIC  => "'%value%' is not numeric",
-        self::INVALID_NOT_IN_RANGE => "'%value%' is not in the required range",
+        self::INVALID_TYPE  => "'%value%' must be an integer",
+        self::INVALID_RANGE => "'%value%' is not in the required range",
     ];
 
     /**
@@ -57,8 +57,8 @@ class Timestamp extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!is_numeric($value)) {
-            $this->error(self::INVALID_NOT_NUMERIC);
+        if (!is_integer($value)) {
+            $this->error(self::INVALID_TYPE);
             return false;
         }
 
@@ -68,11 +68,10 @@ class Timestamp extends AbstractValidator
              'inclusive' => true]);
 
         if (!$betweenValidator->isValid($value)) {
-            $this->error(self::INVALID_NOT_IN_RANGE);
+            $this->error(self::INVALID_RANGE);
             return false;
         }
 
         return true;
     }
-
 }

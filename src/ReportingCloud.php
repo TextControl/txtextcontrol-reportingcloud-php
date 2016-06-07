@@ -682,5 +682,4 @@ class ReportingCloud extends AbstractReportingCloud
 
         return $ret;
     }
-
 }
