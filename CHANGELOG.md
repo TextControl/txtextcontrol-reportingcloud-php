@@ -4,22 +4,22 @@
 
 ## dev-master
 
-* Made \TxTextControl\ReportingCloud\Validator properties consistent.
+* Made `\TxTextControl\ReportingCloud\Validator` properties consistent.
 
 ## 1.0.7 - 2016-06-08
 
-* Made \TxTextControl\ReportingCloud\Validator properties consistent with those in \Zend\Validator.
-* Updated composer.json to be installable on PHP 7.0.7.
-* Improved date/time conversion Filter components.
-* Added empty CONTRIBUTING.md file.
+* Made `\TxTextControl\ReportingCloud\Validator` properties consistent with those in `\Zend\Validator`.
+* Updated `composer.json` to be installable on PHP 7.0.7.
+* Improved date/time conversion `Filter` components.
+* Added empty `CONTRIBUTING.md` file.
 * Documentation update.
-* Switched from dump() to var_dump() in demo directory, as symfony/var-dumper is a development dependency only.
+* Switched from `dump()` to `var_dump()` in `/demo` directory, as `symfony/var-dumper` is a development dependency only.
 * Abstracted all date/time conversion to their own Filter components.
 
 ## 1.0.6 - 2016-06-02
 
 * Documentation fixes.
-* Added validation of file extension to all occurrences of $templateFilename and $documentFilename.
+* Added validation of file extension to all occurrences of `$templateFilename` and `$documentFilename`.
 
 ## 1.0.5 - 2016-06-01
 
