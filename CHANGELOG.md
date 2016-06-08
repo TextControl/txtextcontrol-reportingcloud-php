@@ -1,3 +1,5 @@
+![Logo](https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/media/rc_logo_512.png)
+
 # CHANGELOG
 
 ## dev-master
