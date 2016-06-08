@@ -2,6 +2,10 @@
 
 ## dev-master
 
+* nothing
+
+## 1.0.7 - 2016-06-08
+
 * Made \TxTextControl\ReportingCloud\Validator properties consistent with those in \Zend\Validator
 * Updated composer.json to be installable on PHP 7.0.7.
 * Improved date/time conversion Filter components.
