@@ -25,22 +25,22 @@ class TimestampTest extends PHPUnit_Framework_TestCase
     public function testInvalidType()
     {
         $this->assertFalse($this->validator->isValid('2016-06-02T15:49:57+00:00'));
-        $this->assertArrayHasKey('timestampInvalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(1.1));
-        $this->assertArrayHasKey('timestampInvalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(true));
-        $this->assertArrayHasKey('timestampInvalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(false));
-        $this->assertArrayHasKey('timestampInvalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
     }
 
     public function testInvalidRange()
     {
         $this->assertFalse($this->validator->isValid(-1));
-        $this->assertArrayHasKey('timestampInvalidRange', $this->validator->getMessages());
+        $this->assertArrayHasKey('invalidRange', $this->validator->getMessages());
     }
 
 }

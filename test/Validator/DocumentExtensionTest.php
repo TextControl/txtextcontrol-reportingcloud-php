@@ -32,18 +32,34 @@ class DocumentExtensionTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->validator->isValid('c:\PATH\TO\DOCUMENT.DOC'));
     }
 
-    public function testInvalid()
+    public function testInvalidExtension()
     {
         $this->assertFalse($this->validator->isValid('/path/to/document.xxx'));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid('/path/to/document.'));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid('/path/to/document'));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid('/path/to/document/'));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('0'));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid(0));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid(1));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid(null));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid(false));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
     }
 
 }

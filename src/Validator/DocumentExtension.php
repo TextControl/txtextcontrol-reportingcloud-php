@@ -27,7 +27,7 @@ class DocumentExtension extends AbstractValidator
      *
      * @const INVALID_EXTENSION
      */
-    const INVALID_EXTENSION = 'documentExtensionInvalidExtension';
+    const INVALID_EXTENSION = 'invalidExtension';
 
     /**
      * Message templates

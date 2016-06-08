@@ -18,11 +18,21 @@ class ZoomFactorTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue($this->validator->isValid(1));
         $this->assertTrue($this->validator->isValid(400));
+    }
 
+    public function testNotBetween()
+    {
         $this->assertFalse($this->validator->isValid(0));
+        $this->assertArrayHasKey('notBetween', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid(-1));
+        $this->assertArrayHasKey('notBetween', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid(401));
+        $this->assertArrayHasKey('notBetween', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid('invalid'));
+        $this->assertArrayHasKey('notBetween', $this->validator->getMessages());
     }
 
     public function testConstructor()

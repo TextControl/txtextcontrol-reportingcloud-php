@@ -28,28 +28,28 @@ class DateTime extends AbstractValidator
      *
      * @const INVALID_TYPE
      */
-    const INVALID_TYPE   = 'dateTimeInvalidType';
+    const INVALID_TYPE   = 'invalidType';
 
     /**
      * Invalid length
      *
      * @const INVALID_LENGTH
      */
-    const INVALID_LENGTH = 'dateTimeInvalidLength';
+    const INVALID_LENGTH = 'invalidLength';
 
     /**
      * Invalid syntax
      *
      * @const INVALID_SYNTAX
      */
-    const INVALID_SYNTAX = 'dateTimeInvalidSyntax';
+    const INVALID_SYNTAX = 'invalidSyntax';
 
     /**
      * Invalid offset
      *
      * @const INVALID_OFFSET
      */
-    const INVALID_OFFSET = 'dateTimeInvalidOffset';
+    const INVALID_OFFSET = 'invalidOffset';
 
     /**
      * Message templates

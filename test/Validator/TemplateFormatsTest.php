@@ -20,10 +20,13 @@ class TemplateFormatsTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->validator->isValid('DOC'));
     }
 
-    public function testInvalid()
+    public function testNotInArray()
     {
         $this->assertFalse($this->validator->isValid('tif'));
+        $this->assertArrayHasKey('notInArray', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid('TIF'));
+        $this->assertArrayHasKey('notInArray', $this->validator->getMessages());
     }
 
 }

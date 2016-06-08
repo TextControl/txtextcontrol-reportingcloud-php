@@ -27,7 +27,7 @@ class TemplateExtension extends AbstractValidator
      *
      * @const INVALID_EXTENSION
      */
-    const INVALID_EXTENSION = 'templateExtensionInvalidExtension';
+    const INVALID_EXTENSION = 'invalidExtension';
 
     /**
      * Message templates

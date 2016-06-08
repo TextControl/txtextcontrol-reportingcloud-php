@@ -27,14 +27,14 @@ class Timestamp extends AbstractValidator
      *
      * @const INVALID_TYPE
      */
-    const INVALID_TYPE  = 'timestampInvalidType';
+    const INVALID_TYPE  = 'invalidType';
 
     /**
      * Invalid range
      *
      * @const INVALID_RANGE
      */
-    const INVALID_RANGE = 'timestampInvalidRange';
+    const INVALID_RANGE = 'invalidRange';
 
     /**
      * Message templates
