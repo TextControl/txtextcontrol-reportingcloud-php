@@ -59,7 +59,7 @@ class TemplateName extends AbstractValidator
         self::INVALID_PATH          => "'%value%' contains path information ('/', '.', or '..')",
         self::INVALID_EXTENSION     => "'%value%' is contains an invalid file extension",
         self::INVALID_BASENAME      => "'%value%' is contains an invalid file basename",
-        self::UNSUPPORTED_EXTENSION => "'%value%' contains an unsupported file extension",
+        self::UNSUPPORTED_EXTENSION => "'%value%' contains an unsupported file extension for a template file",
     ];
 
     /**

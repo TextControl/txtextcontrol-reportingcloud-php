@@ -25,9 +25,9 @@ class TemplateExtension extends AbstractValidator
     /**
      * Unsupported file extension
      *
-     * @const INVALID_EXTENSION
+     * @const UNSUPPORTED_EXTENSION
      */
-    const INVALID_EXTENSION = 'invalidExtension';
+    const UNSUPPORTED_EXTENSION = 'unsupportedExtension';
 
     /**
      * Message templates
@@ -35,7 +35,7 @@ class TemplateExtension extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_EXTENSION  => "'%value%' contains an unsupported file extension for a template file",
+        self::UNSUPPORTED_EXTENSION  => "'%value%' contains an unsupported file extension for a template file",
     ];
 
     /**
@@ -60,7 +60,7 @@ class TemplateExtension extends AbstractValidator
         ]);
 
         if (!$inArrayValidator->isValid($extension)) {
-            $this->error(self::INVALID_EXTENSION);
+            $this->error(self::UNSUPPORTED_EXTENSION);
             return false;
         }
 

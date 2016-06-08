@@ -35,31 +35,31 @@ class TemplateExtensionTest extends PHPUnit_Framework_TestCase
     public function testInvalidExtension()
     {
         $this->assertFalse($this->validator->isValid('/path/to/template.xxx'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('/path/to/template.'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('/path/to/template'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('/path/to/template/'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('0'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(0));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(1));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(null));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(false));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
     }
 
 }
