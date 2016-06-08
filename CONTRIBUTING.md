@@ -1,6 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/media/rc_logo_512.png)
 
-# Contribute to the ReportingCloud PHP Wrapper
+# CONTRIBUTING
 
 ## Configure development environment
 
