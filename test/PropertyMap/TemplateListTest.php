@@ -14,12 +14,12 @@ class TemplateListTest extends PHPUnit_Framework_TestCase
         $this->propertyMap = new PropertyMap();
     }
 
-    public function testDefault()
+    public function testValid()
     {
         $expected =  [
-            "templateName" => "template_name",
-            "modified"     => "modified",
-            "size"         => "size",
+            'templateName' => 'template_name',
+            'modified'     => 'modified',
+            'size'         => 'size',
         ];
 
         $this->assertEquals($expected, $this->propertyMap->getMap());
