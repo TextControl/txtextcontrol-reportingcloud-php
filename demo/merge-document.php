@@ -76,7 +76,7 @@ for ($i = 0; $i < 10; $i++) {
 
 // Template stored locally and uploaded to backend server on merge
 
-$sourceFilename = REPORTING_CLOUD_DEMO_RESOURCE_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename);
 
@@ -90,7 +90,7 @@ var_dump($destinationFilename);
 
 // Template is in template storage on backend server
 
-$sourceFilename = REPORTING_CLOUD_DEMO_RESOURCE_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
 
 $reportingCloud->uploadTemplate($sourceFilename);
 
@@ -125,7 +125,7 @@ $mergeSettings = [
     'user_password'              => '1',
 ];
 
-$sourceFilename = REPORTING_CLOUD_DEMO_RESOURCE_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
 
 $reportingCloud->uploadTemplate($sourceFilename);
 
@@ -142,7 +142,7 @@ var_dump($destinationFilename);
 // Template stored locally and uploaded to backend server on merge
 // append=true (also default, when not set)
 
-$sourceFilename = REPORTING_CLOUD_DEMO_RESOURCE_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename, true);
 
@@ -157,7 +157,7 @@ var_dump($destinationFilename);
 // Template stored locally and uploaded to backend server on merge
 // append=false
 
-$sourceFilename = REPORTING_CLOUD_DEMO_RESOURCE_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename, false);
 

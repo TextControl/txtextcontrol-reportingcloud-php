@@ -18,7 +18,7 @@ if (!is_dir($outputPath)) {
     mkdir($outputPath);
 }
 
-define('REPORTING_CLOUD_DEMO_OUTPUT_PATH'  , $outputPath);
-define('REPORTING_CLOUD_DEMO_RESOURCE_PATH', realpath(__DIR__ . '/../resource'));
+define('REPORTING_CLOUD_DEMO_OUTPUT_PATH', $outputPath);
+define('REPORTING_CLOUD_DEMO_MEDIA_PATH' , realpath(__DIR__ . '/../media'));
 
 // ---------------------------------------------------------------------------------------------------------------------

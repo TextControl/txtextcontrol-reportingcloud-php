@@ -11,7 +11,7 @@ $reportingCloud = new ReportingCloud([
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$sourceFilename      = REPORTING_CLOUD_DEMO_RESOURCE_PATH . DIRECTORY_SEPARATOR . 'test_document.docx';
+$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . 'test_document.docx';
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . DIRECTORY_SEPARATOR . 'test_document.pdf';
 
 // ---------------------------------------------------------------------------------------------------------------------
