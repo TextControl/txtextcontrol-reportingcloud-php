@@ -15,3 +15,9 @@ composer update
 
 composer dump-autoload --optimize
 ```
+
+## Tag and release version
+
+```bash
+git tag release-1.0.x && git push origin --tags
+```
