@@ -63,7 +63,7 @@ Note, these instructions apply only to the sample applications and phpunit tests
 
 All the source code in this component library is documented using [phpDocumentor](https://www.phpdoc.org/).
 
-You can read the [API documentation](https://goo.gl/mq7wPL) online, or build it yourself, using the following shell command:
+You can read the [API documentation](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/docs-api/) online, or build it yourself, using the following shell command:
 
 ```bash
 ./vendor/bin/phpdoc run --directory ./src --target ~/txtextcontrol-reportingcloud/src-docs --template clean
@@ -72,13 +72,13 @@ You can read the [API documentation](https://goo.gl/mq7wPL) online, or build it 
 The resultant set of HTML files will be written to `~/txtextcontrol-reportingcloud/src-docs`.
 
 *phpDocumentor* is installed as a development dependency by Composer.
- 
- 
+
+
 ## Code coverage (phpunit)
 
 100% unit test coverage is supplied by phpunit.
 
-You can review the [code coverage report](https://goo.gl/KTX6lf) online, or build it yourself, using the following shell command:
+You can review the [code coverage report](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/test-coverage/) online, or build it yourself, using the following shell command:
 
 ```bash
 ./vendor/bin/phpunit --coverage-html ~/txtextcontrol-reportingcloud/test-coverage
