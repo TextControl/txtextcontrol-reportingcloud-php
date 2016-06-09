@@ -4,15 +4,6 @@
 
 ## Configure development environment
 
-### Set up GitHub
-
-Click "Keep my email address private" at https://github.com/settings/emails and use the shown email.
-
-```bash
-git config user.name  "John Doe"
-git config user.email "johndoe@users.noreply.github.com"
-```
-
 ### Check out project and run composer
 
 ```bash
@@ -25,6 +16,15 @@ git clone git@github.com:TextControl/txtextcontrol-reportingcloud-php.git .
 composer update
 
 composer dump-autoload --optimize
+```
+
+### Set up GitHub
+
+Click "Keep my email address private" at https://github.com/settings/emails and use the shown email.
+
+```bash
+git config user.name  "John Doe"
+git config user.email "johndoe@users.noreply.github.com"
 ```
 
 ## Tag and release version
