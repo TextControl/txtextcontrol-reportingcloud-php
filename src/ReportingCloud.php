@@ -105,9 +105,6 @@ class ReportingCloud extends AbstractReportingCloud
         }
 
         if (!$imageFormatsValidator->isValid($imageFormat)) {
-
-            dump($imageFormatsValidator->getMessages());
-
             throw new InvalidArgumentException(
                 sprintf("'imageFormat' must be one of '%s' - '%s' was passed",
                     implode(', ', $imageFormatsValidator->getHaystack()),
