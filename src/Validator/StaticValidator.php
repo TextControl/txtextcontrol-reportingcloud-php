@@ -48,7 +48,12 @@ class StaticValidator extends ZendStaticValidator
         $ret = $validator->isValid($value);
 
         if (false === $ret) {
-            throw new InvalidArgumentException($validator->getFirstMessage());
+            $message  = null;
+            $messages = $validator->getMessages();
+            if (count($messages) > 0) {
+                $message = array_shift($messages);
+            }
+            throw new InvalidArgumentException($message);
         }
 
         return $ret;
