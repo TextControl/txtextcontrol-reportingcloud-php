@@ -12,22 +12,23 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use Zend\Validator\InArray as InArrayValidator;
+use Zend\Validator\File\Exists as FileExistsValidator;
 
 /**
- * TemplateExtension validator
+ * FileExists validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class TemplateExtension extends AbstractValidator
+class FileExists extends AbstractValidator
 {
+
     /**
-     * Unsupported file extension
+     * Invalid filename
      *
-     * @const UNSUPPORTED_EXTENSION
+     * @const INVALID_FILENAME
      */
-    const UNSUPPORTED_EXTENSION = 'unsupportedExtension';
+    const INVALID_FILENAME = 'invalidFilename';
 
     /**
      * Message templates
@@ -35,7 +36,7 @@ class TemplateExtension extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::UNSUPPORTED_EXTENSION  => "'%value%' contains an unsupported file extension for a template file",
+        self::INVALID_FILENAME  => "'%value%' contains an invalid filename",
     ];
 
     /**
@@ -49,21 +50,10 @@ class TemplateExtension extends AbstractValidator
     {
         $this->setValue($value);
 
-        $extension = pathinfo($value, PATHINFO_EXTENSION);
-        $extension = strtoupper($extension);
+        $fileExistsValidator = new FileExistsValidator();
 
-        $inArrayValidator = new InArrayValidator([
-            'haystack' => [
-                'DOC' ,
-                'DOCX',
-                'RTF' ,
-                'TX'
-            ],
-            'strict' => true,
-        ]);
-
-        if (!$inArrayValidator->isValid($extension)) {
-            $this->error(self::UNSUPPORTED_EXTENSION);
+        if (!$fileExistsValidator->isValid($value)) {
+            $this->error(self::INVALID_FILENAME);
             return false;
         }
 

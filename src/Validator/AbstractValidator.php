@@ -42,4 +42,17 @@ abstract class AbstractValidator extends AbstractValidatorValidatorZend
     {
         return ReportingCloud::DEFAULT_TIME_ZONE;
     }
+
+    public function getFirstMessage()
+    {
+        $ret = null;
+
+        $messages = $this->getMessages();
+
+        if (count($messages) > 0) {
+            $ret = array_shift($messages);
+        }
+
+        return $ret;
+    }
 }

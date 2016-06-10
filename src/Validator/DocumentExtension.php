@@ -60,7 +60,8 @@ class DocumentExtension extends AbstractValidator
                 'PDF' ,
                 'RTF' ,
                 'TX'
-            ]
+            ],
+            'strict' => true,
         ]);
 
         if (!$inArrayValidator->isValid($extension)) {

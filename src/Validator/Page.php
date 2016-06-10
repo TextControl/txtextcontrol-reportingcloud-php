@@ -20,7 +20,7 @@ use Zend\Validator\GreaterThan as GreaterThanValidator;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Page extends GreaterThanValidator
+class Page extends AbstractValidator
 {
     /**
      * Minimum page number

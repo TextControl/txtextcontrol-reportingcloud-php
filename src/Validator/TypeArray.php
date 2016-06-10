@@ -12,22 +12,21 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use Zend\Validator\InArray as InArrayValidator;
-
 /**
- * TemplateExtension validator
+ * TypeArray validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class TemplateExtension extends AbstractValidator
+class TypeArray extends AbstractValidator
 {
+
     /**
-     * Unsupported file extension
+     * Invalid filename
      *
-     * @const UNSUPPORTED_EXTENSION
+     * @const INVALID_TYPE
      */
-    const UNSUPPORTED_EXTENSION = 'unsupportedExtension';
+    const INVALID_TYPE = 'invalidType';
 
     /**
      * Message templates
@@ -35,7 +34,7 @@ class TemplateExtension extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::UNSUPPORTED_EXTENSION  => "'%value%' contains an unsupported file extension for a template file",
+        self::INVALID_TYPE  => "'%value%' must be of type array",
     ];
 
     /**
@@ -49,21 +48,8 @@ class TemplateExtension extends AbstractValidator
     {
         $this->setValue($value);
 
-        $extension = pathinfo($value, PATHINFO_EXTENSION);
-        $extension = strtoupper($extension);
-
-        $inArrayValidator = new InArrayValidator([
-            'haystack' => [
-                'DOC' ,
-                'DOCX',
-                'RTF' ,
-                'TX'
-            ],
-            'strict' => true,
-        ]);
-
-        if (!$inArrayValidator->isValid($extension)) {
-            $this->error(self::UNSUPPORTED_EXTENSION);
+        if (!is_array($value)) {
+            $this->error(self::INVALID_TYPE);
             return false;
         }
 
