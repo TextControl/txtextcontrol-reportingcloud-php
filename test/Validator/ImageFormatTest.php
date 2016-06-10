@@ -20,7 +20,7 @@ class ImageFormatTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->validator->isValid('PNG'));
     }
 
-    public function testNotInArray()
+    public function testUnsupportedExtension()
     {
         $this->assertFalse($this->validator->isValid('doc'));
         $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());

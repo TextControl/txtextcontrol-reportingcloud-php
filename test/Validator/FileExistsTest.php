@@ -30,7 +30,7 @@ class FileExistsTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->validator->isValid($this->filename));
     }
 
-    public function testInvalidType()
+    public function testInvalidFilename()
     {
         $this->assertFalse($this->validator->isValid('/tmp/aaaaaaa.txt'));
         $this->assertArrayHasKey('invalidFilename', $this->validator->getMessages());

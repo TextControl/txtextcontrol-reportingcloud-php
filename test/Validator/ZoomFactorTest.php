@@ -36,7 +36,7 @@ class ZoomFactorTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
     }
 
-    public function testInvalidPage()
+    public function testInvalidInteger()
     {
         $this->assertFalse($this->validator->isValid(0));
         $this->assertArrayHasKey('invalidInteger', $this->validator->getMessages());

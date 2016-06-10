@@ -32,7 +32,7 @@ class TemplateExtensionTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->validator->isValid('c:\PATH\TO\TEMPLATE.TX'));
     }
 
-    public function testInvalidExtension()
+    public function testUnsupportedExtension()
     {
         $this->assertFalse($this->validator->isValid('/path/to/template.xxx'));
         $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());

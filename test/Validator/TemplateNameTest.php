@@ -27,7 +27,6 @@ class TemplateNameTest extends PHPUnit_Framework_TestCase
 
     public function testInvalidPath()
     {
-
         $this->assertFalse($this->validator->isValid('/path/to/template.tx'));
         $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
 
