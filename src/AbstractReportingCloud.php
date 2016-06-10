@@ -376,7 +376,7 @@ abstract class AbstractReportingCloud
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      *
-     * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
     protected function request($method, $uri, $options)
     {
@@ -402,4 +402,5 @@ abstract class AbstractReportingCloud
 
         return $ret;
     }
+
 }
