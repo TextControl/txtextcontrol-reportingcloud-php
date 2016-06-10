@@ -24,6 +24,8 @@ use Zend\Validator\StaticValidator as ZendStaticValidator;
 class StaticValidator extends ZendStaticValidator
 {
     /**
+     * Statically call a Validator
+     *
      * @param mixed  $value         Value
      * @param string $classBaseName Class name
      * @param array  $options       Options
