@@ -92,15 +92,4 @@ class ZoomFactor extends AbstractValidator
 
         return true;
     }
-
-    public function getMin()
-    {
-        return self::MIN;
-    }
-
-    public function getMax()
-    {
-        return self::MAX;
-    }
-
 }
