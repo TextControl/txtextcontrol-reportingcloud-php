@@ -14,6 +14,7 @@ namespace TxTextControl\ReportingCloud\Validator;
 
 use DateTime as DateTimeObject; // alias due to naming conflict with TxTextControl\ReportingCloud\Validator\DateTime
 use DateTimeZone;
+use TxTextControl\ReportingCloud\Validator\TypeString as TypeStringValidator;
 
 /**
  * DateTime validator
@@ -74,7 +75,9 @@ class DateTime extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!is_string($value)) {
+        $typeStringValidator = new TypeStringValidator();
+
+        if (!$typeStringValidator->isValid($value)) {
             $this->error(self::INVALID_TYPE);
             return false;
         }

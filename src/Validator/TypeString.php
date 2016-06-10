@@ -12,39 +12,29 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use Zend\Validator\Between as BetweenValidator;
-use TxTextControl\ReportingCloud\Validator\TypeInteger as TypeIntegerValidator;
-
 /**
- * Timestamp validator
+ * TypeString validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Timestamp extends AbstractValidator
+class TypeString extends AbstractValidator
 {
+
     /**
-     * Invalid type
+     * Invalid filename
      *
      * @const INVALID_TYPE
      */
-    const INVALID_TYPE  = 'invalidType';
-
-    /**
-     * Invalid range
-     *
-     * @const INVALID_RANGE
-     */
-    const INVALID_RANGE = 'invalidRange';
+    const INVALID_TYPE = 'invalidType';
 
     /**
      * Message templates
-     * 
+     *
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_TYPE  => "'%value%' must be an integer",
-        self::INVALID_RANGE => "'%value%' is not in the required range",
+        self::INVALID_TYPE  => "'%value%' must be of type string",
     ];
 
     /**
@@ -58,24 +48,12 @@ class Timestamp extends AbstractValidator
     {
         $this->setValue($value);
 
-        $typeIntegerValidator = new TypeIntegerValidator();
-
-        if (!$typeIntegerValidator->isValid($value)) {
+        if (!is_string($value)) {
             $this->error(self::INVALID_TYPE);
-            return false;
-        }
-
-        $betweenValidator = new BetweenValidator([
-             'min'       => 0,
-             'max'       => PHP_INT_MAX,
-             'inclusive' => true
-        ]);
-
-        if (!$betweenValidator->isValid($value)) {
-            $this->error(self::INVALID_RANGE);
             return false;
         }
 
         return true;
     }
+
 }

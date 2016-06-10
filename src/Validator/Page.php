@@ -13,6 +13,7 @@
 namespace TxTextControl\ReportingCloud\Validator;
 
 use Zend\Validator\GreaterThan as GreaterThanValidator;
+use TxTextControl\ReportingCloud\Validator\TypeInteger as TypeIntegerValidator;
 
 /**
  * Page validator
@@ -64,7 +65,9 @@ class Page extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!is_integer($value)) {
+        $typeIntegerValidator = new TypeIntegerValidator();
+
+        if (!$typeIntegerValidator->isValid($value)) {
             $this->error(self::INVALID_TYPE);
             return false;
         }

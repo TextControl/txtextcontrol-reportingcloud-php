@@ -13,6 +13,7 @@
 namespace TxTextControl\ReportingCloud\Validator;
 
 use Zend\Validator\Between as BetweenValidator;
+use TxTextControl\ReportingCloud\Validator\TypeInteger as TypeIntegerValidator;
 
 /**
  * Zoom factor validator
@@ -71,7 +72,9 @@ class ZoomFactor extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!is_integer($value)) {
+        $typeIntegerValidator = new TypeIntegerValidator();
+
+        if (!$typeIntegerValidator($value)) {
             $this->error(self::INVALID_TYPE);
             return false;
         }
