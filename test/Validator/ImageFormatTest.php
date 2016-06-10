@@ -3,9 +3,9 @@
 namespace TxTextControlTest\ReportingCloud\Validator;
 
 use PHPUnit_Framework_TestCase;
-use TxTextControl\ReportingCloud\Validator\ImageFormats as Validator;
+use TxTextControl\ReportingCloud\Validator\ImageFormat as Validator;
 
-class ImageFormatsTest extends PHPUnit_Framework_TestCase
+class ImageFormatTest extends PHPUnit_Framework_TestCase
 {
     protected $validator;
 

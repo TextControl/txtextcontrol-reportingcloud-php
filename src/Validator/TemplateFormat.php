@@ -15,12 +15,12 @@ namespace TxTextControl\ReportingCloud\Validator;
 use Zend\Validator\InArray as InArrayValidator;
 
 /**
- * TemplateFormats validator
+ * TemplateFormat validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class TemplateFormats extends AbstractValidator
+class TemplateFormat extends AbstractValidator
 {
     /**
      * Unsupported file extension

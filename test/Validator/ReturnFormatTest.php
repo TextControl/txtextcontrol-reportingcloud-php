@@ -3,9 +3,9 @@
 namespace TxTextControlTest\ReportingCloud\Validator;
 
 use PHPUnit_Framework_TestCase;
-use TxTextControl\ReportingCloud\Validator\ReturnFormats as Validator;
+use TxTextControl\ReportingCloud\Validator\ReturnFormat as Validator;
 
-class ReturnFormatsTest extends PHPUnit_Framework_TestCase
+class ReturnFormatTest extends PHPUnit_Framework_TestCase
 {
     protected $validator;
 

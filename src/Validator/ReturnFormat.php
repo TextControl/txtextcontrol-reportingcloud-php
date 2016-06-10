@@ -12,16 +12,15 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use TxTextControl\ReportingCloud\Validator\AbstractValidator;
 use Zend\Validator\InArray as InArrayValidator;
 
 /**
- * ImageFormats validator
+ * ReturnFormat validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ImageFormats extends AbstractValidator
+class ReturnFormat extends AbstractValidator
 {
     /**
      * Unsupported file extension
@@ -36,7 +35,7 @@ class ImageFormats extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::UNSUPPORTED_EXTENSION  => "'%value%' contains an unsupported file extension for an image file",
+        self::UNSUPPORTED_EXTENSION  => "'%value%' contains an unsupported file extension for a return format",
     ];
 
     /**
@@ -52,10 +51,12 @@ class ImageFormats extends AbstractValidator
 
         $inArrayValidator = new InArrayValidator([
             'haystack' => [
-                'BMP',
-                'GIF',
-                'JPG',
-                'PNG'
+                'DOC' ,
+                'DOCX',
+                'HTML',
+                'PDF' ,
+                'RTF' ,
+                'TX'
             ],
             'strict' => true,
         ]);
@@ -67,5 +68,4 @@ class ImageFormats extends AbstractValidator
 
         return true;
     }
-
 }

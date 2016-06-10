@@ -62,7 +62,7 @@ class ReportingCloud extends AbstractReportingCloud
         StaticValidator::execute($zoomFactor  , 'ZoomFactor');
         StaticValidator::execute($fromPage    , 'Page');
         StaticValidator::execute($toPage      , 'Page');
-        StaticValidator::execute($imageFormat , 'ImageFormats');
+        StaticValidator::execute($imageFormat , 'ImageFormat');
 
         $query = [
             'templateName' => $templateName,
@@ -327,7 +327,7 @@ class ReportingCloud extends AbstractReportingCloud
 
         StaticValidator::execute($documentFilename, 'DocumentExtension');
         StaticValidator::execute($documentFilename, 'FileExists');
-        StaticValidator::execute($returnFormat    , 'ReturnFormats');
+        StaticValidator::execute($returnFormat    , 'ReturnFormat');
 
         $headers = [
             'Content-Type' => 'application/json',
@@ -382,7 +382,7 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = null;
 
         StaticValidator::execute($mergeData   , 'TypeArray');
-        StaticValidator::execute($returnFormat, 'ReturnFormats');
+        StaticValidator::execute($returnFormat, 'ReturnFormat');
 
         if (null !== $templateName) {
             StaticValidator::execute($templateName, 'TemplateName');
