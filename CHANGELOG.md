@@ -4,6 +4,7 @@
 
 ## dev-master
 
+* Abstracted all parameter validation to `\TxTextControl\ReportingCloud\Validator\StaticValidator` 
 * Made `\TxTextControl\ReportingCloud\Validator` properties consistent.
 
 ## 1.0.7 - 2016-06-08
