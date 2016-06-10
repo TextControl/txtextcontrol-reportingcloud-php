@@ -13,6 +13,7 @@
 namespace TxTextControl\ReportingCloud\Validator;
 
 use Zend\Validator\Between as BetweenValidator;
+use TxTextControl\ReportingCloud\Validator\TypeInteger as TypeIntegerValidator;
 
 /**
  * Timestamp validator
@@ -57,7 +58,9 @@ class Timestamp extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!is_integer($value)) {
+        $typeIntegerValidator = new TypeIntegerValidator();
+
+        if (!$typeIntegerValidator->isValid($value)) {
             $this->error(self::INVALID_TYPE);
             return false;
         }
@@ -65,7 +68,8 @@ class Timestamp extends AbstractValidator
         $betweenValidator = new BetweenValidator([
              'min'       => 0,
              'max'       => PHP_INT_MAX,
-             'inclusive' => true]);
+             'inclusive' => true
+        ]);
 
         if (!$betweenValidator->isValid($value)) {
             $this->error(self::INVALID_RANGE);

@@ -12,7 +12,7 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use TxTextControl\ReportingCloud\Validator\TemplateFormats as TemplateFormatsValidator;
+use TxTextControl\ReportingCloud\Validator\TemplateFormat as TemplateFormatsValidator;
 
 /**
  * TemplateName validator

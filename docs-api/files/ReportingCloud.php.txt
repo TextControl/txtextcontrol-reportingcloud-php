@@ -24,14 +24,7 @@ use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsP
 use TxTextControl\ReportingCloud\PropertyMap\MergeSettings   as MergeSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList    as TemplateListPropertyMap;
 
-use TxTextControl\ReportingCloud\Validator\DocumentExtension as DocumentExtensionValidator;
-use TxTextControl\ReportingCloud\Validator\ImageFormats      as ImageFormatsValidator;
-use TxTextControl\ReportingCloud\Validator\Page              as PageValidator;
-use TxTextControl\ReportingCloud\Validator\ReturnFormats     as ReturnFormatsValidator;
-use TxTextControl\ReportingCloud\Validator\TemplateExtension as TemplateExtensionValidator;
-use TxTextControl\ReportingCloud\Validator\TemplateName      as TemplateNameValidator;
-use TxTextControl\ReportingCloud\Validator\Timestamp         as TimestampValidator;
-use TxTextControl\ReportingCloud\Validator\ZoomFactor        as ZoomFactorValidator;
+use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
  * ReportingCloud
@@ -65,50 +58,11 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        $templateNameValidator = new TemplateNameValidator();
-        $zoomFactorValidator   = new ZoomFactorValidator();
-        $pageValidator         = new PageValidator();
-        $imageFormatsValidator = new ImageFormatsValidator();
-
-        if (!$templateNameValidator->isValid($templateName)) {
-            throw new InvalidArgumentException(
-                sprintf("'templateName' must a template name without any path information - '%s' was passed",
-                    $templateName)
-            );
-        }
-
-        if (!$zoomFactorValidator->isValid($zoomFactor)) {
-            throw new InvalidArgumentException(
-                sprintf("'zoomFactor' must be in the range %d..%d - '%s' was passed",
-                    $zoomFactorValidator->getMin(),
-                    $zoomFactorValidator->getMax(),
-                    $zoomFactor)
-            );
-        }
-
-        if (!$pageValidator->isValid($fromPage)) {
-            throw new InvalidArgumentException(
-                sprintf("'fromPage' must be greater than %d - '%s' was passed",
-                    $pageValidator->getMin(),
-                    $fromPage)
-            );
-        }
-
-        if (!$pageValidator->isValid($toPage)) {
-            throw new InvalidArgumentException(
-                sprintf("'toPage' must be greater than %d - '%s' was passed",
-                    $pageValidator->getMin(),
-                    $toPage)
-            );
-        }
-
-        if (!$imageFormatsValidator->isValid($imageFormat)) {
-            throw new InvalidArgumentException(
-                sprintf("'imageFormat' must be one of '%s' - '%s' was passed",
-                    implode(', ', $imageFormatsValidator->getHaystack()),
-                    $imageFormat)
-            );
-        }
+        StaticValidator::execute($templateName, 'TemplateName');
+        StaticValidator::execute($zoomFactor  , 'ZoomFactor');
+        StaticValidator::execute($fromPage    , 'Page');
+        StaticValidator::execute($toPage      , 'Page');
+        StaticValidator::execute($imageFormat , 'ImageFormat');
 
         $query = [
             'templateName' => $templateName,
@@ -187,14 +141,7 @@ class ReportingCloud extends AbstractReportingCloud
      */
     public function getTemplatePageCount($templateName)
     {
-        $templateNameValidator = new TemplateNameValidator();
-
-        if (!$templateNameValidator->isValid($templateName)) {
-            throw new InvalidArgumentException(
-                sprintf("'templateName' must a template name without any path information - '%s' was passed",
-                    $templateName)
-            );
-        }
+        StaticValidator::execute($templateName, 'TemplateName');
 
         $query = [
             'templateName' => $templateName,
@@ -214,14 +161,7 @@ class ReportingCloud extends AbstractReportingCloud
      */
     public function templateExists($templateName)
     {
-        $templateNameValidator = new TemplateNameValidator();
-
-        if (!$templateNameValidator->isValid($templateName)) {
-            throw new InvalidArgumentException(
-                sprintf("'templateName' must a template name without any path information - '%s' was passed",
-                    $templateName)
-            );
-        }
+        StaticValidator::execute($templateName, 'TemplateName');
 
         $query = [
             'templateName' => $templateName,
@@ -274,15 +214,7 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        $templateNameValidator = new TemplateNameValidator();
-
-        if (!$templateNameValidator->isValid($templateName)) {
-            throw new InvalidArgumentException(
-                sprintf("'templateName' must a template name without any path information - '%s' was passed",
-                    $templateName
-                )
-            );
-        }
+        StaticValidator::execute($templateName, 'TemplateName');
 
         $query = [
             'templateName' => $templateName,
@@ -344,23 +276,8 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = false;
 
-        $templateExtensionValidator = new TemplateExtensionValidator();
-
-        if (!$templateExtensionValidator->isValid($templateFilename)) {
-            throw new InvalidArgumentException(
-                sprintf("'templateFilename' %s does not have a supported file extension",
-                    $templateFilename
-                )
-            );
-        }
-
-        if (!is_readable($templateFilename)) {
-            throw new InvalidArgumentException(
-                sprintf("'templateFilename' %s cannot be read from the local file system",
-                    $templateFilename
-                )
-            );
-        }
+        StaticValidator::execute($templateFilename, 'TemplateExtension');
+        StaticValidator::execute($templateFilename, 'FileExists');
 
         $templateFilename = realpath($templateFilename);
         $templateName     = basename($templateFilename);
@@ -408,34 +325,9 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        $documentExtensionValidator = new DocumentExtensionValidator();
-        $returnFormatsValidator     = new ReturnFormatsValidator();
-
-        if (!$documentExtensionValidator->isValid($documentFilename)) {
-            throw new InvalidArgumentException(
-                sprintf("'documentFilename' %s does not have a supported file extension",
-                    $documentFilename
-                )
-            );
-        }
-
-        if (!is_readable($documentFilename)) {
-            throw new InvalidArgumentException(
-                sprintf("'documentFilename' %s cannot be read from the local file system",
-                    $documentFilename
-                )
-            );
-        }
-
-        $documentFilename = realpath($documentFilename);
-
-        if (!$returnFormatsValidator->isValid($returnFormat)) {
-            throw new InvalidArgumentException(
-                sprintf("'returnFormat' must be one of '%s' - '%s' was passed",
-                    implode(', ', $returnFormatsValidator->getHaystack()),
-                    $returnFormat)
-            );
-        }
+        StaticValidator::execute($documentFilename, 'DocumentExtension');
+        StaticValidator::execute($documentFilename, 'FileExists');
+        StaticValidator::execute($returnFormat    , 'ReturnFormat');
 
         $headers = [
             'Content-Type' => 'application/json',
@@ -444,6 +336,8 @@ class ReportingCloud extends AbstractReportingCloud
         $query = [
             'returnFormat' => $returnFormat,
         ];
+
+        $documentFilename = realpath($documentFilename);
 
         $body = file_get_contents($documentFilename);
         $body = base64_encode($body);
@@ -487,65 +381,29 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        $returnFormatsValidator     = new ReturnFormatsValidator();
-        $templateExtensionValidator = new TemplateExtensionValidator();
-        $templateNameValidator      = new TemplateNameValidator();
-        $timestampValidator         = new TimestampValidator();
-
-        if (!$returnFormatsValidator->isValid($returnFormat)) {
-            throw new InvalidArgumentException(
-                sprintf("'returnFormat' must be one of '%s' - '%s' was passed",
-                    implode(', ', $returnFormatsValidator->getHaystack()),
-                    $returnFormat)
-            );
-        }
+        StaticValidator::execute($mergeData   , 'TypeArray');
+        StaticValidator::execute($returnFormat, 'ReturnFormat');
 
         if (null !== $templateName) {
-            if (!$templateNameValidator->isValid($templateName)) {
-                throw new InvalidArgumentException(
-                    sprintf("'templateName' must a template name without any path information - '%s' was passed",
-                        $templateName)
-                );
-            }
+            StaticValidator::execute($templateName, 'TemplateName');
         }
 
         if (null !== $templateFilename) {
-            if (!$templateExtensionValidator->isValid($templateFilename)) {
-                throw new InvalidArgumentException(
-                    sprintf("'templateFilename' %s does not have a supported file extension",
-                        $templateFilename
-                    )
-                );
-            }
-            if (!is_readable($templateFilename)) {
-                throw new InvalidArgumentException(
-                    sprintf("'templateFilename' %s cannot be read from the local file system",
-                        $templateFilename)
-                );
-            }
+            StaticValidator::execute($templateFilename, 'TemplateExtension');
+            StaticValidator::execute($templateFilename, 'FileExists');
             $templateFilename = realpath($templateFilename);
         }
 
         if (null !== $append) {
-            if (!is_bool($append)) {
-                throw new InvalidArgumentException(
-                    sprintf("'append' must a boolean value - '%s' was passed",
-                        gettype($append))
-                );
-            }
-            if (true === $append ) {
+            StaticValidator::execute($append, 'TypeBoolean');
+            if (true === $append) {
                 $append = 'true';   // This boolean value MUST be passed as a string to prevent Guzzle converting the
             } else {                // query parameter to ?append=0 or ?append=1, which the backend does not recognize.
                 $append = 'false';  // The backend only recognizes query parameter ?append=true and ?append=false.
             }
         }
 
-        if (!is_array($mergeSettings)) {
-            throw new InvalidArgumentException(
-                sprintf("'mergeSettings' must an array - '%s' was passed",
-                    gettype($mergeSettings))
-            );
-        }
+        StaticValidator::execute($mergeSettings, 'TypeArray');
 
         $headers = [
             'Content-Type' => 'application/json',
@@ -574,18 +432,10 @@ class ReportingCloud extends AbstractReportingCloud
                 if (isset($mergeSettings[$key])) {
                     $value = $mergeSettings[$key];
                     if ('remove_' == substr($key, 0, 7)) {
-                        if (!is_bool($value)) {
-                            throw new InvalidArgumentException(
-                                sprintf("'%s' must be a boolean value - '%s' was passed", $key, $value)
-                            );
-                        }
+                        StaticValidator::execute($value, 'TypeBoolean');
                     }
                     if ('_date' == substr($key, -5)) {
-                        if (!$timestampValidator->isValid($value)) {
-                            throw new InvalidArgumentException(
-                                sprintf("'%s' must contain a valid unix timestamp - '%s' was passed", $key, $value)
-                            );
-                        }
+                        StaticValidator::execute($value, 'Timestamp');
                         $value = $filter->filter($value);
                     }
                     $mergeSettingsRc[$property] = $value;
@@ -655,14 +505,7 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = false;
 
-        $templateNameValidator = new TemplateNameValidator();
-
-        if (!$templateNameValidator->isValid($templateName)) {
-            throw new InvalidArgumentException(
-                sprintf("'templateName' must a template name without any path information - '%s' was passed",
-                    $templateName)
-            );
-        }
+        StaticValidator::execute($templateName, 'TemplateName');
 
         $query = [
             'templateName' => $templateName,
