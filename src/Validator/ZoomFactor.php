@@ -20,7 +20,7 @@ use Zend\Validator\Between as BetweenValidator;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ZoomFactor extends BetweenValidator
+class ZoomFactor extends AbstractValidator
 {
     /**
      * Minimum zoom factor
@@ -37,21 +37,67 @@ class ZoomFactor extends BetweenValidator
     const MAX = 400;
 
     /**
-     * ZoomFactor constructor
-     * 
-     * @param array $options
+     * Invalid type
+     *
+     * @const INVALID_TYPE
      */
-    public function __construct($options = [])
+    const INVALID_TYPE  = 'invalidType';
+
+    /**
+     * Invalid page
+     *
+     * @const INVALID_INTEGER
+     */
+    const INVALID_INTEGER = 'invalidInteger';
+
+    /**
+     * Message templates
+     *
+     * @var array
+     */
+    protected $messageTemplates = [
+        self::INVALID_TYPE  => "'%value%' must be an integer",
+        self::INVALID_INTEGER  => "'%value%' contains an invalid zoom factor",
+    ];
+
+    /**
+     * Returns true, if value is valid. False otherwise.
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function isValid($value)
     {
-        if (!is_array($options)) {
-            $options = [];
+        $this->setValue($value);
+
+        if (!is_integer($value)) {
+            $this->error(self::INVALID_TYPE);
+            return false;
         }
 
-        $options['min']       = self::MIN;
-        $options['max']       = self::MAX;
-        $options['inclusive'] = true;
+        $betweenValidator = new BetweenValidator([
+            'min'       => self::MIN,
+            'max'       => self::MAX,
+            'inclusive' => true,
+        ]);
 
-        return parent::__construct($options);
+        if (!$betweenValidator->isValid($value)) {
+            $this->error(self::INVALID_INTEGER);
+            return false;
+        }
+
+        return true;
+    }
+
+    public function getMin()
+    {
+        return self::MIN;
+    }
+
+    public function getMax()
+    {
+        return self::MAX;
     }
 
 }

@@ -23,10 +23,10 @@ class ReturnFormatsTest extends PHPUnit_Framework_TestCase
     public function testNotInArray()
     {
         $this->assertFalse($this->validator->isValid('tif'));
-        $this->assertArrayHasKey('notInArray', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('TIF'));
-        $this->assertArrayHasKey('notInArray', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
     }
 
 }

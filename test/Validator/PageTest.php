@@ -21,16 +21,28 @@ class PageTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->validator->isValid(PHP_INT_MAX));
     }
 
-    public function testNotGreaterThanInclusive()
+    public function testInvalidType()
+    {
+        $this->assertFalse($this->validator->isValid('invalid'));
+        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid('0'));
+        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid('1'));
+        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(true));
+        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+    }
+
+    public function testInvalidPage()
     {
         $this->assertFalse($this->validator->isValid(0));
-        $this->assertArrayHasKey('notGreaterThanInclusive', $this->validator->getMessages());
+        $this->assertArrayHasKey('invalidInteger', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(-1));
-        $this->assertArrayHasKey('notGreaterThanInclusive', $this->validator->getMessages());
-
-        $this->assertFalse($this->validator->isValid('invalid'));
-        $this->assertArrayHasKey('notGreaterThanInclusive', $this->validator->getMessages());
+        $this->assertArrayHasKey('invalidInteger', $this->validator->getMessages());
     }
 
     public function testConstructor()

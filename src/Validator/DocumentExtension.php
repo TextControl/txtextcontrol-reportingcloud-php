@@ -47,18 +47,20 @@ class DocumentExtension extends AbstractValidator
      */
     public function isValid($value)
     {
+        $this->setValue($value);
+
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = strtoupper($extension);
 
-        $inArrayValidator = new InArrayValidator();
-
-        $inArrayValidator->setHaystack([
-            'DOC' ,
-            'DOCX',
-            'HTML',
-            'PDF' ,
-            'RTF' ,
-            'TX'
+        $inArrayValidator = new InArrayValidator([
+            'haystack' => [
+                'DOC' ,
+                'DOCX',
+                'HTML',
+                'PDF' ,
+                'RTF' ,
+                'TX'
+            ]
         ]);
 
         if (!$inArrayValidator->isValid($extension)) {

@@ -12,6 +12,7 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
+use TxTextControl\ReportingCloud\Validator\AbstractValidator;
 use Zend\Validator\InArray as InArrayValidator;
 
 /**
@@ -20,24 +21,23 @@ use Zend\Validator\InArray as InArrayValidator;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ImageFormats extends InArrayValidator
+class ImageFormats extends AbstractValidator
 {
     /**
-     * ImageFormats constructor
-     * 
-     * @param array $options
+     * Unsupported file extension
+     *
+     * @const UNSUPPORTED_EXTENSION
      */
-    public function __construct($options = [])
-    {
-        $this->setHaystack([
-            'BMP',
-            'GIF',
-            'JPG',
-            'PNG'
-        ]);
+    const UNSUPPORTED_EXTENSION = 'unsupportedExtension';
 
-        return parent::__construct($options);
-    }
+    /**
+     * Message templates
+     *
+     * @var array
+     */
+    protected $messageTemplates = [
+        self::UNSUPPORTED_EXTENSION  => "'%value%' contains an unsupported file extension for an image file",
+    ];
 
     /**
      * Returns true, if value is valid. False otherwise.
@@ -48,9 +48,24 @@ class ImageFormats extends InArrayValidator
      */
     public function isValid($value)
     {
-        $value = strtoupper($value);
+        $this->setValue($value);
 
-        return parent::isValid($value);
+        $inArrayValidator = new InArrayValidator([
+            'haystack' => [
+                'BMP',
+                'GIF',
+                'JPG',
+                'PNG'
+            ],
+            'strict' => true,
+        ]);
+
+        if (!$inArrayValidator->isValid(strtoupper($value))) {
+            $this->error(self::UNSUPPORTED_EXTENSION);
+            return false;
+        }
+
+        return true;
     }
 
 }

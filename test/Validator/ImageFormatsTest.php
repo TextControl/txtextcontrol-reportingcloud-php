@@ -23,10 +23,10 @@ class ImageFormatsTest extends PHPUnit_Framework_TestCase
     public function testNotInArray()
     {
         $this->assertFalse($this->validator->isValid('doc'));
-        $this->assertArrayHasKey('notInArray', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('DOC'));
-        $this->assertArrayHasKey('notInArray', $this->validator->getMessages());
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
     }
 
 }

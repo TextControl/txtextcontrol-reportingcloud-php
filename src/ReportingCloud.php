@@ -33,6 +33,8 @@ use TxTextControl\ReportingCloud\Validator\TemplateName      as TemplateNameVali
 use TxTextControl\ReportingCloud\Validator\Timestamp         as TimestampValidator;
 use TxTextControl\ReportingCloud\Validator\ZoomFactor        as ZoomFactorValidator;
 
+use Zend\Validator\File\Exists                               as FileExistsValidator;
+
 /**
  * ReportingCloud
  *
@@ -103,6 +105,9 @@ class ReportingCloud extends AbstractReportingCloud
         }
 
         if (!$imageFormatsValidator->isValid($imageFormat)) {
+
+            dump($imageFormatsValidator->getMessages());
+
             throw new InvalidArgumentException(
                 sprintf("'imageFormat' must be one of '%s' - '%s' was passed",
                     implode(', ', $imageFormatsValidator->getHaystack()),
@@ -345,6 +350,7 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = false;
 
         $templateExtensionValidator = new TemplateExtensionValidator();
+        $fileExistsValidator        = new FileExistsValidator();
 
         if (!$templateExtensionValidator->isValid($templateFilename)) {
             throw new InvalidArgumentException(
@@ -354,7 +360,7 @@ class ReportingCloud extends AbstractReportingCloud
             );
         }
 
-        if (!is_readable($templateFilename)) {
+        if (!$fileExistsValidator->isValid($templateFilename)) {
             throw new InvalidArgumentException(
                 sprintf("'templateFilename' %s cannot be read from the local file system",
                     $templateFilename
@@ -409,6 +415,7 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = null;
 
         $documentExtensionValidator = new DocumentExtensionValidator();
+        $fileExistsValidator        = new FileExistsValidator();
         $returnFormatsValidator     = new ReturnFormatsValidator();
 
         if (!$documentExtensionValidator->isValid($documentFilename)) {
@@ -419,7 +426,7 @@ class ReportingCloud extends AbstractReportingCloud
             );
         }
 
-        if (!is_readable($documentFilename)) {
+        if (!$fileExistsValidator->isValid($documentFilename)) {
             throw new InvalidArgumentException(
                 sprintf("'documentFilename' %s cannot be read from the local file system",
                     $documentFilename
@@ -490,6 +497,7 @@ class ReportingCloud extends AbstractReportingCloud
         $returnFormatsValidator     = new ReturnFormatsValidator();
         $templateExtensionValidator = new TemplateExtensionValidator();
         $templateNameValidator      = new TemplateNameValidator();
+        $fileExistsValidator        = new FileExistsValidator();
         $timestampValidator         = new TimestampValidator();
 
         if (!$returnFormatsValidator->isValid($returnFormat)) {
@@ -517,7 +525,7 @@ class ReportingCloud extends AbstractReportingCloud
                     )
                 );
             }
-            if (!is_readable($templateFilename)) {
+            if (!$fileExistsValidator->isValid($templateFilename)) {
                 throw new InvalidArgumentException(
                     sprintf("'templateFilename' %s cannot be read from the local file system",
                         $templateFilename)

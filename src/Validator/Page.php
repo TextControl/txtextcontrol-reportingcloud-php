@@ -30,21 +30,56 @@ class Page extends GreaterThanValidator
     const MIN = 1;
 
     /**
-     * Page constructor
-     * 
-     * @param array $options
+     * Invalid type
+     *
+     * @const INVALID_TYPE
      */
-    public function __construct($options = [])
+    const INVALID_TYPE  = 'invalidType';
+    
+    /**
+     * Invalid page
+     *
+     * @const INVALID_INTEGER
+     */
+    const INVALID_INTEGER = 'invalidInteger';
+
+    /**
+     * Message templates
+     *
+     * @var array
+     */
+    protected $messageTemplates = [
+        self::INVALID_TYPE  => "'%value%' must be an integer",        
+        self::INVALID_INTEGER  => "'%value%' contains an invalid page number",
+    ];
+
+    /**
+     * Returns true, if value is valid. False otherwise.
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function isValid($value)
     {
-        if (!is_array($options)) {
-            $options = [];
+        $this->setValue($value);
+
+        if (!is_integer($value)) {
+            $this->error(self::INVALID_TYPE);
+            return false;
         }
 
-        $options['min']       = self::MIN;
-        $options['max']       = PHP_INT_MAX;
-        $options['inclusive'] = true;
+        $greaterThanValidator = new GreaterThanValidator([
+            'min'       => self::MIN,
+            'inclusive' => true,
+        ]);
 
-        return parent::__construct($options);
+        if (!$greaterThanValidator->isValid($value)) {
+            $this->error(self::INVALID_INTEGER);
+            return false;
+        }
+
+        return true;
     }
 
 }
