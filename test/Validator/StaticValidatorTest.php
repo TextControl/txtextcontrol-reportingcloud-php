@@ -18,6 +18,14 @@ class StaticValidatorTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
+    public function testExecuteClassDoesNotExist()
+    {
+        StaticValidator::execute(123, 'Invalid', [1, 2, 3, 4]);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
     public function testExecuteInvalidOptions()
     {
         StaticValidator::execute(123, 'TypeInteger', [1, 2, 3, 4]);

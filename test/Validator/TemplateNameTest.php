@@ -62,6 +62,15 @@ class TemplateNameTest extends PHPUnit_Framework_TestCase
     {
         $this->assertFalse($this->validator->isValid('..'));
         $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid('0'));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(0));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(true));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
     }
 
     public function testInvalidBasename()
@@ -73,6 +82,12 @@ class TemplateNameTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('invalidBasename', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('.a'));
+        $this->assertArrayHasKey('invalidBasename', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(''));
+        $this->assertArrayHasKey('invalidBasename', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(false));
         $this->assertArrayHasKey('invalidBasename', $this->validator->getMessages());
     }
 

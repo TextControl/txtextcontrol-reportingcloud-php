@@ -14,8 +14,7 @@ namespace TxTextControl\ReportingCloud\Filter;
 
 use DateTime;
 use DateTimeZone;
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\Validator\DateTime as DateTimeValidator;
+use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
  * DateTimeToTimestamp filter
@@ -34,16 +33,9 @@ class DateTimeToTimestamp extends AbstractFilter
      */
     public function filter($dateTimeString)
     {
-        $validator = new DateTimeValidator();
-
-        if (!$validator->isValid($dateTimeString)) {
-            throw new InvalidArgumentException(
-                sprintf('%s is an invalid date/time string', $dateTimeString)
-            );
-        }
+        StaticValidator::execute($dateTimeString, 'DateTime');
 
         $dateTimeZone = new DateTimeZone($this->getTimeZone());
-
         $dateTime = DateTime::createFromFormat($this->getDateFormat(), $dateTimeString, $dateTimeZone);
 
         return $dateTime->getTimestamp();

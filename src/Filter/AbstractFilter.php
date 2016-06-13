@@ -13,7 +13,9 @@
 namespace TxTextControl\ReportingCloud\Filter;
 
 use TxTextControl\ReportingCloud\ReportingCloud;
-use Zend\Filter\AbstractFilter as AbstractFilterFilterZend;
+
+use Zend\Filter\AbstractFilter  as ZendAbstractFilter;
+use Zend\Filter\FilterInterface as ZendFilterInterface;
 
 /**
  * Abstract filter
@@ -21,7 +23,7 @@ use Zend\Filter\AbstractFilter as AbstractFilterFilterZend;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-abstract class AbstractFilter extends AbstractFilterFilterZend
+abstract class AbstractFilter extends ZendAbstractFilter implements ZendFilterInterface
 {
     /**
      * Return backend date format

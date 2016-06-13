@@ -84,12 +84,12 @@ class TemplateName extends AbstractValidator
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = trim($extension);
 
-        if (empty($basename) || $basename == ".{$extension}") {
+        if (0 === strlen($basename) || $basename == ".{$extension}") {
             $this->error(self::INVALID_BASENAME);
             return false;
         }
 
-        if (empty($extension)) {
+        if (0 === strlen($extension)) {
             $this->error(self::INVALID_EXTENSION);
             return false;
         }

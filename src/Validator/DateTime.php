@@ -12,7 +12,7 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use DateTime as DateTimeObject; // alias due to naming conflict with TxTextControl\ReportingCloud\Validator\DateTime
+use DateTime as DateTimeClass; // alias due to naming conflict with TxTextControl\ReportingCloud\Validator\DateTime
 use DateTimeZone;
 use TxTextControl\ReportingCloud\Validator\TypeString as TypeStringValidator;
 
@@ -89,7 +89,7 @@ class DateTime extends AbstractValidator
 
         $dateTimeZone = new DateTimeZone($this->getTimeZone());
 
-        $dateTime = DateTimeObject::createFromFormat($this->getDateFormat(), $value, $dateTimeZone);
+        $dateTime = DateTimeClass::createFromFormat($this->getDateFormat(), $value, $dateTimeZone);
 
         if (false === $dateTime) {
             $this->error(self::INVALID_SYNTAX);
@@ -112,7 +112,7 @@ class DateTime extends AbstractValidator
     protected function getRequiredLength()
     {
         $dateTimeZone = new DateTimeZone($this->getTimeZone());
-        $dateTime     = new DateTimeObject('now', $dateTimeZone);
+        $dateTime     = new DateTimeClass('now', $dateTimeZone);
 
         return strlen($dateTime->format($this->getDateFormat()));
     }

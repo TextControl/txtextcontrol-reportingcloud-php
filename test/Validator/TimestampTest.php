@@ -20,6 +20,7 @@ class TimestampTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->validator->isValid(1));
         $this->assertTrue($this->validator->isValid(1000));
         $this->assertTrue($this->validator->isValid(10000000));
+        $this->assertTrue($this->validator->isValid(PHP_INT_MAX));
     }
 
     public function testInvalidType()

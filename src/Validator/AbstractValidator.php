@@ -13,7 +13,9 @@
 namespace TxTextControl\ReportingCloud\Validator;
 
 use TxTextControl\ReportingCloud\ReportingCloud;
-use Zend\Validator\AbstractValidator as AbstractValidatorValidatorZend;
+
+use Zend\Validator\AbstractValidator  as ZendAbstractValidator;
+use Zend\Validator\ValidatorInterface as ZendValidatorInterface;
 
 /**
  * Abstract validator
@@ -21,7 +23,7 @@ use Zend\Validator\AbstractValidator as AbstractValidatorValidatorZend;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-abstract class AbstractValidator extends AbstractValidatorValidatorZend
+abstract class AbstractValidator extends ZendAbstractValidator implements ZendValidatorInterface
 {
     /**
      * Return backend date format
