@@ -22,7 +22,11 @@ use Zend\Validator\InArray as InArrayValidator;
  */
 class TemplateExtension extends FileHasExtension
 {
-
+    /**
+     * TemplateExtension constructor
+     * 
+     * @param array $options
+     */
     public function __construct($options = [])
     {
         $templateFormatValidator = new TemplateFormat();
