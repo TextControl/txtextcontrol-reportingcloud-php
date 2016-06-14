@@ -12,7 +12,7 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use Zend\Validator\InArray as InArrayValidator;
+use TxTextControl\ReportingCloud\Validator\TemplateFormat as TemplateFormatValidator;
 
 /**
  * TemplateExtension validator
@@ -29,7 +29,7 @@ class TemplateExtension extends FileHasExtension
      */
     public function __construct($options = [])
     {
-        $templateFormatValidator = new TemplateFormat();
+        $templateFormatValidator = new TemplateFormatValidator();
 
         $options['haystack'] = $templateFormatValidator->getHaystack();
 

@@ -44,7 +44,7 @@ class TemplateName extends AbstractValidator
     const INVALID_BASENAME = 'invalidBasename';
 
     /**
-     * Unsupported Extension
+     * Unsupported FileExtension
      *
      * @const UNSUPPORTED_EXTENSION
      */
@@ -94,9 +94,8 @@ class TemplateName extends AbstractValidator
             return false;
         }
 
-        $templateExtensionValidator = new TemplateFormatValidator();
-
-        if (!$templateExtensionValidator->isValid($extension)) {
+        $templateFormatValidator = new TemplateFormatValidator();
+        if (!$templateFormatValidator->isValid($extension)) {
             $this->error(self::UNSUPPORTED_EXTENSION);
             return false;
         }

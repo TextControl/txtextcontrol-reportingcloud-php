@@ -18,7 +18,7 @@ namespace TxTextControl\ReportingCloud\Validator;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ReturnFormat extends Extension
+class ReturnFormat extends FileExtension
 {
     /**
      * ReturnFormat constructor

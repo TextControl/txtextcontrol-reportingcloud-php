@@ -50,8 +50,8 @@ class Page extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_TYPE  => "'%value%' must be an integer",        
-        self::INVALID_INTEGER  => "'%value%' contains an invalid page number",
+        self::INVALID_TYPE    => "'%value%' must be an integer",
+        self::INVALID_INTEGER => "'%value%' contains an invalid page number",
     ];
 
     /**

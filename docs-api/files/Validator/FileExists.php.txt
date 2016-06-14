@@ -22,7 +22,6 @@ use Zend\Validator\File\Exists as FileExistsValidator;
  */
 class FileExists extends AbstractValidator
 {
-
     /**
      * Invalid filename
      *
@@ -36,7 +35,7 @@ class FileExists extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_FILENAME  => "'%value%' contains an invalid filename",
+        self::INVALID_FILENAME => "'%value%' contains an invalid filename",
     ];
 
     /**
@@ -51,7 +50,6 @@ class FileExists extends AbstractValidator
         $this->setValue($value);
 
         $fileExistsValidator = new FileExistsValidator();
-
         if (!$fileExistsValidator->isValid($value)) {
             $this->error(self::INVALID_FILENAME);
             return false;
