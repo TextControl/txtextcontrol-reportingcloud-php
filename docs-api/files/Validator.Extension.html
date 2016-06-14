@@ -21,54 +21,54 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
 
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
 
-            pre.textContent = '';
+                pre.textContent = '';
 
-            code.textContent = 'Loading…';
+                code.textContent = 'Loading…';
 
-            pre.appendChild(code);
+                pre.appendChild(code);
 
-            var xhr = new XMLHttpRequest();
+                var xhr = new XMLHttpRequest();
 
-            xhr.open('GET', src, true);
+                xhr.open('GET', src, true);
 
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
 
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
 
-                        Prism.highlightElement(code);
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
                     }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
+                };
 
-            xhr.send(null);
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
         });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
 
     <link rel="shortcut icon" href="../images/favicon.ico"/>
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1163176769"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-766143282"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1163176769" class="accordion-body collapse in">
+            <div id="namespace-766143282" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-651360709"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-74275308"></a>
                                 <a href="../namespaces/TxTextControl.html" style="margin-left: 30px; padding-left: 0">TxTextControl</a>
             </div>
-            <div id="namespace-651360709" class="accordion-body collapse ">
+            <div id="namespace-74275308" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-371251130"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1080865536"></a>
                                 <a href="../namespaces/TxTextControl.ReportingCloud.html" style="margin-left: 30px; padding-left: 0">ReportingCloud</a>
             </div>
-            <div id="namespace-371251130" class="accordion-body collapse ">
+            <div id="namespace-1080865536" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2010028863"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1934596425"></a>
                                 <a href="../namespaces/TxTextControl.ReportingCloud.Exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
             </div>
-            <div id="namespace-2010028863" class="accordion-body collapse ">
+            <div id="namespace-1934596425" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -191,10 +191,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-880944671"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1930290694"></a>
                                 <a href="../namespaces/TxTextControl.ReportingCloud.Filter.html" style="margin-left: 30px; padding-left: 0">Filter</a>
             </div>
-            <div id="namespace-880944671" class="accordion-body collapse ">
+            <div id="namespace-1930290694" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -211,10 +211,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1544586237"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-908302830"></a>
                                 <a href="../namespaces/TxTextControl.ReportingCloud.PropertyMap.html" style="margin-left: 30px; padding-left: 0">PropertyMap</a>
             </div>
-            <div id="namespace-1544586237" class="accordion-body collapse ">
+            <div id="namespace-908302830" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -233,10 +233,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1723613098"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-560530554"></a>
                                 <a href="../namespaces/TxTextControl.ReportingCloud.Validator.html" style="margin-left: 30px; padding-left: 0">Validator</a>
             </div>
-            <div id="namespace-1723613098" class="accordion-body collapse ">
+            <div id="namespace-560530554" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -297,248 +297,71 @@
     <section class="row-fluid">
         <div class="span10 offset2">
             <div class="row-fluid">
-                <div class="span8 content class">
+                <div class="span8 content file">
                     <nav>
-                                                <a href="../namespaces/TxTextControl.ReportingCloud.PropertyMap.html">\TxTextControl\ReportingCloud\PropertyMap</a> <i class="icon-level-up"></i>
-                                            </nav>
+                                                                    </nav>
+
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small>Validator</small>Extension.php</h1>
+                    <p><em>ReportingCloud PHP Wrapper</em></p>
+                    <p>Official wrapper (authored by Text Control GmbH, publisher of ReportingCloud) to access ReportingCloud in PHP.</p>
 
-                    <h1><small>\TxTextControl\ReportingCloud\PropertyMap</small>MergeSettings</h1>
-                    <p><em>MergeSettings property map</em></p>
                     
                     
-                                        
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/TxTextControl.ReportingCloud.PropertyMap.AbstractPropertyMap.html#method_getMap" class="">getMap()</a><br />
-                                                                    <a href="../classes/TxTextControl.ReportingCloud.PropertyMap.AbstractPropertyMap.html#method_setMap" class="">setMap()</a><br />
-                                                                    <a href="../classes/TxTextControl.ReportingCloud.PropertyMap.MergeSettings.html#method___construct" class="">__construct()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No public properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <em>No protected methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/TxTextControl.ReportingCloud.PropertyMap.AbstractPropertyMap.html#property_map" class="">$map</a><br />
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <em>No private methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
-                <aside class="span4 detailsbar">
-                                        
-                    
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/PropertyMap.MergeSettings.html"><div class="path-wrapper">PropertyMap/MergeSettings.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">TxTextControl\ReportingCloud</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                                                                                                                                                
-                                        <div class="namespace-wrapper"><a href="../classes/TxTextControl.ReportingCloud.PropertyMap.AbstractPropertyMap.html">\TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap</a></div>
-                                                                                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\PropertyMap\MergeSettings</div>
-                            </dd>
-
-                        
-                        
-                        
-                        
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
                                             <tr>
-                            <th>
-                                author
-                            </th>
-                            <td>
-                                                                    <p>Jonathan Maron (@JonathanMaron)</p>
-                                                            </td>
+                            <td><a href="../classes/TxTextControl.ReportingCloud.Validator.Extension.html">Extension</a></td>
+                            <td><em>Extension validator</em></td>
                         </tr>
                                         </table>
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                                                                                    <dt>See also</dt>
+                                                                                        <dd><a href="http://www.reporting.cloud"><div class="namespace-wrapper">to learn more about ReportingCloud</div></a></dd>
+                                                            <dd><a href="https://github.com/TextControl/txtextcontrol-reportingcloud-php"><div class="namespace-wrapper">for the canonical source repository</div></a></dd>
+                                                    
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr>
+                                <th>
+                                    license
+                                </th>
+                                <td>
+                                                                            <p><a href="https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md">https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md</a></p>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    copyright
+                                </th>
+                                <td>
+                                                                            <p>© 2016 Text Control GmbH</p>
+                                                                    </td>
+                            </tr>
+                                            </table>
+
                 </aside>
             </div>
 
-                        
-                                    <a id="properties" name="properties"></a>
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <h2>Properties</h2>
-                </div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property_map" name="property_map" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$map</h3>
-                <pre class="signature">$map : array</pre>
-                <p><em>Assoc array of properties
-camelCase properties =&gt; Lower case underscore array keys</em></p>
-                
-
-                                <h4>Type</h4>
-                array
-                                            </article>
+            
+            
         </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/TxTextControl.ReportingCloud.PropertyMap.AbstractPropertyMap.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                            
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getMap" name="method_getMap" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getMap()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getMap() : array</pre>
-                <p><em>Return the property map</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/TxTextControl.ReportingCloud.PropertyMap.AbstractPropertyMap.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setMap" name="method_setMap" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setMap()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setMap(array  <span class="argument">$map</span>) : \TxTextControl\ReportingCloud\PropertyMap\$this;</pre>
-                <p><em>Set the property map</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$map </td>
-                                <td><p>Assoc array of property data</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \TxTextControl\ReportingCloud\PropertyMap\$this;
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                    <dt>Inherited from</dt>
-                    <dd><a href="../classes/TxTextControl.ReportingCloud.PropertyMap.AbstractPropertyMap.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap</div></a></dd>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method___construct" name="method___construct" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">__construct()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
-                <p><em>Set the property map of MergeSettings</em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">MergeSettings.php</h3>
+            <h3 id="source-view-label"></h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/PropertyMap/MergeSettings.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/Validator/Extension.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 

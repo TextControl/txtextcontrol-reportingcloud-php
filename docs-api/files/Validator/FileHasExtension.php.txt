@@ -10,39 +10,32 @@
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
  * @copyright © 2016 Text Control GmbH
  */
-namespace TxTextControl\ReportingCloud\Filter;
+namespace TxTextControl\ReportingCloud\Validator;
 
-use TxTextControl\ReportingCloud\ReportingCloud;
-
-use Zend\Filter\AbstractFilter  as ZendAbstractFilter;
-use Zend\Filter\FilterInterface as ZendFilterInterface;
+use TxTextControl\ReportingCloud\Validator\Extension as ExtensionValidator;
 
 /**
- * Abstract filter
+ * FileHasExtension validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-abstract class AbstractFilter extends ZendAbstractFilter implements ZendFilterInterface
+class FileHasExtension extends ExtensionValidator
 {
     /**
-     * Return backend date format
+     * Returns true, if value is valid. False otherwise.
      *
-     * @return string
+     * @param mixed $value
+     *
+     * @return bool
      */
-    protected function getDateFormat()
+    public function isValid($value)
     {
-        return ReportingCloud::DEFAULT_DATE_FORMAT;
+        $this->setValue($value);
+
+        $extension = pathinfo($value, PATHINFO_EXTENSION);
+
+        return parent::isValid($extension);
     }
 
-    /**
-     * Return backend time zone
-     *
-     * @return string
-     */
-    protected function getTimeZone()
-    {
-        return ReportingCloud::DEFAULT_TIME_ZONE;
-    }
 }
-

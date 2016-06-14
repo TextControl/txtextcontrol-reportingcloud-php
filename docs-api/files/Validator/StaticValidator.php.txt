@@ -26,26 +26,33 @@ class StaticValidator extends ZendStaticValidator
     /**
      * Statically call a Validator
      *
-     * @param mixed  $value         Value
-     * @param string $classBaseName Class name
-     * @param array  $options       Options
+     * @param mixed  $value     Value
+     * @param string $className Class name
+     * @param array  $options   Options
      *
      * @return bool
      *
      * @throws InvalidArgumentException
      */
-    public static function execute($value, $classBaseName, array $options = [])
+    public static function execute($value, $className, array $options = [])
     {
-
         if ($options && array_values($options) === $options) {
             throw new InvalidArgumentException(
                 'Invalid options provided via $options argument; must be an associative array'
             );
         }
 
-        $className = __NAMESPACE__ . "\\{$classBaseName}";
+        $fullyQualifiedClassName = sprintf('%s\%s', __NAMESPACE__, $className);
 
-        $validator = static::getPluginManager()->get($className, $options);
+        if (!class_exists($fullyQualifiedClassName)) {
+            throw new InvalidArgumentException(
+                sprintf('%s does not exist and can therefore not be called statically', $fullyQualifiedClassName)
+            );
+        }
+
+        $pluginManager = static::getPluginManager();
+
+        $validator = $pluginManager->get($fullyQualifiedClassName, $options);
 
         $ret = $validator->isValid($value);
 

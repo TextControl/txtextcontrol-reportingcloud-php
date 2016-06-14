@@ -12,7 +12,7 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use TxTextControl\ReportingCloud\Validator\TemplateFormat as TemplateFormatsValidator;
+use TxTextControl\ReportingCloud\Validator\TemplateFormat as TemplateFormatValidator;
 
 /**
  * TemplateName validator
@@ -57,9 +57,9 @@ class TemplateName extends AbstractValidator
      */
     protected $messageTemplates = [
         self::INVALID_PATH          => "'%value%' contains path information ('/', '.', or '..')",
-        self::INVALID_EXTENSION     => "'%value%' is contains an invalid file extension",
-        self::INVALID_BASENAME      => "'%value%' is contains an invalid file basename",
-        self::UNSUPPORTED_EXTENSION => "'%value%' contains an unsupported file extension for a template file",
+        self::INVALID_EXTENSION     => "'%value%' contains an invalid file extension",
+        self::INVALID_BASENAME      => "'%value%' contains an invalid file basename",
+        self::UNSUPPORTED_EXTENSION => "'%value%' contains an unsupported file extension",
     ];
 
     /**
@@ -84,19 +84,19 @@ class TemplateName extends AbstractValidator
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = trim($extension);
 
-        if (empty($basename) || $basename == ".{$extension}") {
+        if (0 === strlen($basename) || $basename == ".{$extension}") {
             $this->error(self::INVALID_BASENAME);
             return false;
         }
 
-        if (empty($extension)) {
+        if (0 === strlen($extension)) {
             $this->error(self::INVALID_EXTENSION);
             return false;
         }
 
-        $templateFormatsValidator = new TemplateFormatsValidator();
+        $templateExtensionValidator = new TemplateFormatValidator();
 
-        if (!$templateFormatsValidator->isValid($extension)) {
+        if (!$templateExtensionValidator->isValid($extension)) {
             $this->error(self::UNSUPPORTED_EXTENSION);
             return false;
         }
