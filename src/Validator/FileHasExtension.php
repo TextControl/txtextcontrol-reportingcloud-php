@@ -12,29 +12,30 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
+use TxTextControl\ReportingCloud\Validator\Extension as ExtensionValidator;
+
 /**
- * ImageFormat validator
+ * FileHasExtension validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ImageFormat extends Extension
+class FileHasExtension extends ExtensionValidator
 {
     /**
-     * ImageFormat constructor
+     * Returns true, if value is valid. False otherwise.
      *
-     * @param array $options
+     * @param mixed $value
+     *
+     * @return bool
      */
-    public function __construct($options = [])
+    public function isValid($value)
     {
-        $options['haystack'] = [
-            'BMP',
-            'GIF',
-            'JPG',
-            'PNG',
-        ];
+        $this->setValue($value);
 
-        return parent::__construct($options);
+        $extension = pathinfo($value, PATHINFO_EXTENSION);
+
+        return parent::isValid($extension);
     }
 
 }
