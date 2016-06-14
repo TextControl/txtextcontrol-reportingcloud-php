@@ -34,7 +34,7 @@ class TypeBoolean extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_TYPE  => "'%value%' must be of type boolean",
+        self::INVALID_TYPE => "'%value%' must be of type boolean",
     ];
 
     /**

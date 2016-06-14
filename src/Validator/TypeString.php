@@ -34,7 +34,7 @@ class TypeString extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_TYPE  => "'%value%' must be of type string",
+        self::INVALID_TYPE => "'%value%' must be of type string",
     ];
 
     /**

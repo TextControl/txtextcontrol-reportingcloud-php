@@ -57,8 +57,8 @@ class ZoomFactor extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_TYPE  => "'%value%' must be an integer",
-        self::INVALID_INTEGER  => "'%value%' contains an invalid zoom factor",
+        self::INVALID_TYPE    => "'%value%' must be an integer",
+        self::INVALID_INTEGER => "'%value%' contains an invalid zoom factor",
     ];
 
     /**

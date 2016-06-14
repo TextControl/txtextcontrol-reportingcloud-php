@@ -15,12 +15,12 @@ namespace TxTextControl\ReportingCloud\Validator;
 use Zend\Validator\InArray as InArrayValidator;
 
 /**
- * Extension validator
+ * FileExtension validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Extension extends AbstractValidator
+class FileExtension extends AbstractValidator
 {
     /**
      * Unsupported file extension
@@ -35,7 +35,7 @@ class Extension extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::UNSUPPORTED_EXTENSION  => "'%value%' contains an unsupported file extension",
+        self::UNSUPPORTED_EXTENSION => "'%value%' contains an unsupported file extension",
     ];
 
     /**
@@ -86,7 +86,7 @@ class Extension extends AbstractValidator
      *
      * @param array $haystack Haystack
      *
-     * @return self
+     * @return FileExtension
      */
     public function setHaystack($haystack)
     {

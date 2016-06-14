@@ -12,15 +12,13 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use TxTextControl\ReportingCloud\Validator\Extension as ExtensionValidator;
-
 /**
  * FileHasExtension validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class FileHasExtension extends ExtensionValidator
+class FileHasExtension extends FileExtension
 {
     /**
      * Returns true, if value is valid. False otherwise.

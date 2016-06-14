@@ -18,7 +18,7 @@ namespace TxTextControl\ReportingCloud\Validator;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ImageFormat extends Extension
+class ImageFormat extends FileExtension
 {
     /**
      * ImageFormat constructor

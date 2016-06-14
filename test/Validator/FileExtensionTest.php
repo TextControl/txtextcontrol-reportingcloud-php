@@ -3,9 +3,9 @@
 namespace TxTextControlTest\ReportingCloud\Validator;
 
 use PHPUnit_Framework_TestCase;
-use TxTextControl\ReportingCloud\Validator\Extension as Validator;
+use TxTextControl\ReportingCloud\Validator\FileExtension as Validator;
 
-class ExtensionTest extends PHPUnit_Framework_TestCase
+class FileExtensionTest extends PHPUnit_Framework_TestCase
 {
     protected $validator;
 

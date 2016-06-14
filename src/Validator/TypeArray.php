@@ -34,7 +34,7 @@ class TypeArray extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_TYPE  => "'%value%' must be of type array",
+        self::INVALID_TYPE => "'%value%' must be of type array",
     ];
 
     /**

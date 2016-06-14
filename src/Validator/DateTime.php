@@ -76,7 +76,6 @@ class DateTime extends AbstractValidator
         $this->setValue($value);
 
         $typeStringValidator = new TypeStringValidator();
-
         if (!$typeStringValidator->isValid($value)) {
             $this->error(self::INVALID_TYPE);
             return false;
