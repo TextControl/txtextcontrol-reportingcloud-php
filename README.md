@@ -8,7 +8,7 @@ This is the official PHP wrapper for ReportingCloud, which is authored, maintain
 
 Before using ReportingCloud, please sign up to the service:
 
-[http://api.reporting.cloud](http://api.reporting.cloud)
+[https://api.reporting.cloud](https://api.reporting.cloud)
 
 
 ## Install using Composer
