@@ -31,6 +31,6 @@ class MergeSettingsTest extends PHPUnit_Framework_TestCase
 
         ];
 
-        $this->assertEquals($expected, $this->propertyMap->getMap());
+        $this->assertSame($expected, $this->propertyMap->getMap());
     }
 }

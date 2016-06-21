@@ -25,6 +25,6 @@ class AccountSettingsTest extends PHPUnit_Framework_TestCase
             'validUntil'        => 'valid_until',
         ];
 
-        $this->assertEquals($expected, $this->propertyMap->getMap());
+        $this->assertSame($expected, $this->propertyMap->getMap());
     }
 }

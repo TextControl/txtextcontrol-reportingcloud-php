@@ -22,6 +22,6 @@ class TemplateListTest extends PHPUnit_Framework_TestCase
             'size'         => 'size',
         ];
 
-        $this->assertEquals($expected, $this->propertyMap->getMap());
+        $this->assertSame($expected, $this->propertyMap->getMap());
     }
 }

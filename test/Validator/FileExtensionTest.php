@@ -34,7 +34,7 @@ class FileExtensionTest extends PHPUnit_Framework_TestCase
             'haystack' => $haystack
         ]);
 
-        $this->assertEquals($haystack, $validator->getHaystack());
+        $this->assertSame($haystack, $validator->getHaystack());
 
     }
 

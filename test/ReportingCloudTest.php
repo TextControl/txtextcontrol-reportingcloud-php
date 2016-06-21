@@ -174,7 +174,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $response = $this->reportingCloud->getTemplatePageCount($tempTemplateName);
 
         $this->assertTrue(is_integer($response));
-        $this->assertEquals(1, $response);
+        $this->assertSame(1, $response);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
