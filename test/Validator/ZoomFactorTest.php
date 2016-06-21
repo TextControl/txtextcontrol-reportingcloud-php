@@ -18,7 +18,8 @@ class ZoomFactorTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue($this->validator->isValid(1));
         $this->assertTrue($this->validator->isValid(2));
-        $this->assertTrue($this->validator->isValid(400));
+        $this->assertTrue($this->validator->isValid(Validator::MAX));
+        $this->assertTrue($this->validator->isValid(Validator::MIN));
     }
 
     public function testInvalidType()
@@ -41,10 +42,10 @@ class ZoomFactorTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->validator->isValid(0));
         $this->assertArrayHasKey('invalidInteger', $this->validator->getMessages());
 
-        $this->assertFalse($this->validator->isValid(401));
+        $this->assertFalse($this->validator->isValid(Validator::MAX + 1));
         $this->assertArrayHasKey('invalidInteger', $this->validator->getMessages());
 
-        $this->assertFalse($this->validator->isValid(-1));
+        $this->assertFalse($this->validator->isValid(Validator::MIN - 1));
         $this->assertArrayHasKey('invalidInteger', $this->validator->getMessages());
     }
 

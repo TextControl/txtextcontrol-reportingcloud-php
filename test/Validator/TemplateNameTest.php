@@ -60,6 +60,15 @@ class TemplateNameTest extends PHPUnit_Framework_TestCase
 
     public function testInvalidExtension()
     {
+        $this->assertFalse($this->validator->isValid('tx'));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid('TX'));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid('0'));
+        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid('..'));
         $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
 

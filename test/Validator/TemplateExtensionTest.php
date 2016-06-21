@@ -30,6 +30,15 @@ class TemplateExtensionTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($this->validator->isValid('c:\path\to\template.tx'));
         $this->assertTrue($this->validator->isValid('c:\PATH\TO\TEMPLATE.TX'));
+
+        $this->assertTrue($this->validator->isValid('.tx'));
+        $this->assertTrue($this->validator->isValid('.TX'));
+
+        $this->assertTrue($this->validator->isValid('1.tx'));
+        $this->assertTrue($this->validator->isValid('1.TX'));
+
+        $this->assertTrue($this->validator->isValid('a.tx'));
+        $this->assertTrue($this->validator->isValid('A.TX'));
     }
 
     public function testUnsupportedExtension()
@@ -44,6 +53,12 @@ class TemplateExtensionTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('/path/to/template/'));
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid('tx'));
+        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid('TX'));
         $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('0'));
