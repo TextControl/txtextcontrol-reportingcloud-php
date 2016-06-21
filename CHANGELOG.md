@@ -4,6 +4,8 @@
 
 ## dev-master
 
+* In unit tests migrated from `assertEquals()` to `assertSame()`.
+
 ## 1.0.8 - 2016-06-21
 
 * Switched protocol from HTTP to HTTPS for all communication with the backend, now the backend supports it.
