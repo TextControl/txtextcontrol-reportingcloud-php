@@ -4,6 +4,9 @@
 
 ## dev-master
 
+## 1.0.8 - 2016-06-21
+
+* Switched protocol from HTTP to HTTPS for all communication with the backend, now the backend supports it.
 * Abstracted all parameter validation to `\TxTextControl\ReportingCloud\Validator\StaticValidator` 
 * Made `\TxTextControl\ReportingCloud\Validator` properties consistent.
 

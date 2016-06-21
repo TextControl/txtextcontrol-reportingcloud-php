@@ -50,7 +50,7 @@ abstract class AbstractReportingCloud
      *
      * @const DEFAULT_BASE_URI
      */
-    const DEFAULT_BASE_URI = 'http://api.reporting.cloud';
+    const DEFAULT_BASE_URI = 'https://api.reporting.cloud';
 
     /**
      * Default version string of backend
