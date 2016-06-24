@@ -16,6 +16,9 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $this->reportingCloud = new ReportingCloud();
 
+        $this->assertNotEmpty(reporting_cloud_username());
+        $this->assertNotEmpty(reporting_cloud_password());
+
         $this->reportingCloud->setUsername(reporting_cloud_username());
         $this->reportingCloud->setPassword(reporting_cloud_password());
     }
@@ -28,7 +31,11 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
+        $this->assertFileExists($testTemplateFilename);
+
         copy($testTemplateFilename, $tempTemplateFilename);
+
+        $this->assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
@@ -93,7 +100,11 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
+        $this->assertFileExists($testTemplateFilename);
+
         copy($testTemplateFilename, $tempTemplateFilename);
+
+        $this->assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
@@ -128,7 +139,11 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
+        $this->assertFileExists($testTemplateFilename);
+
         copy($testTemplateFilename, $tempTemplateFilename);
+
+        $this->assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
@@ -165,7 +180,11 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
+        $this->assertFileExists($testTemplateFilename);
+
         copy($testTemplateFilename, $tempTemplateFilename);
+
+        $this->assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
@@ -173,7 +192,6 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $response = $this->reportingCloud->getTemplatePageCount($tempTemplateName);
 
-        $this->assertTrue(is_integer($response));
         $this->assertSame(1, $response);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
@@ -191,15 +209,17 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
+        $this->assertFileExists($testTemplateFilename);
+
         copy($testTemplateFilename, $tempTemplateFilename);
+
+        $this->assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
         $this->assertTrue($response);
 
         $response = $this->reportingCloud->getTemplateList();
-
-        $this->assertTrue(is_array($response));
 
         $this->assertArrayHasKey(0, $response);
 
@@ -219,8 +239,6 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     public function testGetAccountSettings()
     {
         $response = $this->reportingCloud->getAccountSettings();
-
-        $this->assertTrue(is_array($response));
 
         $this->assertArrayHasKey('serial_number'     , $response);
         $this->assertArrayHasKey('created_documents' , $response);
@@ -278,12 +296,14 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $documentFilename = $this->getTestDocumentFilename();
 
+        $this->assertFileExists($documentFilename);
+
         $response = $this->reportingCloud->convertDocument($documentFilename, 'PDF');
         $responseLength = mb_strlen($response);
 
         $this->assertNotNull($response);
         $this->assertNotFalse($response);
-        $this->assertTrue($responseLength > 1024);
+        $this->assertGreaterThanOrEqual(1024, $responseLength);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -356,6 +376,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $mergeData        = $this->getTestTemplateMergeData();
         $templateFilename = $this->getTestTemplateFilename();
 
+        $this->assertFileExists($templateFilename);
+
         $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, 1);
     }
 
@@ -367,6 +389,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $mergeData        = $this->getTestTemplateMergeData();
         $templateFilename = $this->getTestTemplateFilename();
 
+        $this->assertFileExists($templateFilename);
+
         $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, true, 1);
     }
 
@@ -375,16 +399,18 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testMergeInvalidMergeSettingsStringInsteadOfBoolean()
     {
-        $mergeData            = $this->getTestTemplateMergeData();
-        $mergeSettings        = $this->getTestTemplateMergeSettings();
+        $mergeData        = $this->getTestTemplateMergeData();
+        $mergeSettings    = $this->getTestTemplateMergeSettings();
 
-        $testTemplateFilename = $this->getTestTemplateFilename();
+        $templateFilename = $this->getTestTemplateFilename();
+
+        $this->assertFileExists($templateFilename);
 
         $mergeSettings['remove_empty_blocks'] = 'invalid';  // value must be boolean
         $mergeSettings['remove_empty_fields'] = 'invalid';
         $mergeSettings['remove_empty_images'] = 'invalid';
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $testTemplateFilename, false, $mergeSettings);
+        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, false, $mergeSettings);
     }
 
     /**
@@ -392,15 +418,17 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testMergeInvalidMergeSettingsTimestampValues()
     {
-        $mergeData            = $this->getTestTemplateMergeData();
-        $mergeSettings        = $this->getTestTemplateMergeSettings();
+        $mergeData        = $this->getTestTemplateMergeData();
+        $mergeSettings    = $this->getTestTemplateMergeSettings();
 
-        $testTemplateFilename = $this->getTestTemplateFilename();
+        $templateFilename = $this->getTestTemplateFilename();
+
+        $this->assertFileExists($templateFilename);
 
         $mergeSettings['creation_date']          = -1;  // value must be timestamp
         $mergeSettings['last_modification_date'] = 'invalid';
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $testTemplateFilename, false, $mergeSettings);
+        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, false, $mergeSettings);
     }
 
     public function testMergeWithTemplateName()
@@ -412,7 +440,11 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
+        $this->assertFileExists($testTemplateFilename);
+
         copy($testTemplateFilename, $tempTemplateFilename);
+
+        $this->assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
@@ -423,16 +455,12 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $response = $this->reportingCloud->mergeDocument($mergeData, 'PDF', $tempTemplateName, null, false, $mergeSettings);
 
         $this->assertNotNull($response);
-
         $this->assertNotFalse($response);
-
         $this->assertArrayHasKey(0, $response);
-        $this->assertArrayHasKey(1, $response);
-        $this->assertArrayHasKey(2, $response);
-        $this->assertArrayHasKey(3, $response);
-        $this->assertArrayHasKey(4, $response);
-
-        $this->assertTrue(mb_strlen($response[0]) > 1024);
+        foreach ($response as $key => $page) {
+            $this->assertTrue(is_integer($key));
+            $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
+        }
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
@@ -446,19 +474,17 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $testTemplateFilename = $this->getTestTemplateFilename();
 
+        $this->assertFileExists($testTemplateFilename);
+
         $response = $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $testTemplateFilename, false, $mergeSettings);
 
         $this->assertNotNull($response);
-
         $this->assertNotFalse($response);
-
         $this->assertArrayHasKey(0, $response);
-        $this->assertArrayHasKey(1, $response);
-        $this->assertArrayHasKey(2, $response);
-        $this->assertArrayHasKey(3, $response);
-        $this->assertArrayHasKey(4, $response);
-
-        $this->assertTrue(mb_strlen($response[0]) > 1024);
+        foreach ($response as $key => $page) {
+            $this->assertTrue(is_integer($key));
+            $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
+        }
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -521,7 +547,11 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
+        $this->assertFileExists($testTemplateFilename);
+
         copy($testTemplateFilename, $tempTemplateFilename);
+
+        $this->assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
@@ -532,7 +562,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertNotNull($response);
         $this->assertNotFalse($response);
-        $this->assertTrue($responseLength > 1024);
+        $this->assertGreaterThan(1024, $responseLength);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 

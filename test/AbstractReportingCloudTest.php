@@ -92,7 +92,6 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
         $header     = substr($response, 0, $headerSize);
 
         $this->assertContains('404 Not Found', $header);
-
     }
 
 }
