@@ -16,7 +16,7 @@ class MergeSettingsTest extends PHPUnit_Framework_TestCase
 
     public function testValid()
     {
-        $expected =  [
+        $expected = [
             'author'                   => 'author',
             'creationDate'             => 'creation_date',
             'creatorApplication'       => 'creator_application',
