@@ -2,6 +2,8 @@
 
 namespace TxTextControlTest\ReportingCloud;
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use PHPUnit_Framework_TestCase;
 use TxTextControlTest\ReportingCloud\TestAsset\ConcreteReportingCloud;
 
@@ -74,24 +76,17 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
     public function testHttp404IsReturnedOnHttp()
     {
         $baseUriHost = parse_url($this->reportingCloud->getBaseUri(), PHP_URL_HOST);
-        $baseUriHost = trim($baseUriHost);
 
         $this->assertNotEmpty($baseUriHost);
 
         $uri = sprintf('http://%s', $baseUriHost);
 
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL           , $uri);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER        , true);
-
-        $response = curl_exec($ch);
-
-        $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-        $header     = substr($response, 0, $headerSize);
-
-        $this->assertContains('404 Not Found', $header);
+        try {
+            $client = new Client();
+            $client->request('GET', $uri);
+        } catch (ClientException $e) {
+            $this->assertSame(404, $e->getResponse()->getStatusCode());
+        }
     }
 
 }
