@@ -31,9 +31,10 @@ class TimestampToDateTimeTest extends PHPUnit_Framework_TestCase
      */
     public function testValid($timeZone, $dateTimeString, $timestamp)
     {
-        date_default_timezone_set($timeZone);
-
-        $this->assertSame($dateTimeString, $this->filter->filter($timestamp));
+        if (in_array($timeZone, timezone_identifiers_list())) {
+            date_default_timezone_set($timeZone);
+            $this->assertSame($dateTimeString, $this->filter->filter($timestamp));
+        }
     }
 
     /**
