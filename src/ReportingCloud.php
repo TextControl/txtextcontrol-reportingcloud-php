@@ -452,7 +452,6 @@ class ReportingCloud extends AbstractReportingCloud
         if (null !== $templateFilename) {
             $template = file_get_contents($templateFilename);
             $template = base64_encode($template);
-            //$template = json_encode($template);
             $mergeBody['template'] = $template;
         }
 
