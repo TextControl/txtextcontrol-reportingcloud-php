@@ -28,7 +28,6 @@ class MergeSettingsTest extends PHPUnit_Framework_TestCase
             'removeEmptyImages'        => 'remove_empty_images',
             'removeTrailingWhitespace' => 'remove_trailing_whitespace',
             'userPassword'             => 'user_password',
-
         ];
 
         $this->assertSame($expected, $this->propertyMap->getMap());

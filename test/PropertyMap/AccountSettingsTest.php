@@ -16,7 +16,7 @@ class AccountSettingsTest extends PHPUnit_Framework_TestCase
 
     public function testValid()
     {
-        $expected =  [
+        $expected = [
             'serialNumber'      => 'serial_number',
             'createdDocuments'  => 'created_documents',
             'uploadedTemplates' => 'uploaded_templates',

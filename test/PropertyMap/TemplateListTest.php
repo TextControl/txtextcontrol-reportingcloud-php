@@ -16,7 +16,7 @@ class TemplateListTest extends PHPUnit_Framework_TestCase
 
     public function testValid()
     {
-        $expected =  [
+        $expected = [
             'templateName' => 'template_name',
             'modified'     => 'modified',
             'size'         => 'size',
