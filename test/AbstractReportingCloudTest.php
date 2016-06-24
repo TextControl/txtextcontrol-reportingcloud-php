@@ -73,7 +73,7 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->reportingCloud->getDebug());
     }
 
-    public function testHttp404IsReturnedOnHttp()
+    public function testResponseStatusCodeOnNonSsl()
     {
         $baseUriHost = parse_url($this->reportingCloud->getBaseUri(), PHP_URL_HOST);
 
