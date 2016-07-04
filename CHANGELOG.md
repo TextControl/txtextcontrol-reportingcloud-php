@@ -4,7 +4,7 @@
 
 ## dev-master
 
-* Added further unit tests to test all return formats.
+* Added unit tests to test all return formats in `mergeDocument()` and `convertDocument()` methods.
 * In unit tests migrated from `assertEquals()` to `assertSame()`.
 
 ## 1.0.8 - 2016-06-21
