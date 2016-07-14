@@ -98,5 +98,5 @@ END;
 
 if (null === reporting_cloud_username() || null === reporting_cloud_password()) {
     echo reporting_cloud_error_message();
-    exit();
+    exit(1);
 }
