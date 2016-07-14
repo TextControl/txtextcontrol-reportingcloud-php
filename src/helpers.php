@@ -100,3 +100,7 @@ if (null === reporting_cloud_username() || null === reporting_cloud_password()) 
     echo reporting_cloud_error_message();
     exit(1);
 }
+
+var_dump(
+    curl_version()
+);
