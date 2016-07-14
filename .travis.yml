@@ -2,6 +2,7 @@ language: php
 
 dist: trusty
 sudo: required
+group: edge
 
 php:
   - 5.5
