@@ -386,10 +386,6 @@ abstract class AbstractReportingCloud
 
         try {
 
-
-
-            $options['curl'][CURLOPT_SSLVERSION] = 1;
-
             $ret = $client->request($method, $uri, $options);
 
         } catch (\Exception $exception) {
