@@ -1,5 +1,7 @@
 language: php
 
+dist: debian/jessie
+
 php:
   - 5.5
   - 5.6
