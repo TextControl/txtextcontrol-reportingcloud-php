@@ -382,6 +382,8 @@ abstract class AbstractReportingCloud
     {
         $ret = null;
 
+        $options['curl'][CURLOPT_SSLVERSION] = CURL_SSLVERSION_DEFAULT;
+
         $client = $this->getClient();
 
         try {
