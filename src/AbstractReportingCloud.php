@@ -388,6 +388,8 @@ abstract class AbstractReportingCloud
 
             $ret = $client->request($method, $uri, $options);
 
+            $test = $ret;
+
         } catch (\Exception $exception) {
 
             // \GuzzleHttp\Exception\ClientException
