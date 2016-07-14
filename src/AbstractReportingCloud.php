@@ -386,7 +386,8 @@ abstract class AbstractReportingCloud
 
         try {
 
-            $options[RequestOptions::VERIFY] = true;
+            $options['curl'][CURLOPT_SSL_VERIFYPEER]=false;
+            $options['curl'][CURLOPT_SSL_VERIFYHOST]=false;
 
             $ret = $client->request($method, $uri, $options);
 
