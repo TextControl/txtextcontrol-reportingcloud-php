@@ -40,5 +40,4 @@ foreach ($sslVersions as $sslVersion) {
 
 }
 
-
-
+exit(1);
