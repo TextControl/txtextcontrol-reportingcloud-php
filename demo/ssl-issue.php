@@ -6,7 +6,7 @@ for ($x = 0; $x <= 10; $x++) {
     printf("Trying %d", $x);
     echo PHP_EOL;
 
-    $ch = curl_init("https://api.reporting.cloud");
+    $ch = curl_init("https://www.symantec.com");
 
     curl_setopt($ch, CURLOPT_VERBOSE        , true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER , 1);
