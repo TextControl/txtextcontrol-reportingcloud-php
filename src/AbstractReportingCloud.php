@@ -387,7 +387,12 @@ abstract class AbstractReportingCloud
         try {
 
             $options['curl'][CURLOPT_VERBOSE]        = true;
-            $options['curl'][CURLOPT_SSLVERSION]     = CURL_SSLVERSION_SSLv3;
+            $options['curl'][CURLOPT_SSLVERSION]     = CURL_SSLVERSION_TLSv1;
+
+            $options['verify'] = realpath(__DIR__ . '/../media/api-reporting-cloud.pem');
+
+
+            
 
             $ret = $client->request($method, $uri, $options);
 
