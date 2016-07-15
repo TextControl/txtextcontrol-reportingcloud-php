@@ -101,6 +101,7 @@ if (null === reporting_cloud_username() || null === reporting_cloud_password()) 
     exit(1);
 }
 
+/*
 $arr = get_defined_constants(true);
 
 if (isset($arr['curl'])) {
@@ -110,3 +111,4 @@ if (isset($arr['curl'])) {
     }
 }
 exit(1);
+*/
