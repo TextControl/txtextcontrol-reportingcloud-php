@@ -100,3 +100,6 @@ if (null === reporting_cloud_username() || null === reporting_cloud_password()) 
     echo reporting_cloud_error_message();
     exit(1);
 }
+
+$arr = get_defined_constants(true);
+var_dump($arr['curl']); exit();
