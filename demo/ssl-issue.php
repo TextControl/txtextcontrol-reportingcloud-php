@@ -1,13 +1,27 @@
+#!/usr/bin/env php
 <?php
 
-$ch = curl_init("https://api.reporting.cloud");
+for ($x = 0; $x <= 10; $x++) {
 
-curl_setopt($ch, CURLOPT_VERBOSE        , true);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER , 1);
-curl_setopt($ch, CURLOPT_SSLVERSION     , 5);
+    printf("Trying %d", $x);
+    echo PHP_EOL;
 
-if (curl_exec($ch) === false) {
-    var_dump(curl_error($ch));
-} else {
-    curl_close($ch);
+    $ch = curl_init("https://api.reporting.cloud");
+
+    curl_setopt($ch, CURLOPT_VERBOSE        , true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER , 1);
+    curl_setopt($ch, CURLOPT_SSLVERSION     , $x);
+
+    if (curl_exec($ch) === false) {
+        var_dump(curl_error($ch));
+    } else {
+        curl_close($ch);
+    }
+
+    echo PHP_EOL;
+    echo PHP_EOL;
+
 }
+
+
+

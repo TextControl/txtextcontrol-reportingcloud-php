@@ -392,7 +392,7 @@ abstract class AbstractReportingCloud
 
             $ret = $client->request($method, $uri, $options);
 
-            
+
 
         } catch (\Exception $exception) {
 
