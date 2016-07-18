@@ -33,7 +33,7 @@ class TemplateExtension extends FileHasExtension
 
         $options['haystack'] = $templateFormatValidator->getHaystack();
 
-        return parent::__construct($options);
+        parent::__construct($options);
     }
 
 }

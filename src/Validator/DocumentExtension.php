@@ -36,7 +36,7 @@ class DocumentExtension extends FileHasExtension
             'TX'  ,
         ];
 
-        return parent::__construct($options);
+        parent::__construct($options);
     }
 
 }

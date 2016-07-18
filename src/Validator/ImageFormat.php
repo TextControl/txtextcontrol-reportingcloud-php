@@ -34,7 +34,7 @@ class ImageFormat extends FileExtension
             'PNG',
         ];
 
-        return parent::__construct($options);
+        parent::__construct($options);
     }
 
 }
