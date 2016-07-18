@@ -40,8 +40,7 @@ function reporting_cloud_password()
  */
 function reporting_cloud_variable($variable)
 {
-    $ret   = null;
-    $value = null;
+    $ret = null;
 
     if (defined($variable)) {
         $value = constant($variable);
