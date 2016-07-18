@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/TextControl/txtextcontrol-reportingcloud-php.svg)](https://travis-ci.org/TextControl/txtextcontrol-reportingcloud-php)
 ![Logo](https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/media/rc_logo_512.png)
 
 # ReportingCloud PHP Wrapper
