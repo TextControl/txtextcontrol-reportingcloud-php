@@ -21,14 +21,14 @@ namespace TxTextControl\ReportingCloud;
 class CliHelper
 {
     /**
-     * Name of username PHP constant or environmental variable
+     * Name of username PHP constant or environmental variables
      *
      * @const REPORTING_CLOUD_USERNAME
      */
     const USERNAME = 'REPORTING_CLOUD_USERNAME';
 
     /**
-     * Name of password PHP constant or environmental variable
+     * Name of password PHP constant or environmental variables
      *
      * @const REPORTING_CLOUD_PASSWORD
      */
@@ -110,7 +110,7 @@ END;
             $value = trim($value);
         }
 
-        if (strlen($value) > 0) {
+        if (!empty($value)) {
             $ret = $value;
         }
 
