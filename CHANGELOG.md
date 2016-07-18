@@ -4,7 +4,7 @@
 
 ## dev-master
 
-## 1.0.8 - 2016-07-18
+## 1.0.9 - 2016-07-18
 
 * Various minor code fixes following Scrutinizer and Coveralls integration.
 * Added unit tests to test all return formats in `mergeDocument()` and `convertDocument()` methods.
