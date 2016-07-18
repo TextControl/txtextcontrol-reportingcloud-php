@@ -21,14 +21,14 @@ namespace TxTextControl\ReportingCloud;
 class CliHelper
 {
     /**
-     * Name of username PHP constant or environmental variables
+     * Name of username PHP constant or environmental variable
      *
      * @const REPORTING_CLOUD_USERNAME
      */
     const USERNAME = 'REPORTING_CLOUD_USERNAME';
 
     /**
-     * Name of password PHP constant or environmental variables
+     * Name of password PHP constant or environmental variable
      *
      * @const REPORTING_CLOUD_PASSWORD
      */
