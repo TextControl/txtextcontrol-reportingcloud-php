@@ -386,8 +386,7 @@ abstract class AbstractReportingCloud
 
         try {
 
-
-            $options['curl'][CURLOPT_SSLVERSION]     = 5;
+            $options['curl'][CURLOPT_SSLVERSION] = CURL_SSLVERSION_TLSv1_1;
 
             $ret = $client->request($method, $uri, $options);
 
