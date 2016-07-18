@@ -100,15 +100,3 @@ if (null === reporting_cloud_username() || null === reporting_cloud_password()) 
     echo reporting_cloud_error_message();
     exit(1);
 }
-
-/*
-$arr = get_defined_constants(true);
-
-if (isset($arr['curl'])) {
-    foreach ($arr['curl'] as $key => $value) {
-        printf('%s: %s', $key, $value);
-        echo PHP_EOL;
-    }
-}
-exit(1);
-*/
