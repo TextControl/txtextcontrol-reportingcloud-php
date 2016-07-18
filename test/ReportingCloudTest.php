@@ -8,6 +8,7 @@ use PHPUnit_Framework_Constraint_IsType as PHPUnit_IsType;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\CliHelper as Helper;
 use TxTextControl\ReportingCloud\Validator\ReturnFormat as ReturnFormatValidator;
 
 class ReportingCloudTest extends PHPUnit_Framework_TestCase
@@ -18,11 +19,11 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $this->reportingCloud = new ReportingCloud();
 
-        $this->assertNotEmpty(reporting_cloud_username());
-        $this->assertNotEmpty(reporting_cloud_password());
+        $this->assertNotEmpty(Helper::username());
+        $this->assertNotEmpty(Helper::password());
 
-        $this->reportingCloud->setUsername(reporting_cloud_username());
-        $this->reportingCloud->setPassword(reporting_cloud_password());
+        $this->reportingCloud->setUsername(Helper::username());
+        $this->reportingCloud->setPassword(Helper::password());
     }
 
     // -----------------------------------------------------------------------------------------------------------------

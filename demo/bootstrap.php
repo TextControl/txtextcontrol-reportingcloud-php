@@ -1,6 +1,7 @@
 <?php
 
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
+use TxTextControl\ReportingCloud\CliHelper as Helper;
 
 $filenameAutoload = realpath(__DIR__ . '/../vendor/autoload.php');
 
@@ -12,8 +13,8 @@ include_once $filenameAutoload;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-if (null === reporting_cloud_username() || null === reporting_cloud_password()) {
-    echo reporting_cloud_error_message();
+if (null === Helper::username() || null === Helper::password()) {
+    echo Helper::errorMessage();
     exit(1);
 }
 
