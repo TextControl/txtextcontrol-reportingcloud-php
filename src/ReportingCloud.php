@@ -390,12 +390,15 @@ class ReportingCloud extends AbstractReportingCloud
             $templateFilename = realpath($templateFilename);
         }
 
+        // This boolean value MUST be passed as a string to prevent Guzzle converting the
+        // query parameter to ?append=0 or ?append=1, which the backend does not recognize.
+        // The backend only recognizes query parameter ?append=true and ?append=false.
         if (null !== $append) {
             StaticValidator::execute($append, 'TypeBoolean');
             if (true === $append) {
-                $append = 'true';  // This boolean value MUST be passed as a string to prevent Guzzle converting the
-            } else {               // query parameter to ?append=0 or ?append=1, which the backend does not recognize.
-                $append = 'false'; // The backend only recognizes query parameter ?append=true and ?append=false.
+                $append = 'true'; 
+            } else {
+                $append = 'false';
             }
         }
 

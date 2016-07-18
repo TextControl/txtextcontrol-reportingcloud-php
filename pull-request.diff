@@ -1,0 +1,47 @@
+--- a/src/ReportingCloud.php
++++ b/src/ReportingCloud.php
+@@ -393,7 +393,7 @@ class ReportingCloud extends AbstractReportingCloud
+         if (null !== $append) {
+             StaticValidator::execute($append, 'TypeBoolean');
+             if (true === $append) {
+-                $append = 'true';  // This boolean value MUST be passed as a string to prevent Guzzle converting the
++                $append = 'true'; // This boolean value MUST be passed as a string to prevent Guzzle converting the
+             } else {               // query parameter to ?append=0 or ?append=1, which the backend does not recognize.
+                 $append = 'false'; // The backend only recognizes query parameter ?append=true and ?append=false.
+             }
+
+--- a/src/Validator/TemplateFormat.php
++++ b/src/Validator/TemplateFormat.php
+@@ -27,7 +27,7 @@ class TemplateFormat extends FileExtension
+      */
+     public function __construct($options = [])
+     {
+-        $options['haystack'] = ['DOC', 'DOCX', 'RTF', 'TX',];
++        $options['haystack'] = ['DOC', 'DOCX', 'RTF', 'TX', ];
+ 
+         parent::__construct($options);
+     }
+
+--- a/src/Validator/ReturnFormat.php
++++ b/src/Validator/ReturnFormat.php
+@@ -27,7 +27,7 @@ class ReturnFormat extends FileExtension
+      */
+     public function __construct($options = [])
+     {
+-        $options['haystack'] = ['DOC', 'DOCX', 'HTML', 'PDF', 'RTF', 'TX',];
++        $options['haystack'] = ['DOC', 'DOCX', 'HTML', 'PDF', 'RTF', 'TX', ];
+ 
+         parent::__construct($options);
+     }
+
+--- a/src/Validator/DocumentExtension.php
++++ b/src/Validator/DocumentExtension.php
+@@ -27,7 +27,7 @@ class DocumentExtension extends FileHasExtension
+      */
+     public function __construct($options = [])
+     {
+-        $options['haystack'] = ['DOC', 'DOCX', 'HTML', 'PDF', 'RTF', 'TX',];
++        $options['haystack'] = ['DOC', 'DOCX', 'HTML', 'PDF', 'RTF', 'TX', ];
+ 
+         parent::__construct($options);
+     }
