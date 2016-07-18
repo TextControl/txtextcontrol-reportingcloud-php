@@ -43,7 +43,7 @@ abstract class AbstractPropertyMap implements PropertyMapInterface
      *
      * @param array $map Assoc array of property data
      *
-     * @return $this;
+     * @return $this
      */
     public function setMap($map)
     {

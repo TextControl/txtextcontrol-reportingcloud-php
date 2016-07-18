@@ -3,6 +3,7 @@
     "description": "Official wrapper (authored by Text Control GmbH, publisher of ReportingCloud) to access ReportingCloud in PHP.",
     "license": "BSD-3-Clause",
     "type": "library",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
