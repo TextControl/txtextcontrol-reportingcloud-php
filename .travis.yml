@@ -1,16 +1,9 @@
-language: php
-
 dist: trusty
 
 sudo: required
 
-php:
-  - 5.6
-
 before_install:
-  - sudo apt-cache search php
-  - sudo apt-get -y install git zip
-  - sudo apt-get -y install php5-cli php5-curl
+  - sudo apt-get -y install git zip php5-cli php5-curl
 
 before_script:
   - composer self-update
