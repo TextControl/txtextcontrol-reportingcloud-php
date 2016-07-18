@@ -8,10 +8,9 @@ php:
   - 7.0
 
 before_install:
-  - sudu apt-cache search php
+  - sudo apt-cache search php
   - sudo apt-get -y install git zip
   - sudo apt-get -y install php7-cli php7-curl
-
 
 
 before_script:
