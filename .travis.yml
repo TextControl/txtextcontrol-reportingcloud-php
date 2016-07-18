@@ -17,7 +17,7 @@ before_script:
   - composer install --no-interaction
 
 script:
-  - mkdir -p build/logs
+  - mkdir -p ./build/logs
   - ./vendor/bin/phpunit
 
 env:
