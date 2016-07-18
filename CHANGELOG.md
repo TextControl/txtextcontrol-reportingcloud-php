@@ -4,6 +4,8 @@
 
 ## dev-master
 
+* Moved orphaned helper functions (`reporting_cloud_*`) to helper class `\TxTextControl\ReportingCloud\CliHelper`.
+
 ## 1.0.9 - 2016-07-18
 
 * Various minor code fixes following Scrutinizer and Coveralls integration.
