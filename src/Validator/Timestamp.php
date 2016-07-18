@@ -66,9 +66,9 @@ class Timestamp extends AbstractValidator
         }
 
         $betweenValidator = new BetweenValidator([
-             'min'       => 0,
-             'max'       => PHP_INT_MAX,
-             'inclusive' => true
+                'min'       => 0,
+                'max'       => PHP_INT_MAX,
+                'inclusive' => true
         ]);
 
         if (!$betweenValidator->isValid($value)) {
