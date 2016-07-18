@@ -396,7 +396,7 @@ class ReportingCloud extends AbstractReportingCloud
         if (null !== $append) {
             StaticValidator::execute($append, 'TypeBoolean');
             if (true === $append) {
-                $append = 'true'; 
+                $append = 'true';
             } else {
                 $append = 'false';
             }

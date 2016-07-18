@@ -36,7 +36,7 @@ class StaticValidator extends ZendStaticValidator
      */
     public static function execute($value, $className, array $options = [])
     {
-        if ($options && array_values($options) === $options) {
+        if (count($options) > 0 && array_values($options) === $options) {
             throw new InvalidArgumentException(
                 'Invalid options provided via "options" parameter; must be an associative array'
             );
