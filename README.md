@@ -1,12 +1,8 @@
-<img align="right" src="https://travis-ci.org/TextControl/txtextcontrol-reportingcloud-php.svg">
-
-
+[![Build Status]<img align="right" src="https://travis-ci.org/TextControl/txtextcontrol-reportingcloud-php.svg">](https://travis-ci.org/TextControl/txtextcontrol-reportingcloud-php)
 
 ![Logo](https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/media/rc_logo_512.png)
 
 # ReportingCloud PHP Wrapper
-
-
 
 This is the official PHP wrapper for ReportingCloud, which is authored, maintained and fully supported by [Text Control](http://www.textcontrol.com).
 
