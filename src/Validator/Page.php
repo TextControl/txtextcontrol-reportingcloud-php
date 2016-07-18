@@ -12,8 +12,8 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use Zend\Validator\GreaterThan as GreaterThanValidator;
 use TxTextControl\ReportingCloud\Validator\TypeInteger as TypeIntegerValidator;
+use Zend\Validator\GreaterThan as GreaterThanValidator;
 
 /**
  * Page validator
@@ -35,7 +35,7 @@ class Page extends AbstractValidator
      *
      * @const INVALID_TYPE
      */
-    const INVALID_TYPE  = 'invalidType';
+    const INVALID_TYPE = 'invalidType';
     
     /**
      * Invalid page

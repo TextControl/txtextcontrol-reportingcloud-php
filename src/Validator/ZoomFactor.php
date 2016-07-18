@@ -12,8 +12,8 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use Zend\Validator\Between as BetweenValidator;
 use TxTextControl\ReportingCloud\Validator\TypeInteger as TypeIntegerValidator;
+use Zend\Validator\Between as BetweenValidator;
 
 /**
  * Zoom factor validator
@@ -42,7 +42,7 @@ class ZoomFactor extends AbstractValidator
      *
      * @const INVALID_TYPE
      */
-    const INVALID_TYPE  = 'invalidType';
+    const INVALID_TYPE = 'invalidType';
 
     /**
      * Invalid page

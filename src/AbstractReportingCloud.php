@@ -163,7 +163,7 @@ abstract class AbstractReportingCloud
     {
         if (null === $this->client) {
 
-            $usernamePassword = sprintf('%s:%s'   , $this->getUsername(), $this->getPassword());
+            $usernamePassword = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
             $authorization    = sprintf('Basic %s', base64_encode($usernamePassword));
 
             $client = new Client([
@@ -397,7 +397,7 @@ abstract class AbstractReportingCloud
             // \GuzzleHttp\Exception\ClientException
             // \GuzzleHttp\Exception\ServerException
 
-            $message = (string)  $exception->getMessage();
+            $message = (string) $exception->getMessage();
             $code    = (integer) $exception->getCode();
 
             throw new RuntimeException($message, $code);

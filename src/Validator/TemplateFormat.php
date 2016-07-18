@@ -22,17 +22,12 @@ class TemplateFormat extends FileExtension
 {
     /**
      * TemplateFormat constructor
-     * 
+     *
      * @param array $options
      */
     public function __construct($options = [])
     {
-        $options['haystack'] = [
-            'DOC' ,
-            'DOCX',
-            'RTF' ,
-            'TX'  ,
-        ];
+        $options['haystack'] = ['DOC', 'DOCX', 'RTF', 'TX',];
 
         parent::__construct($options);
     }

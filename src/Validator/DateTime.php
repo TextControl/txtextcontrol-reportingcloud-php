@@ -12,9 +12,9 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use DateTime as DateTimeClass; // alias due to naming conflict with TxTextControl\ReportingCloud\Validator\DateTime
+use DateTime as DateTimeClass;
 use DateTimeZone;
-use TxTextControl\ReportingCloud\Validator\TypeString as TypeStringValidator;
+use TxTextControl\ReportingCloud\Validator\TypeString as TypeStringValidator; // alias due to naming conflict with TxTextControl\ReportingCloud\Validator\DateTime
 
 /**
  * DateTime validator
@@ -29,7 +29,7 @@ class DateTime extends AbstractValidator
      *
      * @const INVALID_TYPE
      */
-    const INVALID_TYPE   = 'invalidType';
+    const INVALID_TYPE = 'invalidType';
 
     /**
      * Invalid length

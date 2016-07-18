@@ -12,8 +12,8 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use Zend\Validator\Between as BetweenValidator;
 use TxTextControl\ReportingCloud\Validator\TypeInteger as TypeIntegerValidator;
+use Zend\Validator\Between as BetweenValidator;
 
 /**
  * Timestamp validator
@@ -28,7 +28,7 @@ class Timestamp extends AbstractValidator
      *
      * @const INVALID_TYPE
      */
-    const INVALID_TYPE  = 'invalidType';
+    const INVALID_TYPE = 'invalidType';
 
     /**
      * Invalid range

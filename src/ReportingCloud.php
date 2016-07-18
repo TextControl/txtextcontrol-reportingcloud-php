@@ -14,16 +14,12 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
-
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-
-use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp  as DateTimeToTimestampFilter;
-use TxTextControl\ReportingCloud\Filter\TimestampToDateTime  as TimestampToDateTimeFilter;
-
+use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp as DateTimeToTimestampFilter;
+use TxTextControl\ReportingCloud\Filter\TimestampToDateTime as TimestampToDateTimeFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\MergeSettings   as MergeSettingsPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\TemplateList    as TemplateListPropertyMap;
-
+use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
@@ -59,10 +55,10 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = null;
 
         StaticValidator::execute($templateName, 'TemplateName');
-        StaticValidator::execute($zoomFactor  , 'ZoomFactor');
-        StaticValidator::execute($fromPage    , 'Page');
-        StaticValidator::execute($toPage      , 'Page');
-        StaticValidator::execute($imageFormat , 'ImageFormat');
+        StaticValidator::execute($zoomFactor, 'ZoomFactor');
+        StaticValidator::execute($fromPage, 'Page');
+        StaticValidator::execute($toPage, 'Page');
+        StaticValidator::execute($imageFormat, 'ImageFormat');
 
         $query = [
             'templateName' => $templateName,
@@ -327,7 +323,7 @@ class ReportingCloud extends AbstractReportingCloud
 
         StaticValidator::execute($documentFilename, 'DocumentExtension');
         StaticValidator::execute($documentFilename, 'FileExists');
-        StaticValidator::execute($returnFormat    , 'ReturnFormat');
+        StaticValidator::execute($returnFormat, 'ReturnFormat');
 
         $headers = [
             'Content-Type' => 'application/json',
@@ -377,11 +373,11 @@ class ReportingCloud extends AbstractReportingCloud
      * @return null|string
      */
     public function mergeDocument($mergeData, $returnFormat, $templateName = null, $templateFilename = null,
-                                  $append = null, $mergeSettings = [])
+                                    $append = null, $mergeSettings = [])
     {
         $ret = null;
 
-        StaticValidator::execute($mergeData   , 'TypeArray');
+        StaticValidator::execute($mergeData, 'TypeArray');
         StaticValidator::execute($returnFormat, 'ReturnFormat');
 
         if (null !== $templateName) {
@@ -397,9 +393,9 @@ class ReportingCloud extends AbstractReportingCloud
         if (null !== $append) {
             StaticValidator::execute($append, 'TypeBoolean');
             if (true === $append) {
-                $append = 'true';   // This boolean value MUST be passed as a string to prevent Guzzle converting the
-            } else {                // query parameter to ?append=0 or ?append=1, which the backend does not recognize.
-                $append = 'false';  // The backend only recognizes query parameter ?append=true and ?append=false.
+                $append = 'true';  // This boolean value MUST be passed as a string to prevent Guzzle converting the
+            } else {               // query parameter to ?append=0 or ?append=1, which the backend does not recognize.
+                $append = 'false'; // The backend only recognizes query parameter ?append=true and ?append=false.
             }
         }
 
@@ -424,7 +420,7 @@ class ReportingCloud extends AbstractReportingCloud
 
             $filter = new TimestampToDateTimeFilter();
 
-            $mergeSettingsRc = [];  // 'Rc' - this array is passed to ReportingCloud
+            $mergeSettingsRc = []; // 'Rc' - this array is passed to ReportingCloud
 
             $propertyMap = new MergeSettingsPropertyMap();
 
