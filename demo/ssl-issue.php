@@ -26,7 +26,7 @@ foreach ($sslVersions as $sslVersion) {
 
     curl_setopt($curl, CURLOPT_VERBOSE        , true);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER , 1);
-    curl_setopt($curl, CURLOPT_SSLVERSION     , $sslVersion);
+    //curl_setopt($curl, CURLOPT_SSLVERSION     , $sslVersion);
 
     if (curl_exec($curl) === false) {
         var_dump(curl_error($curl));
