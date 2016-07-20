@@ -23,10 +23,9 @@ foreach ($sslVersions as $sslVersion) {
     $curl = curl_init($uri);
 
     curl_setopt($curl, CURLOPT_SSL_CIPHER_LIST, 'TLSv1');
-
+    curl_setopt($curl, CURLOPT_SSLVERSION     , $sslVersion);
     curl_setopt($curl, CURLOPT_VERBOSE        , true);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER , 1);
-    //curl_setopt($curl, CURLOPT_SSLVERSION     , $sslVersion);
 
     if (curl_exec($curl) === false) {
         var_dump(curl_error($curl));
