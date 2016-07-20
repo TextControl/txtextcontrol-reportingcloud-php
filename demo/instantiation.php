@@ -3,15 +3,14 @@
 include_once 'bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
-use TxTextControl\ReportingCloud\CliHelper as Helper;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Instantiate using constructor options
 
 $reportingCloud = new ReportingCloud([
-    'username' => Helper::username(),
-    'password' => Helper::password(),
+    'username' => reporting_cloud_username(),
+    'password' => reporting_cloud_password(),
     'base_uri' => 'http://api.example.com',
     'timeout'  => 100,
     'version'  => 'v1',
@@ -26,8 +25,8 @@ var_dump($reportingCloud);
 
 $reportingCloud = new ReportingCloud();
 
-$reportingCloud->setUsername(Helper::username());
-$reportingCloud->setPassword(Helper::password());
+$reportingCloud->setUsername(reporting_cloud_username());
+$reportingCloud->setPassword(reporting_cloud_password());
 $reportingCloud->setBaseUri('http://api.example.com');
 $reportingCloud->setVersion('v1');
 $reportingCloud->setTimeout(100);
@@ -41,8 +40,8 @@ var_dump($reportingCloud);
 
 $reportingCloud = new ReportingCloud();
 
-$reportingCloud->setUsername(Helper::username())
-               ->setPassword(Helper::password())
+$reportingCloud->setUsername(reporting_cloud_username())
+               ->setPassword(reporting_cloud_password())
                ->setBaseUri('http://api.example.com')
                ->setVersion('v1')
                ->setTimeout(100)

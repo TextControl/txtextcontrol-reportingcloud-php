@@ -3,19 +3,18 @@
 include_once 'bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
-use TxTextControl\ReportingCloud\CliHelper as Helper;
 
 $reportingCloud = new ReportingCloud([
-    'username' => Helper::username(),
-    'password' => Helper::password(),
+    'username' => reporting_cloud_username(),
+    'password' => reporting_cloud_password(),
 ]);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 $templateName        = 'test_template.tx';
 
-$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . DIRECTORY_SEPARATOR . $templateName;
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . DIRECTORY_SEPARATOR . $templateName;
+$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . $templateName;
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . DIRECTORY_SEPARATOR . $templateName;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
