@@ -22,7 +22,7 @@ foreach ($sslVersions as $sslVersion) {
 
     $curl = curl_init($uri);
 
-    curl_setopt($curl, CURLOPT_SSL_CIPHER_LIST, 'TLSv1');
+    //curl_setopt($curl, CURLOPT_SSL_CIPHER_LIST, 'TLSv1');
     curl_setopt($curl, CURLOPT_SSLVERSION     , $sslVersion);
     curl_setopt($curl, CURLOPT_VERBOSE        , true);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER , 1);
@@ -33,12 +33,8 @@ foreach ($sslVersions as $sslVersion) {
         curl_close($curl);
     }
 
-    echo PHP_EOL;
-    echo PHP_EOL;
+    echo PHP_EOL . PHP_EOL;
 
 }
 
 exit(1);
-
-
-

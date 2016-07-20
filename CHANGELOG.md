@@ -4,6 +4,8 @@
 
 ## dev-master
 
+## 1.0.10 - 2016-07-20
+
 * Moved orphaned helper functions (`reporting_cloud_*`) to helper class `\TxTextControl\ReportingCloud\CliHelper`.
 
 ## 1.0.9 - 2016-07-18
