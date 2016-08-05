@@ -4,6 +4,9 @@
 
 ## dev-master
 
+* Removed non-essential development dependencies from `composer.json`.
+* Set scrutinizer-ci to run tests and report on code coverage.
+
 ## 1.0.10 - 2016-07-20
 
 * Moved orphaned helper functions (`reporting_cloud_*`) to helper class `\TxTextControl\ReportingCloud\CliHelper`.
