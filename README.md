@@ -3,7 +3,6 @@
 # ReportingCloud PHP Wrapper
 
 [![Build Status](https://travis-ci.org/TextControl/txtextcontrol-reportingcloud-php.svg)](https://travis-ci.org/TextControl/txtextcontrol-reportingcloud-php)
-[![Coverage Status](https://coveralls.io/repos/TextControl/txtextcontrol-reportingcloud-php/badge.svg?branch=master&service=github)](https://coveralls.io/github/TextControl/txtextcontrol-reportingcloud-php?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TextControl/txtextcontrol-reportingcloud-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TextControl/txtextcontrol-reportingcloud-php/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/textcontrol/txtextcontrol-reportingcloud/v/stable)](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 [![composer.lock available](https://poser.pugx.org/textcontrol/txtextcontrol-reportingcloud/composerlock)](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
