@@ -12,5 +12,5 @@ build:
             -
                 command: phpunit
                 coverage:
-                    format: php-clover
                     file: ./build/logs/clover.xml
+                    format: php-clover
