@@ -1,4 +1,14 @@
 inherit: true
+
 filter:
     paths:
     - src/*
+
+build:
+    tests:
+        override:
+            -
+                command: phpunit
+                coverage:
+                    format: php-clover
+                    file: ./build/logs/clover.xml
