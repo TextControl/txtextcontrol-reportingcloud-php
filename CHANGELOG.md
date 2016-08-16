@@ -4,6 +4,8 @@
 
 ## dev-master
 
+## 1.0.11 - 2016-08-16
+
 * Removed non-essential development dependencies from `composer.json`.
 * Set scrutinizer-ci to run tests and report on code coverage.
 
