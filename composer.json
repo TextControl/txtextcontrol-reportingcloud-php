@@ -21,6 +21,7 @@
         "zendframework/zend-validator": "^2.8.0"
     },
     "require-dev": {
-        "symfony/var-dumper": "^3.0.0"
+        "symfony/var-dumper": "^3.0.0",
+        "smalot/pdfparser": "^0.9"
     }
 }
