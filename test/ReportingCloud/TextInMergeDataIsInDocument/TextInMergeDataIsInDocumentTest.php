@@ -45,6 +45,8 @@ class TextInMergeDataIsInDocumentTest extends PHPUnit_Framework_TestCase
 
             $arrayOfBinaryData = $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename);
 
+            $this->assertArrayHasKey(0, $arrayOfBinaryData);
+
             file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
             $this->assertTrue(is_file($destinationFilename));
