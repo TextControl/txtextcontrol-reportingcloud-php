@@ -54,21 +54,14 @@ class TextInMergeDataIsInDocumentTest extends PHPUnit_Framework_TestCase
 
             $pdf = $this->pdfParser->parseFile($destinationFilename);
 
-            // row 1
-            $this->assertGreaterThan(0, strpos($pdf->getText(), 'OrJb'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), 'xeBl'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), 'mHaU'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), '9SzE'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), '4IQJ'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), 'SfGk'));
+            $expected = [
+                'OrJb', 'xeBl', 'mHaU', '9SzE', '4IQJ', 'SfGk', // row 1
+                '56fv', 'fklW', 'Ykva', 'HlLU', 'JGgT', '3jOS'  // row 2
+            ];
 
-            // row 2
-            $this->assertGreaterThan(0, strpos($pdf->getText(), '56fv'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), 'fklW'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), 'Ykva'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), 'HlLU'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), 'JGgT'));
-            $this->assertGreaterThan(0, strpos($pdf->getText(), '3jOS'));
+            foreach ($expected as $value) {
+                $this->assertContains($value, $pdf->getText());
+            }
 
             unlink($destinationFilename);
 
