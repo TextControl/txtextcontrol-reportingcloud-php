@@ -13,7 +13,7 @@ This is the official PHP wrapper for ReportingCloud, which is authored, maintain
 
 Before using ReportingCloud, please sign up to the service:
 
-[http://portal.reporting.cloud](http://portal.reporting.cloud)
+[https://portal.reporting.cloud](https://portal.reporting.cloud)
 
 
 ## Install using Composer
