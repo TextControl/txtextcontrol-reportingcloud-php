@@ -4,6 +4,8 @@
 
 ## dev-master
 
+* Implemented end-point `/v1/templates/info`. 
+
 ## 1.0.11 - 2016-08-16
 
 * Removed non-essential development dependencies from `composer.json`.
