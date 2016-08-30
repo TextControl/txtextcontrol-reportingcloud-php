@@ -4,6 +4,8 @@
 
 ## dev-master
 
+## 1.0.12 - 2016-08-30
+
 * Implemented end-point `/v1/templates/info`. 
 
 ## 1.0.11 - 2016-08-16
