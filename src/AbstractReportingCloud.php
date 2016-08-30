@@ -15,6 +15,7 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
+use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 
 /**
  * Abstract ReportingCloud
@@ -401,6 +402,32 @@ abstract class AbstractReportingCloud
             $code    = (integer) $exception->getCode();
 
             throw new RuntimeException($message, $code);
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Using the passed propertyMap, recursively normalizes the keys of the passed array
+     *
+     * @param array       $array       Array
+     * @param PropertyMap $propertyMap PropertyMap
+     *
+     * @return array
+     */
+    protected function normalizeArrayKeys($array, PropertyMap $propertyMap)
+    {
+        $ret = [];
+
+        foreach ($array as $key => $value) {
+            $map = $propertyMap->getMap();
+            if (isset($map[$key])) {
+                $key = $map[$key];
+            }
+            if (is_array($value)) {
+                $value = $this->normalizeArrayKeys($value, $propertyMap);
+            }
+            $ret[$key] = $value;
         }
 
         return $ret;

@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use PHPUnit_Framework_TestCase;
 use TxTextControlTest\ReportingCloud\TestAsset\ConcreteReportingCloud;
+use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo;
 
 class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
 {

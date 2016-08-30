@@ -14,12 +14,17 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp as DateTimeToTimestampFilter;
-use TxTextControl\ReportingCloud\Filter\TimestampToDateTime as TimestampToDateTimeFilter;
+
+use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp  as DateTimeToTimestampFilter;
+use TxTextControl\ReportingCloud\Filter\TimestampToDateTime  as TimestampToDateTimeFilter;
+
+use TxTextControl\ReportingCloud\PropertyMap\MergeSettings   as MergeSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo    as TemplateInfoPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\TemplateList    as TemplateListPropertyMap;
+
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
@@ -35,6 +40,36 @@ class ReportingCloud extends AbstractReportingCloud
      * GET methods
      * =================================================================================================================
      */
+
+    /**
+     * Return an array of merge blocks and merge fields in a template file in template storage.
+     *
+     * @param string  $templateName Template name
+     *
+     * @throws InvalidArgumentException
+     *
+     * @return array|null
+     */
+    public function getTemplateInfo($templateName)
+    {
+        $ret = null;
+
+        $propertyMap = new TemplateInfoPropertyMap();
+
+        StaticValidator::execute($templateName, 'TemplateName');
+
+        $query = [
+            'templateName' => $templateName,
+        ];
+
+        $records = $this->get('/templates/info', $query);
+
+        if (is_array($records) && count($records) > 0) {
+            $ret = $this->normalizeArrayKeys($records, $propertyMap);
+        }
+
+        return $ret;
+    }
 
     /**
      * Return an array of binary data.
@@ -55,10 +90,10 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = null;
 
         StaticValidator::execute($templateName, 'TemplateName');
-        StaticValidator::execute($zoomFactor, 'ZoomFactor');
-        StaticValidator::execute($fromPage, 'Page');
-        StaticValidator::execute($toPage, 'Page');
-        StaticValidator::execute($imageFormat, 'ImageFormat');
+        StaticValidator::execute($zoomFactor  , 'ZoomFactor');
+        StaticValidator::execute($fromPage    , 'Page');
+        StaticValidator::execute($toPage      , 'Page');
+        StaticValidator::execute($imageFormat , 'ImageFormat');
 
         $query = [
             'templateName' => $templateName,
@@ -105,20 +140,11 @@ class ReportingCloud extends AbstractReportingCloud
         $records = $this->get('/templates/list');
 
         if (is_array($records) && count($records) > 0) {
-            $ret = [];
-            foreach ($records as $index => $record) {
-                if (!isset($ret[$index])) {
-                    $ret[$index] = [];
-                }
-                foreach ($propertyMap->getMap() as $property => $key) {
-                    $value = null;
-                    if (isset($record[$property]) && strlen($record[$property]) > 0) {
-                        $value = $record[$property];
-                        if ('modified' == $key) {
-                            $value = $filter->filter($value);
-                        }
-                    }
-                    $ret[$index][$key] = $value;
+            $ret = $this->normalizeArrayKeys($records, $propertyMap);
+            foreach ($ret as $index => $record) {
+                $key = 'modified';
+                if (isset($record[$key])) {
+                    $ret[$index][$key] = $filter->filter($record[$key]);
                 }
             }
         }
@@ -181,16 +207,12 @@ class ReportingCloud extends AbstractReportingCloud
         $records = $this->get('/account/settings');
 
         if (is_array($records) && count($records) > 0) {
-            $ret = [];
-            foreach ($propertyMap->getMap() as $property => $key) {
-                $value = null;
-                if (isset($records[$property]) && strlen($records[$property]) > 0) {
-                    $value = $records[$property];
-                    if ('valid_until' == $key) {
-                        $value = $filter->filter($value);
-                    }
+            $ret = $this->normalizeArrayKeys($records, $propertyMap);
+            foreach ($ret as $index => $record) {
+                $key = 'valid_until';
+                if (isset($record[$key])) {
+                    $ret[$index][$key] = $filter->filter($record[$key]);
                 }
-                $ret[$key] = $value;
             }
         }
 
@@ -323,7 +345,7 @@ class ReportingCloud extends AbstractReportingCloud
 
         StaticValidator::execute($documentFilename, 'DocumentExtension');
         StaticValidator::execute($documentFilename, 'FileExists');
-        StaticValidator::execute($returnFormat, 'ReturnFormat');
+        StaticValidator::execute($returnFormat    , 'ReturnFormat');
 
         $headers = [
             'Content-Type' => 'application/json',
@@ -377,7 +399,7 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        StaticValidator::execute($mergeData, 'TypeArray');
+        StaticValidator::execute($mergeData   , 'TypeArray');
         StaticValidator::execute($returnFormat, 'ReturnFormat');
 
         if (null !== $templateName) {

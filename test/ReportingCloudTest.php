@@ -28,6 +28,62 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     // -----------------------------------------------------------------------------------------------------------------
 
+    public function testGetTemplateInfo()
+    {
+        $testTemplateFilename = $this->getTestTemplateFilename();
+        $tempTemplateFilename = $this->getTempTemplateFilename();
+        $tempTemplateName     = basename($tempTemplateFilename);
+
+        $this->assertFileExists($testTemplateFilename);
+
+        copy($testTemplateFilename, $tempTemplateFilename);
+
+        $this->assertFileExists($tempTemplateFilename);
+
+        $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
+
+        $this->assertTrue($response);
+
+        $response = $this->reportingCloud->getTemplateInfo($tempTemplateName);
+
+        $this->assertArrayHasKey('template_name'      , $response);
+
+        $this->assertArrayHasKey('merge_blocks'       , $response);
+
+        $this->assertArrayHasKey(0                    , $response['merge_blocks']);
+
+        $this->assertArrayHasKey('name'               , $response['merge_blocks'][0]);
+        $this->assertArrayHasKey('merge_fields'       , $response['merge_blocks'][0]);
+
+        $this->assertArrayHasKey(0                    , $response['merge_blocks'][0]['merge_fields']);
+
+        $this->assertArrayHasKey('date_time_format'   , $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('numeric_format'     , $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('preserve_formatting', $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('text'               , $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('text_after'         , $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('text_before'        , $response['merge_blocks'][0]['merge_fields'][0]);
+
+        $this->assertArrayHasKey('merge_fields'       , $response);
+
+        $this->assertArrayHasKey(0                    , $response['merge_fields']);
+
+        $this->assertArrayHasKey('date_time_format'   , $response['merge_fields'][0]);
+        $this->assertArrayHasKey('numeric_format'     , $response['merge_fields'][0]);
+        $this->assertArrayHasKey('preserve_formatting', $response['merge_fields'][0]);
+        $this->assertArrayHasKey('text'               , $response['merge_fields'][0]);
+        $this->assertArrayHasKey('text_after'         , $response['merge_fields'][0]);
+        $this->assertArrayHasKey('text_before'        , $response['merge_fields'][0]);
+
+        $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
+
+        $this->assertTrue($response);
+
+        unlink($tempTemplateFilename);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
     public function testGetTemplateThumbnails()
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
