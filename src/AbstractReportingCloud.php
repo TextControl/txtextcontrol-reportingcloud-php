@@ -177,6 +177,7 @@ abstract class AbstractReportingCloud
                 RequestOptions::DEBUG   => $this->getDebug(),
                 RequestOptions::HEADERS => [
                     'Authorization' => $authorization,
+                    'Content-Type' => 'application/json',
                 ],
             ]);
 
@@ -402,7 +403,7 @@ abstract class AbstractReportingCloud
             // \GuzzleHttp\Exception\ClientException
             // \GuzzleHttp\Exception\ServerException
 
-            $message = (string) $exception->getMessage();
+            $message = (string)  $exception->getMessage();
             $code    = (integer) $exception->getCode();
 
             throw new RuntimeException($message, $code);
@@ -440,7 +441,8 @@ abstract class AbstractReportingCloud
     /**
      * Assemble MergeSettings array to pass to ReportingCloud
      *
-     * @param $mergeSettings MergeSettings array
+     * @param array $mergeSettings MergeSettings array
+     *
      * @return array
      */
     protected function assembleMergeSettings($mergeSettings)
@@ -463,20 +465,6 @@ abstract class AbstractReportingCloud
                 $ret[$property] = $value;
             }
         }
-
-        return $ret;
-    }
-
-    /**
-     * Return array of headers to be passed with each request to ReportingCloud
-     *
-     * @return array
-     */
-    protected function headers()
-    {
-        $ret = [
-            'Content-Type' => 'application/json',
-        ];
 
         return $ret;
     }

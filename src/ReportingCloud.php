@@ -303,9 +303,8 @@ class ReportingCloud extends AbstractReportingCloud
         $body = json_encode($body);
 
         $options = [
-            RequestOptions::HEADERS => $this->headers(),
-            RequestOptions::QUERY   => $query,
-            RequestOptions::BODY    => $body,
+            RequestOptions::QUERY => $query,
+            RequestOptions::BODY  => $body,
         ];
 
         $response = $this->request('POST', $this->uri('/templates/upload'), $options);
@@ -348,9 +347,8 @@ class ReportingCloud extends AbstractReportingCloud
         $body = json_encode($body);
 
         $options = [
-            RequestOptions::HEADERS => $this->headers(),
-            RequestOptions::QUERY   => $query,
-            RequestOptions::BODY    => $body,
+            RequestOptions::QUERY => $query,
+            RequestOptions::BODY  => $body,
         ];
 
         $response = $this->request('POST', $this->uri('/document/convert'), $options);
@@ -435,10 +433,11 @@ class ReportingCloud extends AbstractReportingCloud
             $mergeBody['mergeSettings'] = $this->assembleMergeSettings($mergeSettings);
         }
 
+        $body = json_encode($mergeBody);
+
         $options = [
-            RequestOptions::HEADERS => $this->headers(),
-            RequestOptions::QUERY   => $query,
-            RequestOptions::BODY    => json_encode($mergeBody),
+            RequestOptions::QUERY => $query,
+            RequestOptions::BODY  => $body,
         ];
 
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
@@ -514,10 +513,11 @@ class ReportingCloud extends AbstractReportingCloud
             $findAndReplaceBody['mergeSettings'] = $this->assembleMergeSettings($mergeSettings);
         }
 
+        $body = json_encode($findAndReplaceBody);
+
         $options = [
-            RequestOptions::HEADERS => $this->headers(),
-            RequestOptions::QUERY   => $query,
-            RequestOptions::BODY    => json_encode($findAndReplaceBody),
+            RequestOptions::QUERY => $query,
+            RequestOptions::BODY  => $body,
         ];
 
         $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
