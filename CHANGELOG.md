@@ -4,6 +4,10 @@
 
 ## dev-master
 
+* Refactored `mergeDocument()` and `findAndReplace()` methods.
+* Added `findAndReplace()` methods.
+* Set default `Content-Type` HTTP header.
+
 ## 1.0.12 - 2016-08-30
 
 * Implemented end-point `/v1/templates/info`. 
