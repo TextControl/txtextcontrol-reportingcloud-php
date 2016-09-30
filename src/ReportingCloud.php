@@ -16,9 +16,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp as DateTimeToTimestampFilter;
-use TxTextControl\ReportingCloud\Filter\TimestampToDateTime as TimestampToDateTimeFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
@@ -296,10 +294,6 @@ class ReportingCloud extends AbstractReportingCloud
         $templateFilename = realpath($templateFilename);
         $templateName     = basename($templateFilename);
 
-        $headers = [
-            'Content-Type' => 'application/json',
-        ];
-
         $query = [
             'templateName' => $templateName,
         ];
@@ -309,7 +303,7 @@ class ReportingCloud extends AbstractReportingCloud
         $body = json_encode($body);
 
         $options = [
-            RequestOptions::HEADERS => $headers,
+            RequestOptions::HEADERS => $this->headers(),
             RequestOptions::QUERY   => $query,
             RequestOptions::BODY    => $body,
         ];
@@ -343,10 +337,6 @@ class ReportingCloud extends AbstractReportingCloud
         StaticValidator::execute($documentFilename, 'FileExists');
         StaticValidator::execute($returnFormat    , 'ReturnFormat');
 
-        $headers = [
-            'Content-Type' => 'application/json',
-        ];
-
         $query = [
             'returnFormat' => $returnFormat,
         ];
@@ -358,7 +348,7 @@ class ReportingCloud extends AbstractReportingCloud
         $body = json_encode($body);
 
         $options = [
-            RequestOptions::HEADERS => $headers,
+            RequestOptions::HEADERS => $this->headers(),
             RequestOptions::QUERY   => $query,
             RequestOptions::BODY    => $body,
         ];
@@ -422,10 +412,6 @@ class ReportingCloud extends AbstractReportingCloud
 
         StaticValidator::execute($mergeSettings, 'TypeArray');
 
-        $headers = [
-            'Content-Type' => 'application/json',
-        ];
-
         $query = [
             'returnFormat' => $returnFormat,
             'append'       => $append,
@@ -449,12 +435,10 @@ class ReportingCloud extends AbstractReportingCloud
             $mergeBody['mergeSettings'] = $this->assembleMergeSettings($mergeSettings);
         }
 
-        $body = json_encode($mergeBody);
-
         $options = [
-            RequestOptions::HEADERS => $headers,
+            RequestOptions::HEADERS => $this->headers(),
             RequestOptions::QUERY   => $query,
-            RequestOptions::BODY    => $body,
+            RequestOptions::BODY    => json_encode($mergeBody),
         ];
 
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
@@ -476,9 +460,9 @@ class ReportingCloud extends AbstractReportingCloud
     }
 
     /**
-     * Perform find and replace in template and return an array of binary data.
+     * Perform find and replace in template and return binary data.
      *
-     * @param array   $findAndReplaceData  Array of findAndReplaceData
+     * @param array   $findAndReplaceData  Array of find and replace data
      * @param string  $returnFormat        Return format
      * @param string  $templateName        Template name
      * @param string  $templateFilename    Template filename on local file system
@@ -493,8 +477,8 @@ class ReportingCloud extends AbstractReportingCloud
     {
         $ret = null;
 
-        StaticValidator::execute($findAndReplaceData   , 'TypeArray');
-        StaticValidator::execute($returnFormat, 'ReturnFormat');
+        StaticValidator::execute($findAndReplaceData, 'TypeArray');
+        StaticValidator::execute($returnFormat      , 'ReturnFormat');
 
         if (null !== $templateName) {
             StaticValidator::execute($templateName, 'TemplateName');
@@ -508,10 +492,6 @@ class ReportingCloud extends AbstractReportingCloud
 
         StaticValidator::execute($mergeSettings, 'TypeArray');
 
-        $headers = [
-            'Content-Type' => 'application/json',
-        ];
-
         $query = [
             'returnFormat' => $returnFormat,
         ];
@@ -519,8 +499,6 @@ class ReportingCloud extends AbstractReportingCloud
         if (null !== $templateName) {
             $query['templateName'] = $templateName;
         }
-
-
 
         $findAndReplaceBody = [
             'findAndReplaceData' => $findAndReplaceData,
@@ -536,12 +514,10 @@ class ReportingCloud extends AbstractReportingCloud
             $findAndReplaceBody['mergeSettings'] = $this->assembleMergeSettings($mergeSettings);
         }
 
-        $body = json_encode($findAndReplaceBody);
-
         $options = [
-            RequestOptions::HEADERS => $headers,
+            RequestOptions::HEADERS => $this->headers(),
             RequestOptions::QUERY   => $query,
-            RequestOptions::BODY    => $body,
+            RequestOptions::BODY    => json_encode($findAndReplaceBody),
         ];
 
         $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
@@ -550,30 +526,6 @@ class ReportingCloud extends AbstractReportingCloud
             if (200 === $response->getStatusCode()) {
                 $body = (string) $response->getBody();
                 $ret = base64_decode($body);
-            }
-        }
-
-        return $ret;
-    }
-
-    protected function assembleMergeSettings($mergeSettings)
-    {
-        $ret = [];
-
-        $filter      = new TimestampToDateTimeFilter();
-        $propertyMap = new MergeSettingsPropertyMap();
-
-        foreach ($propertyMap->getMap() as $property => $key) {
-            if (isset($mergeSettings[$key])) {
-                $value = $mergeSettings[$key];
-                if ('remove_' == substr($key, 0, 7)) {
-                    StaticValidator::execute($value, 'TypeBoolean');
-                }
-                if ('_date' == substr($key, -5)) {
-                    StaticValidator::execute($value, 'Timestamp');
-                    $value = $filter->filter($value);
-                }
-                $ret[$property] = $value;
             }
         }
 

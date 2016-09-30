@@ -16,6 +16,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
+use TxTextControl\ReportingCloud\Filter\TimestampToDateTime as TimestampToDateTimeFilter;
+use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\MergeSettings;
+use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
  * Abstract ReportingCloud
@@ -429,6 +433,50 @@ abstract class AbstractReportingCloud
             }
             $ret[$key] = $value;
         }
+
+        return $ret;
+    }
+
+    /**
+     * Assemble MergeSettings array to pass to ReportingCloud
+     *
+     * @param $mergeSettings MergeSettings array
+     * @return array
+     */
+    protected function assembleMergeSettings($mergeSettings)
+    {
+        $ret = [];
+
+        $filter      = new TimestampToDateTimeFilter();
+        $propertyMap = new MergeSettingsPropertyMap();
+
+        foreach ($propertyMap->getMap() as $property => $key) {
+            if (isset($mergeSettings[$key])) {
+                $value = $mergeSettings[$key];
+                if ('remove_' == substr($key, 0, 7)) {
+                    StaticValidator::execute($value, 'TypeBoolean');
+                }
+                if ('_date' == substr($key, -5)) {
+                    StaticValidator::execute($value, 'Timestamp');
+                    $value = $filter->filter($value);
+                }
+                $ret[$property] = $value;
+            }
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Return array of headers to be passed with each request to ReportingCloud
+     *
+     * @return array
+     */
+    protected function headers()
+    {
+        $ret = [
+            'Content-Type' => 'application/json',
+        ];
 
         return $ret;
     }
