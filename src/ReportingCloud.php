@@ -14,17 +14,13 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
-
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-
-use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp  as DateTimeToTimestampFilter;
-use TxTextControl\ReportingCloud\Filter\TimestampToDateTime  as TimestampToDateTimeFilter;
-
-use TxTextControl\ReportingCloud\PropertyMap\MergeSettings   as MergeSettingsPropertyMap;
+use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp as DateTimeToTimestampFilter;
+use TxTextControl\ReportingCloud\Filter\TimestampToDateTime as TimestampToDateTimeFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo    as TemplateInfoPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\TemplateList    as TemplateListPropertyMap;
-
+use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
@@ -439,33 +435,6 @@ class ReportingCloud extends AbstractReportingCloud
             $query['templateName'] = $templateName;
         }
 
-        $mergeSettingsRc = null;
-
-        if (count($mergeSettings) > 0) {
-
-            $filter = new TimestampToDateTimeFilter();
-
-            $mergeSettingsRc = []; // 'Rc' - this array is passed to ReportingCloud
-
-            $propertyMap = new MergeSettingsPropertyMap();
-
-            foreach ($propertyMap->getMap() as $property => $key) {
-                if (isset($mergeSettings[$key])) {
-                    $value = $mergeSettings[$key];
-                    if ('remove_' == substr($key, 0, 7)) {
-                        StaticValidator::execute($value, 'TypeBoolean');
-                    }
-                    if ('_date' == substr($key, -5)) {
-                        StaticValidator::execute($value, 'Timestamp');
-                        $value = $filter->filter($value);
-                    }
-                    $mergeSettingsRc[$property] = $value;
-                }
-            }
-        }
-        
-        unset($mergeSettings);
-
         $mergeBody = [
             'mergeData' => $mergeData,
         ];
@@ -476,8 +445,8 @@ class ReportingCloud extends AbstractReportingCloud
             $mergeBody['template'] = $template;
         }
 
-        if (null !== $mergeSettingsRc) {
-            $mergeBody['mergeSettings'] = $mergeSettingsRc;
+        if (count($mergeSettings) > 0) {
+            $mergeBody['mergeSettings'] = $this->assembleMergeSettings($mergeSettings);
         }
 
         $body = json_encode($mergeBody);
@@ -551,32 +520,7 @@ class ReportingCloud extends AbstractReportingCloud
             $query['templateName'] = $templateName;
         }
 
-        $mergeSettingsRc = null;
 
-        if (count($mergeSettings) > 0) {
-
-            $filter = new TimestampToDateTimeFilter();
-
-            $mergeSettingsRc = []; // 'Rc' - this array is passed to ReportingCloud
-
-            $propertyMap = new MergeSettingsPropertyMap();
-
-            foreach ($propertyMap->getMap() as $property => $key) {
-                if (isset($mergeSettings[$key])) {
-                    $value = $mergeSettings[$key];
-                    if ('remove_' == substr($key, 0, 7)) {
-                        StaticValidator::execute($value, 'TypeBoolean');
-                    }
-                    if ('_date' == substr($key, -5)) {
-                        StaticValidator::execute($value, 'Timestamp');
-                        $value = $filter->filter($value);
-                    }
-                    $mergeSettingsRc[$property] = $value;
-                }
-            }
-        }
-
-        unset($mergeSettings);
 
         $findAndReplaceBody = [
             'findAndReplaceData' => $findAndReplaceData,
@@ -588,8 +532,8 @@ class ReportingCloud extends AbstractReportingCloud
             $findAndReplaceBody['template'] = $template;
         }
 
-        if (null !== $mergeSettingsRc) {
-            $findAndReplaceBody['mergeSettings'] = $mergeSettingsRc;
+        if (count($mergeSettings) > 0) {
+            $findAndReplaceBody['mergeSettings'] = $this->assembleMergeSettings($mergeSettings);
         }
 
         $body = json_encode($findAndReplaceBody);
@@ -606,6 +550,30 @@ class ReportingCloud extends AbstractReportingCloud
             if (200 === $response->getStatusCode()) {
                 $body = (string) $response->getBody();
                 $ret = base64_decode($body);
+            }
+        }
+
+        return $ret;
+    }
+
+    protected function assembleMergeSettings($mergeSettings)
+    {
+        $ret = [];
+
+        $filter      = new TimestampToDateTimeFilter();
+        $propertyMap = new MergeSettingsPropertyMap();
+
+        foreach ($propertyMap->getMap() as $property => $key) {
+            if (isset($mergeSettings[$key])) {
+                $value = $mergeSettings[$key];
+                if ('remove_' == substr($key, 0, 7)) {
+                    StaticValidator::execute($value, 'TypeBoolean');
+                }
+                if ('_date' == substr($key, -5)) {
+                    StaticValidator::execute($value, 'Timestamp');
+                    $value = $filter->filter($value);
+                }
+                $ret[$property] = $value;
             }
         }
 
