@@ -506,6 +506,112 @@ class ReportingCloud extends AbstractReportingCloud
         return $ret;
     }
 
+    /**
+     * Perform find and replace in template and return an array of binary data.
+     *
+     * @param array   $findAndReplaceData  Array of findAndReplaceData
+     * @param string  $returnFormat        Return format
+     * @param string  $templateName        Template name
+     * @param string  $templateFilename    Template filename on local file system
+     * @param array   $mergeSettings       Array of merge settings
+     *
+     * @throws InvalidArgumentException
+     *
+     * @return null|string
+     */
+    public function findAndReplace($findAndReplaceData, $returnFormat, $templateName = null, $templateFilename = null,
+                                   $mergeSettings = [])
+    {
+        $ret = null;
+
+        StaticValidator::execute($findAndReplaceData   , 'TypeArray');
+        StaticValidator::execute($returnFormat, 'ReturnFormat');
+
+        if (null !== $templateName) {
+            StaticValidator::execute($templateName, 'TemplateName');
+        }
+
+        if (null !== $templateFilename) {
+            StaticValidator::execute($templateFilename, 'TemplateExtension');
+            StaticValidator::execute($templateFilename, 'FileExists');
+            $templateFilename = realpath($templateFilename);
+        }
+
+        StaticValidator::execute($mergeSettings, 'TypeArray');
+
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+
+        $query = [
+            'returnFormat' => $returnFormat,
+        ];
+
+        if (null !== $templateName) {
+            $query['templateName'] = $templateName;
+        }
+
+        $mergeSettingsRc = null;
+
+        if (count($mergeSettings) > 0) {
+
+            $filter = new TimestampToDateTimeFilter();
+
+            $mergeSettingsRc = []; // 'Rc' - this array is passed to ReportingCloud
+
+            $propertyMap = new MergeSettingsPropertyMap();
+
+            foreach ($propertyMap->getMap() as $property => $key) {
+                if (isset($mergeSettings[$key])) {
+                    $value = $mergeSettings[$key];
+                    if ('remove_' == substr($key, 0, 7)) {
+                        StaticValidator::execute($value, 'TypeBoolean');
+                    }
+                    if ('_date' == substr($key, -5)) {
+                        StaticValidator::execute($value, 'Timestamp');
+                        $value = $filter->filter($value);
+                    }
+                    $mergeSettingsRc[$property] = $value;
+                }
+            }
+        }
+
+        unset($mergeSettings);
+
+        $findAndReplaceBody = [
+            'findAndReplaceData' => $findAndReplaceData,
+        ];
+
+        if (null !== $templateFilename) {
+            $template = file_get_contents($templateFilename);
+            $template = base64_encode($template);
+            $findAndReplaceBody['template'] = $template;
+        }
+
+        if (null !== $mergeSettingsRc) {
+            $findAndReplaceBody['mergeSettings'] = $mergeSettingsRc;
+        }
+
+        $body = json_encode($findAndReplaceBody);
+
+        $options = [
+            RequestOptions::HEADERS => $headers,
+            RequestOptions::QUERY   => $query,
+            RequestOptions::BODY    => $body,
+        ];
+
+        $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
+
+        if ($response instanceof Response) {
+            if (200 === $response->getStatusCode()) {
+                $body = (string) $response->getBody();
+                $ret = base64_decode($body);
+            }
+        }
+
+        return $ret;
+    }
+
 
     /**
      * DELETE methods
