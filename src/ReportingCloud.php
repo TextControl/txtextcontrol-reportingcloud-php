@@ -367,12 +367,12 @@ class ReportingCloud extends AbstractReportingCloud
      * Merge data into a template and return an array of binary data.
      * Each record in the array is the binary data of one document
      *
-     * @param array   $mergeData         Array of merge data
-     * @param string  $returnFormat      Return format
-     * @param string  $templateName      Template name
-     * @param string  $templateFilename  Template filename on local file system
-     * @param boolean $append            Append flag
-     * @param array   $mergeSettings     Array of merge settings
+     * @param array   $mergeData        Array of merge data
+     * @param string  $returnFormat     Return format
+     * @param string  $templateName     Template name
+     * @param string  $templateFilename Template filename on local file system
+     * @param boolean $append           Append flag
+     * @param array   $mergeSettings    Array of merge settings
      *
      * @throws InvalidArgumentException
      *
@@ -461,11 +461,11 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * Perform find and replace in template and return binary data.
      *
-     * @param array   $findAndReplaceData  Array of find and replace data
-     * @param string  $returnFormat        Return format
-     * @param string  $templateName        Template name
-     * @param string  $templateFilename    Template filename on local file system
-     * @param array   $mergeSettings       Array of merge settings
+     * @param array  $findAndReplaceData Array of find and replace data
+     * @param string $returnFormat       Return format
+     * @param string $templateName       Template name
+     * @param string $templateFilename   Template filename on local file system
+     * @param array  $mergeSettings      Array of merge settings
      *
      * @throws InvalidArgumentException
      *
