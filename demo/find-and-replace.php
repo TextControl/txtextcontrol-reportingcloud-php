@@ -37,8 +37,10 @@ $mergeSettings = [
     'user_password'              => '1',
 ];
 
-$binaryData = $reportingCloud->findAndReplace($findAndReplaceData, 'PDF', 'test_find_replace.tx', null, $mergeSettings);
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_find_replace.pdf';
+$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_find_and_replace.tx';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_find_and_replace.pdf';
+
+$binaryData = $reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, $sourceFilename, $mergeSettings);
 
 file_put_contents($destinationFilename, $binaryData);
