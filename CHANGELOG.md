@@ -4,8 +4,9 @@
 
 ## dev-master
 
+* Added unit tests for `findAndReplace()` method.
 * Refactored `mergeDocument()` and `findAndReplace()` methods.
-* Added `findAndReplace()` methods.
+* Added `findAndReplace()` method.
 * Set default `Content-Type` HTTP header.
 
 ## 1.0.12 - 2016-08-30
