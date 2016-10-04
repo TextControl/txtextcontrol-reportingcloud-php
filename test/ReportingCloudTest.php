@@ -459,7 +459,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     public function testMergeInvalidMergeSettingsStringInsteadOfBoolean()
     {
         $mergeData        = $this->getTestTemplateMergeData();
-        $mergeSettings    = $this->getTestTemplateMergeSettings();
+        $mergeSettings    = $this->getTestMergeSettings();
 
         $templateFilename = $this->getTestTemplateFilename();
 
@@ -478,7 +478,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     public function testMergeInvalidMergeSettingsTimestampValues()
     {
         $mergeData        = $this->getTestTemplateMergeData();
-        $mergeSettings    = $this->getTestTemplateMergeSettings();
+        $mergeSettings    = $this->getTestMergeSettings();
 
         $templateFilename = $this->getTestTemplateFilename();
 
@@ -495,7 +495,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $returnFormats        = $this->getTestReturnFormats();
 
         $mergeData            = $this->getTestTemplateMergeData();
-        $mergeSettings        = $this->getTestTemplateMergeSettings();
+        $mergeSettings        = $this->getTestMergeSettings();
 
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -537,7 +537,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $returnFormats        = $this->getTestReturnFormats();
 
         $mergeData            = $this->getTestTemplateMergeData();
-        $mergeSettings        = $this->getTestTemplateMergeSettings();
+        $mergeSettings        = $this->getTestMergeSettings();
 
         $testTemplateFilename = $this->getTestTemplateFilename();
 
@@ -555,6 +555,177 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
                 $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $key);
                 $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
             }
+        }
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFindAndReplaceInvalidReturnFormat()
+    {
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+
+        $this->reportingCloud->findAndReplace($findAndReplaceData, 'X');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFindAndReplaceInvalidTemplateName()
+    {
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+
+        $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', '../invalid_template.tx');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFindAndReplaceInvalidTemplateFilenameUnsupportedExtension()
+    {
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+
+        $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, '/invalid/path/template.xxx');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFindAndReplaceInvalidTemplateFilenameNoExtension()
+    {
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+
+        $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, '/invalid/path/template');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFindAndReplaceInvalidTemplateFilenameNoFile()
+    {
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+
+        $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, '/invalid/path/template/');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFindAndReplaceInvalidTemplateFilename()
+    {
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+
+        $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, '/invalid/path/template.doc');
+    }
+
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFindAndReplaceInvalidMergeSettingsIntegerInsteadOfArray()
+    {
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $templateFilename   = $this->getTestFindAndReplaceTemplateFilename();
+
+        $this->assertFileExists($templateFilename);
+
+        $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, $templateFilename, 1);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFindAndReplaceInvalidMergeSettingsStringInsteadOfBoolean()
+    {
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $mergeSettings      = $this->getTestMergeSettings();
+
+        $templateFilename   = $this->getTestFindAndReplaceTemplateFilename();
+
+        $this->assertFileExists($templateFilename);
+
+        $mergeSettings['remove_empty_blocks'] = 'invalid';  // value must be boolean
+        $mergeSettings['remove_empty_fields'] = 'invalid';
+        $mergeSettings['remove_empty_images'] = 'invalid';
+
+        $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, $templateFilename, $mergeSettings);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testFindAndReplaceInvalidMergeSettingsTimestampValues()
+    {
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $mergeSettings      = $this->getTestMergeSettings();
+
+        $templateFilename   = $this->getTestFindAndReplaceTemplateFilename();
+
+        $this->assertFileExists($templateFilename);
+
+        $mergeSettings['creation_date']          = -1;  // value must be timestamp
+        $mergeSettings['last_modification_date'] = 'invalid';
+
+        $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, $templateFilename, $mergeSettings);
+    }
+
+    public function testFindAndReplaceWithTemplateName()
+    {
+        $returnFormats        = $this->getTestReturnFormats();
+
+        $findAndReplaceData   = $this->getTestTemplateFindAndReplaceMergeData();
+        $mergeSettings        = $this->getTestMergeSettings();
+
+        $testTemplateFilename = $this->getTestFindAndReplaceTemplateFilename();
+        $tempTemplateFilename = $this->getTempTemplateFilename();
+        $tempTemplateName     = basename($tempTemplateFilename);
+
+        $this->assertFileExists($testTemplateFilename);
+
+        copy($testTemplateFilename, $tempTemplateFilename);
+
+        $this->assertFileExists($tempTemplateFilename);
+
+        $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
+
+        $this->assertTrue($response);
+
+        unlink($tempTemplateFilename);
+
+        foreach ($returnFormats as $returnFormat) {
+
+            $response = $this->reportingCloud->findAndReplace($findAndReplaceData, $returnFormat, $tempTemplateName, null, $mergeSettings);
+
+            $this->assertNotNull($response);
+            $this->assertNotFalse($response);
+            $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
+        }
+
+        $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
+
+        $this->assertTrue($response);
+    }
+
+    public function testFindAndReplaceWithTemplateFilename()
+    {
+        $returnFormats        = $this->getTestReturnFormats();
+
+        $findAndReplaceData   = $this->getTestTemplateFindAndReplaceMergeData();
+        $mergeSettings        = $this->getTestMergeSettings();
+
+        $testTemplateFilename = $this->getTestFindAndReplaceTemplateFilename();
+
+        $this->assertFileExists($testTemplateFilename);
+
+        foreach ($returnFormats as $returnFormat) {
+
+            $response = $this->reportingCloud->findAndReplace($findAndReplaceData, $returnFormat, null, $testTemplateFilename, $mergeSettings);
+
+            $this->assertNotNull($response);
+            $this->assertNotFalse($response);
+            $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
         }
     }
 
@@ -663,6 +834,20 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         return $ret;
     }
 
+    protected function getTestTemplateFindAndReplaceMergeData()
+    {
+        $ret = [
+            [
+                '%%FIELD1%%', 'hello field 1',
+            ],
+            [
+                '%%FIELD2%%', 'hello field 2',
+            ],
+        ];
+
+        return $ret;
+    }
+
     protected function getTestTemplateMergeData()
     {
         $ret = [
@@ -739,7 +924,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     }
 
 
-    protected function getTestTemplateMergeSettings()
+    protected function getTestMergeSettings()
     {
         $ret = [
 
@@ -787,6 +972,13 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     protected function getTempDocumentFilename()
     {
         $ret = sprintf('%s/test_document_%d.docx', sys_get_temp_dir(), rand(0, PHP_INT_MAX));
+
+        return $ret;
+    }
+
+    protected function getTestFindAndReplaceTemplateFilename()
+    {
+        $ret = sprintf('%s/test_find_and_replace.tx', realpath(__DIR__ . '/TestAsset'));
 
         return $ret;
     }
