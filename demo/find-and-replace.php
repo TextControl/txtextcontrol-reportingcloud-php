@@ -10,6 +10,10 @@ $reportingCloud = new ReportingCloud([
     'password' => Helper::password(),
 ]);
 
+
+$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_find_and_replace.tx';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_find_and_replace.pdf';
+
 $findAndReplaceData = [
     [
         '%%FIELD1%%', 'hello field 1',
@@ -36,10 +40,6 @@ $mergeSettings = [
 
     'user_password'              => '1',
 ];
-
-
-$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_find_and_replace.tx';
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_find_and_replace.pdf';
 
 $binaryData = $reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, $sourceFilename, $mergeSettings);
 
