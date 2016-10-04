@@ -565,7 +565,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testFindAndReplaceInvalidReturnFormat()
     {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplace($findAndReplaceData, 'X');
     }
@@ -575,7 +575,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testFindAndReplaceInvalidTemplateName()
     {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', '../invalid_template.tx');
     }
@@ -585,7 +585,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testFindAndReplaceInvalidTemplateFilenameUnsupportedExtension()
     {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, '/invalid/path/template.xxx');
     }
@@ -595,7 +595,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testFindAndReplaceInvalidTemplateFilenameNoExtension()
     {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, '/invalid/path/template');
     }
@@ -605,7 +605,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testFindAndReplaceInvalidTemplateFilenameNoFile()
     {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, '/invalid/path/template/');
     }
@@ -615,19 +615,18 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testFindAndReplaceInvalidTemplateFilename()
     {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, '/invalid/path/template.doc');
     }
-
 
     /**
      * @expectedException InvalidArgumentException
      */
     public function testFindAndReplaceInvalidMergeSettingsIntegerInsteadOfArray()
     {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
-        $templateFilename   = $this->getTestFindAndReplaceTemplateFilename();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
+        $templateFilename   = $this->getTestTemplateFindAndReplaceFilename();
 
         $this->assertFileExists($templateFilename);
 
@@ -639,10 +638,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testFindAndReplaceInvalidMergeSettingsStringInsteadOfBoolean()
     {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();
 
-        $templateFilename   = $this->getTestFindAndReplaceTemplateFilename();
+        $templateFilename   = $this->getTestTemplateFindAndReplaceFilename();
 
         $this->assertFileExists($templateFilename);
 
@@ -658,10 +657,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testFindAndReplaceInvalidMergeSettingsTimestampValues()
     {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();
 
-        $templateFilename   = $this->getTestFindAndReplaceTemplateFilename();
+        $templateFilename   = $this->getTestTemplateFindAndReplaceFilename();
 
         $this->assertFileExists($templateFilename);
 
@@ -675,10 +674,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $returnFormats        = $this->getTestReturnFormats();
 
-        $findAndReplaceData   = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData   = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings        = $this->getTestMergeSettings();
 
-        $testTemplateFilename = $this->getTestFindAndReplaceTemplateFilename();
+        $testTemplateFilename = $this->getTestTemplateFindAndReplaceFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
@@ -712,10 +711,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $returnFormats        = $this->getTestReturnFormats();
 
-        $findAndReplaceData   = $this->getTestTemplateFindAndReplaceMergeData();
+        $findAndReplaceData   = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings        = $this->getTestMergeSettings();
 
-        $testTemplateFilename = $this->getTestFindAndReplaceTemplateFilename();
+        $testTemplateFilename = $this->getTestTemplateFindAndReplaceFilename();
 
         $this->assertFileExists($testTemplateFilename);
 
@@ -834,7 +833,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         return $ret;
     }
 
-    protected function getTestTemplateFindAndReplaceMergeData()
+    protected function getTestTemplateFindAndReplaceData()
     {
         $ret = [
             [
@@ -976,7 +975,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         return $ret;
     }
 
-    protected function getTestFindAndReplaceTemplateFilename()
+    protected function getTestTemplateFindAndReplaceFilename()
     {
         $ret = sprintf('%s/test_find_and_replace.tx', realpath(__DIR__ . '/TestAsset'));
 
