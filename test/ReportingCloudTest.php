@@ -2,13 +2,12 @@
 
 namespace TxTextControlTest\ReportingCloud;
 
-use PHPUnit_Framework_TestCase;
 use PHPUnit_Framework_Constraint_IsType as PHPUnit_IsType;
-
+use PHPUnit_Framework_TestCase;
+use TxTextControl\ReportingCloud\CliHelper as Helper;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
-use TxTextControl\ReportingCloud\CliHelper as Helper;
 use TxTextControl\ReportingCloud\Validator\ReturnFormat as ReturnFormatValidator;
 
 class ReportingCloudTest extends PHPUnit_Framework_TestCase
@@ -370,7 +369,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidReturnFormat()
+    public function testMergeDocumentInvalidReturnFormat()
     {
         $mergeData = $this->getTestTemplateMergeData();
 
@@ -380,7 +379,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidTemplateName()
+    public function testMergeDocumentInvalidTemplateName()
     {
         $mergeData = $this->getTestTemplateMergeData();
 
@@ -390,7 +389,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidTemplateFilenameUnsupportedExtension()
+    public function testMergeDocumentInvalidTemplateFilenameUnsupportedExtension()
     {
         $mergeData = $this->getTestTemplateMergeData();
 
@@ -400,7 +399,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidTemplateFilenameNoExtension()
+    public function testMergeDocumentInvalidTemplateFilenameNoExtension()
     {
         $mergeData = $this->getTestTemplateMergeData();
 
@@ -410,7 +409,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidTemplateFilenameNoFile()
+    public function testMergeDocumentInvalidTemplateFilenameNoFile()
     {
         $mergeData = $this->getTestTemplateMergeData();
 
@@ -420,7 +419,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidTemplateFilename()
+    public function testMergeDocumentInvalidTemplateFilename()
     {
         $mergeData = $this->getTestTemplateMergeData();
 
@@ -430,7 +429,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidAppend()
+    public function testMergeDocumentInvalidAppend()
     {
         $mergeData        = $this->getTestTemplateMergeData();
         $templateFilename = $this->getTestTemplateFilename();
@@ -443,7 +442,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidMergeSettingsIntegerInsteadOfArray()
+    public function testMergeDocumentInvalidMergeSettingsIntegerInsteadOfArray()
     {
         $mergeData        = $this->getTestTemplateMergeData();
         $templateFilename = $this->getTestTemplateFilename();
@@ -456,7 +455,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidMergeSettingsStringInsteadOfBoolean()
+    public function testMergeDocumentInvalidMergeSettingsStringInsteadOfBoolean()
     {
         $mergeData        = $this->getTestTemplateMergeData();
         $mergeSettings    = $this->getTestMergeSettings();
@@ -475,7 +474,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testMergeInvalidMergeSettingsTimestampValues()
+    public function testMergeDocumentInvalidMergeSettingsTimestampValues()
     {
         $mergeData        = $this->getTestTemplateMergeData();
         $mergeSettings    = $this->getTestMergeSettings();
@@ -490,7 +489,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, false, $mergeSettings);
     }
 
-    public function testMergeWithTemplateName()
+    public function testMergeDocumentWithTemplateName()
     {
         $returnFormats        = $this->getTestReturnFormats();
 
@@ -532,7 +531,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($response);
     }
 
-    public function testMergeWithTemplateFilename()
+    public function testMergeDocumentWithTemplateFilename()
     {
         $returnFormats        = $this->getTestReturnFormats();
 
@@ -556,6 +555,52 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
                 $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
             }
         }
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function testApiCallDoesCountAgainstQuota()
+    {
+        // get start created_document statistic
+        $accountSettings = $this->reportingCloud->getAccountSettings();
+        $this->assertArrayHasKey('created_documents', $accountSettings);
+        $startCreatedDocuments = $accountSettings['created_documents'];
+
+        // perform operation
+        $this->reportingCloud->mergeDocument($this->getTestTemplateMergeData(), 'PDF', null, $this->getTestTemplateFilename());
+
+        // get end created_document statistic
+        $accountSettings = $this->reportingCloud->getAccountSettings();
+        $this->assertArrayHasKey('created_documents', $accountSettings);
+        $endCreatedDocuments = $accountSettings['created_documents'];
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $startCreatedDocuments);
+        $this->assertGreaterThanOrEqual(1, $startCreatedDocuments);
+
+        // compare start and end statistics
+        $this->assertLessThan($endCreatedDocuments, $startCreatedDocuments);
+    }
+
+    public function testApiCallDoesNotCountAgainstQuota()
+    {
+        $this->reportingCloud->setTest(true);
+
+        // get start created_document statistic
+        $accountSettings = $this->reportingCloud->getAccountSettings();
+        $this->assertArrayHasKey('created_documents', $accountSettings);
+        $startCreatedDocuments = $accountSettings['created_documents'];
+
+        // perform operation
+        $this->reportingCloud->mergeDocument($this->getTestTemplateMergeData(), 'PDF', null, $this->getTestTemplateFilename());
+
+        // get end created_document statistic
+        $accountSettings = $this->reportingCloud->getAccountSettings();
+        $this->assertArrayHasKey('created_documents', $accountSettings);
+        $endCreatedDocuments = $accountSettings['created_documents'];
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $startCreatedDocuments);
+        $this->assertGreaterThanOrEqual(1, $startCreatedDocuments);
+
+        // compare start and end statistics
+        $this->assertSame($endCreatedDocuments, $startCreatedDocuments);
     }
 
     // -----------------------------------------------------------------------------------------------------------------

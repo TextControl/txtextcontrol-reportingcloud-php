@@ -8,6 +8,7 @@ use TxTextControl\ReportingCloud\CliHelper as Helper;
 $reportingCloud = new ReportingCloud([
     'username' => Helper::username(),
     'password' => Helper::password(),
+    'test'     => true,
 ]);
 
 // ---------------------------------------------------------------------------------------------------------------------

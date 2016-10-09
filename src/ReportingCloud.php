@@ -20,6 +20,7 @@ use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsP
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
+use TxTextControl\ReportingCloud\Filter\BooleanToString as BooleanToStringFilter;
 
 /**
  * ReportingCloud
@@ -336,8 +337,11 @@ class ReportingCloud extends AbstractReportingCloud
         StaticValidator::execute($documentFilename, 'FileExists');
         StaticValidator::execute($returnFormat    , 'ReturnFormat');
 
+        $booleanToStringFilter = new BooleanToStringFilter();
+
         $query = [
             'returnFormat' => $returnFormat,
+            'test'         => $booleanToStringFilter->filter($this->getTest()),
         ];
 
         $documentFilename = realpath($documentFilename);
@@ -396,16 +400,10 @@ class ReportingCloud extends AbstractReportingCloud
             $templateFilename = realpath($templateFilename);
         }
 
-        // This boolean value MUST be passed as a string to prevent Guzzle converting the
-        // query parameter to ?append=0 or ?append=1, which the backend does not recognize.
-        // The backend only recognizes query parameter ?append=true and ?append=false.
+        $booleanToStringFilter = new BooleanToStringFilter();
+
         if (null !== $append) {
-            StaticValidator::execute($append, 'TypeBoolean');
-            if (true === $append) {
-                $append = 'true';
-            } else {
-                $append = 'false';
-            }
+            $append = $booleanToStringFilter->filter($append);
         }
 
         StaticValidator::execute($mergeSettings, 'TypeArray');
@@ -413,6 +411,7 @@ class ReportingCloud extends AbstractReportingCloud
         $query = [
             'returnFormat' => $returnFormat,
             'append'       => $append,
+            'test'         => $booleanToStringFilter->filter($this->getTest()),
         ];
 
         if (null !== $templateName) {
@@ -491,8 +490,11 @@ class ReportingCloud extends AbstractReportingCloud
 
         StaticValidator::execute($mergeSettings, 'TypeArray');
 
+        $booleanToStringFilter = new BooleanToStringFilter();
+
         $query = [
             'returnFormat' => $returnFormat,
+            'test'         => $booleanToStringFilter->filter($this->getTest()),
         ];
 
         if (null !== $templateName) {

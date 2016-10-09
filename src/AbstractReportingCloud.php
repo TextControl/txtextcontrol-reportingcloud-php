@@ -18,7 +18,6 @@ use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\Filter\TimestampToDateTime as TimestampToDateTimeFilter;
 use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\MergeSettings;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
@@ -72,6 +71,13 @@ abstract class AbstractReportingCloud
     const DEFAULT_TIMEOUT = 120; // seconds
 
     /**
+     * Default test flag of backend
+     *
+     * @const DEFAULT_TEST
+     */
+    const DEFAULT_TEST = false;
+
+    /**
      * Default debug flag of REST client
      *
      * @const DEFAULT_DEBUG
@@ -91,6 +97,13 @@ abstract class AbstractReportingCloud
      * @var string
      */
     protected $password;
+
+    /**
+     * When true, backend prints "TEST MODE" water mark into output document, but API call does not count against quota
+     *
+     * @var boolean
+     */
+    protected $test;
 
     /**
      * Backend base URI
@@ -140,6 +153,10 @@ abstract class AbstractReportingCloud
 
         if (array_key_exists('password', $options)) {
             $this->setPassword($options['password']);
+        }
+
+        if (array_key_exists('test', $options)) {
+            $this->setTest($options['test']);
         }
 
         if (array_key_exists('base_uri', $options)) {
@@ -301,6 +318,34 @@ abstract class AbstractReportingCloud
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Return the test flag
+     *
+     * @return mixed
+     */
+    public function getTest()
+    {
+        if (null === $this->test) {
+            $this->setTest(self::DEFAULT_TEST);
+        }
+
+        return $this->test;
+    }
+
+    /**
+     * Set the test flag
+     *
+     * @param boolean $test Test flag
+     *
+     * @return ReportingCloud
+     */
+    public function setTest($test)
+    {
+        $this->test = (boolean) $test;
 
         return $this;
     }

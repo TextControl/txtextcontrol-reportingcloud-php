@@ -25,6 +25,7 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
             'timeout'  => 100,
             'version'  => 'v1',
             'debug'    => true,
+            'test'     => true,
         ]);
 
         $this->assertSame('phpunit-username'       , $reportingCloud->getUsername());
@@ -34,6 +35,7 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertSame('v1'                     , $reportingCloud->getVersion());
 
         $this->assertTrue($reportingCloud->getDebug());
+        $this->assertTrue($reportingCloud->getTest());
 
         unset($reportingCloud);
     }
@@ -46,6 +48,7 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->reportingCloud->setTimeout (100);
         $this->reportingCloud->setVersion ('v1');
         $this->reportingCloud->setDebug   (true);
+        $this->reportingCloud->setTest    (true);
 
         $this->assertSame('phpunit-username'       , $this->reportingCloud->getUsername());
         $this->assertSame('phpunit-password'       , $this->reportingCloud->getPassword());
@@ -54,6 +57,7 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertSame('v1'                     , $this->reportingCloud->getVersion());
 
         $this->assertTrue($this->reportingCloud->getDebug());
+        $this->assertTrue($this->reportingCloud->getTest());
     }
 
     public function testGetClientInstanceOf()
