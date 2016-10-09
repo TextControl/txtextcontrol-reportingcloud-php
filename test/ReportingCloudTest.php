@@ -836,12 +836,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     protected function getTestTemplateFindAndReplaceData()
     {
         $ret = [
-            [
-                '%%FIELD1%%', 'hello field 1',
-            ],
-            [
-                '%%FIELD2%%', 'hello field 2',
-            ],
+            '%%FIELD1%%' => 'hello field 1',
+            '%%FIELD2%%' => 'hello field 2',
         ];
 
         return $ret;

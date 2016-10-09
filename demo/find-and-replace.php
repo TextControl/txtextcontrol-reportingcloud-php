@@ -15,12 +15,8 @@ $sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_find_and_replac
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_find_and_replace.pdf';
 
 $findAndReplaceData = [
-    [
-        '%%FIELD1%%', 'hello field 1',
-    ],
-    [
-        '%%FIELD2%%', 'hello field 2',
-    ],
+    '%%FIELD1%%' => 'hello field 1',
+    '%%FIELD2%%' => 'hello field 2',
 ];
 
 $mergeSettings = [
