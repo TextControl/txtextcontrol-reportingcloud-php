@@ -27,7 +27,14 @@ class ReturnFormat extends FileExtension
      */
     public function __construct($options = [])
     {
-        $options['haystack'] = ['DOC', 'DOCX', 'HTML', 'PDF', 'RTF', 'TX', ];
+        $options['haystack'] = [
+            'DOC',
+            'DOCX',
+            'HTML',
+            'PDF',
+            'RTF',
+            'TX',
+        ];
 
         parent::__construct($options);
     }
