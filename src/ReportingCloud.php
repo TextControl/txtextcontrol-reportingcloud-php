@@ -102,10 +102,7 @@ class ReportingCloud extends AbstractReportingCloud
         $records = $this->get('/templates/thumbnails', $query);
 
         if (is_array($records) && count($records) > 0) {
-            $ret = [];
-            foreach ($records as $index => $data) {
-                $ret[$index] = base64_decode($data);
-            }
+            $ret = array_map('base64_decode', $records);
         }
 
         return $ret;
@@ -433,12 +430,9 @@ class ReportingCloud extends AbstractReportingCloud
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
             $body = (string) $response->getBody();
-            $body = json_decode($body);
+            $body = json_decode($body, true);
             if (is_array($body) && count($body) > 0) {
-                $ret = [];
-                foreach ($body as $record) {
-                    array_push($ret, base64_decode($record));
-                }
+                $ret = array_map('base64_decode', $body);
             }
         }
 
