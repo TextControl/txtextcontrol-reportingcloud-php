@@ -4,6 +4,7 @@
 
 ## dev-master
 
+* Minor refactoring, mainly of array iterations.
 * Added filter to convert boolean true and false to string 'true' and 'false' (required for compatibilty with backend).
 * Implemented 'test' parameter for API calls `convert`, `merge` and `findandreplace`, with property `test` and related setter and getter.
 * Added unit tests for `findAndReplace()` method.
