@@ -337,11 +337,8 @@ class ReportingCloud extends AbstractReportingCloud
         StaticValidator::execute($documentFilename, 'FileExists');
         StaticValidator::execute($returnFormat    , 'ReturnFormat');
 
-        $booleanToStringFilter = new BooleanToStringFilter();
-
         $query = [
             'returnFormat' => $returnFormat,
-            'test'         => $booleanToStringFilter->filter($this->getTest()),
         ];
 
         $documentFilename = realpath($documentFilename);
@@ -411,7 +408,6 @@ class ReportingCloud extends AbstractReportingCloud
         $query = [
             'returnFormat' => $returnFormat,
             'append'       => $append,
-            'test'         => $booleanToStringFilter->filter($this->getTest()),
         ];
 
         if (null !== $templateName) {
@@ -490,11 +486,8 @@ class ReportingCloud extends AbstractReportingCloud
 
         StaticValidator::execute($mergeSettings, 'TypeArray');
 
-        $booleanToStringFilter = new BooleanToStringFilter();
-
         $query = [
             'returnFormat' => $returnFormat,
-            'test'         => $booleanToStringFilter->filter($this->getTest()),
         ];
 
         if (null !== $templateName) {

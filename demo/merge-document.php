@@ -9,6 +9,7 @@ $reportingCloud = new ReportingCloud([
     'username' => Helper::username(),
     'password' => Helper::password(),
     'test'     => true,
+    'debug'    => true,
 ]);
 
 // ---------------------------------------------------------------------------------------------------------------------

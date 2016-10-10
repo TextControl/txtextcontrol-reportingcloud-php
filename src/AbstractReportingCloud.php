@@ -19,6 +19,7 @@ use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\Filter\TimestampToDateTime as TimestampToDateTimeFilter;
 use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
+use TxTextControl\ReportingCloud\Filter\BooleanToString as BooleanToStringFilter;
 
 /**
  * Abstract ReportingCloud
@@ -439,6 +440,11 @@ abstract class AbstractReportingCloud
 
             if (getenv('TRAVIS')) {
                 $options['curl'][CURLOPT_SSLVERSION] = CURL_SSLVERSION_TLSv1_1;
+            }
+
+            if (isset($options['query']) && is_array($options['query'])) {
+                $filter = new BooleanToStringFilter();
+                $options['query']['test'] = $filter->filter($this->getTest());
             }
 
             $ret = $client->request($method, $uri, $options);
