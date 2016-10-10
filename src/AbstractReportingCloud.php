@@ -186,8 +186,8 @@ abstract class AbstractReportingCloud
     {
         if (null === $this->client) {
 
-            $usernamePassword = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
-            $authorization    = sprintf('Basic %s', base64_encode($usernamePassword));
+            $credentials   = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
+            $authorization = sprintf('Basic %s', base64_encode($credentials));
 
             $client = new Client([
                 'base_uri'              => $this->getBaseUri(),
@@ -195,7 +195,7 @@ abstract class AbstractReportingCloud
                 RequestOptions::DEBUG   => $this->getDebug(),
                 RequestOptions::HEADERS => [
                     'Authorization' => $authorization,
-                    'Content-Type' => 'application/json',
+                    'Content-Type'  => 'application/json',
                 ],
             ]);
 
@@ -442,9 +442,9 @@ abstract class AbstractReportingCloud
                 $options['curl'][CURLOPT_SSLVERSION] = CURL_SSLVERSION_TLSv1_1;
             }
 
-            if (isset($options['query']) && is_array($options['query'])) {
+            if ($this->getTest()) {
                 $filter = new BooleanToStringFilter();
-                $options['query']['test'] = $filter->filter($this->getTest());
+                $options[RequestOptions::QUERY]['test'] = $filter->filter($this->getTest());
             }
 
             $ret = $client->request($method, $uri, $options);
@@ -464,14 +464,14 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Using the passed propertyMap, recursively normalizes the keys of the passed array
+     * Using the passed propertyMap, recursively build array
      *
      * @param array       $array       Array
      * @param PropertyMap $propertyMap PropertyMap
      *
      * @return array
      */
-    protected function normalizeArrayKeys($array, PropertyMap $propertyMap)
+    protected function buildPropertyMapArray($array, PropertyMap $propertyMap)
     {
         $ret = [];
 
@@ -481,7 +481,7 @@ abstract class AbstractReportingCloud
                 $key = $map[$key];
             }
             if (is_array($value)) {
-                $value = $this->normalizeArrayKeys($value, $propertyMap);
+                $value = $this->buildPropertyMapArray($value, $propertyMap);
             }
             $ret[$key] = $value;
         }
@@ -490,13 +490,13 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Assemble MergeSettings array to pass to ReportingCloud
+     * Using passed mergeSettings array, build array for backend
      *
      * @param array $mergeSettings MergeSettings array
      *
      * @return array
      */
-    protected function assembleMergeSettings($mergeSettings)
+    protected function buildMergeSettingsArray($mergeSettings)
     {
         $ret = [];
 

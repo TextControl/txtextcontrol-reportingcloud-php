@@ -60,7 +60,7 @@ class ReportingCloud extends AbstractReportingCloud
         $records = $this->get('/templates/info', $query);
 
         if (is_array($records) && count($records) > 0) {
-            $ret = $this->normalizeArrayKeys($records, $propertyMap);
+            $ret = $this->buildPropertyMapArray($records, $propertyMap);
         }
 
         return $ret;
@@ -135,7 +135,7 @@ class ReportingCloud extends AbstractReportingCloud
         $records = $this->get('/templates/list');
 
         if (is_array($records) && count($records) > 0) {
-            $ret = $this->normalizeArrayKeys($records, $propertyMap);
+            $ret = $this->buildPropertyMapArray($records, $propertyMap);
             foreach ($ret as $index => $record) {
                 $key = 'modified';
                 if (isset($record[$key])) {
@@ -202,7 +202,7 @@ class ReportingCloud extends AbstractReportingCloud
         $records = $this->get('/account/settings');
 
         if (is_array($records) && count($records) > 0) {
-            $ret = $this->normalizeArrayKeys($records, $propertyMap);
+            $ret = $this->buildPropertyMapArray($records, $propertyMap);
             foreach ($ret as $index => $record) {
                 $key = 'valid_until';
                 if (isset($record[$key])) {
@@ -397,10 +397,9 @@ class ReportingCloud extends AbstractReportingCloud
             $templateFilename = realpath($templateFilename);
         }
 
-        $booleanToStringFilter = new BooleanToStringFilter();
-
         if (null !== $append) {
-            $append = $booleanToStringFilter->filter($append);
+            $filter = new BooleanToStringFilter();
+            $append = $filter->filter($append);
         }
 
         StaticValidator::execute($mergeSettings, 'TypeArray');
@@ -425,7 +424,7 @@ class ReportingCloud extends AbstractReportingCloud
         }
 
         if (count($mergeSettings) > 0) {
-            $mergeBody['mergeSettings'] = $this->assembleMergeSettings($mergeSettings);
+            $mergeBody['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
         $body = json_encode($mergeBody);
@@ -511,7 +510,7 @@ class ReportingCloud extends AbstractReportingCloud
         }
 
         if (count($mergeSettings) > 0) {
-            $findAndReplaceBody['mergeSettings'] = $this->assembleMergeSettings($mergeSettings);
+            $findAndReplaceBody['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
         $body = json_encode($findAndReplaceBody);
