@@ -10,7 +10,7 @@
 * Implemented 'test' parameter with property `test` and related setter and getter.
 * Added unit tests for `findAndReplace()` method.
 * Refactored `mergeDocument()` and `findAndReplace()` methods.
-* Added `findAndReplace()` method.
+* Implemented end-point `/v1/document/findandreplace`.
 * Set default `Content-Type` HTTP header.
 
 ## 1.0.12 - 2016-08-30
