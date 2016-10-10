@@ -15,12 +15,12 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Filter\BooleanToString as BooleanToStringFilter;
 use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp as DateTimeToTimestampFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
-use TxTextControl\ReportingCloud\Filter\BooleanToString as BooleanToStringFilter;
 
 /**
  * ReportingCloud
@@ -30,6 +30,7 @@ use TxTextControl\ReportingCloud\Filter\BooleanToString as BooleanToStringFilter
  */
 class ReportingCloud extends AbstractReportingCloud
 {
+    use ReportingCloudTrait;
 
     /**
      * GET methods
@@ -260,11 +261,9 @@ class ReportingCloud extends AbstractReportingCloud
 
         $response = $this->request('GET', $this->uri($uri), $options);
 
-        if ($response instanceof Response) {
-            if (200 === $response->getStatusCode()) {
-                $body = (string) $response->getBody();
-                $ret  = json_decode($body, true);
-            }
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $body = (string) $response->getBody();
+            $ret  = json_decode($body, true);
         }
 
         return $ret;
@@ -310,10 +309,8 @@ class ReportingCloud extends AbstractReportingCloud
 
         $response = $this->request('POST', $this->uri('/templates/upload'), $options);
 
-        if ($response instanceof Response) {
-            if (201 === $response->getStatusCode()) {
-                $ret = true;
-            }
+        if ($response instanceof Response && 201 === $response->getStatusCode()) {
+            $ret = true;
         }
 
         return $ret;
@@ -354,11 +351,9 @@ class ReportingCloud extends AbstractReportingCloud
 
         $response = $this->request('POST', $this->uri('/document/convert'), $options);
 
-        if ($response instanceof Response) {
-            if (200 === $response->getStatusCode()) {
-                $body = (string) $response->getBody();
-                $ret  = base64_decode($body);
-            }
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $body = (string) $response->getBody();
+            $ret  = base64_decode($body);
         }
 
         return $ret;
@@ -413,21 +408,21 @@ class ReportingCloud extends AbstractReportingCloud
             $query['templateName'] = $templateName;
         }
 
-        $mergeBody = [
+        $body = [
             'mergeData' => $mergeData,
         ];
 
         if (null !== $templateFilename) {
             $template = file_get_contents($templateFilename);
             $template = base64_encode($template);
-            $mergeBody['template'] = $template;
+            $body['template'] = $template;
         }
 
         if (count($mergeSettings) > 0) {
-            $mergeBody['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
+            $body['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $body = json_encode($mergeBody);
+        $body = json_encode($body);
 
         $options = [
             RequestOptions::QUERY => $query,
@@ -436,15 +431,13 @@ class ReportingCloud extends AbstractReportingCloud
 
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
 
-        if ($response instanceof Response) {
-            if (200 === $response->getStatusCode()) {
-                $body = (string) $response->getBody();
-                $body = json_decode($body);
-                if (is_array($body) && count($body) > 0) {
-                    $ret = [];
-                    foreach ($body as $record) {
-                        array_push($ret, base64_decode($record));
-                    }
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $body = (string) $response->getBody();
+            $body = json_decode($body);
+            if (is_array($body) && count($body) > 0) {
+                $ret = [];
+                foreach ($body as $record) {
+                    array_push($ret, base64_decode($record));
                 }
             }
         }
@@ -499,21 +492,21 @@ class ReportingCloud extends AbstractReportingCloud
         }
         unset($findAndReplaceData);
 
-        $findAndReplaceBody = [
+        $body = [
             'findAndReplaceData' => $findAndReplaceDataRc,
         ];
 
         if (null !== $templateFilename) {
             $template = file_get_contents($templateFilename);
             $template = base64_encode($template);
-            $findAndReplaceBody['template'] = $template;
+            $body['template'] = $template;
         }
 
         if (count($mergeSettings) > 0) {
-            $findAndReplaceBody['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
+            $body['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $body = json_encode($findAndReplaceBody);
+        $body = json_encode($body);
 
         $options = [
             RequestOptions::QUERY => $query,
@@ -522,11 +515,9 @@ class ReportingCloud extends AbstractReportingCloud
 
         $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
 
-        if ($response instanceof Response) {
-            if (200 === $response->getStatusCode()) {
-                $body = (string) $response->getBody();
-                $ret = base64_decode($body);
-            }
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $body = (string) $response->getBody();
+            $ret  = base64_decode($body);
         }
 
         return $ret;
@@ -563,10 +554,8 @@ class ReportingCloud extends AbstractReportingCloud
 
         $response = $this->request('DELETE', $this->uri('/templates/delete'), $options);
 
-        if ($response instanceof Response) {
-            if (204 === $response->getStatusCode()) {
-                $ret = true;
-            }
+        if ($response instanceof Response && 204 === $response->getStatusCode()) {
+            $ret = true;
         }
 
         return $ret;

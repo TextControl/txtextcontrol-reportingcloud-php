@@ -15,10 +15,6 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
-use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
-use TxTextControl\ReportingCloud\Filter\TimestampToDateTime as TimestampToDateTimeFilter;
-use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
-use TxTextControl\ReportingCloud\Validator\StaticValidator;
 use TxTextControl\ReportingCloud\Filter\BooleanToString as BooleanToStringFilter;
 
 /**
@@ -100,7 +96,7 @@ abstract class AbstractReportingCloud
     protected $password;
 
     /**
-     * When true, backend prints "TEST MODE" water mark into output document, but API call does not count against quota
+     * When true, backend prints "TEST MODE" water mark into output document, and API call does not count against quota
      *
      * @var boolean
      */
@@ -380,18 +376,6 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Construct URI with version number
-     *
-     * @param string $uri URI
-     *
-     * @return string
-     */
-    protected function uri($uri)
-    {
-        return sprintf('/%s%s', $this->getVersion(), $uri);
-    }
-
-    /**
      * Get the version string of the backend web service
      *
      * @return string
@@ -464,60 +448,15 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Using the passed propertyMap, recursively build array
+     * Construct URI with version number
      *
-     * @param array       $array       Array
-     * @param PropertyMap $propertyMap PropertyMap
+     * @param string $uri URI
      *
-     * @return array
+     * @return string
      */
-    protected function buildPropertyMapArray($array, PropertyMap $propertyMap)
+    protected function uri($uri)
     {
-        $ret = [];
-
-        foreach ($array as $key => $value) {
-            $map = $propertyMap->getMap();
-            if (isset($map[$key])) {
-                $key = $map[$key];
-            }
-            if (is_array($value)) {
-                $value = $this->buildPropertyMapArray($value, $propertyMap);
-            }
-            $ret[$key] = $value;
-        }
-
-        return $ret;
-    }
-
-    /**
-     * Using passed mergeSettings array, build array for backend
-     *
-     * @param array $mergeSettings MergeSettings array
-     *
-     * @return array
-     */
-    protected function buildMergeSettingsArray($mergeSettings)
-    {
-        $ret = [];
-
-        $filter      = new TimestampToDateTimeFilter();
-        $propertyMap = new MergeSettingsPropertyMap();
-
-        foreach ($propertyMap->getMap() as $property => $key) {
-            if (isset($mergeSettings[$key])) {
-                $value = $mergeSettings[$key];
-                if ('remove_' == substr($key, 0, 7)) {
-                    StaticValidator::execute($value, 'TypeBoolean');
-                }
-                if ('_date' == substr($key, -5)) {
-                    StaticValidator::execute($value, 'Timestamp');
-                    $value = $filter->filter($value);
-                }
-                $ret[$property] = $value;
-            }
-        }
-
-        return $ret;
+        return sprintf('/%s%s', $this->getVersion(), $uri);
     }
 
 }
