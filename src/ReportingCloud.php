@@ -134,12 +134,12 @@ class ReportingCloud extends AbstractReportingCloud
 
         if (is_array($records) && count($records) > 0) {
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
-            foreach ($ret as $index => $record) {
+            array_walk($ret, function (&$record) use ($filter) {
                 $key = 'modified';
                 if (isset($record[$key])) {
-                    $ret[$index][$key] = $filter->filter($record[$key]);
+                    $filter->filter($record[$key]);
                 }
-            }
+            });
         }
 
         return $ret;
@@ -201,12 +201,12 @@ class ReportingCloud extends AbstractReportingCloud
 
         if (is_array($records) && count($records) > 0) {
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
-            foreach ($ret as $index => $record) {
+            array_walk($ret, function (&$record) use ($filter) {
                 $key = 'valid_until';
                 if (isset($record[$key])) {
-                    $ret[$index][$key] = $filter->filter($record[$key]);
+                    $filter->filter($record[$key]);
                 }
-            }
+            });
         }
 
         return $ret;
