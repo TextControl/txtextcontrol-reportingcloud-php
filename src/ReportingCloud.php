@@ -480,14 +480,8 @@ class ReportingCloud extends AbstractReportingCloud
             $query['templateName'] = $templateName;
         }
 
-        $findAndReplaceDataRc = [];
-        foreach ($findAndReplaceData as $key => $value) {
-            array_push($findAndReplaceDataRc, [$key, $value]);
-        }
-        unset($findAndReplaceData);
-
         $body = [
-            'findAndReplaceData' => $findAndReplaceDataRc,
+            'findAndReplaceData' => $this->buildFindAndReplaceDataArray($findAndReplaceData),
         ];
 
         if (null !== $templateFilename) {

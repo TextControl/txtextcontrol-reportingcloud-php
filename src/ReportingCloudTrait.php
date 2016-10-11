@@ -55,11 +55,11 @@ trait ReportingCloudTrait
     /**
      * Using passed mergeSettings array, build array for backend
      *
-     * @param array $mergeSettings MergeSettings array
+     * @param array $array MergeSettings array
      *
      * @return array
      */
-    protected function buildMergeSettingsArray($mergeSettings)
+    protected function buildMergeSettingsArray($array)
     {
         $ret = [];
 
@@ -67,8 +67,8 @@ trait ReportingCloudTrait
         $propertyMap = new MergeSettingsPropertyMap();
 
         foreach ($propertyMap->getMap() as $property => $key) {
-            if (isset($mergeSettings[$key])) {
-                $value = $mergeSettings[$key];
+            if (isset($array[$key])) {
+                $value = $array[$key];
                 if ('remove_' == substr($key, 0, 7)) {
                     StaticValidator::execute($value, 'TypeBoolean');
                 }
@@ -78,6 +78,24 @@ trait ReportingCloudTrait
                 }
                 $ret[$property] = $value;
             }
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
+     *
+     * @param array $array FindAndReplaceData array
+     *
+     * @return array
+     */
+    protected function buildFindAndReplaceDataArray($array)
+    {
+        $ret = [];
+
+        foreach ($array as $search => $replace) {
+            array_push($ret, [$search, $replace]);
         }
 
         return $ret;
