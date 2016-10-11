@@ -15,7 +15,7 @@ namespace TxTextControl\ReportingCloud\Filter;
 use Zend\Filter\StaticFilter as StaticFilterFilterZend;
 
 /**
- * DateTimeToTimestamp filter
+ * StaticFilter filter
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
