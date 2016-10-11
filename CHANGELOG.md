@@ -5,7 +5,6 @@
 ## dev-master
 
 * Minor refactoring, mainly of array iterations.
-* Moved utility functionality from `\TxTextControl\ReportingCloud\ReportingCloud` to `\TxTextControl\ReportingCloud\ReportingCloudTrait`
 * Added filter to convert boolean true and false to string 'true' and 'false' (required for compatibilty with backend).
 * Implemented 'test' parameter with property `test` and related setter and getter.
 * Added unit tests for `findAndReplace()` method.

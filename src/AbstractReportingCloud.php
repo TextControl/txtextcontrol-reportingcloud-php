@@ -15,7 +15,10 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
-use TxTextControl\ReportingCloud\Filter\BooleanToString as BooleanToStringFilter;
+use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
+use TxTextControl\ReportingCloud\Validator\StaticValidator;
+use TxTextControl\ReportingCloud\Filter\StaticFilter;
 
 /**
  * Abstract ReportingCloud
@@ -144,6 +147,7 @@ abstract class AbstractReportingCloud
      */
     public function __construct($options = [])
     {
+
         if (array_key_exists('username', $options)) {
             $this->setUsername($options['username']);
         }
@@ -171,7 +175,13 @@ abstract class AbstractReportingCloud
         if (array_key_exists('debug', $options)) {
             $this->setDebug($options['debug']);
         }
+
     }
+
+    /**
+     * Setters and getters
+     * =================================================================================================================
+     */
 
     /**
      * Return the REST client of the backend web service
@@ -403,6 +413,12 @@ abstract class AbstractReportingCloud
         return $this;
     }
 
+
+    /**
+     * Utility methods
+     * =================================================================================================================
+     */
+
     /**
      * Request the URI with options
      *
@@ -427,8 +443,7 @@ abstract class AbstractReportingCloud
             }
 
             if ($this->getTest()) {
-                $filter = new BooleanToStringFilter();
-                $options[RequestOptions::QUERY]['test'] = $filter->filter($this->getTest());
+                $options[RequestOptions::QUERY]['test'] = StaticFilter::execute($this->getTest(), 'BooleanToString');
             }
 
             $ret = $client->request($method, $uri, $options);
@@ -457,6 +472,80 @@ abstract class AbstractReportingCloud
     protected function uri($uri)
     {
         return sprintf('/%s%s', $this->getVersion(), $uri);
+    }
+
+    /**
+     * Using the passed propertyMap, recursively build array
+     *
+     * @param array       $array       Array
+     * @param PropertyMap $propertyMap PropertyMap
+     *
+     * @return array
+     */
+    protected function buildPropertyMapArray($array, PropertyMap $propertyMap)
+    {
+        $ret = [];
+
+        foreach ($array as $key => $value) {
+            $map = $propertyMap->getMap();
+            if (isset($map[$key])) {
+                $key = $map[$key];
+            }
+            if (is_array($value)) {
+                $value = $this->buildPropertyMapArray($value, $propertyMap);
+            }
+            $ret[$key] = $value;
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Using passed mergeSettings array, build array for backend
+     *
+     * @param array $array MergeSettings array
+     *
+     * @return array
+     */
+    protected function buildMergeSettingsArray($array)
+    {
+        $ret = [];
+
+        $propertyMap = new MergeSettingsPropertyMap();
+
+        foreach ($propertyMap->getMap() as $property => $key) {
+            if (isset($array[$key])) {
+                $value = $array[$key];
+                if ('remove_' == substr($key, 0, 7)) {
+                    StaticValidator::execute($value, 'TypeBoolean');
+                }
+                if ('_date' == substr($key, -5)) {
+                    StaticValidator::execute($value, 'Timestamp');
+                    $value = StaticFilter::execute($value, 'TimestampToDateTime');
+                }
+                $ret[$property] = $value;
+            }
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
+     *
+     * @param array $array FindAndReplaceData array
+     *
+     * @return array
+     */
+    protected function buildFindAndReplaceDataArray($array)
+    {
+        $ret = [];
+
+        foreach ($array as $search => $replace) {
+            array_push($ret, [$search, $replace]);
+        }
+
+        return $ret;
     }
 
 }

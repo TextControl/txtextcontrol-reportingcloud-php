@@ -15,12 +15,11 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\Filter\BooleanToString as BooleanToStringFilter;
-use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp as DateTimeToTimestampFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
+use TxTextControl\ReportingCloud\Filter\StaticFilter;
 
 /**
  * ReportingCloud
@@ -30,7 +29,6 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
  */
 class ReportingCloud extends AbstractReportingCloud
 {
-    use ReportingCloudTrait;
 
     /**
      * GET methods
@@ -128,16 +126,15 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = null;
 
         $propertyMap = new TemplateListPropertyMap();
-        $filter      = new DateTimeToTimestampFilter();
 
         $records = $this->get('/templates/list');
 
         if (is_array($records) && count($records) > 0) {
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
-            array_walk($ret, function (&$record) use ($filter) {
+            array_walk($ret, function (&$record) {
                 $key = 'modified';
                 if (isset($record[$key])) {
-                    $filter->filter($record[$key]);
+                    StaticFilter::execute($record[$key], 'DateTimeToTimestamp');
                 }
             });
         }
@@ -195,16 +192,15 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = null;
 
         $propertyMap = new AccountSettingsPropertyMap();
-        $filter      = new DateTimeToTimestampFilter();
 
         $records = $this->get('/account/settings');
 
         if (is_array($records) && count($records) > 0) {
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
-            array_walk($ret, function (&$record) use ($filter) {
+            array_walk($ret, function (&$record) {
                 $key = 'valid_until';
                 if (isset($record[$key])) {
-                    $filter->filter($record[$key]);
+                    StaticFilter::execute($record[$key], 'DateTimeToTimestamp');
                 }
             });
         }
@@ -390,8 +386,7 @@ class ReportingCloud extends AbstractReportingCloud
         }
 
         if (null !== $append) {
-            $filter = new BooleanToStringFilter();
-            $append = $filter->filter($append);
+            $append = StaticFilter::execute($append, 'BooleanToString');
         }
 
         StaticValidator::execute($mergeSettings, 'TypeArray');
