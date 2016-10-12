@@ -24,6 +24,11 @@ use Zend\Filter\StaticFilter as StaticFilterFilterZend;
 class StaticFilter extends StaticFilterFilterZend
 {
 
+    /**
+     * Get plugin manager for loading filter classes, adding local Filter classes
+     *
+     * @return \Zend\Filter\FilterPluginManager
+     */
     public static function getPluginManager()
     {
         $pluginManager = parent::getPluginManager();

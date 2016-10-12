@@ -30,7 +30,7 @@ class BooleanToString extends AbstractFilter
      *
      * The backend only recognizes query parameter ?param=true and ?param=false.
      *
-     * @param string $param Boolean value
+     * @param mixed $param Boolean value
      *
      * @return string
      */

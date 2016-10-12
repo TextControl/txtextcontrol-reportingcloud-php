@@ -27,7 +27,7 @@ class TimestampToDateTime extends AbstractFilter
     /**
      * Convert a UNIX timestamp to the date/time format used by the backend (e.g. "2016-04-15T19:05:18+00:00").
      *
-     * @param integer $timestamp UNIX timestamp
+     * @param mixed $timestamp UNIX timestamp
      *
      * @return string
      */
