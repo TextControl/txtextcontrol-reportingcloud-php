@@ -15,10 +15,10 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
+use TxTextControl\ReportingCloud\Filter\StaticFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
-use TxTextControl\ReportingCloud\Filter\StaticFilter;
 
 /**
  * Abstract ReportingCloud
@@ -147,7 +147,6 @@ abstract class AbstractReportingCloud
      */
     public function __construct($options = [])
     {
-
         if (array_key_exists('username', $options)) {
             $this->setUsername($options['username']);
         }
@@ -175,7 +174,6 @@ abstract class AbstractReportingCloud
         if (array_key_exists('debug', $options)) {
             $this->setDebug($options['debug']);
         }
-
     }
 
     /**
