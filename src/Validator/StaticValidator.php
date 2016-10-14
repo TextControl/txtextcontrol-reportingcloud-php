@@ -12,59 +12,49 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use Zend\Validator\StaticValidator as ZendStaticValidator;
+use DirectoryIterator;
+use Zend\Validator\StaticValidator as StaticValidatorValidatorZend;
 
 /**
- * StaticValidator validator
+ * StaticValidator filter
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class StaticValidator extends ZendStaticValidator
+class StaticValidator extends StaticValidatorValidatorZend
 {
+
     /**
-     * Statically call a Validator
+     * Get plugin manager for loading filter classes, adding local Validator classes
      *
-     * @param mixed  $value     Value
-     * @param string $className Class name
-     * @param array  $options   Options
-     *
-     * @return bool
-     *
-     * @throws InvalidArgumentException
+     * @return \Zend\Validator\ValidatorPluginManager
      */
-    public static function execute($value, $className, array $options = [])
+    public static function getPluginManager()
     {
-        if (count($options) > 0 && array_values($options) === $options) {
-            throw new InvalidArgumentException(
-                'Invalid options provided via "options" parameter; must be an associative array'
-            );
-        }
+        $pluginManager = parent::getPluginManager();
 
-        $fullyQualifiedClassName = sprintf('%s\%s', __NAMESPACE__, $className);
+        foreach (new DirectoryIterator(__DIR__) as $fileInfo) {
 
-        if (!class_exists($fullyQualifiedClassName)) {
-            throw new InvalidArgumentException(
-                sprintf('%s does not exist and can therefore not be called statically', $fullyQualifiedClassName)
-            );
-        }
+            $invokableClass = $fileInfo->getBasename('.php');
 
-        $pluginManager = static::getPluginManager();
-
-        $validator = $pluginManager->get($fullyQualifiedClassName, $options);
-
-        $ret = $validator->isValid($value);
-
-        if (false === $ret) {
-            $message  = null;
-            $messages = $validator->getMessages();
-            if (count($messages) > 0) {
-                $message = array_shift($messages);
+            if ($fileInfo->isDot()) {
+                continue;
             }
-            throw new InvalidArgumentException($message);
+
+            if (in_array($invokableClass, ['AbstractValidator', 'StaticValidator'])) {
+                continue;
+            }
+
+            $pluginManager->setInvokableClass($invokableClass, __NAMESPACE__ . '\\' . $invokableClass);
+
+
         }
 
-        return $ret;
+
+
+        
+
+        return $pluginManager;
     }
+
 }
