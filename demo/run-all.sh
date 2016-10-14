@@ -9,4 +9,4 @@ php template-management.php
 
 php convert-document.php
 php merge-document.php
-php find-and-replace.php
+php find-and-replace-document.php

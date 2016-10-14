@@ -15,11 +15,11 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Filter\StaticFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
-use TxTextControl\ReportingCloud\Filter\StaticFilter;
 
 /**
  * ReportingCloud

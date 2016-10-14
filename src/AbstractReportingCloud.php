@@ -28,6 +28,7 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
  */
 abstract class AbstractReportingCloud
 {
+
     /**
      * Default date/time format of backend is 'ISO 8601'
      *
