@@ -1,6 +1,6 @@
 {
     "name": "textcontrol/txtextcontrol-reportingcloud",
-    "description": "Official wrapper (authored by Text Control GmbH, publisher of ReportingCloud) to access ReportingCloud in PHP.",
+    "description": "PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.",
     "license": "BSD-3-Clause",
     "type": "library",
     "autoload": {
