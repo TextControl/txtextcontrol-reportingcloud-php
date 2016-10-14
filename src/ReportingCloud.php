@@ -109,11 +109,11 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * Return the number of templates in template storage
      *
-     * @return integer|null
+     * @return integer
      */
     public function getTemplateCount()
     {
-        return $this->get('/templates/count');
+        return (integer) $this->get('/templates/count');
     }
 
     /**
@@ -149,7 +149,7 @@ class ReportingCloud extends AbstractReportingCloud
      *
      * @throws InvalidArgumentException
      *
-     * @return bool
+     * @return integer
      */
     public function getTemplatePageCount($templateName)
     {
