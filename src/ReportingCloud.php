@@ -291,13 +291,12 @@ class ReportingCloud extends AbstractReportingCloud
             'templateName' => $templateName,
         ];
 
-        $body = file_get_contents($templateFilename);
-        $body = base64_encode($body);
-        $body = json_encode($body);
+        $json = file_get_contents($templateFilename);
+        $json = base64_encode($json);
 
         $options = [
             RequestOptions::QUERY => $query,
-            RequestOptions::BODY  => $body,
+            RequestOptions::JSON  => $json,
         ];
 
         $response = $this->request('POST', $this->uri('/templates/upload'), $options);
@@ -333,13 +332,12 @@ class ReportingCloud extends AbstractReportingCloud
 
         $documentFilename = realpath($documentFilename);
 
-        $body = file_get_contents($documentFilename);
-        $body = base64_encode($body);
-        $body = json_encode($body);
+        $json = file_get_contents($documentFilename);
+        $json = base64_encode($json);
 
         $options = [
             RequestOptions::QUERY => $query,
-            RequestOptions::BODY  => $body,
+            RequestOptions::JSON  => $json,
         ];
 
         $response = $this->request('POST', $this->uri('/document/convert'), $options);
@@ -400,25 +398,23 @@ class ReportingCloud extends AbstractReportingCloud
             $query['templateName'] = $templateName;
         }
 
-        $body = [
+        $json = [
             'mergeData' => $mergeData,
         ];
 
         if (null !== $templateFilename) {
             $template = file_get_contents($templateFilename);
             $template = base64_encode($template);
-            $body['template'] = $template;
+            $json['template'] = $template;
         }
 
         if (count($mergeSettings) > 0) {
-            $body['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
+            $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
-
-        $body = json_encode($body);
 
         $options = [
             RequestOptions::QUERY => $query,
-            RequestOptions::BODY  => $body,
+            RequestOptions::JSON  => $json,
         ];
 
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
@@ -475,25 +471,23 @@ class ReportingCloud extends AbstractReportingCloud
             $query['templateName'] = $templateName;
         }
 
-        $body = [
+        $json = [
             'findAndReplaceData' => $this->buildFindAndReplaceDataArray($findAndReplaceData),
         ];
 
         if (null !== $templateFilename) {
             $template = file_get_contents($templateFilename);
             $template = base64_encode($template);
-            $body['template'] = $template;
+            $json['template'] = $template;
         }
 
         if (count($mergeSettings) > 0) {
-            $body['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
+            $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
-
-        $body = json_encode($body);
 
         $options = [
             RequestOptions::QUERY => $query,
-            RequestOptions::BODY  => $body,
+            RequestOptions::JSON  => $json,
         ];
 
         $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);

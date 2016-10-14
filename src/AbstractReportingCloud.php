@@ -199,7 +199,6 @@ abstract class AbstractReportingCloud
                 RequestOptions::DEBUG   => $this->getDebug(),
                 RequestOptions::HEADERS => [
                     'Authorization' => $authorization,
-                    'Content-Type'  => 'application/json',
                 ],
             ]);
 
