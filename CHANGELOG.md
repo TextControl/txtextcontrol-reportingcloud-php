@@ -7,8 +7,8 @@
 * Minor refactoring, mainly of array iterations.
 * Added filter to convert boolean true and false to string 'true' and 'false' (required for compatibilty with backend).
 * Implemented 'test' parameter with property `test` and related setter and getter.
-* Added unit tests for `findAndReplace()` method.
-* Refactored `mergeDocument()` and `findAndReplace()` methods.
+* Added unit tests for `findAndReplaceDocument()` method.
+* Refactored `mergeDocument()` and `findAndReplaceDocument()` methods.
 * Implemented end-point `/v1/document/findandreplace`.
 * Set default `Content-Type` HTTP header.
 

@@ -428,7 +428,7 @@ class ReportingCloud extends AbstractReportingCloud
     }
 
     /**
-     * Perform find and replace in template and return binary data.
+     * Perform find and replace in document and return binary data.
      *
      * @param array  $findAndReplaceData Array of find and replace data
      * @param string $returnFormat       Return format
@@ -440,8 +440,8 @@ class ReportingCloud extends AbstractReportingCloud
      *
      * @return null|string
      */
-    public function findAndReplace($findAndReplaceData, $returnFormat, $templateName = null, $templateFilename = null,
-                                   $mergeSettings = [])
+    public function findAndReplaceDocument($findAndReplaceData, $returnFormat, $templateName = null,
+                                           $templateFilename = null, $mergeSettings = [])
     {
         $ret = null;
 

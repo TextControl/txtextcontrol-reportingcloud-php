@@ -38,6 +38,6 @@ $mergeSettings = [
     'user_password'              => '1',
 ];
 
-$binaryData = $reportingCloud->findAndReplace($findAndReplaceData, 'PDF', null, $sourceFilename, $mergeSettings);
+$binaryData = $reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, $sourceFilename, $mergeSettings);
 
 file_put_contents($destinationFilename, $binaryData);
