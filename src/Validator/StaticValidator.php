@@ -12,49 +12,59 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
-use DirectoryIterator;
-use Zend\Validator\StaticValidator as StaticValidatorValidatorZend;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use Zend\Validator\StaticValidator as ZendStaticValidator;
 
 /**
- * StaticValidator filter
+ * StaticValidator validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class StaticValidator extends StaticValidatorValidatorZend
+class StaticValidator extends ZendStaticValidator
 {
-
     /**
-     * Get plugin manager for loading filter classes, adding local Validator classes
+     * Statically call a Validator
      *
-     * @return \Zend\Validator\ValidatorPluginManager
+     * @param mixed  $value     Value
+     * @param string $className Class name
+     * @param array  $options   Options
+     *
+     * @return bool
+     *
+     * @throws InvalidArgumentException
      */
-    public static function getPluginManager()
+    public static function execute($value, $className, array $options = [])
     {
-        $pluginManager = parent::getPluginManager();
-
-        foreach (new DirectoryIterator(__DIR__) as $fileInfo) {
-
-            $invokableClass = $fileInfo->getBasename('.php');
-
-            if ($fileInfo->isDot()) {
-                continue;
-            }
-
-            if (in_array($invokableClass, ['AbstractValidator', 'StaticValidator'])) {
-                continue;
-            }
-
-            $pluginManager->setInvokableClass($invokableClass, __NAMESPACE__ . '\\' . $invokableClass);
-
-
+        if (count($options) > 0 && array_values($options) === $options) {
+            throw new InvalidArgumentException(
+                'Invalid options provided via "options" parameter; must be an associative array'
+            );
         }
 
+        $fullyQualifiedClassName = sprintf('%s\%s', __NAMESPACE__, $className);
 
+        if (!class_exists($fullyQualifiedClassName)) {
+            throw new InvalidArgumentException(
+                sprintf('%s does not exist and can therefore not be called statically', $fullyQualifiedClassName)
+            );
+        }
 
-        
+        $pluginManager = static::getPluginManager();
 
-        return $pluginManager;
+        $validator = $pluginManager->get($fullyQualifiedClassName, $options);
+
+        $ret = $validator->isValid($value);
+
+        if (false === $ret) {
+            $message  = null;
+            $messages = $validator->getMessages();
+            if (count($messages) > 0) {
+                $message = array_shift($messages);
+            }
+            throw new InvalidArgumentException($message);
+        }
+
+        return $ret;
     }
-
 }
