@@ -255,8 +255,7 @@ class ReportingCloud extends AbstractReportingCloud
         $response = $this->request('GET', $this->uri($uri), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $body = (string) $response->getBody();
-            $ret  = json_decode($body, true);
+            $ret  = json_decode($response->getBody(), true);
         }
 
         return $ret;
@@ -343,8 +342,7 @@ class ReportingCloud extends AbstractReportingCloud
         $response = $this->request('POST', $this->uri('/document/convert'), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $body = (string) $response->getBody();
-            $ret  = base64_decode($body);
+            $ret  = base64_decode($response->getBody());
         }
 
         return $ret;
@@ -420,8 +418,7 @@ class ReportingCloud extends AbstractReportingCloud
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $body = (string) $response->getBody();
-            $body = json_decode($body, true);
+            $body = json_decode($response->getBody(), true);
             if (is_array($body) && count($body) > 0) {
                 $ret = array_map('base64_decode', $body);
             }
@@ -493,8 +490,7 @@ class ReportingCloud extends AbstractReportingCloud
         $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $body = (string) $response->getBody();
-            $ret  = base64_decode($body);
+            $ret  = base64_decode($response->getBody());
         }
 
         return $ret;
