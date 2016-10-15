@@ -12,7 +12,6 @@
  */
 namespace TxTextControl\ReportingCloud\Filter;
 
-use DirectoryIterator;
 use Zend\Filter\StaticFilter as StaticFilterFilterZend;
 
 /**
@@ -23,9 +22,19 @@ use Zend\Filter\StaticFilter as StaticFilterFilterZend;
  */
 class StaticFilter extends StaticFilterFilterZend
 {
+    /**
+     * ReportingCloud Filter classes
+     *
+     * @var array
+     */
+    static protected $invokableClasses = [
+                        BooleanToString::class,
+                        DateTimeToTimestamp::class,
+                        TimestampToDateTime::class,
+    ];
 
     /**
-     * Get plugin manager for loading filter classes, adding local Filter classes
+     * Get plugin manager for loading filter classes, adding ReportingCloud Filter classes
      *
      * @return \Zend\Filter\FilterPluginManager
      */
@@ -33,22 +42,14 @@ class StaticFilter extends StaticFilterFilterZend
     {
         $pluginManager = parent::getPluginManager();
 
-        foreach (new DirectoryIterator(__DIR__) as $fileInfo) {
+        foreach (self::$invokableClasses as $invokableClass) {
 
-            $invokableClass = $fileInfo->getBasename('.php');
+            $segments = explode('\\', $invokableClass);
+            $name     = array_pop($segments);
 
-            if ($fileInfo->isDot()) {
-                continue;
-            }
-
-            if (in_array($invokableClass, ['AbstractFilter', 'StaticFilter'])) {
-                continue;
-            }
-
-            $pluginManager->setInvokableClass($invokableClass, __NAMESPACE__ . '\\' . $invokableClass);
+            $pluginManager->setInvokableClass($name, $invokableClass);
         }
 
         return $pluginManager;
     }
-
 }

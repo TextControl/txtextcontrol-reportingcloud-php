@@ -12,8 +12,9 @@
  */
 namespace TxTextControl\ReportingCloud\Validator;
 
+use Zend\Validator\StaticValidator as StaticValidatorValidatorZend;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use Zend\Validator\StaticValidator as ZendStaticValidator;
+use TxTextControl\ReportingCloud\PluginManagerTrait;
 
 /**
  * StaticValidator validator
@@ -21,10 +22,55 @@ use Zend\Validator\StaticValidator as ZendStaticValidator;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class StaticValidator extends ZendStaticValidator
+class StaticValidator extends StaticValidatorValidatorZend
 {
     /**
-     * Statically call a Validator
+     * ReportingCloud Validator classes
+     *
+     * @var array
+     */
+    static protected $invokableClasses = [
+                        DateTime::class,
+                        DocumentExtension::class,
+                        FileExists::class,
+                        FileExtension::class,
+                        FileHasExtension::class,
+                        ImageFormat::class,
+                        Page::class,
+                        ReturnFormat::class,
+                        TemplateExtension::class,
+                        TemplateFormat::class,
+                        TemplateName::class,
+                        Timestamp::class,
+                        TypeArray::class,
+                        TypeBoolean::class,
+                        TypeInteger::class,
+                        TypeString::class,
+                        ZoomFactor::class,
+    ];
+
+    /**
+     * Get plugin manager for loading validator classes, adding ReportingCloud Validator classes
+     *
+     * @return \Zend\Validator\ValidatorPluginManager
+     */
+    public static function getPluginManager()
+    {
+        $pluginManager = parent::getPluginManager();
+
+        foreach (self::$invokableClasses as $invokableClass) {
+
+            $segments = explode('\\', $invokableClass);
+            $name     = array_pop($segments);
+
+            $pluginManager->setInvokableClass($name, $invokableClass);
+        }
+
+        return $pluginManager;
+    }
+
+    /**
+     * Statically call a Validator and throw exception on failure
      *
      * @param mixed  $value     Value
      * @param string $className Class name
@@ -38,21 +84,13 @@ class StaticValidator extends ZendStaticValidator
     {
         if (count($options) > 0 && array_values($options) === $options) {
             throw new InvalidArgumentException(
-                'Invalid options provided via "options" parameter; must be an associative array'
+                'Invalid options provided via $options argument; must be an associative array'
             );
         }
 
-        $fullyQualifiedClassName = sprintf('%s\%s', __NAMESPACE__, $className);
+        $plugins = static::getPluginManager();
 
-        if (!class_exists($fullyQualifiedClassName)) {
-            throw new InvalidArgumentException(
-                sprintf('%s does not exist and can therefore not be called statically', $fullyQualifiedClassName)
-            );
-        }
-
-        $pluginManager = static::getPluginManager();
-
-        $validator = $pluginManager->get($fullyQualifiedClassName, $options);
+        $validator = $plugins->get($className, $options);
 
         $ret = $validator->isValid($value);
 
@@ -67,4 +105,5 @@ class StaticValidator extends ZendStaticValidator
 
         return $ret;
     }
+
 }
