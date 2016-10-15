@@ -88,9 +88,9 @@ class StaticValidator extends StaticValidatorValidatorZend
             );
         }
 
-        $plugins = static::getPluginManager();
+        $pluginManager = static::getPluginManager();
 
-        $validator = $plugins->get($className, $options);
+        $validator = $pluginManager->get($className, $options);
 
         $ret = $validator->isValid($value);
 
