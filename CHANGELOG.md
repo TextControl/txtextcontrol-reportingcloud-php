@@ -4,6 +4,7 @@
 
 ## dev-master
 
+* Minor refactoring of `StaticFilter` and `StaticValidator` components.
 * Minor refactoring, mainly of array iterations.
 * Added filter to convert boolean true and false to string 'true' and 'false' (required for compatibilty with backend).
 * Implemented 'test' parameter with property `test` and related setter and getter.
