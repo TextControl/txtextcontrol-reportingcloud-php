@@ -18,7 +18,7 @@ $sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . $
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . DIRECTORY_SEPARATOR . $templateName;
 
 // ---------------------------------------------------------------------------------------------------------------------
-/*
+
 // Check to see whether a template is in template storage
 // Uploaded, if it is not
 
@@ -35,9 +35,9 @@ if (!$reportingCloud->templateExists($templateName)) {
         var_dump("Error uploading {$sourceFilename}");
     }
 }
-*/
+
 // ---------------------------------------------------------------------------------------------------------------------
-/*
+
 // Get the number of pages in a template
 
 $pageCount = $reportingCloud->getTemplatePageCount($templateName);
@@ -72,7 +72,7 @@ $templateCount = $reportingCloud->getTemplateCount();
 var_dump("There are {$templateCount} template(s) in template storage.");
 
 // ---------------------------------------------------------------------------------------------------------------------
-*/
+
 // Get an array of all templates in template storage
 
 var_dump("They are as follows:");
@@ -88,7 +88,7 @@ foreach ($reportingCloud->getTemplateList() as $record) {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
-/*
+
 // Delete a template in template storage
 
 if ($reportingCloud->deleteTemplate($templateName)) {
@@ -101,4 +101,3 @@ if ($reportingCloud->deleteTemplate($templateName)) {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
-*/
