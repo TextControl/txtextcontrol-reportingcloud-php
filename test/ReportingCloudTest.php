@@ -4,7 +4,7 @@ namespace TxTextControlTest\ReportingCloud;
 
 use PHPUnit_Framework_Constraint_IsType as PHPUnit_IsType;
 use PHPUnit_Framework_TestCase;
-use TxTextControl\ReportingCloud\CliHelper as Helper;
+use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
@@ -285,6 +285,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('modified'     , $response[0]);
         $this->assertArrayHasKey('size'         , $response[0]);
 
+        $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $response[0]['template_name']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response[0]['modified']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response[0]['size']);
+
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
         $this->assertTrue($response);
@@ -304,6 +308,14 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('max_documents'     , $response);
         $this->assertArrayHasKey('max_templates'     , $response);
         $this->assertArrayHasKey('valid_until'       , $response);
+
+        $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $response['serial_number']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['created_documents']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['uploaded_templates']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['max_documents']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['max_templates']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['valid_until']);
+
     }
 
     // -----------------------------------------------------------------------------------------------------------------

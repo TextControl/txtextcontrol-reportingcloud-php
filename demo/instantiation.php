@@ -2,8 +2,8 @@
 
 include_once 'bootstrap.php';
 
+use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\ReportingCloud;
-use TxTextControl\ReportingCloud\CliHelper as Helper;
 
 // ---------------------------------------------------------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
 <?php
 
+use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 
 $filenameAutoload = realpath(__DIR__ . '/../vendor/autoload.php');
@@ -9,6 +10,10 @@ if (!is_readable($filenameAutoload)) {
 }
 
 include_once $filenameAutoload;
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+Helper::checkCredentials();
 
 // ---------------------------------------------------------------------------------------------------------------------
 

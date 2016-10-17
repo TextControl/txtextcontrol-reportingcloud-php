@@ -21,7 +21,7 @@
         <whitelist addUncoveredFilesFromWhitelist="false">
             <directory suffix=".php">./src</directory>
             <exclude>
-                <file>./src/CliHelper.php</file>
+                <file>./src/Console/Helper.php</file>
             </exclude>
         </whitelist>
     </filter>

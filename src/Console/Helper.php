@@ -10,15 +10,15 @@
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
  * @copyright © 2016 Text Control GmbH
  */
-namespace TxTextControl\ReportingCloud;
+namespace TxTextControl\ReportingCloud\Console;
 
 /**
- * ReportingCloud
+ * ReportingCloud console helper (used only for tests and demos)
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class CliHelper
+class Helper
 {
     /**
      * Name of username PHP constant or environmental variables
@@ -78,7 +78,9 @@ END;
      */
     public static function username()
     {
-        return self::variable(self::USERNAME);
+        $username = self::variable(self::USERNAME);
+
+        return $username;
     }
 
     /**
@@ -88,7 +90,22 @@ END;
      */
     public static function password()
     {
-        return self::variable(self::PASSWORD);
+        $password = self::variable(self::PASSWORD);
+
+        return $password;
+    }
+
+    /**
+     * Check credentials have been define in environment variables, otherwise exit with error code 1
+     */
+    public static function checkCredentials()
+    {
+        if (null === self::username() || null === self::password()) {
+            echo self::errorMessage();
+            die(1);
+        }
+
+        return true;
     }
 
     /**
@@ -104,13 +121,13 @@ END;
 
         if (defined($variable)) {
             $value = constant($variable);
-            $value = trim($value);
         } else {
             $value = getenv($variable);
-            $value = trim($value);
         }
 
-        if (!empty($value)) {
+        $value = trim($value);
+
+        if (strlen($value) > 0) {
             $ret = $value;
         }
 

@@ -4,7 +4,7 @@ namespace TxTextControlTest\ReportingCloud\TextInMergeDataIsInDocument;
 
 use PHPUnit_Framework_TestCase;
 use Smalot\PdfParser\Parser as PdfParser;
-use TxTextControl\ReportingCloud\CliHelper as Helper;
+use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 class TextInMergeDataIsInDocumentTest extends PHPUnit_Framework_TestCase

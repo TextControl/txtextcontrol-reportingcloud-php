@@ -2,7 +2,7 @@
 
 include_once 'bootstrap.php';
 
-use TxTextControl\ReportingCloud\CliHelper as Helper;
+use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 $reportingCloud = new ReportingCloud([
@@ -41,3 +41,5 @@ $mergeSettings = [
 $binaryData = $reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, $sourceFilename, $mergeSettings);
 
 file_put_contents($destinationFilename, $binaryData);
+
+var_dump($destinationFilename);

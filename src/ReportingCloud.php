@@ -134,7 +134,7 @@ class ReportingCloud extends AbstractReportingCloud
             array_walk($ret, function (&$record) {
                 $key = 'modified';
                 if (isset($record[$key])) {
-                    StaticFilter::execute($record[$key], 'DateTimeToTimestamp');
+                    $record[$key] = StaticFilter::execute($record[$key], 'DateTimeToTimestamp');
                 }
             });
         }
@@ -197,12 +197,10 @@ class ReportingCloud extends AbstractReportingCloud
 
         if (is_array($records) && count($records) > 0) {
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
-            array_walk($ret, function (&$record) {
-                $key = 'valid_until';
-                if (isset($record[$key])) {
-                    StaticFilter::execute($record[$key], 'DateTimeToTimestamp');
-                }
-            });
+            $key = 'valid_until';
+            if ($ret[$key]) {
+                $ret[$key] = StaticFilter::execute($ret[$key], 'DateTimeToTimestamp');
+            }
         }
 
         return $ret;
