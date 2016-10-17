@@ -4,6 +4,9 @@
 
 ## dev-master
 
+## 1.1.0 - 2016-10-17
+
+* Added new tests to check properties returned by `getTemplateInfo()` and `getAccountSettings()`.
 * Minor refactoring of `StaticFilter` and `StaticValidator` components.
 * Minor refactoring, mainly of array iterations.
 * Added filter to convert boolean true and false to string 'true' and 'false' (required for compatibilty with backend).
@@ -24,7 +27,7 @@
 
 ## 1.0.10 - 2016-07-20
 
-* Moved orphaned helper functions (`reporting_cloud_*`) to helper class `\TxTextControl\ReportingCloud\Console\CliHelper`.
+* Moved orphaned helper functions (`reporting_cloud_*`) to helper class `\TxTextControl\ReportingCloud\Console\Helper`.
 
 ## 1.0.9 - 2016-07-18
 

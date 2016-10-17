@@ -96,7 +96,8 @@ END;
     }
 
     /**
-     * Check credentials have been define in environment variables, otherwise exit with error code 1
+     * Check ReportingCloud credentials, which have been defined in environment variables, otherwise terminate script
+     * execution with error code 1
      */
     public static function checkCredentials()
     {
