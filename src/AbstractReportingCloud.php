@@ -163,8 +163,6 @@ abstract class AbstractReportingCloud
                 $this->$method($options[$key]);
             }
         }
-
-        return $this;
     }
 
     /**
