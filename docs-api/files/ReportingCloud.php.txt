@@ -3,7 +3,7 @@
 /**
  * ReportingCloud PHP Wrapper
  *
- * Official wrapper (authored by Text Control GmbH, publisher of ReportingCloud) to access ReportingCloud in PHP.
+ * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      http://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
@@ -14,16 +14,11 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
-
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-
-use TxTextControl\ReportingCloud\Filter\DateTimeToTimestamp  as DateTimeToTimestampFilter;
-use TxTextControl\ReportingCloud\Filter\TimestampToDateTime  as TimestampToDateTimeFilter;
-
+use TxTextControl\ReportingCloud\Filter\StaticFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\MergeSettings   as MergeSettingsPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\TemplateList    as TemplateListPropertyMap;
-
+use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
@@ -39,6 +34,36 @@ class ReportingCloud extends AbstractReportingCloud
      * GET methods
      * =================================================================================================================
      */
+
+    /**
+     * Return an array of merge blocks and merge fields in a template file in template storage.
+     *
+     * @param string  $templateName Template name
+     *
+     * @throws InvalidArgumentException
+     *
+     * @return array|null
+     */
+    public function getTemplateInfo($templateName)
+    {
+        $ret = null;
+
+        $propertyMap = new TemplateInfoPropertyMap();
+
+        StaticValidator::execute($templateName, 'TemplateName');
+
+        $query = [
+            'templateName' => $templateName,
+        ];
+
+        $records = $this->get('/templates/info', $query);
+
+        if (is_array($records) && count($records) > 0) {
+            $ret = $this->buildPropertyMapArray($records, $propertyMap);
+        }
+
+        return $ret;
+    }
 
     /**
      * Return an array of binary data.
@@ -75,10 +100,7 @@ class ReportingCloud extends AbstractReportingCloud
         $records = $this->get('/templates/thumbnails', $query);
 
         if (is_array($records) && count($records) > 0) {
-            $ret = [];
-            foreach ($records as $index => $data) {
-                $ret[$index] = base64_decode($data);
-            }
+            $ret = array_map('base64_decode', $records);
         }
 
         return $ret;
@@ -87,11 +109,11 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * Return the number of templates in template storage
      *
-     * @return integer|null
+     * @return integer
      */
     public function getTemplateCount()
     {
-        return $this->get('/templates/count');
+        return (integer) $this->get('/templates/count');
     }
 
     /**
@@ -104,27 +126,17 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = null;
 
         $propertyMap = new TemplateListPropertyMap();
-        $filter      = new DateTimeToTimestampFilter();
 
         $records = $this->get('/templates/list');
 
         if (is_array($records) && count($records) > 0) {
-            $ret = [];
-            foreach ($records as $index => $record) {
-                if (!isset($ret[$index])) {
-                    $ret[$index] = [];
+            $ret = $this->buildPropertyMapArray($records, $propertyMap);
+            array_walk($ret, function (&$record) {
+                $key = 'modified';
+                if (isset($record[$key])) {
+                    $record[$key] = StaticFilter::execute($record[$key], 'DateTimeToTimestamp');
                 }
-                foreach ($propertyMap->getMap() as $property => $key) {
-                    $value = null;
-                    if (isset($record[$property]) && strlen($record[$property]) > 0) {
-                        $value = $record[$property];
-                        if ('modified' == $key) {
-                            $value = $filter->filter($value);
-                        }
-                    }
-                    $ret[$index][$key] = $value;
-                }
-            }
+            });
         }
 
         return $ret;
@@ -137,7 +149,7 @@ class ReportingCloud extends AbstractReportingCloud
      *
      * @throws InvalidArgumentException
      *
-     * @return bool
+     * @return integer
      */
     public function getTemplatePageCount($templateName)
     {
@@ -180,21 +192,14 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = null;
 
         $propertyMap = new AccountSettingsPropertyMap();
-        $filter      = new DateTimeToTimestampFilter();
 
         $records = $this->get('/account/settings');
 
         if (is_array($records) && count($records) > 0) {
-            $ret = [];
-            foreach ($propertyMap->getMap() as $property => $key) {
-                $value = null;
-                if (isset($records[$property]) && strlen($records[$property]) > 0) {
-                    $value = $records[$property];
-                    if ('valid_until' == $key) {
-                        $value = $filter->filter($value);
-                    }
-                }
-                $ret[$key] = $value;
+            $ret = $this->buildPropertyMapArray($records, $propertyMap);
+            $key = 'valid_until';
+            if ($ret[$key]) {
+                $ret[$key] = StaticFilter::execute($ret[$key], 'DateTimeToTimestamp');
             }
         }
 
@@ -247,11 +252,8 @@ class ReportingCloud extends AbstractReportingCloud
 
         $response = $this->request('GET', $this->uri($uri), $options);
 
-        if ($response instanceof Response) {
-            if (200 === $response->getStatusCode()) {
-                $body = (string) $response->getBody();
-                $ret  = json_decode($body, true);
-            }
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $ret  = json_decode($response->getBody(), true);
         }
 
         return $ret;
@@ -282,30 +284,22 @@ class ReportingCloud extends AbstractReportingCloud
         $templateFilename = realpath($templateFilename);
         $templateName     = basename($templateFilename);
 
-        $headers = [
-            'Content-Type' => 'application/json',
-        ];
-
         $query = [
             'templateName' => $templateName,
         ];
 
-        $body = file_get_contents($templateFilename);
-        $body = base64_encode($body);
-        $body = json_encode($body);
+        $json = file_get_contents($templateFilename);
+        $json = base64_encode($json);
 
         $options = [
-            RequestOptions::HEADERS => $headers,
-            RequestOptions::QUERY   => $query,
-            RequestOptions::BODY    => $body,
+            RequestOptions::QUERY => $query,
+            RequestOptions::JSON  => $json,
         ];
 
         $response = $this->request('POST', $this->uri('/templates/upload'), $options);
 
-        if ($response instanceof Response) {
-            if (201 === $response->getStatusCode()) {
-                $ret = true;
-            }
+        if ($response instanceof Response && 201 === $response->getStatusCode()) {
+            $ret = true;
         }
 
         return $ret;
@@ -329,33 +323,24 @@ class ReportingCloud extends AbstractReportingCloud
         StaticValidator::execute($documentFilename, 'FileExists');
         StaticValidator::execute($returnFormat    , 'ReturnFormat');
 
-        $headers = [
-            'Content-Type' => 'application/json',
-        ];
-
         $query = [
             'returnFormat' => $returnFormat,
         ];
 
         $documentFilename = realpath($documentFilename);
 
-        $body = file_get_contents($documentFilename);
-        $body = base64_encode($body);
-        $body = json_encode($body);
+        $json = file_get_contents($documentFilename);
+        $json = base64_encode($json);
 
         $options = [
-            RequestOptions::HEADERS => $headers,
-            RequestOptions::QUERY   => $query,
-            RequestOptions::BODY    => $body,
+            RequestOptions::QUERY => $query,
+            RequestOptions::JSON  => $json,
         ];
 
         $response = $this->request('POST', $this->uri('/document/convert'), $options);
 
-        if ($response instanceof Response) {
-            if (200 === $response->getStatusCode()) {
-                $body = (string) $response->getBody();
-                $ret  = base64_decode($body);
-            }
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $ret  = base64_decode($response->getBody());
         }
 
         return $ret;
@@ -365,19 +350,19 @@ class ReportingCloud extends AbstractReportingCloud
      * Merge data into a template and return an array of binary data.
      * Each record in the array is the binary data of one document
      *
-     * @param array   $mergeData         Array of merge data
-     * @param string  $returnFormat      Return format
-     * @param string  $templateName      Template name
-     * @param string  $templateFilename  Template filename on local file system
-     * @param boolean $append            Append flag
-     * @param array   $mergeSettings     Array of merge settings
+     * @param array   $mergeData        Array of merge data
+     * @param string  $returnFormat     Return format
+     * @param string  $templateName     Template name
+     * @param string  $templateFilename Template filename on local file system
+     * @param boolean $append           Append flag
+     * @param array   $mergeSettings    Array of merge settings
      *
      * @throws InvalidArgumentException
      *
      * @return null|string
      */
     public function mergeDocument($mergeData, $returnFormat, $templateName = null, $templateFilename = null,
-                                  $append = null, $mergeSettings = [])
+                                    $append = null, $mergeSettings = [])
     {
         $ret = null;
 
@@ -395,19 +380,10 @@ class ReportingCloud extends AbstractReportingCloud
         }
 
         if (null !== $append) {
-            StaticValidator::execute($append, 'TypeBoolean');
-            if (true === $append) {
-                $append = 'true';   // This boolean value MUST be passed as a string to prevent Guzzle converting the
-            } else {                // query parameter to ?append=0 or ?append=1, which the backend does not recognize.
-                $append = 'false';  // The backend only recognizes query parameter ?append=true and ?append=false.
-            }
+            $append = StaticFilter::execute($append, 'BooleanToString');
         }
 
         StaticValidator::execute($mergeSettings, 'TypeArray');
-
-        $headers = [
-            'Content-Type' => 'application/json',
-        ];
 
         $query = [
             'returnFormat' => $returnFormat,
@@ -418,69 +394,101 @@ class ReportingCloud extends AbstractReportingCloud
             $query['templateName'] = $templateName;
         }
 
-        $mergeSettingsRc = null;
-
-        if (count($mergeSettings) > 0) {
-
-            $filter = new TimestampToDateTimeFilter();
-
-            $mergeSettingsRc = [];  // 'Rc' - this array is passed to ReportingCloud
-
-            $propertyMap = new MergeSettingsPropertyMap();
-
-            foreach ($propertyMap->getMap() as $property => $key) {
-                if (isset($mergeSettings[$key])) {
-                    $value = $mergeSettings[$key];
-                    if ('remove_' == substr($key, 0, 7)) {
-                        StaticValidator::execute($value, 'TypeBoolean');
-                    }
-                    if ('_date' == substr($key, -5)) {
-                        StaticValidator::execute($value, 'Timestamp');
-                        $value = $filter->filter($value);
-                    }
-                    $mergeSettingsRc[$property] = $value;
-                }
-            }
-        }
-        
-        unset($mergeSettings);
-
-        $mergeBody = [
+        $json = [
             'mergeData' => $mergeData,
         ];
 
         if (null !== $templateFilename) {
             $template = file_get_contents($templateFilename);
             $template = base64_encode($template);
-            //$template = json_encode($template);
-            $mergeBody['template'] = $template;
+            $json['template'] = $template;
         }
 
-        if (null !== $mergeSettingsRc) {
-            $mergeBody['mergeSettings'] = $mergeSettingsRc;
+        if (count($mergeSettings) > 0) {
+            $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
-
-        $body = json_encode($mergeBody);
 
         $options = [
-            RequestOptions::HEADERS => $headers,
-            RequestOptions::QUERY   => $query,
-            RequestOptions::BODY    => $body,
+            RequestOptions::QUERY => $query,
+            RequestOptions::JSON  => $json,
         ];
 
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
 
-        if ($response instanceof Response) {
-            if (200 === $response->getStatusCode()) {
-                $body = (string) $response->getBody();
-                $body = json_decode($body);
-                if (is_array($body) && count($body) > 0) {
-                    $ret = [];
-                    foreach ($body as $record) {
-                        array_push($ret, base64_decode($record));
-                    }
-                }
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $body = json_decode($response->getBody(), true);
+            if (is_array($body) && count($body) > 0) {
+                $ret = array_map('base64_decode', $body);
             }
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Perform find and replace in document and return binary data.
+     *
+     * @param array  $findAndReplaceData Array of find and replace data
+     * @param string $returnFormat       Return format
+     * @param string $templateName       Template name
+     * @param string $templateFilename   Template filename on local file system
+     * @param array  $mergeSettings      Array of merge settings
+     *
+     * @throws InvalidArgumentException
+     *
+     * @return null|string
+     */
+    public function findAndReplaceDocument($findAndReplaceData, $returnFormat, $templateName = null,
+                                           $templateFilename = null, $mergeSettings = [])
+    {
+        $ret = null;
+
+        StaticValidator::execute($findAndReplaceData, 'TypeArray');
+        StaticValidator::execute($returnFormat      , 'ReturnFormat');
+
+        if (null !== $templateName) {
+            StaticValidator::execute($templateName, 'TemplateName');
+        }
+
+        if (null !== $templateFilename) {
+            StaticValidator::execute($templateFilename, 'TemplateExtension');
+            StaticValidator::execute($templateFilename, 'FileExists');
+            $templateFilename = realpath($templateFilename);
+        }
+
+        StaticValidator::execute($mergeSettings, 'TypeArray');
+
+        $query = [
+            'returnFormat' => $returnFormat,
+        ];
+
+        if (null !== $templateName) {
+            $query['templateName'] = $templateName;
+        }
+
+        $json = [
+            'findAndReplaceData' => $this->buildFindAndReplaceDataArray($findAndReplaceData),
+        ];
+
+        if (null !== $templateFilename) {
+            $template = file_get_contents($templateFilename);
+            $template = base64_encode($template);
+            $json['template'] = $template;
+        }
+
+        if (count($mergeSettings) > 0) {
+            $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
+        }
+
+        $options = [
+            RequestOptions::QUERY => $query,
+            RequestOptions::JSON  => $json,
+        ];
+
+        $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
+
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $ret  = base64_decode($response->getBody());
         }
 
         return $ret;
@@ -517,10 +525,8 @@ class ReportingCloud extends AbstractReportingCloud
 
         $response = $this->request('DELETE', $this->uri('/templates/delete'), $options);
 
-        if ($response instanceof Response) {
-            if (204 === $response->getStatusCode()) {
-                $ret = true;
-            }
+        if ($response instanceof Response && 204 === $response->getStatusCode()) {
+            $ret = true;
         }
 
         return $ret;
