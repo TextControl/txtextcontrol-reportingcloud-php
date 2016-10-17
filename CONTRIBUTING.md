@@ -30,5 +30,5 @@ git config user.email "johndoe@users.noreply.github.com"
 ## Tag and release version
 
 ```bash
-git tag release-1.0.x && git push origin --tags
+git tag release-1.1.x && git push origin --tags
 ```
