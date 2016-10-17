@@ -25,7 +25,7 @@ class ReturnFormat extends FileExtension
      *
      * @param array $options
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
         $options['haystack'] = [
             'DOC',

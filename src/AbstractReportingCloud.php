@@ -146,35 +146,25 @@ abstract class AbstractReportingCloud
      *
      * @param array $options
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        if (array_key_exists('username', $options)) {
-            $this->setUsername($options['username']);
+        $methods = [
+            'base_uri' => 'setBaseUri',
+            'debug'    => 'setDebug',
+            'password' => 'setPassword',
+            'test'     => 'setTest',
+            'timeout'  => 'setTimeout',
+            'username' => 'setUsername',
+            'version'  => 'setVersion',
+        ];
+
+        foreach ($methods as $key => $method) {
+            if (array_key_exists($key, $options)) {
+                $this->$method($options[$key]);
+            }
         }
 
-        if (array_key_exists('password', $options)) {
-            $this->setPassword($options['password']);
-        }
-
-        if (array_key_exists('test', $options)) {
-            $this->setTest($options['test']);
-        }
-
-        if (array_key_exists('base_uri', $options)) {
-            $this->setBaseUri($options['base_uri']);
-        }
-
-        if (array_key_exists('version', $options)) {
-            $this->setVersion($options['version']);
-        }
-
-        if (array_key_exists('timeout', $options)) {
-            $this->setTimeout($options['timeout']);
-        }
-
-        if (array_key_exists('debug', $options)) {
-            $this->setDebug($options['debug']);
-        }
+        return $this;
     }
 
     /**
