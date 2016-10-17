@@ -470,7 +470,7 @@ abstract class AbstractReportingCloud
      *
      * @return array
      */
-    protected function buildPropertyMapArray($array, PropertyMap $propertyMap)
+    protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap)
     {
         $ret = [];
 
@@ -495,7 +495,7 @@ abstract class AbstractReportingCloud
      *
      * @return array
      */
-    protected function buildMergeSettingsArray($array)
+    protected function buildMergeSettingsArray(array $array)
     {
         $ret = [];
 
@@ -525,7 +525,7 @@ abstract class AbstractReportingCloud
      *
      * @return array
      */
-    protected function buildFindAndReplaceDataArray($array)
+    protected function buildFindAndReplaceDataArray(array $array)
     {
         $ret = [];
 
