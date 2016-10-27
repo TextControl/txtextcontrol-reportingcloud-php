@@ -20,7 +20,7 @@ $counter = 1;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-echo PHP_EOL;
+Helper::writeLn(PHP_EOL);
 
 Helper::writeLn('Environment Checker for the ReportingCloud PHP Wrapper' . PHP_EOL . PHP_EOL);
 
