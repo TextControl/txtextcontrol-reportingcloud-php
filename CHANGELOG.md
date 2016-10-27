@@ -5,7 +5,7 @@
 ## dev-master
 
 * Added an image merging `mergeDocument()` demo.
-* Added script to `/bin` directory that reports on the environment in which component is running.
+* Added script to `/bin` directory that reports on the environment in which it is running.
 * Added a basic `mergeDocument()` demo.
 * Renamed the advanced `mergeDocument()` demo.
 * Added documentation.
