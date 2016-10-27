@@ -1,4 +1,4 @@
-![Logo](https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/media/rc_logo_512.png)
+![Logo](./media/rc_logo_512.png)
 
 # CONTRIBUTING
 
