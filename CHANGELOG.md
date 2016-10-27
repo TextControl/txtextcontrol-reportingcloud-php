@@ -4,10 +4,11 @@
 
 ## dev-master
 
-* Added image merging demo `/demo/merge-document-image.php`.
-* Added `/bin/check-environment.php` script to report on the environment in which script is running.
-* Added documentation.
+* Added an image merging `mergeDocument()` demo.
+* Added script to report on the environment in which component is running in `/bin` directory.
 * Added a basic `mergeDocument()` demo.
+* Renamed the advanced `mergeDocument()` demo.
+* Added documentation.
 
 ## 1.1.0 - 2016-10-17
 
