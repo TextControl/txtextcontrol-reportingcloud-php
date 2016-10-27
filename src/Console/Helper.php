@@ -21,6 +21,11 @@ namespace TxTextControl\ReportingCloud\Console;
 class Helper
 {
     /**
+     * Line length in characters (used to wrap long lines)
+     */
+    const LINE_LENGTH = 80;
+
+    /**
      * Name of username PHP constant or environmental variables
      *
      * @const REPORTING_CLOUD_USERNAME
@@ -133,6 +138,36 @@ END;
         }
 
         return $ret;
+    }
+
+    /**
+     * Print line, wrapped at self::LINE_LENGTH th character
+     *
+     * @param string $string String
+     * @return string
+     */
+    public static function writeLn($string)
+    {
+        print wordwrap($string, self::LINE_LENGTH);
+    }
+
+    /**
+     * Print result line like in a table of contents i.e.:
+     *
+     * n: XXX YYY ZZZ....ZZZ
+     *
+     * @param integer $counter    Counter
+     * @param string  $testString Test string
+     * @param string  $testResult Test result
+     */
+    public static function writeLnToc($counter, $testString, $testResult)
+    {
+        $lineLength = self::LINE_LENGTH;
+        $padding    = $lineLength - (4 + strlen(TEST_PASS));
+        $counter    = sprintf('%2s: ', $counter);
+        $testString = str_pad($testString, $padding, '.', STR_PAD_RIGHT);
+
+        printf('%s%s%s%s', $counter, $testString, $testResult, PHP_EOL);
     }
 
 }
