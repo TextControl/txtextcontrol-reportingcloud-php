@@ -7,7 +7,7 @@
 [![Latest Stable Version](https://poser.pugx.org/textcontrol/txtextcontrol-reportingcloud/v/stable)](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 [![composer.lock available](https://poser.pugx.org/textcontrol/txtextcontrol-reportingcloud/composerlock)](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 
-This is the official PHP wrapper for ReportingCloud. It is authored, maintained and supported by [Text Control](http://www.textcontrol.com).
+PHP wrapper for ReportingCloud Web API. Authored and supported by [Text Control GmbH](http://www.textcontrol.com).
 
 Learn more about ReportingCloud at:
  
