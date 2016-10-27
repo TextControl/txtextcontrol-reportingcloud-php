@@ -126,18 +126,18 @@ $counter++;
 $results = @file_get_contents(GEOIP_SERVICE_URI);
 
 if (false != $results) {
-    $keys = [
+    $lut = [
         'ip'           => 'IP address',
         'city'         => 'City',
         'region_name'  => 'region',
         'country_name' => 'country',
     ];
     $results = json_decode($results);
-    foreach (array_keys($keys) as $key) {
+    foreach (array_keys($lut) as $key) {
         if (isset($results->$key)) {
             $value = trim($results->$key);
             if (strlen($value) > 0) {
-                Helper::writeLnToc($counter, sprintf('Checking your %s (%s)', $keys[$key], $value), TEST_PASS);
+                Helper::writeLnToc($counter, sprintf('Checking your %s (%s)', $lut[$key], $value), TEST_PASS);
                 $counter++;
             }
         }

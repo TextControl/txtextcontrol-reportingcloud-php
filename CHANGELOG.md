@@ -4,6 +4,7 @@
 
 ## dev-master
 
+* Added `check-environment.php` script to report on the environment in which script is running.
 * Added documentation.
 * Added a basic `mergeDocument()` demo.
 
