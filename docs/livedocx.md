@@ -2,7 +2,7 @@
 
 # What happened to LiveDocx?
 
-![ReportingCloud dashboard](../media/rc_dashboard_450.png)
+<div align="right"><img src="../media/rc_dashboard_450.png" /></div>
 
 In May 2016, Text Control [announced](http://www.textcontrol.com/en_US/blog/archive/20160525/) the successor to LiveDocx, called [ReportingCloud](http://www.reporting.cloud/).
 
