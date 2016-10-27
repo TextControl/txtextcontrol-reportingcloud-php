@@ -571,6 +571,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     // -----------------------------------------------------------------------------------------------------------------
 
+    /*
+
     public function testApiCallDoesCountAgainstQuota()
     {
         // get start created_document statistic
@@ -614,6 +616,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         // compare start and end statistics
         $this->assertSame($endCreatedDocuments, $startCreatedDocuments);
     }
+
+    */
 
     // -----------------------------------------------------------------------------------------------------------------
 
