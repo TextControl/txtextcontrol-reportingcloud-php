@@ -4,6 +4,9 @@
 
 ## dev-master
 
+* Added documentation.
+* Added a basic `mergeDocument()` demo.
+
 ## 1.1.0 - 2016-10-17
 
 * Added new tests to check properties returned by `getTemplateInfo()` and `getAccountSettings()`.
