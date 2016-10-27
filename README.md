@@ -61,40 +61,9 @@ export REPORTING_CLOUD_USERNAME='your-username'
 export REPORTING_CLOUD_PASSWORD='your-password'
 ```
 
-Note, these instructions apply only to the sample applications and phpunit tests. When you use ReportingCloud in your application, set the username and password in your constructor or using the `setUsername($username)` and `setPassword($password)` methods. For an example of this case, see `demo/instantiation.php`.
+Note, these instructions apply only to the sample applications and phpunit tests. When you use ReportingCloud in your application, set the username and password in your constructor or using the `setUsername($username)` and `setPassword($password)` methods. For an example of this case, see `/demo/instantiation.php`.
 
 
-## API documentation (phpdoc)
+## Getting started
 
-All the source code in this component library is documented using [phpDocumentor](https://www.phpdoc.org/).
-
-You can read the [API documentation](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/docs-api/) online, or build it yourself, using the following shell command:
-
-```bash
-phpdoc run --directory ./src --target ~/txtextcontrol-reportingcloud/src-docs --template clean
-```
-
-The resultant set of HTML files will be written to `~/txtextcontrol-reportingcloud/src-docs`.
-
-
-## Unit tests with code coverage (phpunit)
-
-100% unit test coverage is supplied by phpunit.
-
-You can review the [code coverage report](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/test-coverage/) online, or build it yourself, using the following shell command:
-
-```bash
-phpunit --coverage-html ~/txtextcontrol-reportingcloud/test-coverage
-```
-
-The resultant set of HTML files will be written to `~/txtextcontrol-reportingcloud/test-coverage`.
-
-
-## Coding standards
-
-This component library follows [PSR-2](http://www.php-fig.org/psr/psr-2/) coding standards, and additionally:
-
-* Uses lowercase underscore-separated keys names for associative arrays.
-* Uses camelCase for namespaces, class, method and property names.
-
-When contributing, please respect this standard with its two above mentioned additions.
+As mentioned above, the ReportingCloud PHP wrapper ships with a number of sample applications (see directory `/demo`). These samples applications have been written to demonstrate all parts of ReportingCloud. We are currently working on comprehensive documentation for the ReportingCloud PHP wrapper, which will be published in the `/docs` directory, as and when it becomes available. In the meantime, please review the [Text Control Blog](http://www.textcontrol.com/en_US/blog/tags/reportingcloud/) , which contains many articles about ReportingCloud. 
