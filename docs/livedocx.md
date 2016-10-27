@@ -1,4 +1,4 @@
-![Logo](./media/rc_logo_512.png)
+![Logo](../media/rc_logo_512.png)
 
 # What happened to LiveDocx?
 
