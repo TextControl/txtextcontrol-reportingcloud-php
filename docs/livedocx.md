@@ -1,8 +1,6 @@
-![Logo](../media/rc_logo_512.png)
+![Logo](./media/rc_logo_512.png)
 
 # What happened to LiveDocx?
-
-<img style="float:right;" src="../media/rc_dashboard_450.png" />
 
 In May 2016, Text Control [announced](http://www.textcontrol.com/en_US/blog/archive/20160525/) the successor to LiveDocx, called [ReportingCloud](http://www.reporting.cloud/).
 
