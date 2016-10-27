@@ -9,11 +9,17 @@
 
 This is the official PHP wrapper for ReportingCloud, which is authored, maintained and fully supported by [Text Control](http://www.textcontrol.com).
 
-[http://www.reporting.cloud](http://www.reporting.cloud)
+Learn more about ReportingCloud at:
+ 
+* [ReportingCloud web site](http://www.reporting.cloud/)
+ 
+* [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here 
 
-Before using ReportingCloud, please sign up to the service:
+* [ReportingCloud Web API documentation](https://portal.reporting.cloud/Documentation/Reference/)
 
-[https://portal.reporting.cloud](https://portal.reporting.cloud)
+* [ReportingCloud PHP wrapper Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
+
+* [ReportingCloud PHP wrapper GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
 
 
 ## Install using Composer
