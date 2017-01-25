@@ -16,8 +16,7 @@
     "require": {
         "php": "^5.5 || ^7.0",
         "guzzlehttp/guzzle": "^6.1",
-        "zendframework/zend-filter": "^^2.7",
-        "zendframework/zend-servicemanager": "^2.7 || ^3.2",
+        "zendframework/zend-filter": "^2.7",
         "zendframework/zend-validator": "^2.8"
     },
     "require-dev": {
