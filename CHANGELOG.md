@@ -4,6 +4,9 @@
 
 ## dev-master
 
+## 1.2.0 - 2017-02-25
+
+* Updated `zendframework/zend-servicemanager` to `^3.2`. 
 * Added an image merging `mergeDocument()` demo.
 * Added script to `/bin` directory that reports on the environment in which it is running.
 * Added a basic `mergeDocument()` demo.
