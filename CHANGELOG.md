@@ -4,6 +4,10 @@
 
 ## dev-master
 
+## 1.3.0 - 2017-04-05
+
+* Implemented end-point `/v1/fonts/list`. 
+
 ## 1.2.0 - 2017-02-25
 
 * Updated `zendframework/zend-servicemanager` to `^3.2`. 

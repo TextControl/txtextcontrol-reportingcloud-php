@@ -183,6 +183,24 @@ class ReportingCloud extends AbstractReportingCloud
     }
 
     /**
+     * Return an array of available fonts on the Reporting Cloud service
+     *
+     * @return array|null
+     */
+    public function getFontList()
+    {
+        $ret = null;
+
+        $fonts = $this->get('/fonts/list');
+
+        if (is_array($fonts) && count($fonts) > 0) {
+            $ret = array_map('trim', $fonts);
+        }
+
+        return $ret;
+    }
+
+    /**
      * Return an array properties for the ReportingCloud account
      *
      * @return array|null

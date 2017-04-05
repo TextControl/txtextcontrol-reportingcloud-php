@@ -298,6 +298,23 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     // -----------------------------------------------------------------------------------------------------------------
 
+    public function testGetFontList()
+    {
+        $fonts = $this->reportingCloud->getFontList();
+
+        $this->assertInternalType(PHPUnit_IsType::TYPE_ARRAY, $fonts);
+
+        $this->assertContains('Times New Roman', $fonts);
+        $this->assertContains('Arial'          , $fonts);
+        $this->assertContains('Courier New'    , $fonts);
+
+        $this->assertArrayHasKey(0, $fonts);
+        $this->assertArrayHasKey(1, $fonts);
+        $this->assertArrayHasKey(2, $fonts);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
     public function testGetAccountSettings()
     {
         $response = $this->reportingCloud->getAccountSettings();
