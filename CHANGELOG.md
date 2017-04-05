@@ -7,7 +7,7 @@
 ## 1.3.1 - 2017-04-05
 
 * Updated and added documentation.
-* Removed Travis Building. See `docs/travis.md`.
+* Removed Travis Building. See `/docs/travis.md`.
 
 ## 1.3.0 - 2017-04-05
 

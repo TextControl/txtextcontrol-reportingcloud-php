@@ -16,7 +16,7 @@ Newer versions of `txtextcontrol-reportingcloud-php` require PHP 5.6 or newer. T
 
 On April 5, 2017 the author tested the standard [5.6](https://travis-ci.org/TextControl/txtextcontrol-reportingcloud-php/jobs/218844575) and [7.0](https://travis-ci.org/TextControl/txtextcontrol-reportingcloud-php/jobs/218844576) versions of PHP and standard TLS library on Travis.
 
-Unfortunately, the issue that is described in the above StackOverflow post persists.
+Unfortunately, the issue that is described in the above StackOverflow post persisted.
 
 Therefore, it is with sadness that Travis Building was removed from `txtextcontrol-reportingcloud-php` on April 5, 2017.
 
