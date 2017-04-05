@@ -424,13 +424,6 @@ abstract class AbstractReportingCloud
 
         try {
 
-            if (getenv('TRAVIS')) {
-                if (!defined('CURL_SSLVERSION_TLSv1_1')) {
-                    define('CURL_SSLVERSION_TLSv1_1', 5);
-                }
-                $options['curl'][CURLOPT_SSLVERSION] = CURL_SSLVERSION_TLSv1_1;
-            }
-
             if ($this->getTest()) {
                 $options[RequestOptions::QUERY]['test'] = StaticFilter::execute($this->getTest(), 'BooleanToString');
             }

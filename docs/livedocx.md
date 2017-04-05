@@ -1,6 +1,6 @@
 ![Logo](../media/rc_logo_512.png)
 
-# What happened to LiveDocx?
+# What Happened to LiveDocx?
 
 In May 2016, Text Control GmbH [announced](http://www.textcontrol.com/en_US/blog/archive/20160525/) the successor to LiveDocx, called [ReportingCloud](http://www.reporting.cloud/).
 
@@ -24,6 +24,6 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud PHP wrapper GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
 
-## How do I get started?
+## How Do I Get Started?
 
 Please review the [README.md](../README.md) file for instructions on how to get started with ReportingCloud in PHP.

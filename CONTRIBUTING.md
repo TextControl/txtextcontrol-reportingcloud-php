@@ -2,9 +2,9 @@
 
 # CONTRIBUTING
 
-## Configure development environment
+## Configure Development Environment
 
-### Check out project and run composer
+### Check out Project and Run Composer
 
 ```bash
 mkdir -p /var/www/textcontrol/txtextcontrol-reportingcloud
@@ -27,7 +27,7 @@ git config user.name  "John Doe"
 git config user.email "johndoe@users.noreply.github.com"
 ```
 
-## Tag and release version
+## Tag and Release Version
 
 ```bash
 git tag release-1.1.x && git push origin --tags
@@ -35,7 +35,7 @@ git tag release-1.1.x && git push origin --tags
 
 
 
-## API documentation (phpdoc)
+## API Documentation (phpdoc)
 
 All the source code in this component library is documented using [phpDocumentor](https://www.phpdoc.org/).
 
@@ -48,20 +48,20 @@ phpdoc run --directory ./src --target ~/txtextcontrol-reportingcloud/src-docs --
 The resultant set of HTML files will be written to `~/txtextcontrol-reportingcloud/src-docs`.
 
 
-## Unit tests with code coverage (phpunit)
+## Unit Tests With Code Coverage (phpunit)
 
 100% unit test coverage is supplied by phpunit.
 
 You can review the [code coverage report](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/test-coverage/) online, or build it yourself, using the following shell command:
 
 ```bash
-phpunit --coverage-html ~/txtextcontrol-reportingcloud/test-coverage
+./vendor/phpunit/phpunit/phpunit --coverage-html ~/txtextcontrol-reportingcloud/test-coverage
 ```
 
 The resultant set of HTML files will be written to `~/txtextcontrol-reportingcloud/test-coverage`.
 
 
-## Coding standards
+## Coding Standards
 
 This component library follows [PSR-2](http://www.php-fig.org/psr/psr-2/) coding standards, and additionally:
 
