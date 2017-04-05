@@ -10,7 +10,7 @@ before_script:
   - composer install --no-interaction
 
 script:
-  - phpunit
+  - ./vendor/phpunit/phpunit/phpunit
 
 env:
   global:
