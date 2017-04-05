@@ -33,8 +33,6 @@ git config user.email "johndoe@users.noreply.github.com"
 git tag release-1.1.x && git push origin --tags
 ```
 
-
-
 ## API Documentation (phpdoc)
 
 All the source code in this component library is documented using [phpDocumentor](https://www.phpdoc.org/).
