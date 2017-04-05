@@ -1,8 +1,11 @@
+sudo: required
+
+dist: trusty
+
 language: php
 
-php:
-  - '5.6'
-  - '7.0'
+before_install:
+  - sudo apt-get -y install git zip php5-cli php5-curl
 
 before_script:
   - php -r "printf('PHP %s', phpversion());"
@@ -10,7 +13,7 @@ before_script:
   - composer install --no-interaction
 
 script:
-  - ./vendor/phpunit/phpunit/phpunit
+  - phpunit
 
 env:
   global:
