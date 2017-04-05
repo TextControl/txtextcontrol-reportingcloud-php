@@ -20,10 +20,28 @@ Unfortunately, the issue that is described in the above StackOverflow post persi
 
 Therefore, it is with sadness that Travis Building was removed from `txtextcontrol-reportingcloud-php` on April 5, 2017.
 
-To run the unit tests yourself, simply call
+The author of `txtextcontrol-reportingcloud-php` will review the TLS situation on Travis in the coming months, and if it improves, Travis Building will be re-enabled.
+
+## What Are the Alternatives?
+
+### Scrutinizer Building
+
+Since the original release of `txtextcontrol-reportingcloud-php`, code quality information has been made available on Scrutinizer at:
+
+https://scrutinizer-ci.com/g/TextControl/txtextcontrol-reportingcloud-php/
+
+Since Scrutinizer runs the unit tests against PHP 5.6, which does not have the above described TLS issues, the build is successful on Scrutinizer.
+
+To see the output from the unit tests go to:
+
+    Inspections -> Build -> Log -> Tests -> ./vendor/phpunit/phpunit/phpunit
+
+on the above Scrutinizer page.
+
+### Run Unit Tests Locally
+
+To run the unit tests yourself, simply call:
 
     ./vendor/phpunit/phpunit/phpunit
     
 in the root directory of `txtextcontrol-reportingcloud-php`, after having specified your Reporting Cloud username and password.
-    
-The author of `txtextcontrol-reportingcloud-php` will review the TLS situation on Travis in the coming months, and if it improves, Travis Building will be re-enabled.
