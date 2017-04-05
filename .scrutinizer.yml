@@ -10,7 +10,7 @@ build:
     tests:
         override:
             -
-                command: phpunit
+                command: ./vendor/phpunit/phpunit/phpunit
                 coverage:
                     file: ./build/logs/clover.xml
                     format: php-clover
