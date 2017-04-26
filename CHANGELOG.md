@@ -4,6 +4,8 @@
 
 ## dev-master
 
+* Updated and added documentation.
+
 ## 1.3.1 - 2017-04-05
 
 * Updated and added documentation.
