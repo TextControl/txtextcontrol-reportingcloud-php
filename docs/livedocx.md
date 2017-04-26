@@ -16,13 +16,15 @@ Learn more about ReportingCloud at:
  
 * [ReportingCloud web site](http://www.reporting.cloud/)
  
-* [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here 
+* [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here  
 
 * [ReportingCloud Web API documentation](https://portal.reporting.cloud/Documentation/Reference/)
 
 * [ReportingCloud PHP wrapper Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 
 * [ReportingCloud PHP wrapper GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
+
+* [ReportingCloud PHP wrapper support](http://support.textcontrol.com/new-ticket)
 
 ## How Do I Get Started?
 

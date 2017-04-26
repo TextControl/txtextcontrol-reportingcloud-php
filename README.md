@@ -13,13 +13,15 @@ Learn more about ReportingCloud at:
  
 * [ReportingCloud web site](http://www.reporting.cloud/)
  
-* [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here 
+* [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here  
 
 * [ReportingCloud Web API documentation](https://portal.reporting.cloud/Documentation/Reference/)
 
 * [ReportingCloud PHP wrapper Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 
 * [ReportingCloud PHP wrapper GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
+
+* [ReportingCloud PHP wrapper support](http://support.textcontrol.com/new-ticket)
 
 
 ## Install Using Composer
@@ -74,4 +76,13 @@ Note, these instructions apply only to the sample applications and phpunit tests
 
 As mentioned above, the ReportingCloud PHP wrapper ships with a number of sample applications (see directory `/demo`). These samples applications, which are well commented, have been written to demonstrate all parts of ReportingCloud.
 
-We are currently working on comprehensive documentation for the ReportingCloud PHP wrapper, which will be published in the `/docs` directory, as and when it becomes available. In the meantime, please review the [Text Control Blog](http://www.textcontrol.com/en_US/blog/tags/reportingcloud/) , which contains many articles about ReportingCloud. 
+We are currently working on comprehensive documentation for the ReportingCloud PHP wrapper, which will be published in the `/docs` directory, as and when it becomes available. In the meantime, please review the [Text Control Blog](http://www.textcontrol.com/en_US/blog/tags/reportingcloud/) , which contains many articles about ReportingCloud.
+ 
+ 
+ ## Getting Support
+ 
+ The official PHP wrapper for ReportingCloud Web API is supported by Text Control GmbH. To start a conversation with the PHP people in the ReportingCloud Support Department, please [create a ticket](http://support.textcontrol.com/new-ticket), selecting _ReportingCloud_ from the department selection list.
+ 
+ 
+ 
+ 
