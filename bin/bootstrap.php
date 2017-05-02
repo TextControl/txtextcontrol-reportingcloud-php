@@ -4,33 +4,38 @@ use TxTextControl\ReportingCloud\Console\Helper;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$filenameAutoload = call_user_func(function () {
+$autoloadFilename = call_user_func(function () {
 
     $ret = null;
 
-    $file = 'autoload.php';
+    $file = 'autoload.php';         // standard composer autoload file
 
-    $filenameDep = __DIR__ . '/../../../' . $file;  // when installed as a dependency to another project
-    $filenameGit = __DIR__ . '/../vendor/'. $file;  // when installed as a GIT clone
+    $paths = [
+        __DIR__ . '/../../..',      // when installed as a dependency to another project
+        __DIR__ . '/../vendor',     // when installed as a GIT clone
+    ];
 
-    if (is_readable($filenameDep)) {
-        $ret = $filenameDep;
-    } elseif (is_readable($filenameGit)) {
-        $ret = $filenameGit;
-    } else {
-        $message = sprintf("Cannot load composer's %s. Tried: '%s', '%s'). Did you run 'composer install'?"
+    foreach ($paths as $path) {
+        $filename = $path . DIRECTORY_SEPARATOR . $file;
+        if (is_readable($filename)) {
+            $ret = realpath($filename);
+            break;
+        }
+    }
+
+    if (null === $ret) {
+        $message = sprintf("Cannot load composer's %s. Tried %s. Did you run 'composer install'?"
             , $file
-            , $filenameDep
-            , $filenameGit
+            , implode(', ', $paths)
         );
         throw new RuntimeException($message);
     }
 
-    return realpath($ret);
+    return $ret;
 
 });
 
-include_once $filenameAutoload;
+include $autoloadFilename;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
