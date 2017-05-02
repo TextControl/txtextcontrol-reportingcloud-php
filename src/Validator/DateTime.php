@@ -10,11 +10,12 @@
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
  * @copyright © 2017 Text Control GmbH
  */
+
 namespace TxTextControl\ReportingCloud\Validator;
 
 use DateTime as DateTimeClass;
 use DateTimeZone;
-use TxTextControl\ReportingCloud\Validator\TypeString as TypeStringValidator; // alias due to naming conflict with TxTextControl\ReportingCloud\Validator\DateTime
+use TxTextControl\ReportingCloud\Validator\TypeString as TypeStringValidator;
 
 /**
  * DateTime validator
@@ -102,7 +103,7 @@ class DateTime extends AbstractValidator
 
         return true;
     }
-    
+
     /**
      * Return the required length (in characters) of the date/time string
      *

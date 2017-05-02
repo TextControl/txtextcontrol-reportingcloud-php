@@ -10,11 +10,11 @@
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
  * @copyright © 2017 Text Control GmbH
  */
+
 namespace TxTextControl\ReportingCloud\Validator;
 
-use Zend\Validator\StaticValidator as StaticValidatorValidatorZend;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\PluginManagerTrait;
+use Zend\Validator\StaticValidator as StaticValidatorValidatorZend;
 
 /**
  * StaticValidator validator

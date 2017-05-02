@@ -10,7 +10,10 @@ class StaticValidatorTest extends PHPUnit_Framework_TestCase
 
     public function testExecuteValid()
     {
-        $this->assertTrue(StaticValidator::execute(123, 'TypeInteger', ['a' => 1, 'b' => 2]));
+        $this->assertTrue(StaticValidator::execute(123, 'TypeInteger', [
+            'a' => 1,
+            'b' => 2,
+        ]));
         $this->assertTrue(StaticValidator::execute(123, 'TypeInteger', []));
         $this->assertTrue(StaticValidator::execute(123, 'TypeInteger'));
     }
@@ -28,7 +31,11 @@ class StaticValidatorTest extends PHPUnit_Framework_TestCase
      */
     public function testExecuteInvalidOptions()
     {
-        StaticValidator::execute(123, 'TypeInteger', [1, 2, 3]);
+        StaticValidator::execute(123, 'TypeInteger', [
+            1,
+            2,
+            3,
+        ]);
     }
 
     /**

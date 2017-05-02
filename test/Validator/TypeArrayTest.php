@@ -16,8 +16,18 @@ class TypeArrayTest extends PHPUnit_Framework_TestCase
 
     public function testValid()
     {
-        $this->assertTrue($this->validator->isValid(['a' => 1, 'b' => 1, 'c' => 1, 'd' => 1]));
-        $this->assertTrue($this->validator->isValid([1,2,3,4]));
+        $this->assertTrue($this->validator->isValid([
+            'a' => 1,
+            'b' => 1,
+            'c' => 1,
+            'd' => 1,
+        ]));
+        $this->assertTrue($this->validator->isValid([
+            1,
+            2,
+            3,
+            4,
+        ]));
         $this->assertTrue($this->validator->isValid([]));
     }
 

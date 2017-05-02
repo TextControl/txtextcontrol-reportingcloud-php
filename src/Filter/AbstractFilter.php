@@ -10,11 +10,11 @@
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
  * @copyright © 2017 Text Control GmbH
  */
+
 namespace TxTextControl\ReportingCloud\Filter;
 
 use TxTextControl\ReportingCloud\ReportingCloud;
-
-use Zend\Filter\AbstractFilter  as ZendAbstractFilter;
+use Zend\Filter\AbstractFilter as ZendAbstractFilter;
 use Zend\Filter\FilterInterface as ZendFilterInterface;
 
 /**

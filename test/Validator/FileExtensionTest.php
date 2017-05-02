@@ -14,24 +14,24 @@ class FileExtensionTest extends PHPUnit_Framework_TestCase
         $this->validator = new Validator();
 
         $this->validator->setHaystack([
-            'DOC' ,
+            'DOC',
             'DOCX',
-            'RTF' ,
-            'TX'  ,
+            'RTF',
+            'TX',
         ]);
     }
 
     public function testConstructorOptions()
     {
         $haystack = [
-            'DOC' ,
+            'DOC',
             'DOCX',
-            'RTF' ,
-            'TX'  ,
+            'RTF',
+            'TX',
         ];
 
         $validator = new Validator([
-            'haystack' => $haystack
+            'haystack' => $haystack,
         ]);
 
         $this->assertSame($haystack, $validator->getHaystack());

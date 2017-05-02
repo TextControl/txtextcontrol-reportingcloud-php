@@ -28,11 +28,11 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
             'test'     => true,
         ]);
 
-        $this->assertSame('phpunit-username'       , $reportingCloud->getUsername());
-        $this->assertSame('phpunit-password'       , $reportingCloud->getPassword());
+        $this->assertSame('phpunit-username', $reportingCloud->getUsername());
+        $this->assertSame('phpunit-password', $reportingCloud->getPassword());
         $this->assertSame('https://api.example.com', $reportingCloud->getBaseUri());
-        $this->assertSame(100                      , $reportingCloud->getTimeout());
-        $this->assertSame('v1'                     , $reportingCloud->getVersion());
+        $this->assertSame(100, $reportingCloud->getTimeout());
+        $this->assertSame('v1', $reportingCloud->getVersion());
 
         $this->assertTrue($reportingCloud->getDebug());
         $this->assertTrue($reportingCloud->getTest());
@@ -44,17 +44,17 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $this->reportingCloud->setUsername('phpunit-username');
         $this->reportingCloud->setPassword('phpunit-password');
-        $this->reportingCloud->setBaseUri ('https://api.example.com');
-        $this->reportingCloud->setTimeout (100);
-        $this->reportingCloud->setVersion ('v1');
-        $this->reportingCloud->setDebug   (true);
-        $this->reportingCloud->setTest    (true);
+        $this->reportingCloud->setBaseUri('https://api.example.com');
+        $this->reportingCloud->setTimeout(100);
+        $this->reportingCloud->setVersion('v1');
+        $this->reportingCloud->setDebug(true);
+        $this->reportingCloud->setTest(true);
 
-        $this->assertSame('phpunit-username'       , $this->reportingCloud->getUsername());
-        $this->assertSame('phpunit-password'       , $this->reportingCloud->getPassword());
+        $this->assertSame('phpunit-username', $this->reportingCloud->getUsername());
+        $this->assertSame('phpunit-password', $this->reportingCloud->getPassword());
         $this->assertSame('https://api.example.com', $this->reportingCloud->getBaseUri());
-        $this->assertSame(100                      , $this->reportingCloud->getTimeout());
-        $this->assertSame('v1'                     , $this->reportingCloud->getVersion());
+        $this->assertSame(100, $this->reportingCloud->getTimeout());
+        $this->assertSame('v1', $this->reportingCloud->getVersion());
 
         $this->assertTrue($this->reportingCloud->getDebug());
         $this->assertTrue($this->reportingCloud->getTest());
@@ -71,8 +71,8 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertNull($this->reportingCloud->getPassword());
 
         $this->assertSame('https://api.reporting.cloud', $this->reportingCloud->getBaseUri());
-        $this->assertSame(120                          , $this->reportingCloud->getTimeout());
-        $this->assertSame('v1'                         , $this->reportingCloud->getVersion());
+        $this->assertSame(120, $this->reportingCloud->getTimeout());
+        $this->assertSame('v1', $this->reportingCloud->getVersion());
 
         $this->assertFalse($this->reportingCloud->getDebug());
     }

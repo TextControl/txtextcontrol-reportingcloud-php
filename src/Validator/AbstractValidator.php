@@ -10,11 +10,11 @@
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
  * @copyright © 2017 Text Control GmbH
  */
+
 namespace TxTextControl\ReportingCloud\Validator;
 
 use TxTextControl\ReportingCloud\ReportingCloud;
-
-use Zend\Validator\AbstractValidator  as ZendAbstractValidator;
+use Zend\Validator\AbstractValidator as ZendAbstractValidator;
 use Zend\Validator\ValidatorInterface as ZendValidatorInterface;
 
 /**

@@ -26,20 +26,18 @@ class TextInMergeDataIsInDocumentTest extends PHPUnit_Framework_TestCase
     {
         $fileTypes = [
             'TX',
-            'DOCX'
+            'DOCX',
         ];
 
         foreach ($fileTypes as $fileType) {
 
             $fileExtension = strtolower($fileType);
 
-            $templateFilename    = __DIR__ . DIRECTORY_SEPARATOR
-                                    . sprintf('template.%s', $fileExtension);
+            $templateFilename = __DIR__ . DIRECTORY_SEPARATOR . sprintf('template.%s', $fileExtension);
 
-            $destinationFilename = sys_get_temp_dir() . DIRECTORY_SEPARATOR
-                                    . sprintf('%s.pdf', hash('sha256', $fileExtension . microtime(true)));
+            $destinationFilename = sys_get_temp_dir() . DIRECTORY_SEPARATOR . sprintf('%s.pdf', hash('sha256', $fileExtension . microtime(true)));
 
-            $mergeDataFilename   = __DIR__ . DIRECTORY_SEPARATOR . 'merge_data.json';
+            $mergeDataFilename = __DIR__ . DIRECTORY_SEPARATOR . 'merge_data.json';
 
             $mergeData = json_decode(file_get_contents($mergeDataFilename));
 
@@ -55,8 +53,20 @@ class TextInMergeDataIsInDocumentTest extends PHPUnit_Framework_TestCase
             $pdf = $this->pdfParser->parseFile($destinationFilename);
 
             $expected = [
-                'OrJb', 'xeBl', 'mHaU', '9SzE', '4IQJ', 'SfGk', // row 1
-                '56fv', 'fklW', 'Ykva', 'HlLU', 'JGgT', '3jOS'  // row 2
+                'OrJb',
+                'xeBl',
+                'mHaU',
+                '9SzE',
+                '4IQJ',
+                'SfGk',
+                // row 1
+                '56fv',
+                'fklW',
+                'Ykva',
+                'HlLU',
+                'JGgT',
+                '3jOS'
+                // row 2
             ];
 
             foreach ($expected as $value) {
@@ -66,7 +76,6 @@ class TextInMergeDataIsInDocumentTest extends PHPUnit_Framework_TestCase
             unlink($destinationFilename);
 
             $this->assertFalse(is_file($destinationFilename));
-
         }
     }
 

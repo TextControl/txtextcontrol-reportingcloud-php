@@ -10,6 +10,7 @@
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
  * @copyright © 2017 Text Control GmbH
  */
+
 namespace TxTextControl\ReportingCloud\Filter;
 
 use TxTextControl\ReportingCloud\Validator\StaticValidator;

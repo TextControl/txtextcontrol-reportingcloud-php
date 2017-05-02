@@ -45,34 +45,34 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $response = $this->reportingCloud->getTemplateInfo($tempTemplateName);
 
-        $this->assertArrayHasKey('template_name'      , $response);
+        $this->assertArrayHasKey('template_name', $response);
 
-        $this->assertArrayHasKey('merge_blocks'       , $response);
+        $this->assertArrayHasKey('merge_blocks', $response);
 
-        $this->assertArrayHasKey(0                    , $response['merge_blocks']);
+        $this->assertArrayHasKey(0, $response['merge_blocks']);
 
-        $this->assertArrayHasKey('name'               , $response['merge_blocks'][0]);
-        $this->assertArrayHasKey('merge_fields'       , $response['merge_blocks'][0]);
+        $this->assertArrayHasKey('name', $response['merge_blocks'][0]);
+        $this->assertArrayHasKey('merge_fields', $response['merge_blocks'][0]);
 
-        $this->assertArrayHasKey(0                    , $response['merge_blocks'][0]['merge_fields']);
+        $this->assertArrayHasKey(0, $response['merge_blocks'][0]['merge_fields']);
 
-        $this->assertArrayHasKey('date_time_format'   , $response['merge_blocks'][0]['merge_fields'][0]);
-        $this->assertArrayHasKey('numeric_format'     , $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('date_time_format', $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('numeric_format', $response['merge_blocks'][0]['merge_fields'][0]);
         $this->assertArrayHasKey('preserve_formatting', $response['merge_blocks'][0]['merge_fields'][0]);
-        $this->assertArrayHasKey('text'               , $response['merge_blocks'][0]['merge_fields'][0]);
-        $this->assertArrayHasKey('text_after'         , $response['merge_blocks'][0]['merge_fields'][0]);
-        $this->assertArrayHasKey('text_before'        , $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('text', $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('text_after', $response['merge_blocks'][0]['merge_fields'][0]);
+        $this->assertArrayHasKey('text_before', $response['merge_blocks'][0]['merge_fields'][0]);
 
-        $this->assertArrayHasKey('merge_fields'       , $response);
+        $this->assertArrayHasKey('merge_fields', $response);
 
-        $this->assertArrayHasKey(0                    , $response['merge_fields']);
+        $this->assertArrayHasKey(0, $response['merge_fields']);
 
-        $this->assertArrayHasKey('date_time_format'   , $response['merge_fields'][0]);
-        $this->assertArrayHasKey('numeric_format'     , $response['merge_fields'][0]);
+        $this->assertArrayHasKey('date_time_format', $response['merge_fields'][0]);
+        $this->assertArrayHasKey('numeric_format', $response['merge_fields'][0]);
         $this->assertArrayHasKey('preserve_formatting', $response['merge_fields'][0]);
-        $this->assertArrayHasKey('text'               , $response['merge_fields'][0]);
-        $this->assertArrayHasKey('text_after'         , $response['merge_fields'][0]);
-        $this->assertArrayHasKey('text_before'        , $response['merge_fields'][0]);
+        $this->assertArrayHasKey('text', $response['merge_fields'][0]);
+        $this->assertArrayHasKey('text_after', $response['merge_fields'][0]);
+        $this->assertArrayHasKey('text_before', $response['merge_fields'][0]);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
@@ -282,12 +282,12 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey(0, $response);
 
         $this->assertArrayHasKey('template_name', $response[0]);
-        $this->assertArrayHasKey('modified'     , $response[0]);
-        $this->assertArrayHasKey('size'         , $response[0]);
+        $this->assertArrayHasKey('modified', $response[0]);
+        $this->assertArrayHasKey('size', $response[0]);
 
         $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $response[0]['template_name']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response[0]['modified']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response[0]['size']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response[0]['modified']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response[0]['size']);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
@@ -305,8 +305,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertInternalType(PHPUnit_IsType::TYPE_ARRAY, $fonts);
 
         $this->assertContains('Times New Roman', $fonts);
-        $this->assertContains('Arial'          , $fonts);
-        $this->assertContains('Courier New'    , $fonts);
+        $this->assertContains('Arial', $fonts);
+        $this->assertContains('Courier New', $fonts);
 
         $this->assertArrayHasKey(0, $fonts);
         $this->assertArrayHasKey(1, $fonts);
@@ -319,20 +319,19 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $response = $this->reportingCloud->getAccountSettings();
 
-        $this->assertArrayHasKey('serial_number'     , $response);
-        $this->assertArrayHasKey('created_documents' , $response);
+        $this->assertArrayHasKey('serial_number', $response);
+        $this->assertArrayHasKey('created_documents', $response);
         $this->assertArrayHasKey('uploaded_templates', $response);
-        $this->assertArrayHasKey('max_documents'     , $response);
-        $this->assertArrayHasKey('max_templates'     , $response);
-        $this->assertArrayHasKey('valid_until'       , $response);
+        $this->assertArrayHasKey('max_documents', $response);
+        $this->assertArrayHasKey('max_templates', $response);
+        $this->assertArrayHasKey('valid_until', $response);
 
         $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $response['serial_number']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['created_documents']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['uploaded_templates']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['max_documents']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['max_templates']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT   , $response['valid_until']);
-
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['created_documents']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['uploaded_templates']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['max_documents']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['max_templates']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['valid_until']);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -385,7 +384,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertFileExists($documentFilename);
 
-        $response = $this->reportingCloud->convertDocument($documentFilename, 'PDF');
+        $response       = $this->reportingCloud->convertDocument($documentFilename, 'PDF');
         $responseLength = mb_strlen($response);
 
         $this->assertNotNull($response);
@@ -486,8 +485,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testMergeDocumentInvalidMergeSettingsStringInsteadOfBoolean()
     {
-        $mergeData        = $this->getTestTemplateMergeData();
-        $mergeSettings    = $this->getTestMergeSettings();
+        $mergeData     = $this->getTestTemplateMergeData();
+        $mergeSettings = $this->getTestMergeSettings();
 
         $templateFilename = $this->getTestTemplateFilename();
 
@@ -505,8 +504,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
      */
     public function testMergeDocumentInvalidMergeSettingsTimestampValues()
     {
-        $mergeData        = $this->getTestTemplateMergeData();
-        $mergeSettings    = $this->getTestMergeSettings();
+        $mergeData     = $this->getTestTemplateMergeData();
+        $mergeSettings = $this->getTestMergeSettings();
 
         $templateFilename = $this->getTestTemplateFilename();
 
@@ -520,10 +519,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testMergeDocumentWithTemplateName()
     {
-        $returnFormats        = $this->getTestReturnFormats();
+        $returnFormats = $this->getTestReturnFormats();
 
-        $mergeData            = $this->getTestTemplateMergeData();
-        $mergeSettings        = $this->getTestMergeSettings();
+        $mergeData     = $this->getTestTemplateMergeData();
+        $mergeSettings = $this->getTestMergeSettings();
 
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -562,10 +561,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testMergeDocumentWithTemplateFilename()
     {
-        $returnFormats        = $this->getTestReturnFormats();
+        $returnFormats = $this->getTestReturnFormats();
 
-        $mergeData            = $this->getTestTemplateMergeData();
-        $mergeSettings        = $this->getTestMergeSettings();
+        $mergeData     = $this->getTestTemplateMergeData();
+        $mergeSettings = $this->getTestMergeSettings();
 
         $testTemplateFilename = $this->getTestTemplateFilename();
 
@@ -585,56 +584,6 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
             }
         }
     }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /*
-
-    public function testApiCallDoesCountAgainstQuota()
-    {
-        // get start created_document statistic
-        $accountSettings = $this->reportingCloud->getAccountSettings();
-        $this->assertArrayHasKey('created_documents', $accountSettings);
-        $startCreatedDocuments = $accountSettings['created_documents'];
-
-        // perform operation
-        $this->reportingCloud->mergeDocument($this->getTestTemplateMergeData(), 'PDF', null, $this->getTestTemplateFilename());
-
-        // get end created_document statistic
-        $accountSettings = $this->reportingCloud->getAccountSettings();
-        $this->assertArrayHasKey('created_documents', $accountSettings);
-        $endCreatedDocuments = $accountSettings['created_documents'];
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $startCreatedDocuments);
-        $this->assertGreaterThanOrEqual(1, $startCreatedDocuments);
-
-        // compare start and end statistics
-        $this->assertLessThan($endCreatedDocuments, $startCreatedDocuments);
-    }
-
-    public function testApiCallDoesNotCountAgainstQuota()
-    {
-        $this->reportingCloud->setTest(true);
-
-        // get start created_document statistic
-        $accountSettings = $this->reportingCloud->getAccountSettings();
-        $this->assertArrayHasKey('created_documents', $accountSettings);
-        $startCreatedDocuments = $accountSettings['created_documents'];
-
-        // perform operation
-        $this->reportingCloud->mergeDocument($this->getTestTemplateMergeData(), 'PDF', null, $this->getTestTemplateFilename());
-
-        // get end created_document statistic
-        $accountSettings = $this->reportingCloud->getAccountSettings();
-        $this->assertArrayHasKey('created_documents', $accountSettings);
-        $endCreatedDocuments = $accountSettings['created_documents'];
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $startCreatedDocuments);
-        $this->assertGreaterThanOrEqual(1, $startCreatedDocuments);
-
-        // compare start and end statistics
-        $this->assertSame($endCreatedDocuments, $startCreatedDocuments);
-    }
-
-    */
 
     // -----------------------------------------------------------------------------------------------------------------
 
@@ -719,7 +668,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();
 
-        $templateFilename   = $this->getTestTemplateFindAndReplaceFilename();
+        $templateFilename = $this->getTestTemplateFindAndReplaceFilename();
 
         $this->assertFileExists($templateFilename);
 
@@ -738,7 +687,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();
 
-        $templateFilename   = $this->getTestTemplateFindAndReplaceFilename();
+        $templateFilename = $this->getTestTemplateFindAndReplaceFilename();
 
         $this->assertFileExists($templateFilename);
 
@@ -750,10 +699,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testFindAndReplaceDocumentWithTemplateName()
     {
-        $returnFormats        = $this->getTestReturnFormats();
+        $returnFormats = $this->getTestReturnFormats();
 
-        $findAndReplaceData   = $this->getTestTemplateFindAndReplaceData();
-        $mergeSettings        = $this->getTestMergeSettings();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
+        $mergeSettings      = $this->getTestMergeSettings();
 
         $testTemplateFilename = $this->getTestTemplateFindAndReplaceFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -787,10 +736,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testFindAndReplaceDocumentWithTemplateFilename()
     {
-        $returnFormats        = $this->getTestReturnFormats();
+        $returnFormats = $this->getTestReturnFormats();
 
-        $findAndReplaceData   = $this->getTestTemplateFindAndReplaceData();
-        $mergeSettings        = $this->getTestMergeSettings();
+        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
+        $mergeSettings      = $this->getTestMergeSettings();
 
         $testTemplateFilename = $this->getTestTemplateFindAndReplaceFilename();
 
@@ -876,7 +825,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($response);
 
-        $response = $this->reportingCloud->downloadTemplate($tempTemplateName);
+        $response       = $this->reportingCloud->downloadTemplate($tempTemplateName);
         $responseLength = mb_strlen($response);
 
         $this->assertNotNull($response);
@@ -925,47 +874,39 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $ret = [
             [
-                'yourcompany_companyname'  => 'Text Control, LLC',
-                'yourcompany_zip'          => '28226',
-                'yourcompany_city'         => 'Charlotte',
-                'yourcompany_street'       => '6926 Shannon Willow Rd, Suite 400',
-                'yourcompany_phone'        => '704 544 7445',
-                'yourcompany_fax'          => '704-542-0936',
-                'yourcompany_url'          => 'www.textcontrol.com',
-                'yourcompany_email'        => 'sales@textcontrol.com',
-
-                'invoice_no'               => '778723',
-
-                'billto_name'              => 'Joey Montana',
-                'billto_companyname'       => 'Montana, LLC',
-                'billto_customerid'        => '123',
-                'billto_zip'               => '27878',
-                'billto_city'              => 'Charlotte',
-                'billto_street'            => '1 Washington Dr',
-                'billto_phone'             => '887 267 3356',
-
-                'payment_due'              => '20/1/2016',
-                'payment_terms'            => 'NET 30',
-
-                'salesperson_name'         => 'Mark Frontier',
-
-                'delivery_date'            => '20/1/2016',
-                'delivery_method'          => 'Ground',
-                'delivery_method_terms'    => 'NET 30',
-
-                'recipient_name'           => 'Joey Montana',
-                'recipient_companyname'    => 'Montana, LLC',
-                'recipient_zip'            => '27878',
-                'recipient_city'           => 'Charlotte',
-                'recipient_street'         => '1 Washington Dr',
-                'recipient_phone'          => '887 267 3356',
-
-                'total_discount'           => 532.60,
-                'total_sub'                => 7673.4,
-                'total_tax'                => 537.138,
-                'total'                    => 8210.538,
-
-                'item' => [
+                'yourcompany_companyname' => 'Text Control, LLC',
+                'yourcompany_zip'         => '28226',
+                'yourcompany_city'        => 'Charlotte',
+                'yourcompany_street'      => '6926 Shannon Willow Rd, Suite 400',
+                'yourcompany_phone'       => '704 544 7445',
+                'yourcompany_fax'         => '704-542-0936',
+                'yourcompany_url'         => 'www.textcontrol.com',
+                'yourcompany_email'       => 'sales@textcontrol.com',
+                'invoice_no'              => '778723',
+                'billto_name'             => 'Joey Montana',
+                'billto_companyname'      => 'Montana, LLC',
+                'billto_customerid'       => '123',
+                'billto_zip'              => '27878',
+                'billto_city'             => 'Charlotte',
+                'billto_street'           => '1 Washington Dr',
+                'billto_phone'            => '887 267 3356',
+                'payment_due'             => '20/1/2016',
+                'payment_terms'           => 'NET 30',
+                'salesperson_name'        => 'Mark Frontier',
+                'delivery_date'           => '20/1/2016',
+                'delivery_method'         => 'Ground',
+                'delivery_method_terms'   => 'NET 30',
+                'recipient_name'          => 'Joey Montana',
+                'recipient_companyname'   => 'Montana, LLC',
+                'recipient_zip'           => '27878',
+                'recipient_city'          => 'Charlotte',
+                'recipient_street'        => '1 Washington Dr',
+                'recipient_phone'         => '887 267 3356',
+                'total_discount'          => 532.60,
+                'total_sub'               => 7673.4,
+                'total_tax'               => 537.138,
+                'total'                   => 8210.538,
+                'item'                    => [
                     [
                         'qty'              => 1,
                         'item_no'          => 1,
@@ -996,24 +937,19 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         return $ret;
     }
 
-
     protected function getTestMergeSettings()
     {
         $ret = [
-
             'creation_date'              => time(),
             'last_modification_date'     => time(),
-
             'remove_empty_blocks'        => true,
             'remove_empty_fields'        => true,
             'remove_empty_images'        => true,
             'remove_trailing_whitespace' => true,
-
             'author'                     => 'James Henry Trotter',
             'creator_application'        => 'The Giant Peach',
             'document_subject'           => 'The Old Green Grasshopper',
             'document_title'             => 'James and the Giant Peach',
-
             'user_password'              => '123456789',
         ];
 
@@ -1026,7 +962,6 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         return $ret;
     }
-
 
     protected function getTempTemplateFilename()
     {
