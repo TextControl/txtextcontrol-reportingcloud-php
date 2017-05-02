@@ -110,19 +110,6 @@ $counter++;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-if (is_readable('../vendor/autoload.php')) {
-    $result = TEST_PASS;
-} else {
-    $result = TEST_FAIL;
-    $failed = true;
-}
-
-Helper::writeLnToc($counter, sprintf('Checking composer\'s "/vendor/autoload.php"', $version), $result);
-
-$counter++;
-
-// ---------------------------------------------------------------------------------------------------------------------
-
 $results = @file_get_contents(GEOIP_SERVICE_URI);
 
 if (false != $results) {
