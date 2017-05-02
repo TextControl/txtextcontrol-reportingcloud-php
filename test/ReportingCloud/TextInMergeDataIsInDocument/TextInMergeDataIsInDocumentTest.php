@@ -53,20 +53,20 @@ class TextInMergeDataIsInDocumentTest extends PHPUnit_Framework_TestCase
             $pdf = $this->pdfParser->parseFile($destinationFilename);
 
             $expected = [
+                // row 1
                 'OrJb',
                 'xeBl',
                 'mHaU',
                 '9SzE',
                 '4IQJ',
                 'SfGk',
-                // row 1
+                // row 2
                 '56fv',
                 'fklW',
                 'Ykva',
                 'HlLU',
                 'JGgT',
-                '3jOS'
-                // row 2
+                '3jOS',
             ];
 
             foreach ($expected as $value) {
