@@ -4,6 +4,9 @@
 
 ## dev-master
 
+## 1.3.2 - 2017-05-02
+
+* Unified autoloading for files in `bin`, `demo` and `test`.
 * Updated and added documentation.
 
 ## 1.3.1 - 2017-04-05
