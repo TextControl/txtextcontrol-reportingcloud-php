@@ -20,21 +20,18 @@ $findAndReplaceData = [
 ];
 
 $mergeSettings = [
-
-    'creation_date'          => time(),
-    'last_modification_date' => time(),
-
+    'author'                     => 'James Henry Trotter',
+    'creation_date'              => time(),
+    'creator_application'        => 'The Giant Peach',
+    'document_subject'           => 'The Old Green Grasshopper',
+    'document_title'             => 'James and the Giant Peach',
+    'last_modification_date'     => time(),
+    'merge_html'                 => false,
     'remove_empty_blocks'        => true,
     'remove_empty_fields'        => true,
     'remove_empty_images'        => true,
     'remove_trailing_whitespace' => true,
-
-    'author'              => 'James Henry Trotter',
-    'creator_application' => 'The Giant Peach',
-    'document_subject'    => 'The Old Green Grasshopper',
-    'document_title'      => 'James and the Giant Peach',
-
-    'user_password' => '1',
+    'user_password'              => '1',
 ];
 
 $binaryData = $reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, $sourceFilename, $mergeSettings);

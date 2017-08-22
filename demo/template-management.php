@@ -23,14 +23,10 @@ $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . DIRECTORY_SEPARATOR . 
 // Uploaded, if it is not
 
 if (!$reportingCloud->templateExists($templateName)) {
-
     var_dump("{$templateName} is not in template storage");
-
     if ($reportingCloud->uploadTemplate($sourceFilename)) {
-
         var_dump("Uploaded {$sourceFilename}");
     } else {
-
         var_dump("Error uploading {$sourceFilename}");
     }
 }
@@ -50,14 +46,10 @@ var_dump("{$templateName} contains {$pageCount} page(s)");
 $binaryData = $reportingCloud->downloadTemplate($templateName);
 
 if ($binaryData) {
-
     var_dump("{$templateName} was downloaded");
-
     file_put_contents($destinationFilename, $binaryData);
-
     var_dump("{$templateName} was written to {$destinationFilename}");
 } else {
-
     var_dump("Error downloading {$templateName}");
 }
 
@@ -90,10 +82,8 @@ foreach ($reportingCloud->getTemplateList() as $record) {
 // Delete a template in template storage
 
 if ($reportingCloud->deleteTemplate($templateName)) {
-
     var_dump("{$templateName} was deleted");
 } else {
-
     var_dump("Error deleting {$templateName}");
 }
 

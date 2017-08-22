@@ -14,7 +14,7 @@ $reportingCloud = new ReportingCloud([
 // ---------------------------------------------------------------------------------------------------------------------
 
 $mergeData = [
-    0 => [
+    [
         'yourcompany_companyname' => 'Text Control, LLC',
         'yourcompany_zip'         => '28226',
         'yourcompany_city'        => 'Charlotte',
@@ -44,7 +44,7 @@ $mergeData = [
         'recipient_street'        => '1 Washington Dr',
         'recipient_phone'         => '887 267 3356',
         'item'                    => [
-            0 => [
+            [
                 'qty'              => '1',
                 'item_no'          => '1',
                 'item_description' => 'Item description 1',
@@ -52,7 +52,7 @@ $mergeData = [
                 'item_discount'    => '20',
                 'item_total'       => '2130.40',
             ],
-            1 => [
+            [
                 'qty'              => '1',
                 'item_no'          => '2',
                 'item_description' => 'Item description 2',
@@ -110,21 +110,18 @@ var_dump($destinationFilename);
 // mergeSettings are set
 
 $mergeSettings = [
-
-    'creation_date'          => time(),
-    'last_modification_date' => time(),
-
+    'author'                     => 'James Henry Trotter',
+    'creation_date'              => time(),
+    'creator_application'        => 'The Giant Peach',
+    'document_subject'           => 'The Old Green Grasshopper',
+    'document_title'             => 'James and the Giant Peach',
+    'last_modification_date'     => time(),
+    'merge_html'                 => false,
     'remove_empty_blocks'        => true,
     'remove_empty_fields'        => true,
     'remove_empty_images'        => true,
     'remove_trailing_whitespace' => true,
-
-    'author'              => 'James Henry Trotter',
-    'creator_application' => 'The Giant Peach',
-    'document_subject'    => 'The Old Green Grasshopper',
-    'document_title'      => 'James and the Giant Peach',
-
-    'user_password' => '1',
+    'user_password'              => '1',
 ];
 
 $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
