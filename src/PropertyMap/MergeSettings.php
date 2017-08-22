@@ -33,6 +33,7 @@ class MergeSettings extends AbstractPropertyMap
             'documentSubject'          => 'document_subject',
             'documentTitle'            => 'document_title',
             'lastModificationDate'     => 'last_modification_date',
+            'mergeHtml'                => 'merge_html',
             'removeEmptyBlocks'        => 'remove_empty_blocks',
             'removeEmptyFields'        => 'remove_empty_fields',
             'removeEmptyImages'        => 'remove_empty_images',
