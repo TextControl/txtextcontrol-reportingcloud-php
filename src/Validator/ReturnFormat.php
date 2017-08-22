@@ -39,5 +39,4 @@ class ReturnFormat extends FileExtension
 
         parent::__construct($options);
     }
-
 }

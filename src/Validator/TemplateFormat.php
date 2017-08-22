@@ -37,5 +37,4 @@ class TemplateFormat extends FileExtension
 
         parent::__construct($options);
     }
-
 }

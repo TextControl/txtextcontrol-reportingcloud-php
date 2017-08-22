@@ -39,5 +39,4 @@ class DocumentExtension extends FileHasExtension
 
         parent::__construct($options);
     }
-
 }

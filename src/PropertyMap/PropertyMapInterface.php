@@ -27,7 +27,7 @@ interface PropertyMapInterface
      * @return array
      */
     public function getMap();
-    
+
     /**
      * Set the property map
      *

@@ -37,7 +37,7 @@ class DateTimeToTimestamp extends AbstractFilter
         StaticValidator::execute($dateTimeString, 'DateTime');
 
         $dateTimeZone = new DateTimeZone($this->getTimeZone());
-        $dateTime = DateTime::createFromFormat($this->getDateFormat(), $dateTimeString, $dateTimeZone);
+        $dateTime     = DateTime::createFromFormat($this->getDateFormat(), $dateTimeString, $dateTimeZone);
 
         return $dateTime->getTimestamp();
     }

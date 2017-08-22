@@ -25,7 +25,7 @@ class TemplateExtension extends FileHasExtension
 {
     /**
      * TemplateExtension constructor
-     * 
+     *
      * @param array $options
      */
     public function __construct(array $options = [])
@@ -36,5 +36,4 @@ class TemplateExtension extends FileHasExtension
 
         parent::__construct($options);
     }
-
 }

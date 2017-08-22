@@ -21,9 +21,8 @@ namespace TxTextControl\ReportingCloud\Validator;
  */
 class TypeString extends AbstractValidator
 {
-
     /**
-     * Invalid filename
+     * Invalid type
      *
      * @const INVALID_TYPE
      */
@@ -51,10 +50,10 @@ class TypeString extends AbstractValidator
 
         if (!is_string($value)) {
             $this->error(self::INVALID_TYPE);
+
             return false;
         }
 
         return true;
     }
-
 }

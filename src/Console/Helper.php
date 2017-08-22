@@ -40,6 +40,7 @@ class Helper
      */
     const PASSWORD = 'REPORTING_CLOUD_PASSWORD';
 
+
     /**
      * Return error message explaining how to configure PHP constant or environmental variables
      *
@@ -157,9 +158,9 @@ END;
      *
      * n: XXX YYY ZZZ....ZZZ
      *
-     * @param integer $counter    Counter
-     * @param string  $testString Test string
-     * @param string  $testResult Test result
+     * @param integer $counter Counter
+     * @param string $testString Test string
+     * @param string $testResult Test result
      */
     public static function writeLnToc($counter, $testString, $testResult)
     {
@@ -170,5 +171,4 @@ END;
 
         printf('%s%s%s%s', $counter, $testString, $testResult, PHP_EOL);
     }
-
 }

@@ -31,21 +31,18 @@ class DateTime extends AbstractValidator
      * @const INVALID_TYPE
      */
     const INVALID_TYPE = 'invalidType';
-
     /**
      * Invalid length
      *
      * @const INVALID_LENGTH
      */
     const INVALID_LENGTH = 'invalidLength';
-
     /**
      * Invalid syntax
      *
      * @const INVALID_SYNTAX
      */
     const INVALID_SYNTAX = 'invalidSyntax';
-
     /**
      * Invalid offset
      *
@@ -79,11 +76,13 @@ class DateTime extends AbstractValidator
         $typeStringValidator = new TypeStringValidator();
         if (!$typeStringValidator->isValid($value)) {
             $this->error(self::INVALID_TYPE);
+
             return false;
         }
 
         if ($this->getRequiredLength() !== strlen($value)) {
             $this->error(self::INVALID_LENGTH);
+
             return false;
         }
 
@@ -93,11 +92,13 @@ class DateTime extends AbstractValidator
 
         if (false === $dateTime) {
             $this->error(self::INVALID_SYNTAX);
+
             return false;
         }
 
         if (0 !== $dateTime->getOffset()) {
             $this->error(self::INVALID_OFFSET);
+
             return false;
         }
 

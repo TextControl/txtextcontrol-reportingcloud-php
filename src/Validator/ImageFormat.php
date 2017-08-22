@@ -37,5 +37,4 @@ class ImageFormat extends FileExtension
 
         parent::__construct($options);
     }
-
 }

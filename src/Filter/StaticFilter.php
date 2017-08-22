@@ -29,9 +29,9 @@ class StaticFilter extends StaticFilterFilterZend
      * @var array
      */
     static protected $invokableClasses = [
-                        BooleanToString::class,
-                        DateTimeToTimestamp::class,
-                        TimestampToDateTime::class,
+        BooleanToString::class,
+        DateTimeToTimestamp::class,
+        TimestampToDateTime::class,
     ];
 
     /**

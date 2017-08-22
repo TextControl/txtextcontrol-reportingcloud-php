@@ -66,6 +66,7 @@ class FileExtension extends AbstractValidator
 
         if (!$inArrayValidator->isValid($value)) {
             $this->error(self::UNSUPPORTED_EXTENSION);
+
             return false;
         }
 
@@ -95,5 +96,4 @@ class FileExtension extends AbstractValidator
 
         return $this;
     }
-
 }

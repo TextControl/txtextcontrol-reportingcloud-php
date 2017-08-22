@@ -76,32 +76,35 @@ class TemplateName extends AbstractValidator
 
         if (basename($value) != $value) {
             $this->error(self::INVALID_PATH);
+
             return false;
         }
 
-        $basename  = pathinfo($value, PATHINFO_BASENAME);
-        $basename  = trim($basename);
+        $basename = pathinfo($value, PATHINFO_BASENAME);
+        $basename = trim($basename);
 
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = trim($extension);
 
         if (0 === strlen($basename) || $basename == ".{$extension}") {
             $this->error(self::INVALID_BASENAME);
+
             return false;
         }
 
         if (0 === strlen($extension)) {
             $this->error(self::INVALID_EXTENSION);
+
             return false;
         }
 
         $templateFormatValidator = new TemplateFormatValidator();
         if (!$templateFormatValidator->isValid($extension)) {
             $this->error(self::UNSUPPORTED_EXTENSION);
+
             return false;
         }
 
         return true;
     }
-
 }

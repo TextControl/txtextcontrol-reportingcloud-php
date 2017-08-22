@@ -4,6 +4,11 @@
 
 ## dev-master
 
+## 1.3.4 - 2017-08-22
+
+* Implemented the `mergeSettings` option `merge_html`.
+* Minor updates to DocBlock documentation.
+
 ## 1.3.3 - 2017-05-02
 
 * Simplification of auto-loading for files in `bin`, `demo` and `test`.  

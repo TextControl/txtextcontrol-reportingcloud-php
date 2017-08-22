@@ -53,10 +53,10 @@ class FileExists extends AbstractValidator
         $fileExistsValidator = new FileExistsValidator();
         if (!$fileExistsValidator->isValid($value)) {
             $this->error(self::INVALID_FILENAME);
+
             return false;
         }
 
         return true;
     }
-
 }

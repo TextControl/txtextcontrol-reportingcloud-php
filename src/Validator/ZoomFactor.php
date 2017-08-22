@@ -77,6 +77,7 @@ class ZoomFactor extends AbstractValidator
 
         if (!$typeIntegerValidator($value)) {
             $this->error(self::INVALID_TYPE);
+
             return false;
         }
 
@@ -88,6 +89,7 @@ class ZoomFactor extends AbstractValidator
 
         if (!$betweenValidator->isValid($value)) {
             $this->error(self::INVALID_INTEGER);
+
             return false;
         }
 

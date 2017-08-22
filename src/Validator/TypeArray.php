@@ -21,9 +21,8 @@ namespace TxTextControl\ReportingCloud\Validator;
  */
 class TypeArray extends AbstractValidator
 {
-
     /**
-     * Invalid filename
+     * Invalid type
      *
      * @const INVALID_TYPE
      */
@@ -51,10 +50,10 @@ class TypeArray extends AbstractValidator
 
         if (!is_array($value)) {
             $this->error(self::INVALID_TYPE);
+
             return false;
         }
 
         return true;
     }
-
 }

@@ -30,14 +30,12 @@ class Page extends AbstractValidator
      * @const MIN
      */
     const MIN = 1;
-
     /**
      * Invalid type
      *
      * @const INVALID_TYPE
      */
     const INVALID_TYPE = 'invalidType';
-    
     /**
      * Invalid page
      *
@@ -70,6 +68,7 @@ class Page extends AbstractValidator
 
         if (!$typeIntegerValidator->isValid($value)) {
             $this->error(self::INVALID_TYPE);
+
             return false;
         }
 
@@ -80,10 +79,10 @@ class Page extends AbstractValidator
 
         if (!$greaterThanValidator->isValid($value)) {
             $this->error(self::INVALID_INTEGER);
+
             return false;
         }
 
         return true;
     }
-
 }

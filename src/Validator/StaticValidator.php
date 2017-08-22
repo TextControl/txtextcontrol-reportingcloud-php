@@ -30,51 +30,31 @@ class StaticValidator extends StaticValidatorValidatorZend
      * @var array
      */
     static protected $invokableClasses = [
-                        DateTime::class,
-                        DocumentExtension::class,
-                        FileExists::class,
-                        FileExtension::class,
-                        FileHasExtension::class,
-                        ImageFormat::class,
-                        Page::class,
-                        ReturnFormat::class,
-                        TemplateExtension::class,
-                        TemplateFormat::class,
-                        TemplateName::class,
-                        Timestamp::class,
-                        TypeArray::class,
-                        TypeBoolean::class,
-                        TypeInteger::class,
-                        TypeString::class,
-                        ZoomFactor::class,
+        DateTime::class,
+        DocumentExtension::class,
+        FileExists::class,
+        FileExtension::class,
+        FileHasExtension::class,
+        ImageFormat::class,
+        Page::class,
+        ReturnFormat::class,
+        TemplateExtension::class,
+        TemplateFormat::class,
+        TemplateName::class,
+        Timestamp::class,
+        TypeArray::class,
+        TypeBoolean::class,
+        TypeInteger::class,
+        TypeString::class,
+        ZoomFactor::class,
     ];
-
-    /**
-     * Get plugin manager for loading validator classes, adding ReportingCloud Validator classes
-     *
-     * @return \Zend\Validator\ValidatorPluginManager
-     */
-    public static function getPluginManager()
-    {
-        $pluginManager = parent::getPluginManager();
-
-        foreach (self::$invokableClasses as $invokableClass) {
-
-            $segments = explode('\\', $invokableClass);
-            $name     = array_pop($segments);
-
-            $pluginManager->setInvokableClass($name, $invokableClass);
-        }
-
-        return $pluginManager;
-    }
 
     /**
      * Statically call a Validator and throw exception on failure
      *
-     * @param mixed  $value     Value
+     * @param mixed $value Value
      * @param string $className Class name
-     * @param array  $options   Options
+     * @param array $options Options
      *
      * @return bool
      *
@@ -83,9 +63,7 @@ class StaticValidator extends StaticValidatorValidatorZend
     public static function execute($value, $className, array $options = [])
     {
         if (count($options) > 0 && array_values($options) === $options) {
-            throw new InvalidArgumentException(
-                'Invalid options provided via $options argument; must be an associative array'
-            );
+            throw new InvalidArgumentException('Invalid options provided via $options argument; must be an associative array');
         }
 
         $pluginManager = static::getPluginManager();
@@ -106,4 +84,23 @@ class StaticValidator extends StaticValidatorValidatorZend
         return $ret;
     }
 
+    /**
+     * Get plugin manager for loading validator classes, adding ReportingCloud Validator classes
+     *
+     * @return \Zend\Validator\ValidatorPluginManager
+     */
+    public static function getPluginManager()
+    {
+        $pluginManager = parent::getPluginManager();
+
+        foreach (self::$invokableClasses as $invokableClass) {
+
+            $segments = explode('\\', $invokableClass);
+            $name     = array_pop($segments);
+
+            $pluginManager->setInvokableClass($name, $invokableClass);
+        }
+
+        return $pluginManager;
+    }
 }

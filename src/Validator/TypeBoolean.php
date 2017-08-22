@@ -21,9 +21,8 @@ namespace TxTextControl\ReportingCloud\Validator;
  */
 class TypeBoolean extends AbstractValidator
 {
-
     /**
-     * Invalid filename
+     * Invalid type
      *
      * @const INVALID_TYPE
      */
@@ -51,10 +50,10 @@ class TypeBoolean extends AbstractValidator
 
         if (!is_bool($value)) {
             $this->error(self::INVALID_TYPE);
+
             return false;
         }
 
         return true;
     }
-
 }

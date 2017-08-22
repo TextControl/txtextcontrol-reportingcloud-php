@@ -36,5 +36,4 @@ class FileHasExtension extends FileExtension
 
         return parent::isValid($extension);
     }
-
 }

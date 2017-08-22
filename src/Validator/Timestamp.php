@@ -40,7 +40,7 @@ class Timestamp extends AbstractValidator
 
     /**
      * Message templates
-     * 
+     *
      * @var array
      */
     protected $messageTemplates = [
@@ -63,17 +63,19 @@ class Timestamp extends AbstractValidator
 
         if (!$typeIntegerValidator->isValid($value)) {
             $this->error(self::INVALID_TYPE);
+
             return false;
         }
 
         $betweenValidator = new BetweenValidator([
-                'min'       => 0,
-                'max'       => PHP_INT_MAX,
-                'inclusive' => true
+            'min'       => 0,
+            'max'       => PHP_INT_MAX,
+            'inclusive' => true,
         ]);
 
         if (!$betweenValidator->isValid($value)) {
             $this->error(self::INVALID_RANGE);
+
             return false;
         }
 
