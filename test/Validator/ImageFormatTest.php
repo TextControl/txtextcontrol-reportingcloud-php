@@ -28,5 +28,4 @@ class ImageFormatTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->validator->isValid('DOC'));
         $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
     }
-
 }

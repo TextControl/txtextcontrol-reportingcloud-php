@@ -8,6 +8,7 @@
 
 * Implemented the `mergeSettings` option `merge_html`.
 * Minor updates to DocBlock documentation.
+* Improved code formatting quality.
 
 ## 1.3.3 - 2017-05-02
 

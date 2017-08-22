@@ -28,5 +28,4 @@ class ReturnFormatTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->validator->isValid('TIF'));
         $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
     }
-
 }

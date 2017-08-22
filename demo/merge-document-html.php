@@ -5,7 +5,7 @@ include_once 'bootstrap.php';
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
-$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_template.docx';
+$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.docx';
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_template_html_merged.pdf';
 
 $reportingCloud = new ReportingCloud([
@@ -16,6 +16,7 @@ $reportingCloud = new ReportingCloud([
 
 // mergeFields containing HTML must be contained in an <html /> tag.
 // Additionally, merge_html must be set to true in the merge settings array
+// See: http://www.textcontrol.com/en_US/blog/archive/20170821/
 
 $mergeData = [
     'name' => '<html><i>Jemima</i> <strong>Puddle-Duck</strong></html>',

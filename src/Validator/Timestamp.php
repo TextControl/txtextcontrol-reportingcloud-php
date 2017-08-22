@@ -30,7 +30,6 @@ class Timestamp extends AbstractValidator
      * @const INVALID_TYPE
      */
     const INVALID_TYPE = 'invalidType';
-
     /**
      * Invalid range
      *

@@ -44,5 +44,4 @@ class DateTimeToTimestampTest extends PHPUnit_Framework_TestCase
     {
         $this->filter->filter('invalid');
     }
-
 }

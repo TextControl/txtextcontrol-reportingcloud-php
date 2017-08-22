@@ -12,7 +12,7 @@ $reportingCloud = new ReportingCloud([
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$templateName   = 'test_template.tx';
+$templateName = 'test_template.tx';
 
 $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . $templateName;
 

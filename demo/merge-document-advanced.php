@@ -16,55 +16,55 @@ $reportingCloud = new ReportingCloud([
 $mergeData = [
     0 => [
         'yourcompany_companyname' => 'Text Control, LLC',
-        'yourcompany_zip' => '28226',
-        'yourcompany_city' => 'Charlotte',
-        'yourcompany_street' => '6926 Shannon Willow Rd, Suite 400',
-        'yourcompany_phone' => '704 544 7445',
-        'yourcompany_fax' => '704-542-0936',
-        'yourcompany_url' => 'www.textcontrol.com',
-        'yourcompany_email' => 'sales@textcontrol.com',
-        'invoice_no' => '778723',
-        'billto_name' => 'Joey Montana',
-        'billto_companyname' => 'Montana, LLC',
-        'billto_customerid' => '123',
-        'billto_zip' => '27878',
-        'billto_city' => 'Charlotte',
-        'billto_street' => '1 Washington Dr',
-        'billto_phone' => '887 267 3356',
-        'payment_due' => '20/1/2016',
-        'payment_terms' => 'NET 30',
-        'salesperson_name' => 'Mark Frontier',
-        'delivery_date' => '20/1/2016',
-        'delivery_method' => 'Ground',
-        'delivery_method_terms' => 'NET 30',
-        'recipient_name' => 'Joey Montana',
-        'recipient_companyname' => 'Montana, LLC',
-        'recipient_zip' => '27878',
-        'recipient_city' => 'Charlotte',
-        'recipient_street' => '1 Washington Dr',
-        'recipient_phone' => '887 267 3356',
-        'item' => [
+        'yourcompany_zip'         => '28226',
+        'yourcompany_city'        => 'Charlotte',
+        'yourcompany_street'      => '6926 Shannon Willow Rd, Suite 400',
+        'yourcompany_phone'       => '704 544 7445',
+        'yourcompany_fax'         => '704-542-0936',
+        'yourcompany_url'         => 'www.textcontrol.com',
+        'yourcompany_email'       => 'sales@textcontrol.com',
+        'invoice_no'              => '778723',
+        'billto_name'             => 'Joey Montana',
+        'billto_companyname'      => 'Montana, LLC',
+        'billto_customerid'       => '123',
+        'billto_zip'              => '27878',
+        'billto_city'             => 'Charlotte',
+        'billto_street'           => '1 Washington Dr',
+        'billto_phone'            => '887 267 3356',
+        'payment_due'             => '20/1/2016',
+        'payment_terms'           => 'NET 30',
+        'salesperson_name'        => 'Mark Frontier',
+        'delivery_date'           => '20/1/2016',
+        'delivery_method'         => 'Ground',
+        'delivery_method_terms'   => 'NET 30',
+        'recipient_name'          => 'Joey Montana',
+        'recipient_companyname'   => 'Montana, LLC',
+        'recipient_zip'           => '27878',
+        'recipient_city'          => 'Charlotte',
+        'recipient_street'        => '1 Washington Dr',
+        'recipient_phone'         => '887 267 3356',
+        'item'                    => [
             0 => [
-                'qty' => '1',
-                'item_no' => '1',
+                'qty'              => '1',
+                'item_no'          => '1',
                 'item_description' => 'Item description 1',
-                'item_unitprice' => '2663',
-                'item_discount' => '20',
-                'item_total' => '2130.40',
+                'item_unitprice'   => '2663',
+                'item_discount'    => '20',
+                'item_total'       => '2130.40',
             ],
             1 => [
-                'qty' => '1',
-                'item_no' => '2',
+                'qty'              => '1',
+                'item_no'          => '2',
                 'item_description' => 'Item description 2',
-                'item_unitprice' => '5543',
-                'item_discount' => '0',
-                'item_total' => '5543',
+                'item_unitprice'   => '5543',
+                'item_discount'    => '0',
+                'item_total'       => '5543',
             ],
         ],
-        'total_discount' => '532.60',
-        'total_sub' => '7673.4',
-        'total_tax' => '537.138',
-        'total' => '8210.538',
+        'total_discount'          => '532.60',
+        'total_sub'               => '7673.4',
+        'total_tax'               => '537.138',
+        'total'                   => '8210.538',
     ],
 ];
 
@@ -82,7 +82,7 @@ $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename);
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_merged_local.pdf';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_local.pdf';
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
@@ -98,7 +98,7 @@ $reportingCloud->uploadTemplate($sourceFilename);
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', 'test_template.tx');
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_merged_remote.pdf';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_remote.pdf';
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
@@ -111,20 +111,20 @@ var_dump($destinationFilename);
 
 $mergeSettings = [
 
-    'creation_date'              => time(),
-    'last_modification_date'     => time(),
+    'creation_date'          => time(),
+    'last_modification_date' => time(),
 
     'remove_empty_blocks'        => true,
     'remove_empty_fields'        => true,
     'remove_empty_images'        => true,
     'remove_trailing_whitespace' => true,
 
-    'author'                     => 'James Henry Trotter',
-    'creator_application'        => 'The Giant Peach',
-    'document_subject'           => 'The Old Green Grasshopper',
-    'document_title'             => 'James and the Giant Peach',
+    'author'              => 'James Henry Trotter',
+    'creator_application' => 'The Giant Peach',
+    'document_subject'    => 'The Old Green Grasshopper',
+    'document_title'      => 'James and the Giant Peach',
 
-    'user_password'              => '1',
+    'user_password' => '1',
 ];
 
 $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
@@ -133,7 +133,7 @@ $reportingCloud->uploadTemplate($sourceFilename);
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', 'test_template.tx', null, true, $mergeSettings);
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH   . '/sample_invoice_merged_remote_merge_settings.pdf';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_remote_merge_settings.pdf';
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 

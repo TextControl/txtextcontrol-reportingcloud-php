@@ -29,21 +29,18 @@ class TemplateName extends AbstractValidator
      * @const INVALID_PATH
      */
     const INVALID_PATH = 'invalidPath';
-
     /**
      * Invalid extension
      *
      * @const INVALID_EXTENSION
      */
     const INVALID_EXTENSION = 'invalidExtension';
-
     /**
      * Invalid basename
      *
      * @const INVALID_BASENAME
      */
     const INVALID_BASENAME = 'invalidBasename';
-
     /**
      * Unsupported FileExtension
      *

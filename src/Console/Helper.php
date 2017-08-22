@@ -25,14 +25,12 @@ class Helper
      * Line length in characters (used to wrap long lines)
      */
     const LINE_LENGTH = 80;
-
     /**
      * Name of username PHP constant or environmental variables
      *
      * @const REPORTING_CLOUD_USERNAME
      */
     const USERNAME = 'REPORTING_CLOUD_USERNAME';
-
     /**
      * Name of password PHP constant or environmental variables
      *
@@ -40,6 +38,69 @@ class Helper
      */
     const PASSWORD = 'REPORTING_CLOUD_PASSWORD';
 
+    /**
+     * Check ReportingCloud credentials, which have been defined in environment variables, otherwise terminate script
+     * execution with error code 1
+     */
+    public static function checkCredentials()
+    {
+        if (null === self::username() || null === self::password()) {
+            echo self::errorMessage();
+            die(1);
+        }
+
+        return true;
+    }
+
+    /**
+     * Return the ReportingCloud username
+     *
+     * @return null|string
+     */
+    public static function username()
+    {
+        $username = self::variable(self::USERNAME);
+
+        return $username;
+    }
+
+    /**
+     * Return the value of the PHP constant or environmental variable
+     *
+     * @param string $variable Variable
+     *
+     * @return null|string
+     */
+    protected static function variable($variable)
+    {
+        $ret = null;
+
+        if (defined($variable)) {
+            $value = constant($variable);
+        } else {
+            $value = getenv($variable);
+        }
+
+        $value = trim($value);
+
+        if (strlen($value) > 0) {
+            $ret = $value;
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Return the ReportingCloud password
+     *
+     * @return null|string
+     */
+    public static function password()
+    {
+        $password = self::variable(self::PASSWORD);
+
+        return $password;
+    }
 
     /**
      * Return error message explaining how to configure PHP constant or environmental variables
@@ -76,70 +137,6 @@ For further assistance and customer service please refer to:
 END;
 
         return wordwrap($ret, 80);
-    }
-
-    /**
-     * Return the ReportingCloud username
-     *
-     * @return null|string
-     */
-    public static function username()
-    {
-        $username = self::variable(self::USERNAME);
-
-        return $username;
-    }
-
-    /**
-     * Return the ReportingCloud password
-     *
-     * @return null|string
-     */
-    public static function password()
-    {
-        $password = self::variable(self::PASSWORD);
-
-        return $password;
-    }
-
-    /**
-     * Check ReportingCloud credentials, which have been defined in environment variables, otherwise terminate script
-     * execution with error code 1
-     */
-    public static function checkCredentials()
-    {
-        if (null === self::username() || null === self::password()) {
-            echo self::errorMessage();
-            die(1);
-        }
-
-        return true;
-    }
-
-    /**
-     * Return the value of the PHP constant or environmental variable
-     *
-     * @param string $variable Variable
-     *
-     * @return null|string
-     */
-    protected static function variable($variable)
-    {
-        $ret = null;
-
-        if (defined($variable)) {
-            $value = constant($variable);
-        } else {
-            $value = getenv($variable);
-        }
-
-        $value = trim($value);
-
-        if (strlen($value) > 0) {
-            $ret = $value;
-        }
-
-        return $ret;
     }
 
     /**

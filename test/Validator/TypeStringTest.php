@@ -45,5 +45,4 @@ class TypeStringTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->validator->isValid(null));
         $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
     }
-
 }

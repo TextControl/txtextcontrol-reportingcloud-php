@@ -46,5 +46,4 @@ class TimestampTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($this->validator->isValid(-1));
         $this->assertArrayHasKey('invalidRange', $this->validator->getMessages());
     }
-
 }

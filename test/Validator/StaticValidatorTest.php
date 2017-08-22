@@ -7,7 +7,6 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 class StaticValidatorTest extends PHPUnit_Framework_TestCase
 {
-
     public function testExecuteValid()
     {
         $this->assertTrue(StaticValidator::execute(123, 'TypeInteger', [
@@ -45,5 +44,4 @@ class StaticValidatorTest extends PHPUnit_Framework_TestCase
     {
         StaticValidator::execute('invalid', 'TypeInteger');
     }
-
 }

@@ -30,7 +30,6 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
  */
 class ReportingCloud extends AbstractReportingCloud
 {
-
     /**
      * GET methods
      * =================================================================================================================
@@ -39,7 +38,7 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * Return an array of merge blocks and merge fields in a template file in template storage.
      *
-     * @param string  $templateName Template name
+     * @param string $templateName Template name
      *
      * @throws InvalidArgumentException
      *
@@ -67,14 +66,39 @@ class ReportingCloud extends AbstractReportingCloud
     }
 
     /**
+     * Execute a GET request via REST client
+     *
+     * @param string $uri URI
+     * @param array $query Query
+     *
+     * @return mixed|null
+     */
+    protected function get($uri, $query = [])
+    {
+        $ret = null;
+
+        $options = [
+            RequestOptions::QUERY => $query,
+        ];
+
+        $response = $this->request('GET', $this->uri($uri), $options);
+
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $ret = json_decode($response->getBody(), true);
+        }
+
+        return $ret;
+    }
+
+    /**
      * Return an array of binary data.
      * Each record in the array is the binary data of a thumbnail image
      *
-     * @param string  $templateName Template name
-     * @param integer $zoomFactor   Zoom factor
-     * @param integer $fromPage     From page
-     * @param integer $toPage       To page
-     * @param string  $imageFormat  Image format
+     * @param string $templateName Template name
+     * @param integer $zoomFactor Zoom factor
+     * @param integer $fromPage From page
+     * @param integer $toPage To page
+     * @param string $imageFormat Image format
      *
      * @throws InvalidArgumentException
      *
@@ -85,10 +109,10 @@ class ReportingCloud extends AbstractReportingCloud
         $ret = null;
 
         StaticValidator::execute($templateName, 'TemplateName');
-        StaticValidator::execute($zoomFactor  , 'ZoomFactor');
-        StaticValidator::execute($fromPage    , 'Page');
-        StaticValidator::execute($toPage      , 'Page');
-        StaticValidator::execute($imageFormat , 'ImageFormat');
+        StaticValidator::execute($zoomFactor, 'ZoomFactor');
+        StaticValidator::execute($fromPage, 'Page');
+        StaticValidator::execute($toPage, 'Page');
+        StaticValidator::execute($imageFormat, 'ImageFormat');
 
         $query = [
             'templateName' => $templateName,
@@ -253,31 +277,6 @@ class ReportingCloud extends AbstractReportingCloud
         return $ret;
     }
 
-    /**
-     * Execute a GET request via REST client
-     *
-     * @param string $uri   URI
-     * @param array  $query Query
-     *
-     * @return mixed|null
-     */
-    protected function get($uri, $query = [])
-    {
-        $ret = null;
-
-        $options = [
-            RequestOptions::QUERY => $query,
-        ];
-
-        $response = $this->request('GET', $this->uri($uri), $options);
-
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret  = json_decode($response->getBody(), true);
-        }
-
-        return $ret;
-    }
-
 
     /**
      * POST methods
@@ -328,7 +327,7 @@ class ReportingCloud extends AbstractReportingCloud
      * Convert a document on the local file system to a different format
      *
      * @param string $documentFilename Document filename
-     * @param string $returnFormat     Return format
+     * @param string $returnFormat Return format
      *
      * @throws InvalidArgumentException
      *
@@ -340,7 +339,7 @@ class ReportingCloud extends AbstractReportingCloud
 
         StaticValidator::execute($documentFilename, 'DocumentExtension');
         StaticValidator::execute($documentFilename, 'FileExists');
-        StaticValidator::execute($returnFormat    , 'ReturnFormat');
+        StaticValidator::execute($returnFormat, 'ReturnFormat');
 
         $query = [
             'returnFormat' => $returnFormat,
@@ -359,7 +358,7 @@ class ReportingCloud extends AbstractReportingCloud
         $response = $this->request('POST', $this->uri('/document/convert'), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret  = base64_decode($response->getBody());
+            $ret = base64_decode($response->getBody());
         }
 
         return $ret;
@@ -369,23 +368,22 @@ class ReportingCloud extends AbstractReportingCloud
      * Merge data into a template and return an array of binary data.
      * Each record in the array is the binary data of one document
      *
-     * @param array   $mergeData        Array of merge data
-     * @param string  $returnFormat     Return format
-     * @param string  $templateName     Template name
-     * @param string  $templateFilename Template filename on local file system
-     * @param boolean $append           Append flag
-     * @param array   $mergeSettings    Array of merge settings
+     * @param array $mergeData Array of merge data
+     * @param string $returnFormat Return format
+     * @param string $templateName Template name
+     * @param string $templateFilename Template filename on local file system
+     * @param boolean $append Append flag
+     * @param array $mergeSettings Array of merge settings
      *
      * @throws InvalidArgumentException
      *
      * @return null|string
      */
-    public function mergeDocument($mergeData, $returnFormat, $templateName = null, $templateFilename = null,
-                                    $append = null, $mergeSettings = [])
+    public function mergeDocument($mergeData, $returnFormat, $templateName = null, $templateFilename = null, $append = null, $mergeSettings = [])
     {
         $ret = null;
 
-        StaticValidator::execute($mergeData   , 'TypeArray');
+        StaticValidator::execute($mergeData, 'TypeArray');
         StaticValidator::execute($returnFormat, 'ReturnFormat');
 
         if (null !== $templateName) {
@@ -418,8 +416,8 @@ class ReportingCloud extends AbstractReportingCloud
         ];
 
         if (null !== $templateFilename) {
-            $template = file_get_contents($templateFilename);
-            $template = base64_encode($template);
+            $template         = file_get_contents($templateFilename);
+            $template         = base64_encode($template);
             $json['template'] = $template;
         }
 
@@ -447,23 +445,22 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * Perform find and replace in document and return binary data.
      *
-     * @param array  $findAndReplaceData Array of find and replace data
-     * @param string $returnFormat       Return format
-     * @param string $templateName       Template name
-     * @param string $templateFilename   Template filename on local file system
-     * @param array  $mergeSettings      Array of merge settings
+     * @param array $findAndReplaceData Array of find and replace data
+     * @param string $returnFormat Return format
+     * @param string $templateName Template name
+     * @param string $templateFilename Template filename on local file system
+     * @param array $mergeSettings Array of merge settings
      *
      * @throws InvalidArgumentException
      *
      * @return null|string
      */
-    public function findAndReplaceDocument($findAndReplaceData, $returnFormat, $templateName = null,
-                                           $templateFilename = null, $mergeSettings = [])
+    public function findAndReplaceDocument($findAndReplaceData, $returnFormat, $templateName = null, $templateFilename = null, $mergeSettings = [])
     {
         $ret = null;
 
         StaticValidator::execute($findAndReplaceData, 'TypeArray');
-        StaticValidator::execute($returnFormat      , 'ReturnFormat');
+        StaticValidator::execute($returnFormat, 'ReturnFormat');
 
         if (null !== $templateName) {
             StaticValidator::execute($templateName, 'TemplateName');
@@ -490,8 +487,8 @@ class ReportingCloud extends AbstractReportingCloud
         ];
 
         if (null !== $templateFilename) {
-            $template = file_get_contents($templateFilename);
-            $template = base64_encode($template);
+            $template         = file_get_contents($templateFilename);
+            $template         = base64_encode($template);
             $json['template'] = $template;
         }
 
@@ -507,7 +504,7 @@ class ReportingCloud extends AbstractReportingCloud
         $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret  = base64_decode($response->getBody());
+            $ret = base64_decode($response->getBody());
         }
 
         return $ret;

@@ -6,5 +6,4 @@ use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap;
 
 class ConcretePropertyMap extends AbstractPropertyMap
 {
-
 }

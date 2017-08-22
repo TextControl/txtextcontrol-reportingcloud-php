@@ -29,7 +29,6 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
  */
 abstract class AbstractReportingCloud
 {
-
     /**
      * Default date/time format of backend is 'ISO 8601'
      *
@@ -70,7 +69,7 @@ abstract class AbstractReportingCloud
      *
      * @const DEFAULT_TIMEOUT
      */
-    const DEFAULT_TIMEOUT = 120; // seconds
+    const DEFAULT_TIMEOUT = 120;
 
     /**
      * Default test flag of backend
@@ -172,6 +171,44 @@ abstract class AbstractReportingCloud
      */
 
     /**
+     * Request the URI with options
+     *
+     * @param string $method HTTP method
+     * @param string $uri URI
+     * @param array $options Options
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     *
+     * @throws RuntimeException
+     */
+    protected function request($method, $uri, $options)
+    {
+        $ret = null;
+
+        $client = $this->getClient();
+
+        try {
+
+            if ($this->getTest()) {
+                $options[RequestOptions::QUERY]['test'] = StaticFilter::execute($this->getTest(), 'BooleanToString');
+            }
+
+            $ret = $client->request($method, $uri, $options);
+        } catch (\Exception $exception) {
+
+            // \GuzzleHttp\Exception\ClientException
+            // \GuzzleHttp\Exception\ServerException
+
+            $message = (string) $exception->getMessage();
+            $code    = (integer) $exception->getCode();
+
+            throw new RuntimeException($message, $code);
+        }
+
+        return $ret;
+    }
+
+    /**
      * Return the REST client of the backend web service
      *
      * @return \GuzzleHttp\Client
@@ -208,6 +245,54 @@ abstract class AbstractReportingCloud
     public function setClient(Client $client)
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Return the username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set the username
+     *
+     * @param string $username Username
+     *
+     * @return ReportingCloud
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Return the password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the password
+     *
+     * @param string $password Password
+     *
+     * @return ReportingCloud
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
 
         return $this;
     }
@@ -269,49 +354,29 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Return the username
+     * Return the debug flag
      *
-     * @return string
+     * @return mixed
      */
-    public function getUsername()
+    public function getDebug()
     {
-        return $this->username;
+        if (null === $this->debug) {
+            $this->setDebug(self::DEFAULT_DEBUG);
+        }
+
+        return $this->debug;
     }
 
     /**
-     * Set the username
+     * Set the debug flag
      *
-     * @param string $username Username
+     * @param boolean $debug Debug flag
      *
      * @return ReportingCloud
      */
-    public function setUsername($username)
+    public function setDebug($debug)
     {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Return the password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set the password
-     *
-     * @param string $password Password
-     *
-     * @return ReportingCloud
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
+        $this->debug = (boolean) $debug;
 
         return $this;
     }
@@ -345,32 +410,22 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Return the debug flag
+     * Construct URI with version number
      *
-     * @return mixed
+     * @param string $uri URI
+     *
+     * @return string
      */
-    public function getDebug()
+    protected function uri($uri)
     {
-        if (null === $this->debug) {
-            $this->setDebug(self::DEFAULT_DEBUG);
-        }
-
-        return $this->debug;
+        return sprintf('/%s%s', $this->getVersion(), $uri);
     }
+
 
     /**
-     * Set the debug flag
-     *
-     * @param boolean $debug Debug flag
-     *
-     * @return ReportingCloud
+     * Utility methods
+     * =================================================================================================================
      */
-    public function setDebug($debug)
-    {
-        $this->debug = (boolean) $debug;
-
-        return $this;
-    }
 
     /**
      * Get the version string of the backend web service
@@ -400,67 +455,10 @@ abstract class AbstractReportingCloud
         return $this;
     }
 
-
-    /**
-     * Utility methods
-     * =================================================================================================================
-     */
-
-    /**
-     * Request the URI with options
-     *
-     * @param string $method  HTTP method
-     * @param string $uri     URI
-     * @param array  $options Options
-     *
-     * @return mixed|null|\Psr\Http\Message\ResponseInterface
-     *
-     * @throws RuntimeException
-     */
-    protected function request($method, $uri, $options)
-    {
-        $ret = null;
-
-        $client = $this->getClient();
-
-        try {
-
-            if ($this->getTest()) {
-                $options[RequestOptions::QUERY]['test'] = StaticFilter::execute($this->getTest(), 'BooleanToString');
-            }
-
-            $ret = $client->request($method, $uri, $options);
-
-        } catch (\Exception $exception) {
-
-            // \GuzzleHttp\Exception\ClientException
-            // \GuzzleHttp\Exception\ServerException
-
-            $message = (string)  $exception->getMessage();
-            $code    = (integer) $exception->getCode();
-
-            throw new RuntimeException($message, $code);
-        }
-
-        return $ret;
-    }
-
-    /**
-     * Construct URI with version number
-     *
-     * @param string $uri URI
-     *
-     * @return string
-     */
-    protected function uri($uri)
-    {
-        return sprintf('/%s%s', $this->getVersion(), $uri);
-    }
-
     /**
      * Using the passed propertyMap, recursively build array
      *
-     * @param array       $array       Array
+     * @param array $array Array
      * @param PropertyMap $propertyMap PropertyMap
      *
      * @return array
@@ -525,10 +523,12 @@ abstract class AbstractReportingCloud
         $ret = [];
 
         foreach ($array as $search => $replace) {
-            array_push($ret, [$search, $replace]);
+            array_push($ret, [
+                $search,
+                $replace,
+            ]);
         }
 
         return $ret;
     }
-
 }

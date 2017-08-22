@@ -41,12 +41,13 @@ var_dump($reportingCloud);
 
 $reportingCloud = new ReportingCloud();
 
-$reportingCloud->setUsername(Helper::username())
-               ->setPassword(Helper::password())
-               ->setBaseUri('http://api.example.com')
-               ->setVersion('v1')
-               ->setTimeout(100)
-               ->getDebug(true);
+$reportingCloud
+    ->setUsername(Helper::username())
+    ->setPassword(Helper::password())
+    ->setBaseUri('http://api.example.com')
+    ->setVersion('v1')
+    ->setTimeout(100)
+    ->getDebug(true);
 
 var_dump($reportingCloud);
 

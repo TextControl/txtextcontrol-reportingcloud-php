@@ -6,5 +6,4 @@ use TxTextControl\ReportingCloud\AbstractReportingCloud;
 
 class ConcreteReportingCloud extends AbstractReportingCloud
 {
-
 }

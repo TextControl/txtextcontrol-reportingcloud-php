@@ -30,21 +30,18 @@ class ZoomFactor extends AbstractValidator
      * @const MIN
      */
     const MIN = 1;
-
     /**
      * Maximum zoom factor
      *
      * @const MIN
      */
     const MAX = 400;
-
     /**
      * Invalid type
      *
      * @const INVALID_TYPE
      */
     const INVALID_TYPE = 'invalidType';
-
     /**
      * Invalid page
      *

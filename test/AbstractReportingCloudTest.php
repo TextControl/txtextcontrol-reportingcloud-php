@@ -92,5 +92,4 @@ class AbstractReportingCloudTest extends PHPUnit_Framework_TestCase
             $this->assertSame(404, $e->getResponse()->getStatusCode());
         }
     }
-
 }
