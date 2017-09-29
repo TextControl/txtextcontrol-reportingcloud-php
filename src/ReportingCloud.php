@@ -37,9 +37,10 @@ class ReportingCloud extends AbstractReportingCloud
      */
 
     /**
-     * Check a corpus of text for spell errors.
-     * An array of incorrect words is returned, if spelling errors are found in the corpus of text.
-     * Null is returned, if no spelling error are found in the corpus of text.
+     * Check a corpus of text for spelling errors.
+     *
+     * Return an array of incorrect words, if spelling errors are found in the corpus of text.
+     * Return null, if no spelling errors are found in the corpus of text.
      *
      * @param string $text Corpus of text that should be spell checked
      * @param string $language Language of specified text
