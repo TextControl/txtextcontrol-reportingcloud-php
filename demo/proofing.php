@@ -12,7 +12,7 @@ $reportingCloud = new ReportingCloud([
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-var_dump($reportingCloud->getAvailableDictionaries());
+//var_dump($reportingCloud->getAvailableDictionaries());
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -20,6 +20,6 @@ var_dump($reportingCloud->getProofingSuggestions('ssky', 'en_US.dic', 10));
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-var_dump($reportingCloud->spellCheck('Thiss is a testt about rockkets in the ssky', 'en_US.dic'));
+//var_dump($reportingCloud->spellCheck('Thiss is a testt about rockkets in the ssky', 'en_US.dic'));
 
 // ---------------------------------------------------------------------------------------------------------------------

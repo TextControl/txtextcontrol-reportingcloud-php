@@ -27,6 +27,12 @@ class Language extends AbstractValidator
      * @const UNSUPPORTED_EXTENSION
      */
     const UNSUPPORTED_EXTENSION = 'unsupportedExtension';
+    /**
+     * Unsupported file extension
+     *
+     * @const UNSUPPORTED_EXTENSION
+     */
+    const INVALID_SYNTAX = 'invalidSyntax';
 
     /**
      * Message templates
@@ -35,6 +41,7 @@ class Language extends AbstractValidator
      */
     protected $messageTemplates = [
         self::UNSUPPORTED_EXTENSION => "'%value%' has an unsupported file extension. Only the '.dic' extension is supported. The 'language' parameter must be passed with its '.dic' extension. For example 'en_US.dic' or 'es_ES.dic'",
+        self::INVALID_SYNTAX        => "'%value%' is an invalid syntax for the 'language' parameter.",
     ];
 
     /**
@@ -50,6 +57,20 @@ class Language extends AbstractValidator
 
         if ('.dic' != substr($value, -4)) {
             $this->error(self::UNSUPPORTED_EXTENSION);
+
+            return false;
+        }
+
+        $valueParts = locale_parse($value);
+
+        if (!isset($valueParts['language'])) {
+            $this->error(self::INVALID_SYNTAX);
+
+            return false;
+        }
+
+        if (2 !== strlen($valueParts['language'])) {
+            $this->error(self::INVALID_SYNTAX);
 
             return false;
         }
