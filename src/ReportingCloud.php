@@ -119,9 +119,6 @@ class ReportingCloud extends AbstractReportingCloud
         return $ret;
     }
 
-
-
-
     /**
      * Return an array of merge blocks and merge fields in a template file in template storage.
      *
