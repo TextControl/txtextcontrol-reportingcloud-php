@@ -27,10 +27,11 @@ class Language extends AbstractValidator
      * @const UNSUPPORTED_EXTENSION
      */
     const UNSUPPORTED_EXTENSION = 'unsupportedExtension';
+
     /**
-     * Unsupported file extension
+     * Invalid syntax
      *
-     * @const UNSUPPORTED_EXTENSION
+     * @const INVALID_SYNTAX
      */
     const INVALID_SYNTAX = 'invalidSyntax';
 
@@ -40,8 +41,8 @@ class Language extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::UNSUPPORTED_EXTENSION => "'%value%' has an unsupported file extension. Only the '.dic' extension is supported. The 'language' parameter must be passed with its '.dic' extension. For example 'en_US.dic' or 'es_ES.dic'",
-        self::INVALID_SYNTAX        => "'%value%' is an invalid syntax for the 'language' parameter.",
+        self::UNSUPPORTED_EXTENSION => "'%value%' has an unsupported file extension. Only the '.dic' extension is supported. The 'language' parameter must be passed with its '.dic' extension. For example 'en_US.dic' and not 'en_US'",
+        self::INVALID_SYNTAX        => "'%value%' is an invalid syntax for the 'language' parameter. Example 'language' parameters include 'nn_NO.dic', 'oc_FR.dic', 'pl_PL.dic' or 'pt_BR.dic'",
     ];
 
     /**
@@ -61,7 +62,15 @@ class Language extends AbstractValidator
             return false;
         }
 
-        $valueParts = locale_parse($value);
+        $locale = str_replace('.dic', '', $value);
+
+        if (!ctype_lower(substr($locale, 0, 2))) {
+            $this->error(self::INVALID_SYNTAX);
+
+            return false;
+        }
+
+        $valueParts = locale_parse($locale);
 
         if (!isset($valueParts['language'])) {
             $this->error(self::INVALID_SYNTAX);
