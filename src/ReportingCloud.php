@@ -20,6 +20,7 @@ use TxTextControl\ReportingCloud\Filter\StaticFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as IncorrectWordMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
@@ -34,6 +35,92 @@ class ReportingCloud extends AbstractReportingCloud
      * GET methods
      * =================================================================================================================
      */
+
+    /**
+     * Check a corpus of text for spell errors.
+     * An array of incorrect words is returned, if spelling errors are found in the corpus of text.
+     * Null is returned, if no spelling error are found in the corpus of text.
+     *
+     * @param string $text Corpus of text that should be spell checked
+     * @param string $language Language of specified text
+     *
+     * @return array|null
+     */
+    public function spellCheck($text, $language)
+    {
+        $ret = null;
+
+        StaticValidator::execute($text, 'TypeString');
+        StaticValidator::execute($language, 'Language');
+
+        $propertyMap = new IncorrectWordMap();
+
+        $query = [
+            'text'     => $text,
+            'language' => $language,
+        ];
+
+        $records = $this->get('/proofing/check', $query);
+
+        if (is_array($records) && count($records) > 0) {
+            $ret = $this->buildPropertyMapArray($records, $propertyMap);
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Return an array of available dictionaries on the Reporting Cloud service
+     *
+     * @return array|null
+     */
+    public function getAvailableDictionaries()
+    {
+        $ret = null;
+
+        $dictionaries = $this->get('/proofing/availabledictionaries');
+
+        if (is_array($dictionaries) && count($dictionaries) > 0) {
+            $ret = array_map('trim', $dictionaries);
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Return an array of suggestions for a misspelled word.
+     *
+     * @param string $word Word that should be spell checked
+     * @param string $language Language of specified text
+     * @param int $max
+     *
+     * @return array|null
+     */
+    public function getProofingSuggestions($word, $language, $max = 10)
+    {
+        $ret = null;
+
+        StaticValidator::execute($word, 'TypeString');
+        StaticValidator::execute($language, 'Language');
+        StaticValidator::execute($max, 'TypeInteger');
+
+        $query = [
+            'word'     => $word,
+            'language' => $language,
+            'max'      => $max,
+        ];
+
+        $records = $this->get('/proofing/suggestions', $query);
+
+        if (is_array($records) && count($records) > 0) {
+            $ret = array_map('trim', $records);
+        }
+
+        return $ret;
+    }
+
+
+
 
     /**
      * Return an array of merge blocks and merge fields in a template file in template storage.
@@ -60,31 +147,6 @@ class ReportingCloud extends AbstractReportingCloud
 
         if (is_array($records) && count($records) > 0) {
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
-        }
-
-        return $ret;
-    }
-
-    /**
-     * Execute a GET request via REST client
-     *
-     * @param string $uri URI
-     * @param array $query Query
-     *
-     * @return mixed|null
-     */
-    protected function get($uri, $query = [])
-    {
-        $ret = null;
-
-        $options = [
-            RequestOptions::QUERY => $query,
-        ];
-
-        $response = $this->request('GET', $this->uri($uri), $options);
-
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret = json_decode($response->getBody(), true);
         }
 
         return $ret;
@@ -272,6 +334,31 @@ class ReportingCloud extends AbstractReportingCloud
 
         if (null !== $data) {
             $ret = base64_decode($data);
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Execute a GET request via REST client
+     *
+     * @param string $uri URI
+     * @param array $query Query
+     *
+     * @return mixed|null
+     */
+    protected function get($uri, $query = [])
+    {
+        $ret = null;
+
+        $options = [
+            RequestOptions::QUERY => $query,
+        ];
+
+        $response = $this->request('GET', $this->uri($uri), $options);
+
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $ret = json_decode($response->getBody(), true);
         }
 
         return $ret;

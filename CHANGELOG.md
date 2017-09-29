@@ -4,6 +4,11 @@
 
 ## dev-master
 
+* Implemented end-points:
+    * `/v1/proofing/check`
+    * `/v1/proofing/availabledictionaries`
+    * `/v1/proofing/suggestions`
+ 
 ## 1.3.4 - 2017-08-22
 
 * Implemented the `mergeSettings` option `merge_html`.
