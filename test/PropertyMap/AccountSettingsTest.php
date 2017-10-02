@@ -17,12 +17,14 @@ class AccountSettingsTest extends PHPUnit_Framework_TestCase
     public function testValid()
     {
         $expected = [
-            'serialNumber'      => 'serial_number',
-            'createdDocuments'  => 'created_documents',
-            'uploadedTemplates' => 'uploaded_templates',
-            'maxDocuments'      => 'max_documents',
-            'maxTemplates'      => 'max_templates',
-            'validUntil'        => 'valid_until',
+            'serialNumber'            => 'serial_number',
+            'createdDocuments'        => 'created_documents',
+            'uploadedTemplates'       => 'uploaded_templates',
+            'maxDocuments'            => 'max_documents',
+            'maxTemplates'            => 'max_templates',
+            'validUntil'              => 'valid_until',
+            'proofingTransactions'    => 'proofing_transactions',
+            'maxProofingTransactions' => 'max_proofing_transactions',
         ];
 
         $this->assertSame($expected, $this->propertyMap->getMap());
