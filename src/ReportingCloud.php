@@ -39,15 +39,16 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * Check a corpus of text for spelling errors.
      *
-     * Return an array of incorrect words, if spelling errors are found in the corpus of text.
-     * Return null, if no spelling errors are found in the corpus of text.
+     * Return an array of misspelled words, if spelling errors are found in the corpus of text.
+     *
+     * Return null, if no misspelled words are found in the corpus of text.
      *
      * @param string $text Corpus of text that should be spell checked
      * @param string $language Language of specified text
      *
      * @return array|null
      */
-    public function spellCheck($text, $language)
+    public function proofingCheck($text, $language)
     {
         $ret = null;
 
@@ -93,7 +94,7 @@ class ReportingCloud extends AbstractReportingCloud
      *
      * @param string $word Word that should be spell checked
      * @param string $language Language of specified text
-     * @param int $max
+     * @param int $max Maximum number of suggestions to return
      *
      * @return array|null
      */
