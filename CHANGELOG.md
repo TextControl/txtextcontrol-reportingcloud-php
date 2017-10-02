@@ -6,7 +6,7 @@
 
 ## 1.4.0 - 2017-10-02
 
-* Implemented end-points:
+* Implemented [end-points](https://www.textcontrol.com/blog/2017/08/23/):
     * `/v1/proofing/check`
     * `/v1/proofing/availabledictionaries`
     * `/v1/proofing/suggestions`
