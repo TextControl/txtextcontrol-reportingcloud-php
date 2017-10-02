@@ -27,6 +27,55 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     // -----------------------------------------------------------------------------------------------------------------
 
+    public function testProofingCheck()
+    {
+        $response = $this->reportingCloud->proofingCheck('Thiss is a dog', 'en_US.dic');
+
+        $this->assertArrayHasKey(0, $response);
+
+        $response = $response[0];
+
+        $this->assertArrayHasKey('length', $response);
+        $this->assertArrayHasKey('start', $response);
+        $this->assertArrayHasKey('text', $response);
+        $this->assertArrayHasKey('is_duplicate', $response);
+        $this->assertArrayHasKey('language', $response);
+
+        $this->assertEquals(5, $response['length']);
+        $this->assertEquals(0, $response['start']);
+        $this->assertEquals('Thiss', $response['text']);
+        $this->assertEquals(false, $response['is_duplicate']);
+        $this->assertEquals('en_US.dic', $response['language']);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function testGetAvailableDictionaries()
+    {
+        $filename = realpath(__DIR__ . '/../resource/available-dictionaries.php');
+
+        $actual   = $this->reportingCloud->getAvailableDictionaries();
+        $expected = include $filename;
+
+        sort($actual);
+        sort($expected);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    public function testGetProofingSuggestions()
+    {
+        $response = $this->reportingCloud->getProofingSuggestions('Thiss', 'en_US.dic', 5);
+
+        $this->assertTrue(5 === count($response));
+
+        $this->assertContains('This', $response);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
     public function testGetTemplateInfo()
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
@@ -990,6 +1039,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         return $ret;
     }
+
     // -----------------------------------------------------------------------------------------------------------------
 
 }

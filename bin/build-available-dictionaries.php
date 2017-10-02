@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Available Dictionaries Resource File
+ *
+ * This script downloads all the available dictionaries from the Reporting Cloud Web API and writes them to the file:
+ *
+ *    resource/available-dictionaries.php
+ *
+ * The package maintainer should execute this script, whenever new dictionaries are added to the backend.
+ *
+ */
+
 include_once 'bootstrap.php';
 
 use TxTextControl\ReportingCloud\Console\Helper;
@@ -38,16 +49,10 @@ file_put_contents($outputFilename, $buffer);
 // ---------------------------------------------------------------------------------------------------------------------
 
 echo PHP_EOL;
-echo 'The available dictionaries are:';
+echo sprintf('The available dictionaries are %s.', implode(', ', $availableDictionaries));
 echo PHP_EOL;
-
-foreach ($availableDictionaries as $availableDictionary) {
-    echo sprintf('- %s', $availableDictionary);
-    echo PHP_EOL;
-}
-
 echo PHP_EOL;
-echo sprintf('Written available dictionaries to %s', $outputFilename);
+echo sprintf('Written resource file to %s', $outputFilename);
 echo PHP_EOL;
 echo PHP_EOL;
 
