@@ -4,6 +4,18 @@
 
 ## dev-master
 
+## 1.4.0 - 2017-10-02
+
+* Implemented [end-points](https://www.textcontrol.com/blog/2017/08/23/):
+    * `/v1/proofing/check`
+    * `/v1/proofing/availabledictionaries`
+    * `/v1/proofing/suggestions`
+* Updated `AccountSettings` property map with keys:
+    * `proofing_transactions`
+    * `max_proofing_transactions`
+* Refactored `Validator` unit tests.
+* Added script to download and build _available dictionaries_ resource file.
+ 
 ## 1.3.4 - 2017-08-22
 
 * Implemented the `mergeSettings` option `merge_html`.

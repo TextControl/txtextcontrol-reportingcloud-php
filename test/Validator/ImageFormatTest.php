@@ -23,9 +23,9 @@ class ImageFormatTest extends PHPUnit_Framework_TestCase
     public function testUnsupportedExtension()
     {
         $this->assertFalse($this->validator->isValid('doc'));
-        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::UNSUPPORTED_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('DOC'));
-        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::UNSUPPORTED_EXTENSION, $this->validator->getMessages());
     }
 }

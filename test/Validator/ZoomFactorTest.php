@@ -25,28 +25,28 @@ class ZoomFactorTest extends PHPUnit_Framework_TestCase
     public function testInvalidType()
     {
         $this->assertFalse($this->validator->isValid('invalid'));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('0'));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('1'));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(true));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
     }
 
     public function testInvalidInteger()
     {
         $this->assertFalse($this->validator->isValid(0));
-        $this->assertArrayHasKey('invalidInteger', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_INTEGER, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(Validator::MAX + 1));
-        $this->assertArrayHasKey('invalidInteger', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_INTEGER, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(Validator::MIN - 1));
-        $this->assertArrayHasKey('invalidInteger', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_INTEGER, $this->validator->getMessages());
     }
 
     public function testConstructor()

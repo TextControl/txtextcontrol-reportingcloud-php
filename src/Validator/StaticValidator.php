@@ -36,6 +36,7 @@ class StaticValidator extends StaticValidatorValidatorZend
         FileExtension::class,
         FileHasExtension::class,
         ImageFormat::class,
+        Language::class,
         Page::class,
         ReturnFormat::class,
         TemplateExtension::class,

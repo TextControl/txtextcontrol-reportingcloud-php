@@ -14,27 +14,24 @@
 namespace TxTextControl\ReportingCloud\PropertyMap;
 
 /**
- * AccountSettings property map
+ * IncorrectWord property map
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class AccountSettings extends AbstractPropertyMap
+class IncorrectWord extends AbstractPropertyMap
 {
     /**
-     * Set the property map of AccountSettings
+     * Set the property map of IncorrectWord
      */
     public function __construct()
     {
         $this->setMap([
-            'serialNumber'            => 'serial_number',
-            'createdDocuments'        => 'created_documents',
-            'uploadedTemplates'       => 'uploaded_templates',
-            'maxDocuments'            => 'max_documents',
-            'maxTemplates'            => 'max_templates',
-            'validUntil'              => 'valid_until',
-            'proofingTransactions'    => 'proofing_transactions',       // added in 1.4.0
-            'maxProofingTransactions' => 'max_proofing_transactions',   // added in 1.4.0
+            'length'      => 'length',
+            'start'       => 'start',
+            'text'        => 'text',
+            'isDuplicate' => 'is_duplicate',
+            'language'    => 'language',
         ]);
     }
 }

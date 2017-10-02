@@ -28,84 +28,84 @@ class TemplateNameTest extends PHPUnit_Framework_TestCase
     public function testInvalidPath()
     {
         $this->assertFalse($this->validator->isValid('/path/to/template.tx'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('/../template.tx'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('../template.tx'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('./template.tx'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('./'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('../'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('../'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('./a'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('../a'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('../a'));
-        $this->assertArrayHasKey('invalidPath', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_PATH, $this->validator->getMessages());
     }
 
     public function testInvalidExtension()
     {
         $this->assertFalse($this->validator->isValid('tx'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('TX'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('0'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('..'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('0'));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(0));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(true));
-        $this->assertArrayHasKey('invalidExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_EXTENSION, $this->validator->getMessages());
     }
 
     public function testInvalidBasename()
     {
         $this->assertFalse($this->validator->isValid('.tx'));
-        $this->assertArrayHasKey('invalidBasename', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_BASENAME, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('.'));
-        $this->assertArrayHasKey('invalidBasename', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_BASENAME, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('.a'));
-        $this->assertArrayHasKey('invalidBasename', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_BASENAME, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(''));
-        $this->assertArrayHasKey('invalidBasename', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_BASENAME, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(false));
-        $this->assertArrayHasKey('invalidBasename', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_BASENAME, $this->validator->getMessages());
     }
 
     public function testUnsupportedExtension()
     {
         $this->assertFalse($this->validator->isValid('..a'));
-        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::UNSUPPORTED_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('template.pdf'));
-        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::UNSUPPORTED_EXTENSION, $this->validator->getMessages());
     }
 }

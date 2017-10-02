@@ -23,12 +23,12 @@ class TemplateFormatTest extends PHPUnit_Framework_TestCase
     public function testUnsupportedExtension()
     {
         $this->assertFalse($this->validator->isValid('tif'));
-        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::UNSUPPORTED_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('TIF'));
-        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::UNSUPPORTED_EXTENSION, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('fish.doc'));
-        $this->assertArrayHasKey('unsupportedExtension', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::UNSUPPORTED_EXTENSION, $this->validator->getMessages());
     }
 }
