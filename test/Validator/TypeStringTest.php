@@ -28,21 +28,21 @@ class TypeStringTest extends PHPUnit_Framework_TestCase
             3,
             4,
         ]));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(0));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(1));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(true));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(false));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(null));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
     }
 }

@@ -26,24 +26,24 @@ class TimestampTest extends PHPUnit_Framework_TestCase
     public function testInvalidType()
     {
         $this->assertFalse($this->validator->isValid('2016-06-02T15:49:57+00:00'));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(1.1));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(null));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(true));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(false));
-        $this->assertArrayHasKey('invalidType', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
     }
 
     public function testInvalidRange()
     {
         $this->assertFalse($this->validator->isValid(-1));
-        $this->assertArrayHasKey('invalidRange', $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_RANGE, $this->validator->getMessages());
     }
 }

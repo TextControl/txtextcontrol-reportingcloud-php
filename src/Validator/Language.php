@@ -21,19 +21,13 @@ namespace TxTextControl\ReportingCloud\Validator;
  */
 class Language extends AbstractValidator
 {
-    /**
-     * Unsupported file extension
-     *
-     * @const UNSUPPORTED_EXTENSION
-     */
-    const UNSUPPORTED_EXTENSION = 'unsupportedExtension';
-
+    const FILENAME = '../../resource/available-dictionaries.php';
     /**
      * Invalid syntax
      *
-     * @const INVALID_SYNTAX
+     * @const INVALID
      */
-    const INVALID_SYNTAX = 'invalidSyntax';
+    const INVALID_LANGUAGE = 'invalidLanguage';
 
     /**
      * Message templates
@@ -41,8 +35,7 @@ class Language extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::UNSUPPORTED_EXTENSION => "'%value%' has an unsupported file extension. Only the '.dic' extension is supported. The 'language' parameter must be passed with its '.dic' extension. For example 'en_US.dic' and not 'en_US'",
-        self::INVALID_SYNTAX        => "'%value%' is an invalid syntax for the 'language' parameter. Example 'language' parameters include 'nn_NO.dic', 'oc_FR.dic', 'pl_PL.dic' or 'pt_BR.dic'",
+        self::INVALID_LANGUAGE => '',  // added dynamically
     ];
 
     /**
@@ -56,35 +49,21 @@ class Language extends AbstractValidator
     {
         $this->setValue($value);
 
-        if ('.dic' != substr($value, -4)) {
-            $this->error(self::UNSUPPORTED_EXTENSION);
+        $filename = realpath(__DIR__ . DIRECTORY_SEPARATOR . self::FILENAME);
+
+        $values = include $filename;
+
+        if (!in_array($value, $values)) {
+
+            $message = sprintf("'%s' is not a valid language value. Valid values are: '%s'"
+                , $value
+                , implode("', '", $values));
+
+            $this->setMessage($message, self::INVALID_LANGUAGE);
+            $this->error(self::INVALID_LANGUAGE);
 
             return false;
         }
-
-        $locale = str_replace('.dic', '', $value);
-
-        if (!ctype_lower(substr($locale, 0, 2))) {
-            $this->error(self::INVALID_SYNTAX);
-
-            return false;
-        }
-
-        $valueParts = locale_parse($locale);
-
-        if (!isset($valueParts['language'])) {
-            $this->error(self::INVALID_SYNTAX);
-
-            return false;
-        }
-
-        if (2 !== strlen($valueParts['language'])) {
-            $this->error(self::INVALID_SYNTAX);
-
-            return false;
-        }
-
-        //@todo: Add further validation here
 
         return true;
     }

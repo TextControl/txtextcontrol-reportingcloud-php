@@ -16,21 +16,21 @@ class LanguageTest extends PHPUnit_Framework_TestCase
 
     public function testValid()
     {
-        $this->assertTrue($this->validator->isValid('en_US.dic'));
-        $this->assertTrue($this->validator->isValid('en.dic'));
-        $this->assertTrue($this->validator->isValid('en_US_OpenMedSpel.dic'));
+        $this->assertTrue($this->validator->isValid('de_CH_frami.dic'));
+        $this->assertTrue($this->validator->isValid('pt_BR.dic'));
+        $this->assertTrue($this->validator->isValid('nb_NO.dic'));
     }
 
-    public function testInvalidType()
+    public function testInvalid()
     {
-        $this->assertFalse($this->validator->isValid('EN_US.dic'));
-        $this->assertArrayHasKey('invalidSyntax', $this->validator->getMessages());
+        $this->assertFalse($this->validator->isValid('pt_BR'));
+        $this->assertArrayHasKey(Validator::INVALID_LANGUAGE, $this->validator->getMessages());
 
-        $this->assertFalse($this->validator->isValid('DE_de.DIC'));
-        $this->assertArrayHasKey('invalidSyntax', $this->validator->getMessages());
+        $this->assertFalse($this->validator->isValid('pt'));
+        $this->assertArrayHasKey(Validator::INVALID_LANGUAGE, $this->validator->getMessages());
 
-        $this->assertFalse($this->validator->isValid('deDE.dic'));
-        $this->assertArrayHasKey('invalidSyntax', $this->validator->getMessages());
+        $this->assertFalse($this->validator->isValid('0'));
+        $this->assertArrayHasKey(Validator::INVALID_LANGUAGE, $this->validator->getMessages());
     }
 
     public function testConstructor()
