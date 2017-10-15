@@ -497,6 +497,9 @@ abstract class AbstractReportingCloud
         foreach ($propertyMap->getMap() as $property => $key) {
             if (isset($array[$key])) {
                 $value = $array[$key];
+                if ('culture' == $key) {
+                    StaticValidator::execute($value, 'Culture');
+                }
                 if ('remove_' == substr($key, 0, 7)) {
                     StaticValidator::execute($value, 'TypeBoolean');
                 }

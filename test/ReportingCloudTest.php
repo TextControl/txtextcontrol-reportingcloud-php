@@ -660,6 +660,23 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     /**
      * @expectedException InvalidArgumentException
      */
+    public function testMergeDocumentInvalidCultureValue()
+    {
+        $mergeData     = $this->getTestTemplateMergeData();
+        $mergeSettings = $this->getTestMergeSettings();
+
+        $templateFilename = $this->getTestTemplateFilename();
+
+        $this->assertFileExists($templateFilename);
+
+        $mergeSettings['culture'] = 'invalid';
+
+        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, false, $mergeSettings);
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     */
     public function testMergeDocumentInvalidMergeSettingsTimestampValues()
     {
         $mergeData     = $this->getTestTemplateMergeData();

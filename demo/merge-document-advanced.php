@@ -122,6 +122,7 @@ $mergeSettings = [
     'remove_empty_images'        => true,
     'remove_trailing_whitespace' => true,
     'user_password'              => '1',
+    'culture'                    => 'en-US',
 ];
 
 $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
