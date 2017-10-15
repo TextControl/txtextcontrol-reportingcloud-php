@@ -6,6 +6,11 @@
 
 ## 1.5.0 - 2017-10-15
 
+* Deployed `Culture` validator.
+
+
+## 1.5.0 - 2017-10-15
+
 * Implemented the key [culture](https://www.textcontrol.com/blog/2017/10/13/) in `mergeSettings`.
 * Restructured the `resources` directory.
 
