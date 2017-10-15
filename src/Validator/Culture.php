@@ -14,20 +14,20 @@
 namespace TxTextControl\ReportingCloud\Validator;
 
 /**
- * Language validator
+ * Culture validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Language extends AbstractValidator
+class Culture extends AbstractValidator
 {
-    const FILENAME = '../../resource/dictionaries.php';
+    const FILENAME = '../../resource/cultures.php';
     /**
      * Invalid syntax
      *
      * @const INVALID
      */
-    const INVALID_LANGUAGE = 'invalidLanguage';
+    const INVALID_CULTURE = 'invalidCulture';
 
     /**
      * Message templates
@@ -35,7 +35,7 @@ class Language extends AbstractValidator
      * @var array
      */
     protected $messageTemplates = [
-        self::INVALID_LANGUAGE => '',  // added dynamically
+        self::INVALID_CULTURE => '',  // added dynamically
     ];
 
     /**
@@ -55,12 +55,12 @@ class Language extends AbstractValidator
 
         if (!in_array($value, $values)) {
 
-            $message = sprintf("'%s' is not a valid language value. Valid values are: '%s'"
+            $message = sprintf("'%s' is not a valid culture value. Valid values are: '%s'"
                 , $value
                 , implode("', '", $values));
 
-            $this->setMessage($message, self::INVALID_LANGUAGE);
-            $this->error(self::INVALID_LANGUAGE);
+            $this->setMessage($message, self::INVALID_CULTURE);
+            $this->error(self::INVALID_CULTURE);
 
             return false;
         }

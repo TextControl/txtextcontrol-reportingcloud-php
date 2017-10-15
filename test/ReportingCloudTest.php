@@ -52,7 +52,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testGetAvailableDictionaries()
     {
-        $filename = realpath(__DIR__ . '/../resource/available-dictionaries.php');
+        $filename = realpath(__DIR__ . '/../resource/dictionaries.php');
 
         $actual   = $this->reportingCloud->getAvailableDictionaries();
         $expected = include $filename;

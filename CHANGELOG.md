@@ -4,6 +4,9 @@
 
 ## dev-master
 
+* Implemented the key [culture](https://www.textcontrol.com/blog/2017/10/13/) in `mergeSettings`.
+* Restructured the `resources` directory.
+
 ## 1.4.0 - 2017-10-02
 
 * Implemented [end-points](https://www.textcontrol.com/blog/2017/08/23/):

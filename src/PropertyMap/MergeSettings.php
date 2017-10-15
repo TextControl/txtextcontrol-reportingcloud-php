@@ -30,6 +30,7 @@ class MergeSettings extends AbstractPropertyMap
             'author'                   => 'author',
             'creationDate'             => 'creation_date',
             'creatorApplication'       => 'creator_application',
+            'culture'                  => 'culture',
             'documentSubject'          => 'document_subject',
             'documentTitle'            => 'document_title',
             'lastModificationDate'     => 'last_modification_date',
