@@ -2,7 +2,7 @@
 
 # What Happened to LiveDocx?
 
-In May 2016, Text Control GmbH [announced](http://www.textcontrol.com/en_US/blog/archive/20160525/) the successor to LiveDocx, called [ReportingCloud](http://www.reporting.cloud/). LiveDocx was shut down in May 2017.
+In May 2016, Text Control GmbH [announced](https://www.textcontrol.com/blog/2016/05/25/) the successor to LiveDocx, called [ReportingCloud](http://www.reporting.cloud/). LiveDocx was shut down in May 2017.
 
 With ReportingCloud, you can merge MS Word compatible templates with textual and image data via a Web API, to create customized invoices, contracts and quotations.
  

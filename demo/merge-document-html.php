@@ -16,7 +16,7 @@ $reportingCloud = new ReportingCloud([
 
 // mergeFields containing HTML must be contained in an <html /> tag.
 // Additionally, merge_html must be set to true in the merge settings array
-// See: http://www.textcontrol.com/en_US/blog/archive/20170821/
+// See: https://www.textcontrol.com/blog/2017/08/21/
 
 $mergeData = [
     'name' => '<html><i>Jemima</i> <strong>Puddle-Duck</strong></html>',

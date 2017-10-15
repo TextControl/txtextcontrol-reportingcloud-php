@@ -89,7 +89,7 @@ Note, these instructions apply only to the sample applications and phpunit tests
 
 As mentioned above, the ReportingCloud PHP wrapper ships with a number of sample applications (see directory `/demo`). These samples applications, which are well commented, have been written to demonstrate all parts of ReportingCloud.
 
-We are currently working on comprehensive documentation for the ReportingCloud PHP wrapper, which will be published in the `/doc` directory, as and when it becomes available. In the meantime, please review the [Text Control Blog](http://www.textcontrol.com/en_US/blog/tags/reportingcloud/) , which contains many articles about ReportingCloud.
+We are currently working on comprehensive documentation for the ReportingCloud PHP wrapper, which will be published in the `/doc` directory, as and when it becomes available. In the meantime, please review the [Text Control Blog](https://www.textcontrol.com/blog/tag/reportingcloud/2017/) , which contains many articles about ReportingCloud.
  
  
  ## Getting Support

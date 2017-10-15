@@ -18,7 +18,7 @@ $reportingCloud = new ReportingCloud([
 $imageBinaryData = file_get_contents($imageFilename);
 
 // Base64 encode the image data before assigning to ReportingCloud.
-// See: http://www.textcontrol.com/en_US/blog/archive/20160718/
+// See: https://www.textcontrol.com/blog/2016/07/18/
 
 $mergeData = [
     'title'  => 'Retro Speedometer from Classic Car',
