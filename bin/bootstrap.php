@@ -47,7 +47,7 @@ switch (basename(getcwd())) {
 
     case 'demo':
 
-        $outputPath = __DIR__ . '/output';
+        $outputPath = dirname(__DIR__) . '/demo/output';
 
         if (!is_dir($outputPath)) {
             mkdir($outputPath);
