@@ -7,7 +7,7 @@
 * Refactored `Culture` and `Language` validators, abstracting common logic.
 * Refactored `/bin/buid-culture.php` and `/bin/buid-dictionaries.php`, abstracting common logic.
 
-## 1.5.0 - 2017-10-15
+## 1.5.1 - 2017-10-15
 
 * Deployed `Culture` validator.
 
