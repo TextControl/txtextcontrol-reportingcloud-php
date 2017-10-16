@@ -4,10 +4,12 @@
 
 ## dev-master
 
+* Refactored `Culture` and `Language` validators, abstracting common logic.
+* Refactored `/bin/buid-culture.php` and `/bin/buid-dictionaries.php`, abstracting common logic.
+
 ## 1.5.0 - 2017-10-15
 
 * Deployed `Culture` validator.
-
 
 ## 1.5.0 - 2017-10-15
 
@@ -34,11 +36,11 @@
 
 ## 1.3.3 - 2017-05-02
 
-* Simplification of auto-loading for files in `bin`, `demo` and `test`.  
+* Simplification of auto-loading for files in `/bin`, `/demo` and `/test`.  
 
 ## 1.3.2 - 2017-05-02
 
-* Unified auto-loading for files in `bin`, `demo` and `test`.
+* Unified auto-loading for files in `/bin`, `/demo` and `/test`.
 * Updated and added documentation.
 
 ## 1.3.1 - 2017-04-05
@@ -65,7 +67,7 @@
 * Minor refactoring of `StaticFilter` and `StaticValidator` components.
 * Minor refactoring, mainly of array iterations.
 * Added filter to convert boolean true and false to string 'true' and 'false' (required for compatibilty with backend).
-* Implemented 'test' parameter with property `test` and related setter and getter.
+* Implemented 'test' parameter with property `/test` and related setter and getter.
 * Added unit tests for `findAndReplaceDocument()` method.
 * Refactored `mergeDocument()` and `findAndReplaceDocument()` methods.
 * Implemented end-point `/v1/document/findandreplace`.

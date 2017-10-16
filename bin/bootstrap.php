@@ -4,6 +4,29 @@ use TxTextControl\ReportingCloud\Console\Helper;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
+/**
+ * Export variables to file
+ *
+ * @param $filename
+ * @param $values
+ *
+ * @return bool|int
+ */
+function var_export_file($filename, $values)
+{
+    $buffer = '<?php';
+    $buffer .= PHP_EOL;
+    $buffer .= PHP_EOL;
+    $buffer .= 'return ';
+    $buffer .= var_export($values, true);
+    $buffer .= ';';
+    $buffer .= PHP_EOL;
+
+    return file_put_contents($filename, $buffer);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+
 $autoloadFilename = call_user_func(function () {
 
     $ret = null;

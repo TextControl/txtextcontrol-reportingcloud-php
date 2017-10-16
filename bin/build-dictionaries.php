@@ -16,8 +16,9 @@ include_once 'bootstrap.php';
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\Validator\Language as Validator;
 
-$outputFilename = realpath(__DIR__ . '/../resource/dictionaries.php');
+$validator = new Validator();
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -26,34 +27,24 @@ $reportingCloud = new ReportingCloud([
     'password' => Helper::password(),
 ]);
 
-$dictionaries = $reportingCloud->getAvailableDictionaries();
+$values = $reportingCloud->getAvailableDictionaries();
 
-natsort($dictionaries);
-$dictionaries = array_values($dictionaries);
-
-if (0 === count($dictionaries)) {
+if (0 === count($values)) {
     throw new RuntimeException('Cannot download the available dictionaries from the Reporting Cloud Web API.');
 }
 
-// ---------------------------------------------------------------------------------------------------------------------
-
-$buffer = '<?php';
-$buffer .= PHP_EOL;
-$buffer .= PHP_EOL;
-$buffer .= 'return ';
-$buffer .= var_export($dictionaries, true);
-$buffer .= ';';
-$buffer .= PHP_EOL;
-
-file_put_contents($outputFilename, $buffer);
+natcasesort($values);
+$values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
+var_export_file($validator->getFilename(), $values);
+
 echo PHP_EOL;
-echo sprintf('The available dictionaries are %s.', implode(', ', $dictionaries));
+echo sprintf('The available dictionaries (%d) are %s.', count($values), implode(', ', $values));
 echo PHP_EOL;
 echo PHP_EOL;
-echo sprintf('Written resource file to %s', $outputFilename);
+echo sprintf('Written resource file to %s', $validator->getFilename());
 echo PHP_EOL;
 echo PHP_EOL;
 

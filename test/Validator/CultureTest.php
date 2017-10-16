@@ -24,13 +24,16 @@ class CultureTest extends PHPUnit_Framework_TestCase
     public function testInvalid()
     {
         $this->assertFalse($this->validator->isValid('de-XX'));
-        $this->assertArrayHasKey(Validator::INVALID_CULTURE, $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_VALUE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('de'));
-        $this->assertArrayHasKey(Validator::INVALID_CULTURE, $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_VALUE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('0'));
-        $this->assertArrayHasKey(Validator::INVALID_CULTURE, $this->validator->getMessages());
+        $this->assertArrayHasKey(Validator::INVALID_VALUE, $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(1));
+        $this->assertArrayHasKey(Validator::INVALID_VALUE, $this->validator->getMessages());
     }
 
     public function testConstructor()

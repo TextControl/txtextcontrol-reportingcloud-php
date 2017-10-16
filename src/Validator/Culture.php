@@ -19,52 +19,14 @@ namespace TxTextControl\ReportingCloud\Validator;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Culture extends AbstractValidator
+class Culture extends AbstractResourceValidator
 {
-    const FILENAME = '../../resource/cultures.php';
-    /**
-     * Invalid syntax
-     *
-     * @const INVALID
-     */
-    const INVALID_CULTURE = 'invalidCulture';
-
-    /**
-     * Message templates
-     *
-     * @var array
-     */
-    protected $messageTemplates = [
-        self::INVALID_CULTURE => '',  // added dynamically
-    ];
-
-    /**
-     * Returns true, if value is valid. False otherwise.
-     *
-     * @param mixed $value
-     *
-     * @return bool
-     */
-    public function isValid($value)
+    public function __construct($options = null)
     {
-        $this->setValue($value);
+        $filename = realpath(__DIR__ . '/../../resource/cultures.php');
 
-        $filename = realpath(__DIR__ . DIRECTORY_SEPARATOR . self::FILENAME);
+        $this->setFilename($filename);
 
-        $values = include $filename;
-
-        if (!in_array($value, $values)) {
-
-            $message = sprintf("'%s' is not a valid culture value. Valid values are: '%s'"
-                , $value
-                , implode("', '", $values));
-
-            $this->setMessage($message, self::INVALID_CULTURE);
-            $this->error(self::INVALID_CULTURE);
-
-            return false;
-        }
-
-        return true;
+        parent::__construct($options);
     }
 }
