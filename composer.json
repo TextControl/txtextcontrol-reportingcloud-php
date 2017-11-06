@@ -5,12 +5,12 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "TxTextControl\\ReportingCloud\\": "src/"
+            "TxTextControl\\ReportingCloud": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "TxTextControlTest\\ReportingCloud\\": "test/"
+            "TxTextControlTest\\ReportingCloud": "test/"
         }
     },
     "require": {
