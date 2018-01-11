@@ -20,6 +20,10 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 trait DeleteTrait
 {
+    abstract protected function uri($uri);
+
+    abstract protected function request($method, $uri, $options);
+
     /**
      * Delete a template in template storage
      *

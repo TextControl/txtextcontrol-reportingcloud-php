@@ -17,10 +17,17 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Filter\StaticFilter;
+use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 trait PostTrait
 {
+    abstract protected function uri($uri);
+
+    abstract protected function request($method, $uri, $options);
+
+    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
+
     /**
      * Upload a template to template storage
      *

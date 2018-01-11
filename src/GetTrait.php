@@ -17,6 +17,7 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Filter\StaticFilter;
+use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as IncorrectWordMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
@@ -25,6 +26,12 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 trait GetTrait
 {
+    abstract protected function uri($uri);
+
+    abstract protected function request($method, $uri, $options);
+
+    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
+
     /**
      * Check a corpus of text for spelling errors.
      *
@@ -55,31 +62,6 @@ trait GetTrait
 
         if (is_array($records) && count($records) > 0) {
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
-        }
-
-        return $ret;
-    }
-
-    /**
-     * Execute a GET request via REST client
-     *
-     * @param string $uri   URI
-     * @param array  $query Query
-     *
-     * @return mixed|null
-     */
-    protected function get($uri, $query = [])
-    {
-        $ret = null;
-
-        $options = [
-            RequestOptions::QUERY => $query,
-        ];
-
-        $response = $this->request('GET', $this->uri($uri), $options);
-
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret = json_decode($response->getBody(), true);
         }
 
         return $ret;
@@ -348,6 +330,31 @@ trait GetTrait
 
         if (null !== $data) {
             $ret = base64_decode($data);
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Execute a GET request via REST client
+     *
+     * @param string $uri   URI
+     * @param array  $query Query
+     *
+     * @return mixed|null
+     */
+    protected function get($uri, $query = [])
+    {
+        $ret = null;
+
+        $options = [
+            RequestOptions::QUERY => $query,
+        ];
+
+        $response = $this->request('GET', $this->uri($uri), $options);
+
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $ret = json_decode($response->getBody(), true);
         }
 
         return $ret;

@@ -22,6 +22,12 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 trait UtilityTrait
 {
+    abstract public function getClient();
+
+    abstract public function getTest();
+
+    abstract public function getVersion();
+
     /**
      * Request the URI with options
      *
