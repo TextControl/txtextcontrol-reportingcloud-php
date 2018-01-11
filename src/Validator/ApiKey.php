@@ -29,7 +29,7 @@ class ApiKey extends AbstractValidator
      *
      * @const MIN
      */
-    const MIN = 40;
+    const MIN = 20;
 
     /**
      * Maximum API key length

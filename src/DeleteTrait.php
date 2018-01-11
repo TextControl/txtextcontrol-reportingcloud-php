@@ -45,7 +45,6 @@ trait DeleteTrait
 
         $response = $this->request('DELETE', $this->uri('/account/apikey'), $options);
 
-        // @todo why response code 200?
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
             $ret = true;
         }

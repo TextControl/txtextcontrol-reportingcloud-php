@@ -131,41 +131,28 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('en_US.dic', $response['language']);
     }
 
-    public function testGetApiKeys()
+    public function testApiKeyMaintenanceMethods()
     {
         $apiKeys = $this->reportingCloud->getApiKeys();
+        if (is_array($apiKeys)) {
+            foreach ($apiKeys as $apiKey) {
+                $this->assertArrayHasKey('key', $apiKey);
+                $this->reportingCloud->deleteApiKey($apiKey['key']);
+            }
+        }
 
+        $apiKeys = $this->reportingCloud->getApiKeys();
+        $this->assertNull($apiKeys);
+
+        $key = $this->reportingCloud->createApiKey();
+        $this->assertGreaterThan(20, strlen($key));
+
+        $apiKeys = $this->reportingCloud->getApiKeys();
         $this->assertArrayHasKey(0, $apiKeys);
-
         $this->assertArrayHasKey('key', $apiKeys[0]);
         $this->assertArrayHasKey('active', $apiKeys[0]);
-
         $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $apiKeys[0]['key']);
         $this->assertInternalType(PHPUnit_IsType::TYPE_BOOL, $apiKeys[0]['active']);
-    }
-
-    public function testCreateApiKey()
-    {
-        $key = $this->reportingCloud->createApiKey();
-
-        $this->assertGreaterThan(20, strlen($key));
-    }
-
-    /*
-    public function testDeleteApiKey()
-    {
-        $key = 'ANqJ19Sew530X4aQIzLnngahQchSnKtSz33LTIGP9qA';
-
-        $this->assertTrue($this->reportingCloud->deleteApiKey($key));
-    }
-    */
-
-    /**
-     * @expectedException \TxTextControl\ReportingCloud\Exception\RuntimeException;
-     */
-    public function testDeleteApiKeyWithInvalidKey()
-    {
-        $this->reportingCloud->deleteApiKey('invalid-key');
     }
 
     public function testGetAvailableDictionaries()
