@@ -173,9 +173,9 @@ abstract class AbstractReportingCloud
     /**
      * Request the URI with options
      *
-     * @param string $method HTTP method
-     * @param string $uri URI
-     * @param array $options Options
+     * @param string $method  HTTP method
+     * @param string $uri     URI
+     * @param array  $options Options
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      *
@@ -220,14 +220,16 @@ abstract class AbstractReportingCloud
             $credentials   = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
             $authorization = sprintf('Basic %s', base64_encode($credentials));
 
-            $client = new Client([
+            $options = [
                 'base_uri'              => $this->getBaseUri(),
                 RequestOptions::TIMEOUT => $this->getTimeout(),
                 RequestOptions::DEBUG   => $this->getDebug(),
                 RequestOptions::HEADERS => [
                     'Authorization' => $authorization,
                 ],
-            ]);
+            ];
+
+            $client = new Client($options);
 
             $this->setClient($client);
         }
@@ -458,7 +460,7 @@ abstract class AbstractReportingCloud
     /**
      * Using the passed propertyMap, recursively build array
      *
-     * @param array $array Array
+     * @param array       $array       Array
      * @param PropertyMap $propertyMap PropertyMap
      *
      * @return array

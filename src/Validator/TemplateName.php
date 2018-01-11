@@ -29,18 +29,21 @@ class TemplateName extends AbstractValidator
      * @const INVALID_PATH
      */
     const INVALID_PATH = 'invalidPath';
+
     /**
      * Invalid extension
      *
      * @const INVALID_EXTENSION
      */
     const INVALID_EXTENSION = 'invalidExtension';
+
     /**
      * Invalid basename
      *
      * @const INVALID_BASENAME
      */
     const INVALID_BASENAME = 'invalidBasename';
+
     /**
      * Unsupported FileExtension
      *
@@ -53,12 +56,13 @@ class TemplateName extends AbstractValidator
      *
      * @var array
      */
-    protected $messageTemplates = [
-        self::INVALID_PATH          => "'%value%' contains path information ('/', '.', or '..')",
-        self::INVALID_EXTENSION     => "'%value%' contains an invalid file extension",
-        self::INVALID_BASENAME      => "'%value%' contains an invalid file basename",
-        self::UNSUPPORTED_EXTENSION => "'%value%' contains an unsupported file extension",
-    ];
+    protected $messageTemplates
+        = [
+            self::INVALID_PATH          => "'%value%' contains path information ('/', '.', or '..')",
+            self::INVALID_EXTENSION     => "'%value%' contains an invalid file extension",
+            self::INVALID_BASENAME      => "'%value%' contains an invalid file basename",
+            self::UNSUPPORTED_EXTENSION => "'%value%' contains an unsupported file extension",
+        ];
 
     /**
      * Returns true, if value is valid. False otherwise.

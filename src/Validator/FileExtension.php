@@ -35,9 +35,10 @@ class FileExtension extends AbstractValidator
      *
      * @var array
      */
-    protected $messageTemplates = [
-        self::UNSUPPORTED_EXTENSION => "'%value%' contains an unsupported file extension",
-    ];
+    protected $messageTemplates
+        = [
+            self::UNSUPPORTED_EXTENSION => "'%value%' contains an unsupported file extension",
+        ];
 
     /**
      * Array of supported file extensions
@@ -59,10 +60,12 @@ class FileExtension extends AbstractValidator
 
         $value = strtoupper($value);
 
-        $inArrayValidator = new InArrayValidator([
+        $options = [
             'haystack' => $this->getHaystack(),
             'strict'   => true,
-        ]);
+        ];
+
+        $inArrayValidator = new InArrayValidator($options);
 
         if (!$inArrayValidator->isValid($value)) {
             $this->error(self::UNSUPPORTED_EXTENSION);

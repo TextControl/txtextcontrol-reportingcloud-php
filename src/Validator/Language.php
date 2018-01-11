@@ -23,7 +23,7 @@ class Language extends AbstractResourceValidator
 {
     public function __construct($options = null)
     {
-        $filename = realpath(__DIR__ . '/../../resource/dictionaries.php');
+        $filename = realpath(__DIR__ . '/../../data/dictionaries.php');
 
         $this->setFilename($filename);
 

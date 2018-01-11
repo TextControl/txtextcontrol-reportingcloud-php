@@ -33,9 +33,10 @@ class TypeInteger extends AbstractValidator
      *
      * @var array
      */
-    protected $messageTemplates = [
-        self::INVALID_TYPE => "'%value%' must be of type integer",
-    ];
+    protected $messageTemplates
+        = [
+            self::INVALID_TYPE => "'%value%' must be of type integer",
+        ];
 
     /**
      * Returns true, if value is valid. False otherwise.

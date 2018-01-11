@@ -30,6 +30,7 @@ class Timestamp extends AbstractValidator
      * @const INVALID_TYPE
      */
     const INVALID_TYPE = 'invalidType';
+
     /**
      * Invalid range
      *
@@ -42,10 +43,11 @@ class Timestamp extends AbstractValidator
      *
      * @var array
      */
-    protected $messageTemplates = [
-        self::INVALID_TYPE  => "'%value%' must be an integer",
-        self::INVALID_RANGE => "'%value%' is not in the required range",
-    ];
+    protected $messageTemplates
+        = [
+            self::INVALID_TYPE  => "'%value%' must be an integer",
+            self::INVALID_RANGE => "'%value%' is not in the required range",
+        ];
 
     /**
      * Returns true, if value is valid. False otherwise.
@@ -66,11 +68,13 @@ class Timestamp extends AbstractValidator
             return false;
         }
 
-        $betweenValidator = new BetweenValidator([
+        $options = [
             'min'       => 0,
             'max'       => PHP_INT_MAX,
             'inclusive' => true,
-        ]);
+        ];
+
+        $betweenValidator = new BetweenValidator($options);
 
         if (!$betweenValidator->isValid($value)) {
             $this->error(self::INVALID_RANGE);

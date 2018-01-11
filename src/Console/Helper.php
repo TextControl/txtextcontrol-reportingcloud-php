@@ -25,12 +25,14 @@ class Helper
      * Line length in characters (used to wrap long lines)
      */
     const LINE_LENGTH = 80;
+
     /**
      * Name of username PHP constant or environmental variables
      *
      * @const REPORTING_CLOUD_USERNAME
      */
     const USERNAME = 'REPORTING_CLOUD_USERNAME';
+
     /**
      * Name of password PHP constant or environmental variables
      *
@@ -102,6 +104,8 @@ class Helper
         return $password;
     }
 
+    // @codingStandardsIgnoreStart
+
     /**
      * Return error message explaining how to configure PHP constant or environmental variables
      *
@@ -109,7 +113,8 @@ class Helper
      */
     public static function errorMessage()
     {
-        $ret = <<<END
+        $ret
+            = <<<END
     
 Error: ReportingCloud username and/or password not defined.
 
@@ -139,10 +144,13 @@ END;
         return wordwrap($ret, 80);
     }
 
+    // @codingStandardsIgnoreEnd
+
     /**
      * Print line, wrapped at self::LINE_LENGTH th character
      *
      * @param string $string String
+     *
      * @return string
      */
     public static function writeLn($string)
@@ -155,9 +163,9 @@ END;
      *
      * n: XXX YYY ZZZ....ZZZ
      *
-     * @param integer $counter Counter
-     * @param string $testString Test string
-     * @param string $testResult Test result
+     * @param integer $counter    Counter
+     * @param string  $testString Test string
+     * @param string  $testResult Test result
      */
     public static function writeLnToc($counter, $testString, $testResult)
     {

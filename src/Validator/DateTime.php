@@ -31,18 +31,21 @@ class DateTime extends AbstractValidator
      * @const INVALID_TYPE
      */
     const INVALID_TYPE = 'invalidType';
+
     /**
      * Invalid length
      *
      * @const INVALID_LENGTH
      */
     const INVALID_LENGTH = 'invalidLength';
+
     /**
      * Invalid syntax
      *
      * @const INVALID_SYNTAX
      */
     const INVALID_SYNTAX = 'invalidSyntax';
+
     /**
      * Invalid offset
      *
@@ -55,12 +58,13 @@ class DateTime extends AbstractValidator
      *
      * @var array
      */
-    protected $messageTemplates = [
-        self::INVALID_TYPE   => "'%value%' must be a string",
-        self::INVALID_LENGTH => "'%value%' has an invalid number of characters in it",
-        self::INVALID_SYNTAX => "'%value%' is syntactically invalid",
-        self::INVALID_OFFSET => "'%value%' has an invalid offset",
-    ];
+    protected $messageTemplates
+        = [
+            self::INVALID_TYPE   => "'%value%' must be a string",
+            self::INVALID_LENGTH => "'%value%' has an invalid number of characters in it",
+            self::INVALID_SYNTAX => "'%value%' is syntactically invalid",
+            self::INVALID_OFFSET => "'%value%' has an invalid offset",
+        ];
 
     /**
      * Returns true, if value is valid. False otherwise.

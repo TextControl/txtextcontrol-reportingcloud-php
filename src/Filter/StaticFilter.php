@@ -28,11 +28,12 @@ class StaticFilter extends StaticFilterFilterZend
      *
      * @var array
      */
-    static protected $invokableClasses = [
-        BooleanToString::class,
-        DateTimeToTimestamp::class,
-        TimestampToDateTime::class,
-    ];
+    static protected $invokableClasses
+        = [
+            BooleanToString::class,
+            DateTimeToTimestamp::class,
+            TimestampToDateTime::class,
+        ];
 
     /**
      * Get plugin manager for loading filter classes, adding ReportingCloud Filter classes

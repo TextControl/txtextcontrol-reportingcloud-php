@@ -26,7 +26,7 @@ class MergeSettings extends AbstractPropertyMap
      */
     public function __construct()
     {
-        $this->setMap([
+        $map = [
             'author'                   => 'author',
             'creationDate'             => 'creation_date',
             'creatorApplication'       => 'creator_application',
@@ -40,6 +40,8 @@ class MergeSettings extends AbstractPropertyMap
             'removeEmptyImages'        => 'remove_empty_images',
             'removeTrailingWhitespace' => 'remove_trailing_whitespace',
             'userPassword'             => 'user_password',
-        ]);
+        ];
+
+        $this->setMap($map);
     }
 }

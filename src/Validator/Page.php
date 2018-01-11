@@ -30,12 +30,14 @@ class Page extends AbstractValidator
      * @const MIN
      */
     const MIN = 1;
+
     /**
      * Invalid type
      *
      * @const INVALID_TYPE
      */
     const INVALID_TYPE = 'invalidType';
+
     /**
      * Invalid page
      *
@@ -48,10 +50,11 @@ class Page extends AbstractValidator
      *
      * @var array
      */
-    protected $messageTemplates = [
-        self::INVALID_TYPE    => "'%value%' must be an integer",
-        self::INVALID_INTEGER => "'%value%' contains an invalid page number",
-    ];
+    protected $messageTemplates
+        = [
+            self::INVALID_TYPE    => "'%value%' must be an integer",
+            self::INVALID_INTEGER => "'%value%' contains an invalid page number",
+        ];
 
     /**
      * Returns true, if value is valid. False otherwise.
@@ -72,10 +75,12 @@ class Page extends AbstractValidator
             return false;
         }
 
-        $greaterThanValidator = new GreaterThanValidator([
+        $options = [
             'min'       => self::MIN,
             'inclusive' => true,
-        ]);
+        ];
+
+        $greaterThanValidator = new GreaterThanValidator($options);
 
         if (!$greaterThanValidator->isValid($value)) {
             $this->error(self::INVALID_INTEGER);

@@ -29,34 +29,35 @@ class StaticValidator extends StaticValidatorValidatorZend
      *
      * @var array
      */
-    static protected $invokableClasses = [
-        DateTime::class,
-        DocumentExtension::class,
-        Culture::class,
-        FileExists::class,
-        FileExtension::class,
-        FileHasExtension::class,
-        ImageFormat::class,
-        Language::class,
-        Page::class,
-        ReturnFormat::class,
-        TemplateExtension::class,
-        TemplateFormat::class,
-        TemplateName::class,
-        Timestamp::class,
-        TypeArray::class,
-        TypeBoolean::class,
-        TypeInteger::class,
-        TypeString::class,
-        ZoomFactor::class,
-    ];
+    static protected $invokableClasses
+        = [
+            DateTime::class,
+            DocumentExtension::class,
+            Culture::class,
+            FileExists::class,
+            FileExtension::class,
+            FileHasExtension::class,
+            ImageFormat::class,
+            Language::class,
+            Page::class,
+            ReturnFormat::class,
+            TemplateExtension::class,
+            TemplateFormat::class,
+            TemplateName::class,
+            Timestamp::class,
+            TypeArray::class,
+            TypeBoolean::class,
+            TypeInteger::class,
+            TypeString::class,
+            ZoomFactor::class,
+        ];
 
     /**
      * Statically call a Validator and throw exception on failure
      *
-     * @param mixed $value Value
+     * @param mixed  $value     Value
      * @param string $className Class name
-     * @param array $options Options
+     * @param array  $options   Options
      *
      * @return bool
      *
@@ -65,7 +66,8 @@ class StaticValidator extends StaticValidatorValidatorZend
     public static function execute($value, $className, array $options = [])
     {
         if (count($options) > 0 && array_values($options) === $options) {
-            throw new InvalidArgumentException('Invalid options provided via $options argument; must be an associative array');
+            $message = 'Invalid options provided via $options argument; must be an associative array';
+            throw new InvalidArgumentException($message);
         }
 
         $pluginManager = static::getPluginManager();

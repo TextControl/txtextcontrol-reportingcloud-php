@@ -23,7 +23,7 @@ class Culture extends AbstractResourceValidator
 {
     public function __construct($options = null)
     {
-        $filename = realpath(__DIR__ . '/../../resource/cultures.php');
+        $filename = realpath(__DIR__ . '/../../data/cultures.php');
 
         $this->setFilename($filename);
 

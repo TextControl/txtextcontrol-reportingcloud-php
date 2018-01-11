@@ -26,7 +26,7 @@ class TemplateInfo extends AbstractPropertyMap
      */
     public function __construct()
     {
-        $this->setMap([
+        $map = [
             'dateTimeFormat'     => 'date_time_format',
             'mergeBlocks'        => 'merge_blocks',
             'mergeFields'        => 'merge_fields',
@@ -37,6 +37,8 @@ class TemplateInfo extends AbstractPropertyMap
             'text'               => 'text',
             'textAfter'          => 'text_after',
             'textBefore'         => 'text_before',
-        ]);
+        ];
+
+        $this->setMap($map);
     }
 }

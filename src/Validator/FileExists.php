@@ -35,9 +35,10 @@ class FileExists extends AbstractValidator
      *
      * @var array
      */
-    protected $messageTemplates = [
-        self::INVALID_FILENAME => "'%value%' contains an invalid filename",
-    ];
+    protected $messageTemplates
+        = [
+            self::INVALID_FILENAME => "'%value%' contains an invalid filename",
+        ];
 
     /**
      * Returns true, if value is valid. False otherwise.

@@ -26,12 +26,14 @@ class IncorrectWord extends AbstractPropertyMap
      */
     public function __construct()
     {
-        $this->setMap([
+        $map = [
             'length'      => 'length',
             'start'       => 'start',
             'text'        => 'text',
             'isDuplicate' => 'is_duplicate',
             'language'    => 'language',
-        ]);
+        ];
+
+        $this->setMap($map);
     }
 }

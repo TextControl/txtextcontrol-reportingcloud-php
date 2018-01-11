@@ -30,18 +30,21 @@ class ZoomFactor extends AbstractValidator
      * @const MIN
      */
     const MIN = 1;
+
     /**
      * Maximum zoom factor
      *
      * @const MIN
      */
     const MAX = 400;
+
     /**
      * Invalid type
      *
      * @const INVALID_TYPE
      */
     const INVALID_TYPE = 'invalidType';
+
     /**
      * Invalid page
      *
@@ -54,10 +57,11 @@ class ZoomFactor extends AbstractValidator
      *
      * @var array
      */
-    protected $messageTemplates = [
-        self::INVALID_TYPE    => "'%value%' must be an integer",
-        self::INVALID_INTEGER => "'%value%' contains an invalid zoom factor",
-    ];
+    protected $messageTemplates
+        = [
+            self::INVALID_TYPE    => "'%value%' must be an integer",
+            self::INVALID_INTEGER => "'%value%' contains an invalid zoom factor",
+        ];
 
     /**
      * Returns true, if value is valid. False otherwise.
@@ -78,11 +82,13 @@ class ZoomFactor extends AbstractValidator
             return false;
         }
 
-        $betweenValidator = new BetweenValidator([
+        $options = [
             'min'       => self::MIN,
             'max'       => self::MAX,
             'inclusive' => true,
-        ]);
+        ];
+
+        $betweenValidator = new BetweenValidator($options);
 
         if (!$betweenValidator->isValid($value)) {
             $this->error(self::INVALID_INTEGER);

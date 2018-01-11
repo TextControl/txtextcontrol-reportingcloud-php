@@ -36,9 +36,10 @@ abstract class AbstractResourceValidator extends ZendAbstractValidator implement
      *
      * @var array
      */
-    protected $messageTemplates = [
-        self::INVALID_VALUE => '',  // added dynamically
-    ];
+    protected $messageTemplates
+        = [
+            self::INVALID_VALUE => '',  // added dynamically
+        ];
 
     /**
      * Filename of the resource file.
@@ -62,9 +63,7 @@ abstract class AbstractResourceValidator extends ZendAbstractValidator implement
 
         if (!in_array($value, $values)) {
 
-            $message = sprintf("'%s' is not a valid value. Valid values are: '%s'"
-                , $value
-                , implode("', '", $values));
+            $message = sprintf("'%s' is not a valid value. Valid values are: '%s'", $value, implode("', '", $values));
 
             $this->setMessage($message, self::INVALID_VALUE);
             $this->error(self::INVALID_VALUE);
@@ -89,6 +88,7 @@ abstract class AbstractResourceValidator extends ZendAbstractValidator implement
      * Get the filename of the resource file.
      *
      * @param mixed $filename
+     *
      * @return AbstractResourceValidator
      */
     public function setFilename($filename)

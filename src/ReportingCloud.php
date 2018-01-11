@@ -18,9 +18,9 @@ use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Filter\StaticFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as IncorrectWordMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as IncorrectWordMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
@@ -43,7 +43,7 @@ class ReportingCloud extends AbstractReportingCloud
      *
      * Return null, if no misspelled words are found in the corpus of text.
      *
-     * @param string $text Corpus of text that should be spell checked
+     * @param string $text     Corpus of text that should be spell checked
      * @param string $language Language of specified text
      *
      * @return array|null
@@ -92,9 +92,9 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * Return an array of suggestions for a misspelled word.
      *
-     * @param string $word Word that should be spell checked
+     * @param string $word     Word that should be spell checked
      * @param string $language Language of specified text
-     * @param int $max Maximum number of suggestions to return
+     * @param int    $max      Maximum number of suggestions to return
      *
      * @return array|null
      */
@@ -155,11 +155,11 @@ class ReportingCloud extends AbstractReportingCloud
      * Return an array of binary data.
      * Each record in the array is the binary data of a thumbnail image
      *
-     * @param string $templateName Template name
-     * @param integer $zoomFactor Zoom factor
-     * @param integer $fromPage From page
-     * @param integer $toPage To page
-     * @param string $imageFormat Image format
+     * @param string  $templateName Template name
+     * @param integer $zoomFactor   Zoom factor
+     * @param integer $fromPage     From page
+     * @param integer $toPage       To page
+     * @param string  $imageFormat  Image format
      *
      * @throws InvalidArgumentException
      *
@@ -341,8 +341,8 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * Execute a GET request via REST client
      *
-     * @param string $uri URI
-     * @param array $query Query
+     * @param string $uri   URI
+     * @param array  $query Query
      *
      * @return mixed|null
      */
@@ -413,7 +413,7 @@ class ReportingCloud extends AbstractReportingCloud
      * Convert a document on the local file system to a different format
      *
      * @param string $documentFilename Document filename
-     * @param string $returnFormat Return format
+     * @param string $returnFormat     Return format
      *
      * @throws InvalidArgumentException
      *
@@ -454,19 +454,25 @@ class ReportingCloud extends AbstractReportingCloud
      * Merge data into a template and return an array of binary data.
      * Each record in the array is the binary data of one document
      *
-     * @param array $mergeData Array of merge data
-     * @param string $returnFormat Return format
-     * @param string $templateName Template name
-     * @param string $templateFilename Template filename on local file system
-     * @param boolean $append Append flag
-     * @param array $mergeSettings Array of merge settings
+     * @param array   $mergeData        Array of merge data
+     * @param string  $returnFormat     Return format
+     * @param string  $templateName     Template name
+     * @param string  $templateFilename Template filename on local file system
+     * @param boolean $append           Append flag
+     * @param array   $mergeSettings    Array of merge settings
      *
      * @throws InvalidArgumentException
      *
      * @return null|string
      */
-    public function mergeDocument($mergeData, $returnFormat, $templateName = null, $templateFilename = null, $append = null, $mergeSettings = [])
-    {
+    public function mergeDocument(
+        $mergeData,
+        $returnFormat,
+        $templateName = null,
+        $templateFilename = null,
+        $append = null,
+        $mergeSettings = []
+    ) {
         $ret = null;
 
         StaticValidator::execute($mergeData, 'TypeArray');
@@ -531,18 +537,23 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * Perform find and replace in document and return binary data.
      *
-     * @param array $findAndReplaceData Array of find and replace data
-     * @param string $returnFormat Return format
-     * @param string $templateName Template name
-     * @param string $templateFilename Template filename on local file system
-     * @param array $mergeSettings Array of merge settings
+     * @param array  $findAndReplaceData Array of find and replace data
+     * @param string $returnFormat       Return format
+     * @param string $templateName       Template name
+     * @param string $templateFilename   Template filename on local file system
+     * @param array  $mergeSettings      Array of merge settings
      *
      * @throws InvalidArgumentException
      *
      * @return null|string
      */
-    public function findAndReplaceDocument($findAndReplaceData, $returnFormat, $templateName = null, $templateFilename = null, $mergeSettings = [])
-    {
+    public function findAndReplaceDocument(
+        $findAndReplaceData,
+        $returnFormat,
+        $templateName = null,
+        $templateFilename = null,
+        $mergeSettings = []
+    ) {
         $ret = null;
 
         StaticValidator::execute($findAndReplaceData, 'TypeArray');
