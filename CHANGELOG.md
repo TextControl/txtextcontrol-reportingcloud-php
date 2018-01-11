@@ -11,6 +11,7 @@
 * Added Composer script `composer test` to run unit tests.
 * Added Composer script `composer phpcs` to `PHP_CodeSniffer`. 
 * Merged `media` directory to `data` directory.
+* Updated copyright year to 2018.
 
 ## 1.5.2 - 2017-10-16
 

@@ -13,12 +13,14 @@ class HasFileExtensionTest extends PHPUnit_Framework_TestCase
     {
         $this->validator = new Validator();
 
-        $this->validator->setHaystack([
-                                          'DOC',
-                                          'DOCX',
-                                          'RTF',
-                                          'TX',
-                                      ]);
+        $haystack = [
+            'DOC',
+            'DOCX',
+            'RTF',
+            'TX',
+        ];
+
+        $this->validator->setHaystack($haystack);
     }
 
     public function testConstructorOptions()
@@ -30,9 +32,11 @@ class HasFileExtensionTest extends PHPUnit_Framework_TestCase
             'TX',
         ];
 
-        $validator = new Validator([
-                                       'haystack' => $haystack,
-                                   ]);
+        $options = [
+            'haystack' => $haystack,
+        ];
+
+        $validator = new Validator($options);
 
         $this->assertSame($haystack, $validator->getHaystack());
     }

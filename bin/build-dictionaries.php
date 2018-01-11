@@ -22,10 +22,12 @@ $validator = new Validator();
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$reportingCloud = new ReportingCloud([
-                                         'username' => Helper::username(),
-                                         'password' => Helper::password(),
-                                     ]);
+$options = [
+    'username' => Helper::username(),
+    'password' => Helper::password(),
+];
+
+$reportingCloud = new ReportingCloud($options);
 
 $values = $reportingCloud->getAvailableDictionaries();
 
