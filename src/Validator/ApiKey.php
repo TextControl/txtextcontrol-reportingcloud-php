@@ -13,30 +13,30 @@
 
 namespace TxTextControl\ReportingCloud\Validator;
 
-use TxTextControl\ReportingCloud\Validator\TypeInteger as TypeIntegerValidator;
-use Zend\Validator\Between as BetweenValidator;
+use TxTextControl\ReportingCloud\Validator\TypeString as TypeStringValidator;
+use Zend\Validator\StringLength as StringLengthValidator;
 
 /**
- * Zoom factor validator
+ * ApiKey validator
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ZoomFactor extends AbstractValidator
+class ApiKey extends AbstractValidator
 {
     /**
-     * Minimum zoom factor
+     * Minimum API key length
      *
      * @const MIN
      */
-    const MIN = 1;
+    const MIN = 40;
 
     /**
-     * Maximum zoom factor
+     * Maximum API key length
      *
      * @const MIN
      */
-    const MAX = 400;
+    const MAX = 128;
 
     /**
      * Invalid type
@@ -48,9 +48,9 @@ class ZoomFactor extends AbstractValidator
     /**
      * Invalid zoom factor
      *
-     * @const INVALID_INTEGER
+     * @const INVALID_STRING
      */
-    const INVALID_INTEGER = 'invalidInteger';
+    const INVALID_STRING = 'invalidString';
 
     /**
      * Message templates
@@ -59,8 +59,8 @@ class ZoomFactor extends AbstractValidator
      */
     protected $messageTemplates
         = [
-            self::INVALID_TYPE    => "'%value%' must be an integer",
-            self::INVALID_INTEGER => "'%value%' contains an invalid zoom factor",
+            self::INVALID_TYPE   => "'%value%' must be an integer",
+            self::INVALID_STRING => "'%value%' contains an API key",
         ];
 
     /**
@@ -74,24 +74,21 @@ class ZoomFactor extends AbstractValidator
     {
         $this->setValue($value);
 
-        $typeIntegerValidator = new TypeIntegerValidator();
-
-        if (!$typeIntegerValidator($value)) {
+        $typeStringValidator = new TypeStringValidator();
+        if (!$typeStringValidator->isValid($value)) {
             $this->error(self::INVALID_TYPE);
 
             return false;
         }
 
         $options = [
-            'min'       => self::MIN,
-            'max'       => self::MAX,
-            'inclusive' => true,
+            'min' => self::MIN,
+            'max' => self::MAX,
         ];
 
-        $betweenValidator = new BetweenValidator($options);
-
-        if (!$betweenValidator->isValid($value)) {
-            $this->error(self::INVALID_INTEGER);
+        $stringLengthValidator = new StringLengthValidator($options);
+        if (!$stringLengthValidator->isValid($value)) {
+            $this->error(self::INVALID_STRING);
 
             return false;
         }

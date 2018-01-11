@@ -13,7 +13,34 @@
 
 namespace TxTextControl\ReportingCloud;
 
+use GuzzleHttp\Psr7\Response;
+use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
+use TxTextControl\ReportingCloud\Validator\StaticValidator;
+
 trait PutTrait
 {
-    /* coming soon */
+    abstract protected function uri($uri);
+
+    abstract protected function request($method, $uri, $options = []);
+
+    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
+
+    /**
+     * Create an API key
+     *
+     * @return null|string
+     */
+    public function createApiKey()
+    {
+        $ret = null;
+
+        $response = $this->request('PUT', $this->uri('/account/apikey'));
+
+        if ($response instanceof Response && 201 === $response->getStatusCode()) {
+            $ret = (string) json_decode($response->getBody(), true);
+            StaticValidator::execute($ret, 'ApiKey');
+        }
+
+        return $ret;
+    }
 }

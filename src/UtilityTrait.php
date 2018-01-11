@@ -39,7 +39,7 @@ trait UtilityTrait
      *
      * @throws RuntimeException
      */
-    protected function request($method, $uri, $options)
+    protected function request($method, $uri, $options = [])
     {
         $ret = null;
 
@@ -49,7 +49,7 @@ trait UtilityTrait
             if ($this->getTest()) {
                 $options[RequestOptions::QUERY]['test'] = StaticFilter::execute($this->getTest(), 'BooleanToString');
             }
-            $ret = $client->request($method, $uri, $options);
+            $ret = $client->request($method, $uri, $options = []);
         } catch (\Exception $exception) {
             // \GuzzleHttp\Exception\ClientException
             // \GuzzleHttp\Exception\ServerException

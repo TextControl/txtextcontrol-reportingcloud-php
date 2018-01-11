@@ -144,6 +144,30 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertInternalType(PHPUnit_IsType::TYPE_BOOL, $apiKeys[0]['active']);
     }
 
+    public function testCreateApiKey()
+    {
+        $key = $this->reportingCloud->createApiKey();
+
+        $this->assertGreaterThan(20, strlen($key));
+    }
+
+    /*
+    public function testDeleteApiKey()
+    {
+        $key = 'ANqJ19Sew530X4aQIzLnngahQchSnKtSz33LTIGP9qA';
+
+        $this->assertTrue($this->reportingCloud->deleteApiKey($key));
+    }
+    */
+
+    /**
+     * @expectedException \TxTextControl\ReportingCloud\Exception\RuntimeException;
+     */
+    public function testDeleteApiKeyWithInvalidKey()
+    {
+        $this->reportingCloud->deleteApiKey('invalid-key');
+    }
+
     public function testGetAvailableDictionaries()
     {
         $filename = realpath(__DIR__ . '/../data/dictionaries.php');

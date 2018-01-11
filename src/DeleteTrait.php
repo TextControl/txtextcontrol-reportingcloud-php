@@ -22,7 +22,36 @@ trait DeleteTrait
 {
     abstract protected function uri($uri);
 
-    abstract protected function request($method, $uri, $options);
+    abstract protected function request($method, $uri, $options = []);
+
+    /**
+     * Delete an API key
+     *
+     * @param string $key API key
+     *
+     * @return bool
+     */
+    public function deleteApiKey($key)
+    {
+        $ret = false;
+
+        StaticValidator::execute($key, 'ApiKey');
+
+        $options = [
+            RequestOptions::QUERY => [
+                'key' => $key,
+            ],
+        ];
+
+        $response = $this->request('DELETE', $this->uri('/account/apikey'), $options);
+
+        // @todo why response code 200?
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $ret = true;
+        }
+
+        return $ret;
+    }
 
     /**
      * Delete a template in template storage
@@ -39,12 +68,10 @@ trait DeleteTrait
 
         StaticValidator::execute($templateName, 'TemplateName');
 
-        $query = [
-            'templateName' => $templateName,
-        ];
-
         $options = [
-            RequestOptions::QUERY => $query,
+            RequestOptions::QUERY => [
+                'templateName' => $templateName,
+            ],
         ];
 
         $response = $this->request('DELETE', $this->uri('/templates/delete'), $options);

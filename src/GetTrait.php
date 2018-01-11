@@ -29,12 +29,12 @@ trait GetTrait
 {
     abstract protected function uri($uri);
 
-    abstract protected function request($method, $uri, $options);
+    abstract protected function request($method, $uri, $options = []);
 
     abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
 
     /**
-     * Return an array of API keys associated with the Reporting Cloud account
+     * Return an associative array of API keys associated with the Reporting Cloud account
      *
      * @return array|null
      */
@@ -47,7 +47,14 @@ trait GetTrait
         $records = $this->get('/account/apikeys');
 
         if (is_array($records) && count($records) > 0) {
+            $ret = [];
             foreach ($records as $record) {
+                if (isset($record['key'])) {
+                    StaticValidator::execute($record['key'], 'ApiKey');
+                }
+                if (isset($record['active'])) {
+                    StaticValidator::execute($record['active'], 'TypeBoolean');
+                }
                 $ret[] = $this->buildPropertyMapArray($record, $propertyMap);
             }
         }
