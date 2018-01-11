@@ -22,7 +22,7 @@ trait DeleteTrait
 {
     abstract protected function uri($uri);
 
-    abstract protected function request($method, $uri, $options = []);
+    abstract protected function request($method, $uri, $options);
 
     /**
      * Delete an API key

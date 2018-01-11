@@ -21,7 +21,7 @@ trait PutTrait
 {
     abstract protected function uri($uri);
 
-    abstract protected function request($method, $uri, $options = []);
+    abstract protected function request($method, $uri, $options);
 
     abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
 
@@ -34,7 +34,7 @@ trait PutTrait
     {
         $ret = null;
 
-        $response = $this->request('PUT', $this->uri('/account/apikey'));
+        $response = $this->request('PUT', $this->uri('/account/apikey'), []);
 
         if ($response instanceof Response && 201 === $response->getStatusCode()) {
             $ret = (string) json_decode($response->getBody(), true);

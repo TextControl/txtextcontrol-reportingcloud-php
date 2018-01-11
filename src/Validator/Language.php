@@ -21,6 +21,11 @@ namespace TxTextControl\ReportingCloud\Validator;
  */
 class Language extends AbstractResourceValidator
 {
+    /**
+     * Language constructor
+     *
+     * @param null $options
+     */
     public function __construct($options = null)
     {
         $filename = realpath(__DIR__ . '/../../data/dictionaries.php');

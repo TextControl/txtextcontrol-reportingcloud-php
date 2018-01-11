@@ -21,6 +21,11 @@ namespace TxTextControl\ReportingCloud\Validator;
  */
 class Culture extends AbstractResourceValidator
 {
+    /**
+     * Culture constructor
+     *
+     * @param null $options
+     */
     public function __construct($options = null)
     {
         $filename = realpath(__DIR__ . '/../../data/cultures.php');

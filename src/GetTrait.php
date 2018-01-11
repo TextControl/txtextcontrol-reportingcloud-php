@@ -29,7 +29,7 @@ trait GetTrait
 {
     abstract protected function uri($uri);
 
-    abstract protected function request($method, $uri, $options = []);
+    abstract protected function request($method, $uri, $options);
 
     abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
 

@@ -133,19 +133,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testApiKeyMaintenanceMethods()
     {
-        $apiKeys = $this->reportingCloud->getApiKeys();
-        if (is_array($apiKeys)) {
-            foreach ($apiKeys as $apiKey) {
-                $this->assertArrayHasKey('key', $apiKey);
-                $this->reportingCloud->deleteApiKey($apiKey['key']);
-            }
-        }
-
-        $apiKeys = $this->reportingCloud->getApiKeys();
-        $this->assertNull($apiKeys);
+        $this->deleteAllApiKeys();
 
         $key = $this->reportingCloud->createApiKey();
-        $this->assertGreaterThan(20, strlen($key));
+        $this->assertGreaterThan(40, strlen($key));
 
         $apiKeys = $this->reportingCloud->getApiKeys();
         $this->assertArrayHasKey(0, $apiKeys);
@@ -153,6 +144,20 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('active', $apiKeys[0]);
         $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $apiKeys[0]['key']);
         $this->assertInternalType(PHPUnit_IsType::TYPE_BOOL, $apiKeys[0]['active']);
+    }
+
+    /**
+     * @expectedException RuntimeException
+     */
+    public function testTooManyApiKeys()
+    {
+        $this->deleteAllApiKeys();
+
+        // only 10 API keys are allowed
+        for ($i = 1; $i <= 11; $i++) {
+            $key = $this->reportingCloud->createApiKey();
+            $this->assertGreaterThanOrEqual(40, strlen($key));
+        }
     }
 
     public function testGetAvailableDictionaries()
@@ -1174,5 +1179,20 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         ];
 
         return $ret;
+    }
+
+    protected function deleteAllApiKeys()
+    {
+        $apiKeys = $this->reportingCloud->getApiKeys();
+        if (is_array($apiKeys)) {
+            foreach ($apiKeys as $apiKey) {
+                $this->assertArrayHasKey('key', $apiKey);
+                $this->assertArrayHasKey('active', $apiKey);
+                $this->reportingCloud->deleteApiKey($apiKey['key']);
+            }
+        }
+
+        $apiKeys = $this->reportingCloud->getApiKeys();
+        $this->assertNull($apiKeys);
     }
 }

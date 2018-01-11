@@ -36,7 +36,7 @@ class ApiKey extends AbstractValidator
      *
      * @const MIN
      */
-    const MAX = 128;
+    const MAX = 45;
 
     /**
      * Invalid type
@@ -60,7 +60,7 @@ class ApiKey extends AbstractValidator
     protected $messageTemplates
         = [
             self::INVALID_TYPE   => "'%value%' must be an integer",
-            self::INVALID_STRING => "'%value%' contains an API key",
+            self::INVALID_STRING => "'%value%' contains an invalid API key",
         ];
 
     /**
