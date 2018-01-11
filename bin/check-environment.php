@@ -24,7 +24,8 @@ Helper::writeLn(PHP_EOL);
 
 Helper::writeLn('Environment Checker for the ReportingCloud PHP Wrapper' . PHP_EOL . PHP_EOL);
 
-Helper::writeLn('If requested by technical support, please send the entire output of this script to the support engineers. The information contained within is vital to debug your environment. Thank you.' . PHP_EOL . PHP_EOL);
+Helper::writeLn('If requested by technical support, please send the entire output of this script to the support engineers. The information contained within is vital to debug your environment. Thank you.'
+                . PHP_EOL . PHP_EOL);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -47,7 +48,10 @@ $counter++;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-Helper::writeLnToc($counter, sprintf('Checking memory limit (%s)', ini_get('memory_limit')), TEST_PASS);
+Helper::writeLnToc($counter, sprintf(
+    'Checking memory limit (%s)',
+    ini_get('memory_limit')
+), TEST_PASS);
 
 $counter++;
 
@@ -113,7 +117,7 @@ $counter++;
 $results = @file_get_contents(GEOIP_SERVICE_URI);
 
 if (false != $results) {
-    $lut = [
+    $lut     = [
         'ip'           => 'IP address',
         'city'         => 'City',
         'region_name'  => 'region',
@@ -138,9 +142,11 @@ if (false != $results) {
 // ---------------------------------------------------------------------------------------------------------------------
 
 if (true === $failed) {
-    $message = 'One or more tests failed. The web server environment, in which this script is running, does not meet the requirements for the ReportingCloud PHP wrapper.';
+    $message
+        = 'One or more tests failed. Environment does not meet the requirements for the ReportingCloud PHP wrapper.';
 } else {
-    $message = 'Congratulations! All required tests passed. The server environment, in which this script is running, is suitable for the ReportingCloud PHP wrapper.';
+    $message
+        = 'Congratulations! Environment meets the requirements for the ReportingCloud PHP wrapper.';
 }
 
 Helper::writeLn(PHP_EOL);

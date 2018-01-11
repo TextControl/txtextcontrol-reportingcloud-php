@@ -35,7 +35,7 @@ class TypeInteger extends AbstractValidator
      */
     protected $messageTemplates
         = [
-            self::INVALID_TYPE => "'%value%' must be of type integer",
+            self::INVALID_TYPE => "'%value%' must be of type int",
         ];
 
     /**
@@ -49,7 +49,7 @@ class TypeInteger extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!is_integer($value)) {
+        if (!is_int($value)) {
             $this->error(self::INVALID_TYPE);
 
             return false;

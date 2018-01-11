@@ -35,7 +35,10 @@ class TextInMergeDataIsInDocumentTest extends PHPUnit_Framework_TestCase
 
             $templateFilename = __DIR__ . DIRECTORY_SEPARATOR . sprintf('template.%s', $fileExtension);
 
-            $destinationFilename = sys_get_temp_dir() . DIRECTORY_SEPARATOR . sprintf('%s.pdf', hash('sha256', $fileExtension . microtime(true)));
+            $destinationFilename = sys_get_temp_dir() . DIRECTORY_SEPARATOR . sprintf(
+                '%s.pdf',
+                hash('sha256', $fileExtension . microtime(true))
+            );
 
             $mergeDataFilename = __DIR__ . DIRECTORY_SEPARATOR . 'merge_data.json';
 

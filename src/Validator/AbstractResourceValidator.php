@@ -63,7 +63,11 @@ abstract class AbstractResourceValidator extends ZendAbstractValidator implement
 
         if (!in_array($value, $values)) {
 
-            $message = sprintf("'%s' is not a valid value. Valid values are: '%s'", $value, implode("', '", $values));
+            $message = sprintf(
+                "'%s' is not a valid value. Valid values are: '%s'",
+                $value,
+                implode("', '", $values)
+            );
 
             $this->setMessage($message, self::INVALID_VALUE);
             $this->error(self::INVALID_VALUE);

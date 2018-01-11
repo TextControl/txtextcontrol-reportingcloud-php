@@ -163,9 +163,9 @@ END;
      *
      * n: XXX YYY ZZZ....ZZZ
      *
-     * @param integer $counter    Counter
-     * @param string  $testString Test string
-     * @param string  $testResult Test result
+     * @param int    $counter    Counter
+     * @param string $testString Test string
+     * @param string $testResult Test result
      */
     public static function writeLnToc($counter, $testString, $testResult)
     {

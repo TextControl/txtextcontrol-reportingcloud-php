@@ -47,15 +47,15 @@ $autoloadFilename = call_user_func(function () {
     }
 
     if (null === $ret) {
-        $message = sprintf("Cannot load composer's %s. Tried %s. Did you run 'composer install'?"
-            , $file
-            , implode(', ', $paths)
+        $message = sprintf(
+            "Cannot load composer's %s. Tried %s. Did you run 'composer install'?",
+            $file,
+            implode(', ', $paths)
         );
         throw new RuntimeException($message);
     }
 
     return $ret;
-
 });
 
 include $autoloadFilename;
@@ -69,17 +69,11 @@ Helper::checkCredentials();
 switch (basename(getcwd())) {
 
     case 'demo':
-
         $outputPath = dirname(__DIR__) . '/demo/output';
-
         if (!is_dir($outputPath)) {
             mkdir($outputPath);
         }
-
         define('REPORTING_CLOUD_DEMO_OUTPUT_PATH', $outputPath);
-        define('REPORTING_CLOUD_DEMO_MEDIA_PATH' , realpath(__DIR__ . '/../media'));
-
+        define('REPORTING_CLOUD_DEMO_MEDIA_PATH', realpath(__DIR__ . '/../data'));
         break;
 }
-
-// ---------------------------------------------------------------------------------------------------------------------

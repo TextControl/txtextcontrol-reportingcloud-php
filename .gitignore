@@ -1,6 +1,5 @@
 .idea
+build
 composer.lock
 demo/output
-
 vendor
-build

@@ -5,7 +5,7 @@
     <description>PSR-2 (minus 2 rules not defined in PSR-2).</description>
 
     <arg name="extensions" value="php"/>
-    <arg name="parallel" value="1"/>
+    <arg name="parallel" value="100"/>
     <arg name="colors"/>
     <arg value="sp"/>
 

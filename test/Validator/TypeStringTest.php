@@ -23,11 +23,11 @@ class TypeStringTest extends PHPUnit_Framework_TestCase
     public function testInvalidType()
     {
         $this->assertFalse($this->validator->isValid([
-            1,
-            2,
-            3,
-            4,
-        ]));
+                                                         1,
+                                                         2,
+                                                         3,
+                                                         4,
+                                                     ]));
         $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid(0));

@@ -1,4 +1,4 @@
-![Logo](./media/rc_logo_512.png)
+![Logo](./data/rc_logo_512.png)
 
 # ReportingCloud PHP Wrapper
 
@@ -95,7 +95,6 @@ We are currently working on comprehensive documentation for the ReportingCloud P
  ## Getting Support
  
  The official PHP wrapper for ReportingCloud Web API is supported by Text Control GmbH. To start a conversation with the PHP people in the ReportingCloud Support Department, please [create a ticket](http://support.textcontrol.com/new-ticket), selecting _ReportingCloud_ from the department selection list.
- 
  
  
  

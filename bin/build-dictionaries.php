@@ -23,9 +23,9 @@ $validator = new Validator();
 // ---------------------------------------------------------------------------------------------------------------------
 
 $reportingCloud = new ReportingCloud([
-    'username' => Helper::username(),
-    'password' => Helper::password(),
-]);
+                                         'username' => Helper::username(),
+                                         'password' => Helper::password(),
+                                     ]);
 
 $values = $reportingCloud->getAvailableDictionaries();
 

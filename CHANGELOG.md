@@ -1,8 +1,16 @@
-![Logo](./media/rc_logo_512.png)
+![Logo](./data/rc_logo_512.png)
 
 # CHANGELOG
 
 ## dev-master
+
+## dev-development
+
+* Split `ReportingCloud\ReportingCloud` into multiple Traits.
+* Added `PHP_CodeSniffer` to ensure consistency in file formatting.
+* Added Composer script `composer test` to run unit tests.
+* Added Composer script `composer phpcs` to `PHP_CodeSniffer`. 
+* Merged `media` directory to `data` directory.
 
 ## 1.5.2 - 2017-10-16
 

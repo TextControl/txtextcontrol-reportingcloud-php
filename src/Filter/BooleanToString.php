@@ -24,7 +24,7 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
 class BooleanToString extends AbstractFilter
 {
     /**
-     * Convert boolean true and false to string 'true' and 'false'.
+     * Convert bool true and false to string 'true' and 'false'.
      *
      * This is necessary to prevent Guzzle from converting the query parameter to ?param=0 or ?param=1, which the
      * backend does not recognize.
