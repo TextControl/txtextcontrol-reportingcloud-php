@@ -131,6 +131,19 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('en_US.dic', $response['language']);
     }
 
+    public function testGetApiKeys()
+    {
+        $apiKeys = $this->reportingCloud->getApiKeys();
+
+        $this->assertArrayHasKey(0, $apiKeys);
+
+        $this->assertArrayHasKey('key', $apiKeys[0]);
+        $this->assertArrayHasKey('active', $apiKeys[0]);
+
+        $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $apiKeys[0]['key']);
+        $this->assertInternalType(PHPUnit_IsType::TYPE_BOOL, $apiKeys[0]['active']);
+    }
+
     public function testGetAvailableDictionaries()
     {
         $filename = realpath(__DIR__ . '/../data/dictionaries.php');

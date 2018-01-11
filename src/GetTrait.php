@@ -19,6 +19,7 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Filter\StaticFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\ApiKey as ApiKeyPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as IncorrectWordMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
@@ -31,6 +32,28 @@ trait GetTrait
     abstract protected function request($method, $uri, $options);
 
     abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
+
+    /**
+     * Return an array of API keys associated with the Reporting Cloud account
+     *
+     * @return array|null
+     */
+    public function getApiKeys()
+    {
+        $ret = null;
+
+        $propertyMap = new ApiKeyPropertyMap();
+
+        $records = $this->get('/account/apikeys');
+
+        if (is_array($records) && count($records) > 0) {
+            foreach ($records as $record) {
+                $ret[] = $this->buildPropertyMapArray($record, $propertyMap);
+            }
+        }
+
+        return $ret;
+    }
 
     /**
      * Check a corpus of text for spelling errors.
