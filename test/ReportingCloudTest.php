@@ -80,14 +80,18 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testDefaultProperties()
     {
-        $this->assertNull($this->reportingCloud->getUsername());
-        $this->assertNull($this->reportingCloud->getPassword());
+        $reportingCloud = new ReportingCloud();
 
-        $this->assertSame('https://api.reporting.cloud', $this->reportingCloud->getBaseUri());
-        $this->assertSame(120, $this->reportingCloud->getTimeout());
-        $this->assertSame('v1', $this->reportingCloud->getVersion());
+        $this->assertNull($reportingCloud->getUsername());
+        $this->assertNull($reportingCloud->getPassword());
 
-        $this->assertFalse($this->reportingCloud->getDebug());
+        $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
+        $this->assertSame(120, $reportingCloud->getTimeout());
+        $this->assertSame('v1', $reportingCloud->getVersion());
+
+        $this->assertFalse($reportingCloud->getDebug());
+
+        unset($reportingCloud);
     }
 
     public function testResponseStatusCodeOnNonSsl()
@@ -596,7 +600,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertFileExists($templateFilename);
 
-        $mergeSettings['remove_empty_blocks'] = 'invalid';  // value must be boolean
+        // value must be boolean
+        $mergeSettings['remove_empty_blocks'] = 'invalid';
         $mergeSettings['remove_empty_fields'] = 'invalid';
         $mergeSettings['remove_empty_images'] = 'invalid';
 
@@ -632,7 +637,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertFileExists($templateFilename);
 
-        $mergeSettings['creation_date']          = -1;  // value must be timestamp
+        // value must be timestamp
+        $mergeSettings['creation_date']          = -1;
         $mergeSettings['last_modification_date'] = 'invalid';
 
         $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, false, $mergeSettings);
@@ -663,8 +669,14 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         foreach ($returnFormats as $returnFormat) {
 
-            $response = $this->reportingCloud->mergeDocument($mergeData, $returnFormat, $tempTemplateName, null, false,
-                                                             $mergeSettings);
+            $response = $this->reportingCloud->mergeDocument(
+                $mergeData,
+                $returnFormat,
+                $tempTemplateName,
+                null,
+                false,
+                $mergeSettings
+            );
 
             $this->assertNotNull($response);
             $this->assertNotFalse($response);
@@ -694,8 +706,14 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         foreach ($returnFormats as $returnFormat) {
 
-            $response = $this->reportingCloud->mergeDocument($mergeData, $returnFormat, null, $testTemplateFilename,
-                                                             false, $mergeSettings);
+            $response = $this->reportingCloud->mergeDocument(
+                $mergeData,
+                $returnFormat,
+                null,
+                $testTemplateFilename,
+                false,
+                $mergeSettings
+            );
 
             $this->assertNotNull($response);
             $this->assertNotFalse($response);
@@ -793,12 +811,18 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertFileExists($templateFilename);
 
-        $mergeSettings['remove_empty_blocks'] = 'invalid';  // value must be boolean
+        // value must be boolean
+        $mergeSettings['remove_empty_blocks'] = 'invalid';
         $mergeSettings['remove_empty_fields'] = 'invalid';
         $mergeSettings['remove_empty_images'] = 'invalid';
 
-        $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, $templateFilename,
-                                                      $mergeSettings);
+        $this->reportingCloud->findAndReplaceDocument(
+            $findAndReplaceData,
+            'PDF',
+            null,
+            $templateFilename,
+            $mergeSettings
+        );
     }
 
     /**
@@ -813,11 +837,17 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertFileExists($templateFilename);
 
-        $mergeSettings['creation_date']          = -1;  // value must be timestamp
+        // value must be timestamp
+        $mergeSettings['creation_date']          = -1;
         $mergeSettings['last_modification_date'] = 'invalid';
 
-        $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, $templateFilename,
-                                                      $mergeSettings);
+        $this->reportingCloud->findAndReplaceDocument(
+            $findAndReplaceData,
+            'PDF',
+            null,
+            $templateFilename,
+            $mergeSettings
+        );
     }
 
     public function testFindAndReplaceDocumentWithTemplateName()
@@ -845,8 +875,13 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         foreach ($returnFormats as $returnFormat) {
 
-            $response = $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, $returnFormat,
-                                                                      $tempTemplateName, null, $mergeSettings);
+            $response = $this->reportingCloud->findAndReplaceDocument(
+                $findAndReplaceData,
+                $returnFormat,
+                $tempTemplateName,
+                null,
+                $mergeSettings
+            );
 
             $this->assertNotNull($response);
             $this->assertNotFalse($response);
@@ -871,8 +906,13 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         foreach ($returnFormats as $returnFormat) {
 
-            $response = $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, $returnFormat, null,
-                                                                      $testTemplateFilename, $mergeSettings);
+            $response = $this->reportingCloud->findAndReplaceDocument(
+                $findAndReplaceData,
+                $returnFormat,
+                null,
+                $testTemplateFilename,
+                $mergeSettings
+            );
 
             $this->assertNotNull($response);
             $this->assertNotFalse($response);
