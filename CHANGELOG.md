@@ -6,12 +6,16 @@
 
 ## dev-development
 
+* Updated copyright year to 2018.
 * Split `ReportingCloud\ReportingCloud` into multiple Traits.
-* Added `PHP_CodeSniffer` to ensure consistency in file formatting.
+* Added `PHP_CodeSniffer` to ensure consistency in code formatting.
 * Added Composer script `composer test` to run unit tests.
 * Added Composer script `composer phpcs` to `PHP_CodeSniffer`. 
 * Merged `media` directory to `data` directory.
-* Updated copyright year to 2018.
+* Implemented [end-points](https://www.textcontrol.com/blog/2017/12/29/):
+    * `/v1/account/apikeys`
+    * `/v1/account/apikey`
+    
 
 ## 1.5.2 - 2017-10-16
 
