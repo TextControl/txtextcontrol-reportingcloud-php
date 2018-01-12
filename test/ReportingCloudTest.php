@@ -46,10 +46,9 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->deleteAllApiKeys();
 
         $apiKey = $this->reportingCloud->createApiKey();
+        $this->assertNotEmpty($apiKey);
 
         $reportingCloud = new ReportingCloud();
-
-        $this->assertNotEmpty($apiKey);
 
         $reportingCloud->setTest(true);
         $reportingCloud->setApiKey($apiKey);
@@ -171,7 +170,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->deleteAllApiKeys();
 
         $key = $this->reportingCloud->createApiKey();
-        $this->assertGreaterThanOrEqual(40, strlen($key));
+        $this->assertNotEmpty($key);
 
         $apiKeys = $this->reportingCloud->getApiKeys();
         $this->assertArrayHasKey(0, $apiKeys);
@@ -190,7 +189,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         // only 10 API keys are allowed
         for ($i = 1; $i <= 11; $i++) {
-            $this->reportingCloud->createApiKey();
+            $this->assertNotEmpty($this->reportingCloud->createApiKey());
         }
     }
 
