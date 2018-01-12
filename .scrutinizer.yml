@@ -19,9 +19,6 @@ build:
                 override:
                     -
                     command: composer test
-                    coverage:
-                        file: build/phpunit/clover.xml
-                        format: php-clover
 
         php71:
             environment:
@@ -31,6 +28,3 @@ build:
                 override:
                     -
                     command: composer test
-                    coverage:
-                        file: build/phpunit/clover.xml
-                        format: php-clover
