@@ -155,8 +155,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         // only 10 API keys are allowed
         for ($i = 1; $i <= 11; $i++) {
-            $key = $this->reportingCloud->createApiKey();
-            $this->assertGreaterThanOrEqual(40, strlen($key));
+            $this->reportingCloud->createApiKey();
         }
     }
 
