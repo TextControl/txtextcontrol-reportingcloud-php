@@ -26,9 +26,11 @@ trait PostTrait
 
     abstract protected function request($method, $uri, $options);
 
-    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
+    abstract protected function buildFindAndReplaceDataArray(array $array);
 
     abstract protected function buildMergeSettingsArray(array $array);
+
+    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
 
     /**
      * Upload a template to template storage
