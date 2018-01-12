@@ -41,17 +41,28 @@ class Helper
     const PASSWORD = 'REPORTING_CLOUD_PASSWORD';
 
     /**
+     * Name of API key PHP constant or environmental variables
+     *
+     * @const REPORTING_CLOUD_API_KEY
+     */
+    const API_KEY = 'REPORTING_CLOUD_API_KEY';
+
+    /**
      * Check ReportingCloud credentials, which have been defined in environment variables, otherwise terminate script
      * execution with error code 1
      */
     public static function checkCredentials()
     {
-        if (null === self::username() || null === self::password()) {
-            echo self::errorMessage();
-            die(1);
+        if (null !== self::apiKey()) {
+            return true;
         }
 
-        return true;
+        if (null !== self::username() && null !== self::password()) {
+            return true;
+        }
+
+        echo self::errorMessage();
+        die(1);
     }
 
     /**
@@ -102,6 +113,18 @@ class Helper
         $password = self::variable(self::PASSWORD);
 
         return $password;
+    }
+
+    /**
+     * Return the ReportingCloud API key
+     *
+     * @return null|string
+     */
+    public static function apiKey()
+    {
+        $apiKey = self::variable(self::API_KEY);
+
+        return $apiKey;
     }
 
     // @codingStandardsIgnoreStart

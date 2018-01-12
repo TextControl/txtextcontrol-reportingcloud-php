@@ -15,6 +15,7 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 trait SetGetTrait
 {
@@ -90,8 +91,20 @@ trait SetGetTrait
     {
         if (null === $this->client) {
 
-            $credentials   = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
-            $authorization = sprintf('Basic %s', base64_encode($credentials));
+            $authorization = call_user_func(function () {
+
+                if (null !== $this->getApiKey()) {
+                    return sprintf('ReportingCloud-APIKey %s', $this->getApiKey());
+                }
+
+                if (null !== $this->getUsername() && null !== $this->getPassword()) {
+                    $value = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
+                    return sprintf('Basic %s', base64_encode($value));
+                }
+
+                $message = 'Either the API key, or username and password must be set for authorization';
+                throw new InvalidArgumentException($message);
+            });
 
             $options = [
                 'base_uri'              => $this->getBaseUri(),

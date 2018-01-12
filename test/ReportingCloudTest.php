@@ -27,6 +27,26 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->reportingCloud->setPassword(Helper::password());
     }
 
+    public function testAuthenticationWithApiKey()
+    {
+        $this->deleteAllApiKeys();
+
+        $apiKey = $this->reportingCloud->createApiKey();
+
+        $reportingCloud = new ReportingCloud();
+
+        $this->assertNotEmpty($apiKey);
+
+        $reportingCloud->setApiKey($apiKey);
+
+        $this->assertEquals($apiKey, $reportingCloud->getApiKey());
+        $this->assertContains('Times New Roman', $reportingCloud->getFontList());
+
+        $this->deleteAllApiKeys();
+
+        unset($reportingCloud);
+    }
+
     public function testConstructorOptions()
     {
         $options = [

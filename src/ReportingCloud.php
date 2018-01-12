@@ -92,6 +92,7 @@ class ReportingCloud
     public function __construct(array $options = [])
     {
         $methods = [
+            'api_key'  => 'setApiKey',
             'base_uri' => 'setBaseUri',
             'debug'    => 'setDebug',
             'password' => 'setPassword',

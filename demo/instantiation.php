@@ -36,19 +36,3 @@ $reportingCloud->getDebug(true);
 var_dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
-
-// Instantiate using setter methods (fluent interface)
-
-$reportingCloud = new ReportingCloud();
-
-$reportingCloud
-    ->setUsername(Helper::username())
-    ->setPassword(Helper::password())
-    ->setBaseUri('http://api.example.com')
-    ->setVersion('v1')
-    ->setTimeout(100)
-    ->getDebug(true);
-
-var_dump($reportingCloud);
-
-// ---------------------------------------------------------------------------------------------------------------------
