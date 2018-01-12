@@ -49,12 +49,6 @@ trait GetTrait
         if (is_array($records) && count($records) > 0) {
             $ret = [];
             foreach ($records as $record) {
-                if (isset($record['key'])) {
-                    StaticValidator::execute($record['key'], 'ApiKey');
-                }
-                if (isset($record['active'])) {
-                    StaticValidator::execute($record['active'], 'TypeBoolean');
-                }
                 $ret[] = $this->buildPropertyMapArray($record, $propertyMap);
             }
         }
@@ -243,7 +237,7 @@ trait GetTrait
 
         if (is_array($records) && count($records) > 0) {
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
-            array_walk($ret, function (&$record) {
+            array_walk($ret, function(&$record) {
                 $key = 'modified';
                 if (isset($record[$key])) {
                     $record[$key] = StaticFilter::execute($record[$key], 'DateTimeToTimestamp');

@@ -38,7 +38,8 @@ abstract class AbstractResourceValidator extends ZendAbstractValidator implement
      */
     protected $messageTemplates
         = [
-            self::INVALID_VALUE => '',  // added dynamically
+            // added dynamically
+            self::INVALID_VALUE => '',
         ];
 
     /**
