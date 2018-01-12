@@ -27,6 +27,13 @@ class Helper
     const LINE_LENGTH = 80;
 
     /**
+     * Name of API key PHP constant or environmental variables
+     *
+     * @const REPORTING_CLOUD_API_KEY
+     */
+    const API_KEY = 'REPORTING_CLOUD_API_KEY';
+
+    /**
      * Name of username PHP constant or environmental variables
      *
      * @const REPORTING_CLOUD_USERNAME
@@ -39,13 +46,6 @@ class Helper
      * @const REPORTING_CLOUD_PASSWORD
      */
     const PASSWORD = 'REPORTING_CLOUD_PASSWORD';
-
-    /**
-     * Name of API key PHP constant or environmental variables
-     *
-     * @const REPORTING_CLOUD_API_KEY
-     */
-    const API_KEY = 'REPORTING_CLOUD_API_KEY';
 
     /**
      * Check ReportingCloud credentials, which have been defined in environment variables, otherwise terminate script

@@ -27,6 +27,20 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->reportingCloud->setPassword(Helper::password());
     }
 
+    /**
+     * @expectedException InvalidArgumentException
+     */
+    public function testAuthenticationWithoutCredentials()
+    {
+        $reportingCloud = new ReportingCloud();
+
+        $reportingCloud->setUsername(null);
+        $reportingCloud->setPassword(null);
+        $reportingCloud->setApiKey(null);
+
+        $reportingCloud->getFontList();
+    }
+
     public function testAuthenticationWithApiKey()
     {
         $this->deleteAllApiKeys();
@@ -156,7 +170,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->deleteAllApiKeys();
 
         $key = $this->reportingCloud->createApiKey();
-        $this->assertGreaterThan(40, strlen($key));
+        $this->assertGreaterThanOrEqual(40, strlen($key));
 
         $apiKeys = $this->reportingCloud->getApiKeys();
         $this->assertArrayHasKey(0, $apiKeys);
