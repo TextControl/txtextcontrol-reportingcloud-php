@@ -51,6 +51,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertNotEmpty($apiKey);
 
+        $reportingCloud->setTest(true);
         $reportingCloud->setApiKey($apiKey);
 
         $this->assertEquals($apiKey, $reportingCloud->getApiKey());
