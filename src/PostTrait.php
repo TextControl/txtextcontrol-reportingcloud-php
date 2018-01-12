@@ -28,6 +28,8 @@ trait PostTrait
 
     abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
 
+    abstract protected function buildMergeSettingsArray(array $array);
+
     /**
      * Upload a template to template storage
      *
