@@ -33,6 +33,13 @@ trait SetGetTrait
     protected $password;
 
     /**
+     * Backend API key
+     *
+     * @var string
+     */
+    protected $apiKey;
+
+    /**
      * When true, backend prints "TEST MODE" water mark into output document, and API call does not count against quota
      *
      * @var bool
@@ -161,6 +168,30 @@ trait SetGetTrait
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Return the API key
+     *
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
+    }
+
+    /**
+     * Set the API key
+     *
+     * @param string $apiKey API key
+     *
+     * @return ReportingCloud
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
 
         return $this;
     }
