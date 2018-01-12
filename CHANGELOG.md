@@ -10,12 +10,14 @@
 * Split `ReportingCloud\ReportingCloud` into multiple Traits.
 * Added `PHP_CodeSniffer` to ensure consistency in code formatting.
 * Added Composer script `composer test` to run unit tests.
-* Added Composer script `composer phpcs` to `PHP_CodeSniffer`. 
+* Added Composer script `composer phpcs` to run `PHP_CodeSniffer`.
 * Merged `media` directory to `data` directory.
 * Implemented [end-points](https://www.textcontrol.com/blog/2017/12/29/):
     * `/v1/account/apikeys`
     * `/v1/account/apikey`
-    
+* Implemented [authorization header](https://www.textcontrol.com/blog/2017/12/29/) `ReportingCloud-APIKey`.
+* Updated `Console\Helper` component to return API key, in addition to username and password.
+* Updated Scrutinizer configuration to run tests in multiple PHP versions.
 
 ## 1.5.2 - 2017-10-16
 
