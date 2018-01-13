@@ -32,11 +32,8 @@ $url    = 'https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx';
 $buffer = file_get_contents($url);
 $values = [];
 
-if (preg_match_all(
-        '/<td data-th="Language Culture Name">(.*)<\/td>/U',
-        $buffer,
-        $matches
-    ) && isset($matches[1])) {
+$pattern = '/<td data-th="Language Culture Name">(.*)<\/td>/U';
+if (preg_match_all($pattern, $buffer, $matches) && isset($matches[1])) {
     $values = array_map('trim', $matches[1]);
 }
 

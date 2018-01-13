@@ -24,7 +24,9 @@ Helper::writeLn(PHP_EOL);
 
 Helper::writeLn('Environment Checker for the ReportingCloud PHP Wrapper' . PHP_EOL . PHP_EOL);
 
-Helper::writeLn('If requested by technical support, please send the entire output of this script to the support engineers. The information contained within is vital to debug your environment. Thank you.'
+Helper::writeLn('If requested by technical support, please send the entire output of this script '
+                . 'to the support engineers. The information contained within is vital to debug '
+                . 'your environment. Thank you.'
                 . PHP_EOL . PHP_EOL);
 
 // ---------------------------------------------------------------------------------------------------------------------
