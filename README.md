@@ -82,14 +82,14 @@ export REPORTING_CLOUD_USERNAME='your-username'
 export REPORTING_CLOUD_PASSWORD='your-password'
 ```
 
-Note, these instructions apply only to the sample applications and phpunit tests. When you use ReportingCloud in your application, set the username and password in your constructor or using the `setUsername($username)` and `setPassword($password)` methods. For an example of this case, see `/demo/instantiation.php`.
+Note, these instructions apply only to the demo scripts and phpunit tests. When you use ReportingCloud in your application, set credentials in your constructor, using the `setApiKey($apiKey)` or the `setUsername($username)` and `setPassword($password)` methods. For an example, see `/demo/instantiation.php`.
 
 
 ## Getting Started
 
 As mentioned above, the ReportingCloud PHP wrapper ships with a number of sample applications (see directory `/demo`). These samples applications, which are well commented, have been written to demonstrate all parts of ReportingCloud.
 
-We are currently working on comprehensive documentation for the ReportingCloud PHP wrapper, which will be published in the `/doc` directory, as and when it becomes available. In the meantime, please review the [Text Control Blog](https://www.textcontrol.com/blog/tag/reportingcloud/2017/) , which contains many articles about ReportingCloud.
+We are currently working on comprehensive documentation for the ReportingCloud PHP wrapper, which will be published in the `/doc` directory, as and when it becomes available. In the meantime, please review the [Text Control Blog](https://www.textcontrol.com/blog/tag/reportingcloud/2018/) , which contains many articles about ReportingCloud.
  
  
  ## Getting Support
