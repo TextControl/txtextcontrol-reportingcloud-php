@@ -31,3 +31,13 @@ build:
                         coverage:
                             file: build/phpunit/clover.xml
                             format: php-clover
+        php72:
+            environment:
+                php: '7.2'
+            tests:
+                override:
+                    -
+                        command: composer test
+                        coverage:
+                            file: build/phpunit/clover.xml
+                            format: php-clover
