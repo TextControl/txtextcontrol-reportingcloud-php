@@ -22,10 +22,25 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 trait UtilityTrait
 {
+    /**
+     * Return the REST client of the backend web service
+     *
+     * @return \GuzzleHttp\Client
+     */
     abstract public function getClient();
 
+    /**
+     * Return the test flag
+     *
+     * @return mixed
+     */
     abstract public function getTest();
 
+    /**
+     * Get the version string of the backend web service
+     *
+     * @return string
+     */
     abstract public function getVersion();
 
     /**

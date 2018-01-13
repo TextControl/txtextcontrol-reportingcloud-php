@@ -20,8 +20,26 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 trait DeleteTrait
 {
+    /**
+     * Construct URI with version number
+     *
+     * @param string $uri URI
+     *
+     * @return string
+     */
     abstract protected function uri($uri);
 
+    /**
+     * Request the URI with options
+     *
+     * @param string $method  HTTP method
+     * @param string $uri     URI
+     * @param array  $options Options
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     *
+     * @throws RuntimeException
+     */
     abstract protected function request($method, $uri, $options);
 
     /**

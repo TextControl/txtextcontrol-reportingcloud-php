@@ -22,14 +22,54 @@ use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 trait PostTrait
 {
+    /**
+     * Construct URI with version number
+     *
+     * @param string $uri URI
+     *
+     * @return string
+     */
     abstract protected function uri($uri);
 
+    /**
+     * Request the URI with options
+     *
+     * @param string $method  HTTP method
+     * @param string $uri     URI
+     * @param array  $options Options
+     *
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     *
+     * @throws RuntimeException
+     */
     abstract protected function request($method, $uri, $options);
 
+    /**
+     * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
+     *
+     * @param array $array FindAndReplaceData array
+     *
+     * @return array
+     */
     abstract protected function buildFindAndReplaceDataArray(array $array);
 
+    /**
+     * Using passed mergeSettings array, build array for backend
+     *
+     * @param array $array MergeSettings array
+     *
+     * @return array
+     */
     abstract protected function buildMergeSettingsArray(array $array);
 
+    /**
+     * Using the passed propertyMap, recursively build array
+     *
+     * @param array       $array       Array
+     * @param PropertyMap $propertyMap PropertyMap
+     *
+     * @return array
+     */
     abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
 
     /**
