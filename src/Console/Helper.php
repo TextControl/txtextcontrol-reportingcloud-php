@@ -66,18 +66,6 @@ class Helper
     }
 
     /**
-     * Return the ReportingCloud username
-     *
-     * @return null|string
-     */
-    public static function username()
-    {
-        $username = self::variable(self::USERNAME);
-
-        return $username;
-    }
-
-    /**
      * Return the value of the PHP constant or environmental variable
      *
      * @param string $variable Variable
@@ -104,18 +92,6 @@ class Helper
     }
 
     /**
-     * Return the ReportingCloud password
-     *
-     * @return null|string
-     */
-    public static function password()
-    {
-        $password = self::variable(self::PASSWORD);
-
-        return $password;
-    }
-
-    /**
      * Return the ReportingCloud API key
      *
      * @return null|string
@@ -125,6 +101,30 @@ class Helper
         $apiKey = self::variable(self::API_KEY);
 
         return $apiKey;
+    }
+
+    /**
+     * Return the ReportingCloud username
+     *
+     * @return null|string
+     */
+    public static function username()
+    {
+        $username = self::variable(self::USERNAME);
+
+        return $username;
+    }
+
+    /**
+     * Return the ReportingCloud password
+     *
+     * @return null|string
+     */
+    public static function password()
+    {
+        $password = self::variable(self::PASSWORD);
+
+        return $password;
     }
 
     // @codingStandardsIgnoreStart
@@ -155,7 +155,7 @@ There are two ways in which you can do this:
     export REPORTING_CLOUD_USERNAME='your-username'
     export REPORTING_CLOUD_PASSWORD='your-password'
 
-Note, these instructions apply only to the phpunit and demo scripts. When you use ReportingCloud in your application, set the username and password in your constructor or using the setUsername(\$username) and setPassword(\$password) methods. For an example of this case, see 'demo/instantiation.php'.
+Note, these instructions apply only to the phpunit and demo scripts. When you use ReportingCloud in your application, set credentials in your constructor or using the setApiKey(\$apiKey), or setUsername(\$username) and setPassword(\$password) methods. For an example of this case, see 'demo/instantiation.php'.
 
 For further assistance and customer service please refer to:
 

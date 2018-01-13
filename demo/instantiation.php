@@ -7,7 +7,7 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-// Instantiate using constructor options
+// Instantiate with username and password via constructor options
 
 $reportingCloud = new ReportingCloud([
     'username' => Helper::username(),
@@ -22,7 +22,7 @@ var_dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-// Instantiate using setter methods
+// Instantiate with username and password via setter methods
 
 $reportingCloud = new ReportingCloud();
 
@@ -34,5 +34,25 @@ $reportingCloud->setTimeout(100);
 $reportingCloud->getDebug(true);
 
 var_dump($reportingCloud);
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Instantiate with API key via constructor option
+
+$apiKey = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+
+$reportingCloud = new ReportingCloud([
+    'api_key' => $apiKey,
+]);
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Instantiate with API key via setter method
+
+$apiKey = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+
+$reportingCloud = new ReportingCloud();
+
+$reportingCloud->setApiKey($apiKey);
 
 // ---------------------------------------------------------------------------------------------------------------------
