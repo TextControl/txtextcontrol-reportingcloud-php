@@ -335,8 +335,9 @@ trait GetTrait
     /**
      * Return an array properties for the ReportingCloud account
      *
-     * @return null
      * @throws \Zend\Filter\Exception\ExceptionInterface
+     *
+     * @return array|null
      */
     public function getAccountSettings()
     {
@@ -364,7 +365,7 @@ trait GetTrait
      *
      * @throws InvalidArgumentException
      *
-     * @return null|resource
+     * @return resource|null
      */
     public function downloadTemplate($templateName)
     {

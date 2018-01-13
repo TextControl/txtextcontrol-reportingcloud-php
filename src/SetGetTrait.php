@@ -137,7 +137,6 @@ trait SetGetTrait
         return $this;
     }
 
-
     /**
      * Return the API key
      *

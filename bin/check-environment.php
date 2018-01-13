@@ -9,7 +9,7 @@ use TxTextControl\ReportingCloud\Console\Helper;
 define('TEST_PASS', 'PASS');
 define('TEST_FAIL', 'FAIL');
 
-define('MIN_PHP_VERSION', '5.5');
+define('MIN_PHP_VERSION', '5.6');
 
 define('GEOIP_SERVICE_URI', 'http://freegeoip.net/json/');
 
@@ -119,7 +119,7 @@ $results = @file_get_contents(GEOIP_SERVICE_URI);
 if (false != $results) {
     $lut     = [
         'ip'           => 'IP address',
-        'city'         => 'City',
+        'city'         => 'city',
         'region_name'  => 'region',
         'country_name' => 'country',
     ];
@@ -128,7 +128,15 @@ if (false != $results) {
         if (isset($results->$key)) {
             $value = trim($results->$key);
             if (strlen($value) > 0) {
-                Helper::writeLnToc($counter, sprintf('Checking your %s (%s)', $lut[$key], $value), TEST_PASS);
+                Helper::writeLnToc(
+                    $counter,
+                    sprintf(
+                        'Checking your %s (%s)',
+                        $lut[$key],
+                        $value
+                    ),
+                    TEST_PASS
+                );
                 $counter++;
             }
         }
