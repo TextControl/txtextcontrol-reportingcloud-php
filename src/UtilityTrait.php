@@ -56,8 +56,6 @@ trait UtilityTrait
      */
     protected function request($method, $uri, $options)
     {
-        $ret = null;
-
         $client = $this->getClient();
 
         try {
