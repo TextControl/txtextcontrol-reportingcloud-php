@@ -41,8 +41,8 @@ trait SetGetTrait
     protected $password = null;
 
     /**
-     * When true, add "TEST MODE" watermark to document
-     * API call does not count against quota
+     * When true, API call does not count against quota
+     * "TEST MODE" watermark is added to document
      *
      * @var bool
      */
@@ -94,11 +94,11 @@ trait SetGetTrait
 
             $authorization = function () {
 
-                if (null !== $this->getApiKey()) {
+                if (strlen($this->getApiKey()) > 0) {
                     return sprintf('ReportingCloud-APIKey %s', $this->getApiKey());
                 }
 
-                if (null != $this->getUsername() && null !== $this->getPassword()) {
+                if (strlen($this->getUsername()) > 0 && strlen($this->getPassword()) > 0) {
                     $value = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
                     return sprintf('Basic %s', base64_encode($value));
                 }
