@@ -17,7 +17,6 @@ build:
             tests:
                 override:
                     -
-                        php-scrutinizer-run
                         command: composer test
                         coverage:
                             file: build/phpunit/clover.xml
@@ -28,7 +27,6 @@ build:
             tests:
                 override:
                     -
-                        php-scrutinizer-run
                         command: composer test
                         coverage:
                             file: build/phpunit/clover.xml
