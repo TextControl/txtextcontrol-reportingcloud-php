@@ -16,6 +16,7 @@ build:
                 php: '5.6'
             tests:
                 override:
+                    - php-scrutinizer-run
                     -
                         command: composer test
                         coverage:
@@ -26,6 +27,7 @@ build:
                 php: '7.1'
             tests:
                 override:
+                    - php-scrutinizer-run
                     -
                         command: composer test
                         coverage:
