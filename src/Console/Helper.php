@@ -43,21 +43,17 @@ class Helper
     const PASSWORD = 'REPORTING_CLOUD_PASSWORD';
 
     /**
-     * Check ReportingCloud credentials, which have been defined in environment variables, otherwise terminate script
-     * execution with error code 1
+     * Check that either the username and password have been defined in environment variables
+     *
+     * @return bool
      */
     public static function checkCredentials()
     {
-        if (null !== self::apiKey()) {
-            return true;
-        }
-
         if (null !== self::username() && null !== self::password()) {
             return true;
         }
 
-        echo self::errorMessage();
-        die(1);
+        return false;
     }
 
     /**
