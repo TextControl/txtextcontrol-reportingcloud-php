@@ -4,38 +4,18 @@ use TxTextControl\ReportingCloud\Console\Helper;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-/**
- * Export variables to file
- *
- * @param $filename
- * @param $values
- *
- * @return bool|int
- */
-function var_export_file($filename, $values)
-{
-    $buffer = '<?php';
-    $buffer .= PHP_EOL;
-    $buffer .= PHP_EOL;
-    $buffer .= 'return ';
-    $buffer .= var_export($values, true);
-    $buffer .= ';';
-    $buffer .= PHP_EOL;
-
-    return file_put_contents($filename, $buffer);
-}
-
-// ---------------------------------------------------------------------------------------------------------------------
-
 $autoloadFilename = call_user_func(function () {
 
     $ret = null;
 
-    $file = 'autoload.php';         // standard composer autoload file
+    // standard composer autoload file
+    $file = 'autoload.php';
 
     $paths = [
-        __DIR__ . '/../../..',      // when installed as a dependency to another project
-        __DIR__ . '/../vendor',     // when installed as a GIT clone
+        // when installed as a dependency to another project
+        __DIR__ . '/../../..',
+        // when installed as a GIT clone
+        __DIR__ . '/../vendor',
     ];
 
     foreach ($paths as $path) {

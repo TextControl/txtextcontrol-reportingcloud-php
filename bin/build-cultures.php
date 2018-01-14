@@ -21,6 +21,7 @@
 
 include_once 'bootstrap.php';
 
+use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Validator\Culture as Validator;
 
@@ -46,7 +47,7 @@ $values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-var_export_file($validator->getFilename(), $values);
+Helper::varExportToFile($validator->getFilename(), $values);
 
 echo PHP_EOL;
 echo sprintf('The available cultures (%d) are %s.', count($values), implode(', ', $values));

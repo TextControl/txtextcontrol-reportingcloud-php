@@ -40,7 +40,7 @@ $values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-var_export_file($validator->getFilename(), $values);
+Helper::varExportToFile($validator->getFilename(), $values);
 
 echo PHP_EOL;
 echo sprintf('The available dictionaries (%d) are %s.', count($values), implode(', ', $values));

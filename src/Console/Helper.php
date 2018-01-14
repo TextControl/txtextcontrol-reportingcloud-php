@@ -125,7 +125,8 @@ class Helper
      */
     public static function errorMessage()
     {
-        $ret = <<<END
+        $ret
+            = <<<END
 
 Error: ReportingCloud username and/or password not defined.
 
@@ -159,4 +160,24 @@ END;
         return wordwrap($ret, 80);
     }
 
+    /**
+     * Export variables to file
+     *
+     * @param $filename Name of file to which to write
+     * @param $values   Array of data
+     *
+     * @return bool|int
+     */
+    public static function varExportToFile($filename, $values)
+    {
+        $buffer = '<?php';
+        $buffer .= PHP_EOL;
+        $buffer .= PHP_EOL;
+        $buffer .= 'return ';
+        $buffer .= var_export($values, true);
+        $buffer .= ';';
+        $buffer .= PHP_EOL;
+
+        return file_put_contents($filename, $buffer);
+    }
 }
