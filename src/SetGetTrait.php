@@ -24,21 +24,21 @@ trait SetGetTrait
      *
      * @var string
      */
-    protected $apiKey = null;
+    protected $apiKey;
 
     /**
      * Backend username
      *
      * @var string
      */
-    protected $username = null;
+    protected $username;
 
     /**
      * Backend password
      *
      * @var string
      */
-    protected $password = null;
+    protected $password;
 
     /**
      * When true, API call does not count against quota
@@ -46,42 +46,42 @@ trait SetGetTrait
      *
      * @var bool
      */
-    protected $test = null;
+    protected $test;
 
     /**
      * Backend base URI
      *
      * @var string
      */
-    protected $baseUri = null;
+    protected $baseUri;
 
     /**
      * Backend version string
      *
      * @var string
      */
-    protected $version = null;
+    protected $version;
 
     /**
      * Backend timeout in seconds
      *
      * @var int
      */
-    protected $timeout = null;
+    protected $timeout;
 
     /**
      * REST client to backend
      *
      * @var Client
      */
-    protected $client = null;
+    protected $client;
 
     /**
      * Debug flag of REST client
      *
      * @var bool
      */
-    protected $debug = null;
+    protected $debug;
 
     /**
      * Return the REST client of the backend web service

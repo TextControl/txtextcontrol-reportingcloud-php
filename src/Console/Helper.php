@@ -163,12 +163,12 @@ END;
     /**
      * Export variables to file
      *
-     * @param $filename Name of file to which to write
-     * @param $values   Array of data
+     * @param string $filename Name of file to which to write
+     * @param array  $values   Array of data
      *
      * @return bool|int
      */
-    public static function varExportToFile($filename, $values)
+    public static function varExportToFile($filename, array $values)
     {
         $buffer = '<?php';
         $buffer .= PHP_EOL;
