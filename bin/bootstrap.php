@@ -2,11 +2,7 @@
 
 use TxTextControl\ReportingCloud\Console\Helper;
 
-// ---------------------------------------------------------------------------------------------------------------------
-
-$autoloadFilename = call_user_func(function () {
-
-    $ret = null;
+$autoloadFilename = function () {
 
     // standard composer autoload file
     $file = 'autoload.php';
@@ -19,35 +15,26 @@ $autoloadFilename = call_user_func(function () {
     ];
 
     foreach ($paths as $path) {
-        $filename = $path . DIRECTORY_SEPARATOR . $file;
+        $filename = realpath($path . DIRECTORY_SEPARATOR . $file);
         if (is_readable($filename)) {
-            $ret = realpath($filename);
-            break;
+            return $filename;
         }
     }
 
-    if (null === $ret) {
-        $message = sprintf(
-            "Cannot load composer's %s. Tried %s. Did you run 'composer install'?",
-            $file,
-            implode(', ', $paths)
-        );
-        throw new RuntimeException($message);
-    }
+    $message = sprintf(
+        "Cannot load composer's %s. Tried %s. Did you run 'composer install'?",
+        $file,
+        implode(', ', $paths)
+    );
+    throw new RuntimeException($message);
+};
 
-    return $ret;
-});
-
-include $autoloadFilename;
-
-// ---------------------------------------------------------------------------------------------------------------------
+include $autoloadFilename();
 
 if (false === Helper::checkCredentials()) {
     echo Helper::errorMessage();
     die(1);
 }
-
-// ---------------------------------------------------------------------------------------------------------------------
 
 switch (basename(getcwd())) {
 

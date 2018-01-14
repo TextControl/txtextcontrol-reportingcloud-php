@@ -154,7 +154,6 @@ For further assistance and customer service please refer to:
 
     http://www.reporting.cloud
 
-
 END;
 
         return wordwrap($ret, 80);
