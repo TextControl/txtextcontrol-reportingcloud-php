@@ -21,3 +21,13 @@ build:
                         coverage:
                             file: build/phpunit/clover.xml
                             format: php-clover
+        php71:
+            environment:
+                php: '7.1'
+            tests:
+                override:
+                    -
+                        command: composer test
+                        coverage:
+                            file: build/phpunit/clover.xml
+                            format: php-clover

@@ -37,7 +37,6 @@ if (false === Helper::checkCredentials()) {
 }
 
 switch (basename(getcwd())) {
-
     case 'demo':
         $outputPath = dirname(__DIR__) . '/demo/output';
         if (!is_dir($outputPath)) {
