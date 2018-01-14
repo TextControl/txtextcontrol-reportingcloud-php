@@ -24,7 +24,7 @@ trait SetGetTrait
      *
      * @var string
      */
-    protected $apiKey;
+    protected $apiKey = null;
 
     /**
      * Backend username
