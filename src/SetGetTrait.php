@@ -31,56 +31,57 @@ trait SetGetTrait
      *
      * @var string
      */
-    protected $username;
+    protected $username = null;
 
     /**
      * Backend password
      *
      * @var string
      */
-    protected $password;
+    protected $password = null;
 
     /**
-     * When true, backend prints "TEST MODE" water mark into output document, and API call does not count against quota
+     * When true, add "TEST MODE" watermark to document
+     * API call does not count against quota
      *
      * @var bool
      */
-    protected $test;
+    protected $test = null;
 
     /**
      * Backend base URI
      *
      * @var string
      */
-    protected $baseUri;
+    protected $baseUri = null;
 
     /**
      * Backend version string
      *
      * @var string
      */
-    protected $version;
+    protected $version = null;
 
     /**
      * Backend timeout in seconds
      *
      * @var int
      */
-    protected $timeout;
+    protected $timeout = null;
 
     /**
      * REST client to backend
      *
      * @var Client
      */
-    protected $client;
+    protected $client = null;
 
     /**
      * Debug flag of REST client
      *
      * @var bool
      */
-    protected $debug;
+    protected $debug = null;
 
     /**
      * Return the REST client of the backend web service
@@ -93,11 +94,11 @@ trait SetGetTrait
 
             $authorization = function () {
 
-                if (strlen($this->getApiKey()) > 0) {
+                if (null !== $this->getApiKey()) {
                     return sprintf('ReportingCloud-APIKey %s', $this->getApiKey());
                 }
 
-                if (strlen($this->getUsername()) > 0 && strlen($this->getPassword()) > 0) {
+                if (null != $this->getUsername() && null !== $this->getPassword()) {
                     $value = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
                     return sprintf('Basic %s', base64_encode($value));
                 }
