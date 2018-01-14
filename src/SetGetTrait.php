@@ -91,7 +91,7 @@ trait SetGetTrait
     {
         if (null === $this->client) {
 
-            $authorization = call_user_func(function () {
+            $authorization = function () {
 
                 if (strlen($this->getApiKey()) > 0) {
                     return sprintf('ReportingCloud-APIKey %s', $this->getApiKey());
@@ -104,14 +104,14 @@ trait SetGetTrait
 
                 $message = 'Either the API key, or username and password must be set for authorization';
                 throw new InvalidArgumentException($message);
-            });
+            };
 
             $options = [
                 'base_uri'              => $this->getBaseUri(),
                 RequestOptions::TIMEOUT => $this->getTimeout(),
                 RequestOptions::DEBUG   => $this->getDebug(),
                 RequestOptions::HEADERS => [
-                    'Authorization' => $authorization,
+                    'Authorization' => $authorization(),
                 ],
             ];
 
