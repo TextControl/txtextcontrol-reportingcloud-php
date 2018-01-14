@@ -36,7 +36,7 @@ trait DeleteTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     * @return null|mixed|\Psr\Http\Message\ResponseInterface
      *
      * @throws RuntimeException
      */

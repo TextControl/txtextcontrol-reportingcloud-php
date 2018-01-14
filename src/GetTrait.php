@@ -43,7 +43,7 @@ trait GetTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     * @return null|mixed|\Psr\Http\Message\ResponseInterface
      *
      * @throws RuntimeException
      */
@@ -62,7 +62,7 @@ trait GetTrait
     /**
      * Return an associative array of API keys associated with the Reporting Cloud account
      *
-     * @return array|null
+     * @return null|array
      */
     public function getApiKeys()
     {
@@ -92,7 +92,7 @@ trait GetTrait
      * @param string $text     Corpus of text that should be spell checked
      * @param string $language Language of specified text
      *
-     * @return array|null
+     * @return null|array
      */
     public function proofingCheck($text, $language)
     {
@@ -120,7 +120,7 @@ trait GetTrait
     /**
      * Return an array of available dictionaries on the Reporting Cloud service
      *
-     * @return array|null
+     * @return null|array
      */
     public function getAvailableDictionaries()
     {
@@ -142,7 +142,7 @@ trait GetTrait
      * @param string $language Language of specified text
      * @param int    $max      Maximum number of suggestions to return
      *
-     * @return array|null
+     * @return null|array
      */
     public function getProofingSuggestions($word, $language, $max = 10)
     {
@@ -174,7 +174,7 @@ trait GetTrait
      *
      * @throws InvalidArgumentException
      *
-     * @return array|null
+     * @return null|array
      */
     public function getTemplateInfo($templateName)
     {
@@ -209,7 +209,7 @@ trait GetTrait
      *
      * @throws InvalidArgumentException
      *
-     * @return array|null
+     * @return null|array
      */
     public function getTemplateThumbnails($templateName, $zoomFactor, $fromPage, $toPage, $imageFormat)
     {
@@ -251,7 +251,7 @@ trait GetTrait
     /**
      * Return an array properties for the templates in template storage
      *
-     * @return array|null
+     * @return null|array
      */
     public function getTemplateList()
     {
@@ -317,7 +317,7 @@ trait GetTrait
     /**
      * Return an array of available fonts on the Reporting Cloud service
      *
-     * @return array|null
+     * @return null|array
      */
     public function getFontList()
     {
@@ -337,7 +337,7 @@ trait GetTrait
      *
      * @throws \Zend\Filter\Exception\ExceptionInterface
      *
-     * @return array|null
+     * @return null|array
      */
     public function getAccountSettings()
     {
@@ -365,7 +365,7 @@ trait GetTrait
      *
      * @throws InvalidArgumentException
      *
-     * @return resource|null
+     * @return null|string
      */
     public function downloadTemplate($templateName)
     {
@@ -392,7 +392,7 @@ trait GetTrait
      * @param string $uri   URI
      * @param array  $query Query
      *
-     * @return mixed|null
+     * @return null|mixed
      */
     protected function get($uri, $query = [])
     {

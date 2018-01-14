@@ -4,9 +4,8 @@
 
 ## dev-master
 
-## dev-development
+## 1.6.0 - 2018-01-14
 
-* Updated copyright year to 2018.
 * Split `ReportingCloud\ReportingCloud` into multiple Traits.
 * Added `PHP_CodeSniffer` to ensure consistency in code formatting.
 * Added Composer script `composer test` to run unit tests.
@@ -18,6 +17,7 @@
 * Implemented [authorization header](https://www.textcontrol.com/blog/2017/12/29/) `ReportingCloud-APIKey`.
 * Updated `Console\Helper` component to return API key, in addition to username and password.
 * Updated Scrutinizer configuration to run tests in multiple PHP versions.
+* Updated copyright year to 2018.
 
 ## 1.5.2 - 2017-10-16
 
