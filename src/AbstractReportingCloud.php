@@ -14,6 +14,7 @@
 namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
