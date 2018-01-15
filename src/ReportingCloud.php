@@ -21,6 +21,7 @@ namespace TxTextControl\ReportingCloud;
  */
 class ReportingCloud extends AbstractReportingCloud
 {
+    use BuildTrait;
     use DeleteTrait;
     use GetTrait;
     use PostTrait;

@@ -395,4 +395,29 @@ trait GetTrait
 
         return $ret;
     }
+
+    /**
+     * Execute a GET request via REST client
+     *
+     * @param string $uri   URI
+     * @param array  $query Query
+     *
+     * @return mixed|null
+     */
+    protected function get($uri, $query = [])
+    {
+        $ret = null;
+
+        $options = [
+            RequestOptions::QUERY => $query,
+        ];
+
+        $response = $this->request('GET', $this->uri($uri), $options);
+
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $ret = json_decode($response->getBody(), true);
+        }
+
+        return $ret;
+    }
 }

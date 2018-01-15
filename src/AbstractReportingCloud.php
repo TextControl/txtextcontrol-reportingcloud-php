@@ -19,9 +19,6 @@ use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\StaticFilter;
-use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
-use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
-use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
  * Abstract ReportingCloud
@@ -509,110 +506,5 @@ abstract class AbstractReportingCloud
     protected function uri($uri)
     {
         return sprintf('/%s%s', $this->getVersion(), $uri);
-    }
-
-    /**
-     * Using the passed propertyMap, recursively build array
-     *
-     * @param array       $array       Array
-     * @param PropertyMap $propertyMap PropertyMap
-     *
-     * @return array
-     */
-    protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap)
-    {
-        $ret = [];
-
-        foreach ($array as $key => $value) {
-            $map = $propertyMap->getMap();
-            if (isset($map[$key])) {
-                $key = $map[$key];
-            }
-            if (is_array($value)) {
-                $value = $this->buildPropertyMapArray($value, $propertyMap);
-            }
-            $ret[$key] = $value;
-        }
-
-        return $ret;
-    }
-
-    /**
-     * Using passed mergeSettings array, build array for backend
-     *
-     * @param array $array MergeSettings array
-     *
-     * @return array
-     */
-    protected function buildMergeSettingsArray(array $array)
-    {
-        $ret = [];
-
-        $propertyMap = new MergeSettingsPropertyMap();
-
-        foreach ($propertyMap->getMap() as $property => $key) {
-            if (isset($array[$key])) {
-                $value = $array[$key];
-                if ('culture' == $key) {
-                    StaticValidator::execute($value, 'Culture');
-                }
-                if ('remove_' == substr($key, 0, 7)) {
-                    StaticValidator::execute($value, 'TypeBoolean');
-                }
-                if ('_date' == substr($key, -5)) {
-                    StaticValidator::execute($value, 'Timestamp');
-                    $value = StaticFilter::execute($value, 'TimestampToDateTime');
-                }
-                $ret[$property] = $value;
-            }
-        }
-
-        return $ret;
-    }
-
-    /**
-     * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
-     *
-     * @param array $array FindAndReplaceData array
-     *
-     * @return array
-     */
-    protected function buildFindAndReplaceDataArray(array $array)
-    {
-        $ret = [];
-
-        foreach ($array as $key => $value) {
-            array_push($ret, [
-                $key,
-                $value,
-            ]);
-        }
-
-        return $ret;
-    }
-
-    /**
-     * Execute a GET request via REST client
-     *
-     * @param string $uri   URI
-     * @param array  $query Query
-     *
-     * @return mixed|null
-     */
-    protected function get($uri, $query = [])
-    {
-        $ret = null;
-
-        $options = [
-            RequestOptions::QUERY => $query,
-        ];
-
-        $response = $this->request('GET', $this->uri($uri), $options);
-
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret = json_decode($response->getBody(), true);
-        }
-
-        return $ret;
     }
 }
