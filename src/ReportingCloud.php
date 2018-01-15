@@ -14,7 +14,7 @@
 namespace TxTextControl\ReportingCloud;
 
 /**
- * ReportingCloud
+ * Class ReportingCloud
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)

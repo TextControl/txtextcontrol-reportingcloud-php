@@ -18,6 +18,12 @@ use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPrope
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 use TxTextControl\ReportingCloud\Filter\StaticFilter;
 
+/**
+ * Trait BuildTrait
+ *
+ * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 trait BuildTrait
 {
     /**

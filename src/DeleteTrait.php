@@ -18,6 +18,12 @@ use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
+/**
+ * Trait DeleteTrait
+ *
+ * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 trait DeleteTrait
 {
     /**

@@ -17,6 +17,12 @@ use GuzzleHttp\Psr7\Response;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
+/**
+ * Trait PutTrait
+ *
+ * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 trait PutTrait
 {
     /**

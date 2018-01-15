@@ -20,6 +20,12 @@ use TxTextControl\ReportingCloud\Filter\StaticFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
+/**
+ * Trait PostTrait
+ *
+ * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 trait PostTrait
 {
     /**

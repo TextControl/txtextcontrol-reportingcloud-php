@@ -17,6 +17,12 @@ use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\StaticFilter;
 
+/**
+ * Trait UtilityTrait
+ *
+ * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 trait UtilityTrait
 {
     /**

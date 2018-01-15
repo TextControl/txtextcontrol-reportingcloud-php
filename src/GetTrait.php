@@ -25,6 +25,12 @@ use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropert
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
+/**
+ * Trait GetTrait
+ *
+ * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 trait GetTrait
 {
     /**
