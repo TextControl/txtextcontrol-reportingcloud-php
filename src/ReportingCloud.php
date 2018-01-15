@@ -26,4 +26,35 @@ class ReportingCloud extends AbstractReportingCloud
     use GetTrait;
     use PostTrait;
     use PutTrait;
+    use UtilityTrait;
+
+    /**
+     * Constructor Method
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
+     * ReportingCloud constructor
+     *
+     * @param array $options
+     */
+    public function __construct(array $options = [])
+    {
+        $methods = [
+            'api_key'  => 'setApiKey',
+            'base_uri' => 'setBaseUri',
+            'debug'    => 'setDebug',
+            'password' => 'setPassword',
+            'test'     => 'setTest',
+            'timeout'  => 'setTimeout',
+            'username' => 'setUsername',
+            'version'  => 'setVersion',
+        ];
+
+        foreach ($methods as $key => $method) {
+            if (array_key_exists($key, $options)) {
+                $this->$method($options[$key]);
+            }
+        }
+    }
 }
