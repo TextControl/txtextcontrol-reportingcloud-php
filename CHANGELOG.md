@@ -15,7 +15,6 @@
     * `/v1/account/apikeys`
     * `/v1/account/apikey`
 * Implemented [authorization header](https://www.textcontrol.com/blog/2017/12/29/) `ReportingCloud-APIKey`.
-* Updated `Console\Helper` component to return API key, in addition to username and password.
 * Updated Scrutinizer configuration to run tests in multiple PHP versions.
 * Updated copyright year to 2018.
 

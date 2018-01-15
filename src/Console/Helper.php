@@ -22,13 +22,6 @@ namespace TxTextControl\ReportingCloud\Console;
 class Helper
 {
     /**
-     * Name of API key PHP constant or environmental variables
-     *
-     * @const REPORTING_CLOUD_API_KEY
-     */
-    const API_KEY = 'REPORTING_CLOUD_API_KEY';
-
-    /**
      * Name of username PHP constant or environmental variables
      *
      * @const REPORTING_CLOUD_USERNAME
@@ -61,7 +54,7 @@ class Helper
      *
      * @param string $variable Variable
      *
-     * @return null|string
+     * @return string|null
      */
     protected static function variable($variable)
     {
@@ -83,39 +76,23 @@ class Helper
     }
 
     /**
-     * Return the ReportingCloud API key
-     *
-     * @return null|string
-     */
-    public static function apiKey()
-    {
-        $apiKey = self::variable(self::API_KEY);
-
-        return $apiKey;
-    }
-
-    /**
      * Return the ReportingCloud username
      *
-     * @return null|string
+     * @return string|null
      */
     public static function username()
     {
-        $username = self::variable(self::USERNAME);
-
-        return $username;
+        return self::variable(self::USERNAME);
     }
 
     /**
      * Return the ReportingCloud password
      *
-     * @return null|string
+     * @return string|null
      */
     public static function password()
     {
-        $password = self::variable(self::PASSWORD);
-
-        return $password;
+        return self::variable(self::PASSWORD);
     }
 
     /**
@@ -156,7 +133,7 @@ For further assistance and customer service please refer to:
 
 END;
 
-        return wordwrap($ret, 80);
+        return $ret;
     }
 
     /**

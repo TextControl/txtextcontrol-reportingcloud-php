@@ -38,7 +38,7 @@ trait PostTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return null|mixed|\Psr\Http\Message\ResponseInterface
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
      *
      * @throws RuntimeException
      */
@@ -120,7 +120,7 @@ trait PostTrait
      *
      * @throws InvalidArgumentException
      *
-     * @return null|string
+     * @return string|null
      */
     public function convertDocument($documentFilename, $returnFormat)
     {
@@ -166,7 +166,7 @@ trait PostTrait
      *
      * @throws InvalidArgumentException
      *
-     * @return null|array
+     * @return array|null
      */
     public function mergeDocument(
         $mergeData,
@@ -248,7 +248,7 @@ trait PostTrait
      *
      * @throws InvalidArgumentException
      *
-     * @return null|string
+     * @return string|null
      */
     public function findAndReplaceDocument(
         $findAndReplaceData,

@@ -35,7 +35,7 @@ trait PutTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return null|mixed|\Psr\Http\Message\ResponseInterface
+     * @return mixed|null|\Psr\Http\Message\ResponseInterface
      *
      * @throws RuntimeException
      */
@@ -54,7 +54,7 @@ trait PutTrait
     /**
      * Create an API key
      *
-     * @return null|string
+     * @return string|null
      */
     public function createApiKey()
     {
