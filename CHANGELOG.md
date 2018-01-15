@@ -6,6 +6,7 @@
 
 ## 1.6.0 - 2018-01-14
 
+* Split `ReportingCloud\ReportingCloud` into multiple Traits.
 * Added `PHP_CodeSniffer` to ensure consistency in code formatting.
 * Added Composer script `composer test` to run unit tests.
 * Added Composer script `composer phpcs` to run `PHP_CodeSniffer`.
