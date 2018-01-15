@@ -85,7 +85,7 @@ class ReportingCloud
     const DEFAULT_DEBUG = false;
 
     /**
-     * AbstractReportingCloud constructor
+     * ReportingCloud constructor
      *
      * @param array $options
      */

@@ -36,10 +36,17 @@ class LanguageTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey(Validator::INVALID_VALUE, $this->validator->getMessages());
     }
 
-    public function testConstructor()
+    public function testConstructorWithDefaultOptions()
     {
-        $validator = new Validator(null);
-
+        $validator = new Validator();
         $this->assertTrue($validator->isValid('en_US.dic'));
+        unset($validator);
+    }
+
+    public function testConstructorWithEmptyArray()
+    {
+        $validator = new Validator([]);
+        $this->assertTrue($validator->isValid('en_US.dic'));
+        unset($validator);
     }
 }

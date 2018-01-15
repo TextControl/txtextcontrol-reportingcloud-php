@@ -24,9 +24,9 @@ class Culture extends AbstractResourceValidator
     /**
      * Culture constructor
      *
-     * @param null $options
+     * @param array $options
      */
-    public function __construct($options = null)
+    public function __construct(array $options = [])
     {
         $filename = realpath(__DIR__ . '/../../data/cultures.php');
 

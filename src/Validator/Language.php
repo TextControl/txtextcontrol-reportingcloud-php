@@ -24,9 +24,9 @@ class Language extends AbstractResourceValidator
     /**
      * Language constructor
      *
-     * @param null $options
+     * @param array $options
      */
-    public function __construct($options = null)
+    public function __construct(array $options = [])
     {
         $filename = realpath(__DIR__ . '/../../data/dictionaries.php');
 
