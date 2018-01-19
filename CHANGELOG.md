@@ -7,7 +7,7 @@
 ## 1.6.1 - 2018-01-19
 
 * Updated phpunit configuration.
-* Added PDF/A return format ("PDFA") to `TxTextControl\ReportingCloud\Validator\ReturnFormat`. 
+* Added PDF/A return format `PDFA` to `TxTextControl\ReportingCloud\Validator\ReturnFormat`. 
 
 ## 1.6.0 - 2018-01-14
 
