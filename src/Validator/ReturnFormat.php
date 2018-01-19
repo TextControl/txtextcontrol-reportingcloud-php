@@ -33,6 +33,7 @@ class ReturnFormat extends FileExtension
             'DOCX',
             'HTML',
             'PDF',
+            'PDFA',
             'RTF',
             'TX',
         ];
