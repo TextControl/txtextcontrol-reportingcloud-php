@@ -27,7 +27,7 @@
         "smalot/pdfparser": "^0.9"
     },
     "scripts": {
-        "test": "vendor/bin/phpunit test",
+        "test": "vendor/bin/phpunit",
         "phpcs": "vendor/bin/phpcs src test --standard=phpcs.xml"
     }
 }
