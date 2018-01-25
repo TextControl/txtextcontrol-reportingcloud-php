@@ -127,6 +127,39 @@ trait PostTrait
 
         return $ret;
     }
+    
+        /**
+     * Upload a template to template storage
+     *
+     * @param string $templateFilename Template name
+     *
+     * @throws InvalidArgumentException
+     *
+     * @return bool
+     */
+    public function uploadTemplateFromBase64($base64, $templateName)
+    {
+        $ret = false;
+
+        StaticValidator::execute($templateName, 'TemplateExtension');
+        
+        $query = [
+            'templateName' => $templateName,
+        ];
+
+        $options = [
+            RequestOptions::QUERY => $query,
+            RequestOptions::JSON  => $base64,
+        ];
+
+        $response = $this->request('POST', $this->uri('/templates/upload'), $options);
+
+        if ($response instanceof Response && 201 === $response->getStatusCode()) {
+            $ret = true;
+        }
+
+        return $ret;
+    }
 
     /**
      * Convert a document on the local file system to a different format
