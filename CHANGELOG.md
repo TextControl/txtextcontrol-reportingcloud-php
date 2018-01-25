@@ -4,6 +4,12 @@
 
 ## dev-master
 
+## 1.7.0 - 2018-01-25
+
+* Added method `uploadTemplateFromBase64($data, $templateName)` to upload templates stored in a string, in addition to on the filesystem.
+* Added `Base64Data` validator to validate `$data` passed to `uploadTemplateFromBase64($data, $templateName)`.
+* Refactored `uploadTemplate($templateFilename)` to use `uploadTemplateFromBase64($data, $templateName)`.
+
 ## 1.6.1 - 2018-01-19
 
 * Updated phpunit configuration.
