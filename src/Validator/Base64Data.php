@@ -49,7 +49,7 @@ class Base64Data extends AbstractValidator
     {
         $this->setValue($value);
 
-        // If the strict parameter is set to TRUE, base64_decode() returns false,
+        // If the strict parameter is set to true, base64_decode() returns false,
         // if the input contains characters from outside the base64 alphabet.
 
         if (false === base64_decode($this->getValue(), true)) {
