@@ -32,6 +32,7 @@ class StaticValidator extends StaticValidatorValidatorZend
     static protected $invokableClasses
         = [
             ApiKey::class,
+            Base64Data::class,
             DateTime::class,
             DocumentExtension::class,
             Culture::class,

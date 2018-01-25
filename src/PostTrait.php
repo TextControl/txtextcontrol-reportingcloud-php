@@ -15,7 +15,6 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Filter\StaticFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
@@ -89,67 +88,26 @@ trait PostTrait
      */
 
     /**
-     * Upload a template to template storage
+     * Upload a base64 encoded template to template storage
      *
-     * @param string $templateFilename Template name
-     *
-     * @throws InvalidArgumentException
+     * @param string $data         Template encoded as base64
+     * @param string $templateName Template name
      *
      * @return bool
+     * @throws RuntimeException
      */
-    public function uploadTemplate($templateFilename)
+    public function uploadTemplateFromBase64($data, $templateName)
     {
         $ret = false;
 
-        StaticValidator::execute($templateFilename, 'TemplateExtension');
-        StaticValidator::execute($templateFilename, 'FileExists');
-
-        $templateFilename = realpath($templateFilename);
-        $templateName     = basename($templateFilename);
-
-        $query = [
-            'templateName' => $templateName,
-        ];
-
-        $json = file_get_contents($templateFilename);
-        $json = base64_encode($json);
-
-        $options = [
-            RequestOptions::QUERY => $query,
-            RequestOptions::JSON  => $json,
-        ];
-
-        $response = $this->request('POST', $this->uri('/templates/upload'), $options);
-
-        if ($response instanceof Response && 201 === $response->getStatusCode()) {
-            $ret = true;
-        }
-
-        return $ret;
-    }
-    
-        /**
-     * Upload a template to template storage
-     *
-     * @param string $templateFilename Template name
-     *
-     * @throws InvalidArgumentException
-     *
-     * @return bool
-     */
-    public function uploadTemplateFromBase64($base64, $templateName)
-    {
-        $ret = false;
-
+        StaticValidator::execute($data, 'Base64Data');
         StaticValidator::execute($templateName, 'TemplateExtension');
-        
-        $query = [
-            'templateName' => $templateName,
-        ];
 
         $options = [
-            RequestOptions::QUERY => $query,
-            RequestOptions::JSON  => $base64,
+            RequestOptions::QUERY => [
+                'templateName' => $templateName,
+            ],
+            RequestOptions::JSON  => $data,
         ];
 
         $response = $this->request('POST', $this->uri('/templates/upload'), $options);
@@ -162,14 +120,35 @@ trait PostTrait
     }
 
     /**
+     * Upload a template to template storage
+     *
+     * @param string $templateFilename Template name
+     *
+     * @return bool
+     * @throws RuntimeException
+     */
+    public function uploadTemplate($templateFilename)
+    {
+        StaticValidator::execute($templateFilename, 'TemplateExtension');
+        StaticValidator::execute($templateFilename, 'FileExists');
+
+        $templateFilename = realpath($templateFilename);
+        $templateName     = basename($templateFilename);
+
+        $data = file_get_contents($templateFilename);
+        $data = base64_encode($data);
+
+        return $this->uploadTemplateFromBase64($data, $templateName);
+    }
+
+    /**
      * Convert a document on the local file system to a different format
      *
      * @param string $documentFilename Document filename
      * @param string $returnFormat     Return format
      *
-     * @throws InvalidArgumentException
-     *
-     * @return string|null
+     * @return bool|null|string
+     * @throws RuntimeException
      */
     public function convertDocument($documentFilename, $returnFormat)
     {
@@ -179,17 +158,15 @@ trait PostTrait
         StaticValidator::execute($documentFilename, 'FileExists');
         StaticValidator::execute($returnFormat, 'ReturnFormat');
 
-        $query = [
-            'returnFormat' => $returnFormat,
-        ];
-
         $documentFilename = realpath($documentFilename);
 
         $json = file_get_contents($documentFilename);
         $json = base64_encode($json);
 
         $options = [
-            RequestOptions::QUERY => $query,
+            RequestOptions::QUERY => [
+                'returnFormat' => $returnFormat,
+            ],
             RequestOptions::JSON  => $json,
         ];
 
@@ -213,9 +190,9 @@ trait PostTrait
      * @param bool   $append           Append flag
      * @param array  $mergeSettings    Array of merge settings
      *
-     * @throws InvalidArgumentException
-     *
      * @return array|null
+     * @throws RuntimeException
+     * @throws \Zend\Filter\Exception\ExceptionInterface
      */
     public function mergeDocument(
         $mergeData,
@@ -295,9 +272,8 @@ trait PostTrait
      * @param string $templateFilename   Template filename on local file system
      * @param array  $mergeSettings      Array of merge settings
      *
-     * @throws InvalidArgumentException
-     *
-     * @return string|null
+     * @return bool|null|string
+     * @throws RuntimeException
      */
     public function findAndReplaceDocument(
         $findAndReplaceData,
