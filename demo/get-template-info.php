@@ -12,21 +12,22 @@ $reportingCloud = new ReportingCloud([
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$templateName = 'test_template.tx';
+$templateNames = [
+    'test_template.tx',
+    'test_template_with_user_document_properties.docx',
+];
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . $templateName;
+foreach ($templateNames as $templateName) {
 
-// ---------------------------------------------------------------------------------------------------------------------
+    $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . $templateName;
 
-// Upload template, if not already in template storage
+    // Upload template, if not already in template storage
 
-if (!$reportingCloud->templateExists($templateName)) {
+    if (!$reportingCloud->templateExists($templateName)) {
+        $reportingCloud->uploadTemplate($sourceFilename);
+    }
 
-    $reportingCloud->uploadTemplate($sourceFilename);
+    var_dump($reportingCloud->getTemplateInfo($templateName));
 }
-
-// ---------------------------------------------------------------------------------------------------------------------
-
-var_dump($reportingCloud->getTemplateInfo($templateName));
 
 // ---------------------------------------------------------------------------------------------------------------------
