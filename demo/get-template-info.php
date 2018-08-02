@@ -21,8 +21,6 @@ foreach ($templateNames as $templateName) {
 
     $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . $templateName;
 
-    // Upload template, if not already in template storage
-
     if (!$reportingCloud->templateExists($templateName)) {
         $reportingCloud->uploadTemplate($sourceFilename);
     }

@@ -262,6 +262,10 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('text_after', $response['merge_fields'][0]);
         $this->assertArrayHasKey('text_before', $response['merge_fields'][0]);
 
+        $this->assertArrayHasKey('user_document_properties', $response);
+
+        $this->assertInternalType(PHPUnit_IsType::TYPE_ARRAY, $response['user_document_properties']);
+
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
         $this->assertTrue($response);

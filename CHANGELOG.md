@@ -4,6 +4,11 @@
 
 ## dev-master
 
+## 1.8.0 - 2018-08-02
+
+* Added `user_document_properties` key (containing an array) to the return value of `getTemplateInfo($templateName)`, following the addition of an [extension](https://www.textcontrol.com/blog/2018/07/27/retrieve-user-defined-properties-from-templates/) on the backend.
+* Updated demo `get-template-info.php` to exemplify `user_document_properties` key and array.
+
 ## 1.7.0 - 2018-01-25
 
 * Added method `uploadTemplateFromBase64($data, $templateName)` to upload templates stored in a string, in addition to on the filesystem.
