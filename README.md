@@ -21,7 +21,7 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud PHP wrapper GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
 
-* [ReportingCloud PHP wrapper support](http://support.textcontrol.com/new-ticket)
+* [ReportingCloud PHP wrapper support](https://support.textcontrol.com/new-ticket)
 
 
 ## Minimum Requirements
@@ -94,7 +94,7 @@ We are currently working on comprehensive documentation for the ReportingCloud P
  
  ## Getting Support
  
- The official PHP wrapper for ReportingCloud Web API is supported by Text Control GmbH. To start a conversation with the PHP people in the ReportingCloud Support Department, please [create a ticket](http://support.textcontrol.com/new-ticket), selecting _ReportingCloud_ from the department selection list.
+ The official PHP wrapper for ReportingCloud Web API is supported by Text Control GmbH. To start a conversation with the PHP people in the ReportingCloud Support Department, please [create a ticket](https://support.textcontrol.com/new-ticket), selecting _ReportingCloud_ from the department selection list.
  
  
  

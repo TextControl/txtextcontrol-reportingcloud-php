@@ -24,7 +24,7 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud PHP wrapper GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
 
-* [ReportingCloud PHP wrapper support](http://support.textcontrol.com/new-ticket)
+* [ReportingCloud PHP wrapper support](https://support.textcontrol.com/new-ticket)
 
 ## How Do I Get Started?
 
