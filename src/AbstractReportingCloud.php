@@ -89,17 +89,17 @@ abstract class AbstractReportingCloud
     /**
      * Document divider - none
      */
-    const DOCUMENT_DIVIDER_NONE = 0;
+    const DOCUMENT_DIVIDER_NONE = 1;
 
     /**
      * Document divider - new paragraph
      */
-    const DOCUMENT_DIVIDER_NEW_PARAGRAPH = 1;
+    const DOCUMENT_DIVIDER_NEW_PARAGRAPH = 2;
 
     /**
      * Document divider - new section
      */
-    const DOCUMENT_DIVIDER_NEW_SECTION = 2;
+    const DOCUMENT_DIVIDER_NEW_SECTION = 3;
 
     /**
      * Properties

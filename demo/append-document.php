@@ -14,11 +14,11 @@ $reportingCloud = new ReportingCloud([
 $documents = [
     [
         'filename' => REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_document.docx',
-        'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NONE,
+        'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
         'filename' => REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_document.docx',
-        'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_PARAGRAPH,
+        'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
         'filename' => REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_document.docx',

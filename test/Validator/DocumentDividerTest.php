@@ -16,13 +16,13 @@ class DocumentDivider extends PHPUnit_Framework_TestCase
 
     public function testValid()
     {
-        $this->assertTrue($this->validator->isValid('0'));
         $this->assertTrue($this->validator->isValid('1'));
         $this->assertTrue($this->validator->isValid('2'));
+        $this->assertTrue($this->validator->isValid('3'));
 
-        $this->assertTrue($this->validator->isValid(0));
         $this->assertTrue($this->validator->isValid(1));
         $this->assertTrue($this->validator->isValid(2));
+        $this->assertTrue($this->validator->isValid(3));
     }
 
     public function testInvalid()
