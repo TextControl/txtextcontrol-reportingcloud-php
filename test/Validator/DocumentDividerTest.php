@@ -27,6 +27,12 @@ class DocumentDivider extends PHPUnit_Framework_TestCase
 
     public function testInvalid()
     {
+        $this->assertFalse($this->validator->isValid('0'));
+        $this->assertArrayHasKey(Validator::UNSUPPORTED_DIVIDER, $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(0));
+        $this->assertArrayHasKey(Validator::UNSUPPORTED_DIVIDER, $this->validator->getMessages());
+
         $this->assertFalse($this->validator->isValid('4'));
         $this->assertArrayHasKey(Validator::UNSUPPORTED_DIVIDER, $this->validator->getMessages());
 
@@ -37,6 +43,12 @@ class DocumentDivider extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
 
         $this->assertFalse($this->validator->isValid('b'));
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(true));
+        $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
+
+        $this->assertFalse($this->validator->isValid(false));
         $this->assertArrayHasKey(Validator::INVALID_TYPE, $this->validator->getMessages());
     }
 }
