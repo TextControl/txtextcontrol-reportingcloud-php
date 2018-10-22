@@ -87,6 +87,11 @@ abstract class AbstractReportingCloud
     const DEFAULT_DEBUG = false;
 
     /**
+     * Constants (ReportingCloud values)
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
      * Document divider - none
      */
     const DOCUMENT_DIVIDER_NONE = 1;
