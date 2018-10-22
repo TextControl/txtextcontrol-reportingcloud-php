@@ -13,7 +13,10 @@
 
 namespace TxTextControl\ReportingCloud\Validator;
 
+use ReflectionClass;
+use ReflectionException;
 use TxTextControl\ReportingCloud\ReportingCloud;
+use Zend\Validator\Digits as DigitsValidator;
 use Zend\Validator\InArray as InArrayValidator;
 
 /**
@@ -25,7 +28,21 @@ use Zend\Validator\InArray as InArrayValidator;
 class DocumentDivider extends AbstractValidator
 {
     /**
-     * Unsupported file extension
+     * Array of supported document dividers
+     *
+     * @var array
+     */
+    protected $haystack;
+
+    /**
+     * Invalid type
+     *
+     * @const INVALID_TYPE
+     */
+    const INVALID_TYPE = 'invalidType';
+
+    /**
+     * Unsupported document divider
      *
      * @const UNSUPPORTED_DIVIDER
      */
@@ -38,24 +55,34 @@ class DocumentDivider extends AbstractValidator
      */
     protected $messageTemplates
         = [
+            self::INVALID_TYPE        => "'%value%' must be numeric",
             self::UNSUPPORTED_DIVIDER => "'%value%' contains an unsupported document divider",
         ];
 
+    /**
+     * Returns true, if value is valid. False otherwise.
+     *
+     * @param mixed $value
+     *
+     * @return bool
+     */
     public function isValid($value)
     {
         $this->setValue($value);
 
+        $digitsValidator = new DigitsValidator();
+        if (!$digitsValidator->isValid($value)) {
+            $this->error(self::INVALID_TYPE);
+
+            return false;
+        }
+
         $options = [
-            'haystack' => [
-                ReportingCloud::DOCUMENT_DIVIDER_NONE,
-                ReportingCloud::DOCUMENT_DIVIDER_NEW_PARAGRAPH,
-                ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
-            ],
-            'strict'   => false,
+            'haystack' => $this->getHaystack(),
+            'strict'   => InArrayValidator::COMPARE_NOT_STRICT,
         ];
 
         $inArrayValidator = new InArrayValidator($options);
-
         if (!$inArrayValidator->isValid($value)) {
             $this->error(self::UNSUPPORTED_DIVIDER);
 
@@ -63,5 +90,43 @@ class DocumentDivider extends AbstractValidator
         }
 
         return true;
+    }
+
+    /**
+     * Set array of supported document dividers
+     *
+     * @return array
+     */
+    public function getHaystack()
+    {
+        if (null === $this->haystack) {
+            $haystack = [];
+            try {
+                $reflectionClass = new ReflectionClass(new ReportingCloud());
+                foreach ($reflectionClass->getConstants() as $key => $value) {
+                    if (0 === strpos($key, 'DOCUMENT_DIVIDER_')) {
+                        $haystack[] = $value;
+                    }
+                }
+                $this->setHaystack($haystack);
+            } catch (ReflectionException $e) {
+            }
+        }
+
+        return $this->haystack;
+    }
+
+    /**
+     * Get array of supported document dividers
+     *
+     * @param array $haystack Haystack
+     *
+     * @return DocumentDivider
+     */
+    public function setHaystack($haystack)
+    {
+        $this->haystack = $haystack;
+
+        return $this;
     }
 }
