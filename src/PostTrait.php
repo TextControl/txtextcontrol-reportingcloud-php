@@ -73,6 +73,24 @@ trait PostTrait
     abstract protected function buildMergeSettingsArray(array $array);
 
     /**
+     * Using passed documentsData array, build array for backend
+     *
+     * @param array $array AppendDocument array
+     *
+     * @return array
+     */
+    abstract protected function buildDocumentsArray(array $array);
+
+    /**
+     * Using passed documentsSettings array, build array for backend
+     *
+     * @param array $array
+     *
+     * @return array
+     */
+    abstract protected function buildDocumentSettingsArray(array $array);
+
+    /**
      * Using the passed propertyMap, recursively build array
      *
      * @param array       $array       Array
