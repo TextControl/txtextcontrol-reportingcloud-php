@@ -792,6 +792,33 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         }
     }
 
+    public function testAppendDocument()
+    {
+        $documents = [
+            [
+                'filename' => $this->getTestDocumentFilename(),
+                'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NONE,
+            ],
+            [
+                'filename' => $this->getTestDocumentFilename(),
+                'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_PARAGRAPH,
+            ],
+            [
+                'filename' => $this->getTestDocumentFilename(),
+                'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
+            ],
+        ];
+
+        $documentSettings = $this->getTestDocumentSettings();
+
+        $response       = $this->reportingCloud->appendDocument($documents, 'PDF', $documentSettings);
+        $responseLength = mb_strlen($response);
+
+        $this->assertNotNull($response);
+        $this->assertNotFalse($response);
+        $this->assertGreaterThanOrEqual(1024, $responseLength);
+    }
+
     /**
      * @expectedException InvalidArgumentException
      */
@@ -1195,6 +1222,21 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $validator = new ReturnFormatValidator();
 
         $ret = $validator->getHaystack();
+
+        return $ret;
+    }
+
+    protected function getTestDocumentSettings()
+    {
+        $ret = [
+            'author'                 => 'James Henry Trotter',
+            'creation_date'          => time(),
+            'creator_application'    => 'An awesome creator',
+            'document_subject'       => 'The Old Green Grasshopper',
+            'document_title'         => 'James and the Giant Peach',
+            'last_modification_date' => time(),
+            'user_password'              => '123456789',
+        ];
 
         return $ret;
     }

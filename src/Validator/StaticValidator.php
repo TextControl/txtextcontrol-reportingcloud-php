@@ -34,6 +34,7 @@ class StaticValidator extends StaticValidatorValidatorZend
             ApiKey::class,
             Base64Data::class,
             DateTime::class,
+            DocumentDivider::class,
             DocumentExtension::class,
             Culture::class,
             FileExists::class,

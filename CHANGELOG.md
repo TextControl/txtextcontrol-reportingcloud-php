@@ -4,6 +4,9 @@
 
 ## dev-master
 
+* Implemented [end-point](https://www.textcontrol.com/blog/2018/10/01/new-reportingcloud-endpoint-appending-documents/):
+    * `/v1/document/append`
+
 ## 1.8.0 - 2018-08-02
 
 * Added `user_document_properties` key (containing an array) to the return value of `getTemplateInfo($templateName)`, following the addition of an [extension](https://www.textcontrol.com/blog/2018/07/27/) on the backend.

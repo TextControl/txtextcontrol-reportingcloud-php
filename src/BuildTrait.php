@@ -13,10 +13,11 @@
 
 namespace TxTextControl\ReportingCloud;
 
+use TxTextControl\ReportingCloud\Filter\StaticFilter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\DocumentSettings as DocumentSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
 use TxTextControl\ReportingCloud\Validator\StaticValidator;
-use TxTextControl\ReportingCloud\Filter\StaticFilter;
 
 /**
  * Trait BuildTrait
@@ -52,6 +53,68 @@ trait BuildTrait
                 $value = $this->buildPropertyMapArray($value, $propertyMap);
             }
             $ret[$key] = $value;
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Using passed documentsData array, build array for backend
+     *
+     * @param array $array AppendDocument array
+     *
+     * @return array
+     */
+    protected function buildDocumentsArray(array $array)
+    {
+        $ret = [];
+
+        foreach ($array as $inner) {
+            StaticValidator::execute($inner, 'TypeArray');
+            $document = [];
+            foreach ($inner as $key => $value) {
+                switch ($key) {
+                    case 'filename':
+                        StaticValidator::execute($value, 'FileExists');
+                        StaticValidator::execute($value, 'DocumentExtension');
+                        $value                = realpath($value);
+                        $binary               = file_get_contents($value);
+                        $document['document'] = base64_encode($binary);
+                        break;
+                    case 'divider':
+                        StaticValidator::execute($value, 'DocumentDivider');
+                        $document['documentDivider'] = $value;
+                        break;
+                }
+            }
+            $ret[] = $document;
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Using passed documentsSettings array, build array for backend
+     *
+     * @param array $array
+     *
+     * @return array
+     */
+    protected function buildDocumentSettingsArray(array $array)
+    {
+        $ret = [];
+
+        $propertyMap = new DocumentSettingsPropertyMap();
+
+        foreach ($propertyMap->getMap() as $property => $key) {
+            if (isset($array[$key])) {
+                $value = $array[$key];
+                if ('_date' == substr($key, -5)) {
+                    StaticValidator::execute($value, 'Timestamp');
+                    $value = StaticFilter::execute($value, 'TimestampToDateTime');
+                }
+                $ret[$property] = $value;
+            }
         }
 
         return $ret;

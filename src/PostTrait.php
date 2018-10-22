@@ -264,6 +264,48 @@ trait PostTrait
     }
 
     /**
+     * Combine documents to appending them, divided by a new section, paragraph or nothing
+     *
+     * @param array  $documentsData
+     * @param string $returnFormat
+     * @param array  $documentSettings
+     *
+     * @return bool|null|string
+     */
+    public function appendDocument($documentsData, $returnFormat, $documentSettings = [])
+    {
+        $ret = null;
+
+        StaticValidator::execute($documentsData, 'TypeArray');
+        StaticValidator::execute($returnFormat, 'ReturnFormat');
+
+        $query = [
+            'returnFormat' => $returnFormat,
+        ];
+
+        $json = [
+            'documents' => $this->buildDocumentsArray($documentsData),
+        ];
+
+        if (count($documentSettings) > 0) {
+            $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
+        }
+
+        $options = [
+            RequestOptions::QUERY => $query,
+            RequestOptions::JSON  => $json,
+        ];
+
+        $response = $this->request('POST', $this->uri('/document/append'), $options);
+
+        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+            $ret = base64_decode($response->getBody());
+        }
+
+        return $ret;
+    }
+
+    /**
      * Perform find and replace in document and return binary data.
      *
      * @param array  $findAndReplaceData Array of find and replace data
