@@ -102,7 +102,8 @@ class DocumentDivider extends AbstractValidator
         if (null === $this->haystack) {
             $haystack = [];
             try {
-                $reflectionClass = new ReflectionClass(new ReportingCloud());
+                $reportingCloud  = new ReportingCloud();
+                $reflectionClass = new ReflectionClass($reportingCloud);
                 foreach ($reflectionClass->getConstants() as $key => $value) {
                     if (0 === strpos($key, 'DOCUMENT_DIVIDER_')) {
                         $haystack[] = $value;
@@ -110,6 +111,7 @@ class DocumentDivider extends AbstractValidator
                 }
                 $this->setHaystack($haystack);
             } catch (ReflectionException $e) {
+                // Continue
             }
         }
 
