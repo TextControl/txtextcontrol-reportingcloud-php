@@ -30,16 +30,23 @@ $validator = new Validator();
 // ---------------------------------------------------------------------------------------------------------------------
 
 $url    = 'https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx';
-$buffer = file_get_contents($url);
 $values = [];
 
-$pattern = '/<td data-th="Language Culture Name">(.*)<\/td>/U';
-if (preg_match_all($pattern, $buffer, $matches) && isset($matches[1])) {
-    $values = array_map('trim', $matches[1]);
+libxml_use_internal_errors(true);
+
+$dom = new DomDocument;
+$dom->loadHtmlFile($url);
+
+$xpath = new DomXPath($dom);
+$nodes = $xpath->query("//tr/td[1]");
+foreach ($nodes as $i => $node) {
+    $values[] = trim($node->nodeValue);
 }
 
 if (0 === count($values)) {
-    throw new RuntimeException('Cannot download the available cultures from ' . $url);
+    $format  = 'Cannot download the available cultures from %s';
+    $message = sprintf($format, $url);
+    throw new RuntimeException($message);
 }
 
 natcasesort($values);

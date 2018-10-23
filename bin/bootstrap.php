@@ -21,11 +21,8 @@ $autoloadFilename = function () {
         }
     }
 
-    $message = sprintf(
-        "Cannot load composer's %s. Tried %s. Did you run 'composer install'?",
-        $file,
-        implode(', ', $paths)
-    );
+    $format  = "Cannot load composer's %s. Tried %s. Did you run 'composer install'?";
+    $message = sprintf($format, $file, implode(', ', $paths));
     throw new RuntimeException($message);
 };
 
