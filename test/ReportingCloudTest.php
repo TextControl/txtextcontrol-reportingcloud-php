@@ -1283,6 +1283,5 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(Helper::apiKey(), $apiKeys[0]['key']);
         $this->assertTrue($apiKeys[0]['active']);
-
     }
 }
