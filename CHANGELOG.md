@@ -4,7 +4,7 @@
 
 ## dev-master
 
-## 1.9.0 - 2018-08-02
+## 1.9.0 - 2018-10-23
 
 * Implemented [end-point](https://www.textcontrol.com/blog/2018/10/01/new-reportingcloud-endpoint-appending-documents/):
     * `/v1/document/append`
