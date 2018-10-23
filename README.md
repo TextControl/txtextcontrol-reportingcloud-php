@@ -64,25 +64,23 @@ composer dump-autoload --optimize
 ```
 
 
-## Username and Password for Demos and Unit Tests
+## API Key for Demos and Unit Tests
 
-The ReportingCloud PHP wrapper ships with a number of sample applications (see directory `/demo`) and phpunit tests (see directory `/test`). The scripts in each of these directories require a username and password for ReportingCloud in order to be executed. So that your username and password are not made inadvertently publicly available via a public GIT repository, you will first need to specify them. There are two ways in which you can do this:
+The ReportingCloud PHP wrapper ships with a number of sample applications (see directory `/demo`) and phpunit tests (see directory `/test`). The scripts in each of these directories require an API key for ReportingCloud in order to be executed. So that the API key is not made inadvertently publicly available via a public GIT repository, you will first need to specify it. There are two ways in which you can do this:
 
 ### Using PHP Constants:
 
 ```php
-define('REPORTING_CLOUD_USERNAME', 'your-username');
-define('REPORTING_CLOUD_PASSWORD', 'your-password');
+define('REPORTING_CLOUD_API_KEY', 'your-api-key');
 ```
 
 ### Using Environmental Variables (For Example in `.bashrc`)
 
 ```bash
-export REPORTING_CLOUD_USERNAME='your-username'
-export REPORTING_CLOUD_PASSWORD='your-password'
+export REPORTING_CLOUD_API_KEY='your-api-key'
 ```
 
-Note, these instructions apply only to the demo scripts and phpunit tests. When you use ReportingCloud in your application, set credentials in your constructor, using the `setApiKey($apiKey)` or the `setUsername($username)` and `setPassword($password)` methods. For an example, see `/demo/instantiation.php`.
+Note, these instructions apply only to the demo scripts and phpunit tests. When you use ReportingCloud in your application, set the API key in your constructor or by using the `setApiKey($apiKey)` methods. For an example, see `/demo/instantiation.php`.
 
 
 ## Getting Started
