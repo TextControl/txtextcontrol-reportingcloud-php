@@ -9,21 +9,17 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 
 // Instantiate with API key via constructor option
 
-$apiKey = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-
 $reportingCloud = new ReportingCloud([
-    'api_key' => $apiKey,
+    'api_key' => 'xxxxxxxx',
 ]);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Instantiate with API key via setter method
 
-$apiKey = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
-
 $reportingCloud = new ReportingCloud();
 
-$reportingCloud->setApiKey($apiKey);
+$reportingCloud->setApiKey('xxxxxxxx');
 
 // ---------------------------------------------------------------------------------------------------------------------
 
