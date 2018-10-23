@@ -13,6 +13,8 @@ $reportingCloud = new ReportingCloud([
     'api_key' => 'xxxxxxxx',
 ]);
 
+var_dump($reportingCloud);
+
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Instantiate with API key via setter method
@@ -20,6 +22,8 @@ $reportingCloud = new ReportingCloud([
 $reportingCloud = new ReportingCloud();
 
 $reportingCloud->setApiKey('xxxxxxxx');
+
+var_dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
