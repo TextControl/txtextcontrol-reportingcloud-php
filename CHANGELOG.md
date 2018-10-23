@@ -4,15 +4,18 @@
 
 ## dev-master
 
+## 1.9.0 - 2018-08-02
+
 * Implemented [end-point](https://www.textcontrol.com/blog/2018/10/01/new-reportingcloud-endpoint-appending-documents/):
     * `/v1/document/append`
 * Added `/demo/append-document-basic.php` and `/demo/append-document-advanced.php` to exemplify `appendDocument($documentsData, $returnFormat, $documentSettings)`.
-* Switched from username and password authentication to API key authentication in all demos and tests. The former authentication is deprecated and will be removed in a future version.    
+* Switched from username and password authentication to API key authentication in all demos and tests. The former authentication is deprecated and will be removed in a future version.
+* Updated `/bin/build-cultures.php` following change to backend.
 
 ## 1.8.0 - 2018-08-02
 
 * Added `user_document_properties` key (containing an array) to the return value of `getTemplateInfo($templateName)`, following the addition of an [extension](https://www.textcontrol.com/blog/2018/07/27/) on the backend.
-* Updated demo `get-template-info.php` to exemplify `user_document_properties` key and array.
+* Updated `/demo/get-template-info.php` to exemplify `user_document_properties` key and array.
 
 ## 1.7.0 - 2018-01-25
 
