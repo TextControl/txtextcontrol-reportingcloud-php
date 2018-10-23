@@ -1277,8 +1277,12 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(1 === count($apiKeys));
 
         $this->assertArrayHasKey(0, $apiKeys);
+
         $this->assertArrayHasKey('key', $apiKeys[0]);
         $this->assertArrayHasKey('active', $apiKeys[0]);
+
+        $this->assertEquals(Helper::apiKey(), $apiKeys[0]['key']);
+        $this->assertTrue($apiKeys[0]['active']);
 
     }
 }
