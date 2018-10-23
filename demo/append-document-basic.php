@@ -26,19 +26,9 @@ $documents = [
     ],
 ];
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_document_merge.pdf';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_append_document_basic.pdf';
 
-$documentSettings = [
-    'author'                 => 'James Henry Trotter',
-    'creation_date'          => time(),
-    'creator_application'    => 'An awesome creator',
-    'document_subject'       => 'The Old Green Grasshopper',
-    'document_title'         => 'James and the Giant Peach',
-    'last_modification_date' => time(),
-    'user_password'          => '1',
-];
-
-$binaryData = $reportingCloud->appendDocument($documents, 'PDF', $documentSettings);
+$binaryData = $reportingCloud->appendDocument($documents, 'PDF');
 
 file_put_contents($destinationFilename, $binaryData);
 

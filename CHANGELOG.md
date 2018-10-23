@@ -6,7 +6,7 @@
 
 * Implemented [end-point](https://www.textcontrol.com/blog/2018/10/01/new-reportingcloud-endpoint-appending-documents/):
     * `/v1/document/append`
-* Added demo `append-document.php` to exemplify `appendDocument($documentsData, $returnFormat, $documentSettings)`.    
+* Added demos `append-document-basic.php` and `append-document-advanced.php` to exemplify `appendDocument($documentsData, $returnFormat, $documentSettings)`.    
 
 ## 1.8.0 - 2018-08-02
 
