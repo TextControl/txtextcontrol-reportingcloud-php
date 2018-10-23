@@ -20,11 +20,9 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $this->reportingCloud = new ReportingCloud();
 
-        $this->assertNotEmpty(Helper::username());
-        $this->assertNotEmpty(Helper::password());
+        $this->assertNotEmpty(Helper::apiKey());
 
-        $this->reportingCloud->setUsername(Helper::username());
-        $this->reportingCloud->setPassword(Helper::password());
+        $this->reportingCloud->setApiKey(Helper::apiKey());
     }
 
     /**
@@ -1265,6 +1263,9 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $apiKeys = $this->reportingCloud->getApiKeys();
         if (is_array($apiKeys)) {
             foreach ($apiKeys as $apiKey) {
+                if ($apiKey['key'] == Helper::apiKey()) {
+                    continue;
+                }
                 $this->assertArrayHasKey('key', $apiKey);
                 $this->assertArrayHasKey('active', $apiKey);
                 $this->reportingCloud->deleteApiKey($apiKey['key']);

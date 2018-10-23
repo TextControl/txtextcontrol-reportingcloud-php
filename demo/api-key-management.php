@@ -8,14 +8,17 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 // ---------------------------------------------------------------------------------------------------------------------
 
 $reportingCloud = new ReportingCloud([
-    'username' => Helper::username(),
-    'password' => Helper::password(),
+    'api_key' => Helper::apiKey(),
 ]);
 
 $apiKeys = $reportingCloud->getApiKeys();
 
 if (is_array($apiKeys)) {
     foreach ($apiKeys as $apiKey) {
+        if ($apiKey['key'] == Helper::apiKey()) {
+            echo sprintf("Keeping API key %s...\n", $apiKey['key']);
+            continue;
+        }
         echo sprintf("Deleting API key %s...\n", $apiKey['key']);
         $reportingCloud->deleteApiKey($apiKey['key']);
         unset($apiKey);

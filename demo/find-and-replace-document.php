@@ -6,9 +6,8 @@ use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 $reportingCloud = new ReportingCloud([
-    'username' => Helper::username(),
-    'password' => Helper::password(),
-    'test'     => true,
+    'api_key' => Helper::apiKey(),
+    'test'    => true,
 ]);
 
 $sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_find_and_replace.tx';

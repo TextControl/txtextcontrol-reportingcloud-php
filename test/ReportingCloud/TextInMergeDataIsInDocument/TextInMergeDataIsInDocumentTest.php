@@ -16,8 +16,7 @@ class TextInMergeDataIsInDocumentTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->reportingCloud = new ReportingCloud();
-        $this->reportingCloud->setUsername(Helper::username());
-        $this->reportingCloud->setPassword(Helper::password());
+        $this->reportingCloud->setApiKey(Helper::apiKey());
 
         $this->pdfParser = new PdfParser();
     }

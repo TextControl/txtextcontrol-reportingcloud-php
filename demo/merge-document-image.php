@@ -5,14 +5,13 @@ include_once 'bootstrap.php';
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
-$imageFilename       = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template_image.jpg';
-$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template_image.docx';
+$imageFilename       = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_template_image.jpg';
+$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_template_image.docx';
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_template_image_merged.pdf';
 
 $reportingCloud = new ReportingCloud([
-    'username' => Helper::username(),
-    'password' => Helper::password(),
-    'test'     => true,
+    'api_key' => Helper::apiKey(),
+    'test'    => true,
 ]);
 
 $imageBinaryData = file_get_contents($imageFilename);

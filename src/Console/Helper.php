@@ -24,25 +24,18 @@ class Helper
     /**
      * Name of username PHP constant or environmental variables
      *
-     * @const REPORTING_CLOUD_USERNAME
+     * @const REPORTING_CLOUD_API_KEY
      */
-    const USERNAME = 'REPORTING_CLOUD_USERNAME';
+    const API_KEY = 'REPORTING_CLOUD_API_KEY';
 
     /**
-     * Name of password PHP constant or environmental variables
-     *
-     * @const REPORTING_CLOUD_PASSWORD
-     */
-    const PASSWORD = 'REPORTING_CLOUD_PASSWORD';
-
-    /**
-     * Check that either the username and password have been defined in environment variables
+     * Check that either the API key has been defined in environment variables
      *
      * @return bool
      */
     public static function checkCredentials()
     {
-        if (null !== self::username() && null !== self::password()) {
+        if (null !== self::apiKey()) {
             return true;
         }
 
@@ -76,23 +69,13 @@ class Helper
     }
 
     /**
-     * Return the ReportingCloud username
+     * Return the ReportingCloud API key
      *
      * @return string|null
      */
-    public static function username()
+    public static function apiKey()
     {
-        return self::variable(self::USERNAME);
-    }
-
-    /**
-     * Return the ReportingCloud password
-     *
-     * @return string|null
-     */
-    public static function password()
-    {
-        return self::variable(self::PASSWORD);
+        return self::variable(self::API_KEY);
     }
 
     /**
@@ -105,27 +88,25 @@ class Helper
         $ret
             = <<<END
 
-Error: ReportingCloud username and/or password not defined.
+Error: ReportingCloud API key not defined.
 
 In order to execute this script, you must first set your ReportingCloud
-username and password.
+API key.
 
 There are two ways in which you can do this:
 
-1) Define the following PHP constants:
+1) Define the following PHP constant:
 
-    define('REPORTING_CLOUD_USERNAME', 'your-username');
-    define('REPORTING_CLOUD_PASSWORD', 'your-password');
+    define('REPORTING_CLOUD_API_KEY', 'your-api-key');
 
-2) Set environmental variables (for example in .bashrc)
+2) Set environmental variable (for example in .bashrc)
     
-    export REPORTING_CLOUD_USERNAME='your-username'
-    export REPORTING_CLOUD_PASSWORD='your-password'
+    export REPORTING_CLOUD_API_KEY='your-api-key'
 
 Note, these instructions apply only to the demo scripts and phpunit tests.
 When you use ReportingCloud in your application, set credentials in your
-constructor, using the setApiKey(\$apiKey) or the setUsername(\$username) and
-setPassword(\$password) methods. For an example, see '/demo/instantiation.php'.
+constructor or using the setApiKey(\$apiKey). For an example, see 
+'/demo/instantiation.php'.
 
 For further assistance and customer service please refer to:
 
@@ -155,5 +136,39 @@ END;
         $buffer .= PHP_EOL;
 
         return file_put_contents($filename, $buffer);
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Deprecated methods
+     */
+
+    /**
+     * Return the ReportingCloud username
+     *
+     * @return null
+     */
+    public static function username()
+    {
+        $format  = '"%s" is deprecated - use an %s::apiKey instead';
+        $message = sprintf($format, __METHOD__, __CLASS__);
+        trigger_error($message, E_USER_DEPRECATED);
+
+        return null;
+    }
+
+    /**
+     * Return the ReportingCloud password
+     *
+     * @return null
+     */
+    public static function password()
+    {
+        $format  = '"%s" is deprecated - use an %s::apiKey instead';
+        $message = sprintf($format, __METHOD__, __CLASS__);
+        trigger_error($message, E_USER_DEPRECATED);
+
+        return null;
     }
 }

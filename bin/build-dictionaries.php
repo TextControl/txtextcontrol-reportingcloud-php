@@ -23,8 +23,7 @@ $validator = new Validator();
 // ---------------------------------------------------------------------------------------------------------------------
 
 $options = [
-    'username' => Helper::username(),
-    'password' => Helper::password(),
+    'api_key' => Helper::apiKey(),
 ];
 
 $reportingCloud = new ReportingCloud($options);
