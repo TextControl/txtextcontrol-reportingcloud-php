@@ -39,7 +39,7 @@ $dom->loadHtmlFile($url);
 
 $xpath = new DomXPath($dom);
 $nodes = $xpath->query("//tr/td[1]");
-foreach ($nodes as $i => $node) {
+foreach ($nodes as $node) {
     $values[] = trim($node->nodeValue);
 }
 
