@@ -1273,6 +1273,12 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         }
 
         $apiKeys = $this->reportingCloud->getApiKeys();
-        $this->assertNull($apiKeys);
+
+        $this->assertTrue(1 === count($apiKeys));
+
+        $this->assertArrayHasKey(0, $apiKeys);
+        $this->assertArrayHasKey('key', $apiKeys[0]);
+        $this->assertArrayHasKey('active', $apiKeys[0]);
+
     }
 }
