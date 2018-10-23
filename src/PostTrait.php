@@ -296,6 +296,7 @@ trait PostTrait
 
         StaticValidator::execute($documentsData, 'TypeArray');
         StaticValidator::execute($returnFormat, 'ReturnFormat');
+        StaticValidator::execute($documentSettings, 'TypeArray');
 
         $query = [
             'returnFormat' => $returnFormat,

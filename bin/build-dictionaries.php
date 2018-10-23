@@ -22,11 +22,9 @@ $validator = new Validator();
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$options = [
+$reportingCloud = new ReportingCloud([
     'api_key' => Helper::apiKey(),
-];
-
-$reportingCloud = new ReportingCloud($options);
+]);
 
 $values = $reportingCloud->getAvailableDictionaries();
 
