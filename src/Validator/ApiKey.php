@@ -16,6 +16,8 @@ namespace TxTextControl\ReportingCloud\Validator;
 use TxTextControl\ReportingCloud\Validator\TypeString as TypeStringValidator;
 use Zend\Validator\StringLength as StringLengthValidator;
 
+// @see: \TxTextControl\ReportingCloud\Assert\AssertApiKeyTrait
+
 /**
  * ApiKey validator
  *

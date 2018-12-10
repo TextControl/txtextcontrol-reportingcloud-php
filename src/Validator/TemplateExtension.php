@@ -15,6 +15,8 @@ namespace TxTextControl\ReportingCloud\Validator;
 
 use TxTextControl\ReportingCloud\Validator\TemplateFormat as TemplateFormatValidator;
 
+// @see: \TxTextControl\ReportingCloud\Assert\AssertTemplateExtensionTrait
+
 /**
  * TemplateExtension validator
  *

@@ -13,6 +13,8 @@
 
 namespace TxTextControl\ReportingCloud\Validator;
 
+// @see: \TxTextControl\ReportingCloud\Assert\AssertImageFormatTrait
+
 /**
  * ImageFormat validator
  *

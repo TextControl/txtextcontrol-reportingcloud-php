@@ -13,6 +13,8 @@
 
 namespace TxTextControl\ReportingCloud\Validator;
 
+// @see: \TxTextControl\ReportingCloud\Assert\AssertBase64DataTrait
+
 /**
  * Base64Data validator
  *

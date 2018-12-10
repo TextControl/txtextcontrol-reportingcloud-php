@@ -16,6 +16,8 @@ namespace TxTextControl\ReportingCloud\Validator;
 use TxTextControl\ReportingCloud\Validator\TypeInteger as TypeIntegerValidator;
 use Zend\Validator\Between as BetweenValidator;
 
+// @see: \TxTextControl\ReportingCloud\Assert\AssertZoomFactorTrait
+
 /**
  * Zoom factor validator
  *
