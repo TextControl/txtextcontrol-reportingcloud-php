@@ -9,7 +9,9 @@ trait AssertPageTestTrait
 {
     public function testAssertPage()
     {
-        $this->assertNull(Assert::assertPage(250));
+        $this->assertNull(Assert::assertPage(1));
+        $this->assertNull(Assert::assertPage(2));
+        $this->assertNull(Assert::assertPage(PHP_INT_MAX));
     }
 
     /**
@@ -23,10 +25,10 @@ trait AssertPageTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (600)
+     * @expectedExceptionMessage Custom error message (-50)
      */
     public function testAssertPageInvalidWithCustomMessage()
     {
-        Assert::assertPage(-50, 'Custom error message (600)');
+        Assert::assertPage(-50, 'Custom error message (%d)');
     }
 }

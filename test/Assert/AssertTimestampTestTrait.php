@@ -27,10 +27,10 @@ trait AssertTimestampTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (600)
+     * @expectedExceptionMessage Custom error message (-50)
      */
     public function testAssertTimestampInvalidWithCustomMessage()
     {
-        Assert::assertTimestamp(-50, 'Custom error message (600)');
+        Assert::assertTimestamp(-50, 'Custom error message (%d)');
     }
 }

@@ -9,25 +9,37 @@ trait AssertDocumentExtensionTestTrait
 {
     public function testAssertDocumentExtension()
     {
-        $this->assertNull(Assert::assertDocumentExtension('TX'));
-        $this->assertNull(Assert::assertDocumentExtension('tx'));
+        $this->assertNull(Assert::assertDocumentExtension('./document.doc'));
+        $this->assertNull(Assert::assertDocumentExtension('./DOCUMENT.DOC'));
+
+        $this->assertNull(Assert::assertDocumentExtension('../document.doc'));
+        $this->assertNull(Assert::assertDocumentExtension('../DOCUMENT.DOC'));
+
+        $this->assertNull(Assert::assertDocumentExtension('/../document.doc'));
+        $this->assertNull(Assert::assertDocumentExtension('/../DOCUMENT.DOC'));
+
+        $this->assertNull(Assert::assertDocumentExtension('/path/to/document.doc'));
+        $this->assertNull(Assert::assertDocumentExtension('/PATH/TO/DOCUMENT.DOC'));
+
+        $this->assertNull(Assert::assertDocumentExtension('c:\path\to\document.doc'));
+        $this->assertNull(Assert::assertDocumentExtension('c:\PATH\TO\DOCUMENT.DOC'));
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "xxx" contains an unsupported document format file extension
+     * @expectedExceptionMessage "document.xxx" contains an unsupported document format file extension
      */
     public function testAssertDocumentExtensionInvalid()
     {
-        Assert::assertDocumentExtension('xxx');
+        Assert::assertDocumentExtension('document.xxx');
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (XXX)
+     * @expectedExceptionMessage Custom error message ("document.xxx")
      */
     public function testAssertDocumentExtensionInvalidWithCustomMessage()
     {
-        Assert::assertDocumentExtension('XXX', 'Custom error message (XXX)');
+        Assert::assertDocumentExtension('document.xxx', 'Custom error message (%s)');
     }
 }

@@ -24,10 +24,10 @@ trait AssertImageFormatTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (XXX)
+     * @expectedExceptionMessage Custom error message ("SVG")
      */
     public function testAssertImageFormatInvalidWithCustomMessage()
     {
-        Assert::assertImageFormat('XXX', 'Custom error message (XXX)');
+        Assert::assertImageFormat('SVG', 'Custom error message (%s)');
     }
 }

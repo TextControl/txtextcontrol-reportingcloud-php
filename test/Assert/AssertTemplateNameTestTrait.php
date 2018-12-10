@@ -56,10 +56,10 @@ trait AssertTemplateNameTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (XXX)
+     * @expectedExceptionMessage Custom error message ("invalid.xxx")
      */
     public function testAssertTemplateNameInvalidWithCustomMessage()
     {
-        Assert::assertTemplateName('XXX', 'Custom error message (XXX)');
+        Assert::assertTemplateName('invalid.xxx', 'Custom error message (%s)');
     }
 }

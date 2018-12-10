@@ -27,6 +27,6 @@ trait AssertZoomFactorTestTrait
      */
     public function testAssertZoomFactorInvalidWithCustomMessage()
     {
-        Assert::assertZoomFactor(600, 'Custom error message (600)');
+        Assert::assertZoomFactor(600, 'Custom error message (%d)');
     }
 }

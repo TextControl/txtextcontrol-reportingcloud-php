@@ -8,18 +8,18 @@ class AssertTest extends PHPUnit_Framework_TestCase
 {
     use AssertApiKeyTestTrait;
     use AssertBase64DataTestTrait;
-    use AssertDateTimeTestTrait;
-    use AssertImageFormatTestTrait;
-    use AssertReturnFormatTestTrait;
-    use AssertTemplateFormatTestTrait;
-    use AssertTemplateExtensionTestTrait;
-    use AssertZoomFactorTestTrait;
-    use AssertDocumentExtensionTestTrait;
-    use AssertLanguageTestTrait;
     use AssertCultureTestTrait;
+    use AssertDateTimeTestTrait;
+    use AssertDocumentDividerTestTrait;
+    use AssertDocumentExtensionTestTrait;
     use AssertFilenameExistsTestTrait;
+    use AssertImageFormatTestTrait;
+    use AssertLanguageTestTrait;
     use AssertPageTestTrait;
+    use AssertReturnFormatTestTrait;
+    use AssertTemplateExtensionTestTrait;
+    use AssertTemplateFormatTestTrait;
     use AssertTemplateNameTestTrait;
     use AssertTimestampTestTrait;
-    use AssertDocumentDividerTestTrait;
+    use AssertZoomFactorTestTrait;
 }

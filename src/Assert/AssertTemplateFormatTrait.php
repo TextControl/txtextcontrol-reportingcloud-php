@@ -10,14 +10,6 @@ namespace TxTextControl\ReportingCloud\Assert;
  */
 trait AssertTemplateFormatTrait
 {
-    private static $assertTemplateFormatHaystack
-        = [
-            'DOC',
-            'DOCX',
-            'RTF',
-            'TX',
-        ];
-
     /**
      * Validate template format
      *
@@ -28,7 +20,9 @@ trait AssertTemplateFormatTrait
      */
     public static function assertTemplateFormat(string $value, string $message = '')
     {
-        if (!in_array(strtoupper($value), self::$assertTemplateFormatHaystack)) {
+        $ucValue = strtoupper($value);
+
+        if (!in_array($ucValue, self::$templateFormats)) {
             $format  = '%s contains an unsupported template format file extension';
             $message = sprintf($message ?: $format, static::valueToString($value));
             static::reportInvalidArgument($message);

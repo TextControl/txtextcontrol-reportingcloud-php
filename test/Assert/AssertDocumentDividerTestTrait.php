@@ -25,10 +25,10 @@ trait AssertDocumentDividerTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (600)
+     * @expectedExceptionMessage Custom error message (-10)
      */
     public function testAssertDocumentDividerInvalidWithCustomMessage()
     {
-        Assert::assertDocumentDivider(-10, 'Custom error message (600)');
+        Assert::assertDocumentDivider(-10, 'Custom error message (%s)');
     }
 }

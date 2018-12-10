@@ -10,16 +10,6 @@ namespace TxTextControl\ReportingCloud\Assert;
  */
 trait AssertDocumentExtensionTrait
 {
-    private static $assertDocumentExtensionHaystack
-        = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'RTF',
-            'TX',
-        ];
-
     /**
      * Validate document format extension
      *
@@ -30,7 +20,10 @@ trait AssertDocumentExtensionTrait
      */
     public static function assertDocumentExtension(string $value, string $message = '')
     {
-        if (!in_array(strtoupper($value), self::$assertDocumentExtensionHaystack)) {
+        $extension = pathinfo($value, PATHINFO_EXTENSION);
+        $extension = strtoupper($extension);
+
+        if (!in_array($extension, self::$documentFormats)) {
             $format  = '%s contains an unsupported document format file extension';
             $message = sprintf($message ?: $format, static::valueToString($value));
             static::reportInvalidArgument($message);

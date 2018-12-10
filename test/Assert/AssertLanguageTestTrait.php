@@ -25,10 +25,10 @@ trait AssertLanguageTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (XXX)
+     * @expectedExceptionMessage Custom error message ("xx_XX")
      */
     public function testAssertLanguageInvalidWithCustomMessage()
     {
-        Assert::assertLanguage('XXX', 'Custom error message (XXX)');
+        Assert::assertLanguage('xx_XX', 'Custom error message (%s)');
     }
 }

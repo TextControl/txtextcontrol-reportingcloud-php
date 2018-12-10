@@ -10,17 +10,6 @@ namespace TxTextControl\ReportingCloud\Assert;
  */
 trait AssertReturnFormatTrait
 {
-    private static $assertReturnFormatHaystack
-        = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'PDFA',
-            'RTF',
-            'TX',
-        ];
-
     /**
      * Validate return format extension
      *
@@ -31,7 +20,9 @@ trait AssertReturnFormatTrait
      */
     public static function assertReturnFormat(string $value, string $message = '')
     {
-        if (!in_array(strtoupper($value), self::$assertReturnFormatHaystack)) {
+        $ucValue = strtoupper($value);
+
+        if (!in_array($ucValue, self::$returnFormats)) {
             $format  = '%s contains an unsupported return format file extension';
             $message = sprintf($message ?: $format, static::valueToString($value));
             static::reportInvalidArgument($message);

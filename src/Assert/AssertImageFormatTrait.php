@@ -10,14 +10,6 @@ namespace TxTextControl\ReportingCloud\Assert;
  */
 trait AssertImageFormatTrait
 {
-    private static $assertImageFormatHaystack
-        = [
-            'BMP',
-            'GIF',
-            'JPG',
-            'PNG',
-        ];
-
     /**
      * Validate image format extension
      *
@@ -28,7 +20,9 @@ trait AssertImageFormatTrait
      */
     public static function assertImageFormat(string $value, string $message = '')
     {
-        if (!in_array(strtoupper($value), self::$assertImageFormatHaystack)) {
+        $ucValue = strtoupper($value);
+
+        if (!in_array($ucValue, self::$imageFormats)) {
             $format  = '%s contains an unsupported image format file extension';
             $message = sprintf($message ?: $format, static::valueToString($value));
             static::reportInvalidArgument($message);

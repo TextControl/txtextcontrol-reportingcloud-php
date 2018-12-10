@@ -10,6 +10,8 @@ namespace TxTextControl\ReportingCloud\Assert;
  */
 trait AssertTemplateExtensionTrait
 {
+
+
     /**
      * Validate template extension
      *
@@ -20,6 +22,15 @@ trait AssertTemplateExtensionTrait
      */
     public static function assertTemplateExtension(string $value, string $message = '')
     {
-        return self::assertTemplateFormat($value, $message);
+        $extension = pathinfo($value, PATHINFO_EXTENSION);
+        $extension = strtoupper($extension);
+
+        if (!in_array($extension, self::$templateFormats)) {
+            $format  = '%s contains an unsupported template format file extension';
+            $message = sprintf($message ?: $format, static::valueToString($value));
+            static::reportInvalidArgument($message);
+        }
+
+        return null;
     }
 }

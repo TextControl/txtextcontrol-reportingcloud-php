@@ -26,10 +26,10 @@ trait AssertFilenameExistsTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (XXX)
+     * @expectedExceptionMessage Custom error message ("/path/to/invalid/file")
      */
     public function testAssertFilenameExistsInvalidWithCustomMessage()
     {
-        Assert::assertFilenameExists('XXX', 'Custom error message (XXX)');
+        Assert::assertFilenameExists('/path/to/invalid/file', 'Custom error message (%s)');
     }
 }

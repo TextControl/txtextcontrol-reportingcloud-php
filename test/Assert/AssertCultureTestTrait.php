@@ -25,10 +25,10 @@ trait AssertCultureTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (XXX)
+     * @expectedExceptionMessage Custom error message ("xx-XX")
      */
     public function testAssertCultureInvalidWithCustomMessage()
     {
-        Assert::assertCulture('XXX', 'Custom error message (XXX)');
+        Assert::assertCulture('xx-XX', 'Custom error message (%s)');
     }
 }

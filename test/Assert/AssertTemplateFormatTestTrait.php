@@ -24,10 +24,10 @@ trait AssertTemplateFormatTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (XXX)
+     * @expectedExceptionMessage Custom error message ("XXX")
      */
     public function testAssertTemplateFormatInvalidWithCustomMessage()
     {
-        Assert::assertTemplateFormat('XXX', 'Custom error message (XXX)');
+        Assert::assertTemplateFormat('XXX', 'Custom error message (%s)');
     }
 }
