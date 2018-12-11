@@ -14,17 +14,18 @@ declare(strict_types=1);
 
 include_once 'bootstrap.php';
 
+use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$filename = realpath(__DIR__ . '/../data/dictionaries.php');
+$filename = Assert::getLanguagesFilename();
 
 $reportingCloud = new ReportingCloud([
-                                         'api_key' => Helper::apiKey(),
-                                     ]);
+    'api_key' => Helper::apiKey(),
+]);
 
 $values = $reportingCloud->getAvailableDictionaries();
 

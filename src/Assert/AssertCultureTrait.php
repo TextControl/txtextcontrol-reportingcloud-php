@@ -31,9 +31,7 @@ trait AssertCultureTrait
      */
     public static function assertCulture(string $value, string $message = '')
     {
-        $filename = realpath(__DIR__ . '/../../data/cultures.php');
-
-        $haystack = include $filename;
+        $haystack = include self::getCulturesFilename();
 
         if (!in_array($value, $haystack)) {
             $format  = '%s contains an unsupported culture';
@@ -42,5 +40,21 @@ trait AssertCultureTrait
         }
 
         return null;
+    }
+
+    /**
+     * Return resource filename, containing cultures array
+     *
+     * @return string
+     */
+    public static function getCulturesFilename(): string
+    {
+        $filename = __DIR__ . '/../../data/cultures.php';
+
+        if (is_readable($filename)) {
+            $filename = realpath($filename);
+        }
+
+        return $filename;
     }
 }

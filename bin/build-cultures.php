@@ -22,12 +22,13 @@ declare(strict_types=1);
 
 include_once 'bootstrap.php';
 
+use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$filename = realpath(__DIR__ . '/../data/cultures.php');
+$filename = Assert::getCulturesFilename();
 $url      = 'https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx';
 $values   = [];
 

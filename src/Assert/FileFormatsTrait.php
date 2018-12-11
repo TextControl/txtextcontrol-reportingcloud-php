@@ -22,70 +22,18 @@ namespace TxTextControl\ReportingCloud\Assert;
 trait FileFormatsTrait
 {
     /**
-     * Array of image formats (extensions) supported by ReportingCloud
-     *
-     * @var array
-     */
-    private static $imageFormats
-        = [
-            'BMP',
-            'GIF',
-            'JPG',
-            'PNG',
-        ];
-
-    /**
-     * Array of template formats (extensions) supported by ReportingCloud
-     *
-     * @var array
-     */
-    private static $templateFormats
-        = [
-            'DOC',
-            'DOCX',
-            'RTF',
-            'TX',
-        ];
-
-    /**
-     * Array of document formats (extensions) supported by ReportingCloud
-     *
-     * @var array
-     */
-    private static $documentFormats
-        = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'RTF',
-            'TX',
-        ];
-
-    /**
-     * Array of return formats (extensions) supported by ReportingCloud
-     *
-     * @var array
-     */
-    private static $returnFormats
-        = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'PDFA',
-            'RTF',
-            'TX',
-        ];
-
-    /**
      * Return array of image formats (extensions) supported by ReportingCloud
      *
      * @return array
      */
     public static function getImageFormats(): array
     {
-        return self::$imageFormats;
+        return [
+            'BMP',
+            'GIF',
+            'JPG',
+            'PNG',
+        ];
     }
 
     /**
@@ -95,7 +43,12 @@ trait FileFormatsTrait
      */
     public static function getTemplateFormats(): array
     {
-        return self::$templateFormats;
+        return [
+            'DOC',
+            'DOCX',
+            'RTF',
+            'TX',
+        ];
     }
 
     /**
@@ -105,7 +58,14 @@ trait FileFormatsTrait
      */
     public static function getDocumentFormats(): array
     {
-        return self::$documentFormats;
+        return [
+            'DOC',
+            'DOCX',
+            'HTML',
+            'PDF',
+            'RTF',
+            'TX',
+        ];
     }
 
     /**
@@ -115,6 +75,14 @@ trait FileFormatsTrait
      */
     public static function getReturnFormats(): array
     {
-        return self::$returnFormats;
+        return [
+            'DOC',
+            'DOCX',
+            'HTML',
+            'PDF',
+            'PDFA',
+            'RTF',
+            'TX',
+        ];
     }
 }

@@ -16,10 +16,9 @@ $autoloadFilename = function () {
     ];
 
     foreach ($paths as $path) {
-        $filename = realpath($path . DIRECTORY_SEPARATOR . $file);
-        $filename = (string) $filename;
+        $filename = $path . DIRECTORY_SEPARATOR . $file;
         if (is_readable($filename)) {
-            return $filename;
+            return realpath($filename);
         }
     }
 
@@ -30,7 +29,7 @@ $autoloadFilename = function () {
 
 include $autoloadFilename();
 
-if (false === Helper::checkCredentials()) {
+if (!Helper::checkCredentials()) {
     echo Helper::errorMessage();
     die(1);
 }
