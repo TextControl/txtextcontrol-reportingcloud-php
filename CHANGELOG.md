@@ -2,6 +2,13 @@
 
 # CHANGELOG
 
+## dev-development-2.0
+
+* Set the minimum PHP version to 7.1.
+* Upgraded to PHPUnit 7.5.
+* Stripped out all Zend Framework 3 dependencies.
+* Added strict typing to all files.
+
 ## dev-master
 
 ## 1.9.1 - 2018-10-23

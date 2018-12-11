@@ -26,23 +26,23 @@ Learn more about ReportingCloud at:
 
 ## Minimum Requirements
 
-The ReportingCloud PHP wrapper requires **PHP 5.6** or newer. There are two technical reasons for this:
+The ReportingCloud PHP wrapper requires **PHP 7.1** or newer.
 
-* All versions of PHP prior to PHP 5.6 have reached [end-of-life](http://php.net/eol.php) and should thus not be used in a production environment.
-
-* The dependencies [zendframework/zend-filter](https://packagist.org/packages/zendframework/zend-filter) and [zendframework/zend-validator](https://packagist.org/packages/zendframework/zend-validator) require PHP 5.6 or newer.
+All versions of PHPs prior 7.1 have reached [end-of-life](http://php.net/eol.php) and consequently, no more security updates are being released for them.
 
 If your application is running in an older environment, it is highly advisable to update to a more current version of PHP.
 
 If you are unable or unwilling to update your PHP installation, it is possible to use ReportingCloud by directly accessing the [Web API](https://portal.reporting.cloud/Documentation/Reference/) without using this wrapper. In such cases, it is advisable to use the [curl](http://php.net/manual/en/book.curl.php) extension to make the API calls.
 
+Alternatively, take a you may consider using the ReportingCloud PHP wrapper 1.0, which supports PHP 5.6. Note, this version is no longer supported.
+
 
 ## Install Using Composer
 
-The recommended way to install the ReportingCloud PHP wrapper in your project is using [Composer](http://getcomposer.org):
+Install the ReportingCloud PHP wrapper in your project is using [Composer](http://getcomposer.org):
 
 ```bash
-composer require textcontrol/txtextcontrol-reportingcloud:^1.0
+composer require textcontrol/txtextcontrol-reportingcloud:^2.0
 ```
 
 After installing, you need to require Composer's autoloader:
