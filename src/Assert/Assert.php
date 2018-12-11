@@ -19,7 +19,7 @@ use Webmozart\Assert\Assert as ParentAssert;
 /**
  * Class Assert
  *
- * @package TxTextControl\ReportingCloud\Assert
+ * @package TxTextControl\ReportingCloud
  */
 class Assert extends ParentAssert
 {

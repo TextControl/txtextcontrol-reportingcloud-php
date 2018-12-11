@@ -22,7 +22,7 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 /**
  * Trait AssertDateTimeTrait
  *
- * @package TxTextControl\ReportingCloud\Assert
+ * @package TxTextControl\ReportingCloud
  */
 trait AssertDateTimeTrait
 {

@@ -17,7 +17,7 @@ namespace TxTextControl\ReportingCloud\Assert;
 /**
  * Trait AssertDocumentExtensionTrait
  *
- * @package TxTextControl\ReportingCloud\Assert
+ * @package TxTextControl\ReportingCloud
  */
 trait AssertDocumentExtensionTrait
 {

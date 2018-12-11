@@ -17,7 +17,7 @@ namespace TxTextControl\ReportingCloud\Assert;
 /**
  * Trait AssertZoomFactorTrait
  *
- * @package TxTextControl\ReportingCloud\Assert
+ * @package TxTextControl\ReportingCloud
  */
 trait AssertZoomFactorTrait
 {

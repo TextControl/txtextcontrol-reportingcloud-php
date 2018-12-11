@@ -17,7 +17,7 @@ namespace TxTextControl\ReportingCloud\Assert;
 /**
  * Trait AssertTemplateFormatTrait
  *
- * @package TxTextControl\ReportingCloud\Assert
+ * @package TxTextControl\ReportingCloud
  */
 trait AssertTemplateFormatTrait
 {

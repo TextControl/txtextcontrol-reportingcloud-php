@@ -17,7 +17,7 @@ namespace TxTextControl\ReportingCloud\Assert;
 /**
  * Trait AssertApiKeyTrait
  *
- * @package TxTextControl\ReportingCloud\Assert
+ * @package TxTextControl\ReportingCloud
  */
 trait AssertApiKeyTrait
 {

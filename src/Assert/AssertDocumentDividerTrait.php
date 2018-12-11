@@ -21,7 +21,7 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 /**
  * Trait DocumentDividerTrait
  *
- * @package TxTextControl\ReportingCloud\Assert
+ * @package TxTextControl\ReportingCloud
  */
 trait AssertDocumentDividerTrait
 {
