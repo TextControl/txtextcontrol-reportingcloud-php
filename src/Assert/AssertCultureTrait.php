@@ -33,12 +33,6 @@ trait AssertCultureTrait
     {
         $filename = realpath(__DIR__ . '/../../data/cultures.php');
 
-        if (!is_readable($filename)) {
-            $format  = 'Internal error validating %s';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
-        }
-
         $haystack = include $filename;
 
         if (!in_array($value, $haystack)) {

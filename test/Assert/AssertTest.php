@@ -2,9 +2,9 @@
 
 namespace TxTextControlTest\ReportingCloud\Assert;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class AssertTest extends PHPUnit_Framework_TestCase
+class AssertTest extends TestCase
 {
     use AssertApiKeyTestTrait;
     use AssertBase64DataTestTrait;

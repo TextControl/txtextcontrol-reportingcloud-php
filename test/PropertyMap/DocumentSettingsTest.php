@@ -2,10 +2,10 @@
 
 namespace TxTextControlTest\ReportingCloud\PropertyMap;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TxTextControl\ReportingCloud\PropertyMap\DocumentSettings as PropertyMap;
 
-class DocumentSettingsTest extends PHPUnit_Framework_TestCase
+class DocumentSettingsTest extends TestCase
 {
     protected $propertyMap;
 

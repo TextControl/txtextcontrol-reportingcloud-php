@@ -2,10 +2,10 @@
 
 namespace TxTextControlTest\ReportingCloud\Filter;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TxTextControl\ReportingCloud\Filter\Filter;
 
-class TimestampToDateTimeTest extends PHPUnit_Framework_TestCase
+class TimestampToDateTimeTest extends TestCase
 {
     protected $defaultTimezone;
 

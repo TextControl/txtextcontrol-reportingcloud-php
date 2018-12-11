@@ -2,10 +2,10 @@
 
 namespace TxTextControlTest\ReportingCloud\PropertyMap;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as PropertyMap;
 
-class IncorrectWordTest extends PHPUnit_Framework_TestCase
+class IncorrectWordTest extends TestCase
 {
     protected $propertyMap;
 

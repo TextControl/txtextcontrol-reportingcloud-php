@@ -31,8 +31,20 @@ trait FilenameExistsTrait
      */
     public static function filenameExists(string $value, string $message = '')
     {
-        if (!file_exists($value) || !is_readable($value)) {
-            $format  = '%s contains an invalid filename';
+        if ($value !== realpath($value)) {
+            $format  = '%s must contain the absolute path and file';
+            $message = sprintf($message ?: $format, static::valueToString($value));
+            static::reportInvalidArgument($message);
+        }
+
+        if (!file_exists($value)) {
+            $format  = '%s does not exist';
+            $message = sprintf($message ?: $format, static::valueToString($value));
+            static::reportInvalidArgument($message);
+        }
+
+        if (!is_readable($value)) {
+            $format  = '%s cannot be read';
             $message = sprintf($message ?: $format, static::valueToString($value));
             static::reportInvalidArgument($message);
         }

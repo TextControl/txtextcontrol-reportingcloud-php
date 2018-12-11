@@ -4,15 +4,15 @@ namespace TxTextControlTest\ReportingCloud;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use PHPUnit_Framework_Constraint_IsType as PHPUnit_IsType;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\Constraint\IsType;
+use PHPUnit\Framework\TestCase;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
-class ReportingCloudTest extends PHPUnit_Framework_TestCase
+class ReportingCloudTest extends TestCase
 {
     protected $reportingCloud;
 
@@ -174,8 +174,8 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey(0, $apiKeys);
         $this->assertArrayHasKey('key', $apiKeys[0]);
         $this->assertArrayHasKey('active', $apiKeys[0]);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $apiKeys[0]['key']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_BOOL, $apiKeys[0]['active']);
+        $this->assertInternalType(IsType::TYPE_STRING, $apiKeys[0]['key']);
+        $this->assertInternalType(IsType::TYPE_BOOL, $apiKeys[0]['active']);
     }
 
     /**
@@ -262,7 +262,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('user_document_properties', $response);
 
-        $this->assertInternalType(PHPUnit_IsType::TYPE_ARRAY, $response['user_document_properties']);
+        $this->assertInternalType(IsType::TYPE_ARRAY, $response['user_document_properties']);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
@@ -465,9 +465,9 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('modified', $response[0]);
         $this->assertArrayHasKey('size', $response[0]);
 
-        $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $response[0]['template_name']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response[0]['modified']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response[0]['size']);
+        $this->assertInternalType(IsType::TYPE_STRING, $response[0]['template_name']);
+        $this->assertInternalType(IsType::TYPE_INT, $response[0]['modified']);
+        $this->assertInternalType(IsType::TYPE_INT, $response[0]['size']);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
@@ -480,7 +480,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
     {
         $fonts = $this->reportingCloud->getFontList();
 
-        $this->assertInternalType(PHPUnit_IsType::TYPE_ARRAY, $fonts);
+        $this->assertInternalType(IsType::TYPE_ARRAY, $fonts);
 
         $this->assertContains('Times New Roman', $fonts);
         $this->assertContains('Arial', $fonts);
@@ -502,12 +502,12 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('max_templates', $response);
         $this->assertArrayHasKey('valid_until', $response);
 
-        $this->assertInternalType(PHPUnit_IsType::TYPE_STRING, $response['serial_number']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['created_documents']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['uploaded_templates']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['max_documents']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['max_templates']);
-        $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $response['valid_until']);
+        $this->assertInternalType(IsType::TYPE_STRING, $response['serial_number']);
+        $this->assertInternalType(IsType::TYPE_INT, $response['created_documents']);
+        $this->assertInternalType(IsType::TYPE_INT, $response['uploaded_templates']);
+        $this->assertInternalType(IsType::TYPE_INT, $response['max_documents']);
+        $this->assertInternalType(IsType::TYPE_INT, $response['max_templates']);
+        $this->assertInternalType(IsType::TYPE_INT, $response['valid_until']);
     }
 
     /**
@@ -747,7 +747,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
             $this->assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
-                $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $key);
+                $this->assertInternalType(IsType::TYPE_INT, $key);
                 $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
             }
         }
@@ -784,7 +784,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
             $this->assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
-                $this->assertInternalType(PHPUnit_IsType::TYPE_INT, $key);
+                $this->assertInternalType(IsType::TYPE_INT, $key);
                 $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
             }
         }

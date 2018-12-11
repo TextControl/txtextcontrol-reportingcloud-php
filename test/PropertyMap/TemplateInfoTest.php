@@ -2,10 +2,10 @@
 
 namespace TxTextControlTest\ReportingCloud\PropertyMap;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as PropertyMap;
 
-class TemplateInfoTest extends PHPUnit_Framework_TestCase
+class TemplateInfoTest extends TestCase
 {
     protected $propertyMap;
 

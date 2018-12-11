@@ -2,10 +2,10 @@
 
 namespace TxTextControlTest\ReportingCloud\PropertyMap;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as PropertyMap;
 
-class MergeSettingsTest extends PHPUnit_Framework_TestCase
+class MergeSettingsTest extends TestCase
 {
     protected $propertyMap;
 
