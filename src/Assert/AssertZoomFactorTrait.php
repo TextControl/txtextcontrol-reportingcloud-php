@@ -4,6 +4,17 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\Assert;
 
 /**
+ * ReportingCloud PHP Wrapper
+ *
+ * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ *
+ * @link      https://www.reporting.cloud to learn more about ReportingCloud
+ * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
+ * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
+ * @copyright © 2019 Text Control GmbH
+ */
+
+/**
  * Trait AssertZoomFactorTrait
  *
  * @package TxTextControl\ReportingCloud\Assert
@@ -15,14 +26,14 @@ trait AssertZoomFactorTrait
      *
      * @var int
      */
-    private static $assertZoomFactorMinimum = 1;
+    private static $zoomFactorMin = 1;
 
     /**
      * Maximum zoom factor
      *
      * @var int
      */
-    private static $assertZoomFactorMaximum = 400;
+    private static $zoomFactorMax = 400;
 
     /**
      * Validate zoom factor
@@ -34,15 +45,11 @@ trait AssertZoomFactorTrait
      */
     public static function assertZoomFactor(int $value, string $message = '')
     {
-        if ($value < self::$assertZoomFactorMinimum) {
-            $format  = '%s is an invalid zoom factor -- too small';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
-        }
-
-        if ($value > self::$assertZoomFactorMaximum) {
-            $format  = '%s is an invalid zoom factor -- too large';
-            $message = sprintf($message ?: $format, static::valueToString($value));
+        if ($value < self::$zoomFactorMin || $value > self::$zoomFactorMax) {
+            $format  = 'Zoom factor must be in the range [%d..%d]';
+            $message = sprintf($message ?: $format,
+                               static::valueToString(self::$zoomFactorMin),
+                               static::valueToString(self::$zoomFactorMax));
             static::reportInvalidArgument($message);
         }
 

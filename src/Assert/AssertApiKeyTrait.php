@@ -1,6 +1,17 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * ReportingCloud PHP Wrapper
+ *
+ * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ *
+ * @link      https://www.reporting.cloud to learn more about ReportingCloud
+ * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
+ * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
+ * @copyright © 2019 Text Control GmbH
+ */
+
 namespace TxTextControl\ReportingCloud\Assert;
 
 /**
@@ -11,18 +22,18 @@ namespace TxTextControl\ReportingCloud\Assert;
 trait AssertApiKeyTrait
 {
     /**
-     * Maximum length of API key
-     *
-     * @var int
-     */
-    private static $assertApiKeyMinimumLength = 20;
-
-    /**
      * Minimum length of API key
      *
      * @var int
      */
-    private static $assertApiKeyMaximumLength = 45;
+    private static $apiKeyMinLength = 20;
+
+    /**
+     * Maximum length of API key
+     *
+     * @var int
+     */
+    private static $apiKeyMaxLength = 45;
 
     /**
      * Validate length of API key
@@ -36,15 +47,11 @@ trait AssertApiKeyTrait
     {
         $length = strlen($value);
 
-        if ($length < self::$assertApiKeyMinimumLength) {
-            $format  = '%s is an invalid API key -- too short';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
-        }
-
-        if ($length > self::$assertApiKeyMaximumLength) {
-            $format  = '%s is an invalid API key -- too long';
-            $message = sprintf($message ?: $format, static::valueToString($value));
+        if ($length < self::$apiKeyMinLength || $length > self::$apiKeyMaxLength) {
+            $format  = 'API key must between %s and %s characters in length';
+            $message = sprintf($message ?: $format,
+                               static::valueToString(self::$apiKeyMinLength),
+                               static::valueToString(self::$apiKeyMaxLength));
             static::reportInvalidArgument($message);
         }
 

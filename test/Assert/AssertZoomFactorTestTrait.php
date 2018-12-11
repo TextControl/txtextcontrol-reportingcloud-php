@@ -14,7 +14,7 @@ trait AssertZoomFactorTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage -1 is an invalid zoom factor -- too small
+     * @expectedExceptionMessage Zoom factor must be in the range [1..400]
      */
     public function testAssertZoomFactorInvalidTooSmall()
     {
@@ -23,10 +23,10 @@ trait AssertZoomFactorTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (600)
+     * @expectedExceptionMessage Custom error message - range: [1..400]
      */
     public function testAssertZoomFactorInvalidWithCustomMessage()
     {
-        Assert::assertZoomFactor(600, 'Custom error message (%d)');
+        Assert::assertZoomFactor(600, 'Custom error message - range: [%d..%d]');
     }
 }

@@ -11,7 +11,7 @@ This is the official PHP wrapper for ReportingCloud Web API. It is authored and 
 
 Learn more about ReportingCloud at:
  
-* [ReportingCloud web site](http://www.reporting.cloud/)
+* [ReportingCloud web site](https://www.reporting.cloud/)
  
 * [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here  
 
