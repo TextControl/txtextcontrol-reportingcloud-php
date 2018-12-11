@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * Available Cultures Resource File
@@ -23,14 +24,12 @@ include_once 'bootstrap.php';
 
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
-use TxTextControl\ReportingCloud\Validator\Culture as Validator;
-
-$validator = new Validator();
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$url    = 'https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx';
-$values = [];
+$filename = realpath(__DIR__ . '/../data/cultures.php');
+$url      = 'https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx';
+$values   = [];
 
 libxml_use_internal_errors(true);
 
@@ -54,13 +53,13 @@ $values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-Helper::varExportToFile($validator->getFilename(), $values);
+Helper::varExportToFile($filename, $values);
 
 echo PHP_EOL;
 echo sprintf('The available cultures (%d) are %s.', count($values), implode(', ', $values));
 echo PHP_EOL;
 echo PHP_EOL;
-echo sprintf('Written resource file to %s', $validator->getFilename());
+echo sprintf('Written resource file to %s', $filename);
 echo PHP_EOL;
 echo PHP_EOL;
 

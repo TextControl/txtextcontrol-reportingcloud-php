@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -26,14 +27,14 @@ interface PropertyMapInterface
      *
      * @return array
      */
-    public function getMap();
+    public function getMap(): array;
 
     /**
      * Set the property map
      *
      * @param array $map Assoc array of property data
      *
-     * @return $this
+     * @return AbstractPropertyMap
      */
-    public function setMap($map);
+    public function setMap(array $map): AbstractPropertyMap;
 }

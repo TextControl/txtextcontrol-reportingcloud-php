@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * Available Dictionaries Resource File
@@ -16,15 +17,14 @@ include_once 'bootstrap.php';
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
-use TxTextControl\ReportingCloud\Validator\Language as Validator;
-
-$validator = new Validator();
 
 // ---------------------------------------------------------------------------------------------------------------------
 
+$filename = realpath(__DIR__ . '/../data/dictionaries.php');
+
 $reportingCloud = new ReportingCloud([
-    'api_key' => Helper::apiKey(),
-]);
+                                         'api_key' => Helper::apiKey(),
+                                     ]);
 
 $values = $reportingCloud->getAvailableDictionaries();
 
@@ -37,13 +37,13 @@ $values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-Helper::varExportToFile($validator->getFilename(), $values);
+Helper::varExportToFile($filename, $values);
 
 echo PHP_EOL;
 echo sprintf('The available dictionaries (%d) are %s.', count($values), implode(', ', $values));
 echo PHP_EOL;
 echo PHP_EOL;
-echo sprintf('Written resource file to %s', $validator->getFilename());
+echo sprintf('Written resource file to %s', $filename);
 echo PHP_EOL;
 echo PHP_EOL;
 

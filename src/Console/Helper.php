@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -26,14 +27,14 @@ class Helper
      *
      * @const REPORTING_CLOUD_API_KEY
      */
-    const API_KEY = 'REPORTING_CLOUD_API_KEY';
+    protected const API_KEY = 'REPORTING_CLOUD_API_KEY';
 
     /**
      * Check that either the API key has been defined in environment variables
      *
      * @return bool
      */
-    public static function checkCredentials()
+    public static function checkCredentials(): bool
     {
         if (null !== self::apiKey()) {
             return true;
@@ -49,7 +50,7 @@ class Helper
      *
      * @return string|null
      */
-    protected static function variable($variable)
+    protected static function variable(string $variable): ?string
     {
         $ret = null;
 
@@ -73,7 +74,7 @@ class Helper
      *
      * @return string|null
      */
-    public static function apiKey()
+    public static function apiKey(): ?string
     {
         return self::variable(self::API_KEY);
     }
@@ -83,7 +84,7 @@ class Helper
      *
      * @return string
      */
-    public static function errorMessage()
+    public static function errorMessage(): string
     {
         $ret
             = <<<END
@@ -125,50 +126,22 @@ END;
      *
      * @return bool|int
      */
-    public static function varExportToFile($filename, array $values)
+    public static function varExportToFile($filename, array $values): int
     {
-        $buffer = '<?php';
-        $buffer .= PHP_EOL;
-        $buffer .= PHP_EOL;
-        $buffer .= 'return ';
-        $buffer .= var_export($values, true);
-        $buffer .= ';';
-        $buffer .= PHP_EOL;
+        $data = '<?php';
+        $data .= PHP_EOL;
+        $data .= PHP_EOL;
+        $data .= 'return ';
+        $data .= var_export($values, true);
+        $data .= ';';
+        $data .= PHP_EOL;
 
-        return file_put_contents($filename, $buffer);
-    }
+        $ret = file_put_contents($filename, $data);
 
-    // -----------------------------------------------------------------------------------------------------------------
+        if (!is_int($ret)) {
+            $ret = 0;
+        }
 
-    /**
-     * Deprecated methods
-     */
-
-    /**
-     * Return the ReportingCloud username
-     *
-     * @return null
-     */
-    public static function username()
-    {
-        $format  = '"%s" is deprecated - use an %s::apiKey instead';
-        $message = sprintf($format, __METHOD__, __CLASS__);
-        trigger_error($message, E_USER_DEPRECATED);
-
-        return null;
-    }
-
-    /**
-     * Return the ReportingCloud password
-     *
-     * @return null
-     */
-    public static function password()
-    {
-        $format  = '"%s" is deprecated - use an %s::apiKey instead';
-        $message = sprintf($format, __METHOD__, __CLASS__);
-        trigger_error($message, E_USER_DEPRECATED);
-
-        return null;
+        return $ret;
     }
 }

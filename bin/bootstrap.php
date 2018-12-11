@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 use TxTextControl\ReportingCloud\Console\Helper;
 
@@ -16,6 +17,7 @@ $autoloadFilename = function () {
 
     foreach ($paths as $path) {
         $filename = realpath($path . DIRECTORY_SEPARATOR . $file);
+        $filename = (string) $filename;
         if (is_readable($filename)) {
             return $filename;
         }

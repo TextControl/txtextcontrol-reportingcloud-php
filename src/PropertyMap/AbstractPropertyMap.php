@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -27,14 +28,14 @@ abstract class AbstractPropertyMap implements PropertyMapInterface
      *
      * @var array
      */
-    protected $map;
+    protected $map = [];
 
     /**
      * Return the property map
      *
      * @return array
      */
-    public function getMap()
+    public function getMap(): array
     {
         return $this->map;
     }
@@ -44,9 +45,9 @@ abstract class AbstractPropertyMap implements PropertyMapInterface
      *
      * @param array $map Assoc array of property data
      *
-     * @return $this
+     * @return AbstractPropertyMap
      */
-    public function setMap($map)
+    public function setMap(array $map): AbstractPropertyMap
     {
         $this->map = $map;
 
