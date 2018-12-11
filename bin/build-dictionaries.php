@@ -30,7 +30,8 @@ $reportingCloud = new ReportingCloud([
 $values = $reportingCloud->getAvailableDictionaries();
 
 if (0 === count($values)) {
-    throw new RuntimeException('Cannot download the available dictionaries from the Reporting Cloud Web API.');
+    $message = 'Cannot download the available dictionaries from the Reporting Cloud Web API.';
+    throw new RuntimeException($message);
 }
 
 natcasesort($values);
