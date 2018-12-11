@@ -20,33 +20,30 @@ use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
- * Trait Filter2TimestampToDateTimeTrait
+ * Trait FilterDateTimeToTimestampTrait
  *
  * @package TxTextControl\ReportingCloud
  */
-trait Filter2TimestampToDateTimeTrait
+trait FilterDateTimeToTimestampTrait
 {
     /**
-     * Convert a UNIX timestamp to the date/time format used by the backend (e.g. "2016-04-15T19:05:18+00:00").
+     * Convert the date/time format used by the backend (e.g. "2016-04-15T19:05:18+00:00") to a UNIX timestamp.
      *
-     * @param int $timestamp
+     * @param string $dateTimeString
      *
-     * @return string
+     * @return int
      * @throws \Exception
      */
-    public static function filter2TimestampToDateTime(int $timestamp): string
+    public static function filterDateTimeToTimestamp(string $dateTimeString): int
     {
-        Assert::assertTimestamp($timestamp);
+        Assert::assertDateTime($dateTimeString);
 
         $timeZone   = ReportingCloud::DEFAULT_TIME_ZONE;
         $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
 
         $dateTimeZone = new DateTimeZone($timeZone);
-        $dateTime     = new DateTime();
+        $dateTime     = DateTime::createFromFormat($dateFormat, $dateTimeString, $dateTimeZone);
 
-        $dateTime->setTimestamp($timestamp);
-        $dateTime->setTimezone($dateTimeZone);
-
-        return $dateTime->format($dateFormat);
+        return $dateTime->getTimestamp();
     }
 }

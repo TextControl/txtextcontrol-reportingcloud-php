@@ -3,7 +3,7 @@
 namespace TxTextControlTest\ReportingCloud\Filter2;
 
 use PHPUnit_Framework_TestCase;
-use TxTextControl\ReportingCloud\Filter2\Filter2;
+use TxTextControl\ReportingCloud\Filter2\Filter;
 
 class BooleanToStringTest extends PHPUnit_Framework_TestCase
 {
@@ -14,7 +14,7 @@ class BooleanToStringTest extends PHPUnit_Framework_TestCase
 
     public function testDefault()
     {
-        $this->assertSame('true', Filter2::filter2BooleanToString(true));
-        $this->assertSame('false', Filter2::filter2BooleanToString(false));
+        $this->assertSame('true', Filter::filterBooleanToString(true));
+        $this->assertSame('false', Filter::filterBooleanToString(false));
     }
 }

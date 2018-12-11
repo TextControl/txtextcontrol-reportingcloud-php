@@ -15,13 +15,26 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\Filter2;
 
 /**
- * Class Filter2
+ * Trait FilterBooleanToStringTrait
  *
  * @package TxTextControl\ReportingCloud
  */
-class Filter2
+trait FilterBooleanToStringTrait
 {
-    use Filter2BooleanToStringTrait;
-    use Filter2DateTimeToTimestampTrait;
-    use Filter2TimestampToDateTimeTrait;
+    /**
+     * Convert bool true and false to string 'true' and 'false'.
+     *
+     * This is necessary to prevent Guzzle from converting the query parameter to ?param=0 or ?param=1, which the
+     * backend does not recognize.
+     *
+     * The backend only recognizes query parameter ?param=true and ?param=false.
+     *
+     * @param bool $param
+     *
+     * @return string
+     */
+    public static function filterBooleanToString(bool $param): string
+    {
+        return ($param) ? 'true' : 'false';
+    }
 }
