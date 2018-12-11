@@ -31,7 +31,7 @@ trait AssertLanguageTrait
      */
     public static function assertLanguage(string $value, string $message = '')
     {
-        $haystack = include self::getLanguagesFilename();
+        $haystack = include self::getDictionariesFilename();
 
         if (!in_array($value, $haystack)) {
             $format  = '%s contains an unsupported language';
@@ -47,7 +47,7 @@ trait AssertLanguageTrait
      *
      * @return string
      */
-    public static function getLanguagesFilename(): string
+    public static function getDictionariesFilename(): string
     {
         $filename = __DIR__ . '/../../data/dictionaries.php';
 

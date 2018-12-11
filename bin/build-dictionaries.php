@@ -21,7 +21,7 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$filename = Assert::getLanguagesFilename();
+$filename = Assert::getDictionariesFilename();
 
 $reportingCloud = new ReportingCloud([
     'api_key' => Helper::apiKey(),

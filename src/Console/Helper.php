@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Console;
 
+use Riimu\Kit\PHPEncoder\PHPEncoder;
+
 /**
  * ReportingCloud console helper (used only for tests and demos)
  *
@@ -119,20 +121,30 @@ END;
     }
 
     /**
-     * Export variables to file
+     * Write the array of passed data to a file as a PHP structure
      *
-     * @param string $filename Name of file to which to write
-     * @param array  $values   Array of data
+     * @param string $filename
+     * @param array  $values
      *
-     * @return bool|int
+     * @return int
      */
-    public static function varExportToFile($filename, array $values): int
+    function varExportToFile(string $filename, array $values): int
     {
+        $encoder = new PHPEncoder([
+            'array.short'   => true,
+            'array.omit'    => true,
+            'object.format' => 'export',
+            'string.utf8'   => true,
+            'whitespace'    => true,
+        ]);
+
         $data = '<?php';
+        $data .= PHP_EOL;
+        $data .= 'declare(strict_types=1);';
         $data .= PHP_EOL;
         $data .= PHP_EOL;
         $data .= 'return ';
-        $data .= var_export($values, true);
+        $data .= $encoder->encode($values);
         $data .= ';';
         $data .= PHP_EOL;
 
