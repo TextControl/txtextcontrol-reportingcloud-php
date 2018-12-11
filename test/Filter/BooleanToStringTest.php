@@ -3,18 +3,10 @@
 namespace TxTextControlTest\ReportingCloud\Filter;
 
 use PHPUnit_Framework_TestCase;
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\Filter\BooleanToString as Filter;
+use TxTextControl\ReportingCloud\Filter\Filter;
 
 class BooleanToStringTest extends PHPUnit_Framework_TestCase
 {
-    protected $filter;
-
-    public function setUp()
-    {
-        $this->filter = new Filter();
-    }
-
     public function tearDown()
     {
         unset($this->filter);
@@ -22,31 +14,7 @@ class BooleanToStringTest extends PHPUnit_Framework_TestCase
 
     public function testDefault()
     {
-        $this->assertSame('true', $this->filter->filter(true));
-        $this->assertSame('false', $this->filter->filter(false));
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalidArgumentExceptionOnInteger()
-    {
-        $this->filter->filter(1);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalidArgumentExceptionOnNumberString()
-    {
-        $this->filter->filter('1');
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalidArgumentExceptionOnWordString()
-    {
-        $this->filter->filter('invalid');
+        $this->assertSame('true', Filter::filterBooleanToString(true));
+        $this->assertSame('false', Filter::filterBooleanToString(false));
     }
 }

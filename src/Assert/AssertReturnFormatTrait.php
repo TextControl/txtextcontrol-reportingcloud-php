@@ -33,7 +33,7 @@ trait AssertReturnFormatTrait
     {
         $ucValue = strtoupper($value);
 
-        if (!in_array($ucValue, self::$returnFormats)) {
+        if (!in_array($ucValue, self::getReturnFormats())) {
             $format  = '%s contains an unsupported return format file extension';
             $message = sprintf($message ?: $format, static::valueToString($value));
             static::reportInvalidArgument($message);

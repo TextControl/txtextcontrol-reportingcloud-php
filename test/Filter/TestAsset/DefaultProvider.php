@@ -7,7 +7,6 @@ class DefaultProvider
     public static function defaultProvider()
     {
         return [
-
             [
                 'UTC',
                 '1970-01-01T00:00:00+00:00',
@@ -59,7 +58,6 @@ class DefaultProvider
                 '1982-05-01T07:09:30+00:00',
                 389084970,
             ],
-
             [
                 'America/Antigua',
                 '1999-06-14T10:43:49+00:00',
@@ -85,7 +83,6 @@ class DefaultProvider
                 '1993-12-10T19:15:15+00:00',
                 755550915,
             ],
-
             [
                 'Antarctica/Macquarie',
                 '1977-06-22T10:45:04+00:00',
@@ -111,7 +108,6 @@ class DefaultProvider
                 '2014-06-17T16:22:55+00:00',
                 1403022175,
             ],
-
             [
                 'Asia/Ashgabat',
                 '1975-08-15T16:24:43+00:00',
@@ -137,7 +133,6 @@ class DefaultProvider
                 '1972-10-02T05:32:44+00:00',
                 86851964,
             ],
-
             [
                 'Australia/Adelaide',
                 '1981-04-07T21:33:49+00:00',
@@ -163,7 +158,6 @@ class DefaultProvider
                 '1995-05-11T23:06:16+00:00',
                 800233576,
             ],
-
             [
                 'Europe/Athens',
                 '2002-09-16T02:06:03+00:00',
@@ -189,7 +183,6 @@ class DefaultProvider
                 '1998-04-05T16:14:10+00:00',
                 891792850,
             ],
-
             [
                 'Indian/Antananarivo',
                 '1976-07-10T23:19:06+00:00',
@@ -215,7 +208,6 @@ class DefaultProvider
                 '2006-11-13T00:54:05+00:00',
                 1163379245,
             ],
-
             [
                 'Pacific/Enderbury',
                 '1985-06-04T21:05:54+00:00',
@@ -241,7 +233,6 @@ class DefaultProvider
                 '1984-12-20T16:24:31+00:00',
                 472407871,
             ],
-
         ];
     }
 }

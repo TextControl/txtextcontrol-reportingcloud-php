@@ -13,11 +13,11 @@
 
 namespace TxTextControl\ReportingCloud;
 
-use TxTextControl\ReportingCloud\Filter\StaticFilter;
+use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\DocumentSettings as DocumentSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
-use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
  * Trait BuildTrait
@@ -70,19 +70,19 @@ trait BuildTrait
         $ret = [];
 
         foreach ($array as $inner) {
-            StaticValidator::execute($inner, 'TypeArray');
+            Assert::isArray($inner);
             $document = [];
             foreach ($inner as $key => $value) {
                 switch ($key) {
                     case 'filename':
-                        StaticValidator::execute($value, 'FileExists');
-                        StaticValidator::execute($value, 'DocumentExtension');
+                        Assert::filenameExists($value);
+                        Assert::assertDocumentExtension($value);
                         $value                = realpath($value);
                         $binary               = file_get_contents($value);
                         $document['document'] = base64_encode($binary);
                         break;
                     case 'divider':
-                        StaticValidator::execute($value, 'DocumentDivider');
+                        Assert::assertDocumentDivider($value);
                         $document['documentDivider'] = $value;
                         break;
                 }
@@ -110,8 +110,8 @@ trait BuildTrait
             if (isset($array[$key])) {
                 $value = $array[$key];
                 if ('_date' == substr($key, -5)) {
-                    StaticValidator::execute($value, 'Timestamp');
-                    $value = StaticFilter::execute($value, 'TimestampToDateTime');
+                    Assert::assertTimestamp($value);
+                    $value = Filter::filterTimestampToDateTime($value);
                 }
                 $ret[$property] = $value;
             }
@@ -137,14 +137,14 @@ trait BuildTrait
             if (isset($array[$key])) {
                 $value = $array[$key];
                 if ('culture' == $key) {
-                    StaticValidator::execute($value, 'Culture');
+                    Assert::assertCulture($value);
                 }
                 if ('remove_' == substr($key, 0, 7)) {
-                    StaticValidator::execute($value, 'TypeBoolean');
+                    Assert::boolean($value);
                 }
                 if ('_date' == substr($key, -5)) {
-                    StaticValidator::execute($value, 'Timestamp');
-                    $value = StaticFilter::execute($value, 'TimestampToDateTime');
+                    Assert::assertTimestamp($value);
+                    $value = Filter::filterTimestampToDateTime($value);
                 }
                 $ret[$property] = $value;
             }

@@ -11,7 +11,7 @@ trait AssertFilenameExistsTestTrait
     {
         $filename = tempnam(sys_get_temp_dir(), md5(__CLASS__));
         touch($filename);
-        $this->assertNull(Assert::assertFilenameExists($filename));
+        $this->assertNull(Assert::filenameExists($filename));
         unlink($filename);
     }
 
@@ -21,7 +21,7 @@ trait AssertFilenameExistsTestTrait
      */
     public function testAssertFilenameExistsInvalid()
     {
-        Assert::assertFilenameExists('/path/to/invalid/file');
+        Assert::filenameExists('/path/to/invalid/file');
     }
 
     /**
@@ -30,6 +30,6 @@ trait AssertFilenameExistsTestTrait
      */
     public function testAssertFilenameExistsInvalidWithCustomMessage()
     {
-        Assert::assertFilenameExists('/path/to/invalid/file', 'Custom error message (%s)');
+        Assert::filenameExists('/path/to/invalid/file', 'Custom error message (%s)');
     }
 }

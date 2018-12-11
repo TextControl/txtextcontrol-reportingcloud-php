@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -13,15 +14,14 @@
 
 namespace TxTextControl\ReportingCloud\Filter;
 
-use TxTextControl\ReportingCloud\Validator\StaticValidator;
+use TxTextControl\ReportingCloud\Assert\Assert;
 
 /**
- * BooleanToString filter
+ * Trait FilterBooleanToStringTrait
  *
  * @package TxTextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
-class BooleanToString extends AbstractFilter
+trait FilterBooleanToStringTrait
 {
     /**
      * Convert bool true and false to string 'true' and 'false'.
@@ -31,20 +31,14 @@ class BooleanToString extends AbstractFilter
      *
      * The backend only recognizes query parameter ?param=true and ?param=false.
      *
-     * @param mixed $param Boolean value
+     * @param bool $param
      *
      * @return string
      */
-    public function filter($param)
+    public static function filterBooleanToString(bool $param): string
     {
-        StaticValidator::execute($param, 'TypeBoolean');
+        Assert::boolean($param);
 
-        if (true === $param) {
-            $ret = 'true';
-        } else {
-            $ret = 'false';
-        }
-
-        return $ret;
+        return ($param) ? 'true' : 'false';
     }
 }

@@ -14,8 +14,8 @@
 namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
+use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
-use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
  * Trait PutTrait
@@ -80,7 +80,7 @@ trait PutTrait
 
         if ($response instanceof Response && 201 === $response->getStatusCode()) {
             $ret = (string) json_decode($response->getBody(), true);
-            StaticValidator::execute($ret, 'ApiKey');
+            Assert::assertApiKey($ret);
         }
 
         return $ret;

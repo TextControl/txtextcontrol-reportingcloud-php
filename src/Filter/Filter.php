@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -11,29 +12,16 @@
  * @copyright © 2019 Text Control GmbH
  */
 
-namespace TxTextControl\ReportingCloud\Validator;
-
-// @see: \TxTextControl\ReportingCloud\Assert\AssertCultureTrait
+namespace TxTextControl\ReportingCloud\Filter;
 
 /**
- * Culture validator
+ * Class Filter
  *
  * @package TxTextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
-class Culture extends AbstractResourceValidator
+class Filter
 {
-    /**
-     * Culture constructor
-     *
-     * @param array $options
-     */
-    public function __construct(array $options = [])
-    {
-        $filename = realpath(__DIR__ . '/../../data/cultures.php');
-
-        $this->setFilename($filename);
-
-        parent::__construct($options);
-    }
+    use FilterBooleanToStringTrait;
+    use FilterDateTimeToTimestampTrait;
+    use FilterTimestampToDateTimeTrait;
 }

@@ -15,7 +15,7 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
-use TxTextControl\ReportingCloud\Filter\StaticFilter;
+use TxTextControl\ReportingCloud\Filter\Filter;
 
 /**
  * Trait UtilityTrait
@@ -73,7 +73,8 @@ trait UtilityTrait
 
         try {
             if ($this->getTest()) {
-                $options[RequestOptions::QUERY]['test'] = StaticFilter::execute($this->getTest(), 'BooleanToString');
+                $test = Filter::filterBooleanToString($this->getTest());
+                $options[RequestOptions::QUERY]['test'] = $test;
             }
             $ret = $client->request($method, $uri, $options);
         } catch (\Exception $exception) {

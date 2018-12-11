@@ -12,29 +12,31 @@ declare(strict_types=1);
  * @copyright © 2019 Text Control GmbH
  */
 
-namespace TxTextControl\ReportingCloud\Filter2;
+namespace TxTextControl\ReportingCloud\Assert;
 
 /**
- * Trait FilterBooleanToStringTrait
+ * Trait FilenameExistsTrait
  *
  * @package TxTextControl\ReportingCloud
  */
-trait FilterBooleanToStringTrait
+trait FilenameExistsTrait
 {
     /**
-     * Convert bool true and false to string 'true' and 'false'.
+     * Validate filename exists and can be read
      *
-     * This is necessary to prevent Guzzle from converting the query parameter to ?param=0 or ?param=1, which the
-     * backend does not recognize.
+     * @param string $value
+     * @param string $message
      *
-     * The backend only recognizes query parameter ?param=true and ?param=false.
-     *
-     * @param bool $param
-     *
-     * @return string
+     * @return null
      */
-    public static function filterBooleanToString(bool $param): string
+    public static function filenameExists(string $value, string $message = '')
     {
-        return ($param) ? 'true' : 'false';
+        if (!file_exists($value) || !is_readable($value)) {
+            $format  = '%s contains an invalid filename';
+            $message = sprintf($message ?: $format, static::valueToString($value));
+            static::reportInvalidArgument($message);
+        }
+
+        return null;
     }
 }

@@ -15,8 +15,8 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
  * Trait DeleteTrait
@@ -69,7 +69,7 @@ trait DeleteTrait
     {
         $ret = false;
 
-        StaticValidator::execute($key, 'ApiKey');
+        Assert::assertApiKey($key);
 
         $options = [
             RequestOptions::QUERY => [
@@ -99,7 +99,7 @@ trait DeleteTrait
     {
         $ret = false;
 
-        StaticValidator::execute($templateName, 'TemplateName');
+        Assert::assertTemplateName($templateName);
 
         $options = [
             RequestOptions::QUERY => [

@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @copyright © 2019 Text Control GmbH
  */
 
-namespace TxTextControl\ReportingCloud\Filter2;
+namespace TxTextControl\ReportingCloud\Filter;
 
 use DateTime;
 use DateTimeZone;

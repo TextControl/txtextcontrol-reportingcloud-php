@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -15,33 +16,37 @@ namespace TxTextControl\ReportingCloud\Filter;
 
 use DateTime;
 use DateTimeZone;
-use TxTextControl\ReportingCloud\Validator\StaticValidator;
+use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
- * TimestampToDateTime filter
+ * Trait FilterTimestampToDateTimeTrait
  *
  * @package TxTextControl\ReportingCloud
- * @author  Jonathan Maron (@JonathanMaron)
  */
-class TimestampToDateTime extends AbstractFilter
+trait FilterTimestampToDateTimeTrait
 {
     /**
      * Convert a UNIX timestamp to the date/time format used by the backend (e.g. "2016-04-15T19:05:18+00:00").
      *
-     * @param mixed $timestamp UNIX timestamp
+     * @param int $timestamp
      *
      * @return string
+     * @throws \Exception
      */
-    public function filter($timestamp)
+    public static function filterTimestampToDateTime(int $timestamp): string
     {
-        StaticValidator::execute($timestamp, 'Timestamp');
+        Assert::assertTimestamp($timestamp);
 
-        $dateTimeZone = new DateTimeZone($this->getTimeZone());
+        $timeZone   = ReportingCloud::DEFAULT_TIME_ZONE;
+        $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
+
+        $dateTimeZone = new DateTimeZone($timeZone);
         $dateTime     = new DateTime();
 
         $dateTime->setTimestamp($timestamp);
         $dateTime->setTimezone($dateTimeZone);
 
-        return $dateTime->format($this->getDateFormat());
+        return $dateTime->format($dateFormat);
     }
 }

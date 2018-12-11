@@ -3,20 +3,17 @@
 namespace TxTextControlTest\ReportingCloud\Filter;
 
 use PHPUnit_Framework_TestCase;
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\Filter\TimestampToDateTime as Filter;
+use TxTextControl\ReportingCloud\Filter\Filter;
 
 class TimestampToDateTimeTest extends PHPUnit_Framework_TestCase
 {
-    protected $filter;
-
     protected $defaultTimezone;
 
     public function setUp()
     {
-        $this->filter = new Filter();
-
         $this->defaultTimezone = date_default_timezone_get();
+
+        parent::setUp();
     }
 
     public function tearDown()
@@ -33,15 +30,7 @@ class TimestampToDateTimeTest extends PHPUnit_Framework_TestCase
     {
         if (in_array($timeZone, timezone_identifiers_list())) {
             date_default_timezone_set($timeZone);
-            $this->assertSame($dateTimeString, $this->filter->filter($timestamp));
+            $this->assertSame($dateTimeString, Filter::filterTimestampToDateTime($timestamp));
         }
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testInvalid()
-    {
-        $this->filter->filter('invalid');
     }
 }

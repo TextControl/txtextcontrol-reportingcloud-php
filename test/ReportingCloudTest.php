@@ -6,11 +6,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use PHPUnit_Framework_Constraint_IsType as PHPUnit_IsType;
 use PHPUnit_Framework_TestCase;
+use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
-use TxTextControl\ReportingCloud\Validator\ReturnFormat as ReturnFormatValidator;
 
 class ReportingCloudTest extends PHPUnit_Framework_TestCase
 {
@@ -710,7 +710,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testMergeDocumentWithTemplateName()
     {
-        $returnFormats = $this->getTestReturnFormats();
+        $returnFormats = Assert::getReturnFormats();
 
         $mergeData     = $this->getTestTemplateMergeData();
         $mergeSettings = $this->getTestMergeSettings();
@@ -759,7 +759,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testMergeDocumentWithTemplateFilename()
     {
-        $returnFormats = $this->getTestReturnFormats();
+        $returnFormats = Assert::getReturnFormats();
 
         $mergeData     = $this->getTestTemplateMergeData();
         $mergeSettings = $this->getTestMergeSettings();
@@ -943,7 +943,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testFindAndReplaceDocumentWithTemplateName()
     {
-        $returnFormats = $this->getTestReturnFormats();
+        $returnFormats = Assert::getReturnFormats();
 
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();
@@ -986,7 +986,7 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
 
     public function testFindAndReplaceDocumentWithTemplateFilename()
     {
-        $returnFormats = $this->getTestReturnFormats();
+        $returnFormats = Assert::getReturnFormats();
 
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();
@@ -1211,15 +1211,6 @@ class ReportingCloudTest extends PHPUnit_Framework_TestCase
             '%%FIELD1%%' => 'hello field 1',
             '%%FIELD2%%' => 'hello field 2',
         ];
-
-        return $ret;
-    }
-
-    protected function getTestReturnFormats()
-    {
-        $validator = new ReturnFormatValidator();
-
-        $ret = $validator->getHaystack();
 
         return $ret;
     }

@@ -15,9 +15,9 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
-use TxTextControl\ReportingCloud\Filter\StaticFilter;
+use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
-use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
  * Trait PostTrait
@@ -118,8 +118,8 @@ trait PostTrait
     {
         $ret = false;
 
-        StaticValidator::execute($data, 'Base64Data');
-        StaticValidator::execute($templateName, 'TemplateExtension');
+        Assert::assertBase64Data($data);
+        Assert::assertTemplateName($templateName);
 
         $options = [
             RequestOptions::QUERY => [
@@ -147,8 +147,8 @@ trait PostTrait
      */
     public function uploadTemplate($templateFilename)
     {
-        StaticValidator::execute($templateFilename, 'TemplateExtension');
-        StaticValidator::execute($templateFilename, 'FileExists');
+        Assert::assertTemplateExtension($templateFilename);
+        Assert::filenameExists($templateFilename);
 
         $templateFilename = realpath($templateFilename);
         $templateName     = basename($templateFilename);
@@ -172,9 +172,9 @@ trait PostTrait
     {
         $ret = null;
 
-        StaticValidator::execute($documentFilename, 'DocumentExtension');
-        StaticValidator::execute($documentFilename, 'FileExists');
-        StaticValidator::execute($returnFormat, 'ReturnFormat');
+        Assert::assertDocumentExtension($documentFilename);
+        Assert::filenameExists($documentFilename);
+        Assert::assertReturnFormat($returnFormat);
 
         $documentFilename = realpath($documentFilename);
 
@@ -222,24 +222,25 @@ trait PostTrait
     ) {
         $ret = null;
 
-        StaticValidator::execute($mergeData, 'TypeArray');
-        StaticValidator::execute($returnFormat, 'ReturnFormat');
+        Assert::isArray($mergeData);
+        Assert::assertReturnFormat($returnFormat);
 
         if (null !== $templateName) {
-            StaticValidator::execute($templateName, 'TemplateName');
+            Assert::assertTemplateName($templateName);
         }
 
         if (null !== $templateFilename) {
-            StaticValidator::execute($templateFilename, 'TemplateExtension');
-            StaticValidator::execute($templateFilename, 'FileExists');
+            Assert::assertTemplateExtension($templateFilename);
+            Assert::filenameExists($templateFilename);
             $templateFilename = realpath($templateFilename);
         }
 
         if (null !== $append) {
-            $append = StaticFilter::execute($append, 'BooleanToString');
+            Assert::boolean($append);
+            $append = Filter::filterBooleanToString($append);
         }
 
-        StaticValidator::execute($mergeSettings, 'TypeArray');
+        Assert::isArray($mergeSettings);
 
         $query = [
             'returnFormat' => $returnFormat,
@@ -294,9 +295,9 @@ trait PostTrait
     {
         $ret = null;
 
-        StaticValidator::execute($documentsData, 'TypeArray');
-        StaticValidator::execute($returnFormat, 'ReturnFormat');
-        StaticValidator::execute($documentSettings, 'TypeArray');
+        Assert::isArray($documentsData);
+        Assert::assertReturnFormat($returnFormat);
+        Assert::isArray($documentSettings);
 
         $query = [
             'returnFormat' => $returnFormat,
@@ -345,20 +346,20 @@ trait PostTrait
     ) {
         $ret = null;
 
-        StaticValidator::execute($findAndReplaceData, 'TypeArray');
-        StaticValidator::execute($returnFormat, 'ReturnFormat');
+        Assert::isArray($findAndReplaceData);
+        Assert::assertReturnFormat($returnFormat);
 
         if (null !== $templateName) {
-            StaticValidator::execute($templateName, 'TemplateName');
+            Assert::assertTemplateName($templateName);
         }
 
         if (null !== $templateFilename) {
-            StaticValidator::execute($templateFilename, 'TemplateExtension');
-            StaticValidator::execute($templateFilename, 'FileExists');
+            Assert::assertTemplateExtension($templateFilename);
+            Assert::filenameExists($templateFilename);
             $templateFilename = realpath($templateFilename);
         }
 
-        StaticValidator::execute($mergeSettings, 'TypeArray');
+        Assert::isArray($mergeSettings);
 
         $query = [
             'returnFormat' => $returnFormat,

@@ -15,15 +15,15 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\Filter\StaticFilter;
+use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\ApiKey as ApiKeyPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as IncorrectWordMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
-use TxTextControl\ReportingCloud\Validator\StaticValidator;
 
 /**
  * Trait GetTrait
@@ -114,8 +114,8 @@ trait GetTrait
     {
         $ret = null;
 
-        StaticValidator::execute($text, 'TypeString');
-        StaticValidator::execute($language, 'Language');
+        Assert::string($text);
+        Assert::assertLanguage($language);
 
         $propertyMap = new IncorrectWordMap();
 
@@ -164,9 +164,9 @@ trait GetTrait
     {
         $ret = null;
 
-        StaticValidator::execute($word, 'TypeString');
-        StaticValidator::execute($language, 'Language');
-        StaticValidator::execute($max, 'TypeInteger');
+        Assert::string($word);
+        Assert::assertLanguage($language);
+        Assert::integer($max);
 
         $query = [
             'word'     => $word,
@@ -198,7 +198,7 @@ trait GetTrait
 
         $propertyMap = new TemplateInfoPropertyMap();
 
-        StaticValidator::execute($templateName, 'TemplateName');
+        Assert::assertTemplateName($templateName);
 
         $query = [
             'templateName' => $templateName,
@@ -231,11 +231,11 @@ trait GetTrait
     {
         $ret = null;
 
-        StaticValidator::execute($templateName, 'TemplateName');
-        StaticValidator::execute($zoomFactor, 'ZoomFactor');
-        StaticValidator::execute($fromPage, 'Page');
-        StaticValidator::execute($toPage, 'Page');
-        StaticValidator::execute($imageFormat, 'ImageFormat');
+        Assert::assertTemplateName($templateName);
+        Assert::assertZoomFactor($zoomFactor);
+        Assert::assertPage($fromPage);
+        Assert::assertPage($toPage);
+        Assert::assertImageFormat($imageFormat);
 
         $query = [
             'templateName' => $templateName,
@@ -282,7 +282,7 @@ trait GetTrait
             array_walk($ret, function (&$record) {
                 $key = 'modified';
                 if (isset($record[$key])) {
-                    $record[$key] = StaticFilter::execute($record[$key], 'DateTimeToTimestamp');
+                    $record[$key] = Filter::filterDateTimeToTimestamp($record[$key]);
                 }
             });
         }
@@ -301,7 +301,7 @@ trait GetTrait
      */
     public function getTemplatePageCount($templateName)
     {
-        StaticValidator::execute($templateName, 'TemplateName');
+        Assert::assertTemplateName($templateName);
 
         $query = [
             'templateName' => $templateName,
@@ -321,7 +321,7 @@ trait GetTrait
      */
     public function templateExists($templateName)
     {
-        StaticValidator::execute($templateName, 'TemplateName');
+        Assert::assertTemplateName($templateName);
 
         $query = [
             'templateName' => $templateName,
@@ -367,7 +367,7 @@ trait GetTrait
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
             $key = 'valid_until';
             if ($ret[$key]) {
-                $ret[$key] = StaticFilter::execute($ret[$key], 'DateTimeToTimestamp');
+                $ret[$key] = Filter::filterDateTimeToTimestamp($ret[$key]);
             }
         }
 
@@ -387,7 +387,7 @@ trait GetTrait
     {
         $ret = null;
 
-        StaticValidator::execute($templateName, 'TemplateName');
+        Assert::assertTemplateName($templateName);
 
         $query = [
             'templateName' => $templateName,

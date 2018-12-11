@@ -29,7 +29,6 @@ class Assert extends ParentAssert
     use AssertDateTimeTrait;
     use AssertDocumentDividerTrait;
     use AssertDocumentExtensionTrait;
-    use AssertFilenameExistsTrait;
     use AssertImageFormatTrait;
     use AssertLanguageTrait;
     use AssertPageTrait;
@@ -39,61 +38,7 @@ class Assert extends ParentAssert
     use AssertTemplateNameTrait;
     use AssertTimestampTrait;
     use AssertZoomFactorTrait;
+    use FilenameExistsTrait;
+    use FileFormatsTrait;
 
-    /**
-     * Array of image formats (extensions) supported by ReportingCloud
-     *
-     * @var array
-     */
-    protected static $imageFormats
-        = [
-            'BMP',
-            'GIF',
-            'JPG',
-            'PNG',
-        ];
-
-    /**
-     * Array of template formats (extensions) supported by ReportingCloud
-     *
-     * @var array
-     */
-    protected static $templateFormats
-        = [
-            'DOC',
-            'DOCX',
-            'RTF',
-            'TX',
-        ];
-
-    /**
-     * Array of document formats (extensions) supported by ReportingCloud
-     *
-     * @var array
-     */
-    protected static $documentFormats
-        = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'RTF',
-            'TX',
-        ];
-
-    /**
-     * Array of return formats (extensions) supported by ReportingCloud
-     *
-     * @var array
-     */
-    protected static $returnFormats
-        = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'PDFA',
-            'RTF',
-            'TX',
-        ];
 }
