@@ -14,7 +14,7 @@ trait AssertApiKeyTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage API key ("xxxxxxxxxx") must between 20 and 45 characters in length
+     * @expectedExceptionMessage Length of API key ("xxxxxxxxxx") must be in the range [20..45]
      */
     public function testAssertApiKeyInvalidTooShort()
     {
@@ -23,7 +23,7 @@ trait AssertApiKeyTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage API key ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx") must between 20 and 45 characters in length
+     * @expectedExceptionMessage Length of API key ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx") must be in the range [20..45]
      */
     public function testAssertApiKeyInvalidTooLong()
     {

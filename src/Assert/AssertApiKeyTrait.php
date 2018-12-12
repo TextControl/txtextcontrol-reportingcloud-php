@@ -47,15 +47,12 @@ trait AssertApiKeyTrait
     {
         $length = strlen($value);
 
-        if ($length < static::$apiKeyMinLength || $length > static::$apiKeyMaxLength) {
-            $format  = 'API key (%s) must between %s and %s characters in length';
-            $message = sprintf($message ?: $format,
-                               static::valueToString($value),
-                               static::valueToString(static::$apiKeyMinLength),
-                               static::valueToString(static::$apiKeyMaxLength));
-            static::reportInvalidArgument($message);
-        }
+        $format  = 'Length of API key (%s) must be in the range [%2$s..%3$s]';
+        $message = sprintf($message ?: $format,
+                           static::valueToString($value),
+                           static::valueToString(static::$apiKeyMinLength),
+                           static::valueToString(static::$apiKeyMaxLength));
 
-        return null;
+        return static::range($length, static::$apiKeyMinLength, static::$apiKeyMaxLength, $message);
     }
 }
