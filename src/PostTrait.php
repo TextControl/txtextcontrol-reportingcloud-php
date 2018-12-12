@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -39,7 +40,7 @@ trait PostTrait
      *
      * @return string
      */
-    abstract protected function uri($uri);
+    abstract protected function uri(string $uri): string;
 
     /**
      * Request the URI with options
@@ -52,7 +53,7 @@ trait PostTrait
      *
      * @throws RuntimeException
      */
-    abstract protected function request($method, $uri, $options);
+    abstract protected function request(string $method, string $uri, array $options);
 
     /**
      * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
@@ -61,7 +62,7 @@ trait PostTrait
      *
      * @return array
      */
-    abstract protected function buildFindAndReplaceDataArray(array $array);
+    abstract protected function buildFindAndReplaceDataArray(array $array): array;
 
     /**
      * Using passed mergeSettings array, build array for backend
@@ -70,7 +71,7 @@ trait PostTrait
      *
      * @return array
      */
-    abstract protected function buildMergeSettingsArray(array $array);
+    abstract protected function buildMergeSettingsArray(array $array): array;
 
     /**
      * Using passed documentsData array, build array for backend
@@ -79,7 +80,7 @@ trait PostTrait
      *
      * @return array
      */
-    abstract protected function buildDocumentsArray(array $array);
+    abstract protected function buildDocumentsArray(array $array): array;
 
     /**
      * Using passed documentsSettings array, build array for backend
@@ -88,7 +89,7 @@ trait PostTrait
      *
      * @return array
      */
-    abstract protected function buildDocumentSettingsArray(array $array);
+    abstract protected function buildDocumentSettingsArray(array $array): array;
 
     /**
      * Using the passed propertyMap, recursively build array
@@ -98,7 +99,7 @@ trait PostTrait
      *
      * @return array
      */
-    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
+    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
 
     /**
      * POST Methods
@@ -112,9 +113,9 @@ trait PostTrait
      * @param string $templateName Template name
      *
      * @return bool
-     * @throws RuntimeException
+     * @throws \Exception
      */
-    public function uploadTemplateFromBase64($data, $templateName)
+    public function uploadTemplateFromBase64(string $data, string $templateName): bool
     {
         $ret = false;
 
@@ -143,9 +144,9 @@ trait PostTrait
      * @param string $templateFilename Template name
      *
      * @return bool
-     * @throws RuntimeException
+     * @throws \Exception
      */
-    public function uploadTemplate($templateFilename)
+    public function uploadTemplate(string $templateFilename): bool
     {
         Assert::assertTemplateExtension($templateFilename);
         Assert::filenameExists($templateFilename);
@@ -165,12 +166,12 @@ trait PostTrait
      * @param string $documentFilename Document filename
      * @param string $returnFormat     Return format
      *
-     * @return bool|null|string
-     * @throws RuntimeException
+     * @return string
+     * @throws \Exception
      */
-    public function convertDocument($documentFilename, $returnFormat)
+    public function convertDocument(string $documentFilename, string $returnFormat): string
     {
-        $ret = null;
+        $ret = '';
 
         Assert::assertDocumentExtension($documentFilename);
         Assert::filenameExists($documentFilename);
@@ -191,7 +192,7 @@ trait PostTrait
         $response = $this->request('POST', $this->uri('/document/convert'), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret = base64_decode($response->getBody());
+            $ret = base64_decode($response->getBody()->getContents());
         }
 
         return $ret;
@@ -208,19 +209,19 @@ trait PostTrait
      * @param bool   $append           Append flag
      * @param array  $mergeSettings    Array of merge settings
      *
-     * @return array|null
-     * @throws RuntimeException
-     * @throws \Zend\Filter\Exception\ExceptionInterface
+     * @return array
+     * @throws \Exception
      */
     public function mergeDocument(
-        $mergeData,
-        $returnFormat,
-        $templateName = null,
-        $templateFilename = null,
-        $append = null,
-        $mergeSettings = []
-    ) {
-        $ret = null;
+        array $mergeData,
+        string $returnFormat,
+        ?string $templateName = null,
+        ?string $templateFilename = null,
+        ?bool $append = null,
+        ?array $mergeSettings = null
+    ): array {
+
+        $ret = [];
 
         Assert::isArray($mergeData);
         Assert::assertReturnFormat($returnFormat);
@@ -240,7 +241,9 @@ trait PostTrait
             $append = Filter::filterBooleanToString($append);
         }
 
-        Assert::isArray($mergeSettings);
+        if (null !== $mergeSettings) {
+            Assert::isArray($mergeSettings);
+        }
 
         $query = [
             'returnFormat' => $returnFormat,
@@ -273,7 +276,7 @@ trait PostTrait
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $body = json_decode($response->getBody(), true);
+            $body = json_decode($response->getBody()->getContents(), true);
             if (is_array($body) && count($body) > 0) {
                 $ret = array_map('base64_decode', $body);
             }
@@ -289,15 +292,23 @@ trait PostTrait
      * @param string $returnFormat
      * @param array  $documentSettings
      *
-     * @return bool|null|string
+     * @return string
+     * @throws \Exception
      */
-    public function appendDocument($documentsData, $returnFormat, $documentSettings = [])
+    public function appendDocument(
+        array $documentsData,
+        string $returnFormat,
+        ?array $documentSettings = null
+    ): string
     {
-        $ret = null;
+        $ret = '';
 
         Assert::isArray($documentsData);
         Assert::assertReturnFormat($returnFormat);
-        Assert::isArray($documentSettings);
+
+        if (null !== $documentSettings) {
+            Assert::isArray($documentSettings);
+        }
 
         $query = [
             'returnFormat' => $returnFormat,
@@ -319,7 +330,7 @@ trait PostTrait
         $response = $this->request('POST', $this->uri('/document/append'), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret = base64_decode($response->getBody());
+            $ret = base64_decode($response->getBody()->getContents());
         }
 
         return $ret;
@@ -334,17 +345,18 @@ trait PostTrait
      * @param string $templateFilename   Template filename on local file system
      * @param array  $mergeSettings      Array of merge settings
      *
-     * @return bool|null|string
-     * @throws RuntimeException
+     * @return string
+     * @throws \Exception
      */
     public function findAndReplaceDocument(
-        $findAndReplaceData,
-        $returnFormat,
-        $templateName = null,
-        $templateFilename = null,
-        $mergeSettings = []
-    ) {
-        $ret = null;
+        array $findAndReplaceData,
+        string $returnFormat,
+        ?string $templateName = null,
+        ?string $templateFilename = null,
+        ?array $mergeSettings = null
+    ): string {
+
+        $ret = '';
 
         Assert::isArray($findAndReplaceData);
         Assert::assertReturnFormat($returnFormat);
@@ -359,7 +371,9 @@ trait PostTrait
             $templateFilename = realpath($templateFilename);
         }
 
-        Assert::isArray($mergeSettings);
+        if (null !== $mergeSettings) {
+            Assert::isArray($mergeSettings);
+        }
 
         $query = [
             'returnFormat' => $returnFormat,
@@ -391,7 +405,7 @@ trait PostTrait
         $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret = base64_decode($response->getBody());
+            $ret = base64_decode($response->getBody()->getContents());
         }
 
         return $ret;

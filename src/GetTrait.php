@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -45,7 +46,7 @@ trait GetTrait
      *
      * @return string
      */
-    abstract protected function uri($uri);
+    abstract protected function uri(string $uri): string;
 
     /**
      * Request the URI with options
@@ -58,7 +59,7 @@ trait GetTrait
      *
      * @throws RuntimeException
      */
-    abstract protected function request($method, $uri, $options);
+    abstract protected function request(string $method, string $uri, array $options);
 
     /**
      * Using the passed propertyMap, recursively build array
@@ -68,7 +69,7 @@ trait GetTrait
      *
      * @return array
      */
-    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
+    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
 
     /**
      * GET Methods
@@ -78,11 +79,11 @@ trait GetTrait
     /**
      * Return an associative array of API keys associated with the Reporting Cloud account
      *
-     * @return array|null
+     * @return array
      */
-    public function getApiKeys()
+    public function getApiKeys(): array
     {
-        $ret = null;
+        $ret = [];
 
         $propertyMap = new ApiKeyPropertyMap();
 
@@ -103,16 +104,17 @@ trait GetTrait
      *
      * Return an array of misspelled words, if spelling errors are found in the corpus of text.
      *
-     * Return null, if no misspelled words are found in the corpus of text.
+     * Return an empty array, if no misspelled words are found in the corpus of text.
      *
      * @param string $text     Corpus of text that should be spell checked
      * @param string $language Language of specified text
      *
-     * @return array|null
+     * @return array
+     * @throws \Exception
      */
-    public function proofingCheck($text, $language)
+    public function proofingCheck(string $text, string $language): array
     {
-        $ret = null;
+        $ret = [];
 
         Assert::string($text);
         Assert::assertLanguage($language);
@@ -136,11 +138,11 @@ trait GetTrait
     /**
      * Return an array of available dictionaries on the Reporting Cloud service
      *
-     * @return array|null
+     * @return array
      */
-    public function getAvailableDictionaries()
+    public function getAvailableDictionaries(): array
     {
-        $ret = null;
+        $ret = [];
 
         $dictionaries = $this->get('/proofing/availabledictionaries');
 
@@ -152,17 +154,18 @@ trait GetTrait
     }
 
     /**
-     * Return an array of suggestions for a misspelled word.
+     * Return an array of suggestions for a misspelled word
      *
      * @param string $word     Word that should be spell checked
      * @param string $language Language of specified text
      * @param int    $max      Maximum number of suggestions to return
      *
-     * @return array|null
+     * @return array
+     * @throws \Exception
      */
-    public function getProofingSuggestions($word, $language, $max = 10)
+    public function getProofingSuggestions(string $word, string $language, int $max = 10): array
     {
-        $ret = null;
+        $ret = [];
 
         Assert::string($word);
         Assert::assertLanguage($language);
@@ -184,17 +187,16 @@ trait GetTrait
     }
 
     /**
-     * Return an array of merge blocks and merge fields in a template file in template storage.
+     * Return an array of merge blocks and merge fields in a template file in template storage
      *
      * @param string $templateName Template name
      *
-     * @throws InvalidArgumentException
-     *
-     * @return array|null
+     * @return array
+     * @throws \Exception
      */
-    public function getTemplateInfo($templateName)
+    public function getTemplateInfo(string $templateName): array
     {
-        $ret = null;
+        $ret = [];
 
         $propertyMap = new TemplateInfoPropertyMap();
 
@@ -225,11 +227,16 @@ trait GetTrait
      *
      * @throws InvalidArgumentException
      *
-     * @return array|null
+     * @return array
      */
-    public function getTemplateThumbnails($templateName, $zoomFactor, $fromPage, $toPage, $imageFormat)
-    {
-        $ret = null;
+    public function getTemplateThumbnails(
+        string $templateName,
+        int $zoomFactor,
+        int $fromPage,
+        int $toPage,
+        string $imageFormat
+    ): array {
+        $ret = [];
 
         Assert::assertTemplateName($templateName);
         Assert::assertZoomFactor($zoomFactor);
@@ -259,7 +266,7 @@ trait GetTrait
      *
      * @return int
      */
-    public function getTemplateCount()
+    public function getTemplateCount(): int
     {
         return (int) $this->get('/templates/count');
     }
@@ -267,11 +274,11 @@ trait GetTrait
     /**
      * Return an array properties for the templates in template storage
      *
-     * @return array|null
+     * @return array
      */
-    public function getTemplateList()
+    public function getTemplateList(): array
     {
-        $ret = null;
+        $ret = [];
 
         $propertyMap = new TemplateListPropertyMap();
 
@@ -295,11 +302,10 @@ trait GetTrait
      *
      * @param string $templateName Template name
      *
-     * @throws InvalidArgumentException
-     *
      * @return int
+     * @throws \Exception
      */
-    public function getTemplatePageCount($templateName)
+    public function getTemplatePageCount(string $templateName): int
     {
         Assert::assertTemplateName($templateName);
 
@@ -315,11 +321,10 @@ trait GetTrait
      *
      * @param string $templateName Template name
      *
-     * @throws InvalidArgumentException
-     *
      * @return bool
+     * @throws \Exception
      */
-    public function templateExists($templateName)
+    public function templateExists(string $templateName): bool
     {
         Assert::assertTemplateName($templateName);
 
@@ -333,11 +338,11 @@ trait GetTrait
     /**
      * Return an array of available fonts on the Reporting Cloud service
      *
-     * @return array|null
+     * @return array
      */
-    public function getFontList()
+    public function getFontList(): array
     {
-        $ret = null;
+        $ret = [];
 
         $fonts = $this->get('/fonts/list');
 
@@ -351,13 +356,12 @@ trait GetTrait
     /**
      * Return an array properties for the ReportingCloud account
      *
-     * @throws \Zend\Filter\Exception\ExceptionInterface
-     *
-     * @return array|null
+     * @return array
+     * @throws \Exception
      */
-    public function getAccountSettings()
+    public function getAccountSettings(): array
     {
-        $ret = null;
+        $ret = [];
 
         $propertyMap = new AccountSettingsPropertyMap();
 
@@ -379,13 +383,12 @@ trait GetTrait
      *
      * @param string $templateName Template name
      *
-     * @throws InvalidArgumentException
-     *
-     * @return string|null
+     * @return string
+     * @throws \Exception
      */
-    public function downloadTemplate($templateName)
+    public function downloadTemplate(string $templateName): string
     {
-        $ret = null;
+        $ret = '';
 
         Assert::assertTemplateName($templateName);
 
@@ -408,11 +411,11 @@ trait GetTrait
      * @param string $uri   URI
      * @param array  $query Query
      *
-     * @return mixed|null
+     * @return string|array
      */
-    protected function get($uri, $query = [])
+    protected function get(string $uri, array $query = [])
     {
-        $ret = null;
+        $ret = '';
 
         $options = [
             RequestOptions::QUERY => $query,
@@ -421,7 +424,7 @@ trait GetTrait
         $response = $this->request('GET', $this->uri($uri), $options);
 
         if ($response instanceof Response && 200 === $response->getStatusCode()) {
-            $ret = json_decode($response->getBody(), true);
+            $ret = json_decode($response->getBody()->getContents(), true);
         }
 
         return $ret;

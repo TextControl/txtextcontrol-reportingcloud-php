@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -16,7 +17,6 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Assert\Assert;
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait DeleteTrait
@@ -38,7 +38,7 @@ trait DeleteTrait
      *
      * @return string
      */
-    abstract protected function uri($uri);
+    abstract protected function uri(string $uri): string;
 
     /**
      * Request the URI with options
@@ -51,7 +51,7 @@ trait DeleteTrait
      *
      * @throws RuntimeException
      */
-    abstract protected function request($method, $uri, $options);
+    abstract protected function request(string $method, string $uri, array $options);
 
     /**
      * DELETE Methods
@@ -61,11 +61,12 @@ trait DeleteTrait
     /**
      * Delete an API key
      *
-     * @param string $key API key
+     * @param string $key
      *
      * @return bool
+     * @throws \Exception
      */
-    public function deleteApiKey($key)
+    public function deleteApiKey(string $key): bool
     {
         $ret = false;
 
@@ -89,13 +90,12 @@ trait DeleteTrait
     /**
      * Delete a template in template storage
      *
-     * @param string $templateName Template name
-     *
-     * @throws InvalidArgumentException
+     * @param string $templateName
      *
      * @return bool
+     * @throws \Exception
      */
-    public function deleteTemplate($templateName)
+    public function deleteTemplate(string $templateName): bool
     {
         $ret = false;
 

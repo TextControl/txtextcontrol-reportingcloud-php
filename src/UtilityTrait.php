@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -13,6 +14,7 @@
 
 namespace TxTextControl\ReportingCloud;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
@@ -35,21 +37,21 @@ trait UtilityTrait
      *
      * @return \GuzzleHttp\Client
      */
-    abstract public function getClient();
+    abstract public function getClient(): Client;
 
     /**
      * Return the test flag
      *
      * @return mixed
      */
-    abstract public function getTest();
+    abstract public function getTest(): ?bool;
 
     /**
      * Get the version string of the backend web service
      *
      * @return string
      */
-    abstract public function getVersion();
+    abstract public function getVersion(): ?string;
 
     /**
      * Utility Methods
@@ -63,11 +65,10 @@ trait UtilityTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return mixed|null|\Psr\Http\Message\ResponseInterface
-     *
-     * @throws RuntimeException
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function request($method, $uri, $options)
+    protected function request(string $method, string $uri, array $options)
     {
         $client = $this->getClient();
 
@@ -95,7 +96,7 @@ trait UtilityTrait
      *
      * @return string
      */
-    protected function uri($uri)
+    protected function uri(string $uri): string
     {
         return sprintf('/%s%s', $this->getVersion(), $uri);
     }

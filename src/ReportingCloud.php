@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -12,6 +13,8 @@
  */
 
 namespace TxTextControl\ReportingCloud;
+
+use TxTextControl\ReportingCloud\Assert\Assert;
 
 /**
  * Class ReportingCloud
@@ -38,8 +41,14 @@ class ReportingCloud extends AbstractReportingCloud
      *
      * @param array $options
      */
-    public function __construct(array $options = [])
+    public function __construct(?array $options = null)
     {
+        if (null === $options) {
+            return;
+        }
+
+        Assert::isArray($options);
+
         $methods = [
             'api_key'  => 'setApiKey',
             'base_uri' => 'setBaseUri',

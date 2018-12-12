@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -37,7 +38,7 @@ trait PutTrait
      *
      * @return string
      */
-    abstract protected function uri($uri);
+    abstract protected function uri(string $uri): string;
 
     /**
      * Request the URI with options
@@ -50,7 +51,7 @@ trait PutTrait
      *
      * @throws RuntimeException
      */
-    abstract protected function request($method, $uri, $options);
+    abstract protected function request(string $method, string $uri, array $options);
 
     /**
      * Using the passed propertyMap, recursively build array
@@ -60,7 +61,7 @@ trait PutTrait
      *
      * @return array
      */
-    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap);
+    abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
 
     /**
      * PUT Methods
@@ -70,16 +71,17 @@ trait PutTrait
     /**
      * Create an API key
      *
-     * @return string|null
+     * @return string
+     * @throws \Exception
      */
-    public function createApiKey()
+    public function createApiKey(): string
     {
-        $ret = null;
+        $ret = '';
 
         $response = $this->request('PUT', $this->uri('/account/apikey'), []);
 
         if ($response instanceof Response && 201 === $response->getStatusCode()) {
-            $ret = (string) json_decode($response->getBody(), true);
+            $ret = (string) json_decode($response->getBody()->getContents(), true);
             Assert::assertApiKey($ret);
         }
 

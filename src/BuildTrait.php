@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -40,7 +41,7 @@ trait BuildTrait
      *
      * @return array
      */
-    protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap)
+    protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array
     {
         $ret = [];
 
@@ -61,11 +62,12 @@ trait BuildTrait
     /**
      * Using passed documentsData array, build array for backend
      *
-     * @param array $array AppendDocument array
+     * @param array $array
      *
      * @return array
+     * @throws \Exception
      */
-    protected function buildDocumentsArray(array $array)
+    protected function buildDocumentsArray(array $array): array
     {
         $ret = [];
 
@@ -99,8 +101,9 @@ trait BuildTrait
      * @param array $array
      *
      * @return array
+     * @throws \Exception
      */
-    protected function buildDocumentSettingsArray(array $array)
+    protected function buildDocumentSettingsArray(array $array): array
     {
         $ret = [];
 
@@ -126,8 +129,9 @@ trait BuildTrait
      * @param array $array MergeSettings array
      *
      * @return array
+     * @throws \Exception
      */
-    protected function buildMergeSettingsArray(array $array)
+    protected function buildMergeSettingsArray(array $array): array
     {
         $ret = [];
 
@@ -156,11 +160,11 @@ trait BuildTrait
     /**
      * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
      *
-     * @param array $array FindAndReplaceData array
+     * @param array $array
      *
      * @return array
      */
-    protected function buildFindAndReplaceDataArray(array $array)
+    protected function buildFindAndReplaceDataArray(array $array): array
     {
         $ret = [];
 

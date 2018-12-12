@@ -41,7 +41,8 @@ class TextInMergeDataIsInDocumentTest extends TestCase
 
             $mergeDataFilename = __DIR__ . DIRECTORY_SEPARATOR . 'merge_data.json';
 
-            $mergeData = json_decode(file_get_contents($mergeDataFilename));
+            $json      = (string) file_get_contents($mergeDataFilename);
+            $mergeData = (array)  json_decode($json, true);
 
             $arrayOfBinaryData = $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename);
 

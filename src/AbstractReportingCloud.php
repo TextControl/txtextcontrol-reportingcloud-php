@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 /**
  * ReportingCloud PHP Wrapper
@@ -42,49 +43,49 @@ abstract class AbstractReportingCloud
      *
      * @const DEFAULT_DATE_FORMAT
      */
-    const DEFAULT_DATE_FORMAT = 'Y-m-d\TH:i:sP';
+    public const DEFAULT_DATE_FORMAT = 'Y-m-d\TH:i:sP';
 
     /**
      * Default time zone of backend
      *
      * @const DEFAULT_TIME_ZONE
      */
-    const DEFAULT_TIME_ZONE = 'UTC';
+    public const DEFAULT_TIME_ZONE = 'UTC';
 
     /**
      * Default base URI of backend
      *
      * @const DEFAULT_BASE_URI
      */
-    const DEFAULT_BASE_URI = 'https://api.reporting.cloud';
+    protected const DEFAULT_BASE_URI = 'https://api.reporting.cloud';
 
     /**
      * Default version string of backend
      *
      * @const DEFAULT_VERSION
      */
-    const DEFAULT_VERSION = 'v1';
+    protected const DEFAULT_VERSION = 'v1';
 
     /**
      * Default timeout of backend in seconds
      *
      * @const DEFAULT_TIMEOUT
      */
-    const DEFAULT_TIMEOUT = 120;
+    protected const DEFAULT_TIMEOUT = 120;
 
     /**
      * Default test flag of backend
      *
      * @const DEFAULT_TEST
      */
-    const DEFAULT_TEST = false;
+    protected const DEFAULT_TEST = false;
 
     /**
      * Default debug flag of REST client
      *
      * @const DEFAULT_DEBUG
      */
-    const DEFAULT_DEBUG = false;
+    protected const DEFAULT_DEBUG = false;
 
     /**
      * Constants (ReportingCloud values)
@@ -94,17 +95,17 @@ abstract class AbstractReportingCloud
     /**
      * Document divider - none
      */
-    const DOCUMENT_DIVIDER_NONE = 1;
+    public const DOCUMENT_DIVIDER_NONE = 1;
 
     /**
      * Document divider - new paragraph
      */
-    const DOCUMENT_DIVIDER_NEW_PARAGRAPH = 2;
+    public const DOCUMENT_DIVIDER_NEW_PARAGRAPH = 2;
 
     /**
      * Document divider - new section
      */
-    const DOCUMENT_DIVIDER_NEW_SECTION = 3;
+    public const DOCUMENT_DIVIDER_NEW_SECTION = 3;
 
     /**
      * Properties
@@ -183,9 +184,9 @@ abstract class AbstractReportingCloud
     /**
      * Return the API key
      *
-     * @return string
+     * @return string|null
      */
-    public function getApiKey()
+    public function getApiKey(): ?string
     {
         return $this->apiKey;
     }
@@ -193,11 +194,11 @@ abstract class AbstractReportingCloud
     /**
      * Set the API key
      *
-     * @param string $apiKey API key
+     * @param string $apiKey
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
-    public function setApiKey($apiKey)
+    public function setApiKey(string $apiKey): self
     {
         $this->apiKey = $apiKey;
 
@@ -207,9 +208,9 @@ abstract class AbstractReportingCloud
     /**
      * Return the username
      *
-     * @return string
+     * @return string|null
      */
-    public function getUsername()
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -217,11 +218,11 @@ abstract class AbstractReportingCloud
     /**
      * Set the username
      *
-     * @param string $username Username
+     * @param string $username
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
-    public function setUsername($username)
+    public function setUsername(string $username): self
     {
         $this->username = $username;
 
@@ -231,9 +232,9 @@ abstract class AbstractReportingCloud
     /**
      * Return the password
      *
-     * @return string
+     * @return string|null
      */
-    public function getPassword()
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -241,11 +242,11 @@ abstract class AbstractReportingCloud
     /**
      * Set the password
      *
-     * @param string $password Password
+     * @param string $password
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
-    public function setPassword($password)
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
@@ -255,9 +256,9 @@ abstract class AbstractReportingCloud
     /**
      * Return the base URI of the backend web service
      *
-     * @return string
+     * @return string|null
      */
-    public function getBaseUri()
+    public function getBaseUri(): ?string
     {
         if (null === $this->baseUri) {
             $this->setBaseUri(self::DEFAULT_BASE_URI);
@@ -269,11 +270,11 @@ abstract class AbstractReportingCloud
     /**
      * Set the base URI of the backend web service
      *
-     * @param string $baseUri Base URI
+     * @param string $baseUri
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
-    public function setBaseUri($baseUri)
+    public function setBaseUri(string $baseUri): self
     {
         $this->baseUri = $baseUri;
 
@@ -283,9 +284,9 @@ abstract class AbstractReportingCloud
     /**
      * Get the timeout (in seconds) of the backend web service
      *
-     * @return int
+     * @return int|null
      */
-    public function getTimeout()
+    public function getTimeout(): ?int
     {
         if (null === $this->timeout) {
             $this->setTimeout(self::DEFAULT_TIMEOUT);
@@ -297,13 +298,13 @@ abstract class AbstractReportingCloud
     /**
      * Set the timeout (in seconds) of the backend web service
      *
-     * @param int $timeout Timeout
+     * @param int $timeout
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
-    public function setTimeout($timeout)
+    public function setTimeout(int $timeout): self
     {
-        $this->timeout = (int) $timeout;
+        $this->timeout = $timeout;
 
         return $this;
     }
@@ -311,9 +312,9 @@ abstract class AbstractReportingCloud
     /**
      * Return the debug flag
      *
-     * @return mixed
+     * @return bool|null
      */
-    public function getDebug()
+    public function getDebug(): ?bool
     {
         if (null === $this->debug) {
             $this->setDebug(self::DEFAULT_DEBUG);
@@ -329,9 +330,9 @@ abstract class AbstractReportingCloud
      *
      * @return ReportingCloud
      */
-    public function setDebug($debug)
+    public function setDebug(bool $debug): self
     {
-        $this->debug = (bool) $debug;
+        $this->debug = $debug;
 
         return $this;
     }
@@ -339,9 +340,9 @@ abstract class AbstractReportingCloud
     /**
      * Return the test flag
      *
-     * @return mixed
+     * @return bool|null
      */
-    public function getTest()
+    public function getTest(): ?bool
     {
         if (null === $this->test) {
             $this->setTest(self::DEFAULT_TEST);
@@ -353,13 +354,13 @@ abstract class AbstractReportingCloud
     /**
      * Set the test flag
      *
-     * @param bool $test Test flag
+     * @param bool $test
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
-    public function setTest($test)
+    public function setTest(bool $test): self
     {
-        $this->test = (bool) $test;
+        $this->test = $test;
 
         return $this;
     }
@@ -367,9 +368,9 @@ abstract class AbstractReportingCloud
     /**
      * Get the version string of the backend web service
      *
-     * @return string
+     * @return string|null
      */
-    public function getVersion()
+    public function getVersion(): ?string
     {
         if (null === $this->version) {
             $this->version = self::DEFAULT_VERSION;
@@ -381,25 +382,25 @@ abstract class AbstractReportingCloud
     /**
      * Set the version string of the backend web service
      *
-     * @param string $version Version string
+     * @param string $version
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
-    public function setVersion($version)
+    public function setVersion(string $version): self
     {
         $this->version = $version;
 
         return $this;
     }
 
-     /**
+    /**
      * Return the REST client of the backend web service
      *
-     * @return \GuzzleHttp\Client
+     * @return Client
      */
-    public function getClient()
+    public function getClient(): Client
     {
-        if (null === $this->client) {
+        if (!$this->client instanceof Client) {
 
             $authorization = function () {
 
@@ -409,6 +410,7 @@ abstract class AbstractReportingCloud
 
                 if (!empty($this->getUsername()) && !empty($this->getPassword())) {
                     $value = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
+
                     return sprintf('Basic %s', base64_encode($value));
                 }
 
@@ -436,11 +438,11 @@ abstract class AbstractReportingCloud
     /**
      * Set the REST client of the backend web service
      *
-     * @param Client $client REST client
+     * @param Client $client
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
-    public function setClient(Client $client)
+    public function setClient(Client $client): self
     {
         $this->client = $client;
 
