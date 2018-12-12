@@ -45,14 +45,12 @@ trait AssertZoomFactorTrait
      */
     public static function assertZoomFactor(int $value, string $message = '')
     {
-        if ($value < self::$zoomFactorMin || $value > self::$zoomFactorMax) {
-            $format  = 'Zoom factor must be in the range [%d..%d]';
-            $message = sprintf($message ?: $format,
-                               static::valueToString(self::$zoomFactorMin),
-                               static::valueToString(self::$zoomFactorMax));
-            static::reportInvalidArgument($message);
-        }
+        $format  = 'Zoom factor (%s) must be in the range [%2$s..%3$s]';
+        $message = sprintf($message ?: $format,
+                           static::valueToString($value),
+                           static::valueToString(static::$zoomFactorMin),
+                           static::valueToString(static::$zoomFactorMax));
 
-        return null;
+        return static::range($value, static::$zoomFactorMin, static::$zoomFactorMax, $message);
     }
 }

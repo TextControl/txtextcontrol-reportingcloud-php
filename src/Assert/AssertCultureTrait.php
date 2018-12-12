@@ -31,7 +31,7 @@ trait AssertCultureTrait
      */
     public static function assertCulture(string $value, string $message = '')
     {
-        $haystack = include self::getCulturesFilename();
+        $haystack = include static::getCulturesFilename();
 
         if (!in_array($value, $haystack)) {
             $format  = '%s contains an unsupported culture';

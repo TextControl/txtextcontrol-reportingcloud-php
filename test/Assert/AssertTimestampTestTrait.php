@@ -18,7 +18,7 @@ trait AssertTimestampTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Timestamp must be in the range [0..9223372036854775807]
+     * @expectedExceptionMessage Timestamp (-1) must be in the range [0..9223372036854775807]
      */
     public function testAssertTimestampInvalidTooSmall()
     {
@@ -27,10 +27,10 @@ trait AssertTimestampTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message - range: [0..9223372036854775807]
+     * @expectedExceptionMessage Custom error message (-50) - range: [0..9223372036854775807]
      */
     public function testAssertTimestampInvalidWithCustomMessage()
     {
-        Assert::assertTimestamp(-50, 'Custom error message - range: [%d..%d]');
+        Assert::assertTimestamp(-50, 'Custom error message (%s) - range: [%2$s..%3$s]');
     }
 }

@@ -47,7 +47,7 @@ trait AssertTemplateNameTrait
         }
 
         try {
-            self::assertTemplateFormat($extension);
+            static::assertTemplateFormat($extension);
         } catch (InvalidArgumentException $e) {
             $format  = "%s contains an unsupported file extension";
             $message = sprintf($message ?: $format, static::valueToString($value));

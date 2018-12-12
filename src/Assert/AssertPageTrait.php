@@ -45,14 +45,12 @@ trait AssertPageTrait
      */
     public static function assertPage(int $value, string $message = '')
     {
-        if ($value < self::$pageMin || $value > self::$pageMax) {
-            $format  = 'Page number must be in the range [%d..%d]';
-            $message = sprintf($message ?: $format,
-                               static::valueToString(self::$pageMin),
-                               static::valueToString(self::$pageMax));
-            static::reportInvalidArgument($message);
-        }
+        $format  = 'Page number (%s) must be in the range [%2$s..%3$s]';
+        $message = sprintf($message ?: $format,
+                           static::valueToString($value),
+                           static::valueToString(static::$pageMin),
+                           static::valueToString(static::$pageMax));
 
-        return null;
+        return static::range($value, static::$pageMin, static::$pageMax, $message);
     }
 }

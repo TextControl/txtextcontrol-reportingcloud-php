@@ -36,7 +36,7 @@ trait AssertTemplateExtensionTrait
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = strtoupper($extension);
 
-        if (!in_array($extension, self::getTemplateFormats())) {
+        if (!in_array($extension, static::getTemplateFormats())) {
             $format  = '%s contains an unsupported template format file extension';
             $message = sprintf($message ?: $format, static::valueToString($value));
             static::reportInvalidArgument($message);
