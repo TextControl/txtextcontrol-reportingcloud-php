@@ -32,14 +32,10 @@ trait AssertCultureTrait
     public static function assertCulture(string $value, string $message = '')
     {
         $haystack = include static::getCulturesFilename();
+        $format   = '%s contains an unsupported culture';
+        $message  = sprintf($message ?: $format, static::valueToString($value));
 
-        if (!in_array($value, $haystack)) {
-            $format  = '%s contains an unsupported culture';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
-        }
-
-        return null;
+        return static::oneOf($value, $haystack, $message);
     }
 
     /**
