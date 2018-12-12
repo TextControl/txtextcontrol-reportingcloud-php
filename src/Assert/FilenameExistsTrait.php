@@ -37,14 +37,8 @@ trait FilenameExistsTrait
             static::reportInvalidArgument($message);
         }
 
-        if (!file_exists($value)) {
-            $format  = '%s does not exist';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
-        }
-
-        if (!is_readable($value)) {
-            $format  = '%s cannot be read';
+        if (!is_file($value)) {
+            $format  = '%s is not a regular file';
             $message = sprintf($message ?: $format, static::valueToString($value));
             static::reportInvalidArgument($message);
         }

@@ -19,9 +19,18 @@ trait AssertFilenameExistsTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "/path/to/invalid/file" must contain the absolute path and file
      */
-    public function testAssertFilenameExistsInvalid()
+    public function testAssertFilenameExistsInvalidDoesContainAbsolutePathAndFile()
     {
         Assert::filenameExists('/path/to/invalid/file');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage "/tmp" is not a regular file
+     */
+    public function testAssertFilenameExistsInvalidIsNotARegularFile()
+    {
+        Assert::filenameExists('/tmp');
     }
 
     /**
