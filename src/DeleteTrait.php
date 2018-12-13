@@ -70,13 +70,12 @@ trait DeleteTrait
     {
         $ret = false;
 
-        Assert::assertApiKey($key);
-
         $options = [
-            RequestOptions::QUERY => [
-                'key' => $key,
-            ],
+            RequestOptions::QUERY => [],
         ];
+
+        Assert::assertApiKey($key);
+        $options[RequestOptions::QUERY]['key'] = $key;
 
         $response = $this->request('DELETE', $this->uri('/account/apikey'), $options);
 
@@ -99,13 +98,12 @@ trait DeleteTrait
     {
         $ret = false;
 
-        Assert::assertTemplateName($templateName);
-
         $options = [
-            RequestOptions::QUERY => [
-                'templateName' => $templateName,
-            ],
+            RequestOptions::QUERY => [],
         ];
+
+        Assert::assertTemplateName($templateName);
+        $options[RequestOptions::QUERY]['templateName'] = $templateName;
 
         $response = $this->request('DELETE', $this->uri('/templates/delete'), $options);
 
