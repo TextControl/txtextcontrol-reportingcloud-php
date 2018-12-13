@@ -223,55 +223,41 @@ trait PostTrait
 
         $ret = [];
 
+        $query = RequestOptions::QUERY;
+        $json  = RequestOptions::JSON;
+
+        $options = [
+            $query => [],
+            $json  => [],
+        ];
+
         Assert::isArray($mergeData);
+        $options[$json]['mergeData'] = $mergeData;
+
         Assert::assertReturnFormat($returnFormat);
+        $options[$query]['returnFormat'] = $returnFormat;
 
         if (null !== $templateName) {
             Assert::assertTemplateName($templateName);
+            $options[$query]['templateName'] = $templateName;
         }
 
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $templateFilename = realpath($templateFilename);
+            $template                   = file_get_contents($templateFilename);
+            $template                   = base64_encode($template);
+            $options[$json]['template'] = $template;
         }
 
         if (null !== $append) {
             Assert::boolean($append);
-            $append = Filter::filterBooleanToString($append);
+            $options[$query]['append'] = Filter::filterBooleanToString($append);
         }
 
-        if (null !== $mergeSettings) {
-            Assert::isArray($mergeSettings);
+        if (is_array($mergeSettings)) {
+            $options[$json]['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
-
-        $query = [
-            'returnFormat' => $returnFormat,
-            'append'       => $append,
-        ];
-
-        if (null !== $templateName) {
-            $query['templateName'] = $templateName;
-        }
-
-        $json = [
-            'mergeData' => $mergeData,
-        ];
-
-        if (null !== $templateFilename) {
-            $template         = file_get_contents($templateFilename);
-            $template         = base64_encode($template);
-            $json['template'] = $template;
-        }
-
-        if (is_array($mergeSettings) && count($mergeSettings) > 0) {
-            $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
-        }
-
-        $options = [
-            RequestOptions::QUERY => $query,
-            RequestOptions::JSON  => $json,
-        ];
 
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
 
