@@ -398,7 +398,7 @@ trait GetTrait
 
         $data = (string) $this->get('/templates/download', $query);
 
-        if (empty($data)) {
+        if (!empty($data)) {
             $ret = base64_decode($data);
         }
 

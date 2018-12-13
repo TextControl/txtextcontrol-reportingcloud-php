@@ -264,7 +264,7 @@ trait PostTrait
             $json['template'] = $template;
         }
 
-        if (count($mergeSettings) > 0) {
+        if (is_array($mergeSettings) && count($mergeSettings) > 0) {
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
@@ -318,7 +318,7 @@ trait PostTrait
             'documents' => $this->buildDocumentsArray($documentsData),
         ];
 
-        if (count($documentSettings) > 0) {
+        if (is_array($documentSettings) && count($documentSettings) > 0) {
             $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
         }
 
@@ -393,7 +393,7 @@ trait PostTrait
             $json['template'] = $template;
         }
 
-        if (count($mergeSettings) > 0) {
+        if (is_array($mergeSettings) && count($mergeSettings) > 0) {
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
