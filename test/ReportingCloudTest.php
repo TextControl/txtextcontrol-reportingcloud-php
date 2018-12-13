@@ -110,6 +110,15 @@ class ReportingCloudTest extends TestCase
         $this->assertInstanceOf('GuzzleHttp\Client', $this->reportingCloud->getClient());
     }
 
+    public function testGetClientWithUsernameAndPassword()
+    {
+        $this->reportingCloud->setApiKey('');
+        $this->reportingCloud->setUsername('phpunit-username');
+        $this->reportingCloud->setPassword('phpunit-password');
+
+        $this->assertInstanceOf('GuzzleHttp\Client', $this->reportingCloud->getClient());
+    }
+
     public function testDefaultProperties()
     {
         $reportingCloud = new ReportingCloud();

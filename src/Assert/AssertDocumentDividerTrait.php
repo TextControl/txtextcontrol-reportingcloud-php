@@ -38,9 +38,7 @@ trait AssertDocumentDividerTrait
             }
             unset($reportingCloud);
         } catch (ReflectionException $e) {
-            $format  = 'Internal error validating %s';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
+            // continue
         }
 
         $format  = '%s contains an unsupported document divider';

@@ -20,6 +20,15 @@ trait AssertTemplateNameTestTrait
 
     /**
      * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage "template.xxx" contains an unsupported file extension
+     */
+    public function testAssertTemplateNameInvalidUsupportedFileExtension()
+    {
+        Assert::assertTemplateName('template.xxx');
+    }
+
+    /**
+     * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "/path/to/template.tx" contains path information ('/', '.', or '..')
      */
     public function testAssertTemplateNameInvalidAbsolutePath()

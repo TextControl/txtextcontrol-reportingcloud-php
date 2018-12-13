@@ -31,20 +31,7 @@ trait AssertTemplateNameTrait
             static::reportInvalidArgument($message);
         }
 
-        $basename  = pathinfo($value, PATHINFO_BASENAME);
         $extension = pathinfo($value, PATHINFO_EXTENSION);
-
-        if (0 === strlen($basename) || $basename == ".{$extension}") {
-            $format  = "%s contains an invalid file basename";
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
-        }
-
-        if (0 === strlen($extension)) {
-            $format  = "%s contains an invalid file extension";
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
-        }
 
         try {
             static::assertTemplateFormat($extension);
