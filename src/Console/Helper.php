@@ -128,7 +128,7 @@ END;
      *
      * @return int
      */
-    function varExportToFile(string $filename, array $values): int
+    public function varExportToFile(string $filename, array $values): int
     {
         $encoder = new PHPEncoder([
             'array.short'   => true,
