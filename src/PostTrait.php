@@ -202,12 +202,12 @@ trait PostTrait
      * Merge data into a template and return an array of binary data.
      * Each record in the array is the binary data of one document
      *
-     * @param array  $mergeData        Array of merge data
-     * @param string $returnFormat     Return format
-     * @param string $templateName     Template name
-     * @param string $templateFilename Template filename on local file system
-     * @param bool   $append           Append flag
-     * @param array  $mergeSettings    Array of merge settings
+     * @param array       $mergeData        Array of merge data
+     * @param string      $returnFormat     Return format
+     * @param string|null $templateName     Template name
+     * @param string|null $templateFilename Template filename on local file system
+     * @param bool|null   $append           Append flag
+     * @param array|null  $mergeSettings    Array of merge settings
      *
      * @return array
      * @throws \Exception
@@ -288,9 +288,9 @@ trait PostTrait
     /**
      * Combine documents to appending them, divided by a new section, paragraph or nothing
      *
-     * @param array  $documentsData
-     * @param string $returnFormat
-     * @param array  $documentSettings
+     * @param array      $documentsData
+     * @param string     $returnFormat
+     * @param array|null $documentSettings
      *
      * @return string
      * @throws \Exception
@@ -339,11 +339,11 @@ trait PostTrait
     /**
      * Perform find and replace in document and return binary data.
      *
-     * @param array  $findAndReplaceData Array of find and replace data
-     * @param string $returnFormat       Return format
-     * @param string $templateName       Template name
-     * @param string $templateFilename   Template filename on local file system
-     * @param array  $mergeSettings      Array of merge settings
+     * @param array       $findAndReplaceData Array of find and replace data
+     * @param string      $returnFormat       Return format
+     * @param string|null $templateName       Template name
+     * @param string|null $templateFilename   Template filename on local file system
+     * @param array|null  $mergeSettings      Array of merge settings
      *
      * @return string
      * @throws \Exception

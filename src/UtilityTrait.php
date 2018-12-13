@@ -16,6 +16,7 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
+use Throwable;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 
@@ -78,7 +79,7 @@ trait UtilityTrait
                 $options[RequestOptions::QUERY]['test'] = $test;
             }
             $ret = $client->request($method, $uri, $options);
-        } catch (\Exception $exception) {
+        } catch (Throwable $exception) {
             // \GuzzleHttp\Exception\ClientException
             // \GuzzleHttp\Exception\ServerException
             $message = (string) $exception->getMessage();
