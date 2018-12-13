@@ -35,8 +35,8 @@ trait AssertDocumentExtensionTrait
         $extension = strtoupper($extension);
 
         $format  = '%s contains an unsupported document format file extension';
-        $message = sprintf($message ?: $format, static::valueToString($value));
+        $message = sprintf($message ?: $format, self::valueToString($value));
 
-        return static::oneOf($extension, static::getDocumentFormats(), $message);
+        return self::oneOf($extension, self::getDocumentFormats(), $message);
     }
 }

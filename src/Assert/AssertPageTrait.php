@@ -47,10 +47,10 @@ trait AssertPageTrait
     {
         $format  = 'Page number (%s) must be in the range [%2$s..%3$s]';
         $message = sprintf($message ?: $format,
-                           static::valueToString($value),
-                           static::valueToString(static::$pageMin),
-                           static::valueToString(static::$pageMax));
+                           self::valueToString($value),
+                           self::valueToString(self::$pageMin),
+                           self::valueToString(self::$pageMax));
 
-        return static::range($value, static::$pageMin, static::$pageMax, $message);
+        return self::range($value, self::$pageMin, self::$pageMax, $message);
     }
 }

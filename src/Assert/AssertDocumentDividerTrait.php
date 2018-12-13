@@ -42,8 +42,8 @@ trait AssertDocumentDividerTrait
         }
 
         $format  = '%s contains an unsupported document divider';
-        $message = sprintf($message ?: $format, static::valueToString($value));
+        $message = sprintf($message ?: $format, self::valueToString($value));
 
-        return static::oneOf($value, $haystack, $message);
+        return self::oneOf($value, $haystack, $message);
     }
 }

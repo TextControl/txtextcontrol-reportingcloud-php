@@ -31,11 +31,11 @@ trait AssertCultureTrait
      */
     public static function assertCulture(string $value, string $message = '')
     {
-        $haystack = include static::getCulturesFilename();
+        $haystack = include self::getCulturesFilename();
         $format   = '%s contains an unsupported culture';
-        $message  = sprintf($message ?: $format, static::valueToString($value));
+        $message  = sprintf($message ?: $format, self::valueToString($value));
 
-        return static::oneOf($value, $haystack, $message);
+        return self::oneOf($value, $haystack, $message);
     }
 
     /**

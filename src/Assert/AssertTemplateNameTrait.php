@@ -27,18 +27,18 @@ trait AssertTemplateNameTrait
     {
         if (basename($value) != $value) {
             $format  = "%s contains path information ('/', '.', or '..')";
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
+            $message = sprintf($message ?: $format, self::valueToString($value));
+            self::reportInvalidArgument($message);
         }
 
         $extension = pathinfo($value, PATHINFO_EXTENSION);
 
         try {
-            static::assertTemplateFormat($extension);
+            self::assertTemplateFormat($extension);
         } catch (InvalidArgumentException $e) {
             $format  = "%s contains an unsupported file extension";
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
+            $message = sprintf($message ?: $format, self::valueToString($value));
+            self::reportInvalidArgument($message);
         }
 
         return null;

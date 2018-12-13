@@ -35,8 +35,8 @@ trait AssertTemplateExtensionTrait
         $extension = strtoupper($extension);
 
         $format  = '%s contains an unsupported template format file extension';
-        $message = sprintf($message ?: $format, static::valueToString($value));
+        $message = sprintf($message ?: $format, self::valueToString($value));
 
-        return static::oneOf($extension, static::getTemplateFormats(), $message);
+        return self::oneOf($extension, self::getTemplateFormats(), $message);
     }
 }

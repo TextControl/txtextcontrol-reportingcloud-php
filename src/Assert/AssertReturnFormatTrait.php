@@ -34,8 +34,8 @@ trait AssertReturnFormatTrait
         $ucValue = strtoupper($value);
 
         $format  = '%s contains an unsupported return format file extension';
-        $message = sprintf($message ?: $format, static::valueToString($value));
+        $message = sprintf($message ?: $format, self::valueToString($value));
 
-        return static::oneOf($ucValue, static::getReturnFormats(), $message);
+        return self::oneOf($ucValue, self::getReturnFormats(), $message);
     }
 }

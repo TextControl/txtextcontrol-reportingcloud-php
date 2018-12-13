@@ -33,14 +33,14 @@ trait FilenameExistsTrait
     {
         if ($value !== realpath($value)) {
             $format  = '%s must contain the absolute path and file';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
+            $message = sprintf($message ?: $format, self::valueToString($value));
+            self::reportInvalidArgument($message);
         }
 
         if (!is_file($value)) {
             $format  = '%s is not a regular file';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
+            $message = sprintf($message ?: $format, self::valueToString($value));
+            self::reportInvalidArgument($message);
         }
 
         return null;

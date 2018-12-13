@@ -33,8 +33,8 @@ trait AssertBase64DataTrait
     {
         if (!base64_decode($value, true)) {
             $format  = '%s must be base64 encoded';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
+            $message = sprintf($message ?: $format, self::valueToString($value));
+            self::reportInvalidArgument($message);
         }
 
         return null;

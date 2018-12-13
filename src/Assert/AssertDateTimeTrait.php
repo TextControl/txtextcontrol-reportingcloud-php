@@ -45,31 +45,31 @@ trait AssertDateTimeTrait
             $dateTime = new DateTime('now', $dateTimeZone);
             if (strlen($dateTime->format($dateFormat)) !== strlen($value)) {
                 $format  = '%s has an invalid number of characters in it';
-                $message = sprintf($message ?: $format, static::valueToString($value));
-                static::reportInvalidArgument($message);
+                $message = sprintf($message ?: $format, self::valueToString($value));
+                self::reportInvalidArgument($message);
             }
         } catch (Throwable $e) {
             $format  = 'Internal error validating %s';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
+            $message = sprintf($message ?: $format, self::valueToString($value));
+            self::reportInvalidArgument($message);
         }
 
         try {
             $dateTime = DateTime::createFromFormat($dateFormat, $value, $dateTimeZone);
             if (!$dateTime) {
                 $format  = '%s is syntactically invalid';
-                $message = sprintf($message ?: $format, static::valueToString($value));
-                static::reportInvalidArgument($message);
+                $message = sprintf($message ?: $format, self::valueToString($value));
+                self::reportInvalidArgument($message);
             }
             if (0 !== $dateTime->getOffset()) {
                 $format  = '%s has an invalid offset';
-                $message = sprintf($message ?: $format, static::valueToString($value));
-                static::reportInvalidArgument($message);
+                $message = sprintf($message ?: $format, self::valueToString($value));
+                self::reportInvalidArgument($message);
             }
         } catch (Throwable $e) {
             $format  = 'Internal error validating %s';
-            $message = sprintf($message ?: $format, static::valueToString($value));
-            static::reportInvalidArgument($message);
+            $message = sprintf($message ?: $format, self::valueToString($value));
+            self::reportInvalidArgument($message);
         }
 
         return null;
