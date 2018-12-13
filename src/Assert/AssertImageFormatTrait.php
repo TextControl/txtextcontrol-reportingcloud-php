@@ -28,6 +28,7 @@ trait AssertImageFormatTrait
      * @param string $message
      *
      * @return null
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertImageFormat(string $value, string $message = '')
     {

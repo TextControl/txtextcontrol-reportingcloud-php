@@ -28,6 +28,7 @@ trait AssertCultureTrait
      * @param string $message
      *
      * @return null
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertCulture(string $value, string $message = '')
     {

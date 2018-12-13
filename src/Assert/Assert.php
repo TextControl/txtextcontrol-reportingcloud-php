@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use Webmozart\Assert\Assert as ParentAssert;
 
 /**
@@ -40,5 +41,21 @@ class Assert extends ParentAssert
     use AssertZoomFactorTrait;
     use FilenameExistsTrait;
     use FileFormatsTrait;
+
+    /**
+     * Customized version of parent::reportInvalidArgument to throw
+     *
+     *     TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     *
+     * exception instead of parent's
+     *
+     *     InvalidArgumentException
+     *
+     * @param $message
+     */
+    protected static function reportInvalidArgument($message)
+    {
+        throw new InvalidArgumentException($message);
+    }
 
 }

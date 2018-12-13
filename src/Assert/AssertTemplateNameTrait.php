@@ -30,6 +30,7 @@ trait AssertTemplateNameTrait
      * @param string $message
      *
      * @return null
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     abstract public static function assertTemplateFormat(string $value, string $message = '');
 
@@ -40,6 +41,7 @@ trait AssertTemplateNameTrait
      * @param string $message
      *
      * @return null
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertTemplateName(string $value, string $message = '')
     {

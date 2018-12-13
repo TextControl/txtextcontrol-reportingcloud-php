@@ -638,36 +638,6 @@ class ReportingCloudTest extends TestCase
     /**
      * @expectedException InvalidArgumentException
      */
-    /*
-    public function testMergeDocumentInvalidAppend()
-    {
-        $mergeData        = $this->getTestTemplateMergeData();
-        $templateFilename = $this->getTestTemplateFilename();
-
-        $this->assertFileExists($templateFilename);
-
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, 1);
-    }
-    */
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    /*
-    public function testMergeDocumentInvalidMergeSettingsIntegerInsteadOfArray()
-    {
-        $mergeData        = $this->getTestTemplateMergeData();
-        $templateFilename = $this->getTestTemplateFilename();
-
-        $this->assertFileExists($templateFilename);
-
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, true, 1);
-    }
-    */
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidMergeSettingsStringInsteadOfBoolean()
     {
         $mergeData     = $this->getTestTemplateMergeData();
@@ -889,21 +859,6 @@ class ReportingCloudTest extends TestCase
 
         $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, '/invalid/path/template.doc');
     }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    /*
-    public function testFindAndReplaceDocumentInvalidMergeSettingsIntegerInsteadOfArray()
-    {
-        $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
-        $templateFilename   = $this->getTestTemplateFindAndReplaceFilename();
-
-        $this->assertFileExists($templateFilename);
-
-        $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, $templateFilename, 1);
-    }
-    */
 
     /**
      * @expectedException InvalidArgumentException

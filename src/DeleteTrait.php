@@ -64,7 +64,7 @@ trait DeleteTrait
      * @param string $key
      *
      * @return bool
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function deleteApiKey(string $key): bool
     {
@@ -93,7 +93,7 @@ trait DeleteTrait
      * @param string $templateName
      *
      * @return bool
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function deleteTemplate(string $templateName): bool
     {

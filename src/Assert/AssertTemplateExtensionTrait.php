@@ -28,6 +28,7 @@ trait AssertTemplateExtensionTrait
      * @param string $message
      *
      * @return null
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertTemplateExtension(string $value, string $message = '')
     {

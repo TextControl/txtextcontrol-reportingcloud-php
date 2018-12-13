@@ -110,7 +110,7 @@ trait GetTrait
      * @param string $language Language of specified text
      *
      * @return array
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function proofingCheck(string $text, string $language): array
     {
@@ -161,7 +161,7 @@ trait GetTrait
      * @param int    $max      Maximum number of suggestions to return
      *
      * @return array
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function getProofingSuggestions(string $word, string $language, int $max = 10): array
     {
@@ -192,7 +192,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return array
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function getTemplateInfo(string $templateName): array
     {
@@ -303,7 +303,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return int
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function getTemplatePageCount(string $templateName): int
     {
@@ -322,7 +322,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return bool
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function templateExists(string $templateName): bool
     {
@@ -357,7 +357,7 @@ trait GetTrait
      * Return an array properties for the ReportingCloud account
      *
      * @return array
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function getAccountSettings(): array
     {
@@ -384,7 +384,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return string
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function downloadTemplate(string $templateName): string
     {

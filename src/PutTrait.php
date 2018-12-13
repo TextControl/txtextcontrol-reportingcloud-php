@@ -72,7 +72,7 @@ trait PutTrait
      * Create an API key
      *
      * @return string
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function createApiKey(): string
     {

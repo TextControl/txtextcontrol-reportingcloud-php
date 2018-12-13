@@ -42,6 +42,7 @@ trait AssertZoomFactorTrait
      * @param string $message
      *
      * @return null
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertZoomFactor(int $value, string $message = '')
     {

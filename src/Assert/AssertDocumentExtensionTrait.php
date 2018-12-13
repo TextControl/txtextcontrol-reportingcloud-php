@@ -28,6 +28,7 @@ trait AssertDocumentExtensionTrait
      * @param string $message
      *
      * @return null
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertDocumentExtension(string $value, string $message = '')
     {

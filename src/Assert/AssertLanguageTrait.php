@@ -28,6 +28,7 @@ trait AssertLanguageTrait
      * @param string $message
      *
      * @return null
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertLanguage(string $value, string $message = '')
     {

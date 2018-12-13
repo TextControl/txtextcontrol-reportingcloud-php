@@ -25,6 +25,15 @@ use TxTextControl\ReportingCloud\ReportingCloud;
  */
 trait AssertDocumentDividerTrait
 {
+    /**
+     * Validate a document divider
+     *
+     * @param int    $value
+     * @param string $message
+     *
+     * @return null
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     */
     public static function assertDocumentDivider(int $value, string $message = '')
     {
         $haystack = [];

@@ -32,7 +32,7 @@ trait FilterTimestampToDateTimeTrait
      * @param int $timestamp
      *
      * @return string
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function filterTimestampToDateTime(int $timestamp): string
     {

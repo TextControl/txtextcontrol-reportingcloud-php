@@ -2,7 +2,7 @@
 
 namespace TxTextControlTest\ReportingCloud\Assert;
 
-use InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Assert\Assert;
 
 trait AssertApiKeyTestTrait

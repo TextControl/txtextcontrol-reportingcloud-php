@@ -113,7 +113,7 @@ trait PostTrait
      * @param string $templateName Template name
      *
      * @return bool
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function uploadTemplateFromBase64(string $data, string $templateName): bool
     {
@@ -144,7 +144,7 @@ trait PostTrait
      * @param string $templateFilename Template name
      *
      * @return bool
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function uploadTemplate(string $templateFilename): bool
     {
@@ -167,7 +167,7 @@ trait PostTrait
      * @param string $returnFormat     Return format
      *
      * @return string
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function convertDocument(string $documentFilename, string $returnFormat): string
     {
@@ -210,7 +210,7 @@ trait PostTrait
      * @param array|null  $mergeSettings    Array of merge settings
      *
      * @return array
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function mergeDocument(
         array $mergeData,
@@ -293,7 +293,7 @@ trait PostTrait
      * @param array|null $documentSettings
      *
      * @return string
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function appendDocument(
         array $documentsData,
@@ -346,7 +346,7 @@ trait PostTrait
      * @param array|null  $mergeSettings      Array of merge settings
      *
      * @return string
-     * @throws \Exception
+     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function findAndReplaceDocument(
         array $findAndReplaceData,
