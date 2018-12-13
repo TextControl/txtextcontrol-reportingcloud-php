@@ -151,8 +151,7 @@ trait PostTrait
         Assert::assertTemplateExtension($templateFilename);
         Assert::filenameExists($templateFilename);
 
-        $templateFilename = realpath($templateFilename);
-        $templateName     = basename($templateFilename);
+        $templateName = basename($templateFilename);
 
         $data = file_get_contents($templateFilename);
         $data = base64_encode($data);
@@ -175,9 +174,8 @@ trait PostTrait
 
         Assert::assertDocumentExtension($documentFilename);
         Assert::filenameExists($documentFilename);
-        Assert::assertReturnFormat($returnFormat);
 
-        $documentFilename = realpath($documentFilename);
+        Assert::assertReturnFormat($returnFormat);
 
         $json = file_get_contents($documentFilename);
         $json = base64_encode($json);
@@ -223,23 +221,20 @@ trait PostTrait
 
         $ret = [];
 
-        $query = RequestOptions::QUERY;
-        $json  = RequestOptions::JSON;
-
         $options = [
-            $query => [],
-            $json  => [],
+            RequestOptions::QUERY => [],
+            RequestOptions::JSON  => [],
         ];
 
         Assert::isArray($mergeData);
-        $options[$json]['mergeData'] = $mergeData;
+        $options[RequestOptions::JSON]['mergeData'] = $mergeData;
 
         Assert::assertReturnFormat($returnFormat);
-        $options[$query]['returnFormat'] = $returnFormat;
+        $options[RequestOptions::QUERY]['returnFormat'] = $returnFormat;
 
         if (null !== $templateName) {
             Assert::assertTemplateName($templateName);
-            $options[$query]['templateName'] = $templateName;
+            $options[RequestOptions::QUERY]['templateName'] = $templateName;
         }
 
         if (null !== $templateFilename) {
@@ -247,16 +242,15 @@ trait PostTrait
             Assert::filenameExists($templateFilename);
             $template                   = file_get_contents($templateFilename);
             $template                   = base64_encode($template);
-            $options[$json]['template'] = $template;
+            $options[RequestOptions::JSON]['template'] = $template;
         }
 
         if (null !== $append) {
-            Assert::boolean($append);
-            $options[$query]['append'] = Filter::filterBooleanToString($append);
+            $options[RequestOptions::QUERY]['append'] = Filter::filterBooleanToString($append);
         }
 
         if (is_array($mergeSettings)) {
-            $options[$json]['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
+            $options[RequestOptions::JSON]['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
@@ -289,29 +283,21 @@ trait PostTrait
     {
         $ret = '';
 
-        Assert::isArray($documentsData);
-        Assert::assertReturnFormat($returnFormat);
-
-        if (null !== $documentSettings) {
-            Assert::isArray($documentSettings);
-        }
-
-        $query = [
-            'returnFormat' => $returnFormat,
-        ];
-
-        $json = [
-            'documents' => $this->buildDocumentsArray($documentsData),
-        ];
-
-        if (is_array($documentSettings) && count($documentSettings) > 0) {
-            $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
-        }
-
         $options = [
-            RequestOptions::QUERY => $query,
-            RequestOptions::JSON  => $json,
+            RequestOptions::QUERY => [],
+            RequestOptions::JSON  => [],
         ];
+
+        Assert::isArray($documentsData);
+        $options[RequestOptions::JSON]['documents'] = $this->buildDocumentsArray($documentsData);
+
+        Assert::assertReturnFormat($returnFormat);
+        $options[RequestOptions::QUERY]['returnFormat'] = $returnFormat;
+
+        if (is_array($documentSettings)) {
+            Assert::isArray($documentSettings);
+            $options[RequestOptions::JSON]['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
+        }
 
         $response = $this->request('POST', $this->uri('/document/append'), $options);
 
