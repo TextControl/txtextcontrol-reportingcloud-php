@@ -23,6 +23,24 @@ use InvalidArgumentException;
  */
 trait AssertTemplateNameTrait
 {
+    /**
+     * Validate template format
+     *
+     * @param string $value
+     * @param string $message
+     *
+     * @return null
+     */
+    abstract public static function assertTemplateFormat(string $value, string $message = '');
+
+    /**
+     * Validate template name
+     *
+     * @param string $value
+     * @param string $message
+     *
+     * @return null
+     */
     public static function assertTemplateName(string $value, string $message = '')
     {
         if (basename($value) != $value) {

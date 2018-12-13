@@ -148,12 +148,6 @@ END;
         $data .= ';';
         $data .= PHP_EOL;
 
-        $ret = file_put_contents($filename, $data);
-
-        if (!is_int($ret)) {
-            $ret = 0;
-        }
-
-        return $ret;
+        return (int) file_put_contents($filename, $data);
     }
 }
