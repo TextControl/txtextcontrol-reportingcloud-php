@@ -135,23 +135,37 @@ trait BuildTrait
     {
         $ret = [];
 
+        $startsWith = function (string $haystack, string $needle): bool {
+            return ($needle === substr($haystack, 0, strlen($needle)));
+        };
+
+        $endsWith = function (string $haystack, string $needle): bool {
+            return ($needle === substr($haystack, -strlen($needle)));
+        };
+
         $propertyMap = new MergeSettingsPropertyMap();
 
         foreach ($propertyMap->getMap() as $property => $key) {
+
             if (!isset($array[$key])) {
                 continue;
             }
+
             $value = $array[$key];
+
             if ('culture' == $key) {
                 Assert::assertCulture($value);
             }
-            if ('remove_' == substr($key, 0, 7)) {
+
+            if ($startsWith($key, 'remove_')) {
                 Assert::boolean($value);
             }
-            if ('_date' == substr($key, -5)) {
+
+            if ($endsWith($key, '_date')) {
                 Assert::assertTimestamp($value);
                 $value = Filter::filterTimestampToDateTime($value);
             }
+
             $ret[$property] = $value;
         }
 
