@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Filter;
 
-use TxTextControl\ReportingCloud\Assert\Assert;
-
 /**
  * Trait FilterBooleanToStringTrait
  *

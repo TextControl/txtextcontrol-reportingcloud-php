@@ -16,7 +16,6 @@ namespace TxTextControl\ReportingCloud\Filter;
 
 use DateTime;
 use DateTimeZone;
-use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
