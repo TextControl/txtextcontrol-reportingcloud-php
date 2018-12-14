@@ -82,7 +82,7 @@ trait PutTrait
         $response = $this->request('PUT', $this->uri('/account/apikey'), []);
 
         if ($response instanceof Response && StatusCode::CREATED === $response->getStatusCode()) {
-            $ret = (string) json_decode($response->getBody()->getContents(), true);
+            $ret = (string) json_decode($response->getBody()->getContents());
             Assert::assertApiKey($ret);
         }
 
