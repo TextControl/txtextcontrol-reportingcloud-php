@@ -150,7 +150,7 @@ trait BuildTrait
                 continue;
             }
             $value = $array[$key];
-            if ('culture' == $key) {
+            if ('culture' === $key) {
                 Assert::assertCulture($value);
             }
             if ($startsWith($key, 'remove_')) {
