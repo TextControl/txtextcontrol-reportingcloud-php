@@ -33,11 +33,10 @@ trait FilterTimestampToDateTimeTrait
      *
      * @return string
      * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \Exception
      */
     public static function filterTimestampToDateTime(int $timestamp): string
     {
-        Assert::assertTimestamp($timestamp);
-
         $timeZone   = ReportingCloud::DEFAULT_TIME_ZONE;
         $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
 

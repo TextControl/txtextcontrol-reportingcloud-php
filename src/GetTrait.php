@@ -290,6 +290,7 @@ trait GetTrait
             array_walk($ret, function (&$record) {
                 $key = 'modified';
                 if (isset($record[$key])) {
+                    Assert::assertDateTime($record[$key]);
                     $record[$key] = Filter::filterDateTimeToTimestamp($record[$key]);
                 }
             });
@@ -372,6 +373,7 @@ trait GetTrait
             $ret = $this->buildPropertyMapArray($records, $propertyMap);
             $key = 'valid_until';
             if ($ret[$key]) {
+                Assert::assertDateTime($ret[$key]);
                 $ret[$key] = Filter::filterDateTimeToTimestamp($ret[$key]);
             }
         }

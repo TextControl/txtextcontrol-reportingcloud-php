@@ -36,8 +36,6 @@ trait FilterDateTimeToTimestampTrait
      */
     public static function filterDateTimeToTimestamp(string $dateTimeString): int
     {
-        Assert::assertDateTime($dateTimeString);
-
         $timeZone   = ReportingCloud::DEFAULT_TIME_ZONE;
         $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
 

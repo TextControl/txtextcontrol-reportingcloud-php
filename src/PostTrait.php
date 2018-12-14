@@ -247,6 +247,7 @@ trait PostTrait
         }
 
         if (null !== $append) {
+            Assert::boolean($append);
             $options[RequestOptions::QUERY]['append'] = Filter::filterBooleanToString($append);
         }
 

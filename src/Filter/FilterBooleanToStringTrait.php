@@ -37,8 +37,6 @@ trait FilterBooleanToStringTrait
      */
     public static function filterBooleanToString(bool $param): string
     {
-        Assert::boolean($param);
-
         return ($param) ? 'true' : 'false';
     }
 }
