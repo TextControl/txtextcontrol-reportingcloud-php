@@ -138,20 +138,21 @@ trait BuildTrait
         $propertyMap = new MergeSettingsPropertyMap();
 
         foreach ($propertyMap->getMap() as $property => $key) {
-            if (isset($array[$key])) {
-                $value = $array[$key];
-                if ('culture' == $key) {
-                    Assert::assertCulture($value);
-                }
-                if ('remove_' == substr($key, 0, 7)) {
-                    Assert::boolean($value);
-                }
-                if ('_date' == substr($key, -5)) {
-                    Assert::assertTimestamp($value);
-                    $value = Filter::filterTimestampToDateTime($value);
-                }
-                $ret[$property] = $value;
+            if (!isset($array[$key])) {
+                continue;
             }
+            $value = $array[$key];
+            if ('culture' == $key) {
+                Assert::assertCulture($value);
+            }
+            if ('remove_' == substr($key, 0, 7)) {
+                Assert::boolean($value);
+            }
+            if ('_date' == substr($key, -5)) {
+                Assert::assertTimestamp($value);
+                $value = Filter::filterTimestampToDateTime($value);
+            }
+            $ret[$property] = $value;
         }
 
         return $ret;
@@ -169,10 +170,10 @@ trait BuildTrait
         $ret = [];
 
         foreach ($array as $key => $value) {
-            array_push($ret, [
+            $ret[] = [
                 $key,
                 $value,
-            ]);
+            ];
         }
 
         return $ret;
