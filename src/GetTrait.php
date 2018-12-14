@@ -91,7 +91,6 @@ trait GetTrait
         $records = $this->get('/account/apikeys');
 
         if (is_array($records) && count($records) > 0) {
-            $ret = [];
             foreach ($records as $record) {
                 $ret[] = $this->buildPropertyMapArray($record, $propertyMap);
             }
