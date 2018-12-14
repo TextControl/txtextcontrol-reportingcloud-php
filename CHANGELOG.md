@@ -8,6 +8,7 @@
 * Upgraded to PHPUnit 7.5.
 * Stripped out all Zend Framework 3 dependencies.
 * Added strict typing to all files.
+* Abstracted magic number HTTP codes to `TxTextControl\ReportingCloud\StatusCode\StatusCode`.
 
 ## dev-master
 

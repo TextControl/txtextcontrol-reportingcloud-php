@@ -19,6 +19,7 @@ use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
+use TxTextControl\ReportingCloud\StatusCode\StatusCode;
 
 /**
  * Trait PostTrait
@@ -132,7 +133,7 @@ trait PostTrait
 
         $response = $this->request('POST', $this->uri('/templates/upload'), $options);
 
-        if ($response instanceof Response && 201 === $response->getStatusCode()) {
+        if ($response instanceof Response && StatusCode::CREATED === $response->getStatusCode()) {
             $ret = true;
         }
 
@@ -189,7 +190,7 @@ trait PostTrait
 
         $response = $this->request('POST', $this->uri('/document/convert'), $options);
 
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
             $ret = base64_decode($response->getBody()->getContents());
         }
 
@@ -255,7 +256,7 @@ trait PostTrait
 
         $response = $this->request('POST', $this->uri('/document/merge'), $options);
 
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
             $body = json_decode($response->getBody()->getContents(), true);
             if (is_array($body) && count($body) > 0) {
                 $ret = array_map('base64_decode', $body);
@@ -300,7 +301,7 @@ trait PostTrait
 
         $response = $this->request('POST', $this->uri('/document/append'), $options);
 
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
             $ret = base64_decode($response->getBody()->getContents());
         }
 
@@ -359,7 +360,7 @@ trait PostTrait
 
         $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
 
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
             $ret = base64_decode($response->getBody()->getContents());
         }
 

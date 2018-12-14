@@ -17,6 +17,7 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\StatusCode\StatusCode;
 
 /**
  * Trait DeleteTrait
@@ -79,7 +80,7 @@ trait DeleteTrait
 
         $response = $this->request('DELETE', $this->uri('/account/apikey'), $options);
 
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
             $ret = true;
         }
 
@@ -107,7 +108,7 @@ trait DeleteTrait
 
         $response = $this->request('DELETE', $this->uri('/templates/delete'), $options);
 
-        if ($response instanceof Response && 204 === $response->getStatusCode()) {
+        if ($response instanceof Response && StatusCode::NO_CONTENT === $response->getStatusCode()) {
             $ret = true;
         }
 

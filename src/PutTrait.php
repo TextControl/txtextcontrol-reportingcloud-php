@@ -17,6 +17,7 @@ namespace TxTextControl\ReportingCloud;
 use GuzzleHttp\Psr7\Response;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
+use TxTextControl\ReportingCloud\StatusCode\StatusCode;
 
 /**
  * Trait PutTrait
@@ -80,7 +81,7 @@ trait PutTrait
 
         $response = $this->request('PUT', $this->uri('/account/apikey'), []);
 
-        if ($response instanceof Response && 201 === $response->getStatusCode()) {
+        if ($response instanceof Response && StatusCode::CREATED === $response->getStatusCode()) {
             $ret = (string) json_decode($response->getBody()->getContents(), true);
             Assert::assertApiKey($ret);
         }

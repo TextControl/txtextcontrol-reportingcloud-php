@@ -25,6 +25,7 @@ use TxTextControl\ReportingCloud\PropertyMap\ApiKey as ApiKeyPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as IncorrectWordMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
+use TxTextControl\ReportingCloud\StatusCode\StatusCode;
 
 /**
  * Trait GetTrait
@@ -423,7 +424,7 @@ trait GetTrait
 
         $response = $this->request('GET', $this->uri($uri), $options);
 
-        if ($response instanceof Response && 200 === $response->getStatusCode()) {
+        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
             $ret = json_decode($response->getBody()->getContents(), true);
         }
 
