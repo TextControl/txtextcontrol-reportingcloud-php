@@ -135,6 +135,8 @@ trait BuildTrait
     {
         $ret = [];
 
+        $propertyMap = new MergeSettingsPropertyMap();
+
         $startsWith = function (string $haystack, string $needle): bool {
             return ($needle === substr($haystack, 0, strlen($needle)));
         };
@@ -143,29 +145,21 @@ trait BuildTrait
             return ($needle === substr($haystack, -strlen($needle)));
         };
 
-        $propertyMap = new MergeSettingsPropertyMap();
-
         foreach ($propertyMap->getMap() as $property => $key) {
-
             if (!isset($array[$key])) {
                 continue;
             }
-
             $value = $array[$key];
-
             if ('culture' == $key) {
                 Assert::assertCulture($value);
             }
-
             if ($startsWith($key, 'remove_')) {
                 Assert::boolean($value);
             }
-
             if ($endsWith($key, '_date')) {
                 Assert::assertTimestamp($value);
                 $value = Filter::filterTimestampToDateTime($value);
             }
-
             $ret[$property] = $value;
         }
 
