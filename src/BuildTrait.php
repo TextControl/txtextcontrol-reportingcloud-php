@@ -102,6 +102,7 @@ trait BuildTrait
      *
      * @return array
      * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \Exception
      */
     protected function buildDocumentSettingsArray(array $array): array
     {
@@ -112,7 +113,7 @@ trait BuildTrait
         foreach ($propertyMap->getMap() as $property => $key) {
             if (isset($array[$key])) {
                 $value = $array[$key];
-                if ('_date' == substr($key, -5)) {
+                if ($this->endsWith($key, '_date')) {
                     Assert::assertTimestamp($value);
                     $value = Filter::filterTimestampToDateTime($value);
                 }
@@ -130,20 +131,13 @@ trait BuildTrait
      *
      * @return array
      * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \Exception
      */
     protected function buildMergeSettingsArray(array $array): array
     {
         $ret = [];
 
         $propertyMap = new MergeSettingsPropertyMap();
-
-        $startsWith = function (string $haystack, string $needle): bool {
-            return ($needle === substr($haystack, 0, strlen($needle)));
-        };
-
-        $endsWith = function (string $haystack, string $needle): bool {
-            return ($needle === substr($haystack, -strlen($needle)));
-        };
 
         foreach ($propertyMap->getMap() as $property => $key) {
             if (!isset($array[$key])) {
@@ -153,10 +147,10 @@ trait BuildTrait
             if ('culture' === $key) {
                 Assert::assertCulture($value);
             }
-            if ($startsWith($key, 'remove_')) {
+            if ($this->startsWith($key, 'remove_')) {
                 Assert::boolean($value);
             }
-            if ($endsWith($key, '_date')) {
+            if ($this->endsWith($key, '_date')) {
                 Assert::assertTimestamp($value);
                 $value = Filter::filterTimestampToDateTime($value);
             }
@@ -185,5 +179,35 @@ trait BuildTrait
         }
 
         return $ret;
+    }
+
+    /**
+     * Return true, if needle is at the beginning of haystack
+     *
+     * @param string $haystack
+     * @param string $needle
+     *
+     * @return bool
+     */
+    protected function startsWith(string $haystack, string $needle): bool
+    {
+        $len = strlen($needle);
+
+        return ($needle === substr($haystack, 0, $len));
+    }
+
+    /**
+     * Return true, if needle is at the end of haystack
+     *
+     * @param string $haystack
+     * @param string $needle
+     *
+     * @return bool
+     */
+    protected function endsWith(string $haystack, string $needle): bool
+    {
+        $len = strlen($needle);
+
+        return ($needle === substr($haystack, -$len));
     }
 }

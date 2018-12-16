@@ -88,10 +88,10 @@ trait GetTrait
 
         $propertyMap = new ApiKeyPropertyMap();
 
-        $records = $this->get('/account/apikeys');
+        $result = $this->get('/account/apikeys');
 
-        if (is_array($records) && count($records) > 0) {
-            foreach ($records as $record) {
+        if (is_array($result) && count($result) > 0) {
+            foreach ($result as $record) {
                 $ret[] = $this->buildPropertyMapArray($record, $propertyMap);
             }
         }
@@ -126,10 +126,10 @@ trait GetTrait
             'language' => $language,
         ];
 
-        $records = $this->get('/proofing/check', $query);
+        $result = $this->get('/proofing/check', $query);
 
-        if (is_array($records) && count($records) > 0) {
-            $ret = $this->buildPropertyMapArray($records, $propertyMap);
+        if (is_array($result) && count($result) > 0) {
+            $ret = $this->buildPropertyMapArray($result, $propertyMap);
         }
 
         return $ret;
@@ -144,10 +144,10 @@ trait GetTrait
     {
         $ret = [];
 
-        $dictionaries = $this->get('/proofing/availabledictionaries');
+        $result = $this->get('/proofing/availabledictionaries');
 
-        if (is_array($dictionaries) && count($dictionaries) > 0) {
-            $ret = array_map('trim', $dictionaries);
+        if (is_array($result) && count($result) > 0) {
+            $ret = array_map('trim', $result);
         }
 
         return $ret;
@@ -177,10 +177,10 @@ trait GetTrait
             'max'      => $max,
         ];
 
-        $records = $this->get('/proofing/suggestions', $query);
+        $result = $this->get('/proofing/suggestions', $query);
 
-        if (is_array($records) && count($records) > 0) {
-            $ret = array_map('trim', $records);
+        if (is_array($result) && count($result) > 0) {
+            $ret = array_map('trim', $result);
         }
 
         return $ret;
@@ -206,10 +206,10 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        $records = $this->get('/templates/info', $query);
+        $result = $this->get('/templates/info', $query);
 
-        if (is_array($records) && count($records) > 0) {
-            $ret = $this->buildPropertyMapArray($records, $propertyMap);
+        if (is_array($result) && count($result) > 0) {
+            $ret = $this->buildPropertyMapArray($result, $propertyMap);
         }
 
         return $ret;
@@ -252,10 +252,10 @@ trait GetTrait
             'imageFormat'  => $imageFormat,
         ];
 
-        $records = $this->get('/templates/thumbnails', $query);
+        $result = $this->get('/templates/thumbnails', $query);
 
-        if (is_array($records) && count($records) > 0) {
-            $ret = array_map('base64_decode', $records);
+        if (is_array($result) && count($result) > 0) {
+            $ret = array_map('base64_decode', $result);
         }
 
         return $ret;
