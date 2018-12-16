@@ -175,6 +175,10 @@ trait PostTrait
 
         $result = $this->post('/document/convert', $query, $json);
 
+        if (!is_string($result)) {
+            return '';
+        }
+
         return (string) base64_decode($result);
     }
 
@@ -274,6 +278,10 @@ trait PostTrait
 
         $result = $this->post('/document/append', $query, $json);
 
+        if (!is_string($result)) {
+            return '';
+        }
+
         return (string) base64_decode($result);
     }
 
@@ -324,6 +332,10 @@ trait PostTrait
         }
 
         $result = $this->post('/document/findandreplace', $query, $json);
+
+        if (!is_string($result)) {
+            return '';
+        }
 
         return (string) base64_decode($result);
     }
