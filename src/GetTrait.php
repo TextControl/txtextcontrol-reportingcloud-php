@@ -421,10 +421,6 @@ trait GetTrait
 
         $response = $this->request('GET', $this->uri($uri), $options);
 
-        if (!$response instanceof Response) {
-            return '';
-        }
-
         if (!in_array($response->getStatusCode(), $statusCodes)) {
             return '';
         }

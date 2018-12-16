@@ -100,10 +100,6 @@ trait PutTrait
 
         $response = $this->request('PUT', $this->uri($uri), $options);
 
-        if (!$response instanceof Response) {
-            return '';
-        }
-
         if (!in_array($response->getStatusCode(), $statusCodes)) {
             return '';
         }

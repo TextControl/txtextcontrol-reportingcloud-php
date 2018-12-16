@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Filter\Filter;
@@ -343,8 +342,8 @@ trait PostTrait
     /**
      * Execute a POST request via REST client
      *
-     * @param string $uri   URI
-     * @param array  $query Query
+     * @param string       $uri   URI
+     * @param array        $query Query
      * @param string|array $json  JSON
      *
      * @return array|string|null
@@ -362,10 +361,6 @@ trait PostTrait
         ];
 
         $response = $this->request('POST', $this->uri($uri), $options);
-
-        if (!$response instanceof Response) {
-            return '';
-        }
 
         if (!in_array($response->getStatusCode(), $statusCodes)) {
             return '';

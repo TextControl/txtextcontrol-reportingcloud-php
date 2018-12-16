@@ -16,7 +16,8 @@ namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
-use Throwable;
+use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\Exception\GuzzleException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 
@@ -66,8 +67,8 @@ trait UtilityTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return mixed|\Psr\Http\Message\ResponseInterface
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return GuzzleHttp\Psr7\Response
+     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     protected function request(string $method, string $uri, array $options)
     {
@@ -78,16 +79,14 @@ trait UtilityTrait
                 $test = Filter::filterBooleanToString($this->getTest());
                 $options[RequestOptions::QUERY]['test'] = $test;
             }
-            $ret = $client->request($method, $uri, $options);
-        } catch (Throwable $exception) {
-            // \GuzzleHttp\Exception\ClientException
-            // \GuzzleHttp\Exception\ServerException
-            $message = (string) $exception->getMessage();
-            $code    = (int) $exception->getCode();
+            $response = $client->request($method, $uri, $options);
+        } catch (TransferException | GuzzleException $e) {
+            $message = (string) $e->getMessage();
+            $code    = (int) $e->getCode();
             throw new RuntimeException($message, $code);
         }
 
-        return $ret;
+        return $response;
     }
 
     /**

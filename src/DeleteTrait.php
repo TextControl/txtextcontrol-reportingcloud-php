@@ -118,10 +118,6 @@ trait DeleteTrait
 
         $response = $this->request('DELETE', $this->uri($uri), $options);
 
-        if (!$response instanceof Response) {
-            return false;
-        }
-
         if (!in_array($response->getStatusCode(), $statusCodes)) {
             return false;
         }
