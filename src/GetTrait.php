@@ -282,10 +282,10 @@ trait GetTrait
 
         $propertyMap = new TemplateListPropertyMap();
 
-        $records = $this->get('/templates/list');
+        $result = $this->get('/templates/list');
 
-        if (is_array($records) && count($records) > 0) {
-            $ret = $this->buildPropertyMapArray($records, $propertyMap);
+        if (is_array($result) && count($result) > 0) {
+            $ret = $this->buildPropertyMapArray($result, $propertyMap);
             array_walk($ret, function (&$record) {
                 $key = 'modified';
                 if (isset($record[$key])) {
@@ -345,10 +345,10 @@ trait GetTrait
     {
         $ret = [];
 
-        $fonts = $this->get('/fonts/list');
+        $result = $this->get('/fonts/list');
 
-        if (is_array($fonts) && count($fonts) > 0) {
-            $ret = array_map('trim', $fonts);
+        if (is_array($result) && count($result) > 0) {
+            $ret = array_map('trim', $result);
         }
 
         return $ret;
@@ -366,10 +366,10 @@ trait GetTrait
 
         $propertyMap = new AccountSettingsPropertyMap();
 
-        $records = $this->get('/account/settings');
+        $result = $this->get('/account/settings');
 
-        if (is_array($records) && count($records) > 0) {
-            $ret = $this->buildPropertyMapArray($records, $propertyMap);
+        if (is_array($result) && count($result) > 0) {
+            $ret = $this->buildPropertyMapArray($result, $propertyMap);
             $key = 'valid_until';
             if ($ret[$key]) {
                 Assert::assertDateTime($ret[$key]);
@@ -390,21 +390,15 @@ trait GetTrait
      */
     public function downloadTemplate(string $templateName): string
     {
-        $ret = '';
-
         Assert::assertTemplateName($templateName);
 
         $query = [
             'templateName' => $templateName,
         ];
 
-        $data = (string) $this->get('/templates/download', $query);
+        $result = (string) $this->get('/templates/download', $query);
 
-        if (!empty($data)) {
-            $ret = base64_decode($data);
-        }
-
-        return $ret;
+        return (empty($result)) ? '' : $result;
     }
 
     /**
@@ -415,20 +409,26 @@ trait GetTrait
      *
      * @return string|array
      */
-    protected function get(string $uri, array $query = [])
+    private function get(string $uri, array $query = [])
     {
-        $ret = '';
-
         $options = [
             RequestOptions::QUERY => $query,
         ];
 
+        $statusCodes = [
+            StatusCode::OK,
+        ];
+
         $response = $this->request('GET', $this->uri($uri), $options);
 
-        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
-            $ret = json_decode($response->getBody()->getContents(), true);
+        if (!$response instanceof Response) {
+            return '';
         }
 
-        return $ret;
+        if (!in_array($response->getStatusCode(), $statusCodes)) {
+            return '';
+        }
+
+        return json_decode($response->getBody()->getContents(), true);
     }
 }

@@ -118,26 +118,16 @@ trait PostTrait
      */
     public function uploadTemplateFromBase64(string $data, string $templateName): bool
     {
-        $ret = false;
+        Assert::assertBase64Data($data);
+        Assert::assertTemplateName($templateName);
 
-        $options = [
-            RequestOptions::QUERY => [],
-            RequestOptions::JSON  => '',
+        $query = [
+            'templateName' => $templateName,
         ];
 
-        Assert::assertBase64Data($data);
-        $options[RequestOptions::JSON] = $data;
+        $result = $this->post('/templates/upload', $query, $data);
 
-        Assert::assertTemplateName($templateName);
-        $options[RequestOptions::QUERY]['templateName'] = $templateName;
-
-        $response = $this->request('POST', $this->uri('/templates/upload'), $options);
-
-        if ($response instanceof Response && StatusCode::CREATED === $response->getStatusCode()) {
-            $ret = true;
-        }
-
-        return $ret;
+        return (null === $result) ? true : false;
     }
 
     /**
@@ -172,29 +162,20 @@ trait PostTrait
      */
     public function convertDocument(string $documentFilename, string $returnFormat): string
     {
-        $ret = '';
-
-        $options = [
-            RequestOptions::QUERY => [],
-            RequestOptions::JSON  => '',
-        ];
-
         Assert::assertDocumentExtension($documentFilename);
         Assert::filenameExists($documentFilename);
-        $json                          = file_get_contents($documentFilename);
-        $json                          = base64_encode($json);
-        $options[RequestOptions::JSON] = $json;
-
         Assert::assertReturnFormat($returnFormat);
-        $options[RequestOptions::QUERY]['returnFormat'] = $returnFormat;
 
-        $response = $this->request('POST', $this->uri('/document/convert'), $options);
+        $query = [
+            'returnFormat' => $returnFormat,
+        ];
 
-        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
-            $ret = base64_decode($response->getBody()->getContents());
-        }
+        $json = file_get_contents($documentFilename);
+        $json = base64_encode($json);
 
-        return $ret;
+        $result = $this->post('/document/convert', $query, $json);
+
+        return (string) base64_decode($result);
     }
 
     /**
@@ -222,46 +203,41 @@ trait PostTrait
 
         $ret = [];
 
-        $options = [
-            RequestOptions::QUERY => [],
-            RequestOptions::JSON  => [],
-        ];
+        $query = [];
+        $json  = [];
 
         Assert::isArray($mergeData);
-        $options[RequestOptions::JSON]['mergeData'] = $mergeData;
+        $json['mergeData'] = $mergeData;
 
         Assert::assertReturnFormat($returnFormat);
-        $options[RequestOptions::QUERY]['returnFormat'] = $returnFormat;
+        $query['returnFormat'] = $returnFormat;
 
         if (null !== $templateName) {
             Assert::assertTemplateName($templateName);
-            $options[RequestOptions::QUERY]['templateName'] = $templateName;
+            $query['templateName'] = $templateName;
         }
 
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $template                                  = file_get_contents($templateFilename);
-            $template                                  = base64_encode($template);
-            $options[RequestOptions::JSON]['template'] = $template;
+            $template         = file_get_contents($templateFilename);
+            $template         = base64_encode($template);
+            $json['template'] = $template;
         }
 
         if (null !== $append) {
             Assert::boolean($append);
-            $options[RequestOptions::QUERY]['append'] = Filter::filterBooleanToString($append);
+            $query['append'] = Filter::filterBooleanToString($append);
         }
 
         if (is_array($mergeSettings)) {
-            $options[RequestOptions::JSON]['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
+            $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $response = $this->request('POST', $this->uri('/document/merge'), $options);
+        $result = $this->post('/document/merge', $query, $json);
 
-        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
-            $body = json_decode($response->getBody()->getContents(), true);
-            if (is_array($body) && count($body) > 0) {
-                $ret = array_map('base64_decode', $body);
-            }
+        if (is_array($result) && count($result) > 0) {
+            $ret = array_map('base64_decode', $result);
         }
 
         return $ret;
@@ -283,30 +259,22 @@ trait PostTrait
         ?array $documentSettings = null
     ): string {
 
-        $ret = '';
-
-        $options = [
-            RequestOptions::QUERY => [],
-            RequestOptions::JSON  => [],
-        ];
+        $query = [];
+        $json  = [];
 
         Assert::isArray($documentsData);
-        $options[RequestOptions::JSON]['documents'] = $this->buildDocumentsArray($documentsData);
+        $json['documents'] = $this->buildDocumentsArray($documentsData);
 
         Assert::assertReturnFormat($returnFormat);
-        $options[RequestOptions::QUERY]['returnFormat'] = $returnFormat;
+        $query['returnFormat'] = $returnFormat;
 
         if (is_array($documentSettings)) {
-            $options[RequestOptions::JSON]['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
+            $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
         }
 
-        $response = $this->request('POST', $this->uri('/document/append'), $options);
+        $result = $this->post('/document/append', $query, $json);
 
-        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
-            $ret = base64_decode($response->getBody()->getContents());
-        }
-
-        return $ret;
+        return (string) base64_decode($result);
     }
 
     /**
@@ -329,42 +297,68 @@ trait PostTrait
         ?array $mergeSettings = null
     ): string {
 
-        $ret = '';
-
-        $options = [
-            RequestOptions::QUERY => [],
-            RequestOptions::JSON  => [],
-        ];
+        $query = [];
+        $json  = [];
 
         Assert::isArray($findAndReplaceData);
-        $options[RequestOptions::JSON]['findAndReplaceData'] = $this->buildFindAndReplaceDataArray($findAndReplaceData);
+        $json['findAndReplaceData'] = $this->buildFindAndReplaceDataArray($findAndReplaceData);
 
         Assert::assertReturnFormat($returnFormat);
-        $options[RequestOptions::QUERY]['returnFormat'] = $returnFormat;
+        $query['returnFormat'] = $returnFormat;
 
         if (null !== $templateName) {
             Assert::assertTemplateName($templateName);
-            $options[RequestOptions::QUERY]['templateName'] = $templateName;
+            $query['templateName'] = $templateName;
         }
 
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $template                                  = file_get_contents($templateFilename);
-            $template                                  = base64_encode($template);
-            $options[RequestOptions::JSON]['template'] = $template;
+            $template         = file_get_contents($templateFilename);
+            $template         = base64_encode($template);
+            $json['template'] = $template;
         }
 
         if (is_array($mergeSettings)) {
-            $options[RequestOptions::JSON]['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
+            $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $response = $this->request('POST', $this->uri('/document/findandreplace'), $options);
+        $result = $this->post('/document/findandreplace', $query, $json);
 
-        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
-            $ret = base64_decode($response->getBody()->getContents());
+        return (string) base64_decode($result);
+    }
+
+    /**
+     * Execute a POST request via REST client
+     *
+     * @param string $uri   URI
+     * @param array  $query Query
+     * @param string|array $json  JSON
+     *
+     * @return array|string|null
+     */
+    private function post(string $uri, array $query = [], $json = '')
+    {
+        $options = [
+            RequestOptions::QUERY => $query,
+            RequestOptions::JSON  => $json,
+        ];
+
+        $statusCodes = [
+            StatusCode::OK,
+            StatusCode::CREATED,
+        ];
+
+        $response = $this->request('POST', $this->uri($uri), $options);
+
+        if (!$response instanceof Response) {
+            return '';
         }
 
-        return $ret;
+        if (!in_array($response->getStatusCode(), $statusCodes)) {
+            return '';
+        }
+
+        return json_decode($response->getBody()->getContents(), true);
     }
 }

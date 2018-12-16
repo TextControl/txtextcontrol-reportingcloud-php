@@ -69,22 +69,13 @@ trait DeleteTrait
      */
     public function deleteApiKey(string $key): bool
     {
-        $ret = false;
+        Assert::assertApiKey($key);
 
-        $options = [
-            RequestOptions::QUERY => [],
+        $query = [
+            'key' => $key,
         ];
 
-        Assert::assertApiKey($key);
-        $options[RequestOptions::QUERY]['key'] = $key;
-
-        $response = $this->request('DELETE', $this->uri('/account/apikey'), $options);
-
-        if ($response instanceof Response && StatusCode::OK === $response->getStatusCode()) {
-            $ret = true;
-        }
-
-        return $ret;
+        return $this->delete('/account/apikey', $query);
     }
 
     /**
@@ -97,21 +88,44 @@ trait DeleteTrait
      */
     public function deleteTemplate(string $templateName): bool
     {
-        $ret = false;
+        Assert::assertTemplateName($templateName);
 
-        $options = [
-            RequestOptions::QUERY => [],
+        $query = [
+            'templateName' => $templateName,
         ];
 
-        Assert::assertTemplateName($templateName);
-        $options[RequestOptions::QUERY]['templateName'] = $templateName;
+        return $this->delete('/templates/delete', $query);
+    }
 
-        $response = $this->request('DELETE', $this->uri('/templates/delete'), $options);
+    /**
+     * Execute a DELETE request via REST client
+     *
+     * @param string $uri   URI
+     * @param array  $query Query
+     *
+     * @return bool
+     */
+    private function delete(string $uri, array $query = [])
+    {
+        $options = [
+            RequestOptions::QUERY => $query,
+        ];
 
-        if ($response instanceof Response && StatusCode::NO_CONTENT === $response->getStatusCode()) {
-            $ret = true;
+        $statusCodes = [
+            StatusCode::OK,
+            StatusCode::NO_CONTENT,
+        ];
+
+        $response = $this->request('DELETE', $this->uri($uri), $options);
+
+        if (!$response instanceof Response) {
+            return false;
         }
 
-        return $ret;
+        if (!in_array($response->getStatusCode(), $statusCodes)) {
+            return false;
+        }
+
+        return true;
     }
 }

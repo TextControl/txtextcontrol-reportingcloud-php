@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Psr7\Response;
-use TxTextControl\ReportingCloud\Assert\Assert;
+use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
 
@@ -77,15 +77,37 @@ trait PutTrait
      */
     public function createApiKey(): string
     {
-        $ret = '';
+        return $this->put('/account/apikey');
+    }
 
-        $response = $this->request('PUT', $this->uri('/account/apikey'), []);
+    /**
+     * Execute a PUT request via REST client
+     *
+     * @param string $uri   URI
+     * @param array  $query Query
+     *
+     * @return string
+     */
+    private function put(string $uri, array $query = [])
+    {
+        $options = [
+            RequestOptions::QUERY => $query,
+        ];
 
-        if ($response instanceof Response && StatusCode::CREATED === $response->getStatusCode()) {
-            $ret = (string) json_decode($response->getBody()->getContents());
-            Assert::assertApiKey($ret);
+        $statusCodes = [
+            StatusCode::CREATED,
+        ];
+
+        $response = $this->request('PUT', $this->uri($uri), $options);
+
+        if (!$response instanceof Response) {
+            return '';
         }
 
-        return $ret;
+        if (!in_array($response->getStatusCode(), $statusCodes)) {
+            return '';
+        }
+
+        return (string) json_decode($response->getBody()->getContents());
     }
 }
