@@ -56,7 +56,6 @@ trait GetTrait
      * @param array  $options Options
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
-     *
      * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     abstract protected function request(string $method, string $uri, array $options);
@@ -224,8 +223,7 @@ trait GetTrait
      * @param int    $toPage       To page
      * @param string $imageFormat  Image format
      *
-     * @throws \InvalidArgumentException
-     *
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      * @return array
      */
     public function getTemplateThumbnails(
@@ -408,7 +406,7 @@ trait GetTrait
      * @param string|array $json       JSON
      * @param int          $statusCode Required HTTP status code for response
      *
-     * @return array|string|null
+     * @return mixed|null
      */
     private function get(
         string $uri,

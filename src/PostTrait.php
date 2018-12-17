@@ -50,7 +50,6 @@ trait PostTrait
      * @param array  $options Options
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
-     *
      * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     abstract protected function request(string $method, string $uri, array $options);
@@ -335,7 +334,7 @@ trait PostTrait
      * @param string|array $json       JSON
      * @param int          $statusCode Required HTTP status code for response
      *
-     * @return array|string|null
+     * @return mixed|null
      */
     private function post(
         string $uri,

@@ -48,7 +48,6 @@ trait PutTrait
      * @param array  $options Options
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
-     *
      * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     abstract protected function request(string $method, string $uri, array $options);
