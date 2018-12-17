@@ -47,7 +47,7 @@ The ReportingCloud PHP Wrapper 2.0 takes advantage of these new features to make
 
 ### Moved all HTTP Response Codes to New Component
 
-It is bad practice to place magic numbers in program code, and that goes for HTTP response codes too. In the ReportingCloud PHP Wrapper 2.0 all HTTP response codes, which are checked following every interaction with the backend server, have been abstracted to constants in `TxTextControl\ReportingCloud\StatusCode\StatusCode`. These constants are then used in the main program code.
+It is bad practice to place magic numbers in program code, and that goes for HTTP response codes too. In the ReportingCloud PHP Wrapper 2.0, all HTTP response codes, which are checked following every interaction with the backend server, have been abstracted to constants in `TxTextControl\ReportingCloud\StatusCode\StatusCode`. These constants are then used in the main program code.
 
 ### Updated to PHPUnit 7.5
 
