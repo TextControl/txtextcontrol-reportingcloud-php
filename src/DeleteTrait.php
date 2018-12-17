@@ -74,7 +74,7 @@ trait DeleteTrait
             'key' => $key,
         ];
 
-        return $this->delete('/account/apikey', $query, '', StatusCode::OK);
+        return $this->delete('/account/apikey', $query, null, StatusCode::OK);
     }
 
     /**
@@ -93,21 +93,27 @@ trait DeleteTrait
             'templateName' => $templateName,
         ];
 
-        return $this->delete('/templates/delete', $query, '', StatusCode::NO_CONTENT);
+        return $this->delete('/templates/delete', $query, null, StatusCode::NO_CONTENT);
     }
 
     /**
      * Execute a DELETE request via REST client
      *
-     * @param string       $uri                URI
-     * @param array        $query              Query
-     * @param string|array $json               JSON
-     * @param int          $responseStatusCode Required HTTP status code for response
+     * @param string       $uri        URI
+     * @param array        $query      Query
+     * @param string|array $json       JSON
+     * @param int          $statusCode Required HTTP status code for response
      *
      * @return bool
      */
-    private function delete(string $uri, array $query = [], $json = '', int $responseStatusCode = 0)
-    {
+    private function delete(
+        string $uri,
+        ?array $query = null,
+        $json = null,
+        ?int $statusCode = null
+    ): bool {
+        $ret = false;
+
         $options = [
             RequestOptions::QUERY => $query,
             RequestOptions::JSON  => $json,
@@ -115,6 +121,10 @@ trait DeleteTrait
 
         $response = $this->request('DELETE', $this->uri($uri), $options);
 
-        return ($responseStatusCode === $response->getStatusCode()) ? true : false;
+        if ($statusCode === $response->getStatusCode()) {
+            $ret = true;
+        }
+
+        return $ret;
     }
 }

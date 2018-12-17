@@ -79,9 +79,10 @@ trait BuildTrait
                     case 'filename':
                         Assert::filenameExists($value);
                         Assert::assertDocumentExtension($value);
-                        $value                = realpath($value);
-                        $binary               = file_get_contents($value);
-                        $document['document'] = base64_encode($binary);
+                        $filename             = realpath($value);
+                        $data                 = file_get_contents($filename);
+                        $data                 = base64_encode($data);
+                        $document['document'] = $data;
                         break;
                     case 'divider':
                         Assert::assertDocumentDivider($value);

@@ -81,7 +81,7 @@ trait UtilityTrait
             $response = $client->request($method, $uri, $options);
         } catch (GuzzleException $e) {
             $message = (string) $e->getMessage();
-            $code    = (int) $e->getCode();
+            $code    = (int)    $e->getCode();
             throw new RuntimeException($message, $code);
         }
 

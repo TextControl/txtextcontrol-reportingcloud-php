@@ -169,14 +169,11 @@ trait PostTrait
             'returnFormat' => $returnFormat,
         ];
 
-        $json = file_get_contents($documentFilename);
-        $json = base64_encode($json);
+        $data = file_get_contents($documentFilename);
+        $data = base64_encode($data);
 
-        $result = $this->post('/document/convert', $query, $json, StatusCode::OK);
-
-        if (!is_string($result)) {
-            return '';
-        }
+        $result = $this->post('/document/convert', $query, $data, StatusCode::OK);
+        settype($result, 'string');
 
         return (string) base64_decode($result);
     }
@@ -203,7 +200,6 @@ trait PostTrait
         ?bool $append = null,
         ?array $mergeSettings = null
     ): array {
-
         $ret = [];
 
         $query = [];
@@ -223,9 +219,9 @@ trait PostTrait
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $template         = file_get_contents($templateFilename);
-            $template         = base64_encode($template);
-            $json['template'] = $template;
+            $data             = file_get_contents($templateFilename);
+            $data             = base64_encode($data);
+            $json['template'] = $data;
         }
 
         if (null !== $append) {
@@ -261,7 +257,6 @@ trait PostTrait
         string $returnFormat,
         ?array $documentSettings = null
     ): string {
-
         $query = [];
         $json  = [];
 
@@ -276,10 +271,7 @@ trait PostTrait
         }
 
         $result = $this->post('/document/append', $query, $json, StatusCode::OK);
-
-        if (!is_string($result)) {
-            return '';
-        }
+        settype($result, 'string');
 
         return (string) base64_decode($result);
     }
@@ -303,7 +295,6 @@ trait PostTrait
         ?string $templateFilename = null,
         ?array $mergeSettings = null
     ): string {
-
         $query = [];
         $json  = [];
 
@@ -321,9 +312,9 @@ trait PostTrait
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $template         = file_get_contents($templateFilename);
-            $template         = base64_encode($template);
-            $json['template'] = $template;
+            $data             = file_get_contents($templateFilename);
+            $data             = base64_encode($data);
+            $json['template'] = $data;
         }
 
         if (is_array($mergeSettings)) {
@@ -331,10 +322,7 @@ trait PostTrait
         }
 
         $result = $this->post('/document/findandreplace', $query, $json, StatusCode::OK);
-
-        if (!is_string($result)) {
-            return '';
-        }
+        settype($result, 'string');
 
         return (string) base64_decode($result);
     }
@@ -342,16 +330,21 @@ trait PostTrait
     /**
      * Execute a POST request via REST client
      *
-     * @param string       $uri                URI
-     * @param array        $query              Query
-     * @param string|array $json               JSON
-     * @param int          $responseStatusCode Required HTTP status code for response
-     *
+     * @param string       $uri        URI
+     * @param array        $query      Query
+     * @param string|array $json       JSON
+     * @param int          $statusCode Required HTTP status code for response
      *
      * @return array|string|null
      */
-    private function post(string $uri, array $query = [], $json = '', int $responseStatusCode = 0)
-    {
+    private function post(
+        string $uri,
+        ?array $query = null,
+        $json = null,
+        ?int $statusCode = null
+    ) {
+        $ret = null;
+
         $options = [
             RequestOptions::QUERY => $query,
             RequestOptions::JSON  => $json,
@@ -359,10 +352,10 @@ trait PostTrait
 
         $response = $this->request('POST', $this->uri($uri), $options);
 
-        if ($responseStatusCode !== $response->getStatusCode()) {
-            return '';
+        if ($statusCode === $response->getStatusCode()) {
+            $ret = json_decode($response->getBody()->getContents(), true);
         }
 
-        return json_decode($response->getBody()->getContents(), true);
+        return $ret;
     }
 }

@@ -16,7 +16,7 @@ namespace TxTextControl\ReportingCloud\Assert;
 
 use DateTime;
 use DateTimeZone;
-use Throwable;
+use Exception;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
@@ -49,9 +49,12 @@ trait AssertDateTimeTrait
                 $message = sprintf($message ?: $format, self::valueToString($value));
                 self::reportInvalidArgument($message);
             }
-        } catch (Throwable $e) {
-            $format  = 'Internal error validating %s';
-            $message = sprintf($message ?: $format, self::valueToString($value));
+        } catch (Exception $e) {
+            $format  = 'Internal error validating %s - %s';
+            $message = sprintf($message ?: $format,
+                self::valueToString($value),
+                self::valueToString($e->getMessage())
+            );
             self::reportInvalidArgument($message);
         }
 
@@ -67,9 +70,12 @@ trait AssertDateTimeTrait
                 $message = sprintf($message ?: $format, self::valueToString($value));
                 self::reportInvalidArgument($message);
             }
-        } catch (Throwable $e) {
-            $format  = 'Internal error validating %s';
-            $message = sprintf($message ?: $format, self::valueToString($value));
+        } catch (Exception $e) {
+            $format  = 'Internal error validating %s - %s';
+            $message = sprintf($message ?: $format,
+                self::valueToString($value),
+                self::valueToString($e->getMessage())
+            );
             self::reportInvalidArgument($message);
         }
 

@@ -87,7 +87,7 @@ trait GetTrait
 
         $propertyMap = new ApiKeyPropertyMap();
 
-        $result = $this->get('/account/apikeys', [], '', StatusCode::OK);
+        $result = $this->get('/account/apikeys', null, null, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             foreach ($result as $record) {
@@ -125,7 +125,7 @@ trait GetTrait
             'language' => $language,
         ];
 
-        $result = $this->get('/proofing/check', $query, '', StatusCode::OK);
+        $result = $this->get('/proofing/check', $query, null, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -143,7 +143,7 @@ trait GetTrait
     {
         $ret = [];
 
-        $result = $this->get('/proofing/availabledictionaries', [], '', StatusCode::OK);
+        $result = $this->get('/proofing/availabledictionaries', null, null, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = array_map('trim', $result);
@@ -176,7 +176,7 @@ trait GetTrait
             'max'      => $max,
         ];
 
-        $result = $this->get('/proofing/suggestions', $query, '', StatusCode::OK);
+        $result = $this->get('/proofing/suggestions', $query, null, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = array_map('trim', $result);
@@ -205,7 +205,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        $result = $this->get('/templates/info', $query, '', StatusCode::OK);
+        $result = $this->get('/templates/info', $query, null, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -229,7 +229,11 @@ trait GetTrait
      * @return array
      */
     public function getTemplateThumbnails(
-        string $templateName, int $zoomFactor, int $fromPage, int $toPage, string $imageFormat
+        string $templateName,
+        int $zoomFactor,
+        int $fromPage,
+        int $toPage,
+        string $imageFormat
     ): array {
         $ret = [];
 
@@ -247,7 +251,7 @@ trait GetTrait
             'imageFormat'  => $imageFormat,
         ];
 
-        $result = $this->get('/templates/thumbnails', $query, '', StatusCode::OK);
+        $result = $this->get('/templates/thumbnails', $query, null, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = array_map('base64_decode', $result);
@@ -263,7 +267,7 @@ trait GetTrait
      */
     public function getTemplateCount(): int
     {
-        return (int) $this->get('/templates/count', [], '', StatusCode::OK);
+        return (int) $this->get('/templates/count', null, null, StatusCode::OK);
     }
 
     /**
@@ -277,7 +281,7 @@ trait GetTrait
 
         $propertyMap = new TemplateListPropertyMap();
 
-        $result = $this->get('/templates/list', [], '', StatusCode::OK);
+        $result = $this->get('/templates/list', null, null, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -309,7 +313,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        return (int) $this->get('/templates/pagecount', $query, '', StatusCode::OK);
+        return (int) $this->get('/templates/pagecount', $query, null, StatusCode::OK);
     }
 
     /**
@@ -328,7 +332,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        return (bool) $this->get('/templates/exists', $query, '', StatusCode::OK);
+        return (bool) $this->get('/templates/exists', $query, null, StatusCode::OK);
     }
 
     /**
@@ -340,7 +344,7 @@ trait GetTrait
     {
         $ret = [];
 
-        $result = $this->get('/fonts/list', [], '', StatusCode::OK);
+        $result = $this->get('/fonts/list', null, null, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = array_map('trim', $result);
@@ -361,7 +365,7 @@ trait GetTrait
 
         $propertyMap = new AccountSettingsPropertyMap();
 
-        $result = $this->get('/account/settings', [], '', StatusCode::OK);
+        $result = $this->get('/account/settings', null, null, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -391,7 +395,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        $result = (string) $this->get('/templates/download', $query, '', StatusCode::OK);
+        $result = (string) $this->get('/templates/download', $query, null, StatusCode::OK);
 
         return (empty($result)) ? '' : $result;
     }
@@ -399,15 +403,21 @@ trait GetTrait
     /**
      * Execute a GET request via REST client
      *
-     * @param string       $uri                URI
-     * @param array        $query              Query
-     * @param string|array $json               JSON
-     * @param int          $responseStatusCode Required HTTP status code for response
+     * @param string       $uri        URI
+     * @param array        $query      Query
+     * @param string|array $json       JSON
+     * @param int          $statusCode Required HTTP status code for response
      *
-     * @return string|array
+     * @return array|string|null
      */
-    private function get(string $uri, array $query = [], $json = '', int $responseStatusCode = 0)
-    {
+    private function get(
+        string $uri,
+        ?array $query = null,
+        $json = null,
+        ?int $statusCode = null
+    ) {
+        $ret = null;
+
         $options = [
             RequestOptions::QUERY => $query,
             RequestOptions::JSON  => $json,
@@ -415,10 +425,10 @@ trait GetTrait
 
         $response = $this->request('GET', $this->uri($uri), $options);
 
-        if ($responseStatusCode !== $response->getStatusCode()) {
-            return '';
+        if ($statusCode === $response->getStatusCode()) {
+            $ret = json_decode($response->getBody()->getContents(), true);
         }
 
-        return json_decode($response->getBody()->getContents(), true);
+        return $ret;
     }
 }

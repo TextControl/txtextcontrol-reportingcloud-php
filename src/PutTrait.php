@@ -76,21 +76,27 @@ trait PutTrait
      */
     public function createApiKey(): string
     {
-        return $this->put('/account/apikey', [], '', StatusCode::CREATED);
+        return $this->put('/account/apikey', null, null, StatusCode::CREATED);
     }
 
     /**
      * Execute a PUT request via REST client
      *
-     * @param string       $uri                URI
-     * @param array        $query              Query
-     * @param string|array $json               JSON
-     * @param int          $responseStatusCode Required HTTP status code for response
+     * @param string       $uri        URI
+     * @param array        $query      Query
+     * @param string|array $json       JSON
+     * @param int          $statusCode Required HTTP status code for response
      *
-     * @return string
+     * @return string|null
      */
-    private function put(string $uri, array $query = [], $json = '', int $responseStatusCode = 0)
-    {
+    private function put(
+        string $uri,
+        ?array $query = null,
+        $json = null,
+        ?int $statusCode = null
+    ) {
+        $ret = null;
+
         $options = [
             RequestOptions::QUERY => $query,
             RequestOptions::JSON  => $json,
@@ -98,10 +104,10 @@ trait PutTrait
 
         $response = $this->request('PUT', $this->uri($uri), $options);
 
-        if ($responseStatusCode !== $response->getStatusCode()) {
-            return '';
+        if ($statusCode === $response->getStatusCode()) {
+            $ret = (string) json_decode($response->getBody()->getContents());
         }
 
-        return (string) json_decode($response->getBody()->getContents());
+        return $ret;
     }
 }
