@@ -42,7 +42,7 @@ trait AssertPageTrait
      * @param string $message
      *
      * @return null
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertPage(int $value, string $message = '')
     {

@@ -28,7 +28,7 @@ trait FilenameExistsTrait
      * @param string $message
      *
      * @return null
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function filenameExists(string $value, string $message = '')
     {

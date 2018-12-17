@@ -28,7 +28,7 @@ trait AssertReturnFormatTrait
      * @param string $message
      *
      * @return null
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertReturnFormat(string $value, string $message = '')
     {

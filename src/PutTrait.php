@@ -49,7 +49,7 @@ trait PutTrait
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      *
-     * @throws RuntimeException
+     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     abstract protected function request(string $method, string $uri, array $options);
 
@@ -72,7 +72,7 @@ trait PutTrait
      * Create an API key
      *
      * @return string
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function createApiKey(): string
     {

@@ -33,7 +33,7 @@ trait AssertDateTimeTrait
      * @param string $message
      *
      * @return null
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertDateTime(string $value, string $message = '')
     {

@@ -28,7 +28,7 @@ trait AssertBase64DataTrait
      * @param string $message
      *
      * @return null
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertBase64Data(string $value, string $message = '')
     {

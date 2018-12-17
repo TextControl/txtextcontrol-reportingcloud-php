@@ -49,7 +49,7 @@ trait DeleteTrait
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      *
-     * @throws RuntimeException
+     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     abstract protected function request(string $method, string $uri, array $options);
 
@@ -64,7 +64,7 @@ trait DeleteTrait
      * @param string $key
      *
      * @return bool
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function deleteApiKey(string $key): bool
     {
@@ -83,7 +83,7 @@ trait DeleteTrait
      * @param string $templateName
      *
      * @return bool
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function deleteTemplate(string $templateName): bool
     {

@@ -51,7 +51,7 @@ trait PostTrait
      *
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      *
-     * @throws RuntimeException
+     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     abstract protected function request(string $method, string $uri, array $options);
 
@@ -113,7 +113,7 @@ trait PostTrait
      * @param string $templateName Template name
      *
      * @return bool
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function uploadTemplateFromBase64(string $data, string $templateName): bool
     {
@@ -135,7 +135,7 @@ trait PostTrait
      * @param string $templateFilename Template name
      *
      * @return bool
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function uploadTemplate(string $templateFilename): bool
     {
@@ -157,7 +157,7 @@ trait PostTrait
      * @param string $returnFormat     Return format
      *
      * @return string
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function convertDocument(string $documentFilename, string $returnFormat): string
     {
@@ -190,7 +190,7 @@ trait PostTrait
      * @param array|null  $mergeSettings    Array of merge settings
      *
      * @return array
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function mergeDocument(
         array $mergeData,
@@ -250,7 +250,7 @@ trait PostTrait
      * @param array|null $documentSettings
      *
      * @return string
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function appendDocument(
         array $documentsData,
@@ -286,7 +286,7 @@ trait PostTrait
      * @param array|null  $mergeSettings      Array of merge settings
      *
      * @return string
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public function findAndReplaceDocument(
         array $findAndReplaceData,

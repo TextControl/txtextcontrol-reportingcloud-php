@@ -42,7 +42,7 @@ trait AssertTimestampTrait
      * @param string $message
      *
      * @return null
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertTimestamp(int $value, string $message = '')
     {

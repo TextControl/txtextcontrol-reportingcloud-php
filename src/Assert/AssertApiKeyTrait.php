@@ -42,7 +42,7 @@ trait AssertApiKeyTrait
      * @param string $message
      *
      * @return null
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function assertApiKey(string $value, string $message = '')
     {

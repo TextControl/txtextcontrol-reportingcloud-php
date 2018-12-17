@@ -65,7 +65,7 @@ trait BuildTrait
      * @param array $array
      *
      * @return array
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     protected function buildDocumentsArray(array $array): array
     {
@@ -102,7 +102,7 @@ trait BuildTrait
      * @param array $array
      *
      * @return array
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      * @throws \Exception
      */
     protected function buildDocumentSettingsArray(array $array): array
@@ -131,7 +131,7 @@ trait BuildTrait
      * @param array $array MergeSettings array
      *
      * @return array
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      * @throws \Exception
      */
     protected function buildMergeSettingsArray(array $array): array

@@ -31,7 +31,7 @@ trait FilterDateTimeToTimestampTrait
      * @param string $dateTimeString
      *
      * @return int
-     * @throws TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
     public static function filterDateTimeToTimestamp(string $dateTimeString): int
     {
