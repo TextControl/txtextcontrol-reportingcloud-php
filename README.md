@@ -28,9 +28,7 @@ Learn more about ReportingCloud at:
 
 The ReportingCloud PHP wrapper requires **PHP 7.1** or newer.
 
-All versions of PHPs prior 7.1 have reached [end-of-life](http://php.net/eol.php) and consequently, no more security updates are being released for them.
-
-If your application is running in an older environment, it is highly advisable to update to a more current version of PHP.
+All versions of PHPs prior to 7.1 have reached [end-of-life](http://php.net/eol.php) and consequently, no further security updates will be released for them. If your application is running in an older environment, it is highly advisable to update to a more current version of PHP.
 
 If you are unable or unwilling to update your PHP installation, it is possible to use ReportingCloud by directly accessing the [Web API](https://portal.reporting.cloud/Documentation/Reference/) without using this wrapper. In such cases, it is advisable to use the [curl](http://php.net/manual/en/book.curl.php) extension to make the API calls.
 

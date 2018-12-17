@@ -2,15 +2,17 @@
 
 # CHANGELOG
 
-## dev-development-2.0
-
-* Set the minimum PHP version to 7.1.
-* Upgraded to PHPUnit 7.5.
-* Stripped out all Zend Framework 3 dependencies.
-* Added strict typing to all files.
-* Abstracted magic number HTTP codes to `TxTextControl\ReportingCloud\StatusCode\StatusCode`.
-
 ## dev-master
+
+## 2.0 - 2018-12-??
+
+For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
+
+* Stripped out all Zend Framework 3 dependencies.
+* Set the minimum PHP version to 7.1.
+* Added strict typing to all files.
+* Upgraded to PHPUnit 7.5.
+* Abstracted magic number HTTP codes to `TxTextControl\ReportingCloud\StatusCode\StatusCode`.
 
 ## 1.9.1 - 2018-10-23
 
