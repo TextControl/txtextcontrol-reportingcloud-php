@@ -416,7 +416,7 @@ trait GetTrait
         $json = null,
         ?int $statusCode = null
     ) {
-        $ret = null;
+        $ret = '';
 
         $options = [
             RequestOptions::QUERY => $query,

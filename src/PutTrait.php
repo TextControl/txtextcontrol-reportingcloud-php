@@ -87,7 +87,7 @@ trait PutTrait
      * @param string|array $json       JSON
      * @param int          $statusCode Required HTTP status code for response
      *
-     * @return string|null
+     * @return string
      */
     private function put(
         string $uri,
@@ -95,7 +95,7 @@ trait PutTrait
         $json = null,
         ?int $statusCode = null
     ) {
-        $ret = null;
+        $ret = '';
 
         $options = [
             RequestOptions::QUERY => $query,

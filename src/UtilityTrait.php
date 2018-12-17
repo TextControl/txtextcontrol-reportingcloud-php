@@ -66,7 +66,7 @@ trait UtilityTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return GuzzleHttp\Psr7\Response
+     * @return \GuzzleHttp\Psr7\Response
      * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     protected function request(string $method, string $uri, array $options)
