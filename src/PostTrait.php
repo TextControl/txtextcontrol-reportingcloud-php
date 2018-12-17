@@ -124,7 +124,7 @@ trait PostTrait
             'templateName' => $templateName,
         ];
 
-        $result = $this->post('/templates/upload', $query, $data);
+        $result = $this->post('/templates/upload', $query, $data, StatusCode::CREATED);
 
         return (null === $result) ? true : false;
     }
@@ -172,7 +172,7 @@ trait PostTrait
         $json = file_get_contents($documentFilename);
         $json = base64_encode($json);
 
-        $result = $this->post('/document/convert', $query, $json);
+        $result = $this->post('/document/convert', $query, $json, StatusCode::OK);
 
         if (!is_string($result)) {
             return '';
@@ -237,7 +237,7 @@ trait PostTrait
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $result = $this->post('/document/merge', $query, $json);
+        $result = $this->post('/document/merge', $query, $json, StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = array_map('base64_decode', $result);
@@ -275,7 +275,7 @@ trait PostTrait
             $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
         }
 
-        $result = $this->post('/document/append', $query, $json);
+        $result = $this->post('/document/append', $query, $json, StatusCode::OK);
 
         if (!is_string($result)) {
             return '';
@@ -330,7 +330,7 @@ trait PostTrait
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $result = $this->post('/document/findandreplace', $query, $json);
+        $result = $this->post('/document/findandreplace', $query, $json, StatusCode::OK);
 
         if (!is_string($result)) {
             return '';
@@ -342,27 +342,24 @@ trait PostTrait
     /**
      * Execute a POST request via REST client
      *
-     * @param string       $uri   URI
-     * @param array        $query Query
-     * @param string|array $json  JSON
+     * @param string       $uri                URI
+     * @param array        $query              Query
+     * @param string|array $json               JSON
+     * @param int          $responseStatusCode Required HTTP status code for response
+     *
      *
      * @return array|string|null
      */
-    private function post(string $uri, array $query = [], $json = '')
+    private function post(string $uri, array $query = [], $json = '', int $responseStatusCode = 0)
     {
         $options = [
             RequestOptions::QUERY => $query,
             RequestOptions::JSON  => $json,
         ];
 
-        $statusCodes = [
-            StatusCode::OK,
-            StatusCode::CREATED,
-        ];
-
         $response = $this->request('POST', $this->uri($uri), $options);
 
-        if (!in_array($response->getStatusCode(), $statusCodes)) {
+        if ($responseStatusCode !== $response->getStatusCode()) {
             return '';
         }
 
