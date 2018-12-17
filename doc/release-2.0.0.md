@@ -20,6 +20,8 @@ Additionally, when using the PHP ReportingCloud Wrapper 1.x in an application no
 
 For these two reasons, the PHP ReportingCloud Wrapper 2.0 no longer depends upon ZF. The required validation functionality is provided by [Assert](https://github.com/webmozart/assert), which has no further dependencies and, in comparison to ZF, is extremely lightweight.
 
+If, on the other hand, you are maintaining or planning a ZF3 based application, take a look at the official [ReportingCloud PHP Wrapper ZF Module](https://github.com/TextControl/txtextcontrol-reportingcloud-php-zf-module). This ZF3 module tightly integrates ReportingCloud into the ZF3 [View](https://github.com/zendframework/zend-view) (as a View Helper) and [Mvc](https://github.com/zendframework/zend-mvc) (as a Controller Plugin) components.
+
 ### Increase Minimum PHP Version
 
 All versions of PHPs prior to 7.1 have reached [end-of-life](http://php.net/eol.php) and therefore, no further security updates will be released for them. We moved the minimum PHP version to the oldest supported PHP version, namely 7.1, to ensure that the ReportingCloud PHP Wrapper can be installed in as many supported environments as possible:
