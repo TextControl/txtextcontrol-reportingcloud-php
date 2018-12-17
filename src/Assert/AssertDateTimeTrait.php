@@ -42,19 +42,9 @@ trait AssertDateTimeTrait
 
         $dateTimeZone = new DateTimeZone($timeZone);
 
-        try {
-            $dateTime = new DateTime('now', $dateTimeZone);
-            if (strlen($dateTime->format($dateFormat)) !== strlen($value)) {
-                $format  = '%s has an invalid number of characters in it';
-                $message = sprintf($message ?: $format, self::valueToString($value));
-                self::reportInvalidArgument($message);
-            }
-        } catch (Exception $e) {
-            $format  = 'Internal error validating %s - %s';
-            $message = sprintf($message ?: $format,
-                self::valueToString($value),
-                self::valueToString($e->getMessage())
-            );
+        if (self::getDateTimeLength() !== strlen($value)) {
+            $format  = '%s has an invalid number of characters in it';
+            $message = sprintf($message ?: $format, self::valueToString($value));
             self::reportInvalidArgument($message);
         }
 
@@ -80,5 +70,31 @@ trait AssertDateTimeTrait
         }
 
         return null;
+    }
+
+    /**
+     * Get the length of the required dateTime string
+     *
+     * @return int
+     */
+    private static function getDateTimeLength()
+    {
+        $ret = 0;
+
+        $timeZone   = ReportingCloud::DEFAULT_TIME_ZONE;
+        $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
+
+        $dateTimeZone = new DateTimeZone($timeZone);
+
+        try {
+            $dateTime = new DateTime('now', $dateTimeZone);
+            $ret      = strlen($dateTime->format($dateFormat));
+        } catch (Exception $e) {
+            // continue;
+        }
+
+        unset($dateTimeZone, $dateTime);
+
+        return $ret;
     }
 }
