@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
@@ -75,7 +74,7 @@ trait DeleteTrait
             'key' => $key,
         ];
 
-        return $this->delete('/account/apikey', $query);
+        return $this->delete('/account/apikey', $query, '', StatusCode::OK);
     }
 
     /**
@@ -94,34 +93,28 @@ trait DeleteTrait
             'templateName' => $templateName,
         ];
 
-        return $this->delete('/templates/delete', $query);
+        return $this->delete('/templates/delete', $query, '', StatusCode::NO_CONTENT);
     }
 
     /**
      * Execute a DELETE request via REST client
      *
-     * @param string $uri   URI
-     * @param array  $query Query
+     * @param string       $uri                URI
+     * @param array        $query              Query
+     * @param string|array $json               JSON
+     * @param int          $responseStatusCode Required HTTP status code for response
      *
      * @return bool
      */
-    private function delete(string $uri, array $query = [])
+    private function delete(string $uri, array $query = [], $json = '', int $responseStatusCode = 0)
     {
         $options = [
             RequestOptions::QUERY => $query,
-        ];
-
-        $statusCodes = [
-            StatusCode::OK,
-            StatusCode::NO_CONTENT,
+            RequestOptions::JSON  => $json,
         ];
 
         $response = $this->request('DELETE', $this->uri($uri), $options);
 
-        if (!in_array($response->getStatusCode(), $statusCodes)) {
-            return false;
-        }
-
-        return true;
+        return ($responseStatusCode === $response->getStatusCode()) ? true : false;
     }
 }

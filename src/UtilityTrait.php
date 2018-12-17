@@ -15,9 +15,8 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 
@@ -80,7 +79,7 @@ trait UtilityTrait
                 $options[RequestOptions::QUERY]['test'] = $test;
             }
             $response = $client->request($method, $uri, $options);
-        } catch (TransferException | GuzzleException $e) {
+        } catch (GuzzleException $e) {
             $message = (string) $e->getMessage();
             $code    = (int) $e->getCode();
             throw new RuntimeException($message, $code);

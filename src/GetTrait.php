@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
@@ -88,7 +87,7 @@ trait GetTrait
 
         $propertyMap = new ApiKeyPropertyMap();
 
-        $result = $this->get('/account/apikeys');
+        $result = $this->get('/account/apikeys', [], '', StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             foreach ($result as $record) {
@@ -126,7 +125,7 @@ trait GetTrait
             'language' => $language,
         ];
 
-        $result = $this->get('/proofing/check', $query);
+        $result = $this->get('/proofing/check', $query, '', StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -144,7 +143,7 @@ trait GetTrait
     {
         $ret = [];
 
-        $result = $this->get('/proofing/availabledictionaries');
+        $result = $this->get('/proofing/availabledictionaries', [], '', StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = array_map('trim', $result);
@@ -177,7 +176,7 @@ trait GetTrait
             'max'      => $max,
         ];
 
-        $result = $this->get('/proofing/suggestions', $query);
+        $result = $this->get('/proofing/suggestions', $query, '', StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = array_map('trim', $result);
@@ -206,7 +205,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        $result = $this->get('/templates/info', $query);
+        $result = $this->get('/templates/info', $query, '', StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -230,11 +229,7 @@ trait GetTrait
      * @return array
      */
     public function getTemplateThumbnails(
-        string $templateName,
-        int $zoomFactor,
-        int $fromPage,
-        int $toPage,
-        string $imageFormat
+        string $templateName, int $zoomFactor, int $fromPage, int $toPage, string $imageFormat
     ): array {
         $ret = [];
 
@@ -252,7 +247,7 @@ trait GetTrait
             'imageFormat'  => $imageFormat,
         ];
 
-        $result = $this->get('/templates/thumbnails', $query);
+        $result = $this->get('/templates/thumbnails', $query, '', StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = array_map('base64_decode', $result);
@@ -268,7 +263,7 @@ trait GetTrait
      */
     public function getTemplateCount(): int
     {
-        return (int) $this->get('/templates/count');
+        return (int) $this->get('/templates/count', [], '', StatusCode::OK);
     }
 
     /**
@@ -282,7 +277,7 @@ trait GetTrait
 
         $propertyMap = new TemplateListPropertyMap();
 
-        $result = $this->get('/templates/list');
+        $result = $this->get('/templates/list', [], '', StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -314,7 +309,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        return (int) $this->get('/templates/pagecount', $query);
+        return (int) $this->get('/templates/pagecount', $query, '', StatusCode::OK);
     }
 
     /**
@@ -333,7 +328,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        return (bool) $this->get('/templates/exists', $query);
+        return (bool) $this->get('/templates/exists', $query, '', StatusCode::OK);
     }
 
     /**
@@ -345,7 +340,7 @@ trait GetTrait
     {
         $ret = [];
 
-        $result = $this->get('/fonts/list');
+        $result = $this->get('/fonts/list', [], '', StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = array_map('trim', $result);
@@ -366,7 +361,7 @@ trait GetTrait
 
         $propertyMap = new AccountSettingsPropertyMap();
 
-        $result = $this->get('/account/settings');
+        $result = $this->get('/account/settings', [], '', StatusCode::OK);
 
         if (is_array($result) && count($result) > 0) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -396,7 +391,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        $result = (string) $this->get('/templates/download', $query);
+        $result = (string) $this->get('/templates/download', $query, '', StatusCode::OK);
 
         return (empty($result)) ? '' : $result;
     }
@@ -404,24 +399,23 @@ trait GetTrait
     /**
      * Execute a GET request via REST client
      *
-     * @param string $uri   URI
-     * @param array  $query Query
+     * @param string       $uri                URI
+     * @param array        $query              Query
+     * @param string|array $json               JSON
+     * @param int          $responseStatusCode Required HTTP status code for response
      *
      * @return string|array
      */
-    private function get(string $uri, array $query = [])
+    private function get(string $uri, array $query = [], $json = '', int $responseStatusCode = 0)
     {
         $options = [
             RequestOptions::QUERY => $query,
-        ];
-
-        $statusCodes = [
-            StatusCode::OK,
+            RequestOptions::JSON  => $json,
         ];
 
         $response = $this->request('GET', $this->uri($uri), $options);
 
-        if (!in_array($response->getStatusCode(), $statusCodes)) {
+        if ($responseStatusCode !== $response->getStatusCode()) {
             return '';
         }
 
