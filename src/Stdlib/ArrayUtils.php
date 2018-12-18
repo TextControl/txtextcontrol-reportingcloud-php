@@ -46,16 +46,15 @@ class ArrayUtils extends AbstractStdlib
 
         $encoder = new PHPEncoder($options);
 
-        $data = '<?php';
-        $data .= PHP_EOL;
-        $data .= 'declare(strict_types=1);';
-        $data .= PHP_EOL;
-        $data .= PHP_EOL;
-        $data .= 'return ';
-        $data .= $encoder->encode($values);
-        $data .= ';';
-        $data .= PHP_EOL;
+        $buffer = '<?php';
+        $buffer .= PHP_EOL;
+        $buffer .= 'declare(strict_types=1);';
+        $buffer .= PHP_EOL . PHP_EOL;
+        $buffer .= 'return ';
+        $buffer .= $encoder->encode($values);
+        $buffer .= ';';
+        $buffer .= PHP_EOL;
 
-        return (int) file_put_contents($filename, $data);
+        return (int) file_put_contents($filename, $buffer);
     }
 }
