@@ -15,14 +15,11 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\Filter;
 
 /**
- * Class Filter
+ * Abstract AbstractFilter
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Filter extends AbstractFilter
+abstract class AbstractFilter
 {
-    use FilterBooleanToStringTrait;
-    use FilterDateTimeToTimestampTrait;
-    use FilterTimestampToDateTimeTrait;
 }

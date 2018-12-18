@@ -12,17 +12,16 @@ declare(strict_types=1);
  * @copyright © 2019 Text Control GmbH
  */
 
-namespace TxTextControl\ReportingCloud\Filter;
+namespace TxTextControl\ReportingCloud\Assert;
+
+use Webmozart\Assert\Assert as ParentAssert;
 
 /**
- * Class Filter
+ * Abstract AbstractAssert
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Filter extends AbstractFilter
+abstract class AbstractAssert extends ParentAssert
 {
-    use FilterBooleanToStringTrait;
-    use FilterDateTimeToTimestampTrait;
-    use FilterTimestampToDateTimeTrait;
 }

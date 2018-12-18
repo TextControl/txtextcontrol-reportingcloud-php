@@ -12,17 +12,28 @@ declare(strict_types=1);
  * @copyright © 2019 Text Control GmbH
  */
 
-namespace TxTextControl\ReportingCloud\Filter;
+namespace TxTextControl\ReportingCloud\StatusCode;
 
 /**
- * Class Filter
+ * Abstract AbstractStatusCode
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Filter extends AbstractFilter
+abstract class AbstractStatusCode
 {
-    use FilterBooleanToStringTrait;
-    use FilterDateTimeToTimestampTrait;
-    use FilterTimestampToDateTimeTrait;
+    /**
+     * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
+     */
+    public const OK = 200;
+
+    /**
+     * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+     */
+    public const CREATED = 201;
+
+    /**
+     * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
+     */
+    public const NO_CONTENT = 204;
 }

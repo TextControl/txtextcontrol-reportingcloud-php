@@ -18,6 +18,7 @@ namespace TxTextControl\ReportingCloud\Assert;
  * Trait AssertReturnFormatTrait
  *
  * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertReturnFormatTrait
 {

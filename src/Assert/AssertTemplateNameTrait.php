@@ -20,6 +20,7 @@ use InvalidArgumentException;
  * Trait AssertTemplateNameTrait
  *
  * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertTemplateNameTrait
 {

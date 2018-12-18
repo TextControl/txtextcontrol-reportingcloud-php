@@ -234,7 +234,7 @@ trait PostTrait
 
         $result = $this->post('/document/merge', $query, $json, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             $ret = array_map('base64_decode', $result);
         }
 

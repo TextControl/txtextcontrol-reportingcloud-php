@@ -12,17 +12,14 @@ declare(strict_types=1);
  * @copyright © 2019 Text Control GmbH
  */
 
-namespace TxTextControl\ReportingCloud\Filter;
+namespace TxTextControl\ReportingCloud\Stdlib;
 
 /**
- * Class Filter
+ * Abstract StdlibAbstract
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Filter extends AbstractFilter
+abstract class AbstractStdlib
 {
-    use FilterBooleanToStringTrait;
-    use FilterDateTimeToTimestampTrait;
-    use FilterTimestampToDateTimeTrait;
 }

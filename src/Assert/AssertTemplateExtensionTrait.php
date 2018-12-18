@@ -18,6 +18,7 @@ namespace TxTextControl\ReportingCloud\Assert;
  * Trait AssertTemplateExtensionTrait
  *
  * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertTemplateExtensionTrait
 {

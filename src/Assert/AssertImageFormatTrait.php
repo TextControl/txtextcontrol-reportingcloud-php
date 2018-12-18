@@ -18,6 +18,7 @@ namespace TxTextControl\ReportingCloud\Assert;
  * Trait AssertImageFormatTrait
  *
  * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
  */
 trait AssertImageFormatTrait
 {

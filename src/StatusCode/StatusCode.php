@@ -20,21 +20,8 @@ namespace TxTextControl\ReportingCloud\StatusCode;
  * A set of constants representing the HTTP status codes returned by ReportingCloud
  *
  * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
  */
-class StatusCode
+class StatusCode extends AbstractStatusCode
 {
-    /**
-     * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200
-     */
-    public const OK = 200;
-
-    /**
-     * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
-     */
-    public const CREATED = 201;
-
-    /**
-     * @see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204
-     */
-    public const NO_CONTENT = 204;
 }

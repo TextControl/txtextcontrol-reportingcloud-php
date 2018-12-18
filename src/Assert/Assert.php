@@ -15,14 +15,14 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\Assert;
 
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use Webmozart\Assert\Assert as ParentAssert;
 
 /**
  * Class Assert
  *
  * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
  */
-class Assert extends ParentAssert
+class Assert extends AbstractAssert
 {
     use AssertApiKeyTrait;
     use AssertBase64DataTrait;

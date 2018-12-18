@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
+use TxTextControl\ReportingCloud\Stdlib\Stdlib;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
@@ -114,7 +115,7 @@ trait BuildTrait
         foreach ($propertyMap->getMap() as $property => $key) {
             if (isset($array[$key])) {
                 $value = $array[$key];
-                if ($this->endsWith($key, '_date')) {
+                if (Stdlib::endsWith($key, '_date')) {
                     Assert::assertTimestamp($value);
                     $value = Filter::filterTimestampToDateTime($value);
                 }
@@ -148,10 +149,10 @@ trait BuildTrait
             if ('culture' === $key) {
                 Assert::assertCulture($value);
             }
-            if ($this->startsWith($key, 'remove_')) {
+            if (Stdlib::startsWith($key, 'remove_')) {
                 Assert::boolean($value);
             }
-            if ($this->endsWith($key, '_date')) {
+            if (Stdlib::endsWith($key, '_date')) {
                 Assert::assertTimestamp($value);
                 $value = Filter::filterTimestampToDateTime($value);
             }
@@ -180,35 +181,5 @@ trait BuildTrait
         }
 
         return $ret;
-    }
-
-    /**
-     * Return true, if needle is at the beginning of haystack
-     *
-     * @param string $haystack
-     * @param string $needle
-     *
-     * @return bool
-     */
-    protected function startsWith(string $haystack, string $needle): bool
-    {
-        $len = strlen($needle);
-
-        return ($needle === substr($haystack, 0, $len));
-    }
-
-    /**
-     * Return true, if needle is at the end of haystack
-     *
-     * @param string $haystack
-     * @param string $needle
-     *
-     * @return bool
-     */
-    protected function endsWith(string $haystack, string $needle): bool
-    {
-        $len = strlen($needle);
-
-        return ($needle === substr($haystack, -$len));
     }
 }

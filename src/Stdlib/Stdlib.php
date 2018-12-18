@@ -1,0 +1,54 @@
+<?php
+declare(strict_types=1);
+
+/**
+ * ReportingCloud PHP Wrapper
+ *
+ * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ *
+ * @link      https://www.reporting.cloud to learn more about ReportingCloud
+ * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
+ * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
+ * @copyright © 2019 Text Control GmbH
+ */
+
+namespace TxTextControl\ReportingCloud\Stdlib;
+
+/**
+ * Class Stdlib
+ *
+ * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
+class Stdlib extends AbstractStdlib
+{
+    /**
+     * Return true, if needle is at the beginning of haystack
+     *
+     * @param string $haystack
+     * @param string $needle
+     *
+     * @return bool
+     */
+    public static function startsWith(string $haystack, string $needle): bool
+    {
+        $len = strlen($needle);
+
+        return ($needle === substr($haystack, 0, $len));
+    }
+
+    /**
+     * Return true, if needle is at the end of haystack
+     *
+     * @param string $haystack
+     * @param string $needle
+     *
+     * @return bool
+     */
+    public static function endsWith(string $haystack, string $needle): bool
+    {
+        $len = strlen($needle);
+
+        return ($needle === substr($haystack, -$len));
+    }
+}

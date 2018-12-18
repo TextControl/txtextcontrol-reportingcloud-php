@@ -88,7 +88,7 @@ trait GetTrait
 
         $result = $this->get('/account/apikeys', null, null, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             foreach ($result as $record) {
                 $ret[] = $this->buildPropertyMapArray($record, $propertyMap);
             }
@@ -126,7 +126,7 @@ trait GetTrait
 
         $result = $this->get('/proofing/check', $query, null, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
         }
 
@@ -144,7 +144,7 @@ trait GetTrait
 
         $result = $this->get('/proofing/availabledictionaries', null, null, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             $ret = array_map('trim', $result);
         }
 
@@ -177,7 +177,7 @@ trait GetTrait
 
         $result = $this->get('/proofing/suggestions', $query, null, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             $ret = array_map('trim', $result);
         }
 
@@ -206,7 +206,7 @@ trait GetTrait
 
         $result = $this->get('/templates/info', $query, null, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
         }
 
@@ -251,7 +251,7 @@ trait GetTrait
 
         $result = $this->get('/templates/thumbnails', $query, null, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             $ret = array_map('base64_decode', $result);
         }
 
@@ -281,7 +281,7 @@ trait GetTrait
 
         $result = $this->get('/templates/list', null, null, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
             array_walk($ret, function (&$record) {
                 $key = 'modified';
@@ -344,7 +344,7 @@ trait GetTrait
 
         $result = $this->get('/fonts/list', null, null, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             $ret = array_map('trim', $result);
         }
 
@@ -365,7 +365,7 @@ trait GetTrait
 
         $result = $this->get('/account/settings', null, null, StatusCode::OK);
 
-        if (is_array($result) && count($result) > 0) {
+        if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
             $key = 'valid_until';
             if ($ret[$key]) {

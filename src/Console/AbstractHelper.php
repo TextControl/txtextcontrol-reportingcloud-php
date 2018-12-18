@@ -12,17 +12,20 @@ declare(strict_types=1);
  * @copyright © 2019 Text Control GmbH
  */
 
-namespace TxTextControl\ReportingCloud\Filter;
+namespace TxTextControl\ReportingCloud\Console;
 
 /**
- * Class Filter
+ * Abstract AbstractHelper
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Filter extends AbstractFilter
+abstract class AbstractHelper
 {
-    use FilterBooleanToStringTrait;
-    use FilterDateTimeToTimestampTrait;
-    use FilterTimestampToDateTimeTrait;
+    /**
+     * Name of username PHP constant or environmental variables
+     *
+     * @const REPORTING_CLOUD_API_KEY
+     */
+    protected const API_KEY = 'REPORTING_CLOUD_API_KEY';
 }

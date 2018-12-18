@@ -22,6 +22,7 @@ use TxTextControl\ReportingCloud\ReportingCloud;
  * Trait FilterDateTimeToTimestampTrait
  *
  * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
  */
 trait FilterDateTimeToTimestampTrait
 {

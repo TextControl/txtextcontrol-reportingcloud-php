@@ -15,9 +15,9 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\PropertyMap;
 
 /**
- * Abstract property map
+ * Abstract AbstractPropertyMap
  *
- * @package TxTextControl\ReportingCloud
+ * @package TxTextControl\ReportingCloud\PropertyMap
  * @author  Jonathan Maron (@JonathanMaron)
  */
 abstract class AbstractPropertyMap implements PropertyMapInterface

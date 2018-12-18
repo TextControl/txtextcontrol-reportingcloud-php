@@ -18,6 +18,7 @@ namespace TxTextControl\ReportingCloud\Filter;
  * Trait FilterBooleanToStringTrait
  *
  * @package TxTextControl\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
  */
 trait FilterBooleanToStringTrait
 {

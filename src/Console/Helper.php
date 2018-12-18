@@ -22,15 +22,8 @@ use Riimu\Kit\PHPEncoder\PHPEncoder;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Helper
+class Helper extends AbstractHelper
 {
-    /**
-     * Name of username PHP constant or environmental variables
-     *
-     * @const REPORTING_CLOUD_API_KEY
-     */
-    protected const API_KEY = 'REPORTING_CLOUD_API_KEY';
-
     /**
      * Check that either the API key has been defined in environment variables
      *
