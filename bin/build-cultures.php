@@ -23,7 +23,7 @@ declare(strict_types=1);
 include_once 'bootstrap.php';
 
 use TxTextControl\ReportingCloud\Assert\Assert;
-use TxTextControl\ReportingCloud\Console\Helper;
+use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ $values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-Helper::varExportToFile($filename, $values);
+ArrayUtils::varExportToFile($filename, $values);
 
 echo PHP_EOL;
 echo sprintf('The available cultures (%d) are %s.', count($values), implode(', ', $values));

@@ -18,6 +18,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -39,7 +40,7 @@ $values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-Helper::varExportToFile($filename, $values);
+ArrayUtils::varExportToFile($filename, $values);
 
 echo PHP_EOL;
 echo sprintf('The available dictionaries (%d) are %s.', count($values), implode(', ', $values));

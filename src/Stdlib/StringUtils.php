@@ -15,12 +15,12 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\Stdlib;
 
 /**
- * Class Stdlib
+ * Class StringUtils
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Stdlib extends AbstractStdlib
+class StringUtils extends AbstractStdlib
 {
     /**
      * Return true, if needle is at the beginning of haystack

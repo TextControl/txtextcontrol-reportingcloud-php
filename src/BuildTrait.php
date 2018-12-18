@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use TxTextControl\ReportingCloud\Stdlib\Stdlib;
+use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
@@ -115,7 +115,7 @@ trait BuildTrait
         foreach ($propertyMap->getMap() as $property => $key) {
             if (isset($array[$key])) {
                 $value = $array[$key];
-                if (Stdlib::endsWith($key, '_date')) {
+                if (StringUtils::endsWith($key, '_date')) {
                     Assert::assertTimestamp($value);
                     $value = Filter::filterTimestampToDateTime($value);
                 }
@@ -149,10 +149,10 @@ trait BuildTrait
             if ('culture' === $key) {
                 Assert::assertCulture($value);
             }
-            if (Stdlib::startsWith($key, 'remove_')) {
+            if (StringUtils::startsWith($key, 'remove_')) {
                 Assert::boolean($value);
             }
-            if (Stdlib::endsWith($key, '_date')) {
+            if (StringUtils::endsWith($key, '_date')) {
                 Assert::assertTimestamp($value);
                 $value = Filter::filterTimestampToDateTime($value);
             }
