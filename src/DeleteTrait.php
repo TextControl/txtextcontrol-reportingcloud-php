@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
@@ -50,7 +51,7 @@ trait DeleteTrait
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
-    abstract protected function request(string $method, string $uri, array $options);
+    abstract protected function request(string $method, string $uri, array $options): Response;
 
     /**
      * DELETE Methods

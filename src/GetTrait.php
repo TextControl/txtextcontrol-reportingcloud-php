@@ -14,9 +14,9 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Assert\Assert;
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
@@ -58,7 +58,7 @@ trait GetTrait
      * @return mixed|null|\Psr\Http\Message\ResponseInterface
      * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
-    abstract protected function request(string $method, string $uri, array $options);
+    abstract protected function request(string $method, string $uri, array $options): Response;
 
     /**
      * Using the passed propertyMap, recursively build array

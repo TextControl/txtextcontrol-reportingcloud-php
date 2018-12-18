@@ -15,8 +15,12 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
+use TxTextControl\ReportingCloud\Filter\Filter;
 
 /**
  * Abstract ReportingCloud
@@ -447,5 +451,45 @@ abstract class AbstractReportingCloud
         $this->client = $client;
 
         return $this;
+    }
+
+    /**
+     * Request the URI with options
+     *
+     * @param string $method  HTTP method
+     * @param string $uri     URI
+     * @param array  $options Options
+     *
+     * @return \GuzzleHttp\Psr7\Response
+     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     */
+    protected function request(string $method, string $uri, array $options): Response
+    {
+        $client = $this->getClient();
+
+        try {
+            if ($this->getTest()) {
+                $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($this->getTest());
+            }
+            $response = $client->request($method, $uri, $options);
+        } catch (GuzzleException $e) {
+            $message = (string) $e->getMessage();
+            $code    = (int) $e->getCode();
+            throw new RuntimeException($message, $code);
+        }
+
+        return $response;
+    }
+
+    /**
+     * Construct URI with version number
+     *
+     * @param string $uri URI
+     *
+     * @return string
+     */
+    protected function uri(string $uri): string
+    {
+        return sprintf('/%s%s', $this->getVersion(), $uri);
     }
 }

@@ -29,7 +29,6 @@ class ReportingCloud extends AbstractReportingCloud
     use GetTrait;
     use PostTrait;
     use PutTrait;
-    use UtilityTrait;
 
     /**
      * Constructor Method

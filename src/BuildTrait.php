@@ -14,12 +14,12 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\DocumentSettings as DocumentSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
+use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Trait BuildTrait
