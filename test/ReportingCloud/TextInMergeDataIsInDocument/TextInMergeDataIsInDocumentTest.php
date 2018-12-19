@@ -4,8 +4,8 @@ namespace TxTextControlTest\ReportingCloud\TextInMergeDataIsInDocument;
 
 use PHPUnit\Framework\TestCase;
 use Smalot\PdfParser\Parser as PdfParser;
-use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 use TxTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 class TextInMergeDataIsInDocumentTest extends TestCase
 {
@@ -23,6 +23,13 @@ class TextInMergeDataIsInDocumentTest extends TestCase
 
     public function testTextInMergeDataIsInDocument()
     {
+        if (version_compare(phpversion(), '7.2.0', '>=')) {
+            $format  = '%s does not work as expected in PHP 7.2 and newer';
+            $message = sprintf($format, PdfParser::class);
+            $this->markTestSkipped($message);
+            return;
+        }
+
         $fileTypes = [
             'TX',
             'DOCX',
