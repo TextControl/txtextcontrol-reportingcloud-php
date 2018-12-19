@@ -25,7 +25,7 @@ Learn more about ReportingCloud at:
 
 ## NEW: ReportingCloud PHP Wrapper 2.0
 
-On December ??, 2018, the ReportingCloud PHP wrapper 2.0 was released.
+On December 19, 2018, the ReportingCloud PHP wrapper 2.0 was released.
 
 For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md).
 

@@ -4,7 +4,7 @@
 
 ## dev-master
 
-## 2.0.0 - 2018-12-??
+## 2.0.0 - 2018-12-19
 
 For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md).
 
