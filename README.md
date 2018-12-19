@@ -23,7 +23,7 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud PHP wrapper support](https://support.textcontrol.com/new-ticket)
 
-## NEW: ReportingCloud PHP wrapper 2
+## NEW: ReportingCloud PHP wrapper 2.0
 
 On December ??, 2018, ReportingCloud PHP wrapper 2.0 was released.
 
