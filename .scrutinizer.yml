@@ -22,3 +22,25 @@ build:
                         coverage:
                             file: build/phpunit/clover.xml
                             format: php-clover
+        php72:
+            environment:
+                php: '7.2'
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    -
+                        command: composer test
+                        coverage:
+                            file: build/phpunit/clover.xml
+                            format: php-clover
+        php73:
+            environment:
+                php: '7.3'
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    -
+                        command: composer test
+                        coverage:
+                            file: build/phpunit/clover.xml
+                            format: php-clover
