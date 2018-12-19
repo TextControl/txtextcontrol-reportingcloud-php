@@ -51,7 +51,7 @@ It is bad practice to place magic numbers in program code, and that goes for HTT
 
 ### Moved String, Array and Console Utilities to New Component
 
-Common functionality for handling strings, array and console interactions has been abstracted to a new component called `TxTextControl\ReportingCloud\Stdlib\ConsoleUtils`.
+Common functionality for handling strings, array and console interactions has been abstracted to a new component called `TxTextControl\ReportingCloud\Stdlib`.
 
 ### Updated to PHPUnit 7.5
 
