@@ -53,9 +53,9 @@ class ConsoleUtils extends AbstractStdlib
         $key = self::API_KEY;
 
         if (defined($key)) {
-            $value = constant($key);
+            $value = (string) constant($key);
         } else {
-            $value = getenv($key);
+            $value = (string) getenv($key);
         }
 
         $value = trim($value);
