@@ -45,9 +45,13 @@ Besides running faster than previous versions, PHP 7.1 offers [new features](htt
 
 The ReportingCloud PHP wrapper 2.0 takes advantage of these new features to make the code shorter, securer and robuster.
 
-### Moved all HTTP Response Codes to New Component
+### Moved All HTTP Response Codes to New Component
 
 It is bad practice to place magic numbers in program code, and that goes for HTTP response codes too. In the ReportingCloud PHP wrapper 2.0, all HTTP response codes, which are checked following every interaction with the backend server, have been abstracted to constants in `TxTextControl\ReportingCloud\StatusCode\StatusCode`. These constants are then used in the main program code.
+
+### Moved String, Array and Console Utilities to New Component
+
+Common functionality for handling strings, array and console interactions have been abstracted to a new component called `TxTextControl\ReportingCloud\Stdlib\ConsoleUtils`.
 
 ### Updated to PHPUnit 7.5
 
