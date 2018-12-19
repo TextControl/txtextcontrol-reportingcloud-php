@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use TxTextControl\ReportingCloud\Console\Helper;
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 $autoloadFilename = function () {
 
@@ -29,8 +29,8 @@ $autoloadFilename = function () {
 
 include $autoloadFilename();
 
-if (!Helper::checkCredentials()) {
-    echo Helper::errorMessage();
+if (!ConsoleUtils::checkCredentials()) {
+    echo ConsoleUtils::errorMessage();
     die(1);
 }
 

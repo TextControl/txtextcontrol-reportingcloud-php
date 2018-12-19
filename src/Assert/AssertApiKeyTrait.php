@@ -47,14 +47,17 @@ trait AssertApiKeyTrait
      */
     public static function assertApiKey(string $value, string $message = '')
     {
-        $length = strlen($value);
+        $len = strlen($value);
 
         $format  = 'Length of API key (%s) must be in the range [%2$s..%3$s]';
-        $message = sprintf($message ?: $format,
-                           self::valueToString($value),
-                           self::valueToString(self::$apiKeyMinLength),
-                           self::valueToString(self::$apiKeyMaxLength));
+        $message = sprintf(
+            $message ?:
+            $format,
+            self::valueToString($value),
+            self::valueToString(self::$apiKeyMinLength),
+            self::valueToString(self::$apiKeyMaxLength)
+        );
 
-        return self::range($length, self::$apiKeyMinLength, self::$apiKeyMaxLength, $message);
+        return self::range($len, self::$apiKeyMinLength, self::$apiKeyMaxLength, $message);
     }
 }

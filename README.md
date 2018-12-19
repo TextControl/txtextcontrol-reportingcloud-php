@@ -10,10 +10,10 @@
 This is the official PHP wrapper for ReportingCloud Web API. It is authored and supported by [Text Control GmbH](http://www.textcontrol.com).
 
 Learn more about ReportingCloud at:
- 
+
 * [ReportingCloud web site](https://www.reporting.cloud/)
- 
-* [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here  
+
+* [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here
 
 * [ReportingCloud Web API documentation](https://portal.reporting.cloud/Documentation/Reference/)
 
@@ -23,6 +23,11 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud PHP wrapper support](https://support.textcontrol.com/new-ticket)
 
+## NEW: ReportingCloud PHP wrapper 2
+
+On December ??, 2018, ReportingCloud PHP wrapper 2 was released.
+
+For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md).
 
 ## Minimum Requirements
 
@@ -30,9 +35,9 @@ The ReportingCloud PHP wrapper requires **PHP 7.1** or newer.
 
 All versions of PHPs prior to 7.1 have reached [end-of-life](http://php.net/eol.php) and consequently, no further security updates will be released for them. If your application is running in an older environment, it is highly advisable to update to a more current version of PHP.
 
-If you are unable or unwilling to update your PHP installation, it is possible to use ReportingCloud by directly accessing the [Web API](https://portal.reporting.cloud/Documentation/Reference/) without using this wrapper. In such cases, it is advisable to use the [curl](http://php.net/manual/en/book.curl.php) extension to make the API calls.
+If you are unable or unwilling to update your PHP installation, you may consider using the ReportingCloud PHP wrapper 1.0, which supports PHP 5.6. Please note, however, this version is no longer maintained.
 
-Alternatively, take a you may consider using the ReportingCloud PHP wrapper 1.0, which supports PHP 5.6. Note, this version is no longer supported.
+Alternatively, it possible to use ReportingCloud by directly accessing the [Web API](https://portal.reporting.cloud/Documentation/Reference/). In such cases, it is advisable to use the [curl](http://php.net/manual/en/book.curl.php) extension to make the API calls.
 
 
 ## Install Using Composer
@@ -86,11 +91,8 @@ Note, these instructions apply only to the demo scripts and phpunit tests. When 
 As mentioned above, the ReportingCloud PHP wrapper ships with a number of sample applications (see directory `/demo`). These samples applications, which are well commented, have been written to demonstrate all parts of ReportingCloud.
 
 We are currently working on comprehensive documentation for the ReportingCloud PHP wrapper, which will be published in the `/doc` directory, as and when it becomes available. In the meantime, please review the [Text Control Blog](https://www.textcontrol.com/blog/tag/reportingcloud/2018/), which contains many articles about ReportingCloud.
- 
- 
+
+
  ## Getting Support
- 
+
  The official PHP wrapper for ReportingCloud Web API is supported by Text Control GmbH. To start a conversation with the PHP people in the ReportingCloud Support Department, please [create a ticket](https://support.textcontrol.com/new-ticket), selecting _ReportingCloud_ from the department selection list.
- 
- 
- 

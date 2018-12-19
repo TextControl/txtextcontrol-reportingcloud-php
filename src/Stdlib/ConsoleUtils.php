@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @copyright © 2019 Text Control GmbH
  */
 
-namespace TxTextControl\ReportingCloud\Console;
+namespace TxTextControl\ReportingCloud\Stdlib;
 
 /**
  * ReportingCloud console helper (used only for tests and demos)
@@ -20,8 +20,15 @@ namespace TxTextControl\ReportingCloud\Console;
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class Helper extends AbstractHelper
+class ConsoleUtils extends AbstractStdlib
 {
+    /**
+     * Name of PHP constant or environmental variable storing API key
+     *
+     * @const REPORTING_CLOUD_API_KEY
+     */
+    private const API_KEY = 'REPORTING_CLOUD_API_KEY';
+
     /**
      * Check that either the API key has been defined in environment variables
      *
@@ -37,39 +44,27 @@ class Helper extends AbstractHelper
     }
 
     /**
-     * Return the value of the PHP constant or environmental variable
-     *
-     * @param string $variable Variable
-     *
-     * @return string|null
-     */
-    protected static function variable(string $variable): ?string
-    {
-        $ret = null;
-
-        if (defined($variable)) {
-            $value = constant($variable);
-        } else {
-            $value = getenv($variable);
-        }
-
-        $value = trim($value);
-
-        if (strlen($value) > 0) {
-            $ret = $value;
-        }
-
-        return $ret;
-    }
-
-    /**
-     * Return the ReportingCloud API key
+     * Return the ReportingCloud API key from a PHP constant or environmental variable
      *
      * @return string|null
      */
     public static function apiKey(): ?string
     {
-        return self::variable(self::API_KEY);
+        $key = self::API_KEY;
+
+        if (defined($key)) {
+            $value = constant($key);
+        } else {
+            $value = getenv($key);
+        }
+
+        $value = trim($value);
+
+        if (!empty($value)) {
+            return $value;
+        }
+
+        return null;
     }
 
     /**
@@ -79,34 +74,48 @@ class Helper extends AbstractHelper
      */
     public static function errorMessage(): string
     {
-        $ret
-            = <<<END
+        $format
+                  = <<<END
 
 Error: ReportingCloud API key not defined.
 
-In order to execute this script, you must first set your ReportingCloud
-API key.
+In order to execute %s, you must first set your ReportingCloud API key.
 
 There are two ways in which you can do this:
 
 1) Define the following PHP constant:
 
-    define('REPORTING_CLOUD_API_KEY', 'your-api-key');
+    define('%s', '%s');
 
 2) Set environmental variable (for example in .bashrc)
     
-    export REPORTING_CLOUD_API_KEY='your-api-key'
+    export %s='%s'
 
-Note, these instructions apply only to the demo scripts and phpunit tests.
-When you use ReportingCloud in your application, set credentials in your
-constructor or using the setApiKey(\$apiKey). For an example, see 
-'/demo/instantiation.php'.
+Note, these instructions apply only to the demo scripts and phpunit tests. 
+When you use ReportingCloud in your application, set credentials in your constructor 
+or using the setApiKey(\$apiKey). For an example, see '/demo/instantiation.php'.
 
 For further assistance and customer service please refer to:
 
     https://www.reporting.cloud
 
 END;
+        $filename = $_SERVER['argv'][0] ?? '';
+        $filename = realpath($filename);
+
+        if (empty($filename)) {
+            $name = 'this script';
+        } else {
+            $base = realpath(__DIR__ . '/../../');
+            $file = str_replace($base, '', $filename);
+            $name = sprintf("'%s'", $file);
+        }
+
+        $key   = self::API_KEY;
+        $value = 'your-api-key';
+
+        $ret = sprintf($format, $name, $key, $value, $key, $value);
+        $ret = wordwrap($ret, 80);
 
         return $ret;
     }

@@ -4,15 +4,18 @@
 
 ## dev-master
 
-## 2.0 - 2018-12-??
+## 2.0.0 - 2018-12-??
 
-For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
+For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md).
 
-* Stripped out all Zend Framework 3 dependencies.
+* Removed all Zend Framework 3 dependencies.
 * Set the minimum PHP version to 7.1.
 * Added strict typing to all files.
 * Upgraded to PHPUnit 7.5.
-* Abstracted magic number HTTP codes to `TxTextControl\ReportingCloud\StatusCode\StatusCode`.
+* Abstracted (magic number) HTTP codes to `TxTextControl\ReportingCloud\StatusCode\StatusCode`.
+* Abstracted string utilities to `TxTextControl\ReportingCloud\Stdlib\StringUtils`.
+* Abstracted array utilities to `TxTextControl\ReportingCloud\Stdlib\ArrayUtils`.
+* Abstracted console utilities to `TxTextControl\ReportingCloud\Stdlib\ConsoleUtils`.
 
 ## 1.9.1 - 2018-10-23
 
@@ -138,7 +141,7 @@ For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
 
 ## 1.0.10 - 2016-07-20
 
-* Moved orphaned helper functions (`reporting_cloud_*`) to helper class `TxTextControl\ReportingCloud\Console\Helper`.
+* Moved orphaned helper functions (`reporting_cloud_*`) to helper class `TxTextControl\ReportingCloud\Stdlib\ConsoleUtils`.
 
 ## 1.0.9 - 2016-07-18
 

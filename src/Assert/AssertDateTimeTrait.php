@@ -63,7 +63,9 @@ trait AssertDateTimeTrait
             }
         } catch (Exception $e) {
             $format  = 'Internal error validating %s - %s';
-            $message = sprintf($message ?: $format,
+            $message = sprintf(
+                $message ?:
+                $format,
                 self::valueToString($value),
                 self::valueToString($e->getMessage())
             );

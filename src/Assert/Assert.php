@@ -57,5 +57,4 @@ class Assert extends AbstractAssert
     {
         throw new InvalidArgumentException($message);
     }
-
 }

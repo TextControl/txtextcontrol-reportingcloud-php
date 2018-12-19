@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 include_once 'bootstrap.php';
 
-use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 $imageFilename       = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_template_image.jpg';
 $sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_template_image.docx';
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_template_image_merged.pdf';
 
 $reportingCloud = new ReportingCloud([
-    'api_key' => Helper::apiKey(),
+    'api_key' => ConsoleUtils::apiKey(),
     'test'    => true,
 ]);
 

@@ -7,7 +7,7 @@ use GuzzleHttp\Exception\ClientException;
 use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\TestCase;
 use TxTextControl\ReportingCloud\Assert\Assert;
-use TxTextControl\ReportingCloud\Console\Helper;
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
@@ -20,9 +20,9 @@ class ReportingCloudTest extends TestCase
     {
         $this->reportingCloud = new ReportingCloud();
 
-        $this->assertNotEmpty(Helper::apiKey());
+        $this->assertNotEmpty(ConsoleUtils::apiKey());
 
-        $this->reportingCloud->setApiKey(Helper::apiKey());
+        $this->reportingCloud->setApiKey(ConsoleUtils::apiKey());
     }
 
     /**
@@ -1224,7 +1224,7 @@ class ReportingCloudTest extends TestCase
         $apiKeys = $this->reportingCloud->getApiKeys();
         if (is_array($apiKeys)) {
             foreach ($apiKeys as $apiKey) {
-                if ($apiKey['key'] == Helper::apiKey()) {
+                if ($apiKey['key'] == ConsoleUtils::apiKey()) {
                     continue;
                 }
                 $this->assertArrayHasKey('key', $apiKey);
@@ -1242,7 +1242,7 @@ class ReportingCloudTest extends TestCase
         $this->assertArrayHasKey('key', $apiKeys[0]);
         $this->assertArrayHasKey('active', $apiKeys[0]);
 
-        $this->assertEquals(Helper::apiKey(), $apiKeys[0]['key']);
+        $this->assertEquals(ConsoleUtils::apiKey(), $apiKeys[0]['key']);
         $this->assertTrue($apiKeys[0]['active']);
     }
 }

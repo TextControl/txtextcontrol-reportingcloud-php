@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 include_once 'bootstrap.php';
 
-use TxTextControl\ReportingCloud\Console\Helper;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 // ---------------------------------------------------------------------------------------------------------------------

@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use TxTextControl\ReportingCloud\Assert\Assert;
-
 /**
  * Class ReportingCloud
  *
@@ -42,26 +40,23 @@ class ReportingCloud extends AbstractReportingCloud
      */
     public function __construct(?array $options = null)
     {
-        if (null === $options) {
-            return;
-        }
+        if (is_array($options)) {
 
-        Assert::isArray($options);
+            $methods = [
+                'api_key'  => 'setApiKey',
+                'base_uri' => 'setBaseUri',
+                'debug'    => 'setDebug',
+                'password' => 'setPassword',
+                'test'     => 'setTest',
+                'timeout'  => 'setTimeout',
+                'username' => 'setUsername',
+                'version'  => 'setVersion',
+            ];
 
-        $methods = [
-            'api_key'  => 'setApiKey',
-            'base_uri' => 'setBaseUri',
-            'debug'    => 'setDebug',
-            'password' => 'setPassword',
-            'test'     => 'setTest',
-            'timeout'  => 'setTimeout',
-            'username' => 'setUsername',
-            'version'  => 'setVersion',
-        ];
-
-        foreach ($methods as $key => $method) {
-            if (array_key_exists($key, $options)) {
-                $this->$method($options[$key]);
+            foreach ($methods as $key => $method) {
+                if (array_key_exists($key, $options)) {
+                    $this->$method($options[$key]);
+                }
             }
         }
     }

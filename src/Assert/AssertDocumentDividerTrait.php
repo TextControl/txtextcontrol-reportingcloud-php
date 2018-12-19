@@ -17,6 +17,7 @@ namespace TxTextControl\ReportingCloud\Assert;
 use ReflectionClass;
 use ReflectionException;
 use TxTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Trait DocumentDividerTrait
@@ -42,7 +43,7 @@ trait AssertDocumentDividerTrait
             $reportingCloud  = new ReportingCloud();
             $reflectionClass = new ReflectionClass($reportingCloud);
             foreach ($reflectionClass->getConstants() as $constantKey => $constantValue) {
-                if (0 === strpos($constantKey, 'DOCUMENT_DIVIDER_')) {
+                if (StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_')) {
                     $haystack[] = $constantValue;
                 }
             }
