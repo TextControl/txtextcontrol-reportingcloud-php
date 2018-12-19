@@ -55,4 +55,4 @@ Common functionality for handling strings, array and console interactions has be
 
 ### Updated to PHPUnit 7.5
 
-The ReportingCloud PHP wrapper has 100% test coverage, powered by PHPUnit. In version 2.0, we upgraded all unit tests to PHPUnit 7.5.
+The ReportingCloud PHP wrapper has 100% test coverage, powered by PHPUnit. In version 2.0, we upgraded all unit tests to PHPUnit 7.5. We have tested in PHP 7.1, PHP 7.2 and PHP 7.3.

@@ -16,6 +16,7 @@ For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
 * Abstracted string utilities to `TxTextControl\ReportingCloud\Stdlib\StringUtils`.
 * Abstracted array utilities to `TxTextControl\ReportingCloud\Stdlib\ArrayUtils`.
 * Abstracted console utilities to `TxTextControl\ReportingCloud\Stdlib\ConsoleUtils`.
+* Tested in PHP 7.1, PHP 7.2 and PHP 7.3.
 
 ## 1.9.1 - 2018-10-23
 
@@ -43,7 +44,7 @@ For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
 ## 1.6.1 - 2018-01-19
 
 * Updated phpunit configuration.
-* Added PDF/A return format `PDFA` to `TxTextControl\ReportingCloud\Validator\ReturnFormat`. 
+* Added PDF/A return format `PDFA` to `TxTextControl\ReportingCloud\Validator\ReturnFormat`.
 
 ## 1.6.0 - 2018-01-14
 
@@ -84,7 +85,7 @@ For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
     * `max_proofing_transactions`
 * Refactored `Validator` unit tests.
 * Added script to download and build _available dictionaries_ resource file.
- 
+
 ## 1.3.4 - 2017-08-22
 
 * Implemented the `mergeSettings` option `merge_html`.
@@ -93,7 +94,7 @@ For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
 
 ## 1.3.3 - 2017-05-02
 
-* Simplification of auto-loading for files in `/bin`, `/demo` and `/test`.  
+* Simplification of auto-loading for files in `/bin`, `/demo` and `/test`.
 
 ## 1.3.2 - 2017-05-02
 
@@ -107,11 +108,11 @@ For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
 
 ## 1.3.0 - 2017-04-05
 
-* Implemented end-point `/v1/fonts/list`. 
+* Implemented end-point `/v1/fonts/list`.
 
 ## 1.2.0 - 2017-02-25
 
-* Updated `zendframework/zend-servicemanager` to `^3.2`. 
+* Updated `zendframework/zend-servicemanager` to `^3.2`.
 * Added an image merging `mergeDocument()` demo.
 * Added script to `/bin` directory that reports on the environment in which it is running.
 * Added a basic `mergeDocument()` demo.
@@ -132,7 +133,7 @@ For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
 
 ## 1.0.12 - 2016-08-30
 
-* Implemented end-point `/v1/templates/info`. 
+* Implemented end-point `/v1/templates/info`.
 
 ## 1.0.11 - 2016-08-16
 
@@ -152,7 +153,7 @@ For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md)
 ## 1.0.8 - 2016-06-21
 
 * Switched protocol from HTTP to HTTPS for all communication with the backend, now the backend supports it.
-* Abstracted all parameter validation to `TxTextControl\ReportingCloud\Validator\StaticValidator` 
+* Abstracted all parameter validation to `TxTextControl\ReportingCloud\Validator\StaticValidator`
 * Made `TxTextControl\ReportingCloud\Validator` properties consistent.
 
 ## 1.0.7 - 2016-06-08
