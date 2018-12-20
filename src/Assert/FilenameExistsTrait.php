@@ -34,14 +34,14 @@ trait FilenameExistsTrait
     public static function filenameExists(string $value, string $message = '')
     {
         if ($value !== realpath($value)) {
-            $format  = '%s must contain the absolute path and file';
-            $message = sprintf($message ?: $format, self::valueToString($value));
+            $format  = $message ?: '%s must contain the absolute path and file';
+            $message = sprintf($format, self::valueToString($value));
             self::reportInvalidArgument($message);
         }
 
         if (!is_file($value)) {
-            $format  = '%s is not a regular file';
-            $message = sprintf($message ?: $format, self::valueToString($value));
+            $format  = $message ?: '%s is not a regular file';
+            $message = sprintf($format, self::valueToString($value));
             self::reportInvalidArgument($message);
         }
 

@@ -47,8 +47,8 @@ trait AssertTemplateNameTrait
     public static function assertTemplateName(string $value, string $message = '')
     {
         if (basename($value) != $value) {
-            $format  = "%s contains path information ('/', '.', or '..')";
-            $message = sprintf($message ?: $format, self::valueToString($value));
+            $format  = $message ?: "%s contains path information ('/', '.', or '..')";
+            $message = sprintf($format, self::valueToString($value));
             self::reportInvalidArgument($message);
         }
 
@@ -57,8 +57,8 @@ trait AssertTemplateNameTrait
         try {
             self::assertTemplateFormat($extension);
         } catch (InvalidArgumentException $e) {
-            $format  = "%s contains an unsupported file extension";
-            $message = sprintf($message ?: $format, self::valueToString($value));
+            $format  = $message ?: "%s contains an unsupported file extension";
+            $message = sprintf($format, self::valueToString($value));
             self::reportInvalidArgument($message);
         }
 

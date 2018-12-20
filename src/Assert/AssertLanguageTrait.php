@@ -34,8 +34,8 @@ trait AssertLanguageTrait
     public static function assertLanguage(string $value, string $message = '')
     {
         $haystack = include self::getDictionariesFilename();
-        $format   = '%s contains an unsupported language';
-        $message  = sprintf($message ?: $format, self::valueToString($value));
+        $format   = $message ?: '%s contains an unsupported language';
+        $message  = sprintf($format, self::valueToString($value));
 
         return self::oneOf($value, $haystack, $message);
     }

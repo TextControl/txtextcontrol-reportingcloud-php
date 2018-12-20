@@ -36,8 +36,8 @@ trait AssertTemplateExtensionTrait
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = strtoupper($extension);
 
-        $format  = '%s contains an unsupported template format file extension';
-        $message = sprintf($message ?: $format, self::valueToString($value));
+        $format  = $message ?: '%s contains an unsupported template format file extension';
+        $message = sprintf($format, self::valueToString($value));
 
         return self::oneOf($extension, self::getTemplateFormats(), $message);
     }

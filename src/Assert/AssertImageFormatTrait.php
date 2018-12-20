@@ -34,8 +34,8 @@ trait AssertImageFormatTrait
     public static function assertImageFormat(string $value, string $message = '')
     {
         $ucValue = strtoupper($value);
-        $format  = '%s contains an unsupported image format file extension';
-        $message = sprintf($message ?: $format, self::valueToString($value));
+        $format  = $message ?: '%s contains an unsupported image format file extension';
+        $message = sprintf($format, self::valueToString($value));
 
         return self::oneOf($ucValue, self::getImageFormats(), $message);
     }

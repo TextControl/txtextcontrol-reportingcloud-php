@@ -41,30 +41,29 @@ trait AssertDateTimeTrait
         $timeZone   = ReportingCloud::DEFAULT_TIME_ZONE;
         $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
 
-        $dateTimeZone = new DateTimeZone($timeZone);
-
         if (self::getDateTimeLength() !== strlen($value)) {
-            $format  = '%s has an invalid number of characters in it';
-            $message = sprintf($message ?: $format, self::valueToString($value));
+            $format  = $message ?: '%s has an invalid number of characters in it';
+            $message = sprintf($format, self::valueToString($value));
             self::reportInvalidArgument($message);
         }
+
+        $dateTimeZone = new DateTimeZone($timeZone);
 
         try {
             $dateTime = DateTime::createFromFormat($dateFormat, $value, $dateTimeZone);
             if (!$dateTime) {
-                $format  = '%s is syntactically invalid';
-                $message = sprintf($message ?: $format, self::valueToString($value));
+                $format  = $message ?: '%s is syntactically invalid';
+                $message = sprintf($format, self::valueToString($value));
                 self::reportInvalidArgument($message);
             }
             if (0 !== $dateTime->getOffset()) {
-                $format  = '%s has an invalid offset';
-                $message = sprintf($message ?: $format, self::valueToString($value));
+                $format  = $message ?: '%s has an invalid offset';
+                $message = sprintf($format, self::valueToString($value));
                 self::reportInvalidArgument($message);
             }
         } catch (Exception $e) {
-            $format  = 'Internal error validating %s - %s';
+            $format  = $message ?: 'Internal error validating %s - %s';
             $message = sprintf(
-                $message ?:
                 $format,
                 self::valueToString($value),
                 self::valueToString($e->getMessage())

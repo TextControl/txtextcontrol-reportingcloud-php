@@ -34,8 +34,8 @@ trait AssertCultureTrait
     public static function assertCulture(string $value, string $message = '')
     {
         $haystack = include self::getCulturesFilename();
-        $format   = '%s contains an unsupported culture';
-        $message  = sprintf($message ?: $format, self::valueToString($value));
+        $format  = $message ?: '%s contains an unsupported culture';
+        $message  = sprintf($format, self::valueToString($value));
 
         return self::oneOf($value, $haystack, $message);
     }
