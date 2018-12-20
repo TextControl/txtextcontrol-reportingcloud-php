@@ -4,6 +4,10 @@
 
 ## dev-master
 
+## 2.0.1 - 2018-12-20
+
+* Minor refactoring and code formatting.
+
 ## 2.0.0 - 2018-12-19
 
 For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md).
