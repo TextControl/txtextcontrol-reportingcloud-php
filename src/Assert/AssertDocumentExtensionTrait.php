@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
+use TxTextControl\ReportingCloud\ReportingCloud;
+
 /**
  * Trait AssertDocumentExtensionTrait
  *
@@ -39,6 +41,6 @@ trait AssertDocumentExtensionTrait
         $format  = $message ?: '%s contains an unsupported document format file extension';
         $message = sprintf($format, self::valueToString($value));
 
-        return self::oneOf($extension, self::getDocumentFormats(), $message);
+        return self::oneOf($extension, ReportingCloud::FILE_FORMATS_DOCUMENT, $message);
     }
 }

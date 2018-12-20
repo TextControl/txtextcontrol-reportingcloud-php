@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
+use TxTextControl\ReportingCloud\ReportingCloud;
+
 /**
  * Trait AssertImageFormatTrait
  *
@@ -37,6 +39,6 @@ trait AssertImageFormatTrait
         $format  = $message ?: '%s contains an unsupported image format file extension';
         $message = sprintf($format, self::valueToString($value));
 
-        return self::oneOf($ucValue, self::getImageFormats(), $message);
+        return self::oneOf($ucValue, ReportingCloud::FILE_FORMATS_IMAGE, $message);
     }
 }

@@ -28,10 +28,7 @@ class ReportingCloud extends AbstractReportingCloud
     use PostTrait;
     use PutTrait;
 
-    /**
-     * Constructor Method
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // <editor-fold desc="Methods">
 
     /**
      * ReportingCloud constructor
@@ -60,4 +57,6 @@ class ReportingCloud extends AbstractReportingCloud
             }
         }
     }
+
+    // </editor-fold>
 }

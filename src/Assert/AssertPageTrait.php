@@ -30,7 +30,7 @@ trait AssertPageTrait
     private static $pageMin = 1;
 
     /**
-     * Maximum page number
+     * Maximum page number (PHP_INT_MAX)
      *
      * @var int
      */

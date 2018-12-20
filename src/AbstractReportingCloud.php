@@ -30,10 +30,7 @@ use TxTextControl\ReportingCloud\Filter\Filter;
  */
 abstract class AbstractReportingCloud
 {
-    /**
-     * Constants
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // <editor-fold desc="Constants (default values)">
 
     /**
      * Default date/time format of backend is 'ISO 8601'
@@ -91,10 +88,9 @@ abstract class AbstractReportingCloud
      */
     protected const DEFAULT_DEBUG = false;
 
-    /**
-     * Constants (ReportingCloud values)
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // </editor-fold>
+
+    // <editor-fold desc="Constants (document dividers)">
 
     /**
      * Document divider - none
@@ -111,31 +107,83 @@ abstract class AbstractReportingCloud
      */
     public const DOCUMENT_DIVIDER_NEW_SECTION = 3;
 
+    // </editor-fold>
+
+    // <editor-fold desc="Constants (file formats)">
+
     /**
-     * Properties
-     * -----------------------------------------------------------------------------------------------------------------
+     * Image file formats
      */
+    public const FILE_FORMATS_IMAGE
+        = [
+            'BMP',
+            'GIF',
+            'JPG',
+            'PNG',
+        ];
+
+    /**
+     * Template file formats
+     */
+    public const FILE_FORMATS_TEMPLATE
+        = [
+            'DOC',
+            'DOCX',
+            'RTF',
+            'TX',
+        ];
+
+    /**
+     * Document file formats
+     */
+    public const FILE_FORMATS_DOCUMENT
+        = [
+            'DOC',
+            'DOCX',
+            'HTML',
+            'PDF',
+            'RTF',
+            'TX',
+        ];
+
+    /**
+     * Return file formats
+     */
+    public const FILE_FORMATS_RETURN
+        = [
+            'DOC',
+            'DOCX',
+            'HTML',
+            'PDF',
+            'PDFA',
+            'RTF',
+            'TX',
+        ];
+
+    // </editor-fold>
+
+    // <editor-fold desc="Properties">
 
     /**
      * Backend API key
      *
      * @var string|null
      */
-    protected $apiKey;
+    private $apiKey;
 
     /**
      * Backend username
      *
      * @var string|null
      */
-    protected $username;
+    private $username;
 
     /**
      * Backend password
      *
      * @var string|null
      */
-    protected $password;
+    private $password;
 
     /**
      * When true, API call does not count against quota
@@ -143,47 +191,46 @@ abstract class AbstractReportingCloud
      *
      * @var bool|null
      */
-    protected $test;
+    private $test;
 
     /**
      * Backend base URI
      *
      * @var string|null
      */
-    protected $baseUri;
+    private $baseUri;
 
     /**
      * Backend version string
      *
      * @var string|null
      */
-    protected $version;
+    private $version;
 
     /**
      * Backend timeout in seconds
      *
      * @var int|null
      */
-    protected $timeout;
-
-    /**
-     * REST client to backend
-     *
-     * @var Client|null
-     */
-    protected $client;
+    private $timeout;
 
     /**
      * Debug flag of REST client
      *
      * @var bool|null
      */
-    protected $debug;
+    private $debug;
 
     /**
-     * Set and Get Methods
-     * -----------------------------------------------------------------------------------------------------------------
+     * REST client to backend
+     *
+     * @var Client|null
      */
+    private $client;
+
+    // </editor-fold>
+
+    // <editor-fold desc="Methods">
 
     /**
      * Return the API key
@@ -406,29 +453,15 @@ abstract class AbstractReportingCloud
     {
         if (!$this->client instanceof Client) {
 
-            $authorization = function () {
-
-                if (!empty($this->getApiKey())) {
-                    return sprintf('ReportingCloud-APIKey %s', $this->getApiKey());
-                }
-
-                if (!empty($this->getUsername()) && !empty($this->getPassword())) {
-                    $value = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
-
-                    return sprintf('Basic %s', base64_encode($value));
-                }
-
-                $message = 'Either the API key, or username and password must be set for authorization';
-                throw new InvalidArgumentException($message);
-            };
+            $headers = [
+                'Authorization' => $this->getAuthorizationHeader()
+            ];
 
             $options = [
                 'base_uri'              => $this->getBaseUri(),
                 RequestOptions::TIMEOUT => $this->getTimeout(),
                 RequestOptions::DEBUG   => $this->getDebug(),
-                RequestOptions::HEADERS => [
-                    'Authorization' => $authorization(),
-                ],
+                RequestOptions::HEADERS => $headers,
             ];
 
             $client = new Client($options);
@@ -492,4 +525,27 @@ abstract class AbstractReportingCloud
     {
         return sprintf('/%s%s', $this->getVersion(), $uri);
     }
+
+    /**
+     * Return Authorization Header, with either API key or username and password
+     *
+     * @return string
+     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     */
+    private function getAuthorizationHeader(): string
+    {
+        if (!empty($this->getApiKey())) {
+            return sprintf('ReportingCloud-APIKey %s', $this->getApiKey());
+        }
+
+        if (!empty($this->getUsername()) && !empty($this->getPassword())) {
+            $value = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
+            return sprintf('Basic %s', base64_encode($value));
+        }
+
+        $message = 'Either the API key, or username and password must be set for authorization';
+        throw new InvalidArgumentException($message);
+    }
+
+    // </editor-fold>
 }

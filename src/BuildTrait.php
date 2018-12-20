@@ -29,10 +29,7 @@ use TxTextControl\ReportingCloud\Stdlib\StringUtils;
  */
 trait BuildTrait
 {
-    /**
-     * Build Methods
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // <editor-fold desc="Methods">
 
     /**
      * Using the passed propertyMap, recursively build array
@@ -182,4 +179,6 @@ trait BuildTrait
 
         return $ret;
     }
+
+    // </editor-fold>
 }

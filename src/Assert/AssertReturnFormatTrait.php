@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
+use TxTextControl\ReportingCloud\ReportingCloud;
+
 /**
  * Trait AssertReturnFormatTrait
  *
@@ -38,6 +40,6 @@ trait AssertReturnFormatTrait
         $format  = $message ?: '%s contains an unsupported return format file extension';
         $message = sprintf($format, self::valueToString($value));
 
-        return self::oneOf($ucValue, self::getReturnFormats(), $message);
+        return self::oneOf($ucValue, ReportingCloud::FILE_FORMATS_RETURN, $message);
     }
 }

@@ -29,10 +29,7 @@ use TxTextControl\ReportingCloud\StatusCode\StatusCode;
  */
 trait PostTrait
 {
-    /**
-     * Abstract Methods
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // <editor-fold desc="Abstract methods">
 
     /**
      * Construct URI with version number
@@ -101,10 +98,9 @@ trait PostTrait
      */
     abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
 
-    /**
-     * POST Methods
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // </editor-fold>
+
+    // <editor-fold desc="Methods">
 
     /**
      * Upload a base64 encoded template to template storage
@@ -358,4 +354,6 @@ trait PostTrait
 
         return $ret;
     }
+
+    // </editor-fold>
 }

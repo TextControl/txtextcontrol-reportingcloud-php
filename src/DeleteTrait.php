@@ -27,10 +27,7 @@ use TxTextControl\ReportingCloud\StatusCode\StatusCode;
  */
 trait DeleteTrait
 {
-    /**
-     * Abstract Methods
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // <editor-fold desc="Abstract methods">
 
     /**
      * Construct URI with version number
@@ -53,10 +50,9 @@ trait DeleteTrait
      */
     abstract protected function request(string $method, string $uri, array $options): Response;
 
-    /**
-     * DELETE Methods
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // </editor-fold>
+
+    // <editor-fold desc="Methods">
 
     /**
      * Delete an API key
@@ -127,4 +123,6 @@ trait DeleteTrait
 
         return $ret;
     }
+
+    // </editor-fold>
 }

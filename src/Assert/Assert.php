@@ -40,7 +40,6 @@ class Assert extends AbstractAssert
     use AssertTimestampTrait;
     use AssertZoomFactorTrait;
     use FilenameExistsTrait;
-    use FileFormatsTrait;
 
     /**
      * Customized version of parent::reportInvalidArgument to throw

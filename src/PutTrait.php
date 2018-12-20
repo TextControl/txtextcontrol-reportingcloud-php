@@ -27,10 +27,7 @@ use TxTextControl\ReportingCloud\StatusCode\StatusCode;
  */
 trait PutTrait
 {
-    /**
-     * Abstract Methods
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // <editor-fold desc="Abstract methods">
 
     /**
      * Construct URI with version number
@@ -63,10 +60,9 @@ trait PutTrait
      */
     abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
 
-    /**
-     * PUT Methods
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // </editor-fold>
+
+    // <editor-fold desc="Methods">
 
     /**
      * Create an API key
@@ -110,4 +106,6 @@ trait PutTrait
 
         return $ret;
     }
+
+    // </editor-fold>
 }

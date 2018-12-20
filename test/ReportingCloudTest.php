@@ -693,7 +693,7 @@ class ReportingCloudTest extends TestCase
 
     public function testMergeDocumentWithTemplateName()
     {
-        $returnFormats = Assert::getReturnFormats();
+        $returnFormats = ReportingCloud::FILE_FORMATS_RETURN;
 
         $mergeData     = $this->getTestTemplateMergeData();
         $mergeSettings = $this->getTestMergeSettings();
@@ -742,7 +742,7 @@ class ReportingCloudTest extends TestCase
 
     public function testMergeDocumentWithTemplateFilename()
     {
-        $returnFormats = Assert::getReturnFormats();
+        $returnFormats = ReportingCloud::FILE_FORMATS_RETURN;
 
         $mergeData     = $this->getTestTemplateMergeData();
         $mergeSettings = $this->getTestMergeSettings();
@@ -913,7 +913,7 @@ class ReportingCloudTest extends TestCase
 
     public function testFindAndReplaceDocumentWithTemplateName()
     {
-        $returnFormats = Assert::getReturnFormats();
+        $returnFormats = ReportingCloud::FILE_FORMATS_RETURN;
 
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();
@@ -956,7 +956,7 @@ class ReportingCloudTest extends TestCase
 
     public function testFindAndReplaceDocumentWithTemplateFilename()
     {
-        $returnFormats = Assert::getReturnFormats();
+        $returnFormats = ReportingCloud::FILE_FORMATS_RETURN;
 
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();

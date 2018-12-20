@@ -34,10 +34,7 @@ use TxTextControl\ReportingCloud\StatusCode\StatusCode;
  */
 trait GetTrait
 {
-    /**
-     * Abstract Methods
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // <editor-fold desc="Abstract methods">
 
     /**
      * Construct URI with version number
@@ -70,10 +67,9 @@ trait GetTrait
      */
     abstract protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array;
 
-    /**
-     * GET Methods
-     * -----------------------------------------------------------------------------------------------------------------
-     */
+    // </editor-fold>
+
+    // <editor-fold desc="Methods">
 
     /**
      * Return an associative array of API keys associated with the Reporting Cloud account
@@ -429,4 +425,6 @@ trait GetTrait
 
         return $ret;
     }
+
+    // </editor-fold>
 }

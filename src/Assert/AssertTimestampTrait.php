@@ -30,7 +30,7 @@ trait AssertTimestampTrait
     private static $timestampMin = 0;
 
     /**
-     * Maximum timestamp
+     * Maximum timestamp (PHP_INT_MAX)
      *
      * @var int
      */
