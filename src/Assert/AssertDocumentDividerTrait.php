@@ -52,20 +52,24 @@ trait AssertDocumentDividerTrait
      */
     private static function getDocumentDividers(): array
     {
-        $ret = [];
+        $constants = [];
 
         try {
             $reportingCloud  = new ReportingCloud();
             $reflectionClass = new ReflectionClass($reportingCloud);
-            foreach ($reflectionClass->getConstants() as $constantKey => $constantValue) {
-                if (StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_')) {
-                    $ret[] = $constantValue;
-                }
-            }
+            $constants       = $reflectionClass->getConstants();
             unset($reportingCloud);
         } catch (ReflectionException $e) {
             // continue
         }
+
+        $ret = array_filter($constants, function ($constantKey) {
+            if (StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_')) {
+                return true;
+            }
+        }, ARRAY_FILTER_USE_KEY);
+
+        $ret = array_values($ret);
 
         return $ret;
     }

@@ -49,10 +49,6 @@ trait AssertLanguageTrait
     {
         $filename = __DIR__ . '/../../data/dictionaries.php';
 
-        if (is_readable($filename)) {
-            $filename = realpath($filename);
-        }
-
         return include $filename;
     }
 }

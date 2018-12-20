@@ -49,10 +49,6 @@ trait AssertCultureTrait
     {
         $filename = __DIR__ . '/../../data/cultures.php';
 
-        if (is_readable($filename)) {
-            $filename = realpath($filename);
-        }
-
         return include $filename;
     }
 }
