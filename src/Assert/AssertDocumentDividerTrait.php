@@ -38,13 +38,28 @@ trait AssertDocumentDividerTrait
      */
     public static function assertDocumentDivider(int $value, string $message = '')
     {
-        $haystack = [];
+        $haystack = self::getDocumentDividers();
+        $format   = $message ?: '%s contains an unsupported document divider';
+        $message  = sprintf($format, self::valueToString($value));
+
+        return self::oneOf($value, $haystack, $message);
+    }
+
+    /**
+     * Return document dividers array
+     *
+     * @return array
+     */
+    private static function getDocumentDividers(): array
+    {
+        $ret = [];
+
         try {
             $reportingCloud  = new ReportingCloud();
             $reflectionClass = new ReflectionClass($reportingCloud);
             foreach ($reflectionClass->getConstants() as $constantKey => $constantValue) {
                 if (StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_')) {
-                    $haystack[] = $constantValue;
+                    $ret[] = $constantValue;
                 }
             }
             unset($reportingCloud);
@@ -52,9 +67,6 @@ trait AssertDocumentDividerTrait
             // continue
         }
 
-        $format  = $message ?: '%s contains an unsupported document divider';
-        $message = sprintf($format, self::valueToString($value));
-
-        return self::oneOf($value, $haystack, $message);
+        return $ret;
     }
 }

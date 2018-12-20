@@ -33,19 +33,19 @@ trait AssertCultureTrait
      */
     public static function assertCulture(string $value, string $message = '')
     {
-        $haystack = include self::getCulturesFilename();
-        $format  = $message ?: '%s contains an unsupported culture';
+        $haystack = self::getCultures();
+        $format   = $message ?: '%s contains an unsupported culture';
         $message  = sprintf($format, self::valueToString($value));
 
         return self::oneOf($value, $haystack, $message);
     }
 
     /**
-     * Return resource filename, containing cultures array
+     * Return cultures array
      *
-     * @return string
+     * @return array
      */
-    public static function getCulturesFilename(): string
+    public static function getCultures(): array
     {
         $filename = __DIR__ . '/../../data/cultures.php';
 
@@ -53,6 +53,6 @@ trait AssertCultureTrait
             $filename = realpath($filename);
         }
 
-        return $filename;
+        return include $filename;
     }
 }
