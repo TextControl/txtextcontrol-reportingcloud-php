@@ -8,7 +8,7 @@ This is the new first major since the release of the wrapper in May 2016.
 
 ### Removed All Zend Framework Dependencies
 
-[Zend Framework](https://framework.zend.com/) (ZF) is an excellent framework for the development of robust business applications, and one that we -- at Text Control GmbH -- have been using since its original incarnation in 2006. We will continue to use ZF in other project, but not in the ReportingCloud PHP wrapper.
+[Zend Framework](https://framework.zend.com/) (ZF) is an excellent framework for the development of robust business applications, and one that we -- at Text Control GmbH -- have been using since its original incarnation in 2006. We will continue to use ZF in other projects, but not in the ReportingCloud PHP wrapper.
 
 The ReportingCloud PHP wrapper is just one component of a typical web application -- a minor component, it may be added. The fewer components that such a wrapper depends upon, the better.
 
