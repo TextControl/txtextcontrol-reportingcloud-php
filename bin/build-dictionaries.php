@@ -40,13 +40,15 @@ $values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-ArrayUtils::varExportToFile($filename, $values);
+$generator = str_replace(realpath(dirname(__DIR__)), '', __FILE__);
+
+ArrayUtils::varExportToFile($filename, $values, $generator);
 
 echo PHP_EOL;
 echo sprintf('The available dictionaries (%d) are %s.', count($values), implode(', ', $values));
 echo PHP_EOL;
 echo PHP_EOL;
-echo sprintf('Written resource file to %s', $filename);
+echo sprintf('Written data file to %s', $filename);
 echo PHP_EOL;
 echo PHP_EOL;
 

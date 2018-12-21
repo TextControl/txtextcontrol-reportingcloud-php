@@ -1,4 +1,4 @@
-![Logo](../data/rc_logo_512.png)
+![Logo](../resource/rc_logo_512.png)
 
 # Why Was Travis Building Removed?
 

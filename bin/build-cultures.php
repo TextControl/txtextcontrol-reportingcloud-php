@@ -23,8 +23,8 @@ declare(strict_types=1);
 include_once 'bootstrap.php';
 
 use TxTextControl\ReportingCloud\Assert\Assert;
-use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
+use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -54,13 +54,15 @@ $values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-ArrayUtils::varExportToFile($filename, $values);
+$generator = str_replace(realpath(dirname(__DIR__)), '', __FILE__);
+
+ArrayUtils::varExportToFile($filename, $values, $generator);
 
 echo PHP_EOL;
 echo sprintf('The available cultures (%d) are %s.', count($values), implode(', ', $values));
 echo PHP_EOL;
 echo PHP_EOL;
-echo sprintf('Written resource file to %s', $filename);
+echo sprintf('Written data file to %s', $filename);
 echo PHP_EOL;
 echo PHP_EOL;
 

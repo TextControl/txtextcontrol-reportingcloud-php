@@ -202,7 +202,7 @@ class ReportingCloudTest extends TestCase
 
     public function testGetAvailableDictionaries()
     {
-        $filename = realpath(__DIR__ . '/../data/dictionaries.php');
+        $filename = Assert::getDictionariesFilename();
 
         $actual   = $this->reportingCloud->getAvailableDictionaries();
         $expected = include $filename;
@@ -1082,21 +1082,21 @@ class ReportingCloudTest extends TestCase
 
     protected function getTestTemplateFilename()
     {
-        $ret = sprintf('%s/test_template.tx', realpath(__DIR__ . '/../data'));
+        $ret = sprintf('%s/test_template.tx', realpath(__DIR__ . '/../resource'));
 
         return $ret;
     }
 
     protected function getTestDocumentFilename()
     {
-        $ret = sprintf('%s/test_document.docx', realpath(__DIR__ . '/../data'));
+        $ret = sprintf('%s/test_document.docx', realpath(__DIR__ . '/../resource'));
 
         return $ret;
     }
 
     protected function getTestTemplateFindAndReplaceFilename()
     {
-        $ret = sprintf('%s/test_find_and_replace.tx', realpath(__DIR__ . '/../data'));
+        $ret = sprintf('%s/test_find_and_replace.tx', realpath(__DIR__ . '/../resource'));
 
         return $ret;
     }

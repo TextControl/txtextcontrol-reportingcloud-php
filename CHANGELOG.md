@@ -1,8 +1,11 @@
-![Logo](./data/rc_logo_512.png)
+![Logo](./resource/rc_logo_512.png)
 
 # CHANGELOG
 
 ## dev-master
+
+* Added generator parameter to `Stdlib\ArrayUtils::varExportToFile`.
+* Split `/resources` and `/data` contents. 
 
 ## 2.0.1 - 2018-12-20
 
@@ -10,7 +13,7 @@
 
 ## 2.0.0 - 2018-12-19
 
-For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md).
+For a full description of changes, see [release-2.0.0.md](./doc/release-2.0.0.md).
 
 * Removed all Zend Framework 3 dependencies.
 * Set the minimum PHP version to 7.1.

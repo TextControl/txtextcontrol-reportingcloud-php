@@ -41,6 +41,6 @@ switch (basename(getcwd())) {
             mkdir($outputPath);
         }
         define('REPORTING_CLOUD_DEMO_OUTPUT_PATH', $outputPath);
-        define('REPORTING_CLOUD_DEMO_MEDIA_PATH', realpath(__DIR__ . '/../data'));
+        define('REPORTING_CLOUD_DEMO_MEDIA_PATH', realpath(__DIR__ . '/../resource'));
         break;
 }
