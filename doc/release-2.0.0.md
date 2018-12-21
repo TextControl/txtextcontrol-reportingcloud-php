@@ -1,3 +1,5 @@
+![Logo](../resource/rc_logo_512.png)
+
 # ReportingCloud PHP Wrapper 2.0
 
 ## Introduction
