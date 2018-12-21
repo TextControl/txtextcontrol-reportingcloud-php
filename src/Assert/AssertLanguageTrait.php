@@ -41,13 +41,26 @@ trait AssertLanguageTrait
     }
 
     /**
+     * Return the filename, containing languages aka dictionaries array
+     *
+     * @return string
+     */
+    public static function getDictionariesFilename(): string
+    {
+        $filename = __DIR__ . '/../../data/dictionaries.php';
+        $filename = realpath($filename);
+
+        return $filename;
+    }
+
+    /**
      * Return languages aka dictionaries array
      *
      * @return array
      */
-    public static function getDictionaries(): array
+    private static function getDictionaries(): array
     {
-        $filename = __DIR__ . '/../../data/dictionaries.php';
+        $filename = self::getDictionariesFilename();
 
         return include $filename;
     }

@@ -41,13 +41,26 @@ trait AssertCultureTrait
     }
 
     /**
+     * Return the filename, containing cultures array
+     *
+     * @return string
+     */
+    public static function getCulturesFilename(): string
+    {
+        $filename = __DIR__ . '/../../data/cultures.php';
+        $filename = realpath($filename);
+
+        return $filename;
+    }
+
+    /**
      * Return cultures array
      *
      * @return array
      */
-    public static function getCultures(): array
+    private static function getCultures(): array
     {
-        $filename = __DIR__ . '/../../data/cultures.php';
+        $filename = self::getCulturesFilename();
 
         return include $filename;
     }
