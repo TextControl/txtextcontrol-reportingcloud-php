@@ -14,7 +14,7 @@ $reportingCloud = new ReportingCloud([
 
 $apiKeys = $reportingCloud->getApiKeys();
 
-if (is_array($apiKeys)) {
+if (!empty($apiKeys)) {
     foreach ($apiKeys as $apiKey) {
         if ($apiKey['key'] == ConsoleUtils::apiKey()) {
             echo sprintf("Keeping API key %s...\n", $apiKey['key']);

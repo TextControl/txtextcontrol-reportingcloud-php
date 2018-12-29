@@ -11,7 +11,7 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
-$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_find_and_replace.tx';
+$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_find_and_replace.tx';
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_find_and_replace.pdf';
 
 $findAndReplaceData = [

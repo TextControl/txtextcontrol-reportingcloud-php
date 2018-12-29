@@ -10,8 +10,6 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-// ---------------------------------------------------------------------------------------------------------------------
-
 $templateNames = [
     'test_template.tx',
     'test_template_with_user_document_properties.docx',
@@ -27,5 +25,3 @@ foreach ($templateNames as $templateName) {
 
     var_dump($reportingCloud->getTemplateInfo($templateName));
 }
-
-// ---------------------------------------------------------------------------------------------------------------------
