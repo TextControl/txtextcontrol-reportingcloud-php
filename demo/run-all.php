@@ -46,14 +46,17 @@ foreach ($fileInfos as $fileInfo) {
     $counter++;
 
     echo sprintf('%d/%d) Executing %s...', $counter, $count, $fileInfo->getFilename());
-    echo PHP_EOL . PHP_EOL;
+    echo PHP_EOL;
+    echo PHP_EOL;
 
     $command = sprintf('%s %s', PHP_BINARY, $fileInfo->getPathname());
     passthru($command);
 
     echo PHP_EOL;
     echo '...DONE.';
-    echo PHP_EOL . PHP_EOL . PHP_EOL;
+    echo PHP_EOL;
+    echo PHP_EOL;
+    echo PHP_EOL;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

@@ -12,7 +12,7 @@ declare(strict_types=1);
  *
  */
 
-include_once 'bootstrap.php';
+include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
