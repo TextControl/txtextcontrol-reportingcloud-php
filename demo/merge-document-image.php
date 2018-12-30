@@ -26,7 +26,12 @@ $mergeData = [
     'photo'  => base64_encode($imageBinaryData),
 ];
 
-$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename);
+$arrayOfBinaryData = $reportingCloud->mergeDocument(
+    $mergeData,
+    'PDF',
+    null,
+    $sourceFilename
+);
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 

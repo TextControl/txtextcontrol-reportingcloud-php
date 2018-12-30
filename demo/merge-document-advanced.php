@@ -80,7 +80,12 @@ for ($i = 0; $i < 10; $i++) {
 
 $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
 
-$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename);
+$arrayOfBinaryData = $reportingCloud->mergeDocument(
+    $mergeData,
+    'PDF',
+    null,
+    $sourceFilename
+);
 
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_local.pdf';
 
@@ -96,7 +101,11 @@ $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
 
 $reportingCloud->uploadTemplate($sourceFilename);
 
-$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', 'test_template.tx');
+$arrayOfBinaryData = $reportingCloud->mergeDocument(
+    $mergeData,
+    'PDF',
+    'test_template.tx'
+);
 
 $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_remote.pdf';
 

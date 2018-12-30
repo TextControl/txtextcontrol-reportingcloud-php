@@ -27,7 +27,14 @@ $mergeSettings = [
     'merge_html' => true,
 ];
 
-$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename, null, $mergeSettings);
+$arrayOfBinaryData = $reportingCloud->mergeDocument(
+    $mergeData,
+    'PDF',
+    null,
+    $sourceFilename,
+    null,
+    $mergeSettings
+);
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
