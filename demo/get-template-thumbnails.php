@@ -29,7 +29,13 @@ if (!$reportingCloud->templateExists($templateName)) {
 
 // Write thumbnails (1 page per record in array)
 
-$arrayOfBinaryData = $reportingCloud->getTemplateThumbnails($templateName, 400, 1, 1, 'PNG');
+$arrayOfBinaryData = $reportingCloud->getTemplateThumbnails(
+    $templateName,
+    400,
+    1,
+    1,
+    'PNG'
+);
 
 foreach ($arrayOfBinaryData as $index => $binaryData) {
 

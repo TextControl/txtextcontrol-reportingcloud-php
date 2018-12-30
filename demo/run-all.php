@@ -3,28 +3,57 @@ declare(strict_types=1);
 
 include_once __DIR__ . '/bootstrap.php';
 
+// ---------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Return an array of fileInfos which should be executed
+ *
+ * @return array
+ *
+ */
+$getFileInfos = function (): array {
+
+    $ret = [];
+
+    $di = new DirectoryIterator(__DIR__);
+    foreach ($di as $fileInfo) {
+        if (__FILE__ === $fileInfo->getPathname()) {
+            continue;
+        }
+        if ('bootstrap.php' === $fileInfo->getFilename()) {
+            continue;
+        }
+        if ('php' !== $fileInfo->getExtension()) {
+            continue;
+        }
+        $ret[] = clone $fileInfo;
+    }
+
+    return $ret;
+};
+
+// ---------------------------------------------------------------------------------------------------------------------
+
 $command = 'clear';
 passthru($command);
 
-$di = new DirectoryIterator(__DIR__);
+$fileInfos = $getFileInfos();
+$count     = count($fileInfos);
+$counter   = 0;
 
-foreach ($di as $fileInfo) {
+foreach ($fileInfos as $fileInfo) {
 
-    if (__FILE__ === $fileInfo->getPathname()) {
-        continue;
-    }
+    $counter++;
 
-    if ('php' !== $fileInfo->getExtension()) {
-        continue;
-    }
-
-    echo sprintf('Executing %s...', $fileInfo->getFilename());
+    echo sprintf('%d/%d) Executing %s...', $counter, $count, $fileInfo->getFilename());
     echo PHP_EOL . PHP_EOL;
 
     $command = sprintf('%s %s', PHP_BINARY, $fileInfo->getPathname());
     passthru($command);
 
     echo PHP_EOL;
-    echo "...DONE.";
+    echo '...DONE.';
     echo PHP_EOL . PHP_EOL . PHP_EOL;
 }
+
+// ---------------------------------------------------------------------------------------------------------------------

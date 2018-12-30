@@ -78,11 +78,11 @@ for ($i = 0; $i < 10; $i++) {
 
 // Template stored locally and uploaded to backend server on merge
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . 'test_template.tx';
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename);
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_local.pdf';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . DIRECTORY_SEPARATOR . 'sample_invoice_merged_local.pdf';
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
@@ -92,13 +92,13 @@ var_dump($destinationFilename);
 
 // Template is in template storage on backend server
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . 'test_template.tx';
 
 $reportingCloud->uploadTemplate($sourceFilename);
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', 'test_template.tx');
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_remote.pdf';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . DIRECTORY_SEPARATOR . 'sample_invoice_merged_remote.pdf';
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
@@ -125,13 +125,22 @@ $mergeSettings = [
     'culture'                    => 'en-US',
 ];
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . 'test_template.tx';
 
 $reportingCloud->uploadTemplate($sourceFilename);
 
-$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', 'test_template.tx', null, true, $mergeSettings);
+$arrayOfBinaryData = $reportingCloud->mergeDocument(
+    $mergeData,
+    'PDF',
+    'test_template.tx',
+    null,
+    true,
+    $mergeSettings
+);
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_remote_merge_settings.pdf';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH
+    . DIRECTORY_SEPARATOR
+    . 'sample_invoice_merged_remote_merge_settings.pdf';
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
@@ -142,11 +151,21 @@ var_dump($destinationFilename);
 // Template stored locally and uploaded to backend server on merge
 // append=true (also default, when not set)
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH
+    . DIRECTORY_SEPARATOR
+    . 'test_template.tx';
 
-$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename, true);
+$arrayOfBinaryData = $reportingCloud->mergeDocument(
+    $mergeData,
+    'PDF',
+    null,
+    $sourceFilename,
+    true
+);
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_append_true_all.pdf';
+$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH
+    . DIRECTORY_SEPARATOR
+    . 'sample_invoice_merged_append_true_all.pdf';
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
@@ -157,13 +176,20 @@ var_dump($destinationFilename);
 // Template stored locally and uploaded to backend server on merge
 // append=false
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . 'test_template.tx';
 
-$arrayOfBinaryData = $reportingCloud->mergeDocument($mergeData, 'PDF', null, $sourceFilename, false);
+$arrayOfBinaryData = $reportingCloud->mergeDocument(
+    $mergeData,
+    'PDF',
+    null,
+    $sourceFilename,
+    false
+);
 
 foreach ($arrayOfBinaryData as $documentNo => $binaryData) {
 
-    $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . sprintf('/sample_invoice_merged_append_false_%d.pdf', $documentNo);
+    $destinationFile     = sprintf('sample_invoice_merged_append_false_%d.pdf', $documentNo);
+    $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . DIRECTORY_SEPARATOR . $destinationFile;
 
     file_put_contents($destinationFilename, $binaryData);
 
@@ -171,5 +197,3 @@ foreach ($arrayOfBinaryData as $documentNo => $binaryData) {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
-
-

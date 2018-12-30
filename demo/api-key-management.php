@@ -26,18 +26,17 @@ if (!empty($apiKeys)) {
     }
 }
 
-$apiKey = $reportingCloud->createApiKey();
+$newApiKey = $reportingCloud->createApiKey();
 
 unset($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 $reportingCloud = new ReportingCloud([
-    'api_key' => $apiKey,
+    'api_key' => $newApiKey,
 ]);
 
 dump($reportingCloud->getAccountSettings());
 dump($reportingCloud->getTemplateList());
 
 // ---------------------------------------------------------------------------------------------------------------------
-
