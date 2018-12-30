@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-include_once 'bootstrap.php';
+include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
 
