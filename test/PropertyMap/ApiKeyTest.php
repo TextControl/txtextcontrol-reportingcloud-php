@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace TxTextControlTest\ReportingCloud\PropertyMap;
 
 use PHPUnit\Framework\TestCase;
-use TxTextControl\ReportingCloud\PropertyMap\TemplateList as PropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\ApiKey as PropertyMap;
 
-class TemplateListTest extends TestCase
+class ApiKeyTest extends TestCase
 {
     protected $propertyMap;
 
@@ -18,9 +18,8 @@ class TemplateListTest extends TestCase
     public function testValid()
     {
         $expected = [
-            'templateName' => 'template_name',
-            'modified'     => 'modified',
-            'size'         => 'size',
+            'key'    => 'key',
+            'active' => 'active',
         ];
 
         $this->assertSame($expected, $this->propertyMap->getMap());
