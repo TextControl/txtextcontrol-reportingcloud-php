@@ -391,7 +391,11 @@ trait GetTrait
 
         $result = (string) $this->get('/templates/download', $query, null, StatusCode::OK);
 
-        return (empty($result)) ? '' : $result;
+        if (!empty($result)) {
+            $result = base64_decode($result);
+        }
+
+        return $result;
     }
 
     /**
