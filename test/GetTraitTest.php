@@ -1,12 +1,29 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * ReportingCloud PHP Wrapper
+ *
+ * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ *
+ * @link      https://www.reporting.cloud to learn more about ReportingCloud
+ * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
+ * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
+ * @copyright © 2019 Text Control GmbH
+ */
+
 namespace TxTextControlTest\ReportingCloud;
 
 use PHPUnit\Framework\Constraint\IsType;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
+/**
+ * Trait GetTraitTest
+ *
+ * @package TxTextControlTest\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 trait GetTraitTest
 {
     // <editor-fold desc="downloadTemplate">
@@ -63,12 +80,12 @@ trait GetTraitTest
         $this->assertArrayHasKey('max_templates', $response);
         $this->assertArrayHasKey('valid_until', $response);
 
-        $this->assertInternalType(IsType::TYPE_STRING, $response['serial_number']);
-        $this->assertInternalType(IsType::TYPE_INT, $response['created_documents']);
-        $this->assertInternalType(IsType::TYPE_INT, $response['uploaded_templates']);
-        $this->assertInternalType(IsType::TYPE_INT, $response['max_documents']);
-        $this->assertInternalType(IsType::TYPE_INT, $response['max_templates']);
-        $this->assertInternalType(IsType::TYPE_INT, $response['valid_until']);
+        $this->assertTrue(is_string($response['serial_number']));
+        $this->assertTrue(is_int($response['created_documents']));
+        $this->assertTrue(is_int($response['uploaded_templates']));
+        $this->assertTrue(is_int($response['max_documents']));
+        $this->assertTrue(is_int($response['max_templates']));
+        $this->assertTrue(is_int($response['valid_until']));
     }
 
     // </editor-fold>
@@ -161,7 +178,7 @@ trait GetTraitTest
 
         $response = $this->reportingCloud->getTemplateCount();
 
-        $this->assertTrue(is_integer($response));
+        $this->assertTrue(is_int($response));
 
         $this->assertGreaterThan(0, $response);
 
@@ -262,9 +279,9 @@ trait GetTraitTest
         $this->assertArrayHasKey('modified', $response[0]);
         $this->assertArrayHasKey('size', $response[0]);
 
-        $this->assertInternalType(IsType::TYPE_STRING, $response[0]['template_name']);
-        $this->assertInternalType(IsType::TYPE_INT, $response[0]['modified']);
-        $this->assertInternalType(IsType::TYPE_INT, $response[0]['size']);
+        $this->assertTrue(is_string($response[0]['template_name']));
+        $this->assertTrue(is_int($response[0]['modified']));
+        $this->assertTrue(is_int($response[0]['size']));
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 

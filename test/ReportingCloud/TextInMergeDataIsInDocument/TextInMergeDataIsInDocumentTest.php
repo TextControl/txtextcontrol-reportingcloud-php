@@ -1,6 +1,17 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * ReportingCloud PHP Wrapper
+ *
+ * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ *
+ * @link      https://www.reporting.cloud to learn more about ReportingCloud
+ * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
+ * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
+ * @copyright © 2019 Text Control GmbH
+ */
+
 namespace TxTextControlTest\ReportingCloud\TextInMergeDataIsInDocument;
 
 use PHPUnit\Framework\TestCase;
@@ -8,6 +19,12 @@ use Smalot\PdfParser\Parser as PdfParser;
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
+/**
+ * Class TextInMergeDataIsInDocumentTest
+ *
+ * @package TxTextControlTest\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 class TextInMergeDataIsInDocumentTest extends TestCase
 {
     protected $reportingCloud;
@@ -16,8 +33,9 @@ class TextInMergeDataIsInDocumentTest extends TestCase
 
     public function setUp()
     {
-        $this->reportingCloud = new ReportingCloud();
-        $this->reportingCloud->setApiKey(ConsoleUtils::apiKey());
+        $this->reportingCloud = new ReportingCloud([
+            'api_key' => ConsoleUtils::apiKey()
+        ]);
 
         $this->pdfParser = new PdfParser();
     }

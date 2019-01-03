@@ -1,44 +1,76 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * ReportingCloud PHP Wrapper
+ *
+ * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ *
+ * @link      https://www.reporting.cloud to learn more about ReportingCloud
+ * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
+ * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
+ * @copyright © 2019 Text Control GmbH
+ */
+
 namespace TxTextControlTest\ReportingCloud;
 
 use PHPUnit\Framework\TestCase;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
+/**
+ * Class AbstractReportingCloudTest
+ *
+ * @package TxTextControlTest\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 abstract class AbstractReportingCloudTest extends TestCase
 {
+    private function getResourcePath()
+    {
+        return realpath(__DIR__ . '/../resource');
+    }
+
+    private function getTempPath()
+    {
+        return sys_get_temp_dir();
+    }
+
     protected function getTempDocumentFilename()
     {
-        $ret = sprintf('%s/test_document_%d.docx', sys_get_temp_dir(), rand(0, PHP_INT_MAX));
+        $format = '%s/test_document_%d.docx';
+        $ret    = sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
 
         return $ret;
     }
 
     protected function getTestTemplateFilename()
     {
-        $ret = sprintf('%s/test_template.tx', realpath(__DIR__ . '/../resource'));
+        $format = '%s/test_template.tx';
+        $ret    = sprintf($format, $this->getResourcePath());
 
         return $ret;
     }
 
     protected function getTestDocumentFilename()
     {
-        $ret = sprintf('%s/test_document.docx', realpath(__DIR__ . '/../resource'));
+        $format = '%s/test_document.docx';
+        $ret    = sprintf($format, $this->getResourcePath());
 
         return $ret;
     }
 
     protected function getTestTemplateFindAndReplaceFilename()
     {
-        $ret = sprintf('%s/test_find_and_replace.tx', realpath(__DIR__ . '/../resource'));
+        $format = '%s/test_find_and_replace.tx';
+        $ret    = sprintf($format, $this->getResourcePath());
 
         return $ret;
     }
 
     protected function getTempTemplateFilename()
     {
-        $ret = sprintf('%s/test_template_%d.tx', sys_get_temp_dir(), rand(0, PHP_INT_MAX));
+        $format = '%s/test_template_%d.tx';
+        $ret    = sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
 
         return $ret;
     }

@@ -1,6 +1,17 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * ReportingCloud PHP Wrapper
+ *
+ * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ *
+ * @link      https://www.reporting.cloud to learn more about ReportingCloud
+ * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
+ * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
+ * @copyright © 2019 Text Control GmbH
+ */
+
 namespace TxTextControlTest\ReportingCloud;
 
 use GuzzleHttp\Client;
@@ -9,6 +20,12 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
+/**
+ * Class ReportingCloudTest
+ *
+ * @package TxTextControlTest\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 class ReportingCloudTest extends AbstractReportingCloudTest
 {
     use DeleteTraitTest;
@@ -22,8 +39,9 @@ class ReportingCloudTest extends AbstractReportingCloudTest
     {
         $this->assertNotEmpty(ConsoleUtils::apiKey());
 
-        $this->reportingCloud = new ReportingCloud();
-        $this->reportingCloud->setApiKey(ConsoleUtils::apiKey());
+        $this->reportingCloud = new ReportingCloud([
+            'api_key' => ConsoleUtils::apiKey()
+        ]);
     }
 
     public function tearDown()
@@ -52,19 +70,17 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $apiKey = $this->reportingCloud->createApiKey();
         $this->assertNotEmpty($apiKey);
 
-        unset($this->reportingCloud);
+        $reportingCloud2 = new ReportingCloud();
 
-        $reportingCloud = new ReportingCloud();
+        $reportingCloud2->setTest(true);
+        $reportingCloud2->setApiKey($apiKey);
 
-        $reportingCloud->setTest(true);
-        $reportingCloud->setApiKey($apiKey);
-
-        $this->assertEquals($apiKey, $reportingCloud->getApiKey());
-        $this->assertContains('Times New Roman', $reportingCloud->getFontList());
+        $this->assertEquals($apiKey, $reportingCloud2->getApiKey());
+        $this->assertContains('Times New Roman', $reportingCloud2->getFontList());
 
         $this->deleteAllApiKeys();
 
-        unset($reportingCloud);
+        unset($reportingCloud2);
     }
 
     public function testConstructorOptions()

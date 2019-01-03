@@ -1,12 +1,29 @@
 <?php
 declare(strict_types=1);
 
+/**
+ * ReportingCloud PHP Wrapper
+ *
+ * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ *
+ * @link      https://www.reporting.cloud to learn more about ReportingCloud
+ * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
+ * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
+ * @copyright © 2019 Text Control GmbH
+ */
+
 namespace TxTextControlTest\ReportingCloud;
 
 use PHPUnit\Framework\Constraint\IsType;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
+/**
+ * Trait PostTraitTest
+ *
+ * @package TxTextControlTest\ReportingCloud
+ * @author  Jonathan Maron (@JonathanMaron)
+ */
 trait PostTraitTest
 {
     // <editor-fold desc="appendDocument">
