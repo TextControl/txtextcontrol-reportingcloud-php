@@ -4,10 +4,13 @@
 
 ## dev-master
 
+## 2.0.2 - 2019-01-03
+
 * Fixed return value of `downloadTemplate($templateName)` to binary data - it was base64 encoded data; it should have been binary data.
 * Added generator parameter to `Stdlib\ArrayUtils::varExportToFile`.
 * Split up `/resources` and `/data` contents. 
 * Split up unit tests into similarly named Traits as `ReportingCloud\ReportingCloud`.
+* Removed deprecated function calls in unit tests.
 
 ## 2.0.1 - 2018-12-20
 
