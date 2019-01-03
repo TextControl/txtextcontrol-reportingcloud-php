@@ -75,7 +75,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getApiKeys">
 
-    public function testApiKeys()
+    public function testGetApiKeys()
     {
         $this->deleteAllApiKeys();
 

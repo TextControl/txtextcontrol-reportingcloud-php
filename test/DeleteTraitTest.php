@@ -7,6 +7,21 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 trait DeleteTraitTest
 {
+    // <editor-fold desc="deleteApiKey">
+
+    public function testDeleteApiKey()
+    {
+        $this->deleteAllApiKeys();
+
+        $apiKey = $this->reportingCloud->createApiKey();
+        $this->assertNotEmpty($apiKey);
+
+        $response = $this->reportingCloud->deleteApiKey($apiKey);
+        $this->assertTrue($response);
+    }
+
+    // </editor-fold>
+
     // <editor-fold desc="deleteTemplate">
 
     public function testDeleteTemplate()

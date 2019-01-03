@@ -11,7 +11,6 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 class ReportingCloudTest extends AbstractReportingCloudTest
 {
-    use BuildTraitTest;
     use DeleteTraitTest;
     use GetTraitTest;
     use PostTraitTest;
@@ -52,6 +51,8 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
         $apiKey = $this->reportingCloud->createApiKey();
         $this->assertNotEmpty($apiKey);
+
+        unset($this->reportingCloud);
 
         $reportingCloud = new ReportingCloud();
 
@@ -142,7 +143,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         unset($reportingCloud);
     }
 
-    public function testResponseStatusCodeOnNonSsl()
+    public function testResponseStatusCodeWithHttp()
     {
         $baseUriHost = parse_url($this->reportingCloud->getBaseUri(), PHP_URL_HOST);
 
