@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud;
 
-use PHPUnit\Framework\Constraint\IsType;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
@@ -343,7 +342,7 @@ trait PostTraitTest
             $this->assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
-                $this->assertInternalType(IsType::TYPE_INT, $key);
+                $this->assertTrue(is_int($key));
                 $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
             }
         }
@@ -380,7 +379,7 @@ trait PostTraitTest
             $this->assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
-                $this->assertInternalType(IsType::TYPE_INT, $key);
+                $this->assertTrue(is_int($key));
                 $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
             }
         }

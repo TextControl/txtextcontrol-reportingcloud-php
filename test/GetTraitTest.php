@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud;
 
-use PHPUnit\Framework\Constraint\IsType;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
@@ -132,7 +131,7 @@ trait GetTraitTest
     {
         $fonts = $this->reportingCloud->getFontList();
 
-        $this->assertInternalType(IsType::TYPE_ARRAY, $fonts);
+        $this->assertTrue(is_array($fonts));
 
         $this->assertContains('Times New Roman', $fonts);
         $this->assertContains('Arial', $fonts);
@@ -242,7 +241,7 @@ trait GetTraitTest
 
         $this->assertArrayHasKey('user_document_properties', $response);
 
-        $this->assertInternalType(IsType::TYPE_ARRAY, $response['user_document_properties']);
+        $this->isTrue(is_array($response['user_document_properties']));
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
