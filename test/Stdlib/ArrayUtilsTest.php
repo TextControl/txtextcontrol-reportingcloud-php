@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
  */
 class ArrayUtilsTest extends TestCase
 {
-    private function getTestData()
+    private function getTestData(): array
     {
         return [
             'a' => 'a',
@@ -46,14 +46,14 @@ class ArrayUtilsTest extends TestCase
         ];
     }
 
-    private function getTestFilename()
+    private function getTestFilename(): string
     {
         $filename = tempnam(sys_get_temp_dir(), hash('sha256', __CLASS__));
 
         return $filename;
     }
 
-    public function testVarExportToFile()
+    public function testVarExportToFile(): void
     {
         $filename = $this->getTestFilename();
         $array    = $this->getTestData();
@@ -67,7 +67,7 @@ class ArrayUtilsTest extends TestCase
         unlink($filename);
     }
 
-    public function testVarExportToFileWithGenerator()
+    public function testVarExportToFileWithGenerator(): void
     {
         $filename = $this->getTestFilename();
         $array    = $this->getTestData();

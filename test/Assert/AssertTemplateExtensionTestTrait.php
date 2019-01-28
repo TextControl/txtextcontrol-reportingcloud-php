@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertTemplateExtensionTestTrait
 {
-    public function testAssertTemplateExtension()
+    public function testAssertTemplateExtension(): void
     {
         $this->assertNull(Assert::assertTemplateExtension('./template.tx'));
         $this->assertNull(Assert::assertTemplateExtension('./TEMPLATE.TX'));
@@ -56,7 +56,7 @@ trait AssertTemplateExtensionTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "template.xxx" contains an unsupported template format file extension
      */
-    public function testAssertTemplateExtensionInvalid()
+    public function testAssertTemplateExtensionInvalid(): void
     {
         Assert::assertTemplateExtension('template.xxx');
     }
@@ -65,7 +65,7 @@ trait AssertTemplateExtensionTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("template.xxx")
      */
-    public function testAssertTemplateExtensionInvalidWithCustomMessage()
+    public function testAssertTemplateExtensionInvalidWithCustomMessage(): void
     {
         Assert::assertTemplateExtension('template.xxx', 'Custom error message (%s)');
     }

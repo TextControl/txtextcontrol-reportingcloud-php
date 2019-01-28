@@ -35,16 +35,16 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
     protected $reportingCloud;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->assertNotEmpty(ConsoleUtils::apiKey());
 
         $this->reportingCloud = new ReportingCloud([
-            'api_key' => ConsoleUtils::apiKey()
-        ]);
+                                                       'api_key' => ConsoleUtils::apiKey(),
+                                                   ]);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->reportingCloud);
     }
@@ -52,7 +52,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testAuthenticationWithEmptyCredentials()
+    public function testAuthenticationWithEmptyCredentials(): void
     {
         $reportingCloud = new ReportingCloud();
 
@@ -63,7 +63,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $reportingCloud->getFontList();
     }
 
-    public function testAuthenticationWithApiKey()
+    public function testAuthenticationWithApiKey(): void
     {
         $this->deleteAllApiKeys();
 
@@ -83,7 +83,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         unset($reportingCloud2);
     }
 
-    public function testConstructorOptions()
+    public function testConstructorOptions(): void
     {
         $options = [
             'username' => 'phpunit-username',
@@ -109,7 +109,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         unset($reportingCloud);
     }
 
-    public function testSetGetProperties()
+    public function testSetGetProperties(): void
     {
         $this->reportingCloud->setUsername('phpunit-username');
         $this->reportingCloud->setPassword('phpunit-password');
@@ -129,12 +129,12 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->assertTrue($this->reportingCloud->getTest());
     }
 
-    public function testGetClientInstanceOf()
+    public function testGetClientInstanceOf(): void
     {
         $this->assertInstanceOf('GuzzleHttp\Client', $this->reportingCloud->getClient());
     }
 
-    public function testGetClientWithUsernameAndPassword()
+    public function testGetClientWithUsernameAndPassword(): void
     {
         $this->reportingCloud->setApiKey('');
         $this->reportingCloud->setUsername('phpunit-username');
@@ -143,7 +143,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->assertInstanceOf('GuzzleHttp\Client', $this->reportingCloud->getClient());
     }
 
-    public function testDefaultProperties()
+    public function testDefaultProperties(): void
     {
         $reportingCloud = new ReportingCloud();
 
@@ -159,7 +159,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         unset($reportingCloud);
     }
 
-    public function testResponseStatusCodeWithHttp()
+    public function testResponseStatusCodeWithHttp(): void
     {
         $baseUriHost = parse_url($this->reportingCloud->getBaseUri(), PHP_URL_HOST);
 

@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertZoomFactorTestTrait
 {
-    public function testAssertZoomFactor()
+    public function testAssertZoomFactor(): void
     {
         $this->assertNull(Assert::assertZoomFactor(250));
     }
@@ -34,7 +34,7 @@ trait AssertZoomFactorTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Zoom factor (-1) must be in the range [1..400]
      */
-    public function testAssertZoomFactorInvalidTooSmall()
+    public function testAssertZoomFactorInvalidTooSmall(): void
     {
         Assert::assertZoomFactor(-1);
     }
@@ -43,7 +43,7 @@ trait AssertZoomFactorTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message (600) - range: [1..400]
      */
-    public function testAssertZoomFactorInvalidWithCustomMessage()
+    public function testAssertZoomFactorInvalidWithCustomMessage(): void
     {
         Assert::assertZoomFactor(600, 'Custom error message (%s) - range: [%2$s..%3$s]');
     }

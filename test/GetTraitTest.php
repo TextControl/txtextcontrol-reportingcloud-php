@@ -27,7 +27,7 @@ trait GetTraitTest
 {
     // <editor-fold desc="downloadTemplate">
 
-    public function testDownloadTemplate()
+    public function testDownloadTemplate(): void
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -56,7 +56,7 @@ trait GetTraitTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testDownloadTemplateInvalidTemplateName()
+    public function testDownloadTemplateInvalidTemplateName(): void
     {
         // should be templateName and not templateFilename
         $templateFilename = $this->getTestTemplateFilename();
@@ -68,7 +68,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getAccountSettings">
 
-    public function testGetAccountSettings()
+    public function testGetAccountSettings(): void
     {
         $response = $this->reportingCloud->getAccountSettings();
 
@@ -91,7 +91,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getApiKeys">
 
-    public function testGetApiKeys()
+    public function testGetApiKeys(): void
     {
         $this->deleteAllApiKeys();
 
@@ -110,7 +110,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getAvailableDictionaries">
 
-    public function testGetAvailableDictionaries()
+    public function testGetAvailableDictionaries(): void
     {
         $filename = Assert::getDictionariesFilename();
 
@@ -127,7 +127,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getFontList">
 
-    public function testGetFontList()
+    public function testGetFontList(): void
     {
         $fonts = $this->reportingCloud->getFontList();
 
@@ -146,7 +146,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getProofingSuggestions">
 
-    public function testGetProofingSuggestions()
+    public function testGetProofingSuggestions(): void
     {
         $response = $this->reportingCloud->getProofingSuggestions('Thiss', 'en_US.dic', 5);
 
@@ -159,7 +159,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getTemplateCount">
 
-    public function testGetTemplateCount()
+    public function testGetTemplateCount(): void
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -192,7 +192,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getTemplateInfo">
 
-    public function testGetTemplateInfo()
+    public function testGetTemplateInfo(): void
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -254,7 +254,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getTemplateList">
 
-    public function testGetTemplateList()
+    public function testGetTemplateList(): void
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -293,7 +293,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getTemplatePageCount">
 
-    public function testGetTemplatePageCount()
+    public function testGetTemplatePageCount(): void
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -323,7 +323,7 @@ trait GetTraitTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplatePageCountInvalidTemplateName()
+    public function testGetTemplatePageCountInvalidTemplateName(): void
     {
         $this->reportingCloud->getTemplatePageCount('sample_invoice.xx');
     }
@@ -333,7 +333,7 @@ trait GetTraitTest
 
     // <editor-fold desc="getTemplateThumbnails">
 
-    public function testGetTemplateThumbnails()
+    public function testGetTemplateThumbnails(): void
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -363,7 +363,7 @@ trait GetTraitTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnailsInvalidTemplateName()
+    public function testGetTemplateThumbnailsInvalidTemplateName(): void
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.xx', 100, 1, 1, 'PNG');
     }
@@ -371,7 +371,7 @@ trait GetTraitTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnailsInvalidZoomFactor()
+    public function testGetTemplateThumbnailsInvalidZoomFactor(): void
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', -1, 1, 1, 'PNG');
     }
@@ -379,7 +379,7 @@ trait GetTraitTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnailsInvalidFromPage()
+    public function testGetTemplateThumbnailsInvalidFromPage(): void
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, -1, 1, 'PNG');
     }
@@ -387,7 +387,7 @@ trait GetTraitTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnailsInvalidToPage()
+    public function testGetTemplateThumbnailsInvalidToPage(): void
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, 1, -1, 'PNG');
     }
@@ -395,7 +395,7 @@ trait GetTraitTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testGetTemplateThumbnailsInvalidImageFormat()
+    public function testGetTemplateThumbnailsInvalidImageFormat(): void
     {
         $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, 1, 1, 'XXX');
     }
@@ -404,7 +404,7 @@ trait GetTraitTest
 
     // <editor-fold desc="proofingCheck">
 
-    public function testProofingCheck()
+    public function testProofingCheck(): void
     {
         $response = $this->reportingCloud->proofingCheck('Thiss is a dog', 'en_US.dic');
 
@@ -429,7 +429,7 @@ trait GetTraitTest
 
     // <editor-fold desc="templateExists">
 
-    public function testTemplateExists()
+    public function testTemplateExists(): void
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -463,7 +463,7 @@ trait GetTraitTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testTemplateExistsInvalidTemplateName()
+    public function testTemplateExistsInvalidTemplateName(): void
     {
         $this->reportingCloud->templateExists('sample_invoice.xx');
     }

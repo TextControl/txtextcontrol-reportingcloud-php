@@ -4,6 +4,8 @@
 
 ## dev-master
 
+* Added return types to all unit tests.
+
 ## 2.0.2 - 2019-01-03
 
 * Fixed return value of `downloadTemplate($templateName)` to binary data - it was base64 encoded data; it should have been binary data.

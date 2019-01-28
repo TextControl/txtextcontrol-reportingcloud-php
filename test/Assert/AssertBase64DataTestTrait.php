@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertBase64DataTestTrait
 {
-    public function testAssertBase64Data()
+    public function testAssertBase64Data(): void
     {
         $value = base64_encode('ReportingCloud rocks!');
         $this->assertNull(Assert::assertBase64Data($value));
@@ -35,7 +35,7 @@ trait AssertBase64DataTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "#*abc" must be base64 encoded
      */
-    public function testAssertBase64DataInvalidCharacters()
+    public function testAssertBase64DataInvalidCharacters(): void
     {
         Assert::assertBase64Data('#*abc');
     }
@@ -44,7 +44,7 @@ trait AssertBase64DataTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "-1" must be base64 encoded
      */
-    public function testAssertBase64DataInvalidDigits()
+    public function testAssertBase64DataInvalidDigits(): void
     {
         Assert::assertBase64Data('-1');
     }
@@ -53,7 +53,7 @@ trait AssertBase64DataTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "[]" must be base64 encoded
      */
-    public function testAssertBase64DataInvalidBrackets()
+    public function testAssertBase64DataInvalidBrackets(): void
     {
         Assert::assertBase64Data('[]');
     }
@@ -62,7 +62,7 @@ trait AssertBase64DataTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("**********")
      */
-    public function testAssertBase64DataWithCustomMessage()
+    public function testAssertBase64DataWithCustomMessage(): void
     {
         Assert::assertBase64Data('**********', 'Custom error message (%s)');
     }

@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertFilenameExistsTestTrait
 {
-    public function testAssertFilenameExists()
+    public function testAssertFilenameExists(): void
     {
         $filename = tempnam(sys_get_temp_dir(), md5(__CLASS__));
         touch($filename);
@@ -37,7 +37,7 @@ trait AssertFilenameExistsTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "/path/to/invalid/file" must contain the absolute path and file
      */
-    public function testAssertFilenameExistsInvalidDoesContainAbsolutePathAndFile()
+    public function testAssertFilenameExistsInvalidDoesContainAbsolutePathAndFile(): void
     {
         Assert::filenameExists('/path/to/invalid/file');
     }
@@ -46,7 +46,7 @@ trait AssertFilenameExistsTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "/tmp" is not a regular file
      */
-    public function testAssertFilenameExistsInvalidIsNotARegularFile()
+    public function testAssertFilenameExistsInvalidIsNotARegularFile(): void
     {
         Assert::filenameExists('/tmp');
     }
@@ -55,7 +55,7 @@ trait AssertFilenameExistsTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("/path/to/invalid/file")
      */
-    public function testAssertFilenameExistsInvalidWithCustomMessage()
+    public function testAssertFilenameExistsInvalidWithCustomMessage(): void
     {
         Assert::filenameExists('/path/to/invalid/file', 'Custom error message (%s)');
     }

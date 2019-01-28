@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Stdlib\StringUtils;
  */
 class StringUtilsTest extends TestCase
 {
-    public function testStartsWith()
+    public function testStartsWith(): void
     {
         $haystack = 'Chad is an energetic former personal trainer';
 
@@ -40,7 +40,7 @@ class StringUtilsTest extends TestCase
         $this->assertFalse(StringUtils::startsWith($haystack, 'has'));
     }
 
-    public function testEndsWith()
+    public function testEndsWith(): void
     {
         $haystack = 'Ariella is 20 years older than him and works as a journalist';
 

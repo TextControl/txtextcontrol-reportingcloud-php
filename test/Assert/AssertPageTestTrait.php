@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertPageTestTrait
 {
-    public function testAssertPage()
+    public function testAssertPage(): void
     {
         $this->assertNull(Assert::assertPage(1));
         $this->assertNull(Assert::assertPage(2));
@@ -36,7 +36,7 @@ trait AssertPageTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Page number (-1) must be in the range [1..9223372036854775807]
      */
-    public function testAssertPageInvalidTooSmall()
+    public function testAssertPageInvalidTooSmall(): void
     {
         Assert::assertPage(-1);
     }
@@ -45,7 +45,7 @@ trait AssertPageTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message (-50) - range: [1..9223372036854775807]
      */
-    public function testAssertPageInvalidWithCustomMessage()
+    public function testAssertPageInvalidWithCustomMessage(): void
     {
         Assert::assertPage(-50, 'Custom error message (%s) - range: [%2$s..%3$s]');
     }

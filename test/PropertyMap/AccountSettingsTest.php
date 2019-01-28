@@ -27,12 +27,12 @@ class AccountSettingsTest extends TestCase
 {
     protected $propertyMap;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->propertyMap = new PropertyMap();
     }
 
-    public function testValid()
+    public function testValid(): void
     {
         $expected = [
             'serialNumber'            => 'serial_number',

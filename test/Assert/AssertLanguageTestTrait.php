@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertLanguageTestTrait
 {
-    public function testAssertLanguage()
+    public function testAssertLanguage(): void
     {
         $this->assertNull(Assert::assertLanguage('de_CH_frami.dic'));
         $this->assertNull(Assert::assertLanguage('pt_BR.dic'));
@@ -36,7 +36,7 @@ trait AssertLanguageTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "pt_BR" contains an unsupported language
      */
-    public function testAssertLanguageInvalid()
+    public function testAssertLanguageInvalid(): void
     {
         Assert::assertLanguage('pt_BR');
     }
@@ -45,7 +45,7 @@ trait AssertLanguageTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("xx_XX")
      */
-    public function testAssertLanguageInvalidWithCustomMessage()
+    public function testAssertLanguageInvalidWithCustomMessage(): void
     {
         Assert::assertLanguage('xx_XX', 'Custom error message (%s)');
     }

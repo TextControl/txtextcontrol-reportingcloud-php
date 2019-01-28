@@ -25,12 +25,12 @@ use TxTextControl\ReportingCloud\Filter\Filter;
  */
 class BooleanToStringTest extends TestCase
 {
-    public function testTrueString()
+    public function testTrueString(): void
     {
         $this->assertSame('true', Filter::filterBooleanToString(true));
     }
 
-    public function testFalseString()
+    public function testFalseString(): void
     {
         $this->assertSame('false', Filter::filterBooleanToString(false));
     }

@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertDocumentDividerTestTrait
 {
-    public function testAssertDocumentDivider()
+    public function testAssertDocumentDivider(): void
     {
         $this->assertNull(Assert::assertDocumentDivider(1));
         $this->assertNull(Assert::assertDocumentDivider(2));
@@ -36,7 +36,7 @@ trait AssertDocumentDividerTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage 10 contains an unsupported document divider
      */
-    public function testAssertDocumentDividerInvalid()
+    public function testAssertDocumentDividerInvalid(): void
     {
         Assert::assertDocumentDivider(10);
     }
@@ -45,7 +45,7 @@ trait AssertDocumentDividerTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message (-10)
      */
-    public function testAssertDocumentDividerInvalidWithCustomMessage()
+    public function testAssertDocumentDividerInvalidWithCustomMessage(): void
     {
         Assert::assertDocumentDivider(-10, 'Custom error message (%s)');
     }

@@ -24,7 +24,7 @@ trait PutTraitTest
 {
     // <editor-fold desc="createApiKey">
 
-    public function testCreateApiKey()
+    public function testCreateApiKey(): void
     {
         $this->deleteAllApiKeys();
 
@@ -35,7 +35,7 @@ trait PutTraitTest
     /**
      * @expectedException RuntimeException
      */
-    public function testCreateApiKeyTooManyApiKeys()
+    public function testCreateApiKeyTooManyApiKeys(): void
     {
         $this->deleteAllApiKeys();
 

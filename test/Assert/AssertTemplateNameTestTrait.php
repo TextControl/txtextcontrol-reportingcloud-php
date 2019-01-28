@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertTemplateNameTestTrait
 {
-    public function testAssertTemplateName()
+    public function testAssertTemplateName(): void
     {
         $this->assertNull(Assert::assertTemplateName('template.tx'));
         $this->assertNull(Assert::assertTemplateName('template.TX'));
@@ -40,7 +40,7 @@ trait AssertTemplateNameTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "template.xxx" contains an unsupported file extension
      */
-    public function testAssertTemplateNameInvalidUsupportedFileExtension()
+    public function testAssertTemplateNameInvalidUsupportedFileExtension(): void
     {
         Assert::assertTemplateName('template.xxx');
     }
@@ -49,7 +49,7 @@ trait AssertTemplateNameTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "/path/to/template.tx" contains path information ('/', '.', or '..')
      */
-    public function testAssertTemplateNameInvalidAbsolutePath()
+    public function testAssertTemplateNameInvalidAbsolutePath(): void
     {
         Assert::assertTemplateName('/path/to/template.tx');
     }
@@ -58,7 +58,7 @@ trait AssertTemplateNameTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "/../template.tx" contains path information ('/', '.', or '..')
      */
-    public function testAssertTemplateNameInvalidDirectoryTraversal1()
+    public function testAssertTemplateNameInvalidDirectoryTraversal1(): void
     {
         Assert::assertTemplateName('/../template.tx');
     }
@@ -67,7 +67,7 @@ trait AssertTemplateNameTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "../template.tx" contains path information ('/', '.', or '..')
      */
-    public function testAssertTemplateNameInvalidDirectoryTraversal2()
+    public function testAssertTemplateNameInvalidDirectoryTraversal2(): void
     {
         Assert::assertTemplateName('../template.tx');
     }
@@ -76,7 +76,7 @@ trait AssertTemplateNameTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "./template.tx" contains path information ('/', '.', or '..')
      */
-    public function testAssertTemplateNameInvalidPath4()
+    public function testAssertTemplateNameInvalidPath4(): void
     {
         Assert::assertTemplateName('./template.tx');
     }
@@ -85,7 +85,7 @@ trait AssertTemplateNameTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("invalid.xxx")
      */
-    public function testAssertTemplateNameInvalidWithCustomMessage()
+    public function testAssertTemplateNameInvalidWithCustomMessage(): void
     {
         Assert::assertTemplateName('invalid.xxx', 'Custom error message (%s)');
     }

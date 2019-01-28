@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertCultureTestTrait
 {
-    public function testAssertCulture()
+    public function testAssertCulture(): void
     {
         $this->assertNull(Assert::assertCulture('de-DE'));
         $this->assertNull(Assert::assertCulture('fr-FR'));
@@ -36,7 +36,7 @@ trait AssertCultureTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "de-XX" contains an unsupported culture
      */
-    public function testAssertCultureInvalid()
+    public function testAssertCultureInvalid(): void
     {
         Assert::assertCulture('de-XX');
     }
@@ -45,7 +45,7 @@ trait AssertCultureTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("xx-XX")
      */
-    public function testAssertCultureInvalidWithCustomMessage()
+    public function testAssertCultureInvalidWithCustomMessage(): void
     {
         Assert::assertCulture('xx-XX', 'Custom error message (%s)');
     }

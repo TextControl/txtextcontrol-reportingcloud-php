@@ -27,14 +27,14 @@ class DateTimeToTimestampTest extends TestCase
 {
     protected $defaultTimezone;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->defaultTimezone = date_default_timezone_get();
 
         parent::setUp();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         date_default_timezone_set($this->defaultTimezone);
 
@@ -42,9 +42,13 @@ class DateTimeToTimestampTest extends TestCase
     }
 
     /**
+     * @param string $timeZone
+     * @param string $dateTimeString
+     * @param int    $timestamp
+     *
      * @dataProvider TxTextControlTest\ReportingCloud\Filter\TestAsset\DefaultProvider::defaultProvider
      */
-    public function testValid($timeZone, $dateTimeString, $timestamp)
+    public function testValid(string $timeZone, string $dateTimeString, int $timestamp): void
     {
         if (in_array($timeZone, timezone_identifiers_list())) {
             date_default_timezone_set($timeZone);

@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertReturnFormatTestTrait
 {
-    public function testAssertReturnFormat()
+    public function testAssertReturnFormat(): void
     {
         $this->assertNull(Assert::assertReturnFormat('DOC'));
         $this->assertNull(Assert::assertReturnFormat('doc'));
@@ -53,7 +53,7 @@ trait AssertReturnFormatTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "xxx" contains an unsupported return format file extension
      */
-    public function testAssertReturnFormatInvalid()
+    public function testAssertReturnFormatInvalid(): void
     {
         Assert::assertReturnFormat('xxx');
     }
@@ -62,7 +62,7 @@ trait AssertReturnFormatTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("XXX")
      */
-    public function testAssertReturnFormatInvalidWithCustomMessage()
+    public function testAssertReturnFormatInvalidWithCustomMessage(): void
     {
         Assert::assertReturnFormat('XXX', 'Custom error message (%s)');
     }

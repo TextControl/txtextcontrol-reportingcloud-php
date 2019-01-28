@@ -26,7 +26,7 @@ trait DeleteTraitTest
 {
     // <editor-fold desc="deleteApiKey">
 
-    public function testDeleteApiKey()
+    public function testDeleteApiKey(): void
     {
         $this->deleteAllApiKeys();
 
@@ -41,7 +41,7 @@ trait DeleteTraitTest
 
     // <editor-fold desc="deleteTemplate">
 
-    public function testDeleteTemplate()
+    public function testDeleteTemplate(): void
     {
         $testTemplateFilename = $this->getTestTemplateFilename();
         $tempTemplateFilename = $this->getTempTemplateFilename();
@@ -71,7 +71,7 @@ trait DeleteTraitTest
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testDeleteTemplateInvalidTemplateName()
+    public function testDeleteTemplateInvalidTemplateName(): void
     {
         $templateName = $this->getTestTemplateFilename();
         $this->reportingCloud->deleteTemplate($templateName);
@@ -80,7 +80,7 @@ trait DeleteTraitTest
     /**
      * @expectedException RuntimeException
      */
-    public function testDeleteTemplateRuntimeException()
+    public function testDeleteTemplateRuntimeException(): void
     {
         $this->reportingCloud->deleteTemplate('invalid-template.tx');
     }

@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertDocumentExtensionTestTrait
 {
-    public function testAssertDocumentExtension()
+    public function testAssertDocumentExtension(): void
     {
         $this->assertNull(Assert::assertDocumentExtension('./document.doc'));
         $this->assertNull(Assert::assertDocumentExtension('./DOCUMENT.DOC'));
@@ -47,7 +47,7 @@ trait AssertDocumentExtensionTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "document.xxx" contains an unsupported document format file extension
      */
-    public function testAssertDocumentExtensionInvalid()
+    public function testAssertDocumentExtensionInvalid(): void
     {
         Assert::assertDocumentExtension('document.xxx');
     }
@@ -56,7 +56,7 @@ trait AssertDocumentExtensionTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("document.xxx")
      */
-    public function testAssertDocumentExtensionInvalidWithCustomMessage()
+    public function testAssertDocumentExtensionInvalidWithCustomMessage(): void
     {
         Assert::assertDocumentExtension('document.xxx', 'Custom error message (%s)');
     }

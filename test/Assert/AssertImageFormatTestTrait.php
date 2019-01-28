@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertImageFormatTestTrait
 {
-    public function testAssertImageFormat()
+    public function testAssertImageFormat(): void
     {
         $this->assertNull(Assert::assertImageFormat('PNG'));
         $this->assertNull(Assert::assertImageFormat('png'));
@@ -35,7 +35,7 @@ trait AssertImageFormatTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "xxx" contains an unsupported image format file extension
      */
-    public function testAssertImageFormatInvalid()
+    public function testAssertImageFormatInvalid(): void
     {
         Assert::assertImageFormat('xxx');
     }
@@ -44,7 +44,7 @@ trait AssertImageFormatTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("SVG")
      */
-    public function testAssertImageFormatInvalidWithCustomMessage()
+    public function testAssertImageFormatInvalidWithCustomMessage(): void
     {
         Assert::assertImageFormat('SVG', 'Custom error message (%s)');
     }

@@ -25,17 +25,17 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
  */
 abstract class AbstractReportingCloudTest extends TestCase
 {
-    private function getResourcePath()
+    private function getResourcePath(): string
     {
         return realpath(__DIR__ . '/../resource');
     }
 
-    private function getTempPath()
+    private function getTempPath(): string
     {
         return sys_get_temp_dir();
     }
 
-    protected function getTempDocumentFilename()
+    protected function getTempDocumentFilename(): string
     {
         $format = '%s/test_document_%d.docx';
         $ret    = sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
@@ -43,7 +43,7 @@ abstract class AbstractReportingCloudTest extends TestCase
         return $ret;
     }
 
-    protected function getTestTemplateFilename()
+    protected function getTestTemplateFilename(): string
     {
         $format = '%s/test_template.tx';
         $ret    = sprintf($format, $this->getResourcePath());
@@ -51,7 +51,7 @@ abstract class AbstractReportingCloudTest extends TestCase
         return $ret;
     }
 
-    protected function getTestDocumentFilename()
+    protected function getTestDocumentFilename(): string
     {
         $format = '%s/test_document.docx';
         $ret    = sprintf($format, $this->getResourcePath());
@@ -59,7 +59,7 @@ abstract class AbstractReportingCloudTest extends TestCase
         return $ret;
     }
 
-    protected function getTestTemplateFindAndReplaceFilename()
+    protected function getTestTemplateFindAndReplaceFilename(): string
     {
         $format = '%s/test_find_and_replace.tx';
         $ret    = sprintf($format, $this->getResourcePath());
@@ -67,7 +67,7 @@ abstract class AbstractReportingCloudTest extends TestCase
         return $ret;
     }
 
-    protected function getTempTemplateFilename()
+    protected function getTempTemplateFilename(): string
     {
         $format = '%s/test_template_%d.tx';
         $ret    = sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
@@ -75,7 +75,7 @@ abstract class AbstractReportingCloudTest extends TestCase
         return $ret;
     }
 
-    protected function getTestTemplateMergeData()
+    protected function getTestTemplateMergeData(): array
     {
         $ret = [
             [
@@ -142,7 +142,7 @@ abstract class AbstractReportingCloudTest extends TestCase
         return $ret;
     }
 
-    protected function getTestTemplateFindAndReplaceData()
+    protected function getTestTemplateFindAndReplaceData(): array
     {
         $ret = [
             '%%FIELD1%%' => 'hello field 1',
@@ -152,7 +152,7 @@ abstract class AbstractReportingCloudTest extends TestCase
         return $ret;
     }
 
-    protected function getTestDocumentSettings()
+    protected function getTestDocumentSettings(): array
     {
         $ret = [
             'author'                 => 'James Henry Trotter',
@@ -161,13 +161,13 @@ abstract class AbstractReportingCloudTest extends TestCase
             'document_subject'       => 'The Old Green Grasshopper',
             'document_title'         => 'James and the Giant Peach',
             'last_modification_date' => time(),
-            'user_password'              => '123456789',
+            'user_password'          => '123456789',
         ];
 
         return $ret;
     }
 
-    protected function getTestMergeSettings()
+    protected function getTestMergeSettings(): array
     {
         $ret = [
             'creation_date'              => time(),
@@ -186,7 +186,7 @@ abstract class AbstractReportingCloudTest extends TestCase
         return $ret;
     }
 
-    protected function deleteAllApiKeys()
+    protected function deleteAllApiKeys(): void
     {
         $apiKeys = $this->reportingCloud->getApiKeys();
         if (is_array($apiKeys)) {

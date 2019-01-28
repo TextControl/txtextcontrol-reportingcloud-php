@@ -16,7 +16,7 @@ namespace TxTextControlTest\ReportingCloud\Filter\TestAsset;
 
 class DefaultProvider
 {
-    public static function defaultProvider()
+    public static function defaultProvider(): array
     {
         return [
             [

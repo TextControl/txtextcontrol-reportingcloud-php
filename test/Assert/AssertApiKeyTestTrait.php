@@ -25,7 +25,7 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertApiKeyTestTrait
 {
-    public function testAssertApiKey()
+    public function testAssertApiKey(): void
     {
         $this->assertNull(Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'));
     }
@@ -34,7 +34,7 @@ trait AssertApiKeyTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Length of API key ("xxxxxxxxxx") must be in the range [20..45]
      */
-    public function testAssertApiKeyInvalidTooShort()
+    public function testAssertApiKeyInvalidTooShort(): void
     {
         Assert::assertApiKey('xxxxxxxxxx');
     }
@@ -44,7 +44,7 @@ trait AssertApiKeyTestTrait
      * @expectedExceptionMessage Length of API key ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx") must be in
      * the range [20..45]
      */
-    public function testAssertApiKeyInvalidTooLong()
+    public function testAssertApiKeyInvalidTooLong(): void
     {
         Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     }
@@ -53,7 +53,7 @@ trait AssertApiKeyTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Invalid length: ("xxxxxxxxxx") must be in the range [20..45]
      */
-    public function testAssertApiKeyInvalidWithCustomMessage()
+    public function testAssertApiKeyInvalidWithCustomMessage(): void
     {
         Assert::assertApiKey('xxxxxxxxxx', 'Invalid length: (%s) must be in the range [%2$s..%3$s]');
     }
