@@ -18,7 +18,7 @@ Learn more about ReportingCloud at:
  
 * [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here  
 
-* [ReportingCloud Web API documentation](https://portal.reporting.cloud/Documentation/Reference/)
+* [ReportingCloud Web API documentation](https://docs.reporting.cloud/docs/endpoint)
 
 * [ReportingCloud PHP wrapper Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 

@@ -37,7 +37,7 @@ All versions of PHPs prior to 7.1 have reached [end-of-life](http://php.net/eol.
 
 If you are unable or unwilling to update your PHP installation, you may consider using the ReportingCloud PHP wrapper 1.0, which supports PHP 5.6. Please note, however, this version is no longer maintained.
 
-Alternatively, it possible to use ReportingCloud by directly accessing the [Web API](https://portal.reporting.cloud/Documentation/Reference/). In such cases, it is advisable to use the [curl](http://php.net/manual/en/book.curl.php) extension to make the API calls.
+Alternatively, it possible to use ReportingCloud by directly accessing the [Web API](https://docs.reporting.cloud/docs/endpoint). In such cases, it is advisable to use the [curl](http://php.net/manual/en/book.curl.php) extension to make the API calls.
 
 
 ## Install Using Composer
