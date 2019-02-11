@@ -37,14 +37,23 @@ git tag release-1.1.x && git push origin --tags
 
 All the source code in this component library is documented using [phpDocumentor](https://www.phpdoc.org/).
 
-You can read the [API documentation](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/docs-api/) online, or build it yourself, using the following shell command:
+You can read the [API documentation](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/docs-api/) online.
+
+The API documentation is built and published as follows:
 
 ```bash
-phpdoc run --directory ./src --target ~/txtextcontrol-reportingcloud/src-docs --template clean
+composer global require phpdocumentor/phpdocumentor
+
+git clone git@github.com:TextControl/txtextcontrol-reportingcloud-php.git --branch gh-pages ~/libs/textcontrol/txtextcontrol-reportingcloud-gh-pages
+
+~/.composer/vendor/bin/phpdoc run                                                 \
+    --directory ~/libs/textcontrol/txtextcontrol-reportingcloud/src               \
+    --target    ~/libs/textcontrol/txtextcontrol-reportingcloud-gh-pages/docs-api \
+    --template clean
+
+git add . && git commit -am"Updated API documentation" && git push origin gh-pages
+
 ```
-
-The resultant set of HTML files will be written to `~/txtextcontrol-reportingcloud/src-docs`.
-
 
 ## Unit Tests With Code Coverage (phpunit)
 
@@ -53,7 +62,13 @@ The resultant set of HTML files will be written to `~/txtextcontrol-reportingclo
 You can review the [code coverage report](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/test-coverage/) online, or build it yourself, using the following shell command:
 
 ```bash
-./vendor/phpunit/phpunit/phpunit --coverage-html ~/txtextcontrol-reportingcloud/test-coverage
+cd ~/libs/textcontrol/txtextcontrol-reportingcloud
+
+~/libs/textcontrol/txtextcontrol-reportingcloud/vendor/bin/phpunit               \
+    --coverage-html ~/libs/textcontrol/txtextcontrol-reportingcloud-gh-pages/test-coverage
+
+git add . && git commit -am"Updated test coverage" && git push origin gh-pages
+
 ```
 
 The resultant set of HTML files will be written to `~/txtextcontrol-reportingcloud/test-coverage`.
