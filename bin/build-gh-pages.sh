@@ -55,7 +55,7 @@ cd ${GH_PATH}
 
 git add .
 
-git commit -am"Updated test coverage documentation"
+git commit -am"Updated test coverage"
 
 git push origin gh-pages
 
