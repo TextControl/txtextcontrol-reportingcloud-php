@@ -21,6 +21,8 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud PHP wrapper GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
 
+* [ReportingCloud PHP wrapper API documentation](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/docs-api/)
+
 * [ReportingCloud PHP wrapper support](https://support.textcontrol.com/new-ticket)
 
 ## NEW: ReportingCloud PHP Wrapper 2.0

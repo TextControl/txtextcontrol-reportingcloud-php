@@ -42,17 +42,7 @@ You can read the [API documentation](https://textcontrol.github.io/txtextcontrol
 The API documentation is built and published as follows:
 
 ```bash
-composer global require phpdocumentor/phpdocumentor
-
-git clone git@github.com:TextControl/txtextcontrol-reportingcloud-php.git --branch gh-pages ~/libs/textcontrol/txtextcontrol-reportingcloud-gh-pages
-
-~/.composer/vendor/bin/phpdoc run                                                 \
-    --directory ~/libs/textcontrol/txtextcontrol-reportingcloud/src               \
-    --target    ~/libs/textcontrol/txtextcontrol-reportingcloud-gh-pages/docs-api \
-    --template clean
-
-git add . && git commit -am"Updated API documentation" && git push origin gh-pages
-
+bin/build-gh-pages.sh
 ```
 
 ## Unit Tests With Code Coverage (phpunit)
@@ -61,18 +51,11 @@ git add . && git commit -am"Updated API documentation" && git push origin gh-pag
 
 You can review the [code coverage report](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/test-coverage/) online, or build it yourself, using the following shell command:
 
+The code coverage report is built and published as follows:
+
 ```bash
-cd ~/libs/textcontrol/txtextcontrol-reportingcloud
-
-~/libs/textcontrol/txtextcontrol-reportingcloud/vendor/bin/phpunit               \
-    --coverage-html ~/libs/textcontrol/txtextcontrol-reportingcloud-gh-pages/test-coverage
-
-git add . && git commit -am"Updated test coverage" && git push origin gh-pages
-
+bin/build-gh-pages.sh
 ```
-
-The resultant set of HTML files will be written to `~/txtextcontrol-reportingcloud/test-coverage`.
-
 
 ## Coding Standards
 

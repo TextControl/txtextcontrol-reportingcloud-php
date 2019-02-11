@@ -5,6 +5,7 @@
 ## dev-master
 
 * Added return types to all unit tests.
+* Added `bin/build-gh-pages.sh` to build GitHub Pages site (API documentation and unit test coverage). 
 
 ## 2.0.2 - 2019-01-03
 
