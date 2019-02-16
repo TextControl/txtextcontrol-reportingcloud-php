@@ -51,13 +51,14 @@ trait AssertDateTimeTrait
 
         try {
             $dateTime = DateTime::createFromFormat($dateFormat, $value, $dateTimeZone);
-            if (!$dateTime) {
+            if ($dateTime instanceof DateTime) {
+                if (0 !== $dateTime->getOffset()) {
+                    $format  = $message ?: '%s has an invalid offset';
+                    $message = sprintf($format, self::valueToString($value));
+                    self::reportInvalidArgument($message);
+                }
+            } else {
                 $format  = $message ?: '%s is syntactically invalid';
-                $message = sprintf($format, self::valueToString($value));
-                self::reportInvalidArgument($message);
-            }
-            if (0 !== $dateTime->getOffset()) {
-                $format  = $message ?: '%s has an invalid offset';
                 $message = sprintf($format, self::valueToString($value));
                 self::reportInvalidArgument($message);
             }

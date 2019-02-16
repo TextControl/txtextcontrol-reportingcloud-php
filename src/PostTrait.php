@@ -140,7 +140,7 @@ trait PostTrait
 
         $templateName = basename($templateFilename);
 
-        $data = file_get_contents($templateFilename);
+        $data = (string) file_get_contents($templateFilename);
         $data = base64_encode($data);
 
         return $this->uploadTemplateFromBase64($data, $templateName);
@@ -165,7 +165,7 @@ trait PostTrait
             'returnFormat' => $returnFormat,
         ];
 
-        $data = file_get_contents($documentFilename);
+        $data = (string) file_get_contents($documentFilename);
         $data = base64_encode($data);
 
         $result = $this->post('/document/convert', $query, $data, StatusCode::OK);
@@ -215,7 +215,7 @@ trait PostTrait
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $data             = file_get_contents($templateFilename);
+            $data             = (string) file_get_contents($templateFilename);
             $data             = base64_encode($data);
             $json['template'] = $data;
         }
@@ -308,7 +308,7 @@ trait PostTrait
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $data             = file_get_contents($templateFilename);
+            $data             = (string) file_get_contents($templateFilename);
             $data             = base64_encode($data);
             $json['template'] = $data;
         }

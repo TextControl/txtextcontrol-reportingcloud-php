@@ -392,7 +392,10 @@ trait GetTrait
         $result = (string) $this->get('/templates/download', $query, null, StatusCode::OK);
 
         if (!empty($result)) {
-            $result = base64_decode($result);
+            $decoded = base64_decode($result);
+            if (is_string($decoded)) {
+                $result = $decoded;
+            }
         }
 
         return $result;

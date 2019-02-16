@@ -106,7 +106,7 @@ END;
         if (empty($filename)) {
             $name = 'this script';
         } else {
-            $base = realpath(__DIR__ . '/../../');
+            $base = dirname(__FILE__, 3);
             $file = str_replace($base, '', $filename);
             $name = sprintf("'%s'", $file);
         }

@@ -379,7 +379,7 @@ abstract class AbstractReportingCloud
      *
      * @param bool $debug Debug flag
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
     public function setDebug(bool $debug): self
     {
@@ -447,9 +447,9 @@ abstract class AbstractReportingCloud
     /**
      * Return the REST client of the backend web service
      *
-     * @return Client
+     * @return Client|null
      */
-    public function getClient(): Client
+    public function getClient(): ?Client
     {
         if (!$this->client instanceof Client) {
 
@@ -501,8 +501,9 @@ abstract class AbstractReportingCloud
         $client = $this->getClient();
 
         try {
-            if ($this->getTest()) {
-                $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($this->getTest());
+            $test = (bool) $this->getTest();
+            if ($test) {
+                $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($test);
             }
             $response = $client->request($method, $uri, $options);
         } catch (GuzzleException $e) {

@@ -47,8 +47,7 @@ trait AssertCultureTrait
      */
     public static function getCulturesFilename(): string
     {
-        $filename = __DIR__ . '/../../data/cultures.php';
-        $filename = realpath($filename);
+        $filename = dirname(__FILE__, 3) . '/data/cultures.php';
 
         return $filename;
     }

@@ -47,8 +47,7 @@ trait AssertLanguageTrait
      */
     public static function getDictionariesFilename(): string
     {
-        $filename = __DIR__ . '/../../data/dictionaries.php';
-        $filename = realpath($filename);
+        $filename = dirname(__FILE__, 3) . '/data/dictionaries.php';
 
         return $filename;
     }
