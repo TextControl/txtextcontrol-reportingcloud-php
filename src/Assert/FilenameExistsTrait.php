@@ -28,23 +28,21 @@ trait FilenameExistsTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function filenameExists(string $value, string $message = '')
+    public static function filenameExists(string $value, string $message = ''): void
     {
         if ($value !== realpath($value)) {
-            $format  = $message ?: '%s must contain the absolute path and file';
-            $message = sprintf($format, self::valueToString($value));
+            $format  = $message ?: '"%s" must contain the absolute path and file';
+            $message = sprintf($format, $value);
             self::reportInvalidArgument($message);
         }
 
         if (!is_file($value)) {
-            $format  = $message ?: '%s is not a regular file';
-            $message = sprintf($format, self::valueToString($value));
+            $format  = $message ?: '"%s" is not a regular file';
+            $message = sprintf($format, $value);
             self::reportInvalidArgument($message);
         }
-
-        return null;
     }
 }

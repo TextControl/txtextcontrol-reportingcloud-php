@@ -58,6 +58,6 @@ trait AssertDocumentExtensionTestTrait
      */
     public function testAssertDocumentExtensionInvalidWithCustomMessage(): void
     {
-        Assert::assertDocumentExtension('document.xxx', 'Custom error message (%s)');
+        Assert::assertDocumentExtension('document.xxx', 'Custom error message ("%s")');
     }
 }

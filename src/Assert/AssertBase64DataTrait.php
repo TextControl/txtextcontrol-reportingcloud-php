@@ -28,17 +28,16 @@ trait AssertBase64DataTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertBase64Data(string $value, string $message = '')
+    public static function assertBase64Data(string $value, string $message = ''): void
     {
         if (!base64_decode($value, true)) {
-            $format  = $message ?: '%s must be base64 encoded';
-            $message = sprintf($format, self::valueToString($value));
+            $format  = $message ?: '"%s" must be base64 encoded';
+            $message = sprintf($format, $value);
+
             self::reportInvalidArgument($message);
         }
-
-        return null;
     }
 }

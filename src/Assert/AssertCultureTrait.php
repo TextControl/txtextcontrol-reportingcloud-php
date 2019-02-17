@@ -28,16 +28,16 @@ trait AssertCultureTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertCulture(string $value, string $message = '')
+    public static function assertCulture(string $value, string $message = ''): void
     {
         $haystack = self::getCultures();
-        $format   = $message ?: '%s contains an unsupported culture';
-        $message  = sprintf($format, self::valueToString($value));
+        $format   = $message ?: '"%s" contains an unsupported culture';
+        $message  = sprintf($format, $value);
 
-        return self::oneOf($value, $haystack, $message);
+        self::oneOf($value, $haystack, $message);
     }
 
     /**
@@ -61,6 +61,6 @@ trait AssertCultureTrait
     {
         $filename = self::getCulturesFilename();
 
-        return include $filename;
+        return (array) include $filename;
     }
 }

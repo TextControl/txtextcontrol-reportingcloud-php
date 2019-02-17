@@ -64,6 +64,6 @@ trait AssertDateTimeTestTrait
      */
     public function testAssertDateTimeInvalidWithCustomMessage(): void
     {
-        Assert::assertDateTime('0000-00-00T00:00:00+xx:xx', 'Custom error message (%s)');
+        Assert::assertDateTime('0000-00-00T00:00:00+xx:xx', 'Custom error message ("%s")');
     }
 }

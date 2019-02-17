@@ -28,16 +28,16 @@ trait AssertLanguageTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertLanguage(string $value, string $message = '')
+    public static function assertLanguage(string $value, string $message = ''): void
     {
         $haystack = self::getDictionaries();
-        $format   = $message ?: '%s contains an unsupported language';
-        $message  = sprintf($format, self::valueToString($value));
+        $format   = $message ?: '"%s" contains an unsupported language';
+        $message  = sprintf($format, $value);
 
-        return self::oneOf($value, $haystack, $message);
+        self::oneOf($value, $haystack, $message);
     }
 
     /**
@@ -61,6 +61,6 @@ trait AssertLanguageTrait
     {
         $filename = self::getDictionariesFilename();
 
-        return include $filename;
+        return (array) include $filename;
     }
 }

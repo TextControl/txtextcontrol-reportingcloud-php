@@ -47,6 +47,6 @@ trait AssertCultureTestTrait
      */
     public function testAssertCultureInvalidWithCustomMessage(): void
     {
-        Assert::assertCulture('xx-XX', 'Custom error message (%s)');
+        Assert::assertCulture('xx-XX', 'Custom error message ("%s")');
     }
 }

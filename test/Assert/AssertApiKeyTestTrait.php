@@ -55,6 +55,6 @@ trait AssertApiKeyTestTrait
      */
     public function testAssertApiKeyInvalidWithCustomMessage(): void
     {
-        Assert::assertApiKey('xxxxxxxxxx', 'Invalid length: (%s) must be in the range [%2$s..%3$s]');
+        Assert::assertApiKey('xxxxxxxxxx', 'Invalid length: ("%s") must be in the range [%2$s..%3$s]');
     }
 }

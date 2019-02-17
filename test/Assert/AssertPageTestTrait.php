@@ -34,7 +34,7 @@ trait AssertPageTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Page number (-1) must be in the range [1..9223372036854775807]
+     * @expectedExceptionMessage Page number ("-1") must be in the range [1..9223372036854775807]
      */
     public function testAssertPageInvalidTooSmall(): void
     {
@@ -43,10 +43,10 @@ trait AssertPageTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (-50) - range: [1..9223372036854775807]
+     * @expectedExceptionMessage Custom error message ("-50") - range: [1..9223372036854775807]
      */
     public function testAssertPageInvalidWithCustomMessage(): void
     {
-        Assert::assertPage(-50, 'Custom error message (%s) - range: [%2$s..%3$s]');
+        Assert::assertPage(-50, 'Custom error message ("%s") - range: [%d..%d]');
     }
 }

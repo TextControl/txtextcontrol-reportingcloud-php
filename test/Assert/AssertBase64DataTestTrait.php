@@ -64,6 +64,6 @@ trait AssertBase64DataTestTrait
      */
     public function testAssertBase64DataWithCustomMessage(): void
     {
-        Assert::assertBase64Data('**********', 'Custom error message (%s)');
+        Assert::assertBase64Data('**********', 'Custom error message ("%s")');
     }
 }

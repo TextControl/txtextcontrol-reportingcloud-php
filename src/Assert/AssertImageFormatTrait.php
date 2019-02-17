@@ -30,15 +30,15 @@ trait AssertImageFormatTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertImageFormat(string $value, string $message = '')
+    public static function assertImageFormat(string $value, string $message = ''): void
     {
         $ucValue = strtoupper($value);
-        $format  = $message ?: '%s contains an unsupported image format file extension';
-        $message = sprintf($format, self::valueToString($value));
+        $format  = $message ?: '"%s" contains an unsupported image format file extension';
+        $message = sprintf($format, $value);
 
-        return self::oneOf($ucValue, ReportingCloud::FILE_FORMATS_IMAGE, $message);
+        self::oneOf($ucValue, ReportingCloud::FILE_FORMATS_IMAGE, $message);
     }
 }

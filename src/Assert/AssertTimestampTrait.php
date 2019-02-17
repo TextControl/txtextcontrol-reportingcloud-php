@@ -42,19 +42,14 @@ trait AssertTimestampTrait
      * @param int    $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertTimestamp(int $value, string $message = '')
+    public static function assertTimestamp(int $value, string $message = ''): void
     {
-        $format  = $message ?: 'Timestamp (%s) must be in the range [%2$s..%3$s]';
-        $message = sprintf(
-            $format,
-            self::valueToString($value),
-            self::valueToString(self::$timestampMin),
-            self::valueToString(self::$timestampMax)
-        );
+        $format  = $message ?: 'Timestamp ("%d") must be in the range [%d..%d]';
+        $message = sprintf($format, $value, self::$timestampMin, self::$timestampMax);
 
-        return self::range($value, self::$timestampMin, self::$timestampMax, $message);
+        self::range($value, self::$timestampMin, self::$timestampMax, $message);
     }
 }

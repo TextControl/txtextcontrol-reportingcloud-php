@@ -42,19 +42,14 @@ trait AssertZoomFactorTrait
      * @param int    $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertZoomFactor(int $value, string $message = '')
+    public static function assertZoomFactor(int $value, string $message = ''): void
     {
-        $format  = $message ?: 'Zoom factor (%s) must be in the range [%2$s..%3$s]';
-        $message = sprintf(
-            $format,
-            self::valueToString($value),
-            self::valueToString(self::$zoomFactorMin),
-            self::valueToString(self::$zoomFactorMax)
-        );
+        $format  = $message ?: 'Zoom factor ("%s") must be in the range [%d..%d]';
+        $message = sprintf($format, $value, self::$zoomFactorMin, self::$zoomFactorMax);
 
-        return self::range($value, self::$zoomFactorMin, self::$zoomFactorMax, $message);
+        self::range($value, self::$zoomFactorMin, self::$zoomFactorMax, $message);
     }
 }

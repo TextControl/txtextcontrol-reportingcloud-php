@@ -33,16 +33,16 @@ trait AssertDocumentDividerTrait
      * @param int    $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertDocumentDivider(int $value, string $message = '')
+    public static function assertDocumentDivider(int $value, string $message = ''): void
     {
         $haystack = self::getDocumentDividers();
-        $format   = $message ?: '%s contains an unsupported document divider';
-        $message  = sprintf($format, self::valueToString($value));
+        $format   = $message ?: '"%d" contains an unsupported document divider';
+        $message  = sprintf($format, $value);
 
-        return self::oneOf($value, $haystack, $message);
+        self::oneOf($value, $haystack, $message);
     }
 
     /**

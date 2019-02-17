@@ -30,10 +30,10 @@ trait AssertTemplateNameTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    abstract public static function assertTemplateFormat(string $value, string $message = '');
+    abstract public static function assertTemplateFormat(string $value, string $message = ''): void;
 
     /**
      * Validate template name
@@ -41,14 +41,14 @@ trait AssertTemplateNameTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertTemplateName(string $value, string $message = '')
+    public static function assertTemplateName(string $value, string $message = ''): void
     {
         if (basename($value) != $value) {
-            $format  = $message ?: "%s contains path information ('/', '.', or '..')";
-            $message = sprintf($format, self::valueToString($value));
+            $format  = $message ?: "\"%s\" contains path information ('/', '.', or '..')";
+            $message = sprintf($format, $value);
             self::reportInvalidArgument($message);
         }
 
@@ -57,11 +57,9 @@ trait AssertTemplateNameTrait
         try {
             self::assertTemplateFormat($extension);
         } catch (InvalidArgumentException $e) {
-            $format  = $message ?: "%s contains an unsupported file extension";
-            $message = sprintf($format, self::valueToString($value));
+            $format  = $message ?: '"%s" contains an unsupported file extension';
+            $message = sprintf($format, $value);
             self::reportInvalidArgument($message);
         }
-
-        return null;
     }
 }

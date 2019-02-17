@@ -34,7 +34,7 @@ trait AssertDocumentDividerTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage 10 contains an unsupported document divider
+     * @expectedExceptionMessage "10" contains an unsupported document divider
      */
     public function testAssertDocumentDividerInvalid(): void
     {
@@ -43,10 +43,10 @@ trait AssertDocumentDividerTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (-10)
+     * @expectedExceptionMessage Custom error message ("-10")
      */
     public function testAssertDocumentDividerInvalidWithCustomMessage(): void
     {
-        Assert::assertDocumentDivider(-10, 'Custom error message (%s)');
+        Assert::assertDocumentDivider(-10, 'Custom error message ("%s")');
     }
 }

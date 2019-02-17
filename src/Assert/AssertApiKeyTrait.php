@@ -42,21 +42,16 @@ trait AssertApiKeyTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertApiKey(string $value, string $message = '')
+    public static function assertApiKey(string $value, string $message = ''): void
     {
         $len = strlen($value);
 
-        $format  = $message ?: 'Length of API key (%s) must be in the range [%2$s..%3$s]';
-        $message = sprintf(
-            $format,
-            self::valueToString($value),
-            self::valueToString(self::$apiKeyMinLength),
-            self::valueToString(self::$apiKeyMaxLength)
-        );
+        $format  = $message ?: 'Length of API key ("%s") must be in the range [%d..%d]';
+        $message = sprintf($format, $value, self::$apiKeyMinLength, self::$apiKeyMaxLength);
 
-        return self::range($len, self::$apiKeyMinLength, self::$apiKeyMaxLength, $message);
+        self::range($len, self::$apiKeyMinLength, self::$apiKeyMaxLength, $message);
     }
 }

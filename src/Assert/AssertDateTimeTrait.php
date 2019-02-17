@@ -33,17 +33,17 @@ trait AssertDateTimeTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertDateTime(string $value, string $message = '')
+    public static function assertDateTime(string $value, string $message = ''): void
     {
         $timeZone   = ReportingCloud::DEFAULT_TIME_ZONE;
         $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
 
         if (self::getDateTimeLength() !== strlen($value)) {
-            $format  = $message ?: '%s has an invalid number of characters in it';
-            $message = sprintf($format, self::valueToString($value));
+            $format  = $message ?: '"%s" has an invalid number of characters in it';
+            $message = sprintf($format, $value);
             self::reportInvalidArgument($message);
         }
 
@@ -53,26 +53,24 @@ trait AssertDateTimeTrait
             $dateTime = DateTime::createFromFormat($dateFormat, $value, $dateTimeZone);
             if ($dateTime instanceof DateTime) {
                 if (0 !== $dateTime->getOffset()) {
-                    $format  = $message ?: '%s has an invalid offset';
-                    $message = sprintf($format, self::valueToString($value));
+                    $format  = $message ?: '"%s" has an invalid offset';
+                    $message = sprintf($format, $value);
                     self::reportInvalidArgument($message);
                 }
             } else {
-                $format  = $message ?: '%s is syntactically invalid';
-                $message = sprintf($format, self::valueToString($value));
+                $format  = $message ?: '"%s" is syntactically invalid';
+                $message = sprintf($format, $value);
                 self::reportInvalidArgument($message);
             }
         } catch (Exception $e) {
-            $format  = $message ?: 'Internal error validating %s - %s';
+            $format  = $message ?: 'Internal error validating "%s" - %s';
             $message = sprintf(
                 $format,
-                self::valueToString($value),
-                self::valueToString($e->getMessage())
+                $value,
+                $e->getMessage()
             );
             self::reportInvalidArgument($message);
         }
-
-        return null;
     }
 
     /**

@@ -100,10 +100,10 @@ For further assistance and customer service please refer to:
     https://www.reporting.cloud
 
 END;
-        $filename = $_SERVER['argv'][0] ?? '';
+        $filename = (string) $_SERVER['argv'][0] ?? '';
         $filename = realpath($filename);
 
-        if (empty($filename)) {
+        if (is_bool($filename)) {
             $name = 'this script';
         } else {
             $base = dirname(__FILE__, 3);

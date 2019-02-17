@@ -30,17 +30,17 @@ trait AssertTemplateExtensionTrait
      * @param string $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertTemplateExtension(string $value, string $message = '')
+    public static function assertTemplateExtension(string $value, string $message = ''): void
     {
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = strtoupper($extension);
 
-        $format  = $message ?: '%s contains an unsupported template format file extension';
-        $message = sprintf($format, self::valueToString($value));
+        $format  = $message ?: '"%s" contains an unsupported template format file extension';
+        $message = sprintf($format, $value);
 
-        return self::oneOf($extension, ReportingCloud::FILE_FORMATS_TEMPLATE, $message);
+        self::oneOf($extension, ReportingCloud::FILE_FORMATS_TEMPLATE, $message);
     }
 }

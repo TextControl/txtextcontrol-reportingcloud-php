@@ -42,19 +42,14 @@ trait AssertPageTrait
      * @param int    $value
      * @param string $message
      *
-     * @return null
+     * @return void
      * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
      */
-    public static function assertPage(int $value, string $message = '')
+    public static function assertPage(int $value, string $message = ''): void
     {
-        $format  = $message ?: 'Page number (%s) must be in the range [%2$s..%3$s]';
-        $message = sprintf(
-            $format,
-            self::valueToString($value),
-            self::valueToString(self::$pageMin),
-            self::valueToString(self::$pageMax)
-        );
+        $format  = $message ?: 'Page number ("%s") must be in the range [%d..%d]';
+        $message = sprintf($format, $value, self::$pageMin, self::$pageMax);
 
-        return self::range($value, self::$pageMin, self::$pageMax, $message);
+        self::range($value, self::$pageMin, self::$pageMax, $message);
     }
 }

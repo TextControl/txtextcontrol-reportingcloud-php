@@ -57,6 +57,6 @@ trait AssertFilenameExistsTestTrait
      */
     public function testAssertFilenameExistsInvalidWithCustomMessage(): void
     {
-        Assert::filenameExists('/path/to/invalid/file', 'Custom error message (%s)');
+        Assert::filenameExists('/path/to/invalid/file', 'Custom error message ("%s")');
     }
 }

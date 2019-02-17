@@ -46,6 +46,6 @@ trait AssertImageFormatTestTrait
      */
     public function testAssertImageFormatInvalidWithCustomMessage(): void
     {
-        Assert::assertImageFormat('SVG', 'Custom error message (%s)');
+        Assert::assertImageFormat('SVG', 'Custom error message ("%s")');
     }
 }

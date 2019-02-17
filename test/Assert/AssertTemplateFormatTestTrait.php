@@ -46,6 +46,6 @@ trait AssertTemplateFormatTestTrait
      */
     public function testAssertTemplateFormatInvalidWithCustomMessage(): void
     {
-        Assert::assertTemplateFormat('XXX', 'Custom error message (%s)');
+        Assert::assertTemplateFormat('XXX', 'Custom error message ("%s")');
     }
 }
