@@ -47,7 +47,7 @@ trait PostTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     * @return \GuzzleHttp\Psr7\Response
      * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     abstract protected function request(string $method, string $uri, array $options): Response;

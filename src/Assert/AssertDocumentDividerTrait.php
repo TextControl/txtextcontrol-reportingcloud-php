@@ -63,10 +63,11 @@ trait AssertDocumentDividerTrait
             // continue
         }
 
-        $ret = array_filter($constants, function ($constantKey) {
+        $ret = array_filter($constants, function (string $constantKey): bool {
             if (StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_')) {
                 return true;
             }
+            return false;
         }, ARRAY_FILTER_USE_KEY);
 
         $ret = array_values($ret);

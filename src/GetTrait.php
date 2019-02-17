@@ -52,7 +52,7 @@ trait GetTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return mixed|null|\Psr\Http\Message\ResponseInterface
+     * @return \GuzzleHttp\Psr7\Response
      * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
      */
     abstract protected function request(string $method, string $uri, array $options): Response;
@@ -279,7 +279,7 @@ trait GetTrait
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
-            array_walk($ret, function (&$record) {
+            array_walk($ret, function (array &$record): void {
                 $key = 'modified';
                 if (isset($record[$key])) {
                     Assert::assertDateTime($record[$key]);
