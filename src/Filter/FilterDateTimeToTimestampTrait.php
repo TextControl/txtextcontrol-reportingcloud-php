@@ -16,6 +16,8 @@ namespace TxTextControl\ReportingCloud\Filter;
 
 use DateTime;
 use DateTimeZone;
+use Exception;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
@@ -32,7 +34,7 @@ trait FilterDateTimeToTimestampTrait
      * @param string $dateTimeString
      *
      * @return int
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function filterDateTimeToTimestamp(string $dateTimeString): int
     {
@@ -41,11 +43,17 @@ trait FilterDateTimeToTimestampTrait
         $timeZone   = ReportingCloud::DEFAULT_TIME_ZONE;
         $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
 
-        $dateTimeZone = new DateTimeZone($timeZone);
-        $dateTime     = DateTime::createFromFormat($dateFormat, $dateTimeString, $dateTimeZone);
-
-        if ($dateTime instanceof DateTime) {
-            $ret = $dateTime->getTimestamp();
+        try {
+            $dateTimeZone = new DateTimeZone($timeZone);
+            $dateTime     = DateTime::createFromFormat($dateFormat, $dateTimeString, $dateTimeZone);
+            if ($dateTime instanceof DateTime) {
+                $ret = $dateTime->getTimestamp();
+            }
+        } catch (Exception $e) {
+            throw new InvalidArgumentException(
+                (string) $e->getMessage(),
+                (int) $e->getCode()
+            );
         }
 
         return $ret;

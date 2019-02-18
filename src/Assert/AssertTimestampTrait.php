@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+
 /**
  * Trait AssertTimestampTrait
  *
@@ -43,7 +45,7 @@ trait AssertTimestampTrait
      * @param string $message
      *
      * @return void
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertTimestamp(int $value, string $message = ''): void
     {

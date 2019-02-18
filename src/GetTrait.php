@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
@@ -52,10 +54,10 @@ trait GetTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return \GuzzleHttp\Psr7\Response
-     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     * @return ResponseInterface
+     * @throws RuntimeException
      */
-    abstract protected function request(string $method, string $uri, array $options): Response;
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
 
     /**
      * Using the passed propertyMap, recursively build array
@@ -104,7 +106,7 @@ trait GetTrait
      * @param string $language Language of specified text
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function proofingCheck(string $text, string $language): array
     {
@@ -155,7 +157,7 @@ trait GetTrait
      * @param int    $max      Maximum number of suggestions to return
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getProofingSuggestions(string $word, string $language, int $max = 10): array
     {
@@ -186,7 +188,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getTemplateInfo(string $templateName): array
     {
@@ -219,7 +221,7 @@ trait GetTrait
      * @param int    $toPage       To page
      * @param string $imageFormat  Image format
      *
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return array
      */
     public function getTemplateThumbnails(
@@ -297,7 +299,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return int
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getTemplatePageCount(string $templateName): int
     {
@@ -316,7 +318,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function templateExists(string $templateName): bool
     {
@@ -351,7 +353,7 @@ trait GetTrait
      * Return an array properties for the ReportingCloud account
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getAccountSettings(): array
     {
@@ -379,7 +381,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function downloadTemplate(string $templateName): string
     {

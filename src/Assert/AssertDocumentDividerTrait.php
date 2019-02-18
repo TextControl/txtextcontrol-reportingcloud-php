@@ -16,6 +16,7 @@ namespace TxTextControl\ReportingCloud\Assert;
 
 use ReflectionClass;
 use ReflectionException;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 
@@ -34,7 +35,7 @@ trait AssertDocumentDividerTrait
      * @param string $message
      *
      * @return void
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertDocumentDivider(int $value, string $message = ''): void
     {

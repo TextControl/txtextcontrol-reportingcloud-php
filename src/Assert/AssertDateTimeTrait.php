@@ -17,6 +17,7 @@ namespace TxTextControl\ReportingCloud\Assert;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
@@ -34,7 +35,7 @@ trait AssertDateTimeTrait
      * @param string $message
      *
      * @return void
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertDateTime(string $value, string $message = ''): void
     {

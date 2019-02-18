@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
 
 /**
@@ -45,10 +47,10 @@ trait DeleteTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return \GuzzleHttp\Psr7\Response
-     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     * @return ResponseInterface
+     * @throws RuntimeException
      */
-    abstract protected function request(string $method, string $uri, array $options): Response;
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
 
     // </editor-fold>
 
@@ -60,7 +62,7 @@ trait DeleteTrait
      * @param string $key
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function deleteApiKey(string $key): bool
     {
@@ -79,7 +81,7 @@ trait DeleteTrait
      * @param string $templateName
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function deleteTemplate(string $templateName): bool
     {

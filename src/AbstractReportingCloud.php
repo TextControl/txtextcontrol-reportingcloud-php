@@ -15,9 +15,9 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
@@ -493,12 +493,17 @@ abstract class AbstractReportingCloud
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return \GuzzleHttp\Psr7\Response
-     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     * @return ResponseInterface
+     * @throws RuntimeException
      */
-    protected function request(string $method, string $uri, array $options): Response
+    protected function request(string $method, string $uri, array $options): ResponseInterface
     {
         $client = $this->getClient();
+
+        if (!$client instanceof Client) {
+            $message = 'No HTTP Client has been set.';
+            throw new RuntimeException($message);
+        }
 
         try {
             $test = (bool) $this->getTest();
@@ -506,7 +511,7 @@ abstract class AbstractReportingCloud
                 $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($test);
             }
             $response = $client->request($method, $uri, $options);
-        } catch (GuzzleException $e) {
+        } catch (TransferException $e) {
             $message = (string) $e->getMessage();
             $code    = (int) $e->getCode();
             throw new RuntimeException($message, $code);
@@ -531,7 +536,7 @@ abstract class AbstractReportingCloud
      * Return Authorization Header, with either API key or username and password
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     private function getAuthorizationHeader(): string
     {

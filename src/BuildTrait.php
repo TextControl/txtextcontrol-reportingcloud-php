@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud;
 
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\DocumentSettings as DocumentSettingsPropertyMap;
@@ -63,7 +64,7 @@ trait BuildTrait
      * @param array $array
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function buildDocumentsArray(array $array): array
     {
@@ -99,8 +100,7 @@ trait BuildTrait
      * @param array $array
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
-     * @throws \Exception
+     * @throws InvalidArgumentException
      */
     protected function buildDocumentSettingsArray(array $array): array
     {
@@ -131,8 +131,7 @@ trait BuildTrait
      * @param array $array MergeSettings array
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
-     * @throws \Exception
+     * @throws InvalidArgumentException
      */
     protected function buildMergeSettingsArray(array $array): array
     {

@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
@@ -47,10 +49,10 @@ trait PostTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return \GuzzleHttp\Psr7\Response
-     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     * @return ResponseInterface
+     * @throws RuntimeException
      */
-    abstract protected function request(string $method, string $uri, array $options): Response;
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
 
     /**
      * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
@@ -109,7 +111,7 @@ trait PostTrait
      * @param string $templateName Template name
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function uploadTemplateFromBase64(string $data, string $templateName): bool
     {
@@ -131,7 +133,7 @@ trait PostTrait
      * @param string $templateFilename Template name
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function uploadTemplate(string $templateFilename): bool
     {
@@ -153,7 +155,7 @@ trait PostTrait
      * @param string $returnFormat     Return format
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function convertDocument(string $documentFilename, string $returnFormat): string
     {
@@ -186,7 +188,7 @@ trait PostTrait
      * @param array|null  $mergeSettings    Array of merge settings
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function mergeDocument(
         array $mergeData,
@@ -246,7 +248,7 @@ trait PostTrait
      * @param array|null $documentSettings
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function appendDocument(
         array $documentsData,
@@ -282,7 +284,7 @@ trait PostTrait
      * @param array|null  $mergeSettings      Array of merge settings
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function findAndReplaceDocument(
         array $findAndReplaceData,

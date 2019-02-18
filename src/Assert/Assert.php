@@ -51,6 +51,8 @@ class Assert extends AbstractAssert
      *     InvalidArgumentException
      *
      * @param string $message
+     *
+     * @throws InvalidArgumentException
      */
     protected static function reportInvalidArgument($message): void
     {

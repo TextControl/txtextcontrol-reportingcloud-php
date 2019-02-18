@@ -14,8 +14,10 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
 
@@ -45,10 +47,10 @@ trait PutTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return \GuzzleHttp\Psr7\Response
-     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     * @return ResponseInterface
+     * @throws RuntimeException
      */
-    abstract protected function request(string $method, string $uri, array $options): Response;
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
 
     /**
      * Using the passed propertyMap, recursively build array
@@ -68,7 +70,7 @@ trait PutTrait
      * Create an API key
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function createApiKey(): string
     {

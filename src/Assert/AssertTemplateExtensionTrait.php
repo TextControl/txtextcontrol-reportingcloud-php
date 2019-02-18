@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
@@ -31,7 +32,7 @@ trait AssertTemplateExtensionTrait
      * @param string $message
      *
      * @return void
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertTemplateExtension(string $value, string $message = ''): void
     {

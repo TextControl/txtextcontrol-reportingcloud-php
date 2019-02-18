@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+
 /**
  * Trait AssertLanguageTrait
  *
@@ -29,7 +31,7 @@ trait AssertLanguageTrait
      * @param string $message
      *
      * @return void
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertLanguage(string $value, string $message = ''): void
     {

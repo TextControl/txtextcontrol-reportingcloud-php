@@ -14,6 +14,8 @@ namespace TxTextControl\ReportingCloud\Assert;
  * @copyright © 2019 Text Control GmbH
  */
 
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+
 /**
  * Trait AssertZoomFactorTrait
  *
@@ -43,7 +45,7 @@ trait AssertZoomFactorTrait
      * @param string $message
      *
      * @return void
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertZoomFactor(int $value, string $message = ''): void
     {

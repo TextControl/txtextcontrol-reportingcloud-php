@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+
 /**
  * Trait AssertBase64DataTrait
  *
@@ -29,7 +31,7 @@ trait AssertBase64DataTrait
      * @param string $message
      *
      * @return void
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public static function assertBase64Data(string $value, string $message = ''): void
     {
