@@ -34,7 +34,7 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "phan": "vendor/bin/phan --config-file=.phan/config.php --output-mode=text",
+        "phan": "vendor/bin/phan --color --progress-bar",
         "phpcs": "vendor/bin/phpcs data demo src test --standard=phpcs.xml",
         "phpstan": "vendor/bin/phpstan analyse src test --level max",
         "psalm": "vendor/bin/psalm --config=psalm.xml",
