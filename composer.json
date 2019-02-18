@@ -39,10 +39,10 @@
         "phpstan": "vendor/bin/phpstan analyse src test --level max",
         "psalm": "vendor/bin/psalm --config=psalm.xml",
         "stan": [
+            "@phpcs",
             "@phpstan",
             "@psalm",
             "@phan",
-            "@phpcs",
             "@test"
         ]
     }
