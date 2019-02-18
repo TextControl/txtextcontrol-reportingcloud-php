@@ -35,7 +35,7 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "phpcs": "vendor/bin/phpcs data demo src test --standard=phpcs.xml",
-        "phpstan": "vendor/bin/phpstan analyse src --level max",
-        "psalm": "vendor/bin/psalm src"
+        "phpstan": "vendor/bin/phpstan analyse src test --level max",
+        "psalm": "vendor/bin/psalm --config=psalm.xml"
     }
 }
