@@ -148,8 +148,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $baseUri     = (string) $this->reportingCloud->getBaseUri();
         $this->assertNotEmpty($baseUri);
 
-        $baseUriHost = parse_url($baseUri, PHP_URL_HOST);
-
+        $baseUriHost = (string) parse_url($baseUri, PHP_URL_HOST);
         $this->assertNotEmpty($baseUriHost);
 
         $uri = sprintf('http://%s', $baseUriHost);

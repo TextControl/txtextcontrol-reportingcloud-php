@@ -88,6 +88,9 @@ trait GetTrait
 
         if (is_array($result)) {
             foreach ($result as $record) {
+                if (!is_array($record)) {
+                    continue;
+                }
                 $ret[] = $this->buildPropertyMapArray($record, $propertyMap);
             }
         }

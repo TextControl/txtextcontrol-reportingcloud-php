@@ -497,6 +497,7 @@ trait PostTraitTest
             $this->assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
+                $page = (string) $page;
                 $this->assertTrue(is_int($key));
                 $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
             }
@@ -534,6 +535,7 @@ trait PostTraitTest
             $this->assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
+                $page = (string) $page;
                 $this->assertTrue(is_int($key));
                 $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
             }

@@ -163,17 +163,18 @@ trait PostTrait
         Assert::filenameExists($documentFilename);
         Assert::assertReturnFormat($returnFormat);
 
-        $query = [
+        $query  = [
             'returnFormat' => $returnFormat,
         ];
 
-        $data = (string) file_get_contents($documentFilename);
-        $data = base64_encode($data);
+        $data   = (string) file_get_contents($documentFilename);
+        $data   = (string) base64_encode($data);
 
-        $result = $this->post('/document/convert', $query, $data, StatusCode::OK);
-        settype($result, 'string');
+        $result = (string) $this->post('/document/convert', $query, $data, StatusCode::OK);
 
-        return (string) base64_decode($result);
+        $ret    = (string) base64_decode($result);
+
+        return $ret;
     }
 
     /**
@@ -268,10 +269,11 @@ trait PostTrait
             $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
         }
 
-        $result = $this->post('/document/append', $query, $json, StatusCode::OK);
-        settype($result, 'string');
+        $result = (string) $this->post('/document/append', $query, $json, StatusCode::OK);
 
-        return (string) base64_decode($result);
+        $ret    = (string) base64_decode($result);
+
+        return $ret;
     }
 
     /**
@@ -319,10 +321,11 @@ trait PostTrait
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $result = $this->post('/document/findandreplace', $query, $json, StatusCode::OK);
-        settype($result, 'string');
+        $result = (string) $this->post('/document/findandreplace', $query, $json, StatusCode::OK);
 
-        return (string) base64_decode($result);
+        $ret    = (string) base64_decode($result);
+
+        return $ret;
     }
 
     /**

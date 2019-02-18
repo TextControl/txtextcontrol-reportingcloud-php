@@ -109,17 +109,22 @@ trait BuildTrait
         $propertyMap = new DocumentSettingsPropertyMap();
 
         $map = $propertyMap->getMap();
-        if (is_array($map)) {
-            foreach ($map as $property => $key) {
-                if (isset($array[$key])) {
-                    $value = $array[$key];
-                    if (StringUtils::endsWith($key, '_date')) {
-                        Assert::assertTimestamp($value);
-                        $value = Filter::filterTimestampToDateTime($value);
-                    }
-                    $ret[$property] = $value;
-                }
+
+        if (!is_array($map)) {
+            return $ret;
+        }
+
+        foreach ($map as $property => $key) {
+            $key = (string) $key;
+            if (!isset($array[$key])) {
+                continue;
             }
+            $value = $array[$key];
+            if (StringUtils::endsWith($key, '_date')) {
+                Assert::assertTimestamp($value);
+                $value = Filter::filterTimestampToDateTime($value);
+            }
+            $ret[$property] = $value;
         }
 
         return $ret;
@@ -140,24 +145,28 @@ trait BuildTrait
         $propertyMap = new MergeSettingsPropertyMap();
 
         $map = $propertyMap->getMap();
-        if (is_array($map)) {
-            foreach ($map as $property => $key) {
-                if (!isset($array[$key])) {
-                    continue;
-                }
-                $value = $array[$key];
-                if ('culture' === $key) {
-                    Assert::assertCulture($value);
-                }
-                if (StringUtils::startsWith($key, 'remove_')) {
-                    Assert::boolean($value);
-                }
-                if (StringUtils::endsWith($key, '_date')) {
-                    Assert::assertTimestamp($value);
-                    $value = Filter::filterTimestampToDateTime($value);
-                }
-                $ret[$property] = $value;
+
+        if (!is_array($map)) {
+            return $ret;
+        }
+
+        foreach ($map as $property => $key) {
+            $key = (string) $key;
+            if (!isset($array[$key])) {
+                continue;
             }
+            $value = $array[$key];
+            if ('culture' === $key) {
+                Assert::assertCulture($value);
+            }
+            if (StringUtils::startsWith($key, 'remove_')) {
+                Assert::boolean($value);
+            }
+            if (StringUtils::endsWith($key, '_date')) {
+                Assert::assertTimestamp($value);
+                $value = Filter::filterTimestampToDateTime($value);
+            }
+            $ret[$property] = $value;
         }
 
         return $ret;

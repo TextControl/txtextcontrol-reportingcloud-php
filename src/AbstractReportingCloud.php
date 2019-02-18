@@ -529,7 +529,9 @@ abstract class AbstractReportingCloud
      */
     protected function uri(string $uri): string
     {
-        return sprintf('/%s%s', $this->getVersion(), $uri);
+        $version = (string) $this->getVersion();
+
+        return sprintf('/%s%s', $version, $uri);
     }
 
     /**
@@ -540,12 +542,17 @@ abstract class AbstractReportingCloud
      */
     private function getAuthorizationHeader(): string
     {
-        if (!empty($this->getApiKey())) {
-            return sprintf('ReportingCloud-APIKey %s', $this->getApiKey());
+        $apiKey = (string) $this->getApiKey();
+
+        if (!empty($apiKey)) {
+            return sprintf('ReportingCloud-APIKey %s', $apiKey);
         }
 
-        if (!empty($this->getUsername()) && !empty($this->getPassword())) {
-            $value = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
+        $username = (string) $this->getUsername();
+        $password = (string) $this->getPassword();
+
+        if (!empty($username) && !empty($password)) {
+            $value = sprintf('%s:%s', $username, $password);
             return sprintf('Basic %s', base64_encode($value));
         }
 
