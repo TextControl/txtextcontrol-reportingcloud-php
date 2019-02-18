@@ -42,7 +42,6 @@
             "@phpcs"
         ],
         "git-pre-push": [
-            "@phpcs",
             "@phpstan",
             "@psalm",
             "@phan",
