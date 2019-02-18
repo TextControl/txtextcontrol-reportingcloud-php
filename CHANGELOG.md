@@ -6,7 +6,8 @@
 
 * Added return types to all unit tests.
 * Added `bin/build-gh-pages.sh` to build GitHub Pages site (API documentation and unit test coverage).
-* Improved code quality with static analysis ([phpstan](https://github.com/phpstan/phpstan), [psalm](https://github.com/vimeo/psalm/) and [phan](https://github.com/phan/phan)). 
+* Improved code quality with static analysis ([phpstan](https://github.com/phpstan/phpstan), [psalm](https://github.com/vimeo/psalm/) and [phan](https://github.com/phan/phan)).
+* Improved unit tests. 
 
 ## 2.0.2 - 2019-01-03
 
