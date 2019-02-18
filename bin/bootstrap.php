@@ -2,8 +2,13 @@
 declare(strict_types=1);
 
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 
-$autoloadFilename = function () {
+/**
+ * @return string
+ * @throws RuntimeException;
+ */
+$autoloadFilename = function (): string {
 
     // standard composer autoload file
     $file = 'autoload.php';
@@ -18,7 +23,7 @@ $autoloadFilename = function () {
     foreach ($paths as $path) {
         $filename = $path . DIRECTORY_SEPARATOR . $file;
         if (is_readable($filename)) {
-            return realpath($filename);
+            return (string) realpath($filename);
         }
     }
 
@@ -27,6 +32,9 @@ $autoloadFilename = function () {
     throw new RuntimeException($message);
 };
 
+/**
+ * @psalm-suppress UnresolvableInclude
+ */
 include $autoloadFilename();
 
 if (!ConsoleUtils::checkCredentials()) {

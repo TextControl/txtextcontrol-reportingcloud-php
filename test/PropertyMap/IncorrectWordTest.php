@@ -25,6 +25,10 @@ use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as PropertyMap;
  */
 class IncorrectWordTest extends TestCase
 {
+    /**
+     * @var PropertyMap
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $propertyMap;
 
     public function setUp(): void

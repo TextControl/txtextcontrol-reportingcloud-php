@@ -25,6 +25,10 @@ use TxTextControl\ReportingCloud\Filter\Filter;
  */
 class TimestampToDateTimeTest extends TestCase
 {
+    /**
+     * @var string
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $defaultTimezone;
 
     public function setUp(): void
@@ -44,7 +48,7 @@ class TimestampToDateTimeTest extends TestCase
     /**
      * @param string $timeZone
      * @param string $dateTimeString
-     * @param string $timestamp
+     * @param int $timestamp
      *
      * @dataProvider TxTextControlTest\ReportingCloud\Filter\TestAsset\DefaultProvider::defaultProvider
      */

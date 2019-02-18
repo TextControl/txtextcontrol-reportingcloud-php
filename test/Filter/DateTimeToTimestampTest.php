@@ -25,6 +25,10 @@ use TxTextControl\ReportingCloud\Filter\Filter;
  */
 class DateTimeToTimestampTest extends TestCase
 {
+    /**
+     * @var string
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $defaultTimezone;
 
     public function setUp(): void

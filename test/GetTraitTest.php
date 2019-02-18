@@ -110,6 +110,9 @@ trait GetTraitTest
 
     // <editor-fold desc="getAvailableDictionaries">
 
+    /**
+     * @psalm-suppress UnresolvableInclude
+     */
     public function testGetAvailableDictionaries(): void
     {
         $filename = Assert::getDictionariesFilename();
@@ -241,7 +244,7 @@ trait GetTraitTest
 
         $this->assertArrayHasKey('user_document_properties', $response);
 
-        $this->isTrue(is_array($response['user_document_properties']));
+        $this->assertEquals(true, is_array($response['user_document_properties']));
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 

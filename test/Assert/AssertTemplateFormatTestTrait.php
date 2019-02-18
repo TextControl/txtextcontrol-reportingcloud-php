@@ -27,8 +27,10 @@ trait AssertTemplateFormatTestTrait
 {
     public function testAssertTemplateFormat(): void
     {
-        $this->assertNull(Assert::assertTemplateFormat('DOC'));
-        $this->assertNull(Assert::assertTemplateFormat('doc'));
+        Assert::assertTemplateFormat('DOC');
+        Assert::assertTemplateFormat('doc');
+
+        $this->assertTrue(true);
     }
 
     /**

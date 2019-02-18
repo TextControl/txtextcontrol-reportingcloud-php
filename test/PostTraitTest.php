@@ -572,7 +572,7 @@ trait PostTraitTest
         copy($testTemplateFilename, $tempTemplateFilename);
         $this->assertFileExists($tempTemplateFilename);
 
-        $tempTemplateBinary = file_get_contents($tempTemplateFilename);
+        $tempTemplateBinary = (string) file_get_contents($tempTemplateFilename);
         $tempTemplateBase64 = base64_encode($tempTemplateBinary);
 
         $response = $this->reportingCloud->uploadTemplateFromBase64($tempTemplateBase64, $tempTemplateName);

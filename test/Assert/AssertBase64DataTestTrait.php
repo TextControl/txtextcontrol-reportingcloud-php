@@ -28,7 +28,9 @@ trait AssertBase64DataTestTrait
     public function testAssertBase64Data(): void
     {
         $value = base64_encode('ReportingCloud rocks!');
-        $this->assertNull(Assert::assertBase64Data($value));
+        Assert::assertBase64Data($value);
+
+        $this->assertTrue(true);
     }
 
     /**

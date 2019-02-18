@@ -27,9 +27,11 @@ trait AssertDocumentDividerTestTrait
 {
     public function testAssertDocumentDivider(): void
     {
-        $this->assertNull(Assert::assertDocumentDivider(1));
-        $this->assertNull(Assert::assertDocumentDivider(2));
-        $this->assertNull(Assert::assertDocumentDivider(3));
+        Assert::assertDocumentDivider(1);
+        Assert::assertDocumentDivider(2);
+        Assert::assertDocumentDivider(3);
+
+        $this->assertTrue(true);
     }
 
     /**

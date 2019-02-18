@@ -25,6 +25,10 @@ use TxTextControl\ReportingCloud\PropertyMap\ApiKey as PropertyMap;
  */
 class ApiKeyTest extends TestCase
 {
+    /**
+     * @var PropertyMap
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $propertyMap;
 
     public function setUp(): void

@@ -27,13 +27,15 @@ trait AssertTemplateNameTestTrait
 {
     public function testAssertTemplateName(): void
     {
-        $this->assertNull(Assert::assertTemplateName('template.tx'));
-        $this->assertNull(Assert::assertTemplateName('template.TX'));
-        $this->assertNull(Assert::assertTemplateName('TEMPLATE.TX'));
+        Assert::assertTemplateName('template.tx');
+        Assert::assertTemplateName('template.TX');
+        Assert::assertTemplateName('TEMPLATE.TX');
 
-        $this->assertNull(Assert::assertTemplateName('template.doc'));
-        $this->assertNull(Assert::assertTemplateName('template.DOC'));
-        $this->assertNull(Assert::assertTemplateName('TEMPLATE.DOC'));
+        Assert::assertTemplateName('template.doc');
+        Assert::assertTemplateName('template.DOC');
+        Assert::assertTemplateName('TEMPLATE.DOC');
+
+        $this->assertTrue(true);
     }
 
     /**

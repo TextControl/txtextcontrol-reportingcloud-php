@@ -27,10 +27,12 @@ trait AssertFilenameExistsTestTrait
 {
     public function testAssertFilenameExists(): void
     {
-        $filename = tempnam(sys_get_temp_dir(), md5(__CLASS__));
+        $filename = (string) tempnam(sys_get_temp_dir(), hash('sha256',__CLASS__));
         touch($filename);
-        $this->assertNull(Assert::filenameExists($filename));
+        Assert::filenameExists($filename);
         unlink($filename);
+
+        $this->assertTrue(true);
     }
 
     /**

@@ -27,20 +27,22 @@ trait AssertDocumentExtensionTestTrait
 {
     public function testAssertDocumentExtension(): void
     {
-        $this->assertNull(Assert::assertDocumentExtension('./document.doc'));
-        $this->assertNull(Assert::assertDocumentExtension('./DOCUMENT.DOC'));
+        Assert::assertDocumentExtension('./document.doc');
+        Assert::assertDocumentExtension('./DOCUMENT.DOC');
 
-        $this->assertNull(Assert::assertDocumentExtension('../document.doc'));
-        $this->assertNull(Assert::assertDocumentExtension('../DOCUMENT.DOC'));
+        Assert::assertDocumentExtension('../document.doc');
+        Assert::assertDocumentExtension('../DOCUMENT.DOC');
 
-        $this->assertNull(Assert::assertDocumentExtension('/../document.doc'));
-        $this->assertNull(Assert::assertDocumentExtension('/../DOCUMENT.DOC'));
+        Assert::assertDocumentExtension('/../document.doc');
+        Assert::assertDocumentExtension('/../DOCUMENT.DOC');
 
-        $this->assertNull(Assert::assertDocumentExtension('/path/to/document.doc'));
-        $this->assertNull(Assert::assertDocumentExtension('/PATH/TO/DOCUMENT.DOC'));
+        Assert::assertDocumentExtension('/path/to/document.doc');
+        Assert::assertDocumentExtension('/PATH/TO/DOCUMENT.DOC');
 
-        $this->assertNull(Assert::assertDocumentExtension('c:\path\to\document.doc'));
-        $this->assertNull(Assert::assertDocumentExtension('c:\PATH\TO\DOCUMENT.DOC'));
+        Assert::assertDocumentExtension('c:\path\to\document.doc');
+        Assert::assertDocumentExtension('c:\PATH\TO\DOCUMENT.DOC');
+
+        $this->assertTrue(true);
     }
 
     /**

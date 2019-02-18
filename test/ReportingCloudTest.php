@@ -16,6 +16,7 @@ namespace TxTextControlTest\ReportingCloud;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
@@ -32,22 +33,6 @@ class ReportingCloudTest extends AbstractReportingCloudTest
     use GetTraitTest;
     use PostTraitTest;
     use PutTraitTest;
-
-    protected $reportingCloud;
-
-    public function setUp(): void
-    {
-        $this->assertNotEmpty(ConsoleUtils::apiKey());
-
-        $this->reportingCloud = new ReportingCloud([
-                                                       'api_key' => ConsoleUtils::apiKey(),
-                                                   ]);
-    }
-
-    public function tearDown(): void
-    {
-        unset($this->reportingCloud);
-    }
 
     /**
      * @expectedException InvalidArgumentException
@@ -161,7 +146,10 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
     public function testResponseStatusCodeWithHttp(): void
     {
-        $baseUriHost = parse_url($this->reportingCloud->getBaseUri(), PHP_URL_HOST);
+        $baseUri     = (string) $this->reportingCloud->getBaseUri();
+        $this->assertNotEmpty($baseUri);
+
+        $baseUriHost = parse_url($baseUri, PHP_URL_HOST);
 
         $this->assertNotEmpty($baseUriHost);
 
@@ -171,7 +159,10 @@ class ReportingCloudTest extends AbstractReportingCloudTest
             $client = new Client();
             $client->request('GET', $uri);
         } catch (ClientException $e) {
-            $this->assertSame(404, $e->getResponse()->getStatusCode());
+            $response = $e->getResponse();
+            if ($response instanceof ResponseInterface) {
+                $this->assertSame(404, $response->getStatusCode());
+            }
         }
     }
 }

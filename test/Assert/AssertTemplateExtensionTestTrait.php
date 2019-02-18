@@ -27,29 +27,31 @@ trait AssertTemplateExtensionTestTrait
 {
     public function testAssertTemplateExtension(): void
     {
-        $this->assertNull(Assert::assertTemplateExtension('./template.tx'));
-        $this->assertNull(Assert::assertTemplateExtension('./TEMPLATE.TX'));
+        Assert::assertTemplateExtension('./template.tx');
+        Assert::assertTemplateExtension('./TEMPLATE.TX');
 
-        $this->assertNull(Assert::assertTemplateExtension('../template.tx'));
-        $this->assertNull(Assert::assertTemplateExtension('../TEMPLATE.TX'));
+        Assert::assertTemplateExtension('../template.tx');
+        Assert::assertTemplateExtension('../TEMPLATE.TX');
 
-        $this->assertNull(Assert::assertTemplateExtension('/../template.tx'));
-        $this->assertNull(Assert::assertTemplateExtension('/../TEMPLATE.TX'));
+        Assert::assertTemplateExtension('/../template.tx');
+        Assert::assertTemplateExtension('/../TEMPLATE.TX');
 
-        $this->assertNull(Assert::assertTemplateExtension('/path/to/template.tx'));
-        $this->assertNull(Assert::assertTemplateExtension('/PATH/TO/TEMPLATE.TX'));
+        Assert::assertTemplateExtension('/path/to/template.tx');
+        Assert::assertTemplateExtension('/PATH/TO/TEMPLATE.TX');
 
-        $this->assertNull(Assert::assertTemplateExtension('c:\path\to\template.tx'));
-        $this->assertNull(Assert::assertTemplateExtension('c:\PATH\TO\TEMPLATE.TX'));
+        Assert::assertTemplateExtension('c:\path\to\template.tx');
+        Assert::assertTemplateExtension('c:\PATH\TO\TEMPLATE.TX');
 
-        $this->assertNull(Assert::assertTemplateExtension('.tx'));
-        $this->assertNull(Assert::assertTemplateExtension('.TX'));
+        Assert::assertTemplateExtension('.tx');
+        Assert::assertTemplateExtension('.TX');
 
-        $this->assertNull(Assert::assertTemplateExtension('1.tx'));
-        $this->assertNull(Assert::assertTemplateExtension('1.TX'));
+        Assert::assertTemplateExtension('1.tx');
+        Assert::assertTemplateExtension('1.TX');
 
-        $this->assertNull(Assert::assertTemplateExtension('a.tx'));
-        $this->assertNull(Assert::assertTemplateExtension('A.TX'));
+        Assert::assertTemplateExtension('a.tx');
+        Assert::assertTemplateExtension('A.TX');
+
+        $this->assertTrue(true);
     }
 
     /**

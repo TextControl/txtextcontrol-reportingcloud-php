@@ -27,9 +27,11 @@ trait AssertLanguageTestTrait
 {
     public function testAssertLanguage(): void
     {
-        $this->assertNull(Assert::assertLanguage('de_CH_frami.dic'));
-        $this->assertNull(Assert::assertLanguage('pt_BR.dic'));
-        $this->assertNull(Assert::assertLanguage('nb_NO.dic'));
+        Assert::assertLanguage('de_CH_frami.dic');
+        Assert::assertLanguage('pt_BR.dic');
+        Assert::assertLanguage('nb_NO.dic');
+
+        $this->assertTrue(true);
     }
 
     /**

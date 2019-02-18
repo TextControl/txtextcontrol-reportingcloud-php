@@ -18,7 +18,7 @@ use TxTextControl\ReportingCloud\Filter\AbstractFilter;
 
 class ConcreteFilter extends AbstractFilter
 {
-    public function filter($value): string
+    public function filter(string $value): string
     {
         return '';
     }

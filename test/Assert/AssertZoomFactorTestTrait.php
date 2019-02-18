@@ -27,7 +27,9 @@ trait AssertZoomFactorTestTrait
 {
     public function testAssertZoomFactor(): void
     {
-        $this->assertNull(Assert::assertZoomFactor(250));
+        Assert::assertZoomFactor(250);
+
+        $this->assertTrue(true);
     }
 
     /**

@@ -50,9 +50,12 @@ class ArrayUtilsTest extends TestCase
     {
         $filename = tempnam(sys_get_temp_dir(), hash('sha256', __CLASS__));
 
-        return $filename;
+        return (string) $filename;
     }
 
+    /**
+     * @psalm-suppress UnresolvableInclude
+     */
     public function testVarExportToFile(): void
     {
         $filename = $this->getTestFilename();

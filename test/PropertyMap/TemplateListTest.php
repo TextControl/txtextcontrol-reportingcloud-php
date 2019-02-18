@@ -25,6 +25,10 @@ use TxTextControl\ReportingCloud\PropertyMap\TemplateList as PropertyMap;
  */
 class TemplateListTest extends TestCase
 {
+    /**
+     * @var PropertyMap
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $propertyMap;
 
     public function setUp(): void

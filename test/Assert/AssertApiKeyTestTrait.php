@@ -27,7 +27,9 @@ trait AssertApiKeyTestTrait
 {
     public function testAssertApiKey(): void
     {
-        $this->assertNull(Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'));
+        Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+
+        $this->assertTrue(true);
     }
 
     /**

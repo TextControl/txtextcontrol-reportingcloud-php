@@ -27,11 +27,13 @@ trait AssertTimestampTestTrait
 {
     public function testAssertTimestamp(): void
     {
-        $this->assertNull(Assert::assertTimestamp(0));
-        $this->assertNull(Assert::assertTimestamp(1));
-        $this->assertNull(Assert::assertTimestamp(1000));
-        $this->assertNull(Assert::assertTimestamp(10000000));
-        $this->assertNull(Assert::assertTimestamp(PHP_INT_MAX));
+        Assert::assertTimestamp(0);
+        Assert::assertTimestamp(1);
+        Assert::assertTimestamp(1000);
+        Assert::assertTimestamp(10000000);
+        Assert::assertTimestamp(PHP_INT_MAX);
+
+        $this->assertTrue(true);
     }
 
     /**

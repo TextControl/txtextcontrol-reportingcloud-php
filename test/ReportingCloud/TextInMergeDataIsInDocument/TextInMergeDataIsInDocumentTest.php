@@ -27,11 +27,19 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
  */
 class TextInMergeDataIsInDocumentTest extends TestCase
 {
+    /**
+     * @var ReportingCloud
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $reportingCloud;
 
+    /**
+     * @var PdfParser
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $pdfParser;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->reportingCloud = new ReportingCloud([
             'api_key' => ConsoleUtils::apiKey()
@@ -40,9 +48,10 @@ class TextInMergeDataIsInDocumentTest extends TestCase
         $this->pdfParser = new PdfParser();
     }
 
-    public function testTextInMergeDataIsInDocument()
+    public function testTextInMergeDataIsInDocument(): void
     {
-        if (version_compare(phpversion(), '7.2.0', '>=')) {
+        $phpVersion = (string) phpversion();
+        if (version_compare($phpVersion, '7.2.0', '>=')) {
             $format  = '%s does not work as expected in PHP 7.2 and newer';
             $message = sprintf($format, PdfParser::class);
             $this->markTestSkipped($message);

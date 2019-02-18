@@ -27,9 +27,11 @@ trait AssertPageTestTrait
 {
     public function testAssertPage(): void
     {
-        $this->assertNull(Assert::assertPage(1));
-        $this->assertNull(Assert::assertPage(2));
-        $this->assertNull(Assert::assertPage(PHP_INT_MAX));
+        Assert::assertPage(1);
+        Assert::assertPage(2);
+        Assert::assertPage(PHP_INT_MAX);
+
+        $this->assertTrue(true);
     }
 
     /**

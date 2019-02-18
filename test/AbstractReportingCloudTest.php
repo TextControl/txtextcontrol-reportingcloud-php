@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace TxTextControlTest\ReportingCloud;
 
 use PHPUnit\Framework\TestCase;
+use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 /**
@@ -25,9 +26,31 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
  */
 abstract class AbstractReportingCloudTest extends TestCase
 {
+    /**
+     * @var ReportingCloud
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
+    protected $reportingCloud;
+
+    public function setUp(): void
+    {
+        $apiKey = ConsoleUtils::apiKey();
+
+        $this->assertNotEmpty($apiKey);
+
+        $this->reportingCloud = new ReportingCloud([
+           'api_key' => $apiKey,
+        ]);
+    }
+
+    public function tearDown(): void
+    {
+        unset($this->reportingCloud);
+    }
+
     private function getResourcePath(): string
     {
-        return realpath(__DIR__ . '/../resource');
+        return dirname(__FILE__, 2) . '/resource';
     }
 
     private function getTempPath(): string
@@ -189,7 +212,7 @@ abstract class AbstractReportingCloudTest extends TestCase
     protected function deleteAllApiKeys(): void
     {
         $apiKeys = $this->reportingCloud->getApiKeys();
-        if (is_array($apiKeys)) {
+        if (count($apiKeys) > 0) {
             foreach ($apiKeys as $apiKey) {
                 if ($apiKey['key'] == ConsoleUtils::apiKey()) {
                     continue;

@@ -27,26 +27,28 @@ trait AssertReturnFormatTestTrait
 {
     public function testAssertReturnFormat(): void
     {
-        $this->assertNull(Assert::assertReturnFormat('DOC'));
-        $this->assertNull(Assert::assertReturnFormat('doc'));
+        Assert::assertReturnFormat('DOC');
+        Assert::assertReturnFormat('doc');
 
-        $this->assertNull(Assert::assertReturnFormat('DOCX'));
-        $this->assertNull(Assert::assertReturnFormat('docx'));
+        Assert::assertReturnFormat('DOCX');
+        Assert::assertReturnFormat('docx');
 
-        $this->assertNull(Assert::assertReturnFormat('HTML'));
-        $this->assertNull(Assert::assertReturnFormat('html'));
+        Assert::assertReturnFormat('HTML');
+        Assert::assertReturnFormat('html');
 
-        $this->assertNull(Assert::assertReturnFormat('PDF'));
-        $this->assertNull(Assert::assertReturnFormat('pdf'));
+        Assert::assertReturnFormat('PDF');
+        Assert::assertReturnFormat('pdf');
 
-        $this->assertNull(Assert::assertReturnFormat('PDFA'));
-        $this->assertNull(Assert::assertReturnFormat('pdfa'));
+        Assert::assertReturnFormat('PDFA');
+        Assert::assertReturnFormat('pdfa');
 
-        $this->assertNull(Assert::assertReturnFormat('RTF'));
-        $this->assertNull(Assert::assertReturnFormat('rtf'));
+        Assert::assertReturnFormat('RTF');
+        Assert::assertReturnFormat('rtf');
 
-        $this->assertNull(Assert::assertReturnFormat('TX'));
-        $this->assertNull(Assert::assertReturnFormat('tx'));
+        Assert::assertReturnFormat('TX');
+        Assert::assertReturnFormat('tx');
+
+        $this->assertTrue(true);
     }
 
     /**

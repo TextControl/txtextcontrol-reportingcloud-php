@@ -25,6 +25,10 @@ use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as PropertyMap;
  */
 class AccountSettingsTest extends TestCase
 {
+    /**
+     * @var PropertyMap
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $propertyMap;
 
     public function setUp(): void

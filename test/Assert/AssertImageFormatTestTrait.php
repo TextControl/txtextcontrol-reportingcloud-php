@@ -27,8 +27,10 @@ trait AssertImageFormatTestTrait
 {
     public function testAssertImageFormat(): void
     {
-        $this->assertNull(Assert::assertImageFormat('PNG'));
-        $this->assertNull(Assert::assertImageFormat('png'));
+        Assert::assertImageFormat('PNG');
+        Assert::assertImageFormat('png');
+
+        $this->assertTrue(true);
     }
 
     /**

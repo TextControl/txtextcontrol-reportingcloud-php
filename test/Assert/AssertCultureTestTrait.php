@@ -27,9 +27,11 @@ trait AssertCultureTestTrait
 {
     public function testAssertCulture(): void
     {
-        $this->assertNull(Assert::assertCulture('de-DE'));
-        $this->assertNull(Assert::assertCulture('fr-FR'));
-        $this->assertNull(Assert::assertCulture('en-US'));
+        Assert::assertCulture('de-DE');
+        Assert::assertCulture('fr-FR');
+        Assert::assertCulture('en-US');
+
+        $this->assertTrue(true);
     }
 
     /**
