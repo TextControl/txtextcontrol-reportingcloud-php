@@ -19,7 +19,6 @@ use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
-use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 /**
  * Class ReportingCloudTest

@@ -25,6 +25,16 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertDocumentExtensionTestTrait
 {
+    // <editor-fold desc="Abstract methods">
+
+    /**
+     * @param mixed  $condition
+     * @param string $message
+     */
+    abstract public static function assertTrue($condition, string $message = ''): void;
+
+    // </editor-fold>
+
     public function testAssertDocumentExtension(): void
     {
         Assert::assertDocumentExtension('./document.doc');

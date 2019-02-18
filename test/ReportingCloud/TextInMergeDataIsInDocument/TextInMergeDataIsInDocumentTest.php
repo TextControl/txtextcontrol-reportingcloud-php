@@ -48,6 +48,12 @@ class TextInMergeDataIsInDocumentTest extends TestCase
         $this->pdfParser = new PdfParser();
     }
 
+    public function tearDown(): void
+    {
+        // $this->reportingCloud = null;
+        // $this->pdfParser = null;
+    }
+
     public function testTextInMergeDataIsInDocument(): void
     {
         $phpVersion = (string) phpversion();

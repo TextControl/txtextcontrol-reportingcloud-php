@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud;
 
+use TxTextControl\ReportingCloud\ReportingCloud;
+
 /**
  * Trait PutTraitTest
  *
@@ -22,6 +24,27 @@ namespace TxTextControlTest\ReportingCloud;
  */
 trait PutTraitTest
 {
+    /**
+     * @var ReportingCloud
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
+    protected $reportingCloud;
+
+    // <editor-fold desc="Abstract methods">
+
+    /**
+     * @param mixed  $actual
+     * @param string $message
+     */
+    abstract public static function assertNotEmpty($actual, string $message = ''): void;
+
+    /**
+     *
+     */
+    abstract protected function deleteAllApiKeys(): void;
+
+    // </editor-fold>
+
     // <editor-fold desc="createApiKey">
 
     public function testCreateApiKey(): void
@@ -44,6 +67,5 @@ trait PutTraitTest
             $this->assertNotEmpty($this->reportingCloud->createApiKey());
         }
     }
-
     // </editor-fold>
 }

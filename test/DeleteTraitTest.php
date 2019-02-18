@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace TxTextControlTest\ReportingCloud;
 
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
  * Trait DeleteTraitTest
@@ -24,6 +25,66 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait DeleteTraitTest
 {
+    /**
+     * @var ReportingCloud
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
+    protected $reportingCloud;
+
+    // <editor-fold desc="Abstract methods">
+
+    /**
+     * @param mixed  $actual
+     * @param string $message
+     */
+    abstract public static function assertNotEmpty($actual, string $message = ''): void;
+
+    /**
+     * @param mixed  $condition
+     * @param string $message
+     */
+    abstract public static function assertTrue($condition, string $message = ''): void;
+
+    /**
+     * @param string $filename
+     * @param string $message
+     */
+    abstract public static function assertFileExists(string $filename, string $message = ''): void;
+
+    /**
+     * @param mixed  $needle
+     * @param mixed  $haystack
+     * @param string $message
+     * @param bool   $ignoreCase
+     * @param bool   $checkForObjectIdentity
+     * @param bool   $checkForNonObjectIdentity
+     */
+    abstract public static function assertContains(
+        $needle,
+        $haystack,
+        string $message = '',
+        bool $ignoreCase = false,
+        bool $checkForObjectIdentity = true,
+        bool $checkForNonObjectIdentity = false
+    ): void;
+
+    /**
+     * @return string
+     */
+    abstract protected function getTestTemplateFilename(): string;
+
+    /**
+     * @return string
+     */
+    abstract protected function getTempTemplateFilename(): string;
+
+    /**
+     *
+     */
+    abstract protected function deleteAllApiKeys(): void;
+
+    // </editor-fold>
+
     // <editor-fold desc="deleteApiKey">
 
     public function testDeleteApiKey(): void

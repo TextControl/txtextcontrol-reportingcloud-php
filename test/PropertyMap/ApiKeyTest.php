@@ -36,6 +36,11 @@ class ApiKeyTest extends TestCase
         $this->propertyMap = new PropertyMap();
     }
 
+    public function tearDown(): void
+    {
+        // $this->propertyMap = null;
+    }
+
     public function testValid(): void
     {
         $expected = [

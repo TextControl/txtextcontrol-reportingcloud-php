@@ -45,7 +45,7 @@ abstract class AbstractReportingCloudTest extends TestCase
 
     public function tearDown(): void
     {
-        unset($this->reportingCloud);
+        // $this->reportingCloud = null;
     }
 
     private function getResourcePath(): string

@@ -12,4 +12,4 @@ declare(strict_types=1);
  * @copyright © 2019 Text Control GmbH
  */
 
-include_once __DIR__ . '/../bin/bootstrap.php';
+include_once dirname(__FILE__, 2) . '/bin/bootstrap.php';

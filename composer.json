@@ -41,7 +41,9 @@
         "stan": [
             "@phpstan",
             "@psalm",
-            "@phan"
+            "@phan",
+            "@phpcs",
+            "@test"
         ]
     }
 }

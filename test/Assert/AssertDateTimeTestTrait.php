@@ -25,6 +25,16 @@ use TxTextControl\ReportingCloud\Assert\Assert;
  */
 trait AssertDateTimeTestTrait
 {
+    // <editor-fold desc="Abstract methods">
+
+    /**
+     * @param mixed  $condition
+     * @param string $message
+     */
+    abstract public static function assertTrue($condition, string $message = ''): void;
+
+    // </editor-fold>
+
     public function testAssertDateTime(): void
     {
         Assert::assertDateTime('2016-06-02T15:49:57+00:00');

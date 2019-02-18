@@ -34,15 +34,11 @@ class TimestampToDateTimeTest extends TestCase
     public function setUp(): void
     {
         $this->defaultTimezone = date_default_timezone_get();
-
-        parent::setUp();
     }
 
     public function tearDown(): void
     {
         date_default_timezone_set($this->defaultTimezone);
-
-        parent::tearDown();
     }
 
     /**

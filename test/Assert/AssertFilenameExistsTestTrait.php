@@ -25,6 +25,16 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertFilenameExistsTestTrait
 {
+    // <editor-fold desc="Abstract methods">
+
+    /**
+     * @param mixed  $condition
+     * @param string $message
+     */
+    abstract public static function assertTrue($condition, string $message = ''): void;
+
+    // </editor-fold>
+
     public function testAssertFilenameExists(): void
     {
         $filename = (string) tempnam(sys_get_temp_dir(), hash('sha256', __CLASS__));

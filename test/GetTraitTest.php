@@ -16,6 +16,7 @@ namespace TxTextControlTest\ReportingCloud;
 
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
  * Trait GetTraitTest
@@ -25,6 +26,131 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait GetTraitTest
 {
+    /**
+     * @var ReportingCloud
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
+    protected $reportingCloud;
+
+    // <editor-fold desc="Abstract methods">
+
+    /**
+     * @param mixed  $actual
+     * @param string $message
+     */
+    abstract public static function assertNotEmpty($actual, string $message = ''): void;
+
+    /**
+     * @param mixed  $condition
+     * @param string $message
+     */
+    abstract public static function assertTrue($condition, string $message = ''): void;
+
+    /**
+     * @param mixed  $condition
+     * @param string $message
+     */
+    abstract public static function assertFalse($condition, string $message = ''): void;
+
+    /**
+     * @param string $filename
+     * @param string $message
+     */
+    abstract public static function assertFileExists(string $filename, string $message = ''): void;
+
+    /**
+     * @param mixed  $needle
+     * @param mixed  $haystack
+     * @param string $message
+     * @param bool   $ignoreCase
+     * @param bool   $checkForObjectIdentity
+     * @param bool   $checkForNonObjectIdentity
+     */
+    abstract public static function assertContains(
+        $needle,
+        $haystack,
+        string $message = '',
+        bool $ignoreCase = false,
+        bool $checkForObjectIdentity = true,
+        bool $checkForNonObjectIdentity = false
+    ): void;
+
+    /**
+     * @param mixed  $expected
+     * @param mixed  $actual
+     * @param string $message
+     * @param float  $delta
+     * @param int    $maxDepth
+     * @param bool   $canonicalize
+     * @param bool   $ignoreCase
+     */
+    abstract public static function assertEquals(
+        $expected,
+        $actual,
+        string $message = '',
+        float $delta = 0.0,
+        int $maxDepth = 10,
+        bool $canonicalize = false,
+        bool $ignoreCase = false
+    ): void;
+
+    /**
+     * @param mixed  $expected
+     * @param mixed  $actual
+     * @param string $message
+     */
+    abstract public static function assertSame($expected, $actual, string $message = ''): void;
+
+    /**
+     * @param mixed  $actual
+     * @param string $message
+     */
+    abstract public static function assertNotNull($actual, string $message = ''): void;
+
+    /**
+     * @param mixed  $condition
+     * @param string $message
+     */
+    abstract public static function assertNotFalse($condition, string $message = ''): void;
+
+    /**
+     * @param mixed  $expected
+     * @param mixed  $actual
+     * @param string $message
+     */
+    abstract public static function assertGreaterThan($expected, $actual, string $message = ''): void;
+
+    /**
+     * @param mixed  $expected
+     * @param mixed  $actual
+     * @param string $message
+     */
+    abstract public static function assertGreaterThanOrEqual($expected, $actual, string $message = ''): void;
+
+    /**
+     * @param mixed  $key
+     * @param mixed  $array
+     * @param string $message
+     */
+    abstract public static function assertArrayHasKey($key, $array, string $message = ''): void;
+
+    /**
+     * @return string
+     */
+    abstract protected function getTestTemplateFilename(): string;
+
+    /**
+     * @return string
+     */
+    abstract protected function getTempTemplateFilename(): string;
+
+    /**
+     *
+     */
+    abstract protected function deleteAllApiKeys(): void;
+
+    // </editor-fold>
+
     // <editor-fold desc="downloadTemplate">
 
     public function testDownloadTemplate(): void
