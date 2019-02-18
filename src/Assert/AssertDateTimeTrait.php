@@ -29,6 +29,11 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 trait AssertDateTimeTrait
 {
     /**
+     * @param string $message
+     */
+    abstract protected static function reportInvalidArgument($message): void;
+
+    /**
      * Validate DateTime string
      *
      * @param string $value

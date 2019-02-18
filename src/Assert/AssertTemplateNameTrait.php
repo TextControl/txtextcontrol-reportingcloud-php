@@ -25,6 +25,11 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 trait AssertTemplateNameTrait
 {
     /**
+     * @param string $message
+     */
+    abstract protected static function reportInvalidArgument($message): void;
+
+    /**
      * Validate template format
      *
      * @param string $value

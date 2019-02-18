@@ -29,6 +29,13 @@ use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 trait AssertDocumentDividerTrait
 {
     /**
+     * @param mixed  $value
+     * @param array  $values
+     * @param string $message
+     */
+    abstract public static function oneOf($value, array $values, $message = '');
+
+    /**
      * Validate a document divider
      *
      * @param int    $value

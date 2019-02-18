@@ -26,6 +26,13 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 trait AssertImageFormatTrait
 {
     /**
+     * @param mixed  $value
+     * @param array  $values
+     * @param string $message
+     */
+    abstract public static function oneOf($value, array $values, $message = '');
+
+    /**
      * Validate image format extension
      *
      * @param string $value

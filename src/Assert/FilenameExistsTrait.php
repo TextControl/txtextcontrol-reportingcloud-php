@@ -25,6 +25,11 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 trait FilenameExistsTrait
 {
     /**
+     * @param string $message
+     */
+    abstract protected static function reportInvalidArgument($message): void;
+
+    /**
      * Validate filename exists and can be read
      *
      * @param string $value

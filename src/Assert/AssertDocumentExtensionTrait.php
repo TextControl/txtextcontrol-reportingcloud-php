@@ -26,6 +26,13 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 trait AssertDocumentExtensionTrait
 {
     /**
+     * @param mixed  $value
+     * @param array  $values
+     * @param string $message
+     */
+    abstract public static function oneOf($value, array $values, $message = '');
+
+    /**
      * Validate document format extension
      *
      * @param string $value

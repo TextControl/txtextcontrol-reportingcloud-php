@@ -25,6 +25,13 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 trait AssertCultureTrait
 {
     /**
+     * @param mixed  $value
+     * @param array  $values
+     * @param string $message
+     */
+    abstract public static function oneOf($value, array $values, $message = '');
+
+    /**
      * Validate culture
      *
      * @param string $value

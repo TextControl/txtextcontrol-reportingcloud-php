@@ -25,6 +25,13 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 trait AssertLanguageTrait
 {
     /**
+     * @param mixed  $value
+     * @param array  $values
+     * @param string $message
+     */
+    abstract public static function oneOf($value, array $values, $message = '');
+
+    /**
      * Validate language
      *
      * @param string $value

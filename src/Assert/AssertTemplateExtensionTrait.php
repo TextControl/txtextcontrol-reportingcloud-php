@@ -26,6 +26,13 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 trait AssertTemplateExtensionTrait
 {
     /**
+     * @param mixed  $value
+     * @param array  $values
+     * @param string $message
+     */
+    abstract public static function oneOf($value, array $values, $message = '');
+
+    /**
      * Validate template extension
      *
      * @param string $value

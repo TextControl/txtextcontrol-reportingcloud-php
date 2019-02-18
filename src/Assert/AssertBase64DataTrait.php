@@ -25,6 +25,11 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 trait AssertBase64DataTrait
 {
     /**
+     * @param string $message
+     */
+    abstract protected static function reportInvalidArgument($message): void;
+
+    /**
      * Validate base64 data
      *
      * @param string $value

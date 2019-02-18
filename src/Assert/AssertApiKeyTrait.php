@@ -25,6 +25,14 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 trait AssertApiKeyTrait
 {
     /**
+     * @param int    $value
+     * @param int    $min
+     * @param int    $max
+     * @param string $message
+     */
+    abstract public static function range($value, $min, $max, $message = '');
+
+    /**
      * Minimum length of API key
      *
      * @var int
