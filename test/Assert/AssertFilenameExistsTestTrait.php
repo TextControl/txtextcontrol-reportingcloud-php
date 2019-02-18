@@ -14,8 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud\Assert;
 
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Trait AssertFilenameExistsTestTrait
@@ -27,7 +27,7 @@ trait AssertFilenameExistsTestTrait
 {
     public function testAssertFilenameExists(): void
     {
-        $filename = (string) tempnam(sys_get_temp_dir(), hash('sha256',__CLASS__));
+        $filename = (string) tempnam(sys_get_temp_dir(), hash('sha256', __CLASS__));
         touch($filename);
         Assert::filenameExists($filename);
         unlink($filename);
