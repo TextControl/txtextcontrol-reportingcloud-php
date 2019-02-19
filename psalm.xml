@@ -6,6 +6,9 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config file:///home/jon/libs/textcontrol/txtextcontrol-reportingcloud/vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
+        <directory name="bin" />
+        <directory name="data" />
+        <directory name="demo" />
         <directory name="src" />
         <directory name="test" />
         <ignoreFiles>

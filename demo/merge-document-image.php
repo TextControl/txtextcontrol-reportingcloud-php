@@ -6,16 +6,16 @@ include_once __DIR__ . '/bootstrap.php';
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
-$imageFilename       = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_template_image.jpg';
-$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_template_image.docx';
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_template_image_merged.pdf';
+$imageFilename       = sprintf('%s/test_template_image.jpg', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'));
+$sourceFilename      = sprintf('%s/test_template_image.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'));
+$destinationFilename = sprintf('%s/test_template_image_merged.pdf', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'));
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
     'test'    => true,
 ]);
 
-$imageBinaryData = file_get_contents($imageFilename);
+$imageBinaryData = (string) file_get_contents($imageFilename);
 
 // Base64 encode the image data before assigning to ReportingCloud.
 // See: https://www.textcontrol.com/blog/2016/07/18/
@@ -35,4 +35,4 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-var_dump($destinationFilename);
+dump($destinationFilename);

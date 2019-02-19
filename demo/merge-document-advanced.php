@@ -78,7 +78,10 @@ for ($i = 0; $i < 10; $i++) {
 
 // Template stored locally and uploaded to backend server on merge
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = sprintf(
+    '%s/test_template.tx',
+    constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')
+);
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
@@ -87,17 +90,23 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $sourceFilename
 );
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_local.pdf';
+$destinationFilename = sprintf(
+    '%s/sample_invoice_merged_local.pdf',
+    constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH')
+);
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-var_dump($destinationFilename);
+dump($destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Template is in template storage on backend server
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = sprintf(
+    '%s/test_template.tx',
+    constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')
+);
 
 $reportingCloud->uploadTemplate($sourceFilename);
 
@@ -107,11 +116,14 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     'test_template.tx'
 );
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_remote.pdf';
+$destinationFilename = sprintf(
+    '%s/sample_invoice_merged_remote.pdf',
+    constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH')
+);
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-var_dump($destinationFilename);
+dump($destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -134,7 +146,10 @@ $mergeSettings = [
     'culture'                    => 'en-US',
 ];
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = sprintf(
+    '%s/test_template.tx',
+    constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')
+);
 
 $reportingCloud->uploadTemplate($sourceFilename);
 
@@ -147,18 +162,24 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeSettings
 );
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_remote_merge_settings.pdf';
+$destinationFilename = sprintf(
+    '%s/sample_invoice_merged_remote_merge_settings.pdf',
+    constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH')
+);
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-var_dump($destinationFilename);
+dump($destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Template stored locally and uploaded to backend server on merge
 // append=true (also default, when not set)
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = sprintf(
+    '%s/test_template.tx',
+    constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')
+);
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
@@ -168,18 +189,24 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     true
 );
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/sample_invoice_merged_append_true_all.pdf';
+$destinationFilename = sprintf(
+    '%s/sample_invoice_merged_append_true_all.pdf',
+    constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH')
+);
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-var_dump($destinationFilename);
+dump($destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Template stored locally and uploaded to backend server on merge
 // append=false
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_template.tx';
+$sourceFilename = sprintf(
+    '%s/test_template.tx',
+    constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')
+);
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
@@ -191,12 +218,20 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
 
 foreach ($arrayOfBinaryData as $documentNo => $binaryData) {
 
-    $destinationFile     = sprintf('sample_invoice_merged_append_false_%d.pdf', $documentNo);
-    $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . DIRECTORY_SEPARATOR . $destinationFile;
+    $destinationFile = sprintf(
+        'sample_invoice_merged_append_false_%d.pdf',
+        $documentNo
+    );
+
+    $destinationFilename = sprintf(
+        '%s/%s',
+        constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'),
+        $destinationFile
+    );
 
     file_put_contents($destinationFilename, $binaryData);
 
-    var_dump($destinationFilename);
+    dump($destinationFilename);
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

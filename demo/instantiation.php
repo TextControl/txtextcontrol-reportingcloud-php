@@ -13,7 +13,7 @@ $reportingCloud = new ReportingCloud([
     'api_key' => 'xxxxxxxx',
 ]);
 
-var_dump($reportingCloud);
+dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ $reportingCloud = new ReportingCloud();
 
 $reportingCloud->setApiKey('xxxxxxxx');
 
-var_dump($reportingCloud);
+dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@ $reportingCloud = new ReportingCloud([
     'debug'    => true,
 ]);
 
-var_dump($reportingCloud);
+dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -53,8 +53,8 @@ $reportingCloud->setPassword('xxxxxxxx');
 $reportingCloud->setBaseUri('http://api.example.com');
 $reportingCloud->setVersion('v1');
 $reportingCloud->setTimeout(100);
-$reportingCloud->getDebug(true);
+$reportingCloud->setDebug(true);
 
-var_dump($reportingCloud);
+dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------

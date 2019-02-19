@@ -20,7 +20,7 @@ $getFileInfos = function (): array {
         if (__FILE__ === $fileInfo->getPathname()) {
             continue;
         }
-        if ('bootstrap.php' === $fileInfo->getFilename()) {
+        if (in_array($fileInfo->getFilename(), ['bootstrap.php', 'constants.php', 'init.php'])) {
             continue;
         }
         if ('php' !== $fileInfo->getExtension()) {
@@ -45,7 +45,7 @@ foreach ($fileInfos as $fileInfo) {
 
     $counter++;
 
-    echo sprintf('%d/%d) Executing %s...', $counter, $count, $fileInfo->getFilename());
+    echo sprintf('%d/%d) Executing "%s"...', $counter, $count, $fileInfo->getFilename());
     echo PHP_EOL;
     echo PHP_EOL;
 

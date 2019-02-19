@@ -3,6 +3,9 @@
 return [
 
     'directory_list' => [
+        'bin',
+        'data',
+        'demo',
         'src',
         'test',
         'vendor',

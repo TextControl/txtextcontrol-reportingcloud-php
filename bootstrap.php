@@ -50,14 +50,3 @@ if (!ConsoleUtils::checkCredentials()) {
     echo ConsoleUtils::errorMessage();
     die(1);
 }
-
-switch (basename(getcwd())) {
-    case 'demo':
-        $outputPath = __DIR__ . '/demo/output';
-        if (!is_dir($outputPath)) {
-            mkdir($outputPath);
-        }
-        define('REPORTING_CLOUD_DEMO_OUTPUT_PATH', $outputPath);
-        define('REPORTING_CLOUD_DEMO_MEDIA_PATH', __DIR__ . '/resource');
-        break;
-}

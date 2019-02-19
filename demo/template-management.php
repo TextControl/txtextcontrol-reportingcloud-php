@@ -14,8 +14,8 @@ $reportingCloud = new ReportingCloud([
 
 $templateName = 'test_template.tx';
 
-$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . DIRECTORY_SEPARATOR . $templateName;
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . DIRECTORY_SEPARATOR . $templateName;
+$sourceFilename      = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'), $templateName);
+$destinationFilename = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'), $templateName);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -23,11 +23,11 @@ $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . DIRECTORY_SEPARATOR . 
 // Uploaded, if it is not
 
 if (!$reportingCloud->templateExists($templateName)) {
-    var_dump("{$templateName} is not in template storage");
+    dump("{$templateName} is not in template storage");
     if ($reportingCloud->uploadTemplate($sourceFilename)) {
-        var_dump("Uploaded {$sourceFilename}");
+        dump("Uploaded {$sourceFilename}");
     } else {
-        var_dump("Error uploading {$sourceFilename}");
+        dump("Error uploading {$sourceFilename}");
     }
 }
 
@@ -37,7 +37,7 @@ if (!$reportingCloud->templateExists($templateName)) {
 
 $pageCount = $reportingCloud->getTemplatePageCount($templateName);
 
-var_dump("{$templateName} contains {$pageCount} page(s)");
+dump("{$templateName} contains {$pageCount} page(s)");
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -46,11 +46,11 @@ var_dump("{$templateName} contains {$pageCount} page(s)");
 $binaryData = $reportingCloud->downloadTemplate($templateName);
 
 if ($binaryData) {
-    var_dump("{$templateName} was downloaded");
+    dump("{$templateName} was downloaded");
     file_put_contents($destinationFilename, $binaryData);
-    var_dump("{$templateName} was written to {$destinationFilename}");
+    dump("{$templateName} was written to {$destinationFilename}");
 } else {
-    var_dump("Error downloading {$templateName}");
+    dump("Error downloading {$templateName}");
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -59,22 +59,22 @@ if ($binaryData) {
 
 $templateCount = $reportingCloud->getTemplateCount();
 
-var_dump("There are {$templateCount} template(s) in template storage.");
+dump("There are {$templateCount} template(s) in template storage.");
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Get an array of all templates in template storage
 
-var_dump("They are as follows:");
+dump("They are as follows:");
 
 foreach ($reportingCloud->getTemplateList() as $record) {
 
     $templateName      = $record['template_name'];
     $modifiedFormatted = date('r', $record['modified']);    // modified is a unix timestamp
 
-    var_dump("- {$templateName}");
-    var_dump("- {$record['modified']}");
-    var_dump("- {$modifiedFormatted}");
+    dump("- {$templateName}");
+    dump("- {$record['modified']}");
+    dump("- {$modifiedFormatted}");
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -82,9 +82,9 @@ foreach ($reportingCloud->getTemplateList() as $record) {
 // Delete a template in template storage
 
 if ($reportingCloud->deleteTemplate($templateName)) {
-    var_dump("{$templateName} was deleted");
+    dump("{$templateName} was deleted");
 } else {
-    var_dump("Error deleting {$templateName}");
+    dump("Error deleting {$templateName}");
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

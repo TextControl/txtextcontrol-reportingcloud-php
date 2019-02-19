@@ -11,15 +11,15 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
-$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_document.docx';
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_document.pdf';
+$sourceFilename      = sprintf('%s/test_document.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'));
+$destinationFilename = sprintf('%s/test_document.pdf', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'));
 
 $binaryData = $reportingCloud->convertDocument($sourceFilename, 'PDF');
 
 if (!empty($binaryData)) {
-    var_dump("{$sourceFilename} was converted");
+    dump("{$sourceFilename} was converted");
     file_put_contents($destinationFilename, $binaryData);
-    var_dump("And written to {$destinationFilename}");
+    dump("And written to {$destinationFilename}");
 } else {
-    var_dump("Error converting {$sourceFilename}");
+    dump("Error converting {$sourceFilename}");
 }

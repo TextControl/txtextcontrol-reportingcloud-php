@@ -17,11 +17,11 @@ $templateNames = [
 
 foreach ($templateNames as $templateName) {
 
-    $sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . $templateName;
+    $sourceFilename = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'), $templateName);
 
     if (!$reportingCloud->templateExists($templateName)) {
         $reportingCloud->uploadTemplate($sourceFilename);
     }
 
-    var_dump($reportingCloud->getTemplateInfo($templateName));
+    dump($reportingCloud->getTemplateInfo($templateName));
 }

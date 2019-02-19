@@ -11,8 +11,8 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
-$sourceFilename      = REPORTING_CLOUD_DEMO_MEDIA_PATH  . '/test_find_and_replace.tx';
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_find_and_replace.pdf';
+$sourceFilename      = sprintf('%s/test_find_and_replace.tx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'));
+$destinationFilename = sprintf('%s/test_find_and_replace.pdf', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'));
 
 $findAndReplaceData = [
     '%%FIELD1%%' => 'hello field 1',
@@ -44,4 +44,4 @@ $binaryData = $reportingCloud->findAndReplaceDocument(
 
 file_put_contents($destinationFilename, $binaryData);
 
-var_dump($destinationFilename);
+dump($destinationFilename);

@@ -14,7 +14,7 @@ $reportingCloud = new ReportingCloud([
 
 $templateName = 'test_template.tx';
 
-$sourceFilename = REPORTING_CLOUD_DEMO_MEDIA_PATH . DIRECTORY_SEPARATOR . $templateName;
+$sourceFilename = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'), $templateName);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -40,11 +40,11 @@ $arrayOfBinaryData = $reportingCloud->getTemplateThumbnails(
 foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     $destinationFile     = sprintf('test_template_p%d.png', $index);
-    $destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . DIRECTORY_SEPARATOR . $destinationFile;
+    $destinationFilename = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'), $destinationFile);
 
     file_put_contents($destinationFilename, $binaryData);
 
-    var_dump("{$templateName} was written to {$destinationFilename}");
+    dump("{$templateName} was written to {$destinationFilename}");
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

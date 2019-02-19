@@ -12,20 +12,20 @@ $reportingCloud = new ReportingCloud([
 
 $documents = [
     [
-        'filename' => REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_document.docx',
+        'filename' => sprintf('%s/test_document.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_document.docx',
+        'filename' => sprintf('%s/test_document.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => REPORTING_CLOUD_DEMO_MEDIA_PATH . '/test_document.docx',
+        'filename' => sprintf('%s/test_document.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
 ];
 
-$destinationFilename = REPORTING_CLOUD_DEMO_OUTPUT_PATH . '/test_append_document_advanced.pdf';
+$destinationFilename = sprintf('%s/test_append_document_advanced.pdf', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'));
 
 $documentSettings = [
     'author'                 => 'James Henry Trotter',
@@ -41,4 +41,4 @@ $binaryData = $reportingCloud->appendDocument($documents, 'PDF', $documentSettin
 
 file_put_contents($destinationFilename, $binaryData);
 
-var_dump($destinationFilename);
+dump($destinationFilename);

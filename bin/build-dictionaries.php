@@ -40,7 +40,9 @@ $values = array_values($values);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$generator = str_replace(realpath(dirname(__DIR__)), '', __FILE__);
+$search    = dirname(__FILE__, 2);
+$replace   = '';
+$generator = str_replace($search, $replace, __FILE__);
 
 ArrayUtils::varExportToFile($filename, $values, $generator);
 
