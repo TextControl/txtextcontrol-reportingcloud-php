@@ -41,7 +41,7 @@ trait AssertTemplateNameTrait
     abstract public static function assertTemplateFormat(string $value, string $message = ''): void;
 
     /**
-     * Check template name
+     * Check value is a valid template name
      *
      * @param string $value
      * @param string $message
