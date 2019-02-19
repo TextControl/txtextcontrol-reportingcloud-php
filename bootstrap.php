@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 /**
@@ -24,19 +23,19 @@ $autoloadFilename = function (): string {
 
     $paths = [
         // when installed as a dependency to another project
-        __DIR__ . '/../..',
+        dirname(__FILE__, 3),
         // when installed as a GIT clone
-        __DIR__ . '/vendor',
+        dirname(__FILE__, 1) . '/vendor',
     ];
 
     foreach ($paths as $path) {
-        $filename = $path . DIRECTORY_SEPARATOR . $file;
+        $filename = sprintf('%s/%s', $path, $file);
         if (is_readable($filename)) {
-            return (string) realpath($filename);
+            return (string) $filename;
         }
     }
 
-    $format  = "Cannot load composer's %s. Tried %s. Did you run 'composer install'?";
+    $format  = "Cannot load composer's %s. Tried: %s. Did you run 'composer install'?";
     $message = sprintf($format, $file, implode(', ', $paths));
     throw new RuntimeException($message);
 };

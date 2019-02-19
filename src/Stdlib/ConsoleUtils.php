@@ -74,8 +74,7 @@ class ConsoleUtils extends AbstractStdlib
      */
     public static function errorMessage(): string
     {
-        $format
-                  = <<<END
+        $format = <<<END
 
 Error: ReportingCloud API key not defined.
 
