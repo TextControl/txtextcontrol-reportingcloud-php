@@ -31,7 +31,7 @@ $autoloadFilename = function (): string {
     foreach ($paths as $path) {
         $filename = sprintf('%s/%s', $path, $file);
         if (is_readable($filename)) {
-            return (string) $filename;
+            return $filename;
         }
     }
 
