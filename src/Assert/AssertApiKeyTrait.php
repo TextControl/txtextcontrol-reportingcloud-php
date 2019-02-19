@@ -47,7 +47,7 @@ trait AssertApiKeyTrait
     private static $apiKeyMaxLength = 45;
 
     /**
-     * Validate length of API key
+     * Check value is a syntactically valid API key
      *
      * @param string $value
      * @param string $message

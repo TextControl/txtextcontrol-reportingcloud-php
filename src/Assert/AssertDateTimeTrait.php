@@ -34,7 +34,7 @@ trait AssertDateTimeTrait
     abstract protected static function reportInvalidArgument($message): void;
 
     /**
-     * Validate DateTime string
+     * Check value is a valid DateTime string
      *
      * @param string $value
      * @param string $message

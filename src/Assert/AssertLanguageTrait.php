@@ -32,7 +32,7 @@ trait AssertLanguageTrait
     abstract public static function oneOf($value, array $values, $message = '');
 
     /**
-     * Validate language
+     * Check value is a valid language
      *
      * @param string $value
      * @param string $message

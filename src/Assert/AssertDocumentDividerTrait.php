@@ -36,7 +36,7 @@ trait AssertDocumentDividerTrait
     abstract public static function oneOf($value, array $values, $message = '');
 
     /**
-     * Validate a document divider
+     * Check value is a valid document divider
      *
      * @param int    $value
      * @param string $message

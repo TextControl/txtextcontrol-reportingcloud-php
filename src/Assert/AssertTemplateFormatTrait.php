@@ -33,7 +33,7 @@ trait AssertTemplateFormatTrait
     abstract public static function oneOf($value, array $values, $message = '');
 
     /**
-     * Validate template format
+     * Check value is a valid template format
      *
      * @param string $value
      * @param string $message

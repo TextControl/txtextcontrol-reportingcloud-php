@@ -47,7 +47,7 @@ trait AssertFilenameExistsTestTrait
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "/path/to/invalid/file" must contain the absolute path and file
+     * @expectedExceptionMessage "/path/to/invalid/file" does not exist or is not readable
      */
     public function testAssertFilenameExistsInvalidDoesContainAbsolutePathAndFile(): void
     {

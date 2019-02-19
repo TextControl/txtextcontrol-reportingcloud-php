@@ -33,7 +33,7 @@ trait AssertDocumentExtensionTrait
     abstract public static function oneOf($value, array $values, $message = '');
 
     /**
-     * Validate document format extension
+     * Check value is valid document format extension
      *
      * @param string $value
      * @param string $message

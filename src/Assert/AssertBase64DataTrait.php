@@ -30,7 +30,7 @@ trait AssertBase64DataTrait
     abstract protected static function reportInvalidArgument($message): void;
 
     /**
-     * Validate base64 data
+     * Check value is valid base 64 encoded data
      *
      * @param string $value
      * @param string $message

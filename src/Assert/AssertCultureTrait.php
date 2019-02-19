@@ -32,7 +32,7 @@ trait AssertCultureTrait
     abstract public static function oneOf($value, array $values, $message = '');
 
     /**
-     * Validate culture
+     * Check value is a valid culture
      *
      * @param string $value
      * @param string $message

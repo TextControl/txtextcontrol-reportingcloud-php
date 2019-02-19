@@ -47,7 +47,7 @@ trait AssertTimestampTrait
     private static $timestampMax = PHP_INT_MAX;
 
     /**
-     * Validate timestamp
+     * Check value is a valid timestamp
      *
      * @param int    $value
      * @param string $message

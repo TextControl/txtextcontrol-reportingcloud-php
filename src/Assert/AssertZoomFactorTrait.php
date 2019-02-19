@@ -47,7 +47,7 @@ trait AssertZoomFactorTrait
     private static $zoomFactorMax = 400;
 
     /**
-     * Validate zoom factor
+     * Check value is a valid zoom factor
      *
      * @param int    $value
      * @param string $message

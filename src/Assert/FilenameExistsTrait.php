@@ -30,7 +30,7 @@ trait FilenameExistsTrait
     abstract protected static function reportInvalidArgument($message): void;
 
     /**
-     * Validate filename exists and can be read
+     * Check filename exists and is readable
      *
      * @param string $value
      * @param string $message
@@ -40,8 +40,8 @@ trait FilenameExistsTrait
      */
     public static function filenameExists(string $value, string $message = ''): void
     {
-        if ($value !== realpath($value)) {
-            $format  = $message ?: '"%s" must contain the absolute path and file';
+        if (!is_readable($value)) {
+            $format  = $message ?: '"%s" does not exist or is not readable';
             $message = sprintf($format, $value);
             self::reportInvalidArgument($message);
         }

@@ -30,7 +30,7 @@ trait AssertTemplateNameTrait
     abstract protected static function reportInvalidArgument($message): void;
 
     /**
-     * Validate template format
+     * Check value is a valid template format
      *
      * @param string $value
      * @param string $message
@@ -41,7 +41,7 @@ trait AssertTemplateNameTrait
     abstract public static function assertTemplateFormat(string $value, string $message = ''): void;
 
     /**
-     * Validate template name
+     * Check template name
      *
      * @param string $value
      * @param string $message

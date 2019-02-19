@@ -47,7 +47,7 @@ trait AssertPageTrait
     private static $pageMax = PHP_INT_MAX;
 
     /**
-     * Validate page
+     * Check value is a valid page number
      *
      * @param int    $value
      * @param string $message

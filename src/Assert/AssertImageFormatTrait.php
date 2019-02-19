@@ -33,7 +33,7 @@ trait AssertImageFormatTrait
     abstract public static function oneOf($value, array $values, $message = '');
 
     /**
-     * Validate image format extension
+     * Check value is valid image format extension
      *
      * @param string $value
      * @param string $message
