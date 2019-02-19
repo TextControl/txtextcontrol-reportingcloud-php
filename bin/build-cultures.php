@@ -20,12 +20,8 @@ declare(strict_types=1);
  *
  */
 
-namespace TxTextControl\ReportingCloud;
-
 include_once __DIR__ . '/bootstrap.php';
 
-use DOMDocument;
-use DomXPath;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
