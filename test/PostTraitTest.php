@@ -201,19 +201,16 @@ trait PostTraitTest
 
         $documentSettings = $this->getTestDocumentSettings();
 
-        $response       = $this->reportingCloud->appendDocument($documents, 'PDF', $documentSettings);
-        $responseLength = mb_strlen($response);
-
+        $response = $this->reportingCloud->appendDocument($documents, 'PDF', $documentSettings);
         $this->assertNotNull($response);
         $this->assertNotFalse($response);
-        $this->assertGreaterThanOrEqual(1024, $responseLength);
     }
 
     // </editor-fold>
 
     // <editor-fold desc="convertDocument">
 
-    public function testConvertDocument(): void
+    public function testConvertDocumentToPdf(): void
     {
         $documentFilename = $this->getTestDocumentFilename();
 
@@ -225,6 +222,18 @@ trait PostTraitTest
         $this->assertNotNull($response);
         $this->assertNotFalse($response);
         $this->assertGreaterThanOrEqual(1024, $responseLength);
+    }
+
+    public function testConvertDocumentToTxt(): void
+    {
+        $documentFilename = $this->getTestDocumentFilename();
+
+        $this->assertFileExists($documentFilename);
+
+        $response = $this->reportingCloud->convertDocument($documentFilename, 'TXT');
+
+        $this->assertNotFalse($response);
+        $this->assertEquals("A Test File\r\n", $response);
     }
 
     /**
@@ -296,7 +305,6 @@ trait PostTraitTest
 
             $this->assertNotNull($response);
             $this->assertNotFalse($response);
-            $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
         }
     }
 
@@ -335,7 +343,6 @@ trait PostTraitTest
 
             $this->assertNotNull($response);
             $this->assertNotFalse($response);
-            $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
         }
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
@@ -497,9 +504,9 @@ trait PostTraitTest
             $this->assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
-                $page = (string) $page;
                 $this->assertTrue(is_int($key));
-                $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
+                $this->assertNotNull($page);
+                $this->assertNotFalse($page);
             }
         }
 
@@ -537,7 +544,8 @@ trait PostTraitTest
             foreach ($response as $key => $page) {
                 $page = (string) $page;
                 $this->assertTrue(is_int($key));
-                $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
+                $this->assertNotNull($page);
+                $this->assertNotFalse($page);
             }
         }
     }

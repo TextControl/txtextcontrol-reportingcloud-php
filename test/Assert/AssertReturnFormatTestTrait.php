@@ -58,6 +58,9 @@ trait AssertReturnFormatTestTrait
         Assert::assertReturnFormat('TX');
         Assert::assertReturnFormat('tx');
 
+        Assert::assertReturnFormat('TXT');
+        Assert::assertReturnFormat('txt');
+
         $this->assertTrue(true);
     }
 

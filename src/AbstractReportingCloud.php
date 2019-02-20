@@ -158,6 +158,7 @@ abstract class AbstractReportingCloud
             'PDFA',
             'RTF',
             'TX',
+            'TXT',
         ];
 
     // </editor-fold>
