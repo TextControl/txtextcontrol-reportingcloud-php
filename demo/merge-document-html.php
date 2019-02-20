@@ -6,13 +6,16 @@ include_once __DIR__ . '/bootstrap.php';
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
-$sourceFilename      = sprintf('%s/test_template.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'));
-$destinationFilename = sprintf('%s/test_template_html_merged.pdf', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'));
-
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
     'test'    => true,
 ]);
+
+$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
+
+$sourceFilename      = sprintf('%s/test_template.docx', $pathResource);
+$destinationFilename = sprintf('%s/test_template_html_merged.pdf', $pathOutput);
 
 // mergeFields containing HTML must be contained in an <html /> tag.
 // Additionally, merge_html must be set to true in the merge settings array

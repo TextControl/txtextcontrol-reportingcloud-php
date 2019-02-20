@@ -1,6 +1,6 @@
 {
     "name": "textcontrol/txtextcontrol-reportingcloud",
-    "description": "PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.",
+    "description": "PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.",
     "license": "BSD-3-Clause",
     "type": "library",
     "keywords": [
@@ -8,6 +8,9 @@
         "reportingcloud"
     ],
     "autoload": {
+        "files": [
+            "constants.php"
+        ],
         "psr-4": {
             "TxTextControl\\ReportingCloud\\": "src/"
         }

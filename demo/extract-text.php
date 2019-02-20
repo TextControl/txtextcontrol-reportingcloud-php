@@ -11,8 +11,11 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
-$sourceFilename      = sprintf('%s/camera_controls.pdf', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'));
-$destinationFilename = sprintf('%s/camera_controls.txt', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'));
+$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
+
+$sourceFilename      = sprintf('%s/camera_controls.pdf', $pathResource);
+$destinationFilename = sprintf('%s/camera_controls.txt', $pathOutput);
 
 $stringData = $reportingCloud->convertDocument($sourceFilename, 'TXT');
 

@@ -10,11 +10,13 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
+$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+
 // ---------------------------------------------------------------------------------------------------------------------
 
 $templateName = 'test_template.tx';
 
-$sourceFilename = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'), $templateName);
+$sourceFilename = sprintf('%s/%s', $pathResource, $templateName);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -40,7 +42,7 @@ $arrayOfBinaryData = $reportingCloud->getTemplateThumbnails(
 foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     $destinationFile     = sprintf('test_template_p%d.png', $index);
-    $destinationFilename = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'), $destinationFile);
+    $destinationFilename = sprintf('%s/%s', $pathOutput, $destinationFile);
 
     file_put_contents($destinationFilename, $binaryData);
 

@@ -10,6 +10,8 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
+$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+
 $templateNames = [
     'test_template.tx',
     'test_template_with_user_document_properties.docx',
@@ -17,7 +19,7 @@ $templateNames = [
 
 foreach ($templateNames as $templateName) {
 
-    $sourceFilename = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'), $templateName);
+    $sourceFilename = sprintf('%s/%s', $pathResource, $templateName);
 
     if (!$reportingCloud->templateExists($templateName)) {
         $reportingCloud->uploadTemplate($sourceFilename);

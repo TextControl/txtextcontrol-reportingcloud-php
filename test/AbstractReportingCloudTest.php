@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /**
- * ReportingCloud PHP Wrapper
+ * ReportingCloud PHP SDK
  *
- * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ * PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
@@ -48,44 +48,39 @@ abstract class AbstractReportingCloudTest extends TestCase
         // $this->reportingCloud = null;
     }
 
-    private function getResourcePath(): string
-    {
-        return dirname(__FILE__, 2) . '/resource';
-    }
-
     private function getTempPath(): string
     {
         return sys_get_temp_dir();
     }
 
-    protected function getTempDocumentFilename(): string
-    {
-        $format = '%s/test_document_%d.docx';
-        $ret    = sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
-
-        return $ret;
-    }
-
     protected function getTestTemplateFilename(): string
     {
-        $format = '%s/test_template.tx';
-        $ret    = sprintf($format, $this->getResourcePath());
+        $pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+        $ret          = sprintf('%s/test_template.tx', $pathResource);
 
         return $ret;
     }
 
     protected function getTestDocumentFilename(): string
     {
-        $format = '%s/test_document.docx';
-        $ret    = sprintf($format, $this->getResourcePath());
+        $pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+        $ret          = sprintf('%s/test_document.docx', $pathResource);
 
         return $ret;
     }
 
     protected function getTestTemplateFindAndReplaceFilename(): string
     {
-        $format = '%s/test_find_and_replace.tx';
-        $ret    = sprintf($format, $this->getResourcePath());
+        $pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+        $ret          = sprintf('%s/test_find_and_replace.tx', $pathResource);
+
+        return $ret;
+    }
+
+    protected function getTempDocumentFilename(): string
+    {
+        $format = '%s/test_document_%d.docx';
+        $ret    = sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
 
         return $ret;
     }

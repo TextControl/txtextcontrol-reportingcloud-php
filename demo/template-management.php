@@ -12,10 +12,13 @@ $reportingCloud = new ReportingCloud([
 
 // ---------------------------------------------------------------------------------------------------------------------
 
+$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
+
 $templateName = 'test_template.tx';
 
-$sourceFilename      = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'), $templateName);
-$destinationFilename = sprintf('%s/%s', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'), $templateName);
+$sourceFilename      = sprintf('%s/%s', $pathResource, $templateName);
+$destinationFilename = sprintf('%s/%s', $pathOutput, $templateName);
 
 // ---------------------------------------------------------------------------------------------------------------------
 

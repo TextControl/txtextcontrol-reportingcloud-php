@@ -10,22 +10,25 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
+$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
+
 $documents = [
     [
-        'filename' => sprintf('%s/test_document.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')),
+        'filename' => sprintf('%s/test_document.docx', $pathResource),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => sprintf('%s/test_document.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')),
+        'filename' => sprintf('%s/test_document.docx', $pathResource),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => sprintf('%s/test_document.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH')),
+        'filename' => sprintf('%s/test_document.docx', $pathResource),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
 ];
 
-$destinationFilename = sprintf('%s/test_append_document_advanced.pdf', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'));
+$destinationFilename = sprintf('%s/test_append_document_advanced.pdf', $pathOutput);
 
 $documentSettings = [
     'author'                 => 'James Henry Trotter',

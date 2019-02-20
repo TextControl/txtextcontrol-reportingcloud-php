@@ -11,8 +11,11 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
-$sourceFilename      = sprintf('%s/test_document.docx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'));
-$destinationFilename = sprintf('%s/test_document.pdf', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'));
+$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
+
+$sourceFilename      = sprintf('%s/test_document.docx', $pathResource);
+$destinationFilename = sprintf('%s/test_document.pdf', $pathOutput);
 
 $binaryData = $reportingCloud->convertDocument($sourceFilename, 'PDF');
 

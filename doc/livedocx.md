@@ -8,7 +8,7 @@ With ReportingCloud, you can merge MS Word compatible templates with textual and
  
 Unlike its predecessor, ReportingCloud offers a WYSIWYG online template designer, which you can use to create your templates.
 
-The PHP wrapper - which was authored and is supported by the project - gives you access to all ReportingCloud features, via an easy to understand API.
+The PHP SDK - which was authored and is supported by the project - gives you access to all ReportingCloud features, via an easy to understand API.
 
 If you have used LiveDocx in the past, you will quickly be able to create professional looking documents in Adobe PDF, MS Word and HTML formats with ReportingCloud.
 
@@ -20,11 +20,11 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud Web API documentation](https://docs.reporting.cloud/docs/endpoint)
 
-* [ReportingCloud PHP wrapper Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
+* [ReportingCloud PHP SDK Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 
-* [ReportingCloud PHP wrapper GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
+* [ReportingCloud PHP SDK GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
 
-* [ReportingCloud PHP wrapper support](https://support.textcontrol.com/new-ticket)
+* [ReportingCloud PHP SDK support](https://support.textcontrol.com/new-ticket)
 
 ## How Do I Get Started?
 

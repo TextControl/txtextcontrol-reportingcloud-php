@@ -11,8 +11,11 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
-$sourceFilename      = sprintf('%s/test_find_and_replace.tx', constant('REPORTING_CLOUD_DEMO_MEDIA_PATH'));
-$destinationFilename = sprintf('%s/test_find_and_replace.pdf', constant('REPORTING_CLOUD_DEMO_OUTPUT_PATH'));
+$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
+
+$sourceFilename      = sprintf('%s/test_find_and_replace.tx', $pathResource);
+$destinationFilename = sprintf('%s/test_find_and_replace.pdf', $pathOutput);
 
 $findAndReplaceData = [
     '%%FIELD1%%' => 'hello field 1',
