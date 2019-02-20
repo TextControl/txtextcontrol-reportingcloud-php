@@ -8,7 +8,7 @@
 * Added `bin/build-gh-pages.sh` to build GitHub Pages site (API documentation and unit test coverage).
 * Improved code quality with static analysis ([phpstan](https://github.com/phpstan/phpstan), [psalm](https://github.com/vimeo/psalm/) and [phan](https://github.com/phan/phan)).
 * Re-organized bootstrapping of console scripts.
-* Added support for [TXT return type](https://www.textcontrol.com/blog/2019/02/20/).
+* Added support for [TXT return file format](https://www.textcontrol.com/blog/2019/02/20/).
 
 ## 2.0.2 - 2019-01-03
 
