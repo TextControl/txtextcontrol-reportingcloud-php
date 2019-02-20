@@ -11,6 +11,7 @@ $reportingCloud = new ReportingCloud([
 ]);
 
 $pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
+$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
 
 // ---------------------------------------------------------------------------------------------------------------------
 
