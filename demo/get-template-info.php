@@ -5,12 +5,11 @@ include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
-
-$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
 
 $templateNames = [
     'test_template.tx',
@@ -19,7 +18,7 @@ $templateNames = [
 
 foreach ($templateNames as $templateName) {
 
-    $sourceFilename = sprintf('%s/%s', $pathResource, $templateName);
+    $sourceFilename = sprintf('%s/%s', Path::resource(), $templateName);
 
     if (!$reportingCloud->templateExists($templateName)) {
         $reportingCloud->uploadTemplate($sourceFilename);

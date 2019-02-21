@@ -8,9 +8,6 @@
         "reportingcloud"
     ],
     "autoload": {
-        "files": [
-            "constants.php"
-        ],
         "psr-4": {
             "TxTextControl\\ReportingCloud\\": "src/"
         }

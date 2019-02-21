@@ -20,7 +20,7 @@ $getFileInfos = function (): array {
         if (__FILE__ === $fileInfo->getPathname()) {
             continue;
         }
-        if (in_array($fileInfo->getFilename(), ['bootstrap.php', 'constants.php', 'init.php'])) {
+        if (in_array($fileInfo->getFilename(), ['bootstrap.php', 'init.php'])) {
             continue;
         }
         if ('php' !== $fileInfo->getExtension()) {

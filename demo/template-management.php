@@ -5,6 +5,7 @@ include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
@@ -12,13 +13,10 @@ $reportingCloud = new ReportingCloud([
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
-$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
-
 $templateName = 'test_template.tx';
 
-$sourceFilename      = sprintf('%s/%s', $pathResource, $templateName);
-$destinationFilename = sprintf('%s/%s', $pathOutput, $templateName);
+$sourceFilename      = sprintf('%s/%s', Path::resource(), $templateName);
+$destinationFilename = sprintf('%s/%s', Path::output(), $templateName);
 
 // ---------------------------------------------------------------------------------------------------------------------
 

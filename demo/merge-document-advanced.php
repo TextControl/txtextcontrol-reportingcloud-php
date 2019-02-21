@@ -5,14 +5,12 @@ include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
     'test'    => true,
 ]);
-
-$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
-$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -83,7 +81,7 @@ for ($i = 0; $i < 10; $i++) {
 
 $sourceFilename = sprintf(
     '%s/test_template.tx',
-    $pathResource
+    Path::resource()
 );
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
@@ -95,7 +93,7 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
 
 $destinationFilename = sprintf(
     '%s/sample_invoice_merged_local.pdf',
-    $pathOutput
+    Path::output()
 );
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
@@ -108,7 +106,7 @@ dump($destinationFilename);
 
 $sourceFilename = sprintf(
     '%s/test_template.tx',
-    $pathResource
+    Path::resource()
 );
 
 $reportingCloud->uploadTemplate($sourceFilename);
@@ -121,7 +119,7 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
 
 $destinationFilename = sprintf(
     '%s/sample_invoice_merged_remote.pdf',
-    $pathOutput
+    Path::output()
 );
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
@@ -151,7 +149,7 @@ $mergeSettings = [
 
 $sourceFilename = sprintf(
     '%s/test_template.tx',
-    $pathResource
+    Path::resource()
 );
 
 $reportingCloud->uploadTemplate($sourceFilename);
@@ -167,7 +165,7 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
 
 $destinationFilename = sprintf(
     '%s/sample_invoice_merged_remote_merge_settings.pdf',
-    $pathOutput
+    Path::output()
 );
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
@@ -181,7 +179,7 @@ dump($destinationFilename);
 
 $sourceFilename = sprintf(
     '%s/test_template.tx',
-    $pathResource
+    Path::resource()
 );
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
@@ -194,7 +192,7 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
 
 $destinationFilename = sprintf(
     '%s/sample_invoice_merged_append_true_all.pdf',
-    $pathOutput
+    Path::output()
 );
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
@@ -208,7 +206,7 @@ dump($destinationFilename);
 
 $sourceFilename = sprintf(
     '%s/test_template.tx',
-    $pathResource
+    Path::resource()
 );
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
@@ -228,7 +226,7 @@ foreach ($arrayOfBinaryData as $documentNo => $binaryData) {
 
     $destinationFilename = sprintf(
         '%s/%s',
-        $pathOutput,
+        Path::output(),
         $destinationFile
     );
 

@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\Assert;
 
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
 /**
  * Trait AssertLanguageTrait
@@ -56,10 +57,7 @@ trait AssertLanguageTrait
      */
     public static function getDictionariesFilename(): string
     {
-        $pathData = constant('TxTextControl\ReportingCloud\PATH_DATA');
-        $filename = sprintf('%s/dictionaries.php', $pathData);
-
-        return $filename;
+        return sprintf('%s/dictionaries.php', Path::data());
     }
 
     /**

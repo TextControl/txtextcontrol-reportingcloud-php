@@ -17,6 +17,7 @@ namespace TxTextControlTest\ReportingCloud;
 use PHPUnit\Framework\TestCase;
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
 /**
  * Class AbstractReportingCloudTest
@@ -55,26 +56,17 @@ abstract class AbstractReportingCloudTest extends TestCase
 
     protected function getTestTemplateFilename(): string
     {
-        $pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
-        $ret          = sprintf('%s/test_template.tx', $pathResource);
-
-        return $ret;
+        return sprintf('%s/test_template.tx', Path::resource());
     }
 
     protected function getTestDocumentFilename(): string
     {
-        $pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
-        $ret          = sprintf('%s/test_document.docx', $pathResource);
-
-        return $ret;
+        return sprintf('%s/test_document.docx', Path::resource());
     }
 
     protected function getTestTemplateFindAndReplaceFilename(): string
     {
-        $pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
-        $ret          = sprintf('%s/test_find_and_replace.tx', $pathResource);
-
-        return $ret;
+        return sprintf('%s/test_find_and_replace.tx', Path::resource());
     }
 
     protected function getTempDocumentFilename(): string

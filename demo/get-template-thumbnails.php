@@ -5,19 +5,17 @@ include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
-$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
-
 // ---------------------------------------------------------------------------------------------------------------------
 
 $templateName = 'test_template.tx';
 
-$sourceFilename = sprintf('%s/%s', $pathResource, $templateName);
+$sourceFilename = sprintf('%s/%s', Path::resource(), $templateName);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +41,7 @@ $arrayOfBinaryData = $reportingCloud->getTemplateThumbnails(
 foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     $destinationFile     = sprintf('test_template_p%d.png', $index);
-    $destinationFilename = sprintf('%s/%s', $pathOutput, $destinationFile);
+    $destinationFilename = sprintf('%s/%s', Path::output(), $destinationFile);
 
     file_put_contents($destinationFilename, $binaryData);
 

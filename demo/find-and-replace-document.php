@@ -5,17 +5,15 @@ include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
     'test'    => true,
 ]);
 
-$pathResource = constant('TxTextControl\ReportingCloud\PATH_RESOURCE');
-$pathOutput   = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
-
-$sourceFilename      = sprintf('%s/test_find_and_replace.tx', $pathResource);
-$destinationFilename = sprintf('%s/test_find_and_replace.pdf', $pathOutput);
+$sourceFilename      = sprintf('%s/test_find_and_replace.tx', Path::resource());
+$destinationFilename = sprintf('%s/test_find_and_replace.pdf', Path::output());
 
 $findAndReplaceData = [
     '%%FIELD1%%' => 'hello field 1',

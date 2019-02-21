@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 
-$pathOutput = constant('TxTextControl\ReportingCloud\PATH_OUTPUT');
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
-if (!is_dir($pathOutput)) {
-    mkdir($pathOutput);
+if (!is_dir(Path::output())) {
+    mkdir(Path::output());
 }

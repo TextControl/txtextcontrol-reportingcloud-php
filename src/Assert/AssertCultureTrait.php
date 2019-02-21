@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\Assert;
 
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
 /**
  * Trait AssertLanguageTrait
@@ -56,10 +57,7 @@ trait AssertCultureTrait
      */
     public static function getCulturesFilename(): string
     {
-        $pathData = constant('TxTextControl\ReportingCloud\PATH_DATA');
-        $filename = sprintf('%s/cultures.php', $pathData);
-
-        return $filename;
+        return sprintf('%s/cultures.php', Path::data());
     }
 
     /**
