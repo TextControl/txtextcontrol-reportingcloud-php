@@ -38,7 +38,11 @@ $documentSettings = [
     'user_password'          => '1',
 ];
 
-$binaryData = $reportingCloud->appendDocument($documents, 'PDF', $documentSettings);
+$binaryData = $reportingCloud->appendDocument(
+    $documents,
+    ReportingCloud::FILE_FORMAT_PDF,
+    $documentSettings
+);
 
 file_put_contents($destinationFilename, $binaryData);
 

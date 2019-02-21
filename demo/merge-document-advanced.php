@@ -86,7 +86,7 @@ $sourceFilename = sprintf(
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
-    'PDF',
+    ReportingCloud::FILE_FORMAT_PDF,
     null,
     $sourceFilename
 );
@@ -113,7 +113,7 @@ $reportingCloud->uploadTemplate($sourceFilename);
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
-    'PDF',
+    ReportingCloud::FILE_FORMAT_PDF,
     'test_template.tx'
 );
 
@@ -156,7 +156,7 @@ $reportingCloud->uploadTemplate($sourceFilename);
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
-    'PDF',
+    ReportingCloud::FILE_FORMAT_PDF,
     'test_template.tx',
     null,
     true,
@@ -184,7 +184,7 @@ $sourceFilename = sprintf(
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
-    'PDF',
+    ReportingCloud::FILE_FORMAT_PDF,
     null,
     $sourceFilename,
     true
@@ -211,7 +211,7 @@ $sourceFilename = sprintf(
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
-    'PDF',
+    ReportingCloud::FILE_FORMAT_PDF,
     null,
     $sourceFilename,
     false

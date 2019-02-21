@@ -37,7 +37,7 @@ $mergeSettings = [
 
 $binaryData = $reportingCloud->findAndReplaceDocument(
     $findAndReplaceData,
-    'PDF',
+    ReportingCloud::FILE_FORMAT_PDF,
     null,
     $sourceFilename,
     $mergeSettings

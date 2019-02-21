@@ -9,18 +9,21 @@ use TxTextControl\ReportingCloud\Stdlib\Path;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
-    'test'    => true,
 ]);
 
 $sourceFilename      = sprintf('%s/camera_controls.pdf', Path::resource());
 $destinationFilename = sprintf('%s/camera_controls.txt', Path::output());
 
-$stringData = $reportingCloud->convertDocument($sourceFilename, 'TXT');
+$document = $reportingCloud->convertDocument(
+    $sourceFilename,
+    ReportingCloud::FILE_FORMAT_TXT
+);
 
-if (!empty($stringData)) {
-    dump("{$sourceFilename} was converted");
-    file_put_contents($destinationFilename, $stringData);
-    dump("And written to {$destinationFilename}");
+if (empty($document)) {
+    echo sprintf('Error converting "%s".', $sourceFilename);
+    echo PHP_EOL;
 } else {
-    dump("Error converting {$sourceFilename}");
+    file_put_contents($destinationFilename, $document);
+    echo sprintf('"%s" was converted and written to "%s".', $sourceFilename, $destinationFilename);
+    echo PHP_EOL;
 }

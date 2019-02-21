@@ -28,7 +28,10 @@ $documents = [
 
 $destinationFilename = sprintf('%s/test_append_document_basic.pdf', Path::output());
 
-$binaryData = $reportingCloud->appendDocument($documents, 'PDF');
+$binaryData = $reportingCloud->appendDocument(
+    $documents,
+    ReportingCloud::FILE_FORMAT_PDF
+);
 
 file_put_contents($destinationFilename, $binaryData);
 

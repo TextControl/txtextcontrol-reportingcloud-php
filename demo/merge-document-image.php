@@ -29,7 +29,7 @@ $mergeData = [
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
-    'PDF',
+    ReportingCloud::FILE_FORMAT_PDF,
     null,
     $sourceFilename
 );

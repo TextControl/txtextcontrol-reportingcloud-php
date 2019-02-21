@@ -478,7 +478,13 @@ trait GetTraitTest
 
         $this->assertTrue($response);
 
-        $response = $this->reportingCloud->getTemplateThumbnails($tempTemplateName, 100, 1, 1, 'PNG');
+        $response = $this->reportingCloud->getTemplateThumbnails(
+            $tempTemplateName,
+            100,
+            1,
+            1,
+            ReportingCloud::FILE_FORMAT_PNG
+        );
 
         $this->assertArrayHasKey(0, $response);
 
@@ -494,7 +500,13 @@ trait GetTraitTest
      */
     public function testGetTemplateThumbnailsInvalidTemplateName(): void
     {
-        $this->reportingCloud->getTemplateThumbnails('sample_invoice.xx', 100, 1, 1, 'PNG');
+        $this->reportingCloud->getTemplateThumbnails(
+            'sample_invoice.xx',
+            100,
+            1,
+            1,
+            ReportingCloud::FILE_FORMAT_PNG
+        );
     }
 
     /**
@@ -502,7 +514,13 @@ trait GetTraitTest
      */
     public function testGetTemplateThumbnailsInvalidZoomFactor(): void
     {
-        $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', -1, 1, 1, 'PNG');
+        $this->reportingCloud->getTemplateThumbnails(
+            'sample_invoice.tx',
+            -1,
+            1,
+            1,
+            ReportingCloud::FILE_FORMAT_PNG
+        );
     }
 
     /**
@@ -510,7 +528,13 @@ trait GetTraitTest
      */
     public function testGetTemplateThumbnailsInvalidFromPage(): void
     {
-        $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, -1, 1, 'PNG');
+        $this->reportingCloud->getTemplateThumbnails(
+            'sample_invoice.tx',
+            100,
+            -1,
+            1,
+            ReportingCloud::FILE_FORMAT_PNG
+        );
     }
 
     /**
@@ -518,7 +542,13 @@ trait GetTraitTest
      */
     public function testGetTemplateThumbnailsInvalidToPage(): void
     {
-        $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, 1, -1, 'PNG');
+        $this->reportingCloud->getTemplateThumbnails(
+            'sample_invoice.tx',
+            100,
+            1,
+            -1,
+            ReportingCloud::FILE_FORMAT_PNG
+        );
     }
 
     /**
@@ -526,7 +556,13 @@ trait GetTraitTest
      */
     public function testGetTemplateThumbnailsInvalidImageFormat(): void
     {
-        $this->reportingCloud->getTemplateThumbnails('sample_invoice.tx', 100, 1, 1, 'XXX');
+        $this->reportingCloud->getTemplateThumbnails(
+            'sample_invoice.tx',
+            100,
+            1,
+            1,
+            'XXX'
+        );
     }
 
     // </editor-fold>

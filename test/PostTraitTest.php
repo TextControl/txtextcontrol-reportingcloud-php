@@ -201,7 +201,11 @@ trait PostTraitTest
 
         $documentSettings = $this->getTestDocumentSettings();
 
-        $response = $this->reportingCloud->appendDocument($documents, 'PDF', $documentSettings);
+        $response = $this->reportingCloud->appendDocument(
+            $documents,
+            ReportingCloud::FILE_FORMAT_PDF,
+            $documentSettings
+        );
         $this->assertNotNull($response);
         $this->assertNotFalse($response);
     }
@@ -216,7 +220,10 @@ trait PostTraitTest
 
         $this->assertFileExists($documentFilename);
 
-        $response       = $this->reportingCloud->convertDocument($documentFilename, 'PDF');
+        $response       = $this->reportingCloud->convertDocument(
+            $documentFilename,
+            ReportingCloud::FILE_FORMAT_PDF
+        );
         $responseLength = mb_strlen($response);
 
         $this->assertNotNull($response);
@@ -230,7 +237,10 @@ trait PostTraitTest
 
         $this->assertFileExists($documentFilename);
 
-        $response = $this->reportingCloud->convertDocument($documentFilename, 'TXT');
+        $response = $this->reportingCloud->convertDocument(
+            $documentFilename,
+            ReportingCloud::FILE_FORMAT_TXT
+        );
 
         $this->assertNotFalse($response);
         $this->assertEquals("A Test File\r\n", $response);
@@ -241,7 +251,10 @@ trait PostTraitTest
      */
     public function testConvertDocumentInvalidDocumentFilenameUnsupportedExtension(): void
     {
-        $this->reportingCloud->convertDocument('/invalid/path/document.xxx', 'PDF');
+        $this->reportingCloud->convertDocument(
+            '/invalid/path/document.xxx',
+            ReportingCloud::FILE_FORMAT_PDF
+        );
     }
 
     /**
@@ -249,7 +262,10 @@ trait PostTraitTest
      */
     public function testConvertDocumentInvalidDocumentFilenameNoExtension(): void
     {
-        $this->reportingCloud->convertDocument('/invalid/path/document', 'PDF');
+        $this->reportingCloud->convertDocument(
+            '/invalid/path/document',
+            ReportingCloud::FILE_FORMAT_PDF
+        );
     }
 
     /**
@@ -257,7 +273,10 @@ trait PostTraitTest
      */
     public function testConvertDocumentInvalidDocumentFilenameNoFile(): void
     {
-        $this->reportingCloud->convertDocument('/invalid/path/document/', 'PDF');
+        $this->reportingCloud->convertDocument(
+            '/invalid/path/document/',
+            ReportingCloud::FILE_FORMAT_PDF
+        );
     }
 
     /**
@@ -265,7 +284,10 @@ trait PostTraitTest
      */
     public function testConvertDocumentInvalidDocumentFilename(): void
     {
-        $this->reportingCloud->convertDocument('/invalid/path/document.doc', 'PDF');
+        $this->reportingCloud->convertDocument(
+            '/invalid/path/document.doc',
+            ReportingCloud::FILE_FORMAT_PDF
+        );
     }
 
     /**
@@ -367,7 +389,11 @@ trait PostTraitTest
     {
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
-        $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', '../invalid_template.tx');
+        $this->reportingCloud->findAndReplaceDocument(
+            $findAndReplaceData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            '../invalid_template.tx'
+        );
     }
 
     /**
@@ -377,7 +403,12 @@ trait PostTraitTest
     {
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
-        $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, '/invalid/path/template.xxx');
+        $this->reportingCloud->findAndReplaceDocument(
+            $findAndReplaceData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            '/invalid/path/template.xxx'
+        );
     }
 
     /**
@@ -387,7 +418,12 @@ trait PostTraitTest
     {
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
-        $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, '/invalid/path/template');
+        $this->reportingCloud->findAndReplaceDocument(
+            $findAndReplaceData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            '/invalid/path/template'
+        );
     }
 
     /**
@@ -397,7 +433,12 @@ trait PostTraitTest
     {
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
-        $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, '/invalid/path/template/');
+        $this->reportingCloud->findAndReplaceDocument(
+            $findAndReplaceData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            '/invalid/path/template/'
+        );
     }
 
     /**
@@ -407,7 +448,12 @@ trait PostTraitTest
     {
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
-        $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'PDF', null, '/invalid/path/template.doc');
+        $this->reportingCloud->findAndReplaceDocument(
+            $findAndReplaceData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            '/invalid/path/template.doc'
+        );
     }
 
     /**
@@ -429,7 +475,7 @@ trait PostTraitTest
 
         $this->reportingCloud->findAndReplaceDocument(
             $findAndReplaceData,
-            'PDF',
+            ReportingCloud::FILE_FORMAT_PDF,
             null,
             $templateFilename,
             $mergeSettings
@@ -454,7 +500,7 @@ trait PostTraitTest
 
         $this->reportingCloud->findAndReplaceDocument(
             $findAndReplaceData,
-            'PDF',
+            ReportingCloud::FILE_FORMAT_PDF,
             null,
             $templateFilename,
             $mergeSettings
@@ -567,7 +613,11 @@ trait PostTraitTest
     {
         $mergeData = $this->getTestTemplateMergeData();
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', '../invalid_template.tx');
+        $this->reportingCloud->mergeDocument(
+            $mergeData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            '../invalid_template.tx'
+        );
     }
 
     /**
@@ -577,7 +627,12 @@ trait PostTraitTest
     {
         $mergeData = $this->getTestTemplateMergeData();
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, '/invalid/path/template.xxx');
+        $this->reportingCloud->mergeDocument(
+            $mergeData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            '/invalid/path/template.xxx'
+        );
     }
 
     /**
@@ -587,7 +642,12 @@ trait PostTraitTest
     {
         $mergeData = $this->getTestTemplateMergeData();
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, '/invalid/path/template');
+        $this->reportingCloud->mergeDocument(
+            $mergeData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            '/invalid/path/template'
+        );
     }
 
     /**
@@ -597,7 +657,12 @@ trait PostTraitTest
     {
         $mergeData = $this->getTestTemplateMergeData();
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, '/invalid/path/template/');
+        $this->reportingCloud->mergeDocument(
+            $mergeData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            '/invalid/path/template/'
+        );
     }
 
     /**
@@ -607,7 +672,12 @@ trait PostTraitTest
     {
         $mergeData = $this->getTestTemplateMergeData();
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, '/invalid/path/template.doc');
+        $this->reportingCloud->mergeDocument(
+            $mergeData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            '/invalid/path/template.doc'
+        );
     }
 
     /**
@@ -627,7 +697,14 @@ trait PostTraitTest
         $mergeSettings['remove_empty_fields'] = 'invalid';
         $mergeSettings['remove_empty_images'] = 'invalid';
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, false, $mergeSettings);
+        $this->reportingCloud->mergeDocument(
+            $mergeData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            $templateFilename,
+            false,
+            $mergeSettings
+        );
     }
 
     /**
@@ -644,7 +721,14 @@ trait PostTraitTest
 
         $mergeSettings['culture'] = 'invalid';
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, false, $mergeSettings);
+        $this->reportingCloud->mergeDocument(
+            $mergeData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            $templateFilename,
+            false,
+            $mergeSettings
+        );
     }
 
     /**
@@ -663,7 +747,14 @@ trait PostTraitTest
         $mergeSettings['creation_date']          = -1;
         $mergeSettings['last_modification_date'] = 'invalid';
 
-        $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename, false, $mergeSettings);
+        $this->reportingCloud->mergeDocument(
+            $mergeData,
+            ReportingCloud::FILE_FORMAT_PDF,
+            null,
+            $templateFilename,
+            false,
+            $mergeSettings
+        );
     }
 
     // </editor-fold>

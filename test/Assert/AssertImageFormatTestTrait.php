@@ -14,8 +14,9 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud\Assert;
 
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
  * Trait AssertImageFormatTestTrait
@@ -37,8 +38,11 @@ trait AssertImageFormatTestTrait
 
     public function testAssertImageFormat(): void
     {
-        Assert::assertImageFormat('PNG');
-        Assert::assertImageFormat('png');
+        $fileFormat   = ReportingCloud::FILE_FORMAT_PNG;
+        $fileFormatLc = strtolower($fileFormat);
+
+        Assert::assertImageFormat($fileFormat);
+        Assert::assertImageFormat($fileFormatLc);
 
         $this->assertTrue(true);
     }

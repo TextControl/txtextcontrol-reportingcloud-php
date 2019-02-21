@@ -112,14 +112,78 @@ abstract class AbstractReportingCloud
     // <editor-fold desc="Constants (file formats)">
 
     /**
+     * DOC file format
+     */
+    public const FILE_FORMAT_DOC = 'DOC';
+
+    /**
+     * DOCX file format
+     */
+    public const FILE_FORMAT_DOCX = 'DOCX';
+
+    /**
+     * HTML file format
+     */
+    public const FILE_FORMAT_HTML = 'HTML';
+
+    /**
+     * PDF file format
+     */
+    public const FILE_FORMAT_PDF = 'PDF';
+
+    /**
+     * PDF/A file format
+     */
+    public const FILE_FORMAT_PDFA = 'PDFA';
+
+    /**
+     * RTF file format
+     */
+    public const FILE_FORMAT_RTF = 'RTF';
+
+    /**
+     * TX (Text Control) file format
+     */
+    public const FILE_FORMAT_TX = 'TX';
+
+    /**
+     * Pure text file format
+     */
+    public const FILE_FORMAT_TXT = 'TXT';
+
+    /**
+     * Bitmap file format
+     */
+    public const FILE_FORMAT_BMP = 'BMP';
+
+    /**
+     * GIF file format
+     */
+    public const FILE_FORMAT_GIF = 'GIF';
+
+    /**
+     * JPEG file format
+     */
+    public const FILE_FORMAT_JPG = 'JPG';
+
+    /**
+     * PNG file format
+     */
+    public const FILE_FORMAT_PNG = 'PNG';
+
+    // </editor-fold>
+
+    // <editor-fold desc="Constants (file format collections)">
+
+    /**
      * Image file formats
      */
     public const FILE_FORMATS_IMAGE
         = [
-            'BMP',
-            'GIF',
-            'JPG',
-            'PNG',
+            self::FILE_FORMAT_BMP,
+            self::FILE_FORMAT_GIF,
+            self::FILE_FORMAT_JPG,
+            self::FILE_FORMAT_PNG,
         ];
 
     /**
@@ -127,10 +191,10 @@ abstract class AbstractReportingCloud
      */
     public const FILE_FORMATS_TEMPLATE
         = [
-            'DOC',
-            'DOCX',
-            'RTF',
-            'TX',
+            self::FILE_FORMAT_DOC,
+            self::FILE_FORMAT_DOCX,
+            self::FILE_FORMAT_RTF,
+            self::FILE_FORMAT_TX,
         ];
 
     /**
@@ -138,12 +202,12 @@ abstract class AbstractReportingCloud
      */
     public const FILE_FORMATS_DOCUMENT
         = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'RTF',
-            'TX',
+            self::FILE_FORMAT_DOC,
+            self::FILE_FORMAT_DOCX,
+            self::FILE_FORMAT_HTML,
+            self::FILE_FORMAT_PDF,
+            self::FILE_FORMAT_RTF,
+            self::FILE_FORMAT_TX,
         ];
 
     /**
@@ -151,14 +215,14 @@ abstract class AbstractReportingCloud
      */
     public const FILE_FORMATS_RETURN
         = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'PDFA',
-            'RTF',
-            'TX',
-            'TXT',
+            self::FILE_FORMAT_DOC,
+            self::FILE_FORMAT_DOCX,
+            self::FILE_FORMAT_HTML,
+            self::FILE_FORMAT_PDF,
+            self::FILE_FORMAT_PDFA,
+            self::FILE_FORMAT_RTF,
+            self::FILE_FORMAT_TX,
+            self::FILE_FORMAT_TXT,
         ];
 
     // </editor-fold>

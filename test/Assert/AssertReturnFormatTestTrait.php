@@ -14,8 +14,9 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud\Assert;
 
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
  * Trait AssertReturnFormatTestTrait
@@ -26,7 +27,6 @@ use TxTextControl\ReportingCloud\Assert\Assert;
 trait AssertReturnFormatTestTrait
 {
     // <editor-fold desc="Abstract methods">
-
     /**
      * @param mixed  $condition
      * @param string $message
@@ -37,29 +37,53 @@ trait AssertReturnFormatTestTrait
 
     public function testAssertReturnFormat(): void
     {
-        Assert::assertReturnFormat('DOC');
-        Assert::assertReturnFormat('doc');
+        $fileFormat   = ReportingCloud::FILE_FORMAT_DOC;
+        $fileFormatLc = strtolower($fileFormat);
 
-        Assert::assertReturnFormat('DOCX');
-        Assert::assertReturnFormat('docx');
+        Assert::assertReturnFormat($fileFormat);
+        Assert::assertReturnFormat($fileFormatLc);
 
-        Assert::assertReturnFormat('HTML');
-        Assert::assertReturnFormat('html');
+        $fileFormat   = ReportingCloud::FILE_FORMAT_DOCX;
+        $fileFormatLc = strtolower($fileFormat);
 
-        Assert::assertReturnFormat('PDF');
-        Assert::assertReturnFormat('pdf');
+        Assert::assertReturnFormat($fileFormat);
+        Assert::assertReturnFormat($fileFormatLc);
 
-        Assert::assertReturnFormat('PDFA');
-        Assert::assertReturnFormat('pdfa');
+        $fileFormat   = ReportingCloud::FILE_FORMAT_HTML;
+        $fileFormatLc = strtolower($fileFormat);
 
-        Assert::assertReturnFormat('RTF');
-        Assert::assertReturnFormat('rtf');
+        Assert::assertReturnFormat($fileFormat);
+        Assert::assertReturnFormat($fileFormatLc);
 
-        Assert::assertReturnFormat('TX');
-        Assert::assertReturnFormat('tx');
+        $fileFormat   = ReportingCloud::FILE_FORMAT_PDF;
+        $fileFormatLc = strtolower($fileFormat);
 
-        Assert::assertReturnFormat('TXT');
-        Assert::assertReturnFormat('txt');
+        Assert::assertReturnFormat($fileFormat);
+        Assert::assertReturnFormat($fileFormatLc);
+
+        $fileFormat   = ReportingCloud::FILE_FORMAT_PDFA;
+        $fileFormatLc = strtolower($fileFormat);
+
+        Assert::assertReturnFormat($fileFormat);
+        Assert::assertReturnFormat($fileFormatLc);
+
+        $fileFormat   = ReportingCloud::FILE_FORMAT_RTF;
+        $fileFormatLc = strtolower($fileFormat);
+
+        Assert::assertReturnFormat($fileFormat);
+        Assert::assertReturnFormat($fileFormatLc);
+
+        $fileFormat   = ReportingCloud::FILE_FORMAT_TX;
+        $fileFormatLc = strtolower($fileFormat);
+
+        Assert::assertReturnFormat($fileFormat);
+        Assert::assertReturnFormat($fileFormatLc);
+
+        $fileFormat   = ReportingCloud::FILE_FORMAT_TXT;
+        $fileFormatLc = strtolower($fileFormat);
+
+        Assert::assertReturnFormat($fileFormat);
+        Assert::assertReturnFormat($fileFormatLc);
 
         $this->assertTrue(true);
     }

@@ -65,8 +65,8 @@ class TextInMergeDataIsInDocumentTest extends TestCase
         }
 
         $fileTypes = [
-            'TX',
-            'DOCX',
+            ReportingCloud::FILE_FORMAT_TX,
+            ReportingCloud::FILE_FORMAT_DOCX,
         ];
 
         foreach ($fileTypes as $fileType) {
@@ -85,7 +85,12 @@ class TextInMergeDataIsInDocumentTest extends TestCase
             $json      = (string) file_get_contents($mergeDataFilename);
             $mergeData = (array)  json_decode($json, true);
 
-            $arrayOfBinaryData = $this->reportingCloud->mergeDocument($mergeData, 'PDF', null, $templateFilename);
+            $arrayOfBinaryData = $this->reportingCloud->mergeDocument(
+                $mergeData,
+                ReportingCloud::FILE_FORMAT_PDF,
+                null,
+                $templateFilename
+            );
 
             $this->assertArrayHasKey(0, $arrayOfBinaryData);
 
