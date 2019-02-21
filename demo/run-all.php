@@ -23,7 +23,7 @@ $getFilenames = function (): array {
         if ('php' !== $fileInfo->getExtension()) {
             continue;
         }
-        $ret[] = $fileInfo->getPathname();
+        $ret[] = (string) $fileInfo->getPathname();
     }
 
     sort($ret);
