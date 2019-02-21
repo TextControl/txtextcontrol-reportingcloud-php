@@ -46,6 +46,8 @@ foreach ($filenames as $filename) {
 
     $counter++;
 
+    $filename = (string) $filename;
+
     echo sprintf('%d/%d) Executing "%s"...', $counter, $count, basename($filename));
     echo PHP_EOL;
     echo PHP_EOL;

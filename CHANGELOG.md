@@ -9,13 +9,14 @@
 * Improved code quality with static analysis ([phpstan](https://github.com/phpstan/phpstan), [psalm](https://github.com/vimeo/psalm/) and [phan](https://github.com/phan/phan)).
 * Re-organized bootstrapping of console scripts.
 * Added support for [TXT return file format](https://www.textcontrol.com/blog/2019/02/20/).
+* Abstracted file formats to class constants in `TxTextControl\ReportingCloud\ReportingCloud`.
 
 ## 2.0.2 - 2019-01-03
 
 * Fixed return value of `downloadTemplate($templateName)` to binary data - it was base64 encoded data; it should have been binary data.
 * Added generator parameter to `Stdlib\ArrayUtils::varExportToFile`.
 * Split up `/resources` and `/data` contents.
-* Split up unit tests into similarly named Traits as `ReportingCloud\ReportingCloud`.
+* Split up unit tests into similarly named Traits as `TxTextControl\ReportingCloud\ReportingCloud`.
 * Added strict typing to all unit tests.
 * Removed deprecated function calls in unit tests.
 
@@ -67,7 +68,7 @@ For a full description of changes, see [release-2.0.0.md](./doc/release-2.0.0.md
 
 ## 1.6.0 - 2018-01-14
 
-* Split `ReportingCloud\ReportingCloud` into multiple Traits.
+* Split `TxTextControl\ReportingCloud\ReportingCloud` into multiple Traits.
 * Added `PHP_CodeSniffer` to ensure consistency in code formatting.
 * Added Composer script `composer test` to run unit tests.
 * Added Composer script `composer phpcs` to run `PHP_CodeSniffer`.
