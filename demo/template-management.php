@@ -24,13 +24,17 @@ $destinationFilename = sprintf('%s/%s', Path::output(), $templateName);
 // Uploaded, if it is not
 
 if (!$reportingCloud->templateExists($templateName)) {
-    dump("{$templateName} is not in template storage");
+    echo sprintf('"%s" is not in template storage', $templateName);
+    echo PHP_EOL;
     if ($reportingCloud->uploadTemplate($sourceFilename)) {
-        dump("Uploaded {$sourceFilename}");
+        echo sprintf('Uploaded "%s".', $sourceFilename);
+        echo PHP_EOL;
     } else {
-        dump("Error uploading {$sourceFilename}");
+        echo sprintf('Error uploading "%s".', $sourceFilename);
+        echo PHP_EOL;
     }
 }
+
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -38,7 +42,8 @@ if (!$reportingCloud->templateExists($templateName)) {
 
 $pageCount = $reportingCloud->getTemplatePageCount($templateName);
 
-dump("{$templateName} contains {$pageCount} page(s)");
+echo sprintf('"%s" contains %d page%s.', $templateName, $pageCount, $pageCount > 1 ? 's' : '');
+echo PHP_EOL;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -47,11 +52,14 @@ dump("{$templateName} contains {$pageCount} page(s)");
 $binaryData = $reportingCloud->downloadTemplate($templateName);
 
 if ($binaryData) {
-    dump("{$templateName} was downloaded");
+    echo sprintf('"%s" was downloaded.', $templateName);
+    echo PHP_EOL;
     file_put_contents($destinationFilename, $binaryData);
-    dump("{$templateName} was written to {$destinationFilename}");
+    echo sprintf('"%s" was written to "%s".', $templateName, $destinationFilename);
+    echo PHP_EOL;
 } else {
-    dump("Error downloading {$templateName}");
+    echo sprintf('Error downloading "%s".', $templateName);
+    echo PHP_EOL;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -60,22 +68,27 @@ if ($binaryData) {
 
 $templateCount = $reportingCloud->getTemplateCount();
 
-dump("There are {$templateCount} template(s) in template storage.");
+echo sprintf('There are %d template%s in template storage.', $templateCount, $templateCount > 1 ? 's' : '');
+echo PHP_EOL;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Get an array of all templates in template storage
 
-dump("They are as follows:");
+echo "They are as follows:";
+echo PHP_EOL;
 
 foreach ($reportingCloud->getTemplateList() as $record) {
 
     $templateName      = $record['template_name'];
     $modifiedFormatted = date('r', $record['modified']);    // modified is a unix timestamp
 
-    dump("- {$templateName}");
-    dump("- {$record['modified']}");
-    dump("- {$modifiedFormatted}");
+    echo sprintf('- %s', $templateName);
+    echo PHP_EOL;
+    echo sprintf('- %s', $record['modified']);
+    echo PHP_EOL;
+    echo sprintf('- %s', $modifiedFormatted);
+    echo PHP_EOL . PHP_EOL;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -83,9 +96,11 @@ foreach ($reportingCloud->getTemplateList() as $record) {
 // Delete a template in template storage
 
 if ($reportingCloud->deleteTemplate($templateName)) {
-    dump("{$templateName} was deleted");
+    echo sprintf('"%s" was deleted.', $templateName);
+    echo PHP_EOL;
 } else {
-    dump("Error deleting {$templateName}");
+    echo sprintf('Error deleting "%s".', $templateName);
+    echo PHP_EOL;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

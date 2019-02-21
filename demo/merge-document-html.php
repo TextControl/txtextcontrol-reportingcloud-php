@@ -39,4 +39,5 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-dump($destinationFilename);
+echo sprintf('Written to "%s".', $destinationFilename);
+echo PHP_EOL;

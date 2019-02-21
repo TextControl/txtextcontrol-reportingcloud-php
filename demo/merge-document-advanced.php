@@ -98,7 +98,8 @@ $destinationFilename = sprintf(
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-dump($destinationFilename);
+echo sprintf('Written to "%s".', $destinationFilename);
+echo PHP_EOL;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -124,7 +125,8 @@ $destinationFilename = sprintf(
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-dump($destinationFilename);
+echo sprintf('Written to "%s".', $destinationFilename);
+echo PHP_EOL;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -170,7 +172,8 @@ $destinationFilename = sprintf(
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-dump($destinationFilename);
+echo sprintf('Written to "%s".', $destinationFilename);
+echo PHP_EOL;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -197,7 +200,8 @@ $destinationFilename = sprintf(
 
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-dump($destinationFilename);
+echo sprintf('Written to "%s".', $destinationFilename);
+echo PHP_EOL;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -232,7 +236,8 @@ foreach ($arrayOfBinaryData as $documentNo => $binaryData) {
 
     file_put_contents($destinationFilename, $binaryData);
 
-    dump($destinationFilename);
+    echo sprintf('Written to "%s".', $destinationFilename);
+    echo PHP_EOL;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

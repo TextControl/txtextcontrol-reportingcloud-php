@@ -45,4 +45,5 @@ $binaryData = $reportingCloud->findAndReplaceDocument(
 
 file_put_contents($destinationFilename, $binaryData);
 
-dump($destinationFilename);
+echo sprintf('Written to "%s".', $destinationFilename);
+echo PHP_EOL;

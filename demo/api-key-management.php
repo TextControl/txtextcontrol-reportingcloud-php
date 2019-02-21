@@ -17,10 +17,12 @@ $apiKeys = $reportingCloud->getApiKeys();
 if (!empty($apiKeys)) {
     foreach ($apiKeys as $apiKey) {
         if ($apiKey['key'] == ConsoleUtils::apiKey()) {
-            echo sprintf("Keeping API key %s...\n", $apiKey['key']);
+            echo sprintf("Keeping API key %s...", $apiKey['key']);
+            echo PHP_EOL;
             continue;
         }
-        echo sprintf("Deleting API key %s...\n", $apiKey['key']);
+        echo sprintf("Deleting API key %s...", $apiKey['key']);
+        echo PHP_EOL;
         $reportingCloud->deleteApiKey($apiKey['key']);
         unset($apiKey);
     }

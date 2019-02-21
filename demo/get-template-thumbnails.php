@@ -35,7 +35,7 @@ $arrayOfBinaryData = $reportingCloud->getTemplateThumbnails(
     400,
     1,
     1,
-    'PNG'
+    ReportingCloud::FILE_FORMAT_PNG
 );
 
 foreach ($arrayOfBinaryData as $index => $binaryData) {
@@ -45,7 +45,8 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     file_put_contents($destinationFilename, $binaryData);
 
-    dump("{$templateName} was written to {$destinationFilename}");
+    echo sprintf('"%s" was written to "%s".', $templateName, $destinationFilename);
+    echo PHP_EOL;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
