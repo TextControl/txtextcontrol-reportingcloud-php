@@ -25,6 +25,7 @@ include_once __DIR__ . '/bootstrap.php';
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -44,7 +45,7 @@ foreach ($nodes as $node) {
 }
 
 if (0 === count($values)) {
-    $format  = 'Cannot download the available cultures from %s';
+    $format  = 'Cannot download the available cultures from "%s".';
     $message = sprintf($format, $url);
     throw new RuntimeException($message);
 }
@@ -61,11 +62,9 @@ $generator = str_replace($search, $replace, __FILE__);
 ArrayUtils::varExportToFile($filename, $values, $generator);
 
 echo PHP_EOL;
-echo sprintf('The available cultures (%d) are %s.', count($values), implode(', ', $values));
+ConsoleUtils::writeLn('The available cultures (%d) are %s.', count($values), implode(', ', $values));
 echo PHP_EOL;
-echo PHP_EOL;
-echo sprintf('Written data file to %s', $filename);
-echo PHP_EOL;
+ConsoleUtils::writeLn('Written data file to "%s".', $filename);
 echo PHP_EOL;
 
 // ---------------------------------------------------------------------------------------------------------------------
