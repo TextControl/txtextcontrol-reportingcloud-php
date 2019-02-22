@@ -140,7 +140,9 @@ END;
      */
     public static function writeLn(string $format, ...$args): void
     {
-        if (is_array($args) && count($args) > 0) {
+        $args = (array) $args;
+
+        if (count($args) > 0) {
             echo vsprintf($format, $args);
         } else {
             echo $format;
