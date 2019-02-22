@@ -27,7 +27,7 @@ class ConsoleUtils extends AbstractStdlib
      *
      * @const REPORTING_CLOUD_API_KEY
      */
-    private const API_KEY = 'REPORTING_CLOUD_API_KEY';
+    public const API_KEY = 'REPORTING_CLOUD_API_KEY';
 
     /**
      * Check that either the API key has been defined in environment variables
