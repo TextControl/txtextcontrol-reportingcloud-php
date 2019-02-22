@@ -10,6 +10,7 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
+    'test'    => true,
 ]);
 
 foreach ($reportingCloud->getApiKeys() as $apiKey) {

@@ -11,8 +11,8 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-$sourceFilename      = sprintf('%s/camera_controls.pdf', Path::resource());
-$destinationFilename = sprintf('%s/camera_controls.txt', Path::output());
+$sourceFilename      = sprintf('%s/maelzel_machine.pdf', Path::resource());
+$destinationFilename = sprintf('%s/maelzel_machine.txt', Path::output());
 
 $document = $reportingCloud->convertDocument(
     $sourceFilename,

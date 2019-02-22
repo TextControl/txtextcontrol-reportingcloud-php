@@ -9,19 +9,20 @@ use TxTextControl\ReportingCloud\Stdlib\Path;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
+    'test'    => true,
 ]);
 
 $documents = [
     [
-        'filename' => sprintf('%s/test_document.docx', Path::resource()),
+        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => sprintf('%s/test_document.docx', Path::resource()),
+        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => sprintf('%s/test_document.docx', Path::resource()),
+        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
 ];

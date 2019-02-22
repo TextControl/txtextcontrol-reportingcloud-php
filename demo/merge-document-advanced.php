@@ -9,7 +9,6 @@ use TxTextControl\ReportingCloud\Stdlib\Path;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
-    'test'    => true,
 ]);
 
 // ---------------------------------------------------------------------------------------------------------------------

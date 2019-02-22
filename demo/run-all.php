@@ -13,7 +13,7 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
  * @return ArrayObject
  *
  */
-$getFileInfos = function (): ArrayObject {
+$getDemos = function (): ArrayObject {
 
     $arrayObject = new ArrayObject();
     $iterator    = new DirectoryIterator(__DIR__);
@@ -53,7 +53,7 @@ passthru($command);
 // ---------------------------------------------------------------------------------------------------------------------
 
 $counter   = 1;
-$fileInfos = $getFileInfos();
+$fileInfos = $getDemos();
 
 foreach ($fileInfos as $fileInfo) {
 
