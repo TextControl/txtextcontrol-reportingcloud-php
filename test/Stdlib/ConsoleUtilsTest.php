@@ -83,7 +83,18 @@ class ConsoleUtilsTest extends TestCase
         $this->assertContains('int(5)', $actual);
     }
 
-    public function testWriteLineWith1Args(): void
+    public function testWriteLineWith0Args(): void
+    {
+        $expected = '10 hello "world".' . PHP_EOL;
+
+        ob_start();
+        ConsoleUtils::writeLn('10 hello "world".');
+        $actual = ob_get_clean();
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testWriteLineWith1Arg(): void
     {
         $expected = '10 x hello.' . PHP_EOL;
 
@@ -100,17 +111,6 @@ class ConsoleUtilsTest extends TestCase
 
         ob_start();
         ConsoleUtils::writeLn('%d x hello "%s".', 10, 'world');
-        $actual = ob_get_clean();
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    public function testWriteLineWithoutArgs(): void
-    {
-        $expected = '10 hello "world".' . PHP_EOL;
-
-        ob_start();
-        ConsoleUtils::writeLn('10 hello "world".');
         $actual = ob_get_clean();
 
         $this->assertEquals($expected, $actual);

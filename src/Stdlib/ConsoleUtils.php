@@ -147,6 +147,7 @@ END;
         } else {
             echo $format;
         }
+
         echo PHP_EOL;
     }
 }
