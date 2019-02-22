@@ -5,6 +5,8 @@ include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
+// ---------------------------------------------------------------------------------------------------------------------
+
 /**
  * Return an ArrayObject FileInfos which should be executed
  *
@@ -43,8 +45,12 @@ $getFileInfos = function (): ArrayObject {
     return $arrayObject;
 };
 
+// ---------------------------------------------------------------------------------------------------------------------
+
 $command = 'clear';
 passthru($command);
+
+// ---------------------------------------------------------------------------------------------------------------------
 
 $counter   = 1;
 $fileInfos = $getFileInfos();
@@ -70,3 +76,5 @@ foreach ($fileInfos as $fileInfo) {
 
     $counter++;
 }
+
+// ---------------------------------------------------------------------------------------------------------------------

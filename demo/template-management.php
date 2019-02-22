@@ -32,7 +32,6 @@ if (!$reportingCloud->templateExists($templateName)) {
     }
 }
 
-
 // ---------------------------------------------------------------------------------------------------------------------
 
 // Get the number of pages in a template
