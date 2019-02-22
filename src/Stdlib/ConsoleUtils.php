@@ -124,9 +124,10 @@ END;
      * (var_dump is wrapped to suppress psalm warning)
      *
      * @param mixed|null $array
+     *
      * @psalm-suppress ForbiddenCode
      */
-    public static function dump($array):void
+    public static function dump($array): void
     {
         var_dump($array);
     }
@@ -139,10 +140,10 @@ END;
      */
     public static function writeLn(string $format, ...$args): void
     {
-        if (empty($args)) {
-            echo $format;
-        } else {
+        if (is_array($args) && count($args) > 0) {
             echo vsprintf($format, $args);
+        } else {
+            echo $format;
         }
         echo PHP_EOL;
     }
