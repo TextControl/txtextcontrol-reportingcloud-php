@@ -20,10 +20,8 @@ $document = $reportingCloud->convertDocument(
 );
 
 if (empty($document)) {
-    echo sprintf('Error converting "%s".', $sourceFilename);
-    echo PHP_EOL;
+    ConsoleUtils::writeLn('Error converting "%s".', $sourceFilename);
 } else {
     file_put_contents($destinationFilename, $document);
-    echo sprintf('"%s" was converted and written to "%s".', $sourceFilename, $destinationFilename);
-    echo PHP_EOL;
+    ConsoleUtils::writeLn('"%s" was converted and written to "%s".', $sourceFilename, $destinationFilename);
 }

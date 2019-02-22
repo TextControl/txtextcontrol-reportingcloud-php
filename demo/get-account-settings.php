@@ -10,4 +10,4 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-dump($reportingCloud->getAccountSettings());
+ConsoleUtils::dump($reportingCloud->getAccountSettings());

@@ -35,5 +35,4 @@ $binaryData = $reportingCloud->appendDocument(
 
 file_put_contents($destinationFilename, $binaryData);
 
-echo sprintf('Written to "%s".', $destinationFilename);
-echo PHP_EOL;
+ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);

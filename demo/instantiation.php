@@ -4,6 +4,7 @@ declare(strict_types=1);
 include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -13,7 +14,7 @@ $reportingCloud = new ReportingCloud([
     'api_key' => 'xxxxxxxx',
 ]);
 
-dump($reportingCloud);
+ConsoleUtils::dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ $reportingCloud = new ReportingCloud();
 
 $reportingCloud->setApiKey('xxxxxxxx');
 
-dump($reportingCloud);
+ConsoleUtils::dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -39,7 +40,7 @@ $reportingCloud = new ReportingCloud([
     'debug'    => true,
 ]);
 
-dump($reportingCloud);
+ConsoleUtils::dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
@@ -55,6 +56,6 @@ $reportingCloud->setVersion('v1');
 $reportingCloud->setTimeout(100);
 $reportingCloud->setDebug(true);
 
-dump($reportingCloud);
+ConsoleUtils::dump($reportingCloud);
 
 // ---------------------------------------------------------------------------------------------------------------------

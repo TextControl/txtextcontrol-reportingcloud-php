@@ -24,5 +24,5 @@ foreach ($templateNames as $templateName) {
         $reportingCloud->uploadTemplate($sourceFilename);
     }
 
-    dump($reportingCloud->getTemplateInfo($templateName));
+    ConsoleUtils::dump($reportingCloud->getTemplateInfo($templateName));
 }

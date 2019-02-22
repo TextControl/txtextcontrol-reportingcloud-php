@@ -17,12 +17,10 @@ $apiKeys = $reportingCloud->getApiKeys();
 if (!empty($apiKeys)) {
     foreach ($apiKeys as $apiKey) {
         if ($apiKey['key'] == ConsoleUtils::apiKey()) {
-            echo sprintf("Keeping API key %s...", $apiKey['key']);
-            echo PHP_EOL;
+            ConsoleUtils::writeLn("Keeping API key %s...", $apiKey['key']);
             continue;
         }
-        echo sprintf("Deleting API key %s...", $apiKey['key']);
-        echo PHP_EOL;
+        ConsoleUtils::writeLn("Deleting API key %s...", $apiKey['key']);
         $reportingCloud->deleteApiKey($apiKey['key']);
         unset($apiKey);
     }
@@ -38,7 +36,8 @@ $reportingCloud = new ReportingCloud([
     'api_key' => $newApiKey,
 ]);
 
-dump($reportingCloud->getAccountSettings());
-dump($reportingCloud->getTemplateList());
+ConsoleUtils::dump($reportingCloud->getAccountSettings());
+
+ConsoleUtils::dump($reportingCloud->getTemplateList());
 
 // ---------------------------------------------------------------------------------------------------------------------

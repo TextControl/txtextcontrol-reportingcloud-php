@@ -10,4 +10,4 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-dump($reportingCloud->getFontList());
+ConsoleUtils::dump($reportingCloud->getFontList());

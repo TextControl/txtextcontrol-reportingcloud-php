@@ -118,4 +118,32 @@ END;
 
         return $ret;
     }
+
+    /**
+     * Dump information about a variable
+     * (var_dump is wrapped to suppress psalm warning)
+     *
+     * @param mixed|null $array
+     * @psalm-suppress ForbiddenCode
+     */
+    public static function dump($array):void
+    {
+        var_dump($array);
+    }
+
+    /**
+     * Write a line to the console
+     *
+     * @param string $format
+     * @param mixed  ...$args
+     */
+    public static function writeLn(string $format, ...$args): void
+    {
+        if (empty($args)) {
+            echo $format;
+        } else {
+            echo vsprintf($format, $args);
+        }
+        echo PHP_EOL;
+    }
 }

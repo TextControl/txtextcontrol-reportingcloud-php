@@ -45,8 +45,7 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     file_put_contents($destinationFilename, $binaryData);
 
-    echo sprintf('"%s" was written to "%s".', $templateName, $destinationFilename);
-    echo PHP_EOL;
+    ConsoleUtils::writeLn('"%s" was written to "%s".', $templateName, $destinationFilename);
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
