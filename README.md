@@ -50,10 +50,10 @@ Install the ReportingCloud PHP SDK in your project is using [Composer](http://ge
 composer require textcontrol/txtextcontrol-reportingcloud:^2.0
 ```
 
-After installing, you need to require Composer's autoloader:
+After installing, you need to include Composer's autoloader:
 
 ```php
-require 'vendor/autoload.php';
+include_once 'vendor/autoload.php';
 ```
 
 You can then later update the ReportingCloud PHP SDK using Composer:
