@@ -46,10 +46,10 @@ $generator = str_replace($search, $replace, __FILE__);
 
 ArrayUtils::varExportToFile($filename, $values, $generator);
 
-echo PHP_EOL;
+ConsoleUtils::writeLn();
 ConsoleUtils::writeLn('The available dictionaries (%d) are %s.', count($values), implode(', ', $values));
-echo PHP_EOL;
+ConsoleUtils::writeLn();
 ConsoleUtils::writeLn('Written data file to "%s".', $filename);
-echo PHP_EOL;
+ConsoleUtils::writeLn();
 
 // ---------------------------------------------------------------------------------------------------------------------

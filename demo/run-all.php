@@ -63,16 +63,16 @@ foreach ($fileInfos as $fileInfo) {
         $fileInfos->count(),
         $fileInfo->getFilename()
     );
-    echo PHP_EOL;
+    ConsoleUtils::writeLn();
     $command = sprintf(
         '%s %s',
         escapeshellarg(PHP_BINARY),
         escapeshellarg($fileInfo->getPathname())
     );
     passthru($command);
-    echo PHP_EOL;
+    ConsoleUtils::writeLn();
     ConsoleUtils::writeLn('...DONE.');
-    echo PHP_EOL. PHP_EOL;
+    ConsoleUtils::writeLn();
 
     $counter++;
 }

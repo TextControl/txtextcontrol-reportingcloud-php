@@ -138,7 +138,7 @@ END;
      * @param string $format
      * @param mixed  ...$args
      */
-    public static function writeLn(string $format, ...$args): void
+    public static function writeLn(string $format = '', ...$args): void
     {
         $args = (array) $args;
 
