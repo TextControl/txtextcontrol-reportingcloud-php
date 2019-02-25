@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /**
- * ReportingCloud PHP Wrapper
+ * ReportingCloud PHP SDK
  *
- * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ * PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
@@ -13,6 +13,9 @@ declare(strict_types=1);
  */
 
 namespace TxTextControl\ReportingCloud\Assert;
+
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Stdlib\Path;
 
 /**
  * Trait AssertLanguageTrait
@@ -23,21 +26,28 @@ namespace TxTextControl\ReportingCloud\Assert;
 trait AssertCultureTrait
 {
     /**
-     * Validate culture
+     * @param mixed  $value
+     * @param array  $values
+     * @param string $message
+     */
+    abstract public static function oneOf($value, array $values, $message = '');
+
+    /**
+     * Check value is a valid culture
      *
      * @param string $value
      * @param string $message
      *
-     * @return null
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @return void
+     * @throws InvalidArgumentException
      */
-    public static function assertCulture(string $value, string $message = '')
+    public static function assertCulture(string $value, string $message = ''): void
     {
         $haystack = self::getCultures();
-        $format   = $message ?: '%s contains an unsupported culture';
-        $message  = sprintf($format, self::valueToString($value));
+        $format   = $message ?: '"%s" contains an unsupported culture';
+        $message  = sprintf($format, $value);
 
-        return self::oneOf($value, $haystack, $message);
+        self::oneOf($value, $haystack, $message);
     }
 
     /**
@@ -47,22 +57,20 @@ trait AssertCultureTrait
      */
     public static function getCulturesFilename(): string
     {
-        $filename = __DIR__ . '/../../data/cultures.php';
-        $filename = realpath($filename);
-
-        return $filename;
+        return sprintf('%s/cultures.php', Path::data());
     }
 
     /**
      * Return cultures array
      *
      * @return array
+     * @psalm-suppress UnresolvableInclude
      */
     private static function getCultures(): array
     {
         $filename = self::getCulturesFilename();
 
-        return include $filename;
+        return (array) include $filename;
     }
 }
 

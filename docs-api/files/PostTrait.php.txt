@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /**
- * ReportingCloud PHP Wrapper
+ * ReportingCloud PHP SDK
  *
- * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ * PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
@@ -47,10 +49,10 @@ trait PostTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return mixed|null|\Psr\Http\Message\ResponseInterface
-     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     * @return ResponseInterface
+     * @throws RuntimeException
      */
-    abstract protected function request(string $method, string $uri, array $options): Response;
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
 
     /**
      * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
@@ -109,7 +111,7 @@ trait PostTrait
      * @param string $templateName Template name
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function uploadTemplateFromBase64(string $data, string $templateName): bool
     {
@@ -131,7 +133,7 @@ trait PostTrait
      * @param string $templateFilename Template name
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function uploadTemplate(string $templateFilename): bool
     {
@@ -140,7 +142,7 @@ trait PostTrait
 
         $templateName = basename($templateFilename);
 
-        $data = file_get_contents($templateFilename);
+        $data = (string) file_get_contents($templateFilename);
         $data = base64_encode($data);
 
         return $this->uploadTemplateFromBase64($data, $templateName);
@@ -153,7 +155,7 @@ trait PostTrait
      * @param string $returnFormat     Return format
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function convertDocument(string $documentFilename, string $returnFormat): string
     {
@@ -161,17 +163,18 @@ trait PostTrait
         Assert::filenameExists($documentFilename);
         Assert::assertReturnFormat($returnFormat);
 
-        $query = [
+        $query  = [
             'returnFormat' => $returnFormat,
         ];
 
-        $data = file_get_contents($documentFilename);
-        $data = base64_encode($data);
+        $data   = (string) file_get_contents($documentFilename);
+        $data   = (string) base64_encode($data);
 
-        $result = $this->post('/document/convert', $query, $data, StatusCode::OK);
-        settype($result, 'string');
+        $result = (string) $this->post('/document/convert', $query, $data, StatusCode::OK);
 
-        return (string) base64_decode($result);
+        $ret    = (string) base64_decode($result);
+
+        return $ret;
     }
 
     /**
@@ -186,7 +189,7 @@ trait PostTrait
      * @param array|null  $mergeSettings    Array of merge settings
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function mergeDocument(
         array $mergeData,
@@ -215,7 +218,7 @@ trait PostTrait
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $data             = file_get_contents($templateFilename);
+            $data             = (string) file_get_contents($templateFilename);
             $data             = base64_encode($data);
             $json['template'] = $data;
         }
@@ -246,7 +249,7 @@ trait PostTrait
      * @param array|null $documentSettings
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function appendDocument(
         array $documentsData,
@@ -266,10 +269,11 @@ trait PostTrait
             $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
         }
 
-        $result = $this->post('/document/append', $query, $json, StatusCode::OK);
-        settype($result, 'string');
+        $result = (string) $this->post('/document/append', $query, $json, StatusCode::OK);
 
-        return (string) base64_decode($result);
+        $ret    = (string) base64_decode($result);
+
+        return $ret;
     }
 
     /**
@@ -282,7 +286,7 @@ trait PostTrait
      * @param array|null  $mergeSettings      Array of merge settings
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function findAndReplaceDocument(
         array $findAndReplaceData,
@@ -308,7 +312,7 @@ trait PostTrait
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $data             = file_get_contents($templateFilename);
+            $data             = (string) file_get_contents($templateFilename);
             $data             = base64_encode($data);
             $json['template'] = $data;
         }
@@ -317,19 +321,20 @@ trait PostTrait
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $result = $this->post('/document/findandreplace', $query, $json, StatusCode::OK);
-        settype($result, 'string');
+        $result = (string) $this->post('/document/findandreplace', $query, $json, StatusCode::OK);
 
-        return (string) base64_decode($result);
+        $ret    = (string) base64_decode($result);
+
+        return $ret;
     }
 
     /**
      * Execute a POST request via REST client
      *
-     * @param string       $uri        URI
-     * @param array        $query      Query
-     * @param string|array $json       JSON
-     * @param int          $statusCode Required HTTP status code for response
+     * @param string     $uri        URI
+     * @param array|null $query      Query
+     * @param mixed|null $json       JSON
+     * @param int|null   $statusCode Required HTTP status code for response
      *
      * @return mixed|null
      */

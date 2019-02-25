@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /**
- * ReportingCloud PHP Wrapper
+ * ReportingCloud PHP SDK
  *
- * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ * PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\AccountSettings as AccountSettingsPropertyMap;
@@ -52,10 +54,10 @@ trait GetTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return mixed|null|\Psr\Http\Message\ResponseInterface
-     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     * @return ResponseInterface
+     * @throws RuntimeException
      */
-    abstract protected function request(string $method, string $uri, array $options): Response;
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
 
     /**
      * Using the passed propertyMap, recursively build array
@@ -86,6 +88,9 @@ trait GetTrait
 
         if (is_array($result)) {
             foreach ($result as $record) {
+                if (!is_array($record)) {
+                    continue;
+                }
                 $ret[] = $this->buildPropertyMapArray($record, $propertyMap);
             }
         }
@@ -104,7 +109,7 @@ trait GetTrait
      * @param string $language Language of specified text
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function proofingCheck(string $text, string $language): array
     {
@@ -155,7 +160,7 @@ trait GetTrait
      * @param int    $max      Maximum number of suggestions to return
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getProofingSuggestions(string $word, string $language, int $max = 10): array
     {
@@ -186,7 +191,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getTemplateInfo(string $templateName): array
     {
@@ -219,7 +224,7 @@ trait GetTrait
      * @param int    $toPage       To page
      * @param string $imageFormat  Image format
      *
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return array
      */
     public function getTemplateThumbnails(
@@ -279,7 +284,7 @@ trait GetTrait
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
-            array_walk($ret, function (&$record) {
+            array_walk($ret, function (array &$record): void {
                 $key = 'modified';
                 if (isset($record[$key])) {
                     Assert::assertDateTime($record[$key]);
@@ -297,7 +302,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return int
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getTemplatePageCount(string $templateName): int
     {
@@ -316,7 +321,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function templateExists(string $templateName): bool
     {
@@ -351,7 +356,7 @@ trait GetTrait
      * Return an array properties for the ReportingCloud account
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function getAccountSettings(): array
     {
@@ -379,7 +384,7 @@ trait GetTrait
      * @param string $templateName Template name
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function downloadTemplate(string $templateName): string
     {
@@ -392,7 +397,10 @@ trait GetTrait
         $result = (string) $this->get('/templates/download', $query, null, StatusCode::OK);
 
         if (!empty($result)) {
-            $result = base64_decode($result);
+            $decoded = base64_decode($result);
+            if (is_string($decoded)) {
+                $result = $decoded;
+            }
         }
 
         return $result;
@@ -401,10 +409,10 @@ trait GetTrait
     /**
      * Execute a GET request via REST client
      *
-     * @param string       $uri        URI
-     * @param array        $query      Query
-     * @param string|array $json       JSON
-     * @param int          $statusCode Required HTTP status code for response
+     * @param string     $uri        URI
+     * @param array|null $query      Query
+     * @param mixed|null $json       JSON
+     * @param int|null   $statusCode Required HTTP status code for response
      *
      * @return mixed|null
      */

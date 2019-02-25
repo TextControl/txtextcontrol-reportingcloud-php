@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /**
- * ReportingCloud PHP Wrapper
+ * ReportingCloud PHP SDK
  *
- * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ * PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud;
 
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\DocumentSettings as DocumentSettingsPropertyMap;
@@ -63,7 +64,7 @@ trait BuildTrait
      * @param array $array
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function buildDocumentsArray(array $array): array
     {
@@ -77,8 +78,7 @@ trait BuildTrait
                     case 'filename':
                         Assert::filenameExists($value);
                         Assert::assertDocumentExtension($value);
-                        $filename             = realpath($value);
-                        $data                 = file_get_contents($filename);
+                        $data                 = (string) file_get_contents($value);
                         $data                 = base64_encode($data);
                         $document['document'] = $data;
                         break;
@@ -100,8 +100,7 @@ trait BuildTrait
      * @param array $array
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
-     * @throws \Exception
+     * @throws InvalidArgumentException
      */
     protected function buildDocumentSettingsArray(array $array): array
     {
@@ -109,15 +108,23 @@ trait BuildTrait
 
         $propertyMap = new DocumentSettingsPropertyMap();
 
-        foreach ($propertyMap->getMap() as $property => $key) {
-            if (isset($array[$key])) {
-                $value = $array[$key];
-                if (StringUtils::endsWith($key, '_date')) {
-                    Assert::assertTimestamp($value);
-                    $value = Filter::filterTimestampToDateTime($value);
-                }
-                $ret[$property] = $value;
+        $map = $propertyMap->getMap();
+
+        if (!is_array($map)) {
+            return $ret;
+        }
+
+        foreach ($map as $property => $key) {
+            $key = (string) $key;
+            if (!isset($array[$key])) {
+                continue;
             }
+            $value = $array[$key];
+            if (StringUtils::endsWith($key, '_date')) {
+                Assert::assertTimestamp($value);
+                $value = Filter::filterTimestampToDateTime($value);
+            }
+            $ret[$property] = $value;
         }
 
         return $ret;
@@ -129,8 +136,7 @@ trait BuildTrait
      * @param array $array MergeSettings array
      *
      * @return array
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
-     * @throws \Exception
+     * @throws InvalidArgumentException
      */
     protected function buildMergeSettingsArray(array $array): array
     {
@@ -138,7 +144,14 @@ trait BuildTrait
 
         $propertyMap = new MergeSettingsPropertyMap();
 
-        foreach ($propertyMap->getMap() as $property => $key) {
+        $map = $propertyMap->getMap();
+
+        if (!is_array($map)) {
+            return $ret;
+        }
+
+        foreach ($map as $property => $key) {
+            $key = (string) $key;
             if (!isset($array[$key])) {
                 continue;
             }

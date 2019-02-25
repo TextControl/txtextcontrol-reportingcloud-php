@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /**
- * ReportingCloud PHP Wrapper
+ * ReportingCloud PHP SDK
  *
- * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ * PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
@@ -15,9 +15,9 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
@@ -112,14 +112,78 @@ abstract class AbstractReportingCloud
     // <editor-fold desc="Constants (file formats)">
 
     /**
+     * DOC file format
+     */
+    public const FILE_FORMAT_DOC = 'DOC';
+
+    /**
+     * DOCX file format
+     */
+    public const FILE_FORMAT_DOCX = 'DOCX';
+
+    /**
+     * HTML file format
+     */
+    public const FILE_FORMAT_HTML = 'HTML';
+
+    /**
+     * PDF file format
+     */
+    public const FILE_FORMAT_PDF = 'PDF';
+
+    /**
+     * PDF/A file format
+     */
+    public const FILE_FORMAT_PDFA = 'PDFA';
+
+    /**
+     * RTF file format
+     */
+    public const FILE_FORMAT_RTF = 'RTF';
+
+    /**
+     * TX (Text Control) file format
+     */
+    public const FILE_FORMAT_TX = 'TX';
+
+    /**
+     * Pure text file format
+     */
+    public const FILE_FORMAT_TXT = 'TXT';
+
+    /**
+     * Bitmap file format
+     */
+    public const FILE_FORMAT_BMP = 'BMP';
+
+    /**
+     * GIF file format
+     */
+    public const FILE_FORMAT_GIF = 'GIF';
+
+    /**
+     * JPEG file format
+     */
+    public const FILE_FORMAT_JPG = 'JPG';
+
+    /**
+     * PNG file format
+     */
+    public const FILE_FORMAT_PNG = 'PNG';
+
+    // </editor-fold>
+
+    // <editor-fold desc="Constants (file format collections)">
+
+    /**
      * Image file formats
      */
     public const FILE_FORMATS_IMAGE
         = [
-            'BMP',
-            'GIF',
-            'JPG',
-            'PNG',
+            self::FILE_FORMAT_BMP,
+            self::FILE_FORMAT_GIF,
+            self::FILE_FORMAT_JPG,
+            self::FILE_FORMAT_PNG,
         ];
 
     /**
@@ -127,10 +191,10 @@ abstract class AbstractReportingCloud
      */
     public const FILE_FORMATS_TEMPLATE
         = [
-            'DOC',
-            'DOCX',
-            'RTF',
-            'TX',
+            self::FILE_FORMAT_DOC,
+            self::FILE_FORMAT_DOCX,
+            self::FILE_FORMAT_RTF,
+            self::FILE_FORMAT_TX,
         ];
 
     /**
@@ -138,12 +202,12 @@ abstract class AbstractReportingCloud
      */
     public const FILE_FORMATS_DOCUMENT
         = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'RTF',
-            'TX',
+            self::FILE_FORMAT_DOC,
+            self::FILE_FORMAT_DOCX,
+            self::FILE_FORMAT_HTML,
+            self::FILE_FORMAT_PDF,
+            self::FILE_FORMAT_RTF,
+            self::FILE_FORMAT_TX,
         ];
 
     /**
@@ -151,13 +215,14 @@ abstract class AbstractReportingCloud
      */
     public const FILE_FORMATS_RETURN
         = [
-            'DOC',
-            'DOCX',
-            'HTML',
-            'PDF',
-            'PDFA',
-            'RTF',
-            'TX',
+            self::FILE_FORMAT_DOC,
+            self::FILE_FORMAT_DOCX,
+            self::FILE_FORMAT_HTML,
+            self::FILE_FORMAT_PDF,
+            self::FILE_FORMAT_PDFA,
+            self::FILE_FORMAT_RTF,
+            self::FILE_FORMAT_TX,
+            self::FILE_FORMAT_TXT,
         ];
 
     // </editor-fold>
@@ -379,7 +444,7 @@ abstract class AbstractReportingCloud
      *
      * @param bool $debug Debug flag
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
     public function setDebug(bool $debug): self
     {
@@ -447,9 +512,9 @@ abstract class AbstractReportingCloud
     /**
      * Return the REST client of the backend web service
      *
-     * @return Client
+     * @return Client|null
      */
-    public function getClient(): Client
+    public function getClient(): ?Client
     {
         if (!$this->client instanceof Client) {
 
@@ -493,19 +558,25 @@ abstract class AbstractReportingCloud
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return \GuzzleHttp\Psr7\Response
-     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     * @return ResponseInterface
+     * @throws RuntimeException
      */
-    protected function request(string $method, string $uri, array $options): Response
+    protected function request(string $method, string $uri, array $options): ResponseInterface
     {
         $client = $this->getClient();
 
+        if (!$client instanceof Client) {
+            $message = 'No HTTP Client has been set.';
+            throw new RuntimeException($message);
+        }
+
         try {
-            if ($this->getTest()) {
-                $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($this->getTest());
+            $test = (bool) $this->getTest();
+            if ($test) {
+                $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($test);
             }
             $response = $client->request($method, $uri, $options);
-        } catch (GuzzleException $e) {
+        } catch (TransferException $e) {
             $message = (string) $e->getMessage();
             $code    = (int) $e->getCode();
             throw new RuntimeException($message, $code);
@@ -523,23 +594,30 @@ abstract class AbstractReportingCloud
      */
     protected function uri(string $uri): string
     {
-        return sprintf('/%s%s', $this->getVersion(), $uri);
+        $version = (string) $this->getVersion();
+
+        return sprintf('/%s%s', $version, $uri);
     }
 
     /**
      * Return Authorization Header, with either API key or username and password
      *
      * @return string
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     private function getAuthorizationHeader(): string
     {
-        if (!empty($this->getApiKey())) {
-            return sprintf('ReportingCloud-APIKey %s', $this->getApiKey());
+        $apiKey = (string) $this->getApiKey();
+
+        if (!empty($apiKey)) {
+            return sprintf('ReportingCloud-APIKey %s', $apiKey);
         }
 
-        if (!empty($this->getUsername()) && !empty($this->getPassword())) {
-            $value = sprintf('%s:%s', $this->getUsername(), $this->getPassword());
+        $username = (string) $this->getUsername();
+        $password = (string) $this->getPassword();
+
+        if (!empty($username) && !empty($password)) {
+            $value = sprintf('%s:%s', $username, $password);
             return sprintf('Basic %s', base64_encode($value));
         }
 

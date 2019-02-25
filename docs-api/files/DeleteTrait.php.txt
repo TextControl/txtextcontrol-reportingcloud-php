@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /**
- * ReportingCloud PHP Wrapper
+ * ReportingCloud PHP SDK
  *
- * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ * PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
@@ -14,9 +14,11 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
 
 /**
@@ -45,10 +47,10 @@ trait DeleteTrait
      * @param string $uri     URI
      * @param array  $options Options
      *
-     * @return mixed|null|\Psr\Http\Message\ResponseInterface
-     * @throws \TxTextControl\ReportingCloud\Exception\RuntimeException
+     * @return ResponseInterface
+     * @throws RuntimeException
      */
-    abstract protected function request(string $method, string $uri, array $options): Response;
+    abstract protected function request(string $method, string $uri, array $options): ResponseInterface;
 
     // </editor-fold>
 
@@ -60,7 +62,7 @@ trait DeleteTrait
      * @param string $key
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function deleteApiKey(string $key): bool
     {
@@ -79,7 +81,7 @@ trait DeleteTrait
      * @param string $templateName
      *
      * @return bool
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function deleteTemplate(string $templateName): bool
     {
@@ -95,10 +97,10 @@ trait DeleteTrait
     /**
      * Execute a DELETE request via REST client
      *
-     * @param string       $uri        URI
-     * @param array        $query      Query
-     * @param string|array $json       JSON
-     * @param int          $statusCode Required HTTP status code for response
+     * @param string     $uri        URI
+     * @param array|null $query      Query
+     * @param mixed|null $json       JSON
+     * @param int|null   $statusCode Required HTTP status code for response
      *
      * @return bool
      */

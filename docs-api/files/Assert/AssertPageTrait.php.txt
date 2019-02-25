@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /**
- * ReportingCloud PHP Wrapper
+ * ReportingCloud PHP SDK
  *
- * PHP wrapper for ReportingCloud Web API. Authored and supported by Text Control GmbH.
+ * PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
@@ -14,6 +14,8 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
+use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+
 /**
  * Trait AssertPageTrait
  *
@@ -22,6 +24,14 @@ namespace TxTextControl\ReportingCloud\Assert;
  */
 trait AssertPageTrait
 {
+    /**
+     * @param int    $value
+     * @param int    $min
+     * @param int    $max
+     * @param string $message
+     */
+    abstract public static function range($value, $min, $max, $message = '');
+
     /**
      * Minimum page number
      *
@@ -37,25 +47,20 @@ trait AssertPageTrait
     private static $pageMax = PHP_INT_MAX;
 
     /**
-     * Validate page
+     * Check value is a valid page number
      *
      * @param int    $value
      * @param string $message
      *
-     * @return null
-     * @throws \TxTextControl\ReportingCloud\Exception\InvalidArgumentException
+     * @return void
+     * @throws InvalidArgumentException
      */
-    public static function assertPage(int $value, string $message = '')
+    public static function assertPage(int $value, string $message = ''): void
     {
-        $format  = $message ?: 'Page number (%s) must be in the range [%2$s..%3$s]';
-        $message = sprintf(
-            $format,
-            self::valueToString($value),
-            self::valueToString(self::$pageMin),
-            self::valueToString(self::$pageMax)
-        );
+        $format  = $message ?: 'Page number ("%s") must be in the range [%d..%d]';
+        $message = sprintf($format, $value, self::$pageMin, self::$pageMax);
 
-        return self::range($value, self::$pageMin, self::$pageMax, $message);
+        self::range($value, self::$pageMin, self::$pageMax, $message);
     }
 }
 
