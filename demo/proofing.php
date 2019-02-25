@@ -10,8 +10,8 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-dump($reportingCloud->getAvailableDictionaries());
+ConsoleUtils::dump($reportingCloud->getAvailableDictionaries());
 
-dump($reportingCloud->getProofingSuggestions('ssky', 'en_US.dic', 10));
+ConsoleUtils::dump($reportingCloud->getProofingSuggestions('ssky', 'en_US.dic', 10));
 
-dump($reportingCloud->proofingCheck('Thiss is a testt about rockkets in the ssky', 'en_US.dic'));
+ConsoleUtils::dump($reportingCloud->proofingCheck('Thiss is a testt about rockkets in the ssky', 'en_US.dic'));

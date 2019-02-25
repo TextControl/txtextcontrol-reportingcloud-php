@@ -10,4 +10,6 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-dump($reportingCloud->getAccountSettings());
+foreach ($reportingCloud->getAccountSettings() as $key => $value) {
+    ConsoleUtils::writeLn('- %s: %s', $key, $value);
+}

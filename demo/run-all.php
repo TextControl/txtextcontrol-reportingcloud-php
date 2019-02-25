@@ -3,32 +3,46 @@ declare(strict_types=1);
 
 include_once __DIR__ . '/bootstrap.php';
 
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+
 // ---------------------------------------------------------------------------------------------------------------------
 
 /**
- * Return an array of filenames which should be executed
+ * Return an ArrayObject FileInfos which should be executed
  *
- * @return array
+ * @return ArrayObject
  *
  */
-$getFilenames = function (): array {
+$getDemos = function (): ArrayObject {
 
-    $ret = [];
+    $arrayObject = new ArrayObject();
+    $iterator    = new DirectoryIterator(__DIR__);
 
-    $di = new DirectoryIterator(__DIR__);
-    foreach ($di as $fileInfo) {
-        if (in_array($fileInfo->getFilename(), [basename(__FILE__), 'bootstrap.php', 'init.php'])) {
+    $extensions = [
+        'php',
+    ];
+
+    $skipFiles = [
+        basename(__FILE__),
+        'bootstrap.php',
+        'init.php',
+    ];
+
+    foreach ($iterator as $fileInfo) {
+        if (!in_array($fileInfo->getExtension(), $extensions)) {
             continue;
         }
-        if ('php' !== $fileInfo->getExtension()) {
+        if (in_array($fileInfo->getFilename(), $skipFiles)) {
             continue;
         }
-        $ret[] = (string) $fileInfo->getPathname();
+        $index = $fileInfo->getFilename();
+        $value = clone $fileInfo;
+        $arrayObject->offsetSet($index, $value);
     }
 
-    sort($ret);
+    $arrayObject->ksort();
 
-    return $ret;
+    return $arrayObject;
 };
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -38,28 +52,29 @@ passthru($command);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$filenames = $getFilenames();
-$count     = count($filenames);
-$counter   = 0;
+$counter   = 1;
+$fileInfos = $getDemos();
 
-foreach ($filenames as $filename) {
+foreach ($fileInfos as $fileInfo) {
+
+    ConsoleUtils::writeLn(
+        '%d/%d) Executing "%s"...',
+        $counter,
+        $fileInfos->count(),
+        $fileInfo->getFilename()
+    );
+    echo PHP_EOL;
+    $command = sprintf(
+        '%s %s',
+        escapeshellarg(PHP_BINARY),
+        escapeshellarg($fileInfo->getPathname())
+    );
+    passthru($command);
+    echo PHP_EOL;
+    ConsoleUtils::writeLn('...DONE.');
+    echo PHP_EOL. PHP_EOL;
 
     $counter++;
-
-    $filename = (string) $filename;
-
-    echo sprintf('%d/%d) Executing "%s"...', $counter, $count, basename($filename));
-    echo PHP_EOL;
-    echo PHP_EOL;
-
-    $command = sprintf('%s %s', PHP_BINARY, escapeshellarg($filename));
-    passthru($command);
-
-    echo PHP_EOL;
-    echo '...DONE.';
-    echo PHP_EOL;
-    echo PHP_EOL;
-    echo PHP_EOL;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

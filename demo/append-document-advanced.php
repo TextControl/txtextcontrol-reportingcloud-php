@@ -9,19 +9,20 @@ use TxTextControl\ReportingCloud\Stdlib\Path;
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
+    'test'    => true,
 ]);
 
 $documents = [
     [
-        'filename' => sprintf('%s/test_document.docx', Path::resource()),
+        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => sprintf('%s/test_document.docx', Path::resource()),
+        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => sprintf('%s/test_document.docx', Path::resource()),
+        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
 ];
@@ -29,11 +30,11 @@ $documents = [
 $destinationFilename = sprintf('%s/test_append_document_advanced.pdf', Path::output());
 
 $documentSettings = [
-    'author'                 => 'James Henry Trotter',
+    'author'                 => 'Wikipedia',
     'creation_date'          => time(),
-    'creator_application'    => 'An awesome creator',
-    'document_subject'       => 'The Old Green Grasshopper',
-    'document_title'         => 'James and the Giant Peach',
+    'creator_application'    => 'ReportingCloud PHP SDK',
+    'document_subject'       => 'The Mechanical Turk',
+    'document_title'         => 'Mälzel and the Machine',
     'last_modification_date' => time(),
     'user_password'          => '1',
 ];
@@ -46,5 +47,4 @@ $binaryData = $reportingCloud->appendDocument(
 
 file_put_contents($destinationFilename, $binaryData);
 
-echo sprintf('Written to "%s".', $destinationFilename);
-echo PHP_EOL;
+ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);

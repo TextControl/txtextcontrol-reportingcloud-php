@@ -27,7 +27,7 @@ class ConsoleUtils extends AbstractStdlib
      *
      * @const REPORTING_CLOUD_API_KEY
      */
-    private const API_KEY = 'REPORTING_CLOUD_API_KEY';
+    public const API_KEY = 'REPORTING_CLOUD_API_KEY';
 
     /**
      * Check that either the API key has been defined in environment variables
@@ -117,5 +117,37 @@ END;
         $ret = wordwrap($ret, 80);
 
         return $ret;
+    }
+
+    /**
+     * Dump information about a variable
+     * (var_dump is wrapped to suppress psalm warning)
+     *
+     * @param mixed|null $array
+     *
+     * @psalm-suppress ForbiddenCode
+     */
+    public static function dump($array): void
+    {
+        var_dump($array);
+    }
+
+    /**
+     * Write a line to the console
+     *
+     * @param string $format
+     * @param mixed  ...$args
+     */
+    public static function writeLn(string $format, ...$args): void
+    {
+        $args = (array) $args;
+
+        if (count($args) > 0) {
+            echo vsprintf($format, $args);
+        } else {
+            echo $format;
+        }
+
+        echo PHP_EOL;
     }
 }

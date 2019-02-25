@@ -47,11 +47,9 @@ $generator = str_replace($search, $replace, __FILE__);
 ArrayUtils::varExportToFile($filename, $values, $generator);
 
 echo PHP_EOL;
-echo sprintf('The available dictionaries (%d) are %s.', count($values), implode(', ', $values));
+ConsoleUtils::writeLn('The available dictionaries (%d) are %s.', count($values), implode(', ', $values));
 echo PHP_EOL;
-echo PHP_EOL;
-echo sprintf('Written data file to %s', $filename);
-echo PHP_EOL;
+ConsoleUtils::writeLn('Written data file to "%s".', $filename);
 echo PHP_EOL;
 
 // ---------------------------------------------------------------------------------------------------------------------
