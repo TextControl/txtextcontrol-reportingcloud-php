@@ -23,7 +23,7 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud PHP SDK API documentation](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/docs-api/)
 
-* [ReportingCloud PHP SDK support](https://support.textcontrol.com/new-ticket)
+* [ReportingCloud PHP SDK support](https://docs.reporting.cloud/docs/chapter/introduction/support)
 
 ## NEW: ReportingCloud PHP SDK 2.0
 
