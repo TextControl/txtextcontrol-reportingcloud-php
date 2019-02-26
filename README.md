@@ -7,7 +7,7 @@
 [![Latest Stable Version](https://poser.pugx.org/textcontrol/txtextcontrol-reportingcloud/v/stable)](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 [![composer.lock available](https://poser.pugx.org/textcontrol/txtextcontrol-reportingcloud/composerlock)](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 
-This is the official PHP SDK for ReportingCloud Web API. It is authored and supported by [Text Control GmbH](http://www.textcontrol.com).
+This is the official PHP SDK for the ReportingCloud Web API. It is authored and supported by [Text Control GmbH](http://www.textcontrol.com).
 
 Learn more about ReportingCloud at:
 
