@@ -39,7 +39,7 @@ Alternatively, it is possible to use ReportingCloud by directly accessing the [W
 
 ## Install Using Composer
 
-Install the ReportingCloud PHP SDK in your project is using [Composer](http://getcomposer.org):
+Install the ReportingCloud PHP SDK in your project using [Composer](http://getcomposer.org):
 
 ```bash
 composer require textcontrol/txtextcontrol-reportingcloud:^2.0
