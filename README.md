@@ -15,7 +15,7 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud portal](https://portal.reporting.cloud/) - sign up here
 
-* [ReportingCloud Web API documentation](https://docs.reporting.cloud)
+* [ReportingCloud documentation](https://docs.reporting.cloud/)
 
 * [ReportingCloud PHP SDK Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 
@@ -90,7 +90,7 @@ Note, these instructions apply only to the demo scripts and phpunit tests. When 
 
 ## Getting Started
 
-The [PHP Quickstart Tutorial](https://docs.reporting.cloud/docs/chapter/quickstart/php) in the ReportingCloud [documentation](https://docs.reporting.cloud) is your starting point to using the ReportingCloud PHP SDK in your own applications.
+The [PHP Quickstart Tutorial](https://docs.reporting.cloud/docs/chapter/quickstart/php) in the ReportingCloud [documentation](https://docs.reporting.cloud/) is your starting point to using the ReportingCloud PHP SDK in your own applications.
 
 In addition, the ReportingCloud PHP SDK ships with a number of sample applications (see directory `/demo`). These samples applications, which are well commented, have been written to demonstrate all parts of ReportingCloud.
 
