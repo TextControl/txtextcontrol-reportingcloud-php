@@ -25,15 +25,9 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud PHP SDK support](https://docs.reporting.cloud/docs/chapter/introduction/support)
 
-## NEW: ReportingCloud PHP SDK 2.0
-
-On December 19, 2018, the ReportingCloud PHP SDK 2.0 was released.
-
-For a full description of changes, see [release-2.0.0.md](/doc/release-2.0.0.md).
-
 ## Minimum Requirements
 
-The ReportingCloud PHP SDK requires **PHP 7.1** or newer.
+The ReportingCloud PHP SDK requires **PHP 7.1** or newer, since [2.0](/doc/release-2.0.0.md).
 
 All versions of PHPs prior to 7.1 have reached [end-of-life](http://php.net/eol.php) and consequently, no further security updates will be released for them. If your application is running in an older environment, it is highly advisable to update to a more current version of PHP.
 
