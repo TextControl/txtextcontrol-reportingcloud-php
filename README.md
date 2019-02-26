@@ -29,13 +29,13 @@ Learn more about ReportingCloud PHP SDK at:
 
 ## Minimum Requirements
 
-Since [ReportingCloud PHP SDK 2.0](/doc/release-2.0.0.md), the PHP SDK requires **PHP 7.1** or newer. 
+Since [ReportingCloud PHP SDK 2.0](/doc/release-2.0.0.md), the PHP SDK requires **PHP 7.1** or newer.
 
 All versions of PHPs prior to 7.1 have reached [end-of-life](http://php.net/eol.php) and consequently, no further security updates will be released for them. If your application is running in an older environment, it is highly advisable to update to a more current version of PHP.
 
 If you are unable or unwilling to update your PHP installation, you may consider using the ReportingCloud PHP SDK 1.0, which supports PHP 5.6. Please note, however, this version is no longer maintained.
 
-Alternatively, it possible to use ReportingCloud by directly accessing the [Web API](https://docs.reporting.cloud/docs/endpoint). In such cases, it is advisable to use the [curl](http://php.net/manual/en/book.curl.php) extension to make the API calls.
+Alternatively, it is possible to use ReportingCloud by directly accessing the [Web API](https://docs.reporting.cloud/docs/endpoint). In such cases, it is advisable to use the [curl](http://php.net/manual/en/book.curl.php) extension to make the API calls.
 
 ## Install Using Composer
 
