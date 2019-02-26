@@ -90,7 +90,7 @@ In addition, the ReportingCloud PHP SDK ships with a number of sample applicatio
 
  ## Getting Support
 
-The ReportingCloud PHP SDK is supported by Text Control GmbH.
+The ReportingCloud PHP SDK is supported by Text Control GmbH, the manufacturer of the ReportingCloud Web API.
 
 Despite our best efforts to create understandable documentation, demo applications and unit tests, we understand that there are times when you may need some technical assistance.
 
