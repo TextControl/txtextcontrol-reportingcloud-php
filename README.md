@@ -35,7 +35,6 @@ If you are unable or unwilling to update your PHP installation, you may consider
 
 Alternatively, it possible to use ReportingCloud by directly accessing the [Web API](https://docs.reporting.cloud/docs/endpoint). In such cases, it is advisable to use the [curl](http://php.net/manual/en/book.curl.php) extension to make the API calls.
 
-
 ## Install Using Composer
 
 Install the ReportingCloud PHP SDK in your project is using [Composer](http://getcomposer.org):
@@ -62,7 +61,6 @@ and for best auto-loading performance consequently execute:
 composer dump-autoload --optimize
 ```
 
-
 ## API Key for Demos and Unit Tests
 
 The ReportingCloud PHP SDK ships with a number of sample applications (see directory `/demo`) and phpunit tests (see directory `/test`). The scripts in each of these directories require an [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) for ReportingCloud in order to be executed. So that the API key is not made inadvertently publicly available via a public GIT repository, you will first need to specify it. There are two ways in which you can do this:
@@ -81,7 +79,6 @@ export REPORTING_CLOUD_API_KEY='your-api-key'
 
 Note, these instructions apply only to the demo scripts and phpunit tests. When you use ReportingCloud in your application, set the [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) in your constructor or by using the `setApiKey($apiKey)` methods. For an example, see `/demo/instantiation.php`.
 
-
 ## Getting Started
 
 The [PHP Quickstart Tutorial](https://docs.reporting.cloud/docs/chapter/quickstart/php) in the ReportingCloud [documentation](https://docs.reporting.cloud/) is your starting point to using the ReportingCloud PHP SDK in your own applications.
@@ -97,5 +94,3 @@ Despite our best efforts to create understandable documentation, demo applicatio
 If you have a question about ReportingCloud or the PHP SDK, we want to help you.
 
 Please refer to the [Getting Support](https://docs.reporting.cloud/docs/chapter/introduction/support) section of the ReportingCloud [documentation](https://docs.reporting.cloud/) to learn more about the support channels at your disposition.
-
-
