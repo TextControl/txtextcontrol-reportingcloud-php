@@ -79,7 +79,7 @@ define('REPORTING_CLOUD_API_KEY', 'your-api-key');
 export REPORTING_CLOUD_API_KEY='your-api-key'
 ```
 
-Note, these instructions apply only to the demo scripts and phpunit tests. When you use ReportingCloud in your application, set the API key in your constructor or by using the `setApiKey($apiKey)` methods. For an example, see `/demo/instantiation.php`.
+Note, these instructions apply only to the demo scripts and phpunit tests. When you use ReportingCloud in your application, set the [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) in your constructor or by using the `setApiKey($apiKey)` methods. For an example, see `/demo/instantiation.php`.
 
 
 ## Getting Started
