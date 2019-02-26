@@ -17,9 +17,11 @@ Learn more about ReportingCloud at:
 
 * [ReportingCloud documentation](https://docs.reporting.cloud/)
 
-* [ReportingCloud PHP SDK Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
+Learn more about ReportingCloud PHP SDK at:
 
 * [ReportingCloud PHP SDK GitHub page](https://github.com/TextControl/txtextcontrol-reportingcloud-php)
+
+* [ReportingCloud PHP SDK Packagist page](https://packagist.org/packages/textcontrol/txtextcontrol-reportingcloud)
 
 * [ReportingCloud PHP SDK API documentation](https://textcontrol.github.io/txtextcontrol-reportingcloud-php/docs-api/)
 
