@@ -3,9 +3,94 @@ declare(strict_types=1);
 
 include_once __DIR__ . '/bootstrap.php';
 
+use Faker\Factory as FakerFactory;
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 use TxTextControl\ReportingCloud\Stdlib\Path;
+
+// ---------------------------------------------------------------------------------------------------------------------
+
+/**
+ * Using Faker, return some random merge data to insert into the template
+ *
+ * @return array
+ */
+$getMergeDataRecord = function (): array {
+
+    $faker = FakerFactory::create();
+
+    $dateFormat = 'j/n/Y';
+    $domainName = 'textcontrol.com';
+
+    $totalDiscount = 0;
+    $totalSub = 0;
+
+    $item = [];
+
+    for ($i = 0; $i <= random_int(1, 5); $i++) {
+
+        $qty             = random_int(1, 10);
+        $itemNo          = sprintf('RA%-X-%d', $i, random_int(10000, 99999));
+        $itemDescription = $faker->text;
+        $itemUnitPrice   = random_int(10, 500);
+        $itemDiscount    = random_int(10, 15);
+        $itemTotal       = ($qty * $itemUnitPrice);
+        $discount        = $itemTotal * ($itemDiscount / 100);
+
+        $totalDiscount   = $totalDiscount + $discount;
+        $totalSub        = ($totalSub + $itemTotal) - $totalDiscount;
+
+        $item[] = [
+            'qty'              => $qty,
+            'item_no'          => $itemNo,
+            'item_description' => $itemDescription,
+            'item_unitprice'   => $itemUnitPrice,
+            'item_discount'    => $itemDiscount,
+            'item_total'       => $itemTotal,
+        ];
+    }
+
+    $totalTax = $totalSub * 0.10; // 10% sales tax
+    $total    = $totalSub + $totalTax;
+
+    return [
+        'yourcompany_companyname' => 'Text Control, LLC',
+        'yourcompany_zip'         => '28226',
+        'yourcompany_city'        => 'Charlotte',
+        'yourcompany_street'      => '6926 Shannon Willow Rd, Suite 400',
+        'yourcompany_phone'       => '704-544-0000',
+        'yourcompany_fax'         => '704-544-0001',
+        'yourcompany_url'         => sprintf('www.%s', $domainName),
+        'yourcompany_email'       => sprintf('sales@%s', $domainName),
+        'invoice_no'              => sprintf('R%s', random_int(100000000, 9999999999)),
+        'billto_name'             => $faker->name,
+        'billto_companyname'      => $faker->company,
+        'billto_customerid'       => random_int(100000000, 9999999999),
+        'billto_zip'              => $faker->postcode,
+        'billto_city'             => $faker->city,
+        'billto_street'           => $faker->streetAddress,
+        'billto_phone'            => $faker->phoneNumber,
+        'payment_due'             => date($dateFormat, time() + 30 * 24 * 60 * 60),
+        'payment_terms'           => 'net 30 days',
+        'salesperson_name'        => $faker->name,
+        'delivery_date'           => date($dateFormat, time() + 30 * 24 * 60 * 60),
+        'delivery_method'         => 'Ground',
+        'delivery_method_terms'   => 'net 30 days',
+        'recipient_name'          => $faker->name,
+        'recipient_companyname'   => $faker->company,
+        'recipient_zip'           => $faker->postcode,
+        'recipient_city'          => $faker->city,
+        'recipient_street'        => $faker->streetAddress,
+        'recipient_phone'         => $faker->phoneNumber,
+        'item'                    => $item,
+        'total_discount'          => $totalDiscount,
+        'total_sub'               => $totalSub,
+        'total_tax'               => $totalTax,
+        'total'                   => $total,
+    ];
+};
+
+// ---------------------------------------------------------------------------------------------------------------------
 
 // Instantiate ReportingCloud, using your API key
 
@@ -15,70 +100,17 @@ $reportingCloud = new ReportingCloud([
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-$mergeData = [
-    [
-        'yourcompany_companyname' => 'Text Control, LLC',
-        'yourcompany_zip'         => '28226',
-        'yourcompany_city'        => 'Charlotte',
-        'yourcompany_street'      => '6926 Shannon Willow Rd, Suite 400',
-        'yourcompany_phone'       => '704 544 7445',
-        'yourcompany_fax'         => '704-542-0936',
-        'yourcompany_url'         => 'www.textcontrol.com',
-        'yourcompany_email'       => 'sales@textcontrol.com',
-        'invoice_no'              => '778723',
-        'billto_name'             => 'Joey Montana',
-        'billto_companyname'      => 'Montana, LLC',
-        'billto_customerid'       => '123',
-        'billto_zip'              => '27878',
-        'billto_city'             => 'Charlotte',
-        'billto_street'           => '1 Washington Dr',
-        'billto_phone'            => '887 267 3356',
-        'payment_due'             => '20/1/2016',
-        'payment_terms'           => 'NET 30',
-        'salesperson_name'        => 'Mark Frontier',
-        'delivery_date'           => '20/1/2016',
-        'delivery_method'         => 'Ground',
-        'delivery_method_terms'   => 'NET 30',
-        'recipient_name'          => 'Joey Montana',
-        'recipient_companyname'   => 'Montana, LLC',
-        'recipient_zip'           => '27878',
-        'recipient_city'          => 'Charlotte',
-        'recipient_street'        => '1 Washington Dr',
-        'recipient_phone'         => '887 267 3356',
-        'item'                    => [
-            [
-                'qty'              => '1',
-                'item_no'          => '1',
-                'item_description' => 'Item description 1',
-                'item_unitprice'   => '2663',
-                'item_discount'    => '20',
-                'item_total'       => '2130.40',
-            ],
-            [
-                'qty'              => '1',
-                'item_no'          => '2',
-                'item_description' => 'Item description 2',
-                'item_unitprice'   => '5543',
-                'item_discount'    => '0',
-                'item_total'       => '5543',
-            ],
-        ],
-        'total_discount'          => '532.60',
-        'total_sub'               => '7673.4',
-        'total_tax'               => '537.138',
-        'total'                   => '8210.538',
-    ],
-];
+// Build some random merge data
 
-// copy data 10 times
+$mergeData = [];
 
 for ($i = 0; $i < 10; $i++) {
-    array_push($mergeData, $mergeData[0]);
+    $mergeData[] = $getMergeDataRecord();
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-// Template stored locally and uploaded to backend server on merge
+// Template is stored locally and uploaded to backend server on merge
 
 $sourceFilename = sprintf(
     '%s/test_template.tx',
@@ -141,11 +173,11 @@ ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 // mergeSettings are set
 
 $mergeSettings = [
-    'author'                     => 'James Henry Trotter',
+    'author'                     => 'Text Control, LLC',
     'creation_date'              => time(),
-    'creator_application'        => 'The Giant Peach',
-    'document_subject'           => 'The Old Green Grasshopper',
-    'document_title'             => 'James and the Giant Peach',
+    'creator_application'        => 'Your Invoice',
+    'document_subject'           => 'Invoice, Payment',
+    'document_title'             => 'Your Invoice for Services Rendered',
     'last_modification_date'     => time(),
     'merge_html'                 => false,
     'remove_empty_blocks'        => true,
@@ -187,7 +219,7 @@ ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-// Template stored locally and uploaded to backend server on merge
+// Template is stored locally and uploaded to backend server on merge
 // append=true (also default, when not set)
 
 $sourceFilename = sprintf(
