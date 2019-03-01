@@ -14,13 +14,19 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
+// Specify the source (TX) and destination (PDF) filenames
+
 $sourceFilename      = sprintf('%s/test_find_and_replace.tx', Path::resource());
 $destinationFilename = sprintf('%s/test_find_and_replace.pdf', Path::output());
+
+// Create an array of find and replace data
 
 $findAndReplaceData = [
     '%%FIELD1%%' => 'hello field 1',
     '%%FIELD2%%' => 'hello field 2',
 ];
+
+// Create an array of PDF document properties
 
 $mergeSettings = [
     'author'                     => 'James Henry Trotter',
@@ -34,8 +40,10 @@ $mergeSettings = [
     'remove_empty_fields'        => true,
     'remove_empty_images'        => true,
     'remove_trailing_whitespace' => true,
-    'user_password'              => '1',
+    'user_password'              => '1', // NOTE: You need to enter this password when opening the PDF file
 ];
+
+// Using ReportingCloud, find and replace the strings and return the PDF file
 
 $binaryData = $reportingCloud->findAndReplaceDocument(
     $findAndReplaceData,
@@ -45,6 +53,10 @@ $binaryData = $reportingCloud->findAndReplaceDocument(
     $mergeSettings
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $binaryData);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);

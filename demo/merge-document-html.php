@@ -14,21 +14,28 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
+// Specify the source (DOCX) and destination (PDF) filenames
+
 $sourceFilename      = sprintf('%s/test_template.docx', Path::resource());
 $destinationFilename = sprintf('%s/test_template_html_merged.pdf', Path::output());
 
-// mergeFields containing HTML must be contained in an <html /> tag.
-// Additionally, merge_html must be set to true in the merge settings array
+// Specify array of merge data, containing HTML. Note that merge fields containing
+// HTML must be contained in an <html /> tag.
 // See: https://www.textcontrol.com/blog/2017/08/21/
 
 $mergeData = [
-    'name' => '<html><i>Jemima</i> <strong>Puddle-Duck</strong></html>',
-    'age'  => 7,
+    'name' => '<html><i>Johann</i> <strong>Nepomuk Mälzel</strong></html>',
+    'age'  => 41,
 ];
+
+// Since we are merging HTML data, merge_html must be set to true
+// See: https://www.textcontrol.com/blog/2017/08/21/
 
 $mergeSettings = [
     'merge_html' => true,
 ];
+
+// Using ReportingCloud, merge the HTML merge data into the template and return binary data
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
@@ -39,6 +46,10 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeSettings
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);

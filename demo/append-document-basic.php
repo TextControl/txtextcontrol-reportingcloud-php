@@ -14,9 +14,11 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
+// Create an array of document filenames and seperators that should be between the documents
+
 $documents = [
     [
-        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
+        'filename' => sprintf('%s/construction_turk.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
@@ -24,18 +26,26 @@ $documents = [
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
+        'filename' => sprintf('%s/maelzel_america.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
 ];
 
+// Specify the output filename
+
 $destinationFilename = sprintf('%s/test_append_document_basic.pdf', Path::output());
+
+// Using ReportingCloud, create a new PDF document, containing the above files
 
 $binaryData = $reportingCloud->appendDocument(
     $documents,
     ReportingCloud::FILE_FORMAT_PDF
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $binaryData);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);

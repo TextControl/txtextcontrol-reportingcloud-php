@@ -13,17 +13,22 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-$sourceFilename      = sprintf('%s/maelzel_machine.docx', Path::resource());
-$destinationFilename = sprintf('%s/maelzel_machine.pdf', Path::output());
+// Specify the source (DOCX) and destination (PDF) filenames
+
+$sourceFilename      = sprintf('%s/construction_turk.docx', Path::resource());
+$destinationFilename = sprintf('%s/construction_turk.pdf', Path::output());
+
+// Using ReportingCloud, convert the DOCX file to PDF file
 
 $document = $reportingCloud->convertDocument(
     $sourceFilename,
     ReportingCloud::FILE_FORMAT_PDF
 );
 
-if (empty($document)) {
-    ConsoleUtils::writeLn('Error converting "%s".', $sourceFilename);
-} else {
-    file_put_contents($destinationFilename, $document);
-    ConsoleUtils::writeLn('"%s" was converted and written to "%s".', $sourceFilename, $destinationFilename);
-}
+// Write the document's binary data to disk
+
+file_put_contents($destinationFilename, $document);
+
+// Output to console the location of the generated document
+
+ConsoleUtils::writeLn('"%s" was converted and written to "%s".', $sourceFilename, $destinationFilename);

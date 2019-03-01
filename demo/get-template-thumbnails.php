@@ -13,24 +13,21 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-// ---------------------------------------------------------------------------------------------------------------------
+// Specify the template name
 
 $templateName = 'test_template.tx';
 
-$sourceFilename = sprintf('%s/%s', Path::resource(), $templateName);
+// Specify the source filename
 
-// ---------------------------------------------------------------------------------------------------------------------
+$sourceFilename = sprintf('%s/%s', Path::resource(), $templateName);
 
 // Upload template, if not already in template storage
 
 if (!$reportingCloud->templateExists($templateName)) {
-
     $reportingCloud->uploadTemplate($sourceFilename);
 }
 
-// ---------------------------------------------------------------------------------------------------------------------
-
-// Write thumbnails (1 page per record in array)
+// Using ReportingCloud, generate a thumbnail of each template
 
 $arrayOfBinaryData = $reportingCloud->getTemplateThumbnails(
     $templateName,
@@ -40,12 +37,18 @@ $arrayOfBinaryData = $reportingCloud->getTemplateThumbnails(
     ReportingCloud::FILE_FORMAT_PNG
 );
 
+// Iterate over returned binary PNG data (1 image per record in array)
+
 foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     $destinationFile     = sprintf('test_template_p%d.png', $index);
     $destinationFilename = sprintf('%s/%s', Path::output(), $destinationFile);
 
+    // Write the thumbnail's binary data to disk
+
     file_put_contents($destinationFilename, $binaryData);
+
+    // Output to console the location of the image file
 
     ConsoleUtils::writeLn('"%s" was written to "%s".', $templateName, $destinationFilename);
 }

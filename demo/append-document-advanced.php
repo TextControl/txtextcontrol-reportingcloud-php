@@ -14,9 +14,11 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
+// Create an array of document filenames and seperators that should be between the documents
+
 $documents = [
     [
-        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
+        'filename' => sprintf('%s/construction_turk.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
@@ -24,12 +26,16 @@ $documents = [
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
     [
-        'filename' => sprintf('%s/maelzel_machine.docx', Path::resource()),
+        'filename' => sprintf('%s/maelzel_america.docx', Path::resource()),
         'divider'  => ReportingCloud::DOCUMENT_DIVIDER_NEW_SECTION,
     ],
 ];
 
+// Specify the output filename
+
 $destinationFilename = sprintf('%s/test_append_document_advanced.pdf', Path::output());
+
+// Create an array of PDF document properties
 
 $documentSettings = [
     'author'                 => 'Wikipedia',
@@ -38,8 +44,10 @@ $documentSettings = [
     'document_subject'       => 'The Mechanical Turk',
     'document_title'         => 'Mälzel and the Machine',
     'last_modification_date' => time(),
-    'user_password'          => '1',
+    'user_password'          => '1', // NOTE: You need to enter this password when opening the PDF file
 ];
+
+// Using ReportingCloud, create a new PDF document, containing the above files and PDF document properties
 
 $binaryData = $reportingCloud->appendDocument(
     $documents,
@@ -47,6 +55,10 @@ $binaryData = $reportingCloud->appendDocument(
     $documentSettings
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $binaryData);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);

@@ -97,7 +97,11 @@ $destinationFilename = sprintf(
     Path::output()
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 
@@ -123,7 +127,11 @@ $destinationFilename = sprintf(
     Path::output()
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 
@@ -144,7 +152,7 @@ $mergeSettings = [
     'remove_empty_fields'        => true,
     'remove_empty_images'        => true,
     'remove_trailing_whitespace' => true,
-    'user_password'              => '1',
+    'user_password'              => '1', // NOTE: You need to enter this password when opening the PDF file
     'culture'                    => 'en-US',
 ];
 
@@ -169,7 +177,11 @@ $destinationFilename = sprintf(
     Path::output()
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 
@@ -196,7 +208,11 @@ $destinationFilename = sprintf(
     Path::output()
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 
@@ -231,7 +247,11 @@ foreach ($arrayOfBinaryData as $documentNo => $binaryData) {
         $destinationFile
     );
 
+    // Write the document's binary data to disk
+
     file_put_contents($destinationFilename, $binaryData);
+
+    // Output to console the location of the generated document
 
     ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
 }

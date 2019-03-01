@@ -14,13 +14,19 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
+// Specify the source (DOCX) and destination (PDF) filenames
+
 $sourceFilename      = sprintf('%s/test_template.docx', Path::resource());
 $destinationFilename = sprintf('%s/test_template_merged.pdf', Path::output());
 
+// Specify array of merge data
+
 $mergeData = [
-    'name' => 'Jemima Puddle-Duck',
-    'age'  => 7,
+    'name' => 'Johann Nepomuk Mälzel',
+    'age'  => 41,
 ];
+
+// Using ReportingCloud, insert the merge data into the template and return binary data
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
@@ -29,6 +35,10 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $sourceFilename
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);

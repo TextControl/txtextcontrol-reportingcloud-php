@@ -12,8 +12,27 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-ConsoleUtils::dump($reportingCloud->getAvailableDictionaries());
+// Return an array of supported dictionaries
 
-ConsoleUtils::dump($reportingCloud->getProofingSuggestions('ssky', 'en_US.dic', 10));
+ConsoleUtils::dump(
+    $reportingCloud->getAvailableDictionaries()
+);
 
-ConsoleUtils::dump($reportingCloud->proofingCheck('Thiss is a testt about rockkets in the ssky', 'en_US.dic'));
+// Return an array spelling suggestions for a specific word
+
+ConsoleUtils::dump(
+    $reportingCloud->getProofingSuggestions(
+        'ssky',
+        'en_US.dic',
+        10
+    )
+);
+
+// Return an array of spelling issues
+
+ConsoleUtils::dump(
+    $reportingCloud->proofingCheck(
+        'Thiss is a testt about rockkets in the ssky',
+        'en_US.dic'
+    )
+);

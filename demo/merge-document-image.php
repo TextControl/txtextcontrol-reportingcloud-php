@@ -14,20 +14,27 @@ $reportingCloud = new ReportingCloud([
     'test'    => true,
 ]);
 
+// Specify the source image (JPG) and template (DOCX) and destination (PDF) filenames
+
 $imageFilename       = sprintf('%s/test_template_image.jpg', Path::resource());
 $sourceFilename      = sprintf('%s/test_template_image.docx', Path::resource());
 $destinationFilename = sprintf('%s/test_template_image_merged.pdf', Path::output());
 
-$imageBinaryData = (string) file_get_contents($imageFilename);
-
-// Base64 encode the image data before assigning to ReportingCloud.
+// Load the image data from disk, base64 encoding them before assigning to ReportingCloud.
 // See: https://www.textcontrol.com/blog/2016/07/18/
+
+$imageBinaryData              = (string) file_get_contents($imageFilename);
+$imageBinaryDataBase64Encoded = base64_encode($imageBinaryData);
+
+// Specify array of merge data
 
 $mergeData = [
     'title'  => 'Retro Speedometer from Classic Car',
     'source' => 'http://www.4freephotos.com/Retro-speedometer-from-classic-car-6342.html',
-    'photo'  => base64_encode($imageBinaryData),
+    'photo'  => $imageBinaryDataBase64Encoded
 ];
+
+// Using ReportingCloud, merge the image data into the template and return binary data
 
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
@@ -36,6 +43,10 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $sourceFilename
 );
 
+// Write the document's binary data to disk
+
 file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+
+// Output to console the location of the generated document
 
 ConsoleUtils::writeLn('Written to "%s".', $destinationFilename);
