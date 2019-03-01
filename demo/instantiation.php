@@ -6,8 +6,6 @@ include_once __DIR__ . '/bootstrap.php';
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
-// ---------------------------------------------------------------------------------------------------------------------
-
 // Instantiate with API key via constructor option
 
 $reportingCloud = new ReportingCloud([
@@ -16,7 +14,6 @@ $reportingCloud = new ReportingCloud([
 
 ConsoleUtils::dump($reportingCloud);
 
-// ---------------------------------------------------------------------------------------------------------------------
 
 // Instantiate with API key via setter method
 
@@ -26,7 +23,6 @@ $reportingCloud->setApiKey('xxxxxxxx');
 
 ConsoleUtils::dump($reportingCloud);
 
-// ---------------------------------------------------------------------------------------------------------------------
 
 // Instantiate with username and password via constructor options
 // @deprecated: Use the API key method instead (see above)
@@ -42,7 +38,6 @@ $reportingCloud = new ReportingCloud([
 
 ConsoleUtils::dump($reportingCloud);
 
-// ---------------------------------------------------------------------------------------------------------------------
 
 // Instantiate with username and password via setter methods
 // @deprecated: Use the API key method instead (see above)
@@ -57,5 +52,3 @@ $reportingCloud->setTimeout(100);
 $reportingCloud->setDebug(true);
 
 ConsoleUtils::dump($reportingCloud);
-
-// ---------------------------------------------------------------------------------------------------------------------
