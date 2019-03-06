@@ -171,6 +171,11 @@ abstract class AbstractReportingCloud
      */
     public const FILE_FORMAT_PNG = 'PNG';
 
+    /**
+     * XLSX file format
+     */
+    public const FILE_FORMAT_XLSX = 'XLSX';
+
     // </editor-fold>
 
     // <editor-fold desc="Constants (file format collections)">

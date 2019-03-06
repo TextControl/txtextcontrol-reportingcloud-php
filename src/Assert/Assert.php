@@ -30,6 +30,7 @@ class Assert extends AbstractAssert
     use AssertDateTimeTrait;
     use AssertDocumentDividerTrait;
     use AssertDocumentExtensionTrait;
+    use AssertDocumentThumbnailExtensionTrait;
     use AssertImageFormatTrait;
     use AssertLanguageTrait;
     use AssertPageTrait;

@@ -30,6 +30,7 @@ class AssertTest extends TestCase
     use AssertDateTimeTestTrait;
     use AssertDocumentDividerTestTrait;
     use AssertDocumentExtensionTestTrait;
+    use AssertDocumentThumbnailExtensionTestTrait;
     use AssertFilenameExistsTestTrait;
     use AssertImageFormatTestTrait;
     use AssertLanguageTestTrait;

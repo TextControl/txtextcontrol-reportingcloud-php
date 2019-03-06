@@ -16,7 +16,7 @@ $reportingCloud = new ReportingCloud([
 
 // Specify the source filename
 
-$sourceFilename = sprintf('%s/maelzel_machine.pdf', Path::resource());
+$sourceFilename = sprintf('%s/cash.xlsx', Path::resource());
 
 // Using ReportingCloud, generate a thumbnail of each page in the document
 
@@ -38,7 +38,7 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     // Specify destination file and filenames
 
-    $destinationFile     = sprintf('maelzel_machine_p%d.png', $page);
+    $destinationFile     = sprintf('cash_p%d.png', $page);
     $destinationFilename = sprintf('%s/%s', Path::output(), $destinationFile);
 
     // Write the thumbnail's binary data to disk

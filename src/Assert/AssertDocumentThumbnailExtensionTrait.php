@@ -18,12 +18,12 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
- * Trait AssertDocumentExtensionTrait
+ * Trait AssertDocumentThumbnailExtensionTrait
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertDocumentExtensionTrait
+trait AssertDocumentThumbnailExtensionTrait
 {
     /**
      * @param mixed  $value
@@ -33,7 +33,11 @@ trait AssertDocumentExtensionTrait
     abstract public static function oneOf($value, array $values, $message = '');
 
     /**
-     * Check value is a valid document format extension
+     * Check value is a valid document thumbnail format extension
+     *
+     * This is a special case assert method that is used only by
+     * TxTextControl\ReportingCloud\ReportingCloud::getDocumentThumbnails()
+     * as this method additionally accepts files in XLSX format. No other methods do.
      *
      * @param string $value
      * @param string $message
@@ -41,14 +45,21 @@ trait AssertDocumentExtensionTrait
      * @return void
      * @throws InvalidArgumentException
      */
-    public static function assertDocumentExtension(string $value, string $message = ''): void
+    public static function assertDocumentThumbnailExtension(string $value, string $message = ''): void
     {
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = strtoupper($extension);
 
-        $format  = $message ?: '"%s" contains an unsupported document format file extension';
+        $format  = $message ?: '"%s" contains an unsupported document thumbnail format file extension';
         $message = sprintf($format, $value);
 
-        self::oneOf($extension, ReportingCloud::FILE_FORMATS_DOCUMENT, $message);
+        $fileFormats = array_merge(
+            ReportingCloud::FILE_FORMATS_DOCUMENT,
+            [
+                ReportingCloud::FILE_FORMAT_XLSX
+            ]
+        );
+
+        self::oneOf($extension, $fileFormats, $message);
     }
 }

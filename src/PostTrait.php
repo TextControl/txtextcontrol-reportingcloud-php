@@ -377,7 +377,7 @@ trait PostTrait
     ): array {
         $ret = [];
 
-        Assert::assertDocumentExtension($documentFilename);
+        Assert::assertDocumentThumbnailExtension($documentFilename);
         Assert::filenameExists($documentFilename);
         Assert::assertZoomFactor($zoomFactor);
         Assert::assertPage($fromPage);
