@@ -28,7 +28,6 @@ $arrayOfBinaryData = $reportingCloud->getDocumentThumbnails(
     ReportingCloud::FILE_FORMAT_PNG
 );
 
-
 // Iterate over returned binary PNG data (1 image per record in array)
 
 foreach ($arrayOfBinaryData as $index => $binaryData) {
