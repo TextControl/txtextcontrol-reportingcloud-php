@@ -25,11 +25,6 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 trait AssertBase64DataTrait
 {
     /**
-     * @param string $message
-     */
-    abstract protected static function reportInvalidArgument($message): void;
-
-    /**
      * Check value is valid base64 encoded data
      *
      * @param string $value
@@ -44,7 +39,7 @@ trait AssertBase64DataTrait
             $format  = $message ?: '"%s" must be base64 encoded';
             $message = sprintf($format, $value);
 
-            self::reportInvalidArgument($message);
+            throw new InvalidArgumentException($message);
         }
     }
 }

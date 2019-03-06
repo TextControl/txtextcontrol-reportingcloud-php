@@ -14,14 +14,19 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
-use Webmozart\Assert\Assert as ParentAssert;
-
 /**
  * Abstract AbstractAssert
+ *
+ * This component is based on Webmozart\Assert.
+ * See: https://github.com/webmozart/assert
+ *
+ * At the time of implementation (March 2019), the above component did not support strict types.
+ * Since the ReportingCloud PHP SDK does support strict types, the necessary functions where cherry-picked from
+ * Webmozart\Assert, strict typed, and insert into this component.
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-abstract class AbstractAssert extends ParentAssert
+abstract class AbstractAssert
 {
 }

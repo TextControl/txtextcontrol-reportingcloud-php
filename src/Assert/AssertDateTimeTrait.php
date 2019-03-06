@@ -29,11 +29,6 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 trait AssertDateTimeTrait
 {
     /**
-     * @param string $message
-     */
-    abstract protected static function reportInvalidArgument($message): void;
-
-    /**
      * Check value is a valid DateTime string
      *
      * @param string $value
@@ -50,7 +45,7 @@ trait AssertDateTimeTrait
         if (self::getDateTimeLength() !== strlen($value)) {
             $format  = $message ?: '"%s" has an invalid number of characters in it';
             $message = sprintf($format, $value);
-            self::reportInvalidArgument($message);
+            throw new InvalidArgumentException($message);
         }
 
         $dateTimeZone = new DateTimeZone($timeZone);
@@ -61,21 +56,17 @@ trait AssertDateTimeTrait
                 if (0 !== $dateTime->getOffset()) {
                     $format  = $message ?: '"%s" has an invalid offset';
                     $message = sprintf($format, $value);
-                    self::reportInvalidArgument($message);
+                    throw new InvalidArgumentException($message);
                 }
             } else {
                 $format  = $message ?: '"%s" is syntactically invalid';
                 $message = sprintf($format, $value);
-                self::reportInvalidArgument($message);
+                throw new InvalidArgumentException($message);
             }
         } catch (Exception $e) {
             $format  = $message ?: 'Internal error validating "%s" - %s';
-            $message = sprintf(
-                $format,
-                $value,
-                $e->getMessage()
-            );
-            self::reportInvalidArgument($message);
+            $message = sprintf($format, $value, $e->getMessage());
+            throw new InvalidArgumentException($message);
         }
     }
 

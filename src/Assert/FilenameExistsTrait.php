@@ -25,11 +25,6 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 trait FilenameExistsTrait
 {
     /**
-     * @param string $message
-     */
-    abstract protected static function reportInvalidArgument($message): void;
-
-    /**
      * Check filename exists and is readable
      *
      * @param string $value
@@ -43,13 +38,13 @@ trait FilenameExistsTrait
         if (!is_readable($value)) {
             $format  = $message ?: '"%s" does not exist or is not readable';
             $message = sprintf($format, $value);
-            self::reportInvalidArgument($message);
+            throw new InvalidArgumentException($message);
         }
 
         if (!is_file($value)) {
             $format  = $message ?: '"%s" is not a regular file';
             $message = sprintf($format, $value);
-            self::reportInvalidArgument($message);
+            throw new InvalidArgumentException($message);
         }
     }
 }

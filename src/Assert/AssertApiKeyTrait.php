@@ -30,7 +30,7 @@ trait AssertApiKeyTrait
      * @param int    $max
      * @param string $message
      */
-    abstract public static function range($value, $min, $max, $message = '');
+    abstract public static function range(int $value, int $min, int $max, string $message = ''): void;
 
     /**
      * Minimum length of API key

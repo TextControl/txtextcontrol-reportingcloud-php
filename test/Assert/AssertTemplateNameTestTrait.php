@@ -52,7 +52,7 @@ trait AssertTemplateNameTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "template.xxx" contains an unsupported file extension
      */
-    public function testAssertTemplateNameInvalidUsupportedFileExtension(): void
+    public function testAssertTemplateNameInvalidUnsupportedFileExtension(): void
     {
         Assert::assertTemplateName('template.xxx');
     }

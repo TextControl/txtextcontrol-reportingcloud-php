@@ -18,12 +18,12 @@ use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
- * Trait AssertFilenameExistsTestTrait
+ * Trait FilenameExistsTestTrait
  *
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertFilenameExistsTestTrait
+trait FilenameExistsTestTrait
 {
     // <editor-fold desc="Abstract methods">
 
@@ -35,7 +35,7 @@ trait AssertFilenameExistsTestTrait
 
     // </editor-fold>
 
-    public function testAssertFilenameExists(): void
+    public function testFilenameExists(): void
     {
         $filename = (string) tempnam(sys_get_temp_dir(), hash('sha256', __CLASS__));
         touch($filename);
@@ -49,7 +49,7 @@ trait AssertFilenameExistsTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "/path/to/invalid/file" does not exist or is not readable
      */
-    public function testAssertFilenameExistsInvalidDoesContainAbsolutePathAndFile(): void
+    public function testFilenameExistsInvalidDoesContainAbsolutePathAndFile(): void
     {
         Assert::filenameExists('/path/to/invalid/file');
     }
@@ -58,7 +58,7 @@ trait AssertFilenameExistsTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage "/tmp" is not a regular file
      */
-    public function testAssertFilenameExistsInvalidIsNotARegularFile(): void
+    public function testFilenameExistsInvalidIsNotARegularFile(): void
     {
         Assert::filenameExists('/tmp');
     }
@@ -67,7 +67,7 @@ trait AssertFilenameExistsTestTrait
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Custom error message ("/path/to/invalid/file")
      */
-    public function testAssertFilenameExistsInvalidWithCustomMessage(): void
+    public function testFilenameExistsInvalidWithCustomMessage(): void
     {
         Assert::filenameExists('/path/to/invalid/file', 'Custom error message ("%s")');
     }

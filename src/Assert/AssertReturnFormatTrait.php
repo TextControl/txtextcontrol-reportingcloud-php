@@ -30,7 +30,7 @@ trait AssertReturnFormatTrait
      * @param array  $values
      * @param string $message
      */
-    abstract public static function oneOf($value, array $values, $message = '');
+    abstract public static function oneOf($value, array $values, string $message = ''): void;
 
     /**
      * Check value is a valid return format extension

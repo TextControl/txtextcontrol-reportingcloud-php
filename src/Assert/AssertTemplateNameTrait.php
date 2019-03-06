@@ -25,11 +25,6 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 trait AssertTemplateNameTrait
 {
     /**
-     * @param string $message
-     */
-    abstract protected static function reportInvalidArgument($message): void;
-
-    /**
      * Check value is a valid template format
      *
      * @param string $value
@@ -54,7 +49,7 @@ trait AssertTemplateNameTrait
         if (basename($value) != $value) {
             $format  = $message ?: "\"%s\" contains path information ('/', '.', or '..')";
             $message = sprintf($format, $value);
-            self::reportInvalidArgument($message);
+            throw new InvalidArgumentException($message);
         }
 
         $extension = pathinfo($value, PATHINFO_EXTENSION);
@@ -64,7 +59,7 @@ trait AssertTemplateNameTrait
         } catch (InvalidArgumentException $e) {
             $format  = $message ?: '"%s" contains an unsupported file extension';
             $message = sprintf($format, $value);
-            self::reportInvalidArgument($message);
+            throw new InvalidArgumentException($message);
         }
     }
 }
