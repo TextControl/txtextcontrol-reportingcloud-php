@@ -4,7 +4,7 @@
 
 ## dev-master
 
-## 2.1.0 - 2019-03-06
+## 2.2.0 - 2019-03-06
 
 * Implemented [end-point](https://docs.reporting.cloud/docs/endpoint/document/thumbnails) `/v1/document/thumbnails`.
 * Abstracted file utilities to `TxTextControl\ReportingCloud\Stdlib\FileUtils`.
