@@ -215,8 +215,8 @@ trait GetTrait
     }
 
     /**
-     * Return an array of binary data.
-     * Each record in the array is the binary data of a thumbnail image
+     * Generate a thumbnail image per page of specified template in template storage.
+     * Return an array of binary data with each record containing one thumbnail.
      *
      * @param string $templateName Template name
      * @param int    $zoomFactor   Zoom factor

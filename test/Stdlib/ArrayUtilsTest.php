@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud\Stdlib;
 
-use PHPUnit\Framework\TestCase;
+use TxTextControlTest\ReportingCloud\AbstractReportingCloudTest;
 use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
 
 /**
@@ -23,7 +23,7 @@ use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ArrayUtilsTest extends TestCase
+class ArrayUtilsTest extends AbstractReportingCloudTest
 {
     private function getTestData(): array
     {

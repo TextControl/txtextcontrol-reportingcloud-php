@@ -14,29 +14,20 @@ $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
 ]);
 
-// Specify the template name
-
-$templateName = 'test_template.tx';
-
 // Specify the source filename
 
-$sourceFilename = sprintf('%s/%s', Path::resource(), $templateName);
+$sourceFilename = sprintf('%s/maelzel_machine.pdf', Path::resource());
 
-// Upload template, if not already in template storage
+// Using ReportingCloud, generate a thumbnail of each page in the document
 
-if (!$reportingCloud->templateExists($templateName)) {
-    $reportingCloud->uploadTemplate($sourceFilename);
-}
-
-// Using ReportingCloud, generate a thumbnail of each page in the template
-
-$arrayOfBinaryData = $reportingCloud->getTemplateThumbnails(
-    $templateName,
+$arrayOfBinaryData = $reportingCloud->getDocumentThumbnails(
+    $sourceFilename,
     400,
     1,
     1,
     ReportingCloud::FILE_FORMAT_PNG
 );
+
 
 // Iterate over returned binary PNG data (1 image per record in array)
 
@@ -48,7 +39,7 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     // Specify destination file and filenames
 
-    $destinationFile     = sprintf('test_template_p%d.png', $page);
+    $destinationFile     = sprintf('maelzel_machine_p%d.png', $page);
     $destinationFilename = sprintf('%s/%s', Path::output(), $destinationFile);
 
     // Write the thumbnail's binary data to disk
@@ -57,5 +48,5 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     // Output to console the location of the image file
 
-    ConsoleUtils::writeLn('"%s" was written to "%s".', $templateName, $destinationFilename);
+    ConsoleUtils::writeLn('"%s" was written to "%s".', $sourceFilename, $destinationFilename);
 }

@@ -841,4 +841,27 @@ trait PostTraitTest
     }
 
     // </editor-fold>
+
+    // <editor-fold desc="getDocumentThumbnails">
+
+    public function testGetDocumentThumbnails(): void
+    {
+        $testDocumentFilename = $this->getTestDocumentFilename();
+
+        $this->assertFileExists($testDocumentFilename);
+
+        $response = $this->reportingCloud->getDocumentThumbnails(
+            $testDocumentFilename,
+            100,
+            1,
+            1,
+            ReportingCloud::FILE_FORMAT_PNG
+        );
+
+        $this->assertArrayHasKey(0, $response);
+
+        $this->assertTrue(mb_strlen($response[0]) > 2048);
+    }
+
+    // </editor-fold>
 }

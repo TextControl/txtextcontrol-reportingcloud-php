@@ -20,6 +20,7 @@ use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\DocumentSettings as DocumentSettingsPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as MergeSettingsPropertyMap;
+use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
@@ -78,9 +79,7 @@ trait BuildTrait
                     case 'filename':
                         Assert::filenameExists($value);
                         Assert::assertDocumentExtension($value);
-                        $data                 = (string) file_get_contents($value);
-                        $data                 = base64_encode($data);
-                        $document['document'] = $data;
+                        $document['document'] = FileUtils::read($value, true);
                         break;
                     case 'divider':
                         Assert::assertDocumentDivider($value);

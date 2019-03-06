@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud\Path;
 
-use PHPUnit\Framework\TestCase;
+use TxTextControlTest\ReportingCloud\AbstractReportingCloudTest;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 /**
@@ -23,7 +23,7 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-class ConsoleUtilsTest extends TestCase
+class ConsoleUtilsTest extends AbstractReportingCloudTest
 {
     public function testCheckCredentials(): void
     {

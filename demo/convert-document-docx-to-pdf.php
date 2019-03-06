@@ -5,6 +5,7 @@ include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 use TxTextControl\ReportingCloud\Stdlib\Path;
 
 // Instantiate ReportingCloud, using your API key
@@ -20,14 +21,14 @@ $destinationFilename = sprintf('%s/construction_turk.pdf', Path::output());
 
 // Using ReportingCloud, convert the DOCX file to PDF file
 
-$document = $reportingCloud->convertDocument(
+$binaryData = $reportingCloud->convertDocument(
     $sourceFilename,
     ReportingCloud::FILE_FORMAT_PDF
 );
 
 // Write the document's binary data to disk
 
-file_put_contents($destinationFilename, $document);
+FileUtils::write($destinationFilename, $binaryData);
 
 // Output to console the location of the generated document
 

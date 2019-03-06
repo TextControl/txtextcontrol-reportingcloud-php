@@ -5,6 +5,7 @@ include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 use TxTextControl\ReportingCloud\Stdlib\Path;
 
 // Instantiate ReportingCloud, using your API key
@@ -57,7 +58,7 @@ $binaryData = $reportingCloud->appendDocument(
 
 // Write the document's binary data to disk
 
-file_put_contents($destinationFilename, $binaryData);
+FileUtils::write($destinationFilename, $binaryData);
 
 // Output to console the location of the generated document
 

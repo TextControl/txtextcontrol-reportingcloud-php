@@ -5,6 +5,7 @@ include_once __DIR__ . '/bootstrap.php';
 
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 use TxTextControl\ReportingCloud\Stdlib\Path;
 
 // Instantiate ReportingCloud, using your API key
@@ -50,7 +51,7 @@ $binaryData = $reportingCloud->downloadTemplate($templateName);
 if ($binaryData) {
     ConsoleUtils::writeLn('"%s" was downloaded.', $templateName);
     // Write the document's binary data to disk
-    file_put_contents($destinationFilename, $binaryData);
+    FileUtils::write($destinationFilename, $binaryData);
     ConsoleUtils::writeLn('"%s" was written to "%s".', $templateName, $destinationFilename);
 } else {
     ConsoleUtils::writeLn('Error downloading "%s".', $templateName);

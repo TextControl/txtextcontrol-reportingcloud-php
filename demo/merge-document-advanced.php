@@ -6,6 +6,7 @@ include_once __DIR__ . '/bootstrap.php';
 use Faker\Factory as FakerFactory;
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 use TxTextControl\ReportingCloud\Stdlib\Path;
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -131,7 +132,7 @@ $destinationFilename = sprintf(
 
 // Write the document's binary data to disk
 
-file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+FileUtils::write($destinationFilename, $arrayOfBinaryData[0]);
 
 // Output to console the location of the generated document
 
@@ -161,7 +162,7 @@ $destinationFilename = sprintf(
 
 // Write the document's binary data to disk
 
-file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+FileUtils::write($destinationFilename, $arrayOfBinaryData[0]);
 
 // Output to console the location of the generated document
 
@@ -211,7 +212,7 @@ $destinationFilename = sprintf(
 
 // Write the document's binary data to disk
 
-file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+FileUtils::write($destinationFilename, $arrayOfBinaryData[0]);
 
 // Output to console the location of the generated document
 
@@ -242,7 +243,7 @@ $destinationFilename = sprintf(
 
 // Write the document's binary data to disk
 
-file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
+FileUtils::write($destinationFilename, $arrayOfBinaryData[0]);
 
 // Output to console the location of the generated document
 
@@ -266,11 +267,17 @@ $arrayOfBinaryData = $reportingCloud->mergeDocument(
     false
 );
 
-foreach ($arrayOfBinaryData as $documentNo => $binaryData) {
+foreach ($arrayOfBinaryData as $index => $binaryData) {
+
+    // Specify document number (index is 0-based)
+
+    $document = $index + 1;
+
+    // Specify destination file and filenames
 
     $destinationFile = sprintf(
         'sample_invoice_merged_append_false_%d.pdf',
-        $documentNo
+        $document
     );
 
     $destinationFilename = sprintf(
@@ -281,7 +288,7 @@ foreach ($arrayOfBinaryData as $documentNo => $binaryData) {
 
     // Write the document's binary data to disk
 
-    file_put_contents($destinationFilename, $binaryData);
+    FileUtils::write($destinationFilename, $binaryData);
 
     // Output to console the location of the generated document
 

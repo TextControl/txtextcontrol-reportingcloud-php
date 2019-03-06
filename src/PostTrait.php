@@ -22,6 +22,7 @@ use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
+use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 
 /**
  * Trait PostTrait
@@ -142,8 +143,7 @@ trait PostTrait
 
         $templateName = basename($templateFilename);
 
-        $data = (string) file_get_contents($templateFilename);
-        $data = base64_encode($data);
+        $data = FileUtils::read($templateFilename, true);
 
         return $this->uploadTemplateFromBase64($data, $templateName);
     }
@@ -167,8 +167,7 @@ trait PostTrait
             'returnFormat' => $returnFormat,
         ];
 
-        $data   = (string) file_get_contents($documentFilename);
-        $data   = (string) base64_encode($data);
+        $data   = FileUtils::read($documentFilename, true);
 
         $result = (string) $this->post('/document/convert', $query, $data, StatusCode::OK);
 
@@ -218,9 +217,7 @@ trait PostTrait
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $data             = (string) file_get_contents($templateFilename);
-            $data             = base64_encode($data);
-            $json['template'] = $data;
+            $json['template'] = FileUtils::read($templateFilename, true);
         }
 
         if (null !== $append) {
@@ -312,9 +309,7 @@ trait PostTrait
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::filenameExists($templateFilename);
-            $data             = (string) file_get_contents($templateFilename);
-            $data             = base64_encode($data);
-            $json['template'] = $data;
+            $json['template'] = FileUtils::read($templateFilename, true);
         }
 
         if (is_array($mergeSettings)) {
@@ -355,6 +350,53 @@ trait PostTrait
 
         if ($statusCode === $response->getStatusCode()) {
             $ret = json_decode($response->getBody()->getContents(), true);
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Generate a thumbnail image per page of specified document filename.
+     * Return an array of binary data with each record containing one thumbnail.
+     *
+     * @param string $documentFilename Document filename
+     * @param int    $zoomFactor       Zoom factor
+     * @param int    $fromPage         From page
+     * @param int    $toPage           To page
+     * @param string $imageFormat      Image format
+     *
+     * @throws InvalidArgumentException
+     * @return array
+     */
+    public function getDocumentThumbnails(
+        string $documentFilename,
+        int $zoomFactor,
+        int $fromPage,
+        int $toPage,
+        string $imageFormat
+    ): array {
+        $ret = [];
+
+        Assert::assertDocumentExtension($documentFilename);
+        Assert::filenameExists($documentFilename);
+        Assert::assertZoomFactor($zoomFactor);
+        Assert::assertPage($fromPage);
+        Assert::assertPage($toPage);
+        Assert::assertImageFormat($imageFormat);
+
+        $query = [
+            'zoomFactor'   => $zoomFactor,
+            'fromPage'     => $fromPage,
+            'toPage'       => $toPage,
+            'imageFormat'  => $imageFormat,
+        ];
+
+        $data   = FileUtils::read($documentFilename, true);
+
+        $result = $this->post('/document/thumbnails', $query, $data, StatusCode::OK);
+
+        if (is_array($result)) {
+            $ret = array_map('base64_decode', $result);
         }
 
         return $ret;
