@@ -260,8 +260,6 @@ trait GetTraitTest
     {
         $fonts = $this->reportingCloud->getFontList();
 
-        $this->assertTrue(is_array($fonts));
-
         $this->assertContains('Times New Roman', $fonts);
         $this->assertContains('Arial', $fonts);
         $this->assertContains('Courier New', $fonts);
@@ -305,8 +303,6 @@ trait GetTraitTest
         $this->assertTrue($response);
 
         $response = $this->reportingCloud->getTemplateCount();
-
-        $this->assertTrue(is_int($response));
 
         $this->assertGreaterThan(0, $response);
 
