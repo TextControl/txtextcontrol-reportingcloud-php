@@ -61,7 +61,7 @@ class FileUtilsTest extends AbstractReportingCloudTest
         $valid = file_exists($destinationFilename);
         $this->assertTrue($valid);
 
-        $binaryData = file_get_contents($destinationFilename);
+        $binaryData = (string) file_get_contents($destinationFilename);
         $valid      = (preg_match(self::BINARY_PATTERN, $binaryData) > 0);
         $this->assertTrue($valid);
     }
@@ -78,7 +78,7 @@ class FileUtilsTest extends AbstractReportingCloudTest
         $valid = file_exists($destinationFilename);
         $this->assertTrue($valid);
 
-        $binaryData = file_get_contents($destinationFilename);
+        $binaryData = (string) file_get_contents($destinationFilename);
         $valid      = (preg_match(self::BINARY_PATTERN, $binaryData) > 0);
         $this->assertTrue($valid);
     }

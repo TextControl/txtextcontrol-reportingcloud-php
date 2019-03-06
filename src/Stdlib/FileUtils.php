@@ -23,7 +23,7 @@ class FileUtils extends AbstractStdlib
 {
     /**
      * Read a filename from filesystem and return its binary data.
-     * Optionally base64 encoding the returned binary data.
+     * Optionally, base64 encode the returned binary data.
      *
      * @param string $filename
      * @param bool   $base64Encode
@@ -43,7 +43,7 @@ class FileUtils extends AbstractStdlib
 
     /**
      * Write binary data to a filename on filesystem.
-     * Optionally based decode it first.
+     * Optionally, based decode the binary data before writing.
      *
      * @param string $filename
      * @param string $binaryData

@@ -53,7 +53,7 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     // Write the thumbnail's binary data to disk
 
-    FileUtils::write($destinationFilename, $binaryData);
+    FileUtils::write($destinationFilename, (string) $binaryData);
 
     // Output to console the location of the image file
 
