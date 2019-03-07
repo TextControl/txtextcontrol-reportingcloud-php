@@ -4,6 +4,10 @@
 
 ## dev-master
 
+## dev-development
+
+* Removed `Webmozart\Assert` dependency.
+
 ## 2.2.0 - 2019-03-06
 
 * Implemented [end-point](https://docs.reporting.cloud/docs/endpoint/document/thumbnails) 
