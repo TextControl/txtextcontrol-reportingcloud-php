@@ -18,12 +18,12 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Assert\Assert;
 
 /**
- * Trait AssertDocumentDividerTestTrait
+ * Trait AssertRangeTraitTest
  *
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertDocumentDividerTestTrait
+trait AssertRangeTraitTest
 {
     // <editor-fold desc="Abstract methods">
 
@@ -35,30 +35,21 @@ trait AssertDocumentDividerTestTrait
 
     // </editor-fold>
 
-    public function testAssertDocumentDivider(): void
+    public function testAssertRange(): void
     {
-        Assert::assertDocumentDivider(1);
-        Assert::assertDocumentDivider(2);
-        Assert::assertDocumentDivider(3);
+        Assert::assertRange(5, 1, 10);
+        Assert::assertRange(1, 1, 10);
+        Assert::assertRange(10, 1, 10);
 
         $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage 10 contains an unsupported document divider
+     * @expectedExceptionMessage Expected a value between 1 and 10. Got: 11
      */
-    public function testAssertDocumentDividerInvalid(): void
+    public function testAssertRangeWithInvalidValue(): void
     {
-        Assert::assertDocumentDivider(10);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (-10)
-     */
-    public function testAssertDocumentDividerInvalidWithCustomMessage(): void
-    {
-        Assert::assertDocumentDivider(-10, 'Custom error message (%1$s)');
+        Assert::assertRange(11, 1, 10);
     }
 }

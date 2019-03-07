@@ -15,8 +15,6 @@ declare(strict_types=1);
 namespace TxTextControlTest\ReportingCloud\Assert;
 
 use PHPUnit\Framework\TestCase;
-use TxTextControl\ReportingCloud\Assert\Assert;
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
  * Class AssertTest
@@ -42,40 +40,11 @@ class AssertTest extends TestCase
     use AssertTemplateNameTestTrait;
     use AssertTimestampTestTrait;
     use AssertZoomFactorTestTrait;
-    use FilenameExistsTestTrait;
-
-    public function testOneOf(): void
-    {
-        Assert::oneOf('a', ['a', 'b', 'c',]);
-        Assert::oneOf(1, [1, 2, 3,]);
-
-        $this->assertTrue(true);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected one of "a", "b", "c". Got "d"
-     */
-    public function testOneOfWithInvalidValue(): void
-    {
-        Assert::oneOf('d', ['a', 'b', 'c',]);
-    }
-
-    public function testRange(): void
-    {
-        Assert::range(5, 1, 10);
-        Assert::range(1, 1, 10);
-        Assert::range(10, 1, 10);
-
-        $this->assertTrue(true);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected a value between "1" and "10". Got: "11"
-     */
-    public function testRangeWithInvalidValue(): void
-    {
-        Assert::range(11, 1, 10);
-    }
+    use AssertFilenameExistsTestTrait;
+    use AssertOneOfTraitTest;
+    use AssertRangeTraitTest;
+    use AssertArrayTraitTest;
+    use AssertStringTraitTest;
+    use AssertIntegerTraitTest;
+    use AssertBooleanTraitTest;
 }

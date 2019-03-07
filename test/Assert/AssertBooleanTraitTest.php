@@ -14,16 +14,16 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud\Assert;
 
-use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Assert\Assert;
 
 /**
- * Trait AssertApiKeyTestTrait
+ * Trait AssertBooleanTraitTest
  *
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertApiKeyTestTrait
+trait AssertBooleanTraitTest
 {
     // <editor-fold desc="Abstract methods">
 
@@ -35,38 +35,43 @@ trait AssertApiKeyTestTrait
 
     // </editor-fold>
 
-    public function testAssertApiKey(): void
+    public function testAssertBoolean(): void
     {
-        Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+        Assert::assertBoolean(true);
+        Assert::assertBoolean(false);
 
         $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Length of API key ("xxxxxxxxxx") must be in the range [20..45]
+     * @expectedExceptionMessage Expected a boolean. Got: 1
      */
-    public function testAssertApiKeyInvalidTooShort(): void
+    public function testAssertBooleanWithInteger(): void
     {
-        Assert::assertApiKey('xxxxxxxxxx');
+        Assert::assertBoolean(1);
+
+        $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Length of API key ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx") must be in
-     * the range [20..45]
+     * @expectedExceptionMessage Expected a boolean. Got: "a"
      */
-    public function testAssertApiKeyInvalidTooLong(): void
+    public function testAssertBooleanWithString(): void
     {
-        Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
-    }
+        Assert::assertBoolean('a');
 
+        $this->assertTrue(true);
+    }
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Invalid length: ("xxxxxxxxxx") must be in the range [20..45]
+     * @expectedExceptionMessage Expected a boolean. Got: array
      */
-    public function testAssertApiKeyInvalidWithCustomMessage(): void
+    public function testAssertBooleanWithArray(): void
     {
-        Assert::assertApiKey('xxxxxxxxxx', 'Invalid length: (%1$s) must be in the range [%2$s..%3$s]');
+        Assert::assertBoolean([1]);
+
+        $this->assertTrue(true);
     }
 }

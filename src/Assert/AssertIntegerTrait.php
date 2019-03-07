@@ -15,23 +15,15 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\Assert;
 
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
- * Trait AssertTemplateExtensionTrait
+ * Trait AssertIntegerTrait
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertTemplateExtensionTrait
+trait AssertIntegerTrait
 {
-    /**
-     * @param mixed  $value
-     * @param array  $values
-     * @param string $message
-     */
-    abstract public static function assertOneOf($value, array $values, string $message = ''): void;
-
     /**
      * @param mixed $value
      *
@@ -40,22 +32,17 @@ trait AssertTemplateExtensionTrait
     abstract protected static function valueToString($value): string;
 
     /**
-     * Check value is a valid template extension
+     * Check value is an integer
      *
-     * @param string $value
+     * @param  mixed $value
      * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
      */
-    public static function assertTemplateExtension(string $value, string $message = ''): void
+    public static function assertInteger($value, string $message = ''): void
     {
-        $extension = pathinfo($value, PATHINFO_EXTENSION);
-        $extension = strtoupper($extension);
-
-        $format  = $message ?: '%1$s contains an unsupported template format file extension';
-        $message = sprintf($format, self::valueToString($value));
-
-        self::assertOneOf($extension, ReportingCloud::FILE_FORMATS_TEMPLATE, $message);
+        if (!is_int($value)) {
+            $format  = $message ?: 'Expected an integer. Got: %1$s';
+            $message = sprintf($format, self::valueToString($value));
+            throw new InvalidArgumentException($message);
+        }
     }
 }

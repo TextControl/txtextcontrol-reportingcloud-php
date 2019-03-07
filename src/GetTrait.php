@@ -115,7 +115,7 @@ trait GetTrait
     {
         $ret = [];
 
-        Assert::string($text);
+        //Assert::assertString($text);
         Assert::assertLanguage($language);
 
         $propertyMap = new IncorrectWordMap();
@@ -166,9 +166,9 @@ trait GetTrait
     {
         $ret = [];
 
-        Assert::string($word);
+        //Assert::assertString($word);
         Assert::assertLanguage($language);
-        Assert::integer($max);
+        //Assert::assertInteger($max);
 
         $query = [
             'word'     => $word,

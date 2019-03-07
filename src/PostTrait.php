@@ -139,7 +139,7 @@ trait PostTrait
     public function uploadTemplate(string $templateFilename): bool
     {
         Assert::assertTemplateExtension($templateFilename);
-        Assert::filenameExists($templateFilename);
+        Assert::assertFilenameExists($templateFilename);
 
         $templateName = basename($templateFilename);
 
@@ -160,7 +160,7 @@ trait PostTrait
     public function convertDocument(string $documentFilename, string $returnFormat): string
     {
         Assert::assertDocumentExtension($documentFilename);
-        Assert::filenameExists($documentFilename);
+        Assert::assertFilenameExists($documentFilename);
         Assert::assertReturnFormat($returnFormat);
 
         $query  = [
@@ -203,7 +203,7 @@ trait PostTrait
         $query = [];
         $json  = [];
 
-        Assert::isArray($mergeData);
+        //Assert::assertArray($mergeData);
         $json['mergeData'] = $mergeData;
 
         Assert::assertReturnFormat($returnFormat);
@@ -216,12 +216,12 @@ trait PostTrait
 
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
-            Assert::filenameExists($templateFilename);
+            Assert::assertFilenameExists($templateFilename);
             $json['template'] = FileUtils::read($templateFilename, true);
         }
 
         if (null !== $append) {
-            Assert::boolean($append);
+            //Assert::assertBoolean($append);
             $query['append'] = Filter::filterBooleanToString($append);
         }
 
@@ -256,7 +256,7 @@ trait PostTrait
         $query = [];
         $json  = [];
 
-        Assert::isArray($documentsData);
+        //Assert::assertArray($documentsData);
         $json['documents'] = $this->buildDocumentsArray($documentsData);
 
         Assert::assertReturnFormat($returnFormat);
@@ -295,7 +295,7 @@ trait PostTrait
         $query = [];
         $json  = [];
 
-        Assert::isArray($findAndReplaceData);
+        //Assert::assertArray($findAndReplaceData);
         $json['findAndReplaceData'] = $this->buildFindAndReplaceDataArray($findAndReplaceData);
 
         Assert::assertReturnFormat($returnFormat);
@@ -308,7 +308,7 @@ trait PostTrait
 
         if (null !== $templateFilename) {
             Assert::assertTemplateExtension($templateFilename);
-            Assert::filenameExists($templateFilename);
+            Assert::assertFilenameExists($templateFilename);
             $json['template'] = FileUtils::read($templateFilename, true);
         }
 
@@ -378,7 +378,7 @@ trait PostTrait
         $ret = [];
 
         Assert::assertDocumentThumbnailExtension($documentFilename);
-        Assert::filenameExists($documentFilename);
+        Assert::assertFilenameExists($documentFilename);
         Assert::assertZoomFactor($zoomFactor);
         Assert::assertPage($fromPage);
         Assert::assertPage($toPage);

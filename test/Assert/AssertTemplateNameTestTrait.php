@@ -99,6 +99,6 @@ trait AssertTemplateNameTestTrait
      */
     public function testAssertTemplateNameInvalidWithCustomMessage(): void
     {
-        Assert::assertTemplateName('invalid.xxx', 'Custom error message ("%s")');
+        Assert::assertTemplateName('invalid.xxx', 'Custom error message (%1$s)');
     }
 }

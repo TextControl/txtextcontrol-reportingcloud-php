@@ -36,6 +36,13 @@ trait AssertTemplateNameTrait
     abstract public static function assertTemplateFormat(string $value, string $message = ''): void;
 
     /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    abstract protected static function valueToString($value): string;
+
+    /**
      * Check value is a valid template name
      *
      * @param string $value
@@ -47,8 +54,8 @@ trait AssertTemplateNameTrait
     public static function assertTemplateName(string $value, string $message = ''): void
     {
         if (basename($value) != $value) {
-            $format  = $message ?: "\"%s\" contains path information ('/', '.', or '..')";
-            $message = sprintf($format, $value);
+            $format  = $message ?: '%1$s contains path information (\'/\', \'.\', or \'..\')';
+            $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
 
@@ -57,8 +64,8 @@ trait AssertTemplateNameTrait
         try {
             self::assertTemplateFormat($extension);
         } catch (InvalidArgumentException $e) {
-            $format  = $message ?: '"%s" contains an unsupported file extension';
-            $message = sprintf($format, $value);
+            $format  = $message ?: '%1$s contains an unsupported file extension';
+            $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
     }

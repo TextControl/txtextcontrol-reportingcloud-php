@@ -103,6 +103,6 @@ trait AssertReturnFormatTestTrait
      */
     public function testAssertReturnFormatInvalidWithCustomMessage(): void
     {
-        Assert::assertReturnFormat('XXX', 'Custom error message ("%s")');
+        Assert::assertReturnFormat('XXX', 'Custom error message (%1$s)');
     }
 }

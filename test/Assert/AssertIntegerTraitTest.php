@@ -14,16 +14,16 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud\Assert;
 
-use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Assert\Assert;
 
 /**
- * Trait AssertApiKeyTestTrait
+ * Trait AssertIntegerTraitTest
  *
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertApiKeyTestTrait
+trait AssertIntegerTraitTest
 {
     // <editor-fold desc="Abstract methods">
 
@@ -35,38 +35,47 @@ trait AssertApiKeyTestTrait
 
     // </editor-fold>
 
-    public function testAssertApiKey(): void
+    public function testAssertInteger(): void
     {
-        Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+        Assert::assertInteger(1);
+        Assert::assertInteger(2);
+
+        Assert::assertInteger(-1);
+        Assert::assertInteger(-2);
 
         $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Length of API key ("xxxxxxxxxx") must be in the range [20..45]
+     * @expectedExceptionMessage Expected an integer. Got: array
      */
-    public function testAssertApiKeyInvalidTooShort(): void
+    public function testAssertIntegerWithArray(): void
     {
-        Assert::assertApiKey('xxxxxxxxxx');
+        Assert::assertInteger(['a']);
+
+        $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Length of API key ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx") must be in
-     * the range [20..45]
+     * @expectedExceptionMessage Expected an integer. Got: false
      */
-    public function testAssertApiKeyInvalidTooLong(): void
+    public function testAssertIntegerWithBoolean(): void
     {
-        Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+        Assert::assertInteger(false);
+
+        $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Invalid length: ("xxxxxxxxxx") must be in the range [20..45]
+     * @expectedExceptionMessage Expected an integer. Got: "a"
      */
-    public function testAssertApiKeyInvalidWithCustomMessage(): void
+    public function testAssertIntegerWithString(): void
     {
-        Assert::assertApiKey('xxxxxxxxxx', 'Invalid length: (%1$s) must be in the range [%2$s..%3$s]');
+        Assert::assertInteger('a');
+
+        $this->assertTrue(true);
     }
 }

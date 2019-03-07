@@ -17,13 +17,20 @@ namespace TxTextControl\ReportingCloud\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
- * Trait FilenameExistsTrait
+ * Trait AssertFilenameExistsTrait
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait FilenameExistsTrait
+trait AssertFilenameExistsTrait
 {
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    abstract protected static function valueToString($value): string;
+
     /**
      * Check filename exists and is readable
      *
@@ -33,17 +40,17 @@ trait FilenameExistsTrait
      * @return void
      * @throws InvalidArgumentException
      */
-    public static function filenameExists(string $value, string $message = ''): void
+    public static function assertFilenameExists(string $value, string $message = ''): void
     {
         if (!is_readable($value)) {
-            $format  = $message ?: '"%s" does not exist or is not readable';
-            $message = sprintf($format, $value);
+            $format  = $message ?: '%1$s does not exist or is not readable';
+            $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
 
         if (!is_file($value)) {
-            $format  = $message ?: '"%s" is not a regular file';
-            $message = sprintf($format, $value);
+            $format  = $message ?: '%1$s is not a regular file';
+            $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
     }

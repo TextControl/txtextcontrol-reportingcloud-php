@@ -73,6 +73,6 @@ trait AssertDocumentThumbnailExtensionTestTrait
      */
     public function testAssertDocumentThumbnailExtensionInvalidWithCustomMessage(): void
     {
-        Assert::assertDocumentThumbnailExtension('document.xxx', 'Custom error message ("%s")');
+        Assert::assertDocumentThumbnailExtension('document.xxx', 'Custom error message (%1$s)');
     }
 }

@@ -17,21 +17,13 @@ namespace TxTextControl\ReportingCloud\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
- * Trait AssertPageTrait
+ * Trait AssertRangeTrait
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertPageTrait
+trait AssertRangeTrait
 {
-    /**
-     * @param int    $value
-     * @param int    $min
-     * @param int    $max
-     * @param string $message
-     */
-    abstract public static function assertRange(int $value, int $min, int $max, string $message = ''): void;
-
     /**
      * @param mixed $value
      *
@@ -40,38 +32,27 @@ trait AssertPageTrait
     abstract protected static function valueToString($value): string;
 
     /**
-     * Minimum page number
-     *
-     * @var int
-     */
-    private static $pageMin = 1;
-
-    /**
-     * Maximum page number (PHP_INT_MAX)
-     *
-     * @var int
-     */
-    private static $pageMax = PHP_INT_MAX;
-
-    /**
-     * Check value is a valid page number
+     * Check value is in range min..max
      *
      * @param int    $value
+     * @param int    $min
+     * @param int    $max
      * @param string $message
      *
      * @return void
      * @throws InvalidArgumentException
      */
-    public static function assertPage(int $value, string $message = ''): void
+    public static function assertRange(int $value, int $min, int $max, string $message = ''): void
     {
-        $format  = $message ?: 'Page number (%1$s) must be in the range [%2$s..%3$s]';
-        $message = sprintf(
-            $format,
-            self::valueToString($value),
-            self::valueToString(self::$pageMin),
-            self::valueToString(self::$pageMax)
-        );
-
-        self::assertRange($value, self::$pageMin, self::$pageMax, $message);
+        if ($value < $min || $value > $max) {
+            $format  = $message ?: 'Expected a value between %2$s and %3$s. Got: %1$s';
+            $message = sprintf(
+                $format,
+                self::valueToString($value),
+                self::valueToString($min),
+                self::valueToString($max)
+            );
+            throw new InvalidArgumentException($message);
+        }
     }
 }

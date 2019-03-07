@@ -29,4 +29,61 @@ namespace TxTextControl\ReportingCloud\Assert;
  */
 abstract class AbstractAssert
 {
+    /**
+     * Convert value to string
+     *
+     * @param mixed $value
+     *
+     * @return string
+     */
+    protected static function valueToString($value): string
+    {
+        if (null === $value) {
+            return 'null';
+        }
+
+        if (true === $value) {
+            return 'true';
+        }
+
+        if (false === $value) {
+            return 'false';
+        }
+
+        if (is_array($value)) {
+            return 'array';
+        }
+
+        if (is_object($value)) {
+            if (method_exists($value, '__toString')) {
+                return get_class($value) . ': ' . self::valueToString($value->__toString());
+            }
+
+            return get_class($value);
+        }
+
+        if (is_resource($value)) {
+            return 'resource';
+        }
+
+        if (is_string($value)) {
+            return sprintf('"%1$s"', $value);
+        }
+
+        return (string) $value;
+    }
+
+    /**
+     * Convert value to class name or type
+     *
+     * @param mixed $value
+     *
+     * @return string
+     */
+    protected static function typeToString($value): string
+    {
+        $ret = is_object($value) ? get_class($value) : gettype($value);
+
+        return (string) $ret;
+    }
 }

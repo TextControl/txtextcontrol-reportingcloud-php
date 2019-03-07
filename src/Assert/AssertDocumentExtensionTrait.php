@@ -30,7 +30,14 @@ trait AssertDocumentExtensionTrait
      * @param array  $values
      * @param string $message
      */
-    abstract public static function oneOf($value, array $values, string $message = ''): void;
+    abstract public static function assertOneOf($value, array $values, string $message = ''): void;
+
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    abstract protected static function valueToString($value): string;
 
     /**
      * Check value is a valid document format extension
@@ -46,9 +53,9 @@ trait AssertDocumentExtensionTrait
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = strtoupper($extension);
 
-        $format  = $message ?: '"%s" contains an unsupported document format file extension';
-        $message = sprintf($format, $value);
+        $format  = $message ?: '%1$s contains an unsupported document format file extension';
+        $message = sprintf($format, self::valueToString($value));
 
-        self::oneOf($extension, ReportingCloud::FILE_FORMATS_DOCUMENT, $message);
+        self::assertOneOf($extension, ReportingCloud::FILE_FORMATS_DOCUMENT, $message);
     }
 }

@@ -18,12 +18,12 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Assert\Assert;
 
 /**
- * Trait AssertDocumentDividerTestTrait
+ * Trait AssertOneOfTraitTest
  *
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertDocumentDividerTestTrait
+trait AssertOneOfTraitTest
 {
     // <editor-fold desc="Abstract methods">
 
@@ -35,30 +35,20 @@ trait AssertDocumentDividerTestTrait
 
     // </editor-fold>
 
-    public function testAssertDocumentDivider(): void
+    public function testAssertOneOf(): void
     {
-        Assert::assertDocumentDivider(1);
-        Assert::assertDocumentDivider(2);
-        Assert::assertDocumentDivider(3);
+        Assert::assertOneOf('a', ['a', 'b', 'c',]);
+        Assert::assertOneOf(1, [1, 2, 3,]);
 
         $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage 10 contains an unsupported document divider
+     * @expectedExceptionMessage Expected one of "a", "b", "c". Got "d"
      */
-    public function testAssertDocumentDividerInvalid(): void
+    public function testAssertOneOfWithInvalidValue(): void
     {
-        Assert::assertDocumentDivider(10);
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (-10)
-     */
-    public function testAssertDocumentDividerInvalidWithCustomMessage(): void
-    {
-        Assert::assertDocumentDivider(-10, 'Custom error message (%1$s)');
+        Assert::assertOneOf('d', ['a', 'b', 'c',]);
     }
 }

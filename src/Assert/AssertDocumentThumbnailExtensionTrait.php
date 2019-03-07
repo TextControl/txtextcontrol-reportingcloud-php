@@ -30,7 +30,14 @@ trait AssertDocumentThumbnailExtensionTrait
      * @param array  $values
      * @param string $message
      */
-    abstract public static function oneOf($value, array $values, string $message = ''): void;
+    abstract public static function assertOneOf($value, array $values, string $message = ''): void;
+
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    abstract protected static function valueToString($value): string;
 
     /**
      * Check value is a valid document thumbnail format extension
@@ -50,8 +57,8 @@ trait AssertDocumentThumbnailExtensionTrait
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = strtoupper($extension);
 
-        $format  = $message ?: '"%s" contains an unsupported document thumbnail format file extension';
-        $message = sprintf($format, $value);
+        $format  = $message ?: '%1$s contains an unsupported document thumbnail format file extension';
+        $message = sprintf($format, self::valueToString($value));
 
         $fileFormats = array_merge(
             ReportingCloud::FILE_FORMATS_DOCUMENT,
@@ -60,6 +67,6 @@ trait AssertDocumentThumbnailExtensionTrait
             ]
         );
 
-        self::oneOf($extension, $fileFormats, $message);
+        self::assertOneOf($extension, $fileFormats, $message);
     }
 }

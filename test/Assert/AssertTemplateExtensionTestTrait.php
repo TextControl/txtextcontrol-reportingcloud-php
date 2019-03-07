@@ -79,6 +79,6 @@ trait AssertTemplateExtensionTestTrait
      */
     public function testAssertTemplateExtensionInvalidWithCustomMessage(): void
     {
-        Assert::assertTemplateExtension('template.xxx', 'Custom error message ("%s")');
+        Assert::assertTemplateExtension('template.xxx', 'Custom error message (%1$s)');
     }
 }

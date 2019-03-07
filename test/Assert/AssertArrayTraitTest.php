@@ -18,12 +18,12 @@ use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
- * Trait FilenameExistsTestTrait
+ * Trait AssertArrayTraitTest
  *
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait FilenameExistsTestTrait
+trait AssertArrayTraitTest
 {
     // <editor-fold desc="Abstract methods">
 
@@ -35,40 +35,43 @@ trait FilenameExistsTestTrait
 
     // </editor-fold>
 
-    public function testFilenameExists(): void
+    public function testAssertArray(): void
     {
-        $filename = (string) tempnam(sys_get_temp_dir(), hash('sha256', __CLASS__));
-        touch($filename);
-        Assert::filenameExists($filename);
-        unlink($filename);
+        Assert::assertArray([1]);
 
         $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "/path/to/invalid/file" does not exist or is not readable
+     * @expectedExceptionMessage Expected an array. Got: true
      */
-    public function testFilenameExistsInvalidDoesContainAbsolutePathAndFile(): void
+    public function testAssertArrayWithBoolean(): void
     {
-        Assert::filenameExists('/path/to/invalid/file');
+        Assert::assertArray(true);
+
+        $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "/tmp" is not a regular file
+     * @expectedExceptionMessage Expected an array. Got: 1
      */
-    public function testFilenameExistsInvalidIsNotARegularFile(): void
+    public function testAssertArrayWithInteger(): void
     {
-        Assert::filenameExists('/tmp');
+        Assert::assertArray(1);
+
+        $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message ("/path/to/invalid/file")
+     * @expectedExceptionMessage Expected an array. Got: "1"
      */
-    public function testFilenameExistsInvalidWithCustomMessage(): void
+    public function testAssertArrayWithString(): void
     {
-        Assert::filenameExists('/path/to/invalid/file', 'Custom error message ("%s")');
+        Assert::assertArray("1");
+
+        $this->assertTrue(true);
     }
 }

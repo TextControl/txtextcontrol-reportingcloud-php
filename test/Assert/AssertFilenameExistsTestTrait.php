@@ -18,12 +18,12 @@ use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
- * Trait AssertApiKeyTestTrait
+ * Trait AssertFilenameExistsTestTrait
  *
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertApiKeyTestTrait
+trait AssertFilenameExistsTestTrait
 {
     // <editor-fold desc="Abstract methods">
 
@@ -35,38 +35,40 @@ trait AssertApiKeyTestTrait
 
     // </editor-fold>
 
-    public function testAssertApiKey(): void
+    public function testAssertFilenameExists(): void
     {
-        Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+        $filename = (string) tempnam(sys_get_temp_dir(), hash('sha256', __CLASS__));
+        touch($filename);
+        Assert::assertFilenameExists($filename);
+        unlink($filename);
 
         $this->assertTrue(true);
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Length of API key ("xxxxxxxxxx") must be in the range [20..45]
+     * @expectedExceptionMessage "/path/to/invalid/file" does not exist or is not readable
      */
-    public function testAssertApiKeyInvalidTooShort(): void
+    public function testAssertFilenameExistsInvalidDoesContainAbsolutePathAndFile(): void
     {
-        Assert::assertApiKey('xxxxxxxxxx');
+        Assert::assertFilenameExists('/path/to/invalid/file');
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Length of API key ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx") must be in
-     * the range [20..45]
+     * @expectedExceptionMessage "/tmp" is not a regular file
      */
-    public function testAssertApiKeyInvalidTooLong(): void
+    public function testAssertFilenameExistsInvalidIsNotARegularFile(): void
     {
-        Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+        Assert::assertFilenameExists('/tmp');
     }
 
     /**
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Invalid length: ("xxxxxxxxxx") must be in the range [20..45]
+     * @expectedExceptionMessage Custom error message ("/path/to/invalid/file")
      */
-    public function testAssertApiKeyInvalidWithCustomMessage(): void
+    public function testAssertFilenameExistsInvalidWithCustomMessage(): void
     {
-        Assert::assertApiKey('xxxxxxxxxx', 'Invalid length: (%1$s) must be in the range [%2$s..%3$s]');
+        Assert::assertFilenameExists('/path/to/invalid/file', 'Custom error message (%1$s)');
     }
 }

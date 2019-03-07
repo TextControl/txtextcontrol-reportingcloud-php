@@ -30,7 +30,14 @@ trait AssertTemplateFormatTrait
      * @param array  $values
      * @param string $message
      */
-    abstract public static function oneOf($value, array $values, string $message = ''): void;
+    abstract public static function assertOneOf($value, array $values, string $message = ''): void;
+
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    abstract protected static function valueToString($value): string;
 
     /**
      * Check value is a valid template format
@@ -45,9 +52,9 @@ trait AssertTemplateFormatTrait
     {
         $ucValue = strtoupper($value);
 
-        $format  = $message ?: '"%s" contains an unsupported template format file extension';
-        $message = sprintf($format, $value);
+        $format  = $message ?: '%1$s contains an unsupported template format file extension';
+        $message = sprintf($format, self::valueToString($value));
 
-        self::oneOf($ucValue, ReportingCloud::FILE_FORMATS_DOCUMENT, $message);
+        self::assertOneOf($ucValue, ReportingCloud::FILE_FORMATS_DOCUMENT, $message);
     }
 }

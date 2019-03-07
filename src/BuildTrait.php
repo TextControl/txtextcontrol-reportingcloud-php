@@ -72,12 +72,12 @@ trait BuildTrait
         $ret = [];
 
         foreach ($array as $inner) {
-            Assert::isArray($inner);
+            Assert::assertArray($inner);
             $document = [];
             foreach ($inner as $key => $value) {
                 switch ($key) {
                     case 'filename':
-                        Assert::filenameExists($value);
+                        Assert::assertFilenameExists($value);
                         Assert::assertDocumentExtension($value);
                         $document['document'] = FileUtils::read($value, true);
                         break;
@@ -159,7 +159,7 @@ trait BuildTrait
                 Assert::assertCulture($value);
             }
             if (StringUtils::startsWith($key, 'remove_')) {
-                Assert::boolean($value);
+                Assert::assertBoolean($value);
             }
             if (StringUtils::endsWith($key, '_date')) {
                 Assert::assertTimestamp($value);

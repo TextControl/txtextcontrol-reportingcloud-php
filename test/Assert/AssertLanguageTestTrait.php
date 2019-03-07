@@ -59,6 +59,6 @@ trait AssertLanguageTestTrait
      */
     public function testAssertLanguageInvalidWithCustomMessage(): void
     {
-        Assert::assertLanguage('xx_XX', 'Custom error message ("%s")');
+        Assert::assertLanguage('xx_XX', 'Custom error message (%1$s)');
     }
 }

@@ -30,7 +30,14 @@ trait AssertTimestampTrait
      * @param int    $max
      * @param string $message
      */
-    abstract public static function range(int $value, int $min, int $max, string $message = ''): void;
+    abstract public static function assertRange(int $value, int $min, int $max, string $message = ''): void;
+
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    abstract protected static function valueToString($value): string;
 
     /**
      * Minimum timestamp (EPOC)
@@ -57,9 +64,14 @@ trait AssertTimestampTrait
      */
     public static function assertTimestamp(int $value, string $message = ''): void
     {
-        $format  = $message ?: 'Timestamp ("%d") must be in the range [%d..%d]';
-        $message = sprintf($format, $value, self::$timestampMin, self::$timestampMax);
+        $format  = $message ?: 'Timestamp (%1$s) must be in the range [%2$s..%3$s]';
+        $message = sprintf(
+            $format,
+            self::valueToString($value),
+            self::valueToString(self::$timestampMin),
+            self::valueToString(self::$timestampMax)
+        );
 
-        self::range($value, self::$timestampMin, self::$timestampMax, $message);
+        self::assertRange($value, self::$timestampMin, self::$timestampMax, $message);
     }
 }
