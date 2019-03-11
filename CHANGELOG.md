@@ -4,7 +4,7 @@
 
 ## dev-master
 
-## dev-development
+## 2.3.0 - 2019-03-11
 
 * Removed `Webmozart\Assert` dependency.
 
