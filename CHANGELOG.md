@@ -10,7 +10,7 @@
 
 ## 2.2.0 - 2019-03-06
 
-* Implemented [end-point](https://docs.reporting.cloud/docs/endpoint/document/thumbnails) 
+* Implemented [end-point](https://www.textcontrol.com/blog/2019/03/07/) 
     * `/v1/document/thumbnails`
 * Added `/demo/get-document-thumbnails.php` to exemplify `getDocumentThumbnails(string $documentFilename, int $zoomFactor, int $fromPage, int $toPage,string $imageFormat)`.    
 * Abstracted file utilities to `TxTextControl\ReportingCloud\Stdlib\FileUtils`.
