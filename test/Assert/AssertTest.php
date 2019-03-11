@@ -15,6 +15,8 @@ declare(strict_types=1);
 namespace TxTextControlTest\ReportingCloud\Assert;
 
 use PHPUnit\Framework\TestCase;
+use stdClass;
+use TxTextControlTest\ReportingCloud\Assert\TestAsset\ConcreteAssert as Assert;
 
 /**
  * Class AssertTest
@@ -47,4 +49,75 @@ class AssertTest extends TestCase
     use AssertStringTraitTest;
     use AssertIntegerTraitTest;
     use AssertBooleanTraitTest;
+
+    public function testValueToStringNull(): void
+    {
+        $expected = 'null';
+        $actual   = Assert::publicValueToString(null);
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testValueToStringTrue(): void
+    {
+        $expected = 'true';
+        $actual   = Assert::publicValueToString(true);
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testValueToStringFalse(): void
+    {
+        $expected = 'false';
+        $actual   = Assert::publicValueToString(false);
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testValueToStringArray(): void
+    {
+        $expected = 'array';
+        $actual   = Assert::publicValueToString([1, 2, 3]);
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testValueToStringObject(): void
+    {
+        $stdClass = new stdClass();
+
+        $expected = get_class($stdClass);
+        $actual   = Assert::publicValueToString($stdClass);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testValueToStringObjectWithToString(): void
+    {
+        $stdClass = new class extends stdClass
+        {
+            public function __toString()
+            {
+                return 'abc';
+            }
+        };
+
+        $expected = sprintf('%1$s: %2$s', get_class($stdClass), Assert::publicValueToString($stdClass->__toString()));
+        $actual   = Assert::publicValueToString($stdClass);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testValueToStringResource(): void
+    {
+        $handle = fopen(__FILE__, 'r');
+
+        $expected = 'resource';
+        $actual   = Assert::publicValueToString($handle);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testValueToStringString(): void
+    {
+        $expected = '"abc"';
+        $actual   = Assert::publicValueToString('abc');
+        $this->assertEquals($expected, $actual);
+    }
 }

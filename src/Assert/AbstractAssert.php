@@ -56,9 +56,9 @@ abstract class AbstractAssert
 
         if (is_object($value)) {
             if (method_exists($value, '__toString')) {
-                return get_class($value) . ': ' . self::valueToString($value->__toString());
+                $format = '%1$s: %2$s';
+                return sprintf($format, get_class($value), self::valueToString($value->__toString()));
             }
-
             return get_class($value);
         }
 
@@ -67,23 +67,10 @@ abstract class AbstractAssert
         }
 
         if (is_string($value)) {
-            return sprintf('"%1$s"', $value);
+            $format = '"%1$s"';
+            return sprintf($format, $value);
         }
 
         return (string) $value;
-    }
-
-    /**
-     * Convert value to class name or type
-     *
-     * @param mixed $value
-     *
-     * @return string
-     */
-    protected static function typeToString($value): string
-    {
-        $ret = is_object($value) ? get_class($value) : gettype($value);
-
-        return (string) $ret;
     }
 }
