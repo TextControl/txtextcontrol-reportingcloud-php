@@ -40,12 +40,12 @@ class ReportingCloud extends AbstractReportingCloud
         if (is_array($options)) {
 
             $methods = [
-                // credentials
+                // Credentials
                 'api_key'  => 'setApiKey',
-                // credentials (deprecated)
+                // Credentials (deprecated, use 'api_key' only)
                 'username' => 'setUsername',
                 'password' => 'setPassword',
-                // settings
+                // Settings
                 'base_uri' => 'setBaseUri',
                 'debug'    => 'setDebug',
                 'test'     => 'setTest',
