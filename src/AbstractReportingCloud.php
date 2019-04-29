@@ -257,14 +257,6 @@ abstract class AbstractReportingCloud
     private $password;
 
     /**
-     * When true, API call does not count against quota
-     * "TEST MODE" watermark is added to document
-     *
-     * @var bool|null
-     */
-    private $test;
-
-    /**
      * Backend base URI
      *
      * @var string|null
@@ -272,11 +264,19 @@ abstract class AbstractReportingCloud
     private $baseUri;
 
     /**
-     * Backend version string
+     * Debug flag of REST client
      *
-     * @var string|null
+     * @var bool|null
      */
-    private $version;
+    private $debug;
+
+    /**
+     * When true, API call does not count against quota
+     * "TEST MODE" watermark is added to document
+     *
+     * @var bool|null
+     */
+    private $test;
 
     /**
      * Backend timeout in seconds
@@ -286,11 +286,11 @@ abstract class AbstractReportingCloud
     private $timeout;
 
     /**
-     * Debug flag of REST client
+     * Backend version string
      *
-     * @var bool|null
+     * @var string|null
      */
-    private $debug;
+    private $version;
 
     /**
      * REST client to backend
@@ -400,30 +400,6 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Get the timeout (in seconds) of the backend web service
-     *
-     * @return int|null
-     */
-    public function getTimeout(): ?int
-    {
-        return $this->timeout;
-    }
-
-    /**
-     * Set the timeout (in seconds) of the backend web service
-     *
-     * @param int $timeout
-     *
-     * @return AbstractReportingCloud
-     */
-    public function setTimeout(int $timeout): self
-    {
-        $this->timeout = $timeout;
-
-        return $this;
-    }
-
-    /**
      * Return the debug flag
      *
      * @return bool|null
@@ -467,6 +443,30 @@ abstract class AbstractReportingCloud
     public function setTest(bool $test): self
     {
         $this->test = $test;
+
+        return $this;
+    }
+
+    /**
+     * Get the timeout (in seconds) of the backend web service
+     *
+     * @return int|null
+     */
+    public function getTimeout(): ?int
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * Set the timeout (in seconds) of the backend web service
+     *
+     * @param int $timeout
+     *
+     * @return AbstractReportingCloud
+     */
+    public function setTimeout(int $timeout): self
+    {
+        $this->timeout = $timeout;
 
         return $this;
     }
@@ -535,6 +535,69 @@ abstract class AbstractReportingCloud
         $this->client = $client;
 
         return $this;
+    }
+
+    /**
+     * Assign default values to option properties
+     *
+     * @return ReportingCloud
+     */
+    protected function setDefaultOptions(): self
+    {
+        if (null === $this->getBaseUri()) {
+            $baseUri = $this->getBaseUriFromEnv() ?? self::DEFAULT_BASE_URI;
+            $this->setBaseUri($baseUri);
+        }
+
+        if (null === $this->getDebug()) {
+            $this->setDebug(self::DEFAULT_DEBUG);
+        }
+
+        if (null === $this->getTest()) {
+            $this->setTest(self::DEFAULT_TEST);
+        }
+
+        if (null === $this->getTimeout()) {
+            $this->setTimeout(self::DEFAULT_TIMEOUT);
+        }
+
+        if (null === $this->getVersion()) {
+            $this->setVersion(self::DEFAULT_VERSION);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Return the base URI from the environment variable "REPORTING_CLOUD_BASE_URI",
+     * checking that the hostname and sub-domain match the known hostname and sub-domain.
+     *
+     * Return null, if the environment variable has not been set or is empty.
+     *
+     * @throws InvalidArgumentException
+     * @return string|null
+     */
+    protected function getBaseUriFromEnv(): ?string
+    {
+        $envVarName = 'REPORTING_CLOUD_BASE_URI';
+
+        $baseUri = (string) getenv($envVarName);
+        $baseUri = trim($baseUri);
+
+        if (empty($baseUri)) {
+            return null;
+        }
+
+        $sdkHost = (string) parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
+        $envHost = (string) parse_url($baseUri, PHP_URL_HOST);
+
+        if (!StringUtils::endsWith($envHost, $sdkHost)) {
+            $format  = 'Base URI from environment variable "%s" with value "%s" does not end in "%s"';
+            $message = sprintf($format, $envVarName, $baseUri, $sdkHost);
+            throw new InvalidArgumentException($message);
+        }
+
+        return $baseUri;
     }
 
     /**
@@ -609,38 +672,6 @@ abstract class AbstractReportingCloud
 
         $message = 'Either the API key, or username and password must be set for authorization';
         throw new InvalidArgumentException($message);
-    }
-
-    /**
-     * Return the base URI from the environment variable "REPORTING_CLOUD_BASE_URI",
-     * checking that the hostname and sub-domain match the known hostname and sub-domain.
-     *
-     * Return null, if the environment variable has not been set or is empty.
-     *
-     * @throws InvalidArgumentException
-     * @return string|null
-     */
-    protected function getBaseUriFromEnv(): ?string
-    {
-        $envVarName = 'REPORTING_CLOUD_BASE_URI';
-
-        $baseUri = (string) getenv($envVarName);
-        $baseUri = trim($baseUri);
-
-        if (empty($baseUri)) {
-            return null;
-        }
-
-        $sdkHost = (string) parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
-        $envHost = (string) parse_url($baseUri, PHP_URL_HOST);
-
-        if (!StringUtils::endsWith($envHost, $sdkHost)) {
-            $format  = 'Base URI from environment variable "%s" with value "%s" does not end in "%s"';
-            $message = sprintf($format, $envVarName, $baseUri, $sdkHost);
-            throw new InvalidArgumentException($message);
-        }
-
-        return $baseUri;
     }
 
     // </editor-fold>

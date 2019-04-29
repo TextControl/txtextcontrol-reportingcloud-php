@@ -45,7 +45,7 @@ class ReportingCloud extends AbstractReportingCloud
                 // Credentials (deprecated, use 'api_key' only)
                 'username' => 'setUsername',
                 'password' => 'setPassword',
-                // Settings
+                // Options
                 'base_uri' => 'setBaseUri',
                 'debug'    => 'setDebug',
                 'test'     => 'setTest',
@@ -60,38 +60,7 @@ class ReportingCloud extends AbstractReportingCloud
             }
         }
 
-        $this->setDefaultSettings();
-    }
-
-    /**
-     * Assign default values to settings properties
-     *
-     * @return ReportingCloud
-     */
-    private function setDefaultSettings(): self
-    {
-        if (null === $this->getBaseUri()) {
-            $baseUri = $this->getBaseUriFromEnv() ?? self::DEFAULT_BASE_URI;
-            $this->setBaseUri($baseUri);
-        }
-
-        if (null === $this->getDebug()) {
-            $this->setDebug(self::DEFAULT_DEBUG);
-        }
-
-        if (null === $this->getTest()) {
-            $this->setTest(self::DEFAULT_TEST);
-        }
-
-        if (null === $this->getTimeout()) {
-            $this->setTimeout(self::DEFAULT_TIMEOUT);
-        }
-
-        if (null === $this->getVersion()) {
-            $this->setVersion(self::DEFAULT_VERSION);
-        }
-
-        return $this;
+        $this->setDefaultOptions();
     }
 
     // </editor-fold>
