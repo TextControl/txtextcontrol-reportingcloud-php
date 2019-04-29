@@ -613,7 +613,7 @@ abstract class AbstractReportingCloud
 
     /**
      * Return the base URI from the environment variable "REPORTING_CLOUD_BASE_URI",
-     * checking that the hostname and sub-domain match the known hostname and sub-domain name.
+     * checking that the hostname and sub-domain match the known hostname and sub-domain.
      *
      * Return null, if the environment variable has not been set or is empty.
      *
