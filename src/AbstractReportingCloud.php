@@ -621,21 +621,21 @@ abstract class AbstractReportingCloud
      */
     protected function getBaseUriFromEnv(): ?string
     {
-        $envVariable = 'REPORTING_CLOUD_BASE_URI';
+        $envVarName = 'REPORTING_CLOUD_BASE_URI';
 
-        $baseUri = (string) getenv($envVariable);
+        $baseUri = (string) getenv($envVarName);
         $baseUri = trim($baseUri);
 
         if (empty($baseUri)) {
             return null;
         }
 
-        $phpHostname = parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
-        $envHostname = parse_url($baseUri, PHP_URL_HOST);
+        $phpHost = parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
+        $envHost = parse_url($baseUri, PHP_URL_HOST);
 
-        if (strrpos($envHostname, $phpHostname) != (strlen($envHostname) - strlen($phpHostname))) {
+        if (strrpos($envHost, $phpHost) != (strlen($envHost) - strlen($phpHost))) {
             $format  = 'Base URI from environment variable name "%s" with value "%s" does not end in "%s"';
-            $message = sprintf($format, $envVariable, $baseUri, $phpHostname);
+            $message = sprintf($format, $envVarName, $baseUri, $phpHost);
             throw new InvalidArgumentException($message);
         }
 

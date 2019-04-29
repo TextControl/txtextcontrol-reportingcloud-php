@@ -147,10 +147,10 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         unset($reportingCloud);
     }
 
-    public function testGetBaseUriFromEnvVariable(): void
+    public function testGetBaseUriFromEnvVar(): void
     {
-        $envName = 'REPORTING_CLOUD_BASE_URI';
-        $baseUri = getenv($envName);
+        $envVarName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri    = getenv($envVarName);
         if (is_string($baseUri) && !empty($baseUri)) {
             $reportingCloud = new ReportingCloud();
             $this->assertSame($baseUri, $reportingCloud->getBaseUri());
@@ -158,45 +158,44 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         }
     }
 
-    public function testGetBaseUriFromEnvVariableWithNull(): void
+    public function testGetBaseUriFromEnvVarWithNull(): void
     {
-        $envName = 'REPORTING_CLOUD_BASE_URI';
-        $baseUri = getenv($envName);
+        $envVarName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri    = getenv($envVarName);
 
-        putenv("{$envName}");
+        putenv("{$envVarName}");
 
         $reportingCloud = new ReportingCloud();
         $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
         unset($reportingCloud);
 
-        putenv("{$envName}={$baseUri}");
+        putenv("{$envVarName}={$baseUri}");
     }
 
-    public function testGetBaseUriFromEnvVariableWithEmptyValue(): void
+    public function testGetBaseUriFromEnvVarWithEmptyValue(): void
     {
-        $envName = 'REPORTING_CLOUD_BASE_URI';
-        $baseUri = getenv($envName);
+        $envVarName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri    = getenv($envVarName);
 
-        putenv("{$envName}=");
+        putenv("{$envVarName}=");
 
         $reportingCloud = new ReportingCloud();
         $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
         unset($reportingCloud);
 
-        putenv("{$envName}={$baseUri}");
+        putenv("{$envVarName}={$baseUri}");
     }
 
-    public function testGetBaseUriFromEnvVariableWithInvalidValue(): void
+    public function testGetBaseUriFromEnvVarWithInvalidValue(): void
     {
-        $envName = 'REPORTING_CLOUD_BASE_URI';
-        $baseUri = getenv($envName);
+        $envVarName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri    = getenv($envVarName);
         if (is_string($baseUri) && !empty($baseUri)) {
-            putenv("{$envName}=https://www.example.com");
+            putenv("{$envVarName}=https://www.example.com");
             try {
                 $reportingCloud = new ReportingCloud();
-                $reportingCloud->getBaseUri();
             } catch (InvalidArgumentException $e) {
-                putenv("{$envName}={$baseUri}");
+                putenv("{$envVarName}={$baseUri}");
                 $expected = 'Base URI from environment variable name "REPORTING_CLOUD_BASE_URI" with value ';
                 $expected .= '"https://www.example.com" does not end in "api.reporting.cloud"';
                 $this->assertSame($expected, $e->getMessage());
