@@ -14,9 +14,6 @@ declare(strict_types=1);
 
 namespace TxTextControlTest\ReportingCloud;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
-use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
@@ -134,7 +131,14 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->assertEmpty($reportingCloud->getUsername());
         $this->assertEmpty($reportingCloud->getPassword());
 
-        $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
+        $envName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri = getenv($envName);
+        if (is_string($baseUri) && !empty($baseUri)) {
+            $expected = $baseUri;
+        } else {
+            $expected = 'https://api.reporting.cloud';
+        }
+        $this->assertSame($expected, $reportingCloud->getBaseUri());
         $this->assertSame(120, $reportingCloud->getTimeout());
         $this->assertSame('v1', $reportingCloud->getVersion());
 
@@ -143,24 +147,61 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         unset($reportingCloud);
     }
 
-    public function testResponseStatusCodeWithHttp(): void
+    public function testGetBaseUriFromEnvVariable(): void
     {
-        $baseUri     = (string) $this->reportingCloud->getBaseUri();
-        $this->assertNotEmpty($baseUri);
+        $envName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri = getenv($envName);
+        if (is_string($baseUri) && !empty($baseUri)) {
+            $reportingCloud = new ReportingCloud();
+            $this->assertSame($baseUri, $reportingCloud->getBaseUri());
+            unset($reportingCloud);
+        }
+    }
 
-        $baseUriHost = (string) parse_url($baseUri, PHP_URL_HOST);
-        $this->assertNotEmpty($baseUriHost);
+    public function testGetBaseUriFromEnvVariableWithNull(): void
+    {
+        $envName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri = getenv($envName);
 
-        $uri = sprintf('http://%s', $baseUriHost);
+        putenv("{$envName}");
 
-        try {
-            $client = new Client();
-            $client->request('GET', $uri);
-        } catch (ClientException $e) {
-            $response = $e->getResponse();
-            if ($response instanceof ResponseInterface) {
-                $this->assertSame(404, $response->getStatusCode());
+        $reportingCloud = new ReportingCloud();
+        $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
+        unset($reportingCloud);
+
+        putenv("{$envName}=$baseUri");
+    }
+
+    public function testGetBaseUriFromEnvVariableWithEmptyValue(): void
+    {
+        $envName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri = getenv($envName);
+
+        putenv("{$envName}=");
+
+        $reportingCloud = new ReportingCloud();
+        $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
+        unset($reportingCloud);
+
+        putenv("{$envName}=$baseUri");
+    }
+
+    public function testGetBaseUriFromEnvVariableWithInvalidValue(): void
+    {
+        $envName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri = getenv($envName);
+        if (is_string($baseUri) && !empty($baseUri)) {
+            putenv("{$envName}=https://www.example.com");
+            $reportingCloud = new ReportingCloud();
+            try {
+                $reportingCloud->getBaseUri();
+            } catch (InvalidArgumentException $e) {
+                putenv("{$envName}=$baseUri");
+                $expected = 'Base URI from environment variable name "REPORTING_CLOUD_BASE_URI" with value ';
+                $expected .= '"https://www.example.com" does not match pattern "/^(.*)api\.reporting\.cloud$/"';
+                $this->assertSame($expected, $e->getMessage());
             }
+            unset($reportingCloud);
         }
     }
 }

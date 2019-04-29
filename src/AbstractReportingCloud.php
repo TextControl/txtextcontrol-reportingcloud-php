@@ -382,7 +382,11 @@ abstract class AbstractReportingCloud
     public function getBaseUri(): ?string
     {
         if (null === $this->baseUri) {
-            $this->setBaseUri(self::DEFAULT_BASE_URI);
+            $baseUri = $this->getBaseUriFromEnv();
+            if (null === $baseUri) {
+                $baseUri = self::DEFAULT_BASE_URI;
+            }
+            $this->setBaseUri($baseUri);
         }
 
         return $this->baseUri;
@@ -628,6 +632,42 @@ abstract class AbstractReportingCloud
 
         $message = 'Either the API key, or username and password must be set for authorization';
         throw new InvalidArgumentException($message);
+    }
+
+    /**
+     * Return the base URI from the environment variable "REPORTING_CLOUD_BASE_URI",
+     * checking that the hostname and sub-domain match the known hostname and domain name.
+     * Return null, if the environment variable has not been set or is empty.
+     *
+     * @throws InvalidArgumentException
+     * @return string|null
+     */
+    protected function getBaseUriFromEnv(): ?string
+    {
+        $envName = 'REPORTING_CLOUD_BASE_URI';
+        $baseUri = getenv($envName);
+
+        if (!is_string($baseUri)) {
+            return null;
+        }
+
+        $baseUri = trim($baseUri);
+
+        if (empty($baseUri)) {
+            return null;
+        }
+
+        $phpHostname = parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
+        $envHostname = parse_url($baseUri, PHP_URL_HOST);
+        $pattern     = sprintf('/^(.*)%s$/', preg_quote($phpHostname));
+
+        if (1 !== preg_match($pattern, $envHostname)) {
+            $format  = 'Base URI from environment variable name "%s" with value "%s" does not match pattern "%s"';
+            $message = sprintf($format, $envName, $baseUri, $pattern);
+            throw new InvalidArgumentException($message);
+        }
+
+        return $baseUri;
     }
 
     // </editor-fold>
