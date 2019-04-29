@@ -16,6 +16,7 @@ namespace TxTextControlTest\ReportingCloud;
 
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 /**
  * Class ReportingCloudTest
@@ -131,8 +132,8 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->assertEmpty($reportingCloud->getUsername());
         $this->assertEmpty($reportingCloud->getPassword());
 
-        $envName = 'REPORTING_CLOUD_BASE_URI';
-        $baseUri = getenv($envName);
+        $envVarName = ConsoleUtils::BASE_URI;
+        $baseUri    = getenv($envVarName);
         if (is_string($baseUri) && !empty($baseUri)) {
             $expected = $baseUri;
         } else {
@@ -149,8 +150,8 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
     public function testGetBaseUriFromEnvVar(): void
     {
-        $envVarName = 'REPORTING_CLOUD_BASE_URI';
-        $baseUri    = getenv($envVarName);
+        $baseUri = ConsoleUtils::baseUri();
+
         if (is_string($baseUri) && !empty($baseUri)) {
             $reportingCloud = new ReportingCloud();
             $this->assertSame($baseUri, $reportingCloud->getBaseUri());
@@ -160,7 +161,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
     public function testGetBaseUriFromEnvVarWithNull(): void
     {
-        $envVarName = 'REPORTING_CLOUD_BASE_URI';
+        $envVarName = ConsoleUtils::BASE_URI;
         $baseUri    = getenv($envVarName);
 
         putenv("{$envVarName}");
@@ -174,7 +175,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
     public function testGetBaseUriFromEnvVarWithEmptyValue(): void
     {
-        $envVarName = 'REPORTING_CLOUD_BASE_URI';
+        $envVarName = ConsoleUtils::BASE_URI;
         $baseUri    = getenv($envVarName);
 
         putenv("{$envVarName}=");
@@ -188,7 +189,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
     public function testGetBaseUriFromEnvVarWithInvalidValue(): void
     {
-        $envVarName = 'REPORTING_CLOUD_BASE_URI';
+        $envVarName = ConsoleUtils::BASE_URI;
         $baseUri    = getenv($envVarName);
         if (is_string($baseUri) && !empty($baseUri)) {
             putenv("{$envVarName}=https://www.example.com");

@@ -30,6 +30,13 @@ class ConsoleUtils extends AbstractStdlib
     public const API_KEY = 'REPORTING_CLOUD_API_KEY';
 
     /**
+     * Name of PHP constant or environmental variable storing base URI
+     *
+     * @const REPORTING_CLOUD_BASE_URI
+     */
+    public const BASE_URI = 'REPORTING_CLOUD_BASE_URI';
+
+    /**
      * Check that either the API key has been defined in environment variables
      *
      * @return bool
@@ -50,21 +57,17 @@ class ConsoleUtils extends AbstractStdlib
      */
     public static function apiKey(): ?string
     {
-        $key = self::API_KEY;
+        return self::getValueFromConstOrEnvVar(self::API_KEY);
+    }
 
-        if (defined($key)) {
-            $ret = (string) constant($key);
-            $ret = trim($ret);
-            return $ret;
-        }
-
-        if (getenv($key)) {
-            $ret = (string) getenv($key);
-            $ret = trim($ret);
-            return $ret;
-        }
-
-        return null;
+    /**
+     * Return the ReportingCloud base URI from a PHP constant or environmental variable
+     *
+     * @return string|null
+     */
+    public static function baseUri(): ?string
+    {
+        return self::getValueFromConstOrEnvVar(self::BASE_URI);
     }
 
     /**
@@ -74,7 +77,7 @@ class ConsoleUtils extends AbstractStdlib
      */
     public static function errorMessage(): string
     {
-        $format = <<<END
+        $format   = <<<END
 
 Error: ReportingCloud API key not defined.
 
@@ -149,5 +152,31 @@ END;
         }
 
         echo PHP_EOL;
+    }
+
+    /**
+     * Return a value from a PHP constant or environmental variable
+     *
+     * @param $key
+     *
+     * @return string|null
+     */
+    protected static function getValueFromConstOrEnvVar($key): ?string
+    {
+        if (defined($key)) {
+            $ret = (string) constant($key);
+            $ret = trim($ret);
+
+            return $ret;
+        }
+
+        if (getenv($key)) {
+            $ret = (string) getenv($key);
+            $ret = trim($ret);
+
+            return $ret;
+        }
+
+        return null;
     }
 }

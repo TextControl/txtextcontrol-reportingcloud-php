@@ -21,6 +21,7 @@ use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
@@ -545,7 +546,7 @@ abstract class AbstractReportingCloud
     protected function setDefaultOptions(): self
     {
         if (null === $this->getBaseUri()) {
-            $baseUri = $this->getBaseUriFromEnv() ?? self::DEFAULT_BASE_URI;
+            $baseUri = $this->getBaseUriFromConstOrEnvVar() ?? self::DEFAULT_BASE_URI;
             $this->setBaseUri($baseUri);
         }
 
@@ -569,7 +570,7 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Return the base URI from the environment variable "REPORTING_CLOUD_BASE_URI",
+     * Return the base URI from the PHP const or environment variable "REPORTING_CLOUD_BASE_URI",
      * checking that the hostname and sub-domain match the known hostname and sub-domain.
      *
      * Return null, if the environment variable has not been set or is empty.
@@ -577,12 +578,9 @@ abstract class AbstractReportingCloud
      * @throws InvalidArgumentException
      * @return string|null
      */
-    protected function getBaseUriFromEnv(): ?string
+    protected function getBaseUriFromConstOrEnvVar(): ?string
     {
-        $envVarName = 'REPORTING_CLOUD_BASE_URI';
-
-        $baseUri = (string) getenv($envVarName);
-        $baseUri = trim($baseUri);
+        $baseUri = ConsoleUtils::baseUri();
 
         if (empty($baseUri)) {
             return null;
@@ -593,7 +591,7 @@ abstract class AbstractReportingCloud
 
         if (!StringUtils::endsWith($envHost, $sdkHost)) {
             $format  = 'Base URI from environment variable "%s" with value "%s" does not end in "%s"';
-            $message = sprintf($format, $envVarName, $baseUri, $sdkHost);
+            $message = sprintf($format, ConsoleUtils::BASE_URI, $baseUri, $sdkHost);
             throw new InvalidArgumentException($message);
         }
 
