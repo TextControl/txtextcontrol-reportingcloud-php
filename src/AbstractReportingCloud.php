@@ -21,6 +21,7 @@ use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
+use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Abstract ReportingCloud
@@ -630,12 +631,12 @@ abstract class AbstractReportingCloud
             return null;
         }
 
-        $phpHost = parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
+        $sdkHost = parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
         $envHost = parse_url($baseUri, PHP_URL_HOST);
 
-        if (strrpos($envHost, $phpHost) != (strlen($envHost) - strlen($phpHost))) {
-            $format  = 'Base URI from environment variable name "%s" with value "%s" does not end in "%s"';
-            $message = sprintf($format, $envVarName, $baseUri, $phpHost);
+        if (!StringUtils::endsWith($envHost, $sdkHost)) {
+            $format  = 'Base URI from environment variable "%s" with value "%s" does not end in "%s"';
+            $message = sprintf($format, $envVarName, $baseUri, $sdkHost);
             throw new InvalidArgumentException($message);
         }
 

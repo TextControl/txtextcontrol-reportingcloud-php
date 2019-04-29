@@ -196,7 +196,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
                 $reportingCloud = new ReportingCloud();
             } catch (InvalidArgumentException $e) {
                 putenv("{$envVarName}={$baseUri}");
-                $expected = 'Base URI from environment variable name "REPORTING_CLOUD_BASE_URI" with value ';
+                $expected = 'Base URI from environment variable "REPORTING_CLOUD_BASE_URI" with value ';
                 $expected .= '"https://www.example.com" does not end in "api.reporting.cloud"';
                 $this->assertSame($expected, $e->getMessage());
             }
