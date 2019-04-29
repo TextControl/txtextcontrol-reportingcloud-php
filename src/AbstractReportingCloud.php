@@ -381,14 +381,6 @@ abstract class AbstractReportingCloud
      */
     public function getBaseUri(): ?string
     {
-        if (null === $this->baseUri) {
-            $baseUri = $this->getBaseUriFromEnv();
-            if (null === $baseUri) {
-                $baseUri = self::DEFAULT_BASE_URI;
-            }
-            $this->setBaseUri($baseUri);
-        }
-
         return $this->baseUri;
     }
 
@@ -413,10 +405,6 @@ abstract class AbstractReportingCloud
      */
     public function getTimeout(): ?int
     {
-        if (null === $this->timeout) {
-            $this->setTimeout(self::DEFAULT_TIMEOUT);
-        }
-
         return $this->timeout;
     }
 
@@ -441,10 +429,6 @@ abstract class AbstractReportingCloud
      */
     public function getDebug(): ?bool
     {
-        if (null === $this->debug) {
-            $this->setDebug(self::DEFAULT_DEBUG);
-        }
-
         return $this->debug;
     }
 
@@ -469,10 +453,6 @@ abstract class AbstractReportingCloud
      */
     public function getTest(): ?bool
     {
-        if (null === $this->test) {
-            $this->setTest(self::DEFAULT_TEST);
-        }
-
         return $this->test;
     }
 
@@ -497,10 +477,6 @@ abstract class AbstractReportingCloud
      */
     public function getVersion(): ?string
     {
-        if (null === $this->version) {
-            $this->version = self::DEFAULT_VERSION;
-        }
-
         return $this->version;
     }
 
@@ -636,7 +612,8 @@ abstract class AbstractReportingCloud
 
     /**
      * Return the base URI from the environment variable "REPORTING_CLOUD_BASE_URI",
-     * checking that the hostname and sub-domain match the known hostname and domain name.
+     * checking that the hostname and sub-domain match the known hostname and sub-domain name.
+     *
      * Return null, if the environment variable has not been set or is empty.
      *
      * @throws InvalidArgumentException
@@ -644,13 +621,9 @@ abstract class AbstractReportingCloud
      */
     protected function getBaseUriFromEnv(): ?string
     {
-        $envName = 'REPORTING_CLOUD_BASE_URI';
-        $baseUri = getenv($envName);
+        $envVariable = 'REPORTING_CLOUD_BASE_URI';
 
-        if (!is_string($baseUri)) {
-            return null;
-        }
-
+        $baseUri = (string) getenv($envVariable);
         $baseUri = trim($baseUri);
 
         if (empty($baseUri)) {
@@ -659,11 +632,10 @@ abstract class AbstractReportingCloud
 
         $phpHostname = parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
         $envHostname = parse_url($baseUri, PHP_URL_HOST);
-        $pattern     = sprintf('/^(.*)%s$/', preg_quote($phpHostname));
 
-        if (1 !== preg_match($pattern, $envHostname)) {
-            $format  = 'Base URI from environment variable name "%s" with value "%s" does not match pattern "%s"';
-            $message = sprintf($format, $envName, $baseUri, $pattern);
+        if (strrpos($envHostname, $phpHostname) != (strlen($envHostname) - strlen($phpHostname))) {
+            $format  = 'Base URI from environment variable name "%s" with value "%s" does not end in "%s"';
+            $message = sprintf($format, $envVariable, $baseUri, $phpHostname);
             throw new InvalidArgumentException($message);
         }
 

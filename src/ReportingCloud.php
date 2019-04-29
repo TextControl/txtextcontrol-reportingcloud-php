@@ -40,13 +40,16 @@ class ReportingCloud extends AbstractReportingCloud
         if (is_array($options)) {
 
             $methods = [
+                // credentials
                 'api_key'  => 'setApiKey',
+                // credentials (deprecated)
+                'username' => 'setUsername',
+                'password' => 'setPassword',
+                // settings
                 'base_uri' => 'setBaseUri',
                 'debug'    => 'setDebug',
-                'password' => 'setPassword',
                 'test'     => 'setTest',
                 'timeout'  => 'setTimeout',
-                'username' => 'setUsername',
                 'version'  => 'setVersion',
             ];
 
@@ -55,6 +58,27 @@ class ReportingCloud extends AbstractReportingCloud
                     $this->$method($options[$key]);
                 }
             }
+        }
+
+        if (null === $this->getBaseUri()) {
+            $baseUri = $this->getBaseUriFromEnv() ?? self::DEFAULT_BASE_URI;
+            $this->setBaseUri($baseUri);
+        }
+
+        if (null === $this->getDebug()) {
+            $this->setDebug(self::DEFAULT_DEBUG);
+        }
+
+        if (null === $this->getTest()) {
+            $this->setTest(self::DEFAULT_TEST);
+        }
+
+        if (null === $this->getTimeout()) {
+            $this->setTimeout(self::DEFAULT_TIMEOUT);
+        }
+
+        if (null === $this->getVersion()) {
+            $this->setVersion(self::DEFAULT_VERSION);
         }
     }
 

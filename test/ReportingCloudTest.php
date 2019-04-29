@@ -169,7 +169,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
         unset($reportingCloud);
 
-        putenv("{$envName}=$baseUri");
+        putenv("{$envName}={$baseUri}");
     }
 
     public function testGetBaseUriFromEnvVariableWithEmptyValue(): void
@@ -183,7 +183,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
         unset($reportingCloud);
 
-        putenv("{$envName}=$baseUri");
+        putenv("{$envName}={$baseUri}");
     }
 
     public function testGetBaseUriFromEnvVariableWithInvalidValue(): void
@@ -192,13 +192,13 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $baseUri = getenv($envName);
         if (is_string($baseUri) && !empty($baseUri)) {
             putenv("{$envName}=https://www.example.com");
-            $reportingCloud = new ReportingCloud();
             try {
+                $reportingCloud = new ReportingCloud();
                 $reportingCloud->getBaseUri();
             } catch (InvalidArgumentException $e) {
-                putenv("{$envName}=$baseUri");
+                putenv("{$envName}={$baseUri}");
                 $expected = 'Base URI from environment variable name "REPORTING_CLOUD_BASE_URI" with value ';
-                $expected .= '"https://www.example.com" does not match pattern "/^(.*)api\.reporting\.cloud$/"';
+                $expected .= '"https://www.example.com" does not end in "api.reporting.cloud"';
                 $this->assertSame($expected, $e->getMessage());
             }
             unset($reportingCloud);
