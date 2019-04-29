@@ -6,6 +6,8 @@ include_once __DIR__ . '/bootstrap.php';
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
+// ---------------------------------------------------------------------------------------------------------------------
+
 // Instantiate with API key via constructor option
 
 $reportingCloud = new ReportingCloud([
@@ -14,6 +16,22 @@ $reportingCloud = new ReportingCloud([
 
 ConsoleUtils::dump($reportingCloud);
 
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Instantiate with API key and other params via constructor options
+
+$reportingCloud = new ReportingCloud([
+    'api_key'  => 'xxxxxxxx',
+    'base_uri' => 'https://api.example.com',
+    'debug'    => false,
+    'test'     => false,
+    'timeout'  => 100,
+    'version'  => 'v1',
+]);
+
+ConsoleUtils::dump($reportingCloud);
+
+// ---------------------------------------------------------------------------------------------------------------------
 
 // Instantiate with API key via setter method
 
@@ -23,37 +41,19 @@ $reportingCloud->setApiKey('xxxxxxxx');
 
 ConsoleUtils::dump($reportingCloud);
 
-/*
- * The following instantiation methods are deprecated and will be removed from a future version of the PHP SDK.
- * Please do not use them for new projects, and refactor them out for current projects
- *
- * // Instantiate with username and password via constructor options
- * // @deprecated: Use the API key method instead (see above)
- *
- * $reportingCloud = new ReportingCloud([
- *     'username' => 'xxxxxxxx',
- *     'password' => 'xxxxxxxx',
- *     'base_uri' => 'http://api.example.com',
- *     'timeout'  => 100,
- *     'version'  => 'v1',
- *     'debug'    => true,
- * ]);
- *
- * ConsoleUtils::dump($reportingCloud);
- *
- *
- * // Instantiate with username and password via setter methods
- * // @deprecated: Use the API key method instead (see above)
- *
- * $reportingCloud = new ReportingCloud();
- *
- * $reportingCloud->setUsername('xxxxxxxx');
- * $reportingCloud->setPassword('xxxxxxxx');
- * $reportingCloud->setBaseUri('http://api.example.com');
- * $reportingCloud->setVersion('v1');
- * $reportingCloud->setTimeout(100);
- * $reportingCloud->setDebug(true);
- *
- * ConsoleUtils::dump($reportingCloud);
- *
- */
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Instantiate with API key and other params via setter methods
+
+$reportingCloud = new ReportingCloud();
+
+$reportingCloud->setApiKey('xxxxxxxx');
+$reportingCloud->setBaseUri('https://api.example.com');
+$reportingCloud->setDebug(false);
+$reportingCloud->setTest(false);
+$reportingCloud->setTimeout(100);
+$reportingCloud->setVersion('v1');
+
+ConsoleUtils::dump($reportingCloud);
+
+// ---------------------------------------------------------------------------------------------------------------------
