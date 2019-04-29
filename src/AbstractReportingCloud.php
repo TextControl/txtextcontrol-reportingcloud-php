@@ -551,7 +551,7 @@ abstract class AbstractReportingCloud
     {
         $client = $this->getClient();
 
-        if (!$client instanceof Client) {
+        if (null === $client) {
             $message = 'No HTTP Client has been set.';
             throw new RuntimeException($message);
         }
