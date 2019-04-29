@@ -60,6 +60,16 @@ class ReportingCloud extends AbstractReportingCloud
             }
         }
 
+        $this->setDefaultSettings();
+    }
+
+    /**
+     * Assign default values to settings properties
+     *
+     * @return ReportingCloud
+     */
+    private function setDefaultSettings(): self
+    {
         if (null === $this->getBaseUri()) {
             $baseUri = $this->getBaseUriFromEnv() ?? self::DEFAULT_BASE_URI;
             $this->setBaseUri($baseUri);
@@ -80,6 +90,8 @@ class ReportingCloud extends AbstractReportingCloud
         if (null === $this->getVersion()) {
             $this->setVersion(self::DEFAULT_VERSION);
         }
+
+        return $this;
     }
 
     // </editor-fold>
