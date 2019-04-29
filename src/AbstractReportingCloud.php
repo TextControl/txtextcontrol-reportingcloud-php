@@ -631,8 +631,8 @@ abstract class AbstractReportingCloud
             return null;
         }
 
-        $sdkHost = parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
-        $envHost = parse_url($baseUri, PHP_URL_HOST);
+        $sdkHost = (string) parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
+        $envHost = (string) parse_url($baseUri, PHP_URL_HOST);
 
         if (!StringUtils::endsWith($envHost, $sdkHost)) {
             $format  = 'Base URI from environment variable "%s" with value "%s" does not end in "%s"';
