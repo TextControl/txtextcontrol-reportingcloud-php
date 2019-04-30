@@ -4,6 +4,12 @@
 
 ## dev-master
 
+## 2.4.0 - 2019-04-30
+
+* Added ability to set base URI of ReportingCloud service via environment variable or PHP constant.
+* Added `TxTextControl\ReportingCloud\Assert\Assert::assertBaseUri` to validate base URI.
+* Removed deprecated demos is  `/demo/instantiation.php`.
+
 ## 2.3.0 - 2019-03-11
 
 * Removed `Webmozart\Assert` dependency.
