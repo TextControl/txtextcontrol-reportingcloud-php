@@ -161,20 +161,57 @@ END;
      *
      * @return string|null
      */
-    protected static function getValueFromConstOrEnvVar($key): ?string
+    private static function getValueFromConstOrEnvVar($key): ?string
+    {
+        $ret = self::getValueFromConst($key);
+
+        if (null !== $ret) {
+            return $ret;
+        }
+
+        $ret = self::getValueFromEnvVar($key);
+
+        if (null !== $ret) {
+            return $ret;
+        }
+
+        return null;
+    }
+
+    /**
+     * Return a value from a PHP constant
+     *
+     * @param $key
+     *
+     * @return string|null
+     */
+    private static function getValueFromConst($key): ?string
     {
         if (defined($key)) {
             $ret = (string) constant($key);
             $ret = trim($ret);
-
-            return $ret;
+            if (!empty($ret)) {
+                return $ret;
+            }
         }
 
+        return null;
+    }
+    /**
+     * Return a value from an environmental variable
+     *
+     * @param $key
+     *
+     * @return string|null
+     */
+    private static function getValueFromEnvVar($key): ?string
+    {
         if (getenv($key)) {
             $ret = (string) getenv($key);
             $ret = trim($ret);
-
-            return $ret;
+            if (!empty($ret)) {
+                return $ret;
+            }
         }
 
         return null;

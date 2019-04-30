@@ -28,6 +28,7 @@ class AssertTest extends TestCase
 {
     use AssertApiKeyTestTrait;
     use AssertBase64DataTestTrait;
+    use AssertBaseUriTestTrait;
     use AssertCultureTestTrait;
     use AssertDateTimeTestTrait;
     use AssertDocumentDividerTestTrait;

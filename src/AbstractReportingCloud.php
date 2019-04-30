@@ -18,11 +18,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
+use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
-use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 
 /**
  * Abstract ReportingCloud
@@ -60,21 +60,14 @@ abstract class AbstractReportingCloud
      *
      * @const DEFAULT_BASE_URI
      */
-    protected const DEFAULT_BASE_URI = 'https://api.reporting.cloud';
+    public const DEFAULT_BASE_URI = 'https://api.reporting.cloud';
 
     /**
-     * Default version string of backend
+     * Default debug flag of REST client
      *
-     * @const DEFAULT_VERSION
+     * @const DEFAULT_DEBUG
      */
-    protected const DEFAULT_VERSION = 'v1';
-
-    /**
-     * Default timeout of backend in seconds
-     *
-     * @const DEFAULT_TIMEOUT
-     */
-    protected const DEFAULT_TIMEOUT = 120;
+    protected const DEFAULT_DEBUG = false;
 
     /**
      * Default test flag of backend
@@ -84,11 +77,18 @@ abstract class AbstractReportingCloud
     protected const DEFAULT_TEST = false;
 
     /**
-     * Default debug flag of REST client
+     * Default timeout of backend in seconds
      *
-     * @const DEFAULT_DEBUG
+     * @const DEFAULT_TIMEOUT
      */
-    protected const DEFAULT_DEBUG = false;
+    protected const DEFAULT_TIMEOUT = 120;
+
+    /**
+     * Default version string of backend
+     *
+     * @const DEFAULT_VERSION
+     */
+    protected const DEFAULT_VERSION = 'v1';
 
     // </editor-fold>
 
@@ -506,7 +506,7 @@ abstract class AbstractReportingCloud
         if (!$this->client instanceof Client) {
 
             $headers = [
-                'Authorization' => $this->getAuthorizationHeader()
+                'Authorization' => $this->getAuthorizationHeader(),
             ];
 
             $options = [
@@ -546,7 +546,8 @@ abstract class AbstractReportingCloud
     protected function setDefaultOptions(): self
     {
         if (null === $this->getBaseUri()) {
-            $baseUri = $this->getBaseUriFromConstOrEnvVar() ?? self::DEFAULT_BASE_URI;
+            $baseUri = ConsoleUtils::baseUri() ?? self::DEFAULT_BASE_URI;
+            Assert::assertBaseUri($baseUri);
             $this->setBaseUri($baseUri);
         }
 
@@ -567,35 +568,6 @@ abstract class AbstractReportingCloud
         }
 
         return $this;
-    }
-
-    /**
-     * Return the base URI from the PHP const or environment variable "REPORTING_CLOUD_BASE_URI",
-     * checking that the hostname and sub-domain match the known hostname and sub-domain.
-     *
-     * Return null, if the environment variable has not been set or is empty.
-     *
-     * @throws InvalidArgumentException
-     * @return string|null
-     */
-    protected function getBaseUriFromConstOrEnvVar(): ?string
-    {
-        $baseUri = ConsoleUtils::baseUri();
-
-        if (empty($baseUri)) {
-            return null;
-        }
-
-        $sdkHost = (string) parse_url(self::DEFAULT_BASE_URI, PHP_URL_HOST);
-        $envHost = (string) parse_url($baseUri, PHP_URL_HOST);
-
-        if (!StringUtils::endsWith($envHost, $sdkHost)) {
-            $format  = 'Base URI from environment variable "%s" with value "%s" does not end in "%s"';
-            $message = sprintf($format, ConsoleUtils::BASE_URI, $baseUri, $sdkHost);
-            throw new InvalidArgumentException($message);
-        }
-
-        return $baseUri;
     }
 
     /**

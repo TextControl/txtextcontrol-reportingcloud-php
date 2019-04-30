@@ -25,6 +25,7 @@ class Assert extends AbstractAssert
     use AssertApiKeyTrait;
     use AssertArrayTrait;
     use AssertBase64DataTrait;
+    use AssertBaseUriTrait;
     use AssertBooleanTrait;
     use AssertCultureTrait;
     use AssertDateTimeTrait;
