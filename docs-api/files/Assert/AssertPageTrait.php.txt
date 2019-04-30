@@ -30,7 +30,14 @@ trait AssertPageTrait
      * @param int    $max
      * @param string $message
      */
-    abstract public static function range($value, $min, $max, $message = '');
+    abstract public static function assertRange(int $value, int $min, int $max, string $message = ''): void;
+
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    abstract protected static function valueToString($value): string;
 
     /**
      * Minimum page number
@@ -57,10 +64,15 @@ trait AssertPageTrait
      */
     public static function assertPage(int $value, string $message = ''): void
     {
-        $format  = $message ?: 'Page number ("%s") must be in the range [%d..%d]';
-        $message = sprintf($format, $value, self::$pageMin, self::$pageMax);
+        $format  = $message ?: 'Page number (%1$s) must be in the range [%2$s..%3$s]';
+        $message = sprintf(
+            $format,
+            self::valueToString($value),
+            self::valueToString(self::$pageMin),
+            self::valueToString(self::$pageMax)
+        );
 
-        self::range($value, self::$pageMin, self::$pageMax, $message);
+        self::assertRange($value, self::$pageMin, self::$pageMax, $message);
     }
 }
 

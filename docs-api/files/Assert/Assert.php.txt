@@ -14,8 +14,6 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud\Assert;
 
-use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
-
 /**
  * Class Assert
  *
@@ -25,38 +23,28 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 class Assert extends AbstractAssert
 {
     use AssertApiKeyTrait;
+    use AssertArrayTrait;
     use AssertBase64DataTrait;
+    use AssertBaseUriTrait;
+    use AssertBooleanTrait;
     use AssertCultureTrait;
     use AssertDateTimeTrait;
     use AssertDocumentDividerTrait;
     use AssertDocumentExtensionTrait;
+    use AssertDocumentThumbnailExtensionTrait;
+    use AssertFilenameExistsTrait;
     use AssertImageFormatTrait;
+    use AssertIntegerTrait;
     use AssertLanguageTrait;
+    use AssertOneOfTrait;
     use AssertPageTrait;
+    use AssertRangeTrait;
     use AssertReturnFormatTrait;
+    use AssertStringTrait;
     use AssertTemplateExtensionTrait;
     use AssertTemplateFormatTrait;
     use AssertTemplateNameTrait;
     use AssertTimestampTrait;
     use AssertZoomFactorTrait;
-    use FilenameExistsTrait;
-
-    /**
-     * Customized version of parent::reportInvalidArgument to throw
-     *
-     *     TxTextControl\ReportingCloud\Exception\InvalidArgumentException
-     *
-     * exception instead of parent's
-     *
-     *     InvalidArgumentException
-     *
-     * @param string $message
-     *
-     * @throws InvalidArgumentException
-     */
-    protected static function reportInvalidArgument($message): void
-    {
-        throw new InvalidArgumentException($message);
-    }
 }
 

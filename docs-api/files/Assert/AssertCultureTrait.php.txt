@@ -30,7 +30,14 @@ trait AssertCultureTrait
      * @param array  $values
      * @param string $message
      */
-    abstract public static function oneOf($value, array $values, $message = '');
+    abstract public static function assertOneOf($value, array $values, string $message = ''): void;
+
+    /**
+     * @param mixed $value
+     *
+     * @return string
+     */
+    abstract protected static function valueToString($value): string;
 
     /**
      * Check value is a valid culture
@@ -44,10 +51,10 @@ trait AssertCultureTrait
     public static function assertCulture(string $value, string $message = ''): void
     {
         $haystack = self::getCultures();
-        $format   = $message ?: '"%s" contains an unsupported culture';
-        $message  = sprintf($format, $value);
+        $format   = $message ?: '%1$s contains an unsupported culture';
+        $message  = sprintf($format, self::valueToString($value));
 
-        self::oneOf($value, $haystack, $message);
+        self::assertOneOf($value, $haystack, $message);
     }
 
     /**
@@ -57,7 +64,7 @@ trait AssertCultureTrait
      */
     public static function getCulturesFilename(): string
     {
-        return sprintf('%s/cultures.php', Path::data());
+        return sprintf('%1$s/cultures.php', Path::data());
     }
 
     /**

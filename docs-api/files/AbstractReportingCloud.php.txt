@@ -18,9 +18,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
+use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
+use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 /**
  * Abstract ReportingCloud
@@ -58,21 +60,14 @@ abstract class AbstractReportingCloud
      *
      * @const DEFAULT_BASE_URI
      */
-    protected const DEFAULT_BASE_URI = 'https://api.reporting.cloud';
+    public const DEFAULT_BASE_URI = 'https://api.reporting.cloud';
 
     /**
-     * Default version string of backend
+     * Default debug flag of REST client
      *
-     * @const DEFAULT_VERSION
+     * @const DEFAULT_DEBUG
      */
-    protected const DEFAULT_VERSION = 'v1';
-
-    /**
-     * Default timeout of backend in seconds
-     *
-     * @const DEFAULT_TIMEOUT
-     */
-    protected const DEFAULT_TIMEOUT = 120;
+    protected const DEFAULT_DEBUG = false;
 
     /**
      * Default test flag of backend
@@ -82,11 +77,18 @@ abstract class AbstractReportingCloud
     protected const DEFAULT_TEST = false;
 
     /**
-     * Default debug flag of REST client
+     * Default timeout of backend in seconds
      *
-     * @const DEFAULT_DEBUG
+     * @const DEFAULT_TIMEOUT
      */
-    protected const DEFAULT_DEBUG = false;
+    protected const DEFAULT_TIMEOUT = 120;
+
+    /**
+     * Default version string of backend
+     *
+     * @const DEFAULT_VERSION
+     */
+    protected const DEFAULT_VERSION = 'v1';
 
     // </editor-fold>
 
@@ -171,6 +173,11 @@ abstract class AbstractReportingCloud
      */
     public const FILE_FORMAT_PNG = 'PNG';
 
+    /**
+     * XLSX file format
+     */
+    public const FILE_FORMAT_XLSX = 'XLSX';
+
     // </editor-fold>
 
     // <editor-fold desc="Constants (file format collections)">
@@ -251,14 +258,6 @@ abstract class AbstractReportingCloud
     private $password;
 
     /**
-     * When true, API call does not count against quota
-     * "TEST MODE" watermark is added to document
-     *
-     * @var bool|null
-     */
-    private $test;
-
-    /**
      * Backend base URI
      *
      * @var string|null
@@ -266,11 +265,19 @@ abstract class AbstractReportingCloud
     private $baseUri;
 
     /**
-     * Backend version string
+     * Debug flag of REST client
      *
-     * @var string|null
+     * @var bool|null
      */
-    private $version;
+    private $debug;
+
+    /**
+     * When true, API call does not count against quota
+     * "TEST MODE" watermark is added to document
+     *
+     * @var bool|null
+     */
+    private $test;
 
     /**
      * Backend timeout in seconds
@@ -280,11 +287,11 @@ abstract class AbstractReportingCloud
     private $timeout;
 
     /**
-     * Debug flag of REST client
+     * Backend version string
      *
-     * @var bool|null
+     * @var string|null
      */
-    private $debug;
+    private $version;
 
     /**
      * REST client to backend
@@ -376,10 +383,6 @@ abstract class AbstractReportingCloud
      */
     public function getBaseUri(): ?string
     {
-        if (null === $this->baseUri) {
-            $this->setBaseUri(self::DEFAULT_BASE_URI);
-        }
-
         return $this->baseUri;
     }
 
@@ -398,44 +401,12 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Get the timeout (in seconds) of the backend web service
-     *
-     * @return int|null
-     */
-    public function getTimeout(): ?int
-    {
-        if (null === $this->timeout) {
-            $this->setTimeout(self::DEFAULT_TIMEOUT);
-        }
-
-        return $this->timeout;
-    }
-
-    /**
-     * Set the timeout (in seconds) of the backend web service
-     *
-     * @param int $timeout
-     *
-     * @return AbstractReportingCloud
-     */
-    public function setTimeout(int $timeout): self
-    {
-        $this->timeout = $timeout;
-
-        return $this;
-    }
-
-    /**
      * Return the debug flag
      *
      * @return bool|null
      */
     public function getDebug(): ?bool
     {
-        if (null === $this->debug) {
-            $this->setDebug(self::DEFAULT_DEBUG);
-        }
-
         return $this->debug;
     }
 
@@ -460,10 +431,6 @@ abstract class AbstractReportingCloud
      */
     public function getTest(): ?bool
     {
-        if (null === $this->test) {
-            $this->setTest(self::DEFAULT_TEST);
-        }
-
         return $this->test;
     }
 
@@ -482,16 +449,36 @@ abstract class AbstractReportingCloud
     }
 
     /**
+     * Get the timeout (in seconds) of the backend web service
+     *
+     * @return int|null
+     */
+    public function getTimeout(): ?int
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * Set the timeout (in seconds) of the backend web service
+     *
+     * @param int $timeout
+     *
+     * @return AbstractReportingCloud
+     */
+    public function setTimeout(int $timeout): self
+    {
+        $this->timeout = $timeout;
+
+        return $this;
+    }
+
+    /**
      * Get the version string of the backend web service
      *
      * @return string|null
      */
     public function getVersion(): ?string
     {
-        if (null === $this->version) {
-            $this->version = self::DEFAULT_VERSION;
-        }
-
         return $this->version;
     }
 
@@ -519,7 +506,7 @@ abstract class AbstractReportingCloud
         if (!$this->client instanceof Client) {
 
             $headers = [
-                'Authorization' => $this->getAuthorizationHeader()
+                'Authorization' => $this->getAuthorizationHeader(),
             ];
 
             $options = [
@@ -552,6 +539,38 @@ abstract class AbstractReportingCloud
     }
 
     /**
+     * Assign default values to option properties
+     *
+     * @return ReportingCloud
+     */
+    protected function setDefaultOptions(): self
+    {
+        if (null === $this->getBaseUri()) {
+            $baseUri = ConsoleUtils::baseUri() ?? self::DEFAULT_BASE_URI;
+            Assert::assertBaseUri($baseUri);
+            $this->setBaseUri($baseUri);
+        }
+
+        if (null === $this->getDebug()) {
+            $this->setDebug(self::DEFAULT_DEBUG);
+        }
+
+        if (null === $this->getTest()) {
+            $this->setTest(self::DEFAULT_TEST);
+        }
+
+        if (null === $this->getTimeout()) {
+            $this->setTimeout(self::DEFAULT_TIMEOUT);
+        }
+
+        if (null === $this->getVersion()) {
+            $this->setVersion(self::DEFAULT_VERSION);
+        }
+
+        return $this;
+    }
+
+    /**
      * Request the URI with options
      *
      * @param string $method  HTTP method
@@ -565,7 +584,7 @@ abstract class AbstractReportingCloud
     {
         $client = $this->getClient();
 
-        if (!$client instanceof Client) {
+        if (null === $client) {
             $message = 'No HTTP Client has been set.';
             throw new RuntimeException($message);
         }
