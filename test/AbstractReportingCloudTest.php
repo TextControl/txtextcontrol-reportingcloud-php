@@ -64,6 +64,11 @@ abstract class AbstractReportingCloudTest extends TestCase
         return sprintf('%s/test_document.docx', Path::resource());
     }
 
+    protected function getTestDocumentTrackedChangesFilename(): string
+    {
+        return sprintf('%s/tracked_changes.docx', Path::resource());
+    }
+
     protected function getTestTemplateFindAndReplaceFilename(): string
     {
         return sprintf('%s/test_find_and_replace.tx', Path::resource());

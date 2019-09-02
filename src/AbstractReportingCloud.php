@@ -180,6 +180,22 @@ abstract class AbstractReportingCloud
 
     // </editor-fold>
 
+    // <editor-fold desc="Constants (tracked changes)">
+
+    /**
+     * InsertedText tracked change
+     * @source: https://docs.reporting.cloud/docs/endpoint/processing/review/trackedchanges
+     */
+    public const TRACKED_CHANGE_INSERTED_TEXT = 4096;
+
+    /**
+     * DeletedText tracked change
+     * @source: https://docs.reporting.cloud/docs/endpoint/processing/review/trackedchanges
+     */
+    public const TRACKED_CHANGE_DELETED_TEXT = 8192 ;
+
+    // </editor-fold>
+
     // <editor-fold desc="Constants (file format collections)">
 
     /**
@@ -541,7 +557,7 @@ abstract class AbstractReportingCloud
     /**
      * Assign default values to option properties
      *
-     * @return ReportingCloud
+     * @return AbstractReportingCloud
      */
     protected function setDefaultOptions(): self
     {

@@ -149,6 +149,11 @@ trait PostTraitTest
     abstract protected function getTestDocumentFilename(): string;
 
     /**
+     * @return string
+     */
+    abstract protected function getTestDocumentTrackedChangesFilename(): string;
+
+    /**
      * @return array
      */
     abstract protected function getTestDocumentSettings(): array;
@@ -861,6 +866,55 @@ trait PostTraitTest
         $this->assertArrayHasKey(0, $response);
 
         $this->assertTrue(mb_strlen($response[0]) > 2048);
+    }
+
+    // </editor-fold>
+
+
+    // <editor-fold desc="getTrackedChanges">
+
+    public function testGetTrackedChanges(): void
+    {
+        $testDocumentFilename = $this->getTestDocumentTrackedChangesFilename();
+
+        $this->assertFileExists($testDocumentFilename);
+
+        $response = $this->reportingCloud->getTrackedChanges(
+            $testDocumentFilename
+        );
+
+        $this->assertArrayHasKey(0, $response);
+
+        $this->assertArrayHasKey('change_kind', $response[0]);
+        $this->assertArrayHasKey('change_time', $response[0]);
+        $this->assertArrayHasKey('default_highlight_color', $response[0]);
+        $this->assertArrayHasKey('highlight_color', $response[0]);
+        $this->assertArrayHasKey('highlight_mode', $response[0]);
+        $this->assertArrayHasKey('length', $response[0]);
+        $this->assertArrayHasKey('start', $response[0]);
+        $this->assertArrayHasKey('id', $response[0]);
+        $this->assertArrayHasKey('text', $response[0]);
+        $this->assertArrayHasKey('username', $response[0]);
+    }
+
+    // </editor-fold>
+
+    // <editor-fold desc="removeTrackedChange">
+
+    public function testRemoveTrackedChange(): void
+    {
+        $testDocumentFilename = $this->getTestDocumentTrackedChangesFilename();
+
+        $this->assertFileExists($testDocumentFilename);
+
+        $response = $this->reportingCloud->removeTrackedChange(
+            $testDocumentFilename,
+            1,
+            true
+        );
+
+        $this->assertArrayHasKey('document', $response);
+        $this->assertArrayHasKey('removed', $response);
     }
 
     // </editor-fold>

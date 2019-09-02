@@ -4,6 +4,10 @@
 
 ## dev-master
 
+## dev-tracked-changes-1.0
+
+* Added support for [Tracked Changes](https://www.textcontrol.com/blog/2019/08/09/).
+
 ## 2.4.0 - 2019-04-30
 
 * Added ability to set base URI of ReportingCloud service via environment variable or PHP constant.

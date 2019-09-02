@@ -21,6 +21,8 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\ModifiedDocument as ModifiedDocumentPropertyMap;
+use TxTextControl\ReportingCloud\PropertyMap\TrackedChanges as TrackedChangesPropertyMap;
 use TxTextControl\ReportingCloud\StatusCode\StatusCode;
 use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 
@@ -324,38 +326,6 @@ trait PostTrait
     }
 
     /**
-     * Execute a POST request via REST client
-     *
-     * @param string     $uri        URI
-     * @param array|null $query      Query
-     * @param mixed|null $json       JSON
-     * @param int|null   $statusCode Required HTTP status code for response
-     *
-     * @return mixed|null
-     */
-    private function post(
-        string $uri,
-        ?array $query = null,
-        $json = null,
-        ?int $statusCode = null
-    ) {
-        $ret = '';
-
-        $options = [
-            RequestOptions::QUERY => $query,
-            RequestOptions::JSON  => $json,
-        ];
-
-        $response = $this->request('POST', $this->uri($uri), $options);
-
-        if ($statusCode === $response->getStatusCode()) {
-            $ret = json_decode($response->getBody()->getContents(), true);
-        }
-
-        return $ret;
-    }
-
-    /**
      * Generate a thumbnail image per page of specified document filename.
      * Return an array of binary data with each record containing one thumbnail.
      *
@@ -397,6 +367,118 @@ trait PostTrait
 
         if (is_array($result)) {
             $ret = array_map('base64_decode', $result);
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Return the tracked changes in a document.
+     *
+     * @param string $documentFilename Document filename
+     *
+     * @throws InvalidArgumentException
+     * @return array
+     */
+    public function getTrackedChanges(
+        string $documentFilename
+    ): array {
+        $ret = [];
+
+        $propertyMap = new TrackedChangesPropertyMap();
+
+        Assert::assertDocumentExtension($documentFilename);
+        Assert::assertFilenameExists($documentFilename);
+
+        $data   = FileUtils::read($documentFilename, true);
+
+        $result = $this->post('/processing/review/trackedchanges', null, $data, StatusCode::OK);
+
+        if (is_array($result)) {
+            $ret = $this->buildPropertyMapArray($result, $propertyMap);
+            array_walk($ret, function (array &$record): void {
+                $key = 'change_time';
+                if (isset($record[$key])) {
+                    //@todo [20190902] return value of backend DateTime in Zulu timezone
+                    //Assert::assertDateTime($record[$key]);
+                    $record[$key] = Filter::filterDateTimeToTimestamp($record[$key]);
+                }
+            });
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Removes a specific tracked change and returns the resulting document.
+     *
+     * @param string $documentFilename Document filename
+     * @param int $id                  The ID of the tracked change that needs to be removed
+     * @param bool $accept             Specifies whether the tracked change should be accepted or not (reject)
+     *
+     * @throws InvalidArgumentException
+     * @return array
+     *
+     */
+    public function removeTrackedChange(
+        string $documentFilename,
+        int $id,
+        bool $accept
+    ): array {
+        $ret = [];
+
+        $propertyMap = new ModifiedDocumentPropertyMap();
+
+        Assert::assertDocumentExtension($documentFilename);
+        Assert::assertFilenameExists($documentFilename);
+
+        $query  = [
+            'id'     => $id,
+            'accept' => Filter::filterBooleanToString($accept),
+        ];
+
+        $data   = FileUtils::read($documentFilename, true);
+
+        $result = $this->post('/processing/review/removetrackedchange', $query, $data, StatusCode::OK);
+
+        if (is_array($result)) {
+            $ret = $this->buildPropertyMapArray($result, $propertyMap);
+            $key = 'document';
+            if (isset($ret[$key])) {
+                $ret[$key] = (string) base64_decode($ret[$key]);
+            }
+        }
+
+        return $ret;
+    }
+
+    /**
+     * Execute a POST request via REST client
+     *
+     * @param string     $uri        URI
+     * @param array|null $query      Query
+     * @param mixed|null $json       JSON
+     * @param int|null   $statusCode Required HTTP status code for response
+     *
+     * @return mixed|null
+     */
+    private function post(
+        string $uri,
+        ?array $query = null,
+        $json = null,
+        ?int $statusCode = null
+    ) {
+        $ret = '';
+
+        $options = [
+            RequestOptions::QUERY => $query,
+            RequestOptions::JSON  => $json,
+        ];
+
+        $response = $this->request('POST', $this->uri($uri), $options);
+
+        if ($statusCode === $response->getStatusCode()) {
+            $ret = json_decode($response->getBody()->getContents(), true);
         }
 
         return $ret;

@@ -157,11 +157,11 @@ END;
     /**
      * Return a value from a PHP constant or environmental variable
      *
-     * @param $key
+     * @param string $key
      *
      * @return string|null
      */
-    private static function getValueFromConstOrEnvVar($key): ?string
+    private static function getValueFromConstOrEnvVar(string $key): ?string
     {
         $ret = self::getValueFromConst($key);
 
@@ -181,11 +181,11 @@ END;
     /**
      * Return a value from a PHP constant
      *
-     * @param $key
+     * @param string $key
      *
      * @return string|null
      */
-    private static function getValueFromConst($key): ?string
+    private static function getValueFromConst(string $key): ?string
     {
         if (defined($key)) {
             $ret = (string) constant($key);
@@ -200,11 +200,11 @@ END;
     /**
      * Return a value from an environmental variable
      *
-     * @param $key
+     * @param string $key
      *
      * @return string|null
      */
-    private static function getValueFromEnvVar($key): ?string
+    private static function getValueFromEnvVar(string $key): ?string
     {
         if (getenv($key)) {
             $ret = (string) getenv($key);
