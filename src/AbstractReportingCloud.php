@@ -184,15 +184,32 @@ abstract class AbstractReportingCloud
 
     /**
      * InsertedText tracked change
-     * @source: https://docs.reporting.cloud/docs/endpoint/processing/review/trackedchanges
      */
     public const TRACKED_CHANGE_INSERTED_TEXT = 4096;
 
     /**
      * DeletedText tracked change
-     * @source: https://docs.reporting.cloud/docs/endpoint/processing/review/trackedchanges
      */
-    public const TRACKED_CHANGE_DELETED_TEXT = 8192 ;
+    public const TRACKED_CHANGE_DELETED_TEXT = 8192;
+
+    // </editor-fold>
+
+    // <editor-fold desc="Constants (highlight mode)">
+
+    /**
+     * Never highlight mode
+     */
+    public const HIGHLIGHT_MODE_NEVER     = 1;
+
+    /**
+     * Activated highlight mode
+     */
+    public const HIGHLIGHT_MODE_ACTIVATED = 2;
+
+    /**
+     * Always highlight mode
+     */
+    public const HIGHLIGHT_MODE_ALWAYS    = 3;
 
     // </editor-fold>
 
