@@ -38,7 +38,7 @@ foreach ($results as $result) {
             break;
     }
 
-    ConsoleUtils::writeLn('Text was "%s" ("%s").', $word, $result['change_kind']);
+    ConsoleUtils::writeLn('Change kind was "%s" ("%s").', $word, $result['change_kind']);
 
     switch ($result['highlight_mode']) {
         case ReportingCloud::HIGHLIGHT_MODE_NEVER:
