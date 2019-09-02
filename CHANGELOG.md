@@ -4,7 +4,7 @@
 
 ## dev-master
 
-## dev-tracked-changes-1.0
+## 2.5.0 - 2019-09-02
 
 * Added support for [Tracked Changes](https://www.textcontrol.com/blog/2019/08/09/).
 
