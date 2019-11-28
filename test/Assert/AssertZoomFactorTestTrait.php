@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -42,21 +42,19 @@ trait AssertZoomFactorTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Zoom factor (-1) must be in the range [1..400]
-     */
     public function testAssertZoomFactorInvalidTooSmall(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Zoom factor (-1) must be in the range [1..400]');
+
         Assert::assertZoomFactor(-1);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (600) - range: [1..400]
-     */
     public function testAssertZoomFactorInvalidWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Custom error message (600) - range: [1..400]');
+
         Assert::assertZoomFactor(600, 'Custom error message (%1$s) - range: [%2$s..%3$s]');
     }
 }

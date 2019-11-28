@@ -9,12 +9,13 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud;
 
 use TxTextControl\ReportingCloud\ReportingCloud;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 
 /**
  * Trait PutTraitTest
@@ -55,11 +56,10 @@ trait PutTraitTest
         $this->assertNotEmpty($apiKey);
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testCreateApiKeyTooManyApiKeys(): void
     {
+        $this->expectException(RuntimeException::class);
+
         $this->deleteAllApiKeys();
 
         // only 10 API keys are allowed

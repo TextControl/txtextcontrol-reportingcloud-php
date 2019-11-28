@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -43,39 +43,35 @@ trait AssertDateTimeTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "2016-06-02T15:49:57+00:00:00" has an invalid number of characters in it
-     */
     public function testAssertDateTimeInvalidLength(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"2016-06-02T15:49:57+00:00:00" has an invalid number of characters in it');
+
         Assert::assertDateTime('2016-06-02T15:49:57+00:00:00');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "xxxx-06-02T15:49:57+00:00" is syntactically invalid
-     */
     public function testAssertDateTimeInvalidSyntax(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"xxxx-06-02T15:49:57+00:00" is syntactically invalid');
+
         Assert::assertDateTime('xxxx-06-02T15:49:57+00:00');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "2016-06-02T15:49:57+02:00" has an invalid offset
-     */
     public function testAssertDateTimeInvalidOffset(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"2016-06-02T15:49:57+02:00" has an invalid offset');
+
         Assert::assertDateTime('2016-06-02T15:49:57+02:00');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message ("0000-00-00T00:00:00+xx:xx")
-     */
     public function testAssertDateTimeInvalidWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Custom error message ("0000-00-00T00:00:00+xx:xx")');
+
         Assert::assertDateTime('0000-00-00T00:00:00+xx:xx', 'Custom error message (%1$s)');
     }
 }

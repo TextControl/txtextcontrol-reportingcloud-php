@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -42,34 +42,31 @@ trait AssertArrayTraitTest
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected an array. Got: true
-     */
     public function testAssertArrayWithBoolean(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected an array. Got: true');
+
         Assert::assertArray(true);
 
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected an array. Got: 1
-     */
     public function testAssertArrayWithInteger(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected an array. Got: 1');
+
         Assert::assertArray(1);
 
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected an array. Got: "1"
-     */
     public function testAssertArrayWithString(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected an array. Got: "1"');
+
         Assert::assertArray("1");
 
         $this->assertTrue(true);

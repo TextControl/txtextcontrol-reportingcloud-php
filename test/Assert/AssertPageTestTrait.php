@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -44,21 +44,19 @@ trait AssertPageTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Page number (-1) must be in the range [1..9223372036854775807]
-     */
     public function testAssertPageInvalidTooSmall(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Page number (-1) must be in the range [1..9223372036854775807]');
+
         Assert::assertPage(-1);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (-50) - range: [1..9223372036854775807]
-     */
     public function testAssertPageInvalidWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Custom error message (-50) - range: [1..9223372036854775807]');
+
         Assert::assertPage(-50, 'Custom error message (%1$s) - range: [%2$s..%3$s]');
     }
 }

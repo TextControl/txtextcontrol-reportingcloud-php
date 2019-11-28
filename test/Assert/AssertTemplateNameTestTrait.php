@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -48,57 +48,51 @@ trait AssertTemplateNameTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "template.xxx" contains an unsupported file extension
-     */
     public function testAssertTemplateNameInvalidUnsupportedFileExtension(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"template.xxx" contains an unsupported file extension');
+
         Assert::assertTemplateName('template.xxx');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "/path/to/template.tx" contains path information ('/', '.', or '..')
-     */
     public function testAssertTemplateNameInvalidAbsolutePath(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"/path/to/template.tx" contains path information (\'/\', \'.\', or \'..\')');
+
         Assert::assertTemplateName('/path/to/template.tx');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "/../template.tx" contains path information ('/', '.', or '..')
-     */
     public function testAssertTemplateNameInvalidDirectoryTraversal1(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"/../template.tx" contains path information (\'/\', \'.\', or \'..\')');
+
         Assert::assertTemplateName('/../template.tx');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "../template.tx" contains path information ('/', '.', or '..')
-     */
     public function testAssertTemplateNameInvalidDirectoryTraversal2(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"../template.tx" contains path information (\'/\', \'.\', or \'..\')');
+
         Assert::assertTemplateName('../template.tx');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "./template.tx" contains path information ('/', '.', or '..')
-     */
     public function testAssertTemplateNameInvalidPath4(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"./template.tx" contains path information (\'/\', \'.\', or \'..\')');
+
         Assert::assertTemplateName('./template.tx');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message ("invalid.xxx")
-     */
     public function testAssertTemplateNameInvalidWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Custom error message ("invalid.xxx")');
+
         Assert::assertTemplateName('invalid.xxx', 'Custom error message (%1$s)');
     }
 }

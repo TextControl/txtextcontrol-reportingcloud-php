@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -42,31 +42,28 @@ trait AssertApiKeyTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Length of API key ("xxxxxxxxxx") must be in the range [20..45]
-     */
     public function testAssertApiKeyInvalidTooShort(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Length of API key ("xxxxxxxxxx") must be in the range [20..45]');
+
         Assert::assertApiKey('xxxxxxxxxx');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Length of API key ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx") must be in
-     * the range [20..45]
-     */
     public function testAssertApiKeyInvalidTooLong(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Length of API key ("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx") '
+                                      . 'must be in the range [20..45]');
+
         Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Invalid length: ("xxxxxxxxxx") must be in the range [20..45]
-     */
     public function testAssertApiKeyInvalidWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid length: ("xxxxxxxxxx") must be in the range [20..45]');
+
         Assert::assertApiKey('xxxxxxxxxx', 'Invalid length: (%1$s) must be in the range [%2$s..%3$s]');
     }
 }

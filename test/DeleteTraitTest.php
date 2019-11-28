@@ -9,12 +9,13 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud;
 
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
+use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 
 /**
@@ -129,20 +130,18 @@ trait DeleteTraitTest
         unlink($tempTemplateFilename);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testDeleteTemplateInvalidTemplateName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $templateName = $this->getTestTemplateFilename();
         $this->reportingCloud->deleteTemplate($templateName);
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testDeleteTemplateRuntimeException(): void
     {
+        $this->expectException(RuntimeException::class);
+
         $this->reportingCloud->deleteTemplate('invalid-template.tx');
     }
 

@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -44,21 +44,19 @@ trait AssertCultureTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "de-XX" contains an unsupported culture
-     */
     public function testAssertCultureInvalid(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"de-XX" contains an unsupported culture');
+
         Assert::assertCulture('de-XX');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message ("xx-XX")
-     */
     public function testAssertCultureInvalidWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Custom error message ("xx-XX")');
+
         Assert::assertCulture('xx-XX', 'Custom error message (%1$s)');
     }
 }

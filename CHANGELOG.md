@@ -4,6 +4,11 @@
 
 ## dev-master
 
+## dev-php-7.4
+
+* Added support for PHP 7.4.
+* Updated to PHPUnit 8.
+
 ## 2.5.0 - 2019-09-02
 
 * Added support for [Tracked Changes](https://www.textcontrol.com/blog/2019/08/09/).

@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -44,21 +44,19 @@ trait AssertDocumentDividerTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage 10 contains an unsupported document divider
-     */
     public function testAssertDocumentDividerInvalid(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('10 contains an unsupported document divider');
+
         Assert::assertDocumentDivider(10);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message (-10)
-     */
     public function testAssertDocumentDividerInvalidWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Custom error message (-10)');
+
         Assert::assertDocumentDivider(-10, 'Custom error message (%1$s)');
     }
 }

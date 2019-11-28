@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -58,21 +58,20 @@ trait AssertDocumentThumbnailExtensionTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "document.xxx" contains an unsupported document thumbnail format file extension
-     */
     public function testAssertDocumentThumbnailExtensionInvalid(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"document.xxx" contains an unsupported document '
+                                      . 'thumbnail format file extension');
+
         Assert::assertDocumentThumbnailExtension('document.xxx');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message ("document.xxx")
-     */
     public function testAssertDocumentThumbnailExtensionInvalidWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Custom error message ("document.xxx")');
+
         Assert::assertDocumentThumbnailExtension('document.xxx', 'Custom error message (%1$s)');
     }
 }

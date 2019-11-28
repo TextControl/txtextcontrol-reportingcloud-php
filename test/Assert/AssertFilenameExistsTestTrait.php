@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -45,30 +45,27 @@ trait AssertFilenameExistsTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "/path/to/invalid/file" does not exist or is not readable
-     */
     public function testAssertFilenameExistsInvalidDoesContainAbsolutePathAndFile(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"/path/to/invalid/file" does not exist or is not readable');
+
         Assert::assertFilenameExists('/path/to/invalid/file');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "/tmp" is not a regular file
-     */
     public function testAssertFilenameExistsInvalidIsNotARegularFile(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"/tmp" is not a regular file');
+
         Assert::assertFilenameExists('/tmp');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message ("/path/to/invalid/file")
-     */
     public function testAssertFilenameExistsInvalidWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Custom error message ("/path/to/invalid/file")');
+
         Assert::assertFilenameExists('/path/to/invalid/file', 'Custom error message (%1$s)');
     }
 }

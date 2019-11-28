@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud;
@@ -251,55 +251,50 @@ trait PostTraitTest
         $this->assertEquals("A Test File\r\n", $response);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testConvertDocumentInvalidDocumentFilenameUnsupportedExtension(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->convertDocument(
             '/invalid/path/document.xxx',
             ReportingCloud::FILE_FORMAT_PDF
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testConvertDocumentInvalidDocumentFilenameNoExtension(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->convertDocument(
             '/invalid/path/document',
             ReportingCloud::FILE_FORMAT_PDF
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testConvertDocumentInvalidDocumentFilenameNoFile(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->convertDocument(
             '/invalid/path/document/',
             ReportingCloud::FILE_FORMAT_PDF
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testConvertDocumentInvalidDocumentFilename(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->convertDocument(
             '/invalid/path/document.doc',
             ReportingCloud::FILE_FORMAT_PDF
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testConvertDocumentInvalidReturnFormat(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $documentFilename = $this->getTestTemplateFilename();
 
         $this->reportingCloud->convertDocument($documentFilename, 'XXX');
@@ -377,21 +372,19 @@ trait PostTraitTest
         $this->assertTrue($response);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFindAndReplaceDocumentInvalidReturnFormat(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplaceDocument($findAndReplaceData, 'X');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFindAndReplaceDocumentInvalidTemplateName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplaceDocument(
@@ -401,11 +394,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFindAndReplaceDocumentInvalidTemplateFilenameUnsupportedExtension(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplaceDocument(
@@ -416,11 +408,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFindAndReplaceDocumentInvalidTemplateFilenameNoExtension(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplaceDocument(
@@ -431,11 +422,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFindAndReplaceDocumentInvalidTemplateFilenameNoFile(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplaceDocument(
@@ -446,11 +436,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFindAndReplaceDocumentInvalidTemplateFilename(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
 
         $this->reportingCloud->findAndReplaceDocument(
@@ -461,11 +450,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFindAndReplaceDocumentInvalidMergeSettingsStringInsteadOfBoolean(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();
 
@@ -487,11 +475,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testFindAndReplaceDocumentInvalidMergeSettingsTimestampValues(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $findAndReplaceData = $this->getTestTemplateFindAndReplaceData();
         $mergeSettings      = $this->getTestMergeSettings();
 
@@ -601,21 +588,19 @@ trait PostTraitTest
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidReturnFormat(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $mergeData = $this->getTestTemplateMergeData();
 
         $this->reportingCloud->mergeDocument($mergeData, 'X');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidTemplateName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $mergeData = $this->getTestTemplateMergeData();
 
         $this->reportingCloud->mergeDocument(
@@ -625,11 +610,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidTemplateFilenameUnsupportedExtension(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $mergeData = $this->getTestTemplateMergeData();
 
         $this->reportingCloud->mergeDocument(
@@ -640,11 +624,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidTemplateFilenameNoExtension(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $mergeData = $this->getTestTemplateMergeData();
 
         $this->reportingCloud->mergeDocument(
@@ -655,11 +638,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidTemplateFilenameNoFile(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $mergeData = $this->getTestTemplateMergeData();
 
         $this->reportingCloud->mergeDocument(
@@ -670,11 +652,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidTemplateFilename(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $mergeData = $this->getTestTemplateMergeData();
 
         $this->reportingCloud->mergeDocument(
@@ -685,11 +666,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidMergeSettingsStringInsteadOfBoolean(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $mergeData     = $this->getTestTemplateMergeData();
         $mergeSettings = $this->getTestMergeSettings();
 
@@ -712,11 +692,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidCultureValue(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $mergeData     = $this->getTestTemplateMergeData();
         $mergeSettings = $this->getTestMergeSettings();
 
@@ -736,11 +715,10 @@ trait PostTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testMergeDocumentInvalidMergeSettingsTimestampValues(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $mergeData     = $this->getTestTemplateMergeData();
         $mergeSettings = $this->getTestMergeSettings();
 
@@ -786,35 +764,31 @@ trait PostTraitTest
         unlink($tempTemplateFilename);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testUploadTemplateInvalidTemplateFilenameUnsupportedExtension(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->uploadTemplate('/invalid/path/document.xxx');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testUploadTemplateInvalidTemplateFilenameNoExtension(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->uploadTemplate('/invalid/path/document');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testUploadTemplateInvalidTemplateFilenameNoFile(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->uploadTemplate('/invalid/path/document/');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testUploadTemplateInvalidTemplateFilename(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->uploadTemplate('/invalid/path/template.doc');
     }
 

@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -42,23 +42,23 @@ trait AssertBaseUriTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected base URI to end in "api.reporting.cloud". Got "https://api.example.com"
-     */
     public function testAssertBaseUriWithInvalidBaseUri(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected base URI to end in "api.reporting.cloud". '
+                                      . 'Got "https://api.example.com"');
+
         Assert::assertBaseUri('https://api.example.com');
 
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected base URI to end in "api.reporting.cloud". Got "https://api.reporting.cloud.de"
-     */
     public function testAssertBaseUriInvalidBaseUriKnownHost(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected base URI to end in "api.reporting.cloud". '
+                                      . 'Got "https://api.reporting.cloud.de"');
+
         Assert::assertBaseUri('https://api.reporting.cloud.de');
 
         $this->assertTrue(true);

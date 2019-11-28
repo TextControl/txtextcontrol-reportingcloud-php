@@ -9,13 +9,13 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Path;
 
-use TxTextControlTest\ReportingCloud\AbstractReportingCloudTest;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use TxTextControlTest\ReportingCloud\AbstractReportingCloudTest;
 
 /**
  * Class ConsoleUtilsTest
@@ -58,8 +58,15 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
     {
         $errorMessage = ConsoleUtils::errorMessage();
 
-        $this->assertContains('Error: ReportingCloud API key not defined.', $errorMessage);
-        $this->assertContains('For further assistance and customer service please refer to:', $errorMessage);
+        $this->assertStringContainsString(
+            'Error: ReportingCloud API key not defined.',
+            $errorMessage
+        );
+
+        $this->assertStringContainsString(
+            'For further assistance and customer service please refer to:',
+            $errorMessage
+        );
     }
 
     public function testDump(): void
@@ -68,19 +75,19 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
         ConsoleUtils::dump([1, 2, 3, 4, 5]);
         $actual = ob_get_clean();
 
-        $this->assertContains('array(5)', $actual);
+        $this->assertStringContainsString('array(5)', $actual);
 
-        $this->assertContains('[0]', $actual);
-        $this->assertContains('[1]', $actual);
-        $this->assertContains('[2]', $actual);
-        $this->assertContains('[3]', $actual);
-        $this->assertContains('[4]', $actual);
+        $this->assertStringContainsString('[0]', $actual);
+        $this->assertStringContainsString('[1]', $actual);
+        $this->assertStringContainsString('[2]', $actual);
+        $this->assertStringContainsString('[3]', $actual);
+        $this->assertStringContainsString('[4]', $actual);
 
-        $this->assertContains('int(1)', $actual);
-        $this->assertContains('int(2)', $actual);
-        $this->assertContains('int(3)', $actual);
-        $this->assertContains('int(4)', $actual);
-        $this->assertContains('int(5)', $actual);
+        $this->assertStringContainsString('int(1)', $actual);
+        $this->assertStringContainsString('int(2)', $actual);
+        $this->assertStringContainsString('int(3)', $actual);
+        $this->assertStringContainsString('int(4)', $actual);
+        $this->assertStringContainsString('int(5)', $actual);
     }
 
     public function testWriteLineWith0Args(): void

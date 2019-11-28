@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud;
@@ -179,11 +179,10 @@ trait GetTraitTest
         unlink($tempTemplateFilename);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testDownloadTemplateInvalidTemplateName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         // should be templateName and not templateFilename
         $templateFilename = $this->getTestTemplateFilename();
 
@@ -445,11 +444,10 @@ trait GetTraitTest
         unlink($tempTemplateFilename);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetTemplatePageCountInvalidTemplateName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->getTemplatePageCount('sample_invoice.xx');
     }
 
@@ -491,11 +489,10 @@ trait GetTraitTest
         unlink($tempTemplateFilename);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetTemplateThumbnailsInvalidTemplateName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->getTemplateThumbnails(
             'sample_invoice.xx',
             100,
@@ -505,11 +502,10 @@ trait GetTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetTemplateThumbnailsInvalidZoomFactor(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->getTemplateThumbnails(
             'sample_invoice.tx',
             -1,
@@ -519,11 +515,10 @@ trait GetTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetTemplateThumbnailsInvalidFromPage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->getTemplateThumbnails(
             'sample_invoice.tx',
             100,
@@ -533,11 +528,10 @@ trait GetTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetTemplateThumbnailsInvalidToPage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->getTemplateThumbnails(
             'sample_invoice.tx',
             100,
@@ -547,11 +541,10 @@ trait GetTraitTest
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetTemplateThumbnailsInvalidImageFormat(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->getTemplateThumbnails(
             'sample_invoice.tx',
             100,
@@ -621,11 +614,10 @@ trait GetTraitTest
         unlink($tempTemplateFilename);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testTemplateExistsInvalidTemplateName(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this->reportingCloud->templateExists('sample_invoice.xx');
     }
 

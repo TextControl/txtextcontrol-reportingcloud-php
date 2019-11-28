@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -43,33 +43,31 @@ trait AssertBooleanTraitTest
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected a boolean. Got: 1
-     */
     public function testAssertBooleanWithInteger(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected a boolean. Got: 1');
+
         Assert::assertBoolean(1);
 
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected a boolean. Got: "a"
-     */
     public function testAssertBooleanWithString(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected a boolean. Got: "a"');
+
         Assert::assertBoolean('a');
 
         $this->assertTrue(true);
     }
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Expected a boolean. Got: array
-     */
+
     public function testAssertBooleanWithArray(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Expected a boolean. Got: array');
+
         Assert::assertBoolean([1]);
 
         $this->assertTrue(true);

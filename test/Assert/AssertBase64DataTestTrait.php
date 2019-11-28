@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
  * @license   https://raw.githubusercontent.com/TextControl/txtextcontrol-reportingcloud-php/master/LICENSE.md
- * @copyright © 2019 Text Control GmbH
+ * @copyright © 2020 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Assert;
@@ -43,39 +43,35 @@ trait AssertBase64DataTestTrait
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "#*abc" must be base64 encoded
-     */
     public function testAssertBase64DataInvalidCharacters(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"#*abc" must be base64 encoded');
+
         Assert::assertBase64Data('#*abc');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "-1" must be base64 encoded
-     */
     public function testAssertBase64DataInvalidDigits(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"-1" must be base64 encoded');
+
         Assert::assertBase64Data('-1');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage "[]" must be base64 encoded
-     */
     public function testAssertBase64DataInvalidBrackets(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('"[]" must be base64 encoded');
+
         Assert::assertBase64Data('[]');
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Custom error message ("**********")
-     */
     public function testAssertBase64DataWithCustomMessage(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Custom error message ("**********")');
+
         Assert::assertBase64Data('**********', 'Custom error message (%1$s)');
     }
 }
