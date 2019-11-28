@@ -11,17 +11,6 @@ filter:
 
 build:
     nodes:
-        php71:
-            environment:
-                php: 7.1
-            tests:
-                override:
-                    - php-scrutinizer-run
-                    -
-                        command: composer test
-                        coverage:
-                            file: build/phpunit/clover.xml
-                            format: php-clover
         php72:
             environment:
                 php: 7.2
@@ -44,7 +33,6 @@ build:
                         coverage:
                             file: build/phpunit/clover.xml
                             format: php-clover
-
         php74:
             environment:
                 php: 7.4
