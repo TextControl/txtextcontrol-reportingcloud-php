@@ -28,7 +28,6 @@ trait GetTraitTest
 {
     /**
      * @var ReportingCloud
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $reportingCloud;
 
@@ -174,8 +173,6 @@ trait GetTraitTest
 
         $response       = $this->reportingCloud->downloadTemplate($tempTemplateName);
         $responseLength = mb_strlen($response);
-        $this->assertNotNull($response);
-        $this->assertNotFalse($response);
         $this->assertGreaterThanOrEqual(1024, $responseLength);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
@@ -240,9 +237,6 @@ trait GetTraitTest
 
     // <editor-fold desc="getAvailableDictionaries">
 
-    /**
-     * @psalm-suppress UnresolvableInclude
-     */
     public function testGetAvailableDictionaries(): void
     {
         $filename = Assert::getDictionariesFilename();

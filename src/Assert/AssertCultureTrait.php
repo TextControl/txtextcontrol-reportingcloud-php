@@ -71,7 +71,6 @@ trait AssertCultureTrait
      * Return cultures array
      *
      * @return array
-     * @psalm-suppress UnresolvableInclude
      */
     private static function getCultures(): array
     {

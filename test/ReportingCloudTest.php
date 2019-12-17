@@ -17,6 +17,7 @@ namespace TxTextControlTest\ReportingCloud;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
+use GuzzleHttp\Client;
 
 /**
  * Class ReportingCloudTest
@@ -112,7 +113,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
     public function testGetClientInstanceOf(): void
     {
-        $this->assertInstanceOf('GuzzleHttp\Client', $this->reportingCloud->getClient());
+        $this->assertInstanceOf(Client::class, $this->reportingCloud->getClient());
     }
 
     public function testGetClientWithUsernameAndPassword(): void
@@ -121,7 +122,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->setUsername('phpunit-username');
         $this->reportingCloud->setPassword('phpunit-password');
 
-        $this->assertInstanceOf('GuzzleHttp\Client', $this->reportingCloud->getClient());
+        $this->assertInstanceOf(Client::class, $this->reportingCloud->getClient());
     }
 
     public function testDefaultProperties(): void
@@ -199,7 +200,9 @@ class ReportingCloudTest extends AbstractReportingCloudTest
                 $expected = 'Expected base URI to end in "api.reporting.cloud". Got "https://www.example.com"';
                 $this->assertSame($expected, $e->getMessage());
             }
-            unset($reportingCloud);
+            if (isset($reportingCloud)) {
+                unset($reportingCloud);
+            }
         }
     }
 }

@@ -28,7 +28,6 @@ trait DeleteTraitTest
 {
     /**
      * @var ReportingCloud
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $reportingCloud;
 

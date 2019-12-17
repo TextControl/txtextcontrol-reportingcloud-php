@@ -27,7 +27,6 @@ class TimestampToDateTimeTest extends TestCase
 {
     /**
      * @var string
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $defaultTimezone;
 

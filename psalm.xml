@@ -3,16 +3,43 @@
     totallyTyped="false"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config file:///home/jon/libs/textcontrol/txtextcontrol-reportingcloud/vendor/vimeo/psalm/config.xsd"
->
+    xsi:schemaLocation="https://getpsalm.org/schema/config file:///home/jon/libs/textcontrol/txtextcontrol-reportingcloud/vendor/vimeo/psalm/config.xsd">
+
     <projectFiles>
-        <directory name="bin" />
-        <directory name="data" />
-        <directory name="demo" />
-        <directory name="src" />
-        <directory name="test" />
+        <directory name="bin"/>
+        <directory name="data"/>
+        <directory name="demo"/>
+        <directory name="src"/>
+        <directory name="test"/>
         <ignoreFiles>
-            <directory name="vendor" />
+            <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
+
+    <issueHandlers>
+        <ForbiddenCode>
+            <errorLevel type="suppress">
+                <file name="src/Stdlib/ConsoleUtils.php"/>
+            </errorLevel>
+        </ForbiddenCode>
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <directory name="test"/>
+            </errorLevel>
+        </InternalMethod>
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="test"/>
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+        <UnresolvableInclude>
+            <errorLevel type="suppress">
+                <file name="src/Assert/AssertLanguageTrait.php"/>
+                <file name="src/Assert/AssertCultureTrait.php"/>
+                <file name="test/GetTraitTest.php"/>
+                <file name="test/Stdlib/ArrayUtilsTest.php"/>
+            </errorLevel>
+        </UnresolvableInclude>
+    </issueHandlers>
+
 </psalm>

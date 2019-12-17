@@ -53,17 +53,12 @@ class ArrayUtilsTest extends AbstractReportingCloudTest
         return (string) $filename;
     }
 
-    /**
-     * @psalm-suppress UnresolvableInclude
-     */
     public function testVarExportToFile(): void
     {
         $filename = $this->getTestFilename();
         $array    = $this->getTestData();
 
-        $result = ArrayUtils::varExportToFile($filename, $array);
-
-        $this->assertIsInt($result);
+        ArrayUtils::varExportToFile($filename, $array);
 
         $this->assertEquals($array, include $filename);
 
@@ -75,9 +70,7 @@ class ArrayUtilsTest extends AbstractReportingCloudTest
         $filename = $this->getTestFilename();
         $array    = $this->getTestData();
 
-        $result = ArrayUtils::varExportToFile($filename, $array, 'My-Generator');
-
-        $this->assertIsInt($result);
+        ArrayUtils::varExportToFile($filename, $array, 'My-Generator');
 
         $buffer = (string) file_get_contents($filename);
 

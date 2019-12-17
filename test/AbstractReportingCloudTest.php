@@ -29,7 +29,6 @@ abstract class AbstractReportingCloudTest extends TestCase
 {
     /**
      * @var ReportingCloud
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $reportingCloud;
 

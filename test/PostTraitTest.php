@@ -27,7 +27,6 @@ trait PostTraitTest
 {
     /**
      * @var ReportingCloud
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $reportingCloud;
 
@@ -216,8 +215,6 @@ trait PostTraitTest
             ReportingCloud::FILE_FORMAT_PDF,
             $documentSettings
         );
-        $this->assertNotNull($response);
-        $this->assertNotFalse($response);
     }
 
     // </editor-fold>
@@ -230,15 +227,12 @@ trait PostTraitTest
 
         $this->assertFileExists($documentFilename);
 
-        $response       = $this->reportingCloud->convertDocument(
+        $response = $this->reportingCloud->convertDocument(
             $documentFilename,
             ReportingCloud::FILE_FORMAT_PDF
         );
-        $responseLength = mb_strlen($response);
 
-        $this->assertNotNull($response);
-        $this->assertNotFalse($response);
-        $this->assertGreaterThanOrEqual(1024, $responseLength);
+        $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
     }
 
     public function testConvertDocumentToTxt(): void
@@ -330,8 +324,7 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertNotNull($response);
-            $this->assertNotFalse($response);
+            $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
         }
     }
 
@@ -368,8 +361,7 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertNotNull($response);
-            $this->assertNotFalse($response);
+            $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
         }
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
@@ -542,8 +534,6 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertNotNull($response);
-            $this->assertNotFalse($response);
             $this->assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
@@ -580,15 +570,12 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertNotNull($response);
-            $this->assertNotFalse($response);
             $this->assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
                 $page = (string) $page;
                 $this->assertTrue(is_int($key));
-                $this->assertNotNull($page);
-                $this->assertNotFalse($page);
+                $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
             }
         }
     }

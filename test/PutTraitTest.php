@@ -27,7 +27,6 @@ trait PutTraitTest
 {
     /**
      * @var ReportingCloud
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $reportingCloud;
 

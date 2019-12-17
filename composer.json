@@ -35,8 +35,8 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "phan": "vendor/bin/phan --config-file=phan.php --color",
-        "phpcs": "vendor/bin/phpcs bin data demo src test --standard=phpcs.xml",
-        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon bin data demo src --level max",
+        "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
         "psalm": "vendor/bin/psalm --config=psalm.xml",
         "stan": [
             "@phpstan",

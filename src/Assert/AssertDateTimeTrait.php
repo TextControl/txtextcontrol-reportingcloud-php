@@ -98,7 +98,11 @@ trait AssertDateTimeTrait
             // continue;
         }
 
-        unset($dateTimeZone, $dateTime);
+        unset($dateTimeZone);
+
+        if (isset($dateTime)) {
+            unset($dateTime);
+        }
 
         return $ret;
     }

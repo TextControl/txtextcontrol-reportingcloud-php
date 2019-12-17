@@ -27,7 +27,6 @@ class TemplateInfoTest extends TestCase
 {
     /**
      * @var PropertyMap
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $propertyMap;
 

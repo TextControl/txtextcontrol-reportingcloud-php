@@ -102,7 +102,7 @@ For further assistance and customer service please refer to:
     https://www.reporting.cloud
 
 END;
-        $filename = (string) $_SERVER['argv'][0] ?? '';
+        $filename = $_SERVER['argv'][0] ?? '';
         $filename = realpath($filename);
 
         if (is_bool($filename)) {
@@ -128,7 +128,6 @@ END;
      *
      * @param mixed|null $array
      *
-     * @psalm-suppress ForbiddenCode
      */
     public static function dump($array): void
     {

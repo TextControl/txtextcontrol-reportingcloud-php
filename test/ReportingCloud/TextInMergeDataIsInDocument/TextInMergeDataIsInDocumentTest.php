@@ -29,13 +29,11 @@ class TextInMergeDataIsInDocumentTest extends TestCase
 {
     /**
      * @var ReportingCloud
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $reportingCloud;
 
     /**
      * @var PdfParser
-     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $pdfParser;
 

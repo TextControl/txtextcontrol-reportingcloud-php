@@ -1,2 +1,12 @@
 parameters:
+    paths:
+        - bin
+        - data
+        - demo
+        - src
+        - test
+    level: max
     checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - '#has parameter (.*) with no typehint specified#'

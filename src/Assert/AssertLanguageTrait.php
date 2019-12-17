@@ -71,7 +71,6 @@ trait AssertLanguageTrait
      * Return languages aka dictionaries array
      *
      * @return array
-     * @psalm-suppress UnresolvableInclude
      */
     private static function getDictionaries(): array
     {
