@@ -13,6 +13,7 @@
     <file>data</file>
     <file>demo</file>
     <file>src</file>
+    <file>test</file>
 
     <rule ref="PSR2"/>
 

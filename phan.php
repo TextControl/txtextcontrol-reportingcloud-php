@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 return [
 
+    'color_issue_messages_if_supported' => true,
+
     'directory_list' => [
         'bin',
         'data',

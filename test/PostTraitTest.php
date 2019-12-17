@@ -324,7 +324,7 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
+            $this->assertGreaterThanOrEqual(64, mb_strlen($response));
         }
     }
 
@@ -361,7 +361,7 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
+            $this->assertGreaterThanOrEqual(64, mb_strlen($response));
         }
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
@@ -575,7 +575,7 @@ trait PostTraitTest
             foreach ($response as $key => $page) {
                 $page = (string) $page;
                 $this->assertTrue(is_int($key));
-                $this->assertGreaterThanOrEqual(1024, mb_strlen($page));
+                $this->assertGreaterThanOrEqual(128, mb_strlen($page));
             }
         }
     }

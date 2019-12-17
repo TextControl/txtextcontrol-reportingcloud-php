@@ -93,7 +93,7 @@ class AssertTest extends TestCase
     {
         $stdClass = new class extends stdClass
         {
-            public function __toString()
+            public function __toString(): string
             {
                 return 'abc';
             }

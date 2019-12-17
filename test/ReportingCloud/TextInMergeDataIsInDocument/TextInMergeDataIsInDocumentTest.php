@@ -48,20 +48,12 @@ class TextInMergeDataIsInDocumentTest extends TestCase
 
     public function tearDown(): void
     {
-        // $this->reportingCloud = null;
-        // $this->pdfParser = null;
+        $this->reportingCloud = null;
+        $this->pdfParser      = null;
     }
 
     public function testTextInMergeDataIsInDocument(): void
     {
-        $phpVersion = (string) phpversion();
-        if (version_compare($phpVersion, '7.2.0', '>=')) {
-            $format  = '%s does not work as expected in PHP 7.2 and newer';
-            $message = sprintf($format, PdfParser::class);
-            $this->markTestSkipped($message);
-            return;
-        }
-
         $fileTypes = [
             ReportingCloud::FILE_FORMAT_TX,
             ReportingCloud::FILE_FORMAT_DOCX,
