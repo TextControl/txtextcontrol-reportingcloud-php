@@ -4,9 +4,9 @@ declare(strict_types=1);
 return [
 
     'directory_list' => [
-        //'bin',
-        //'data',
-        //'demo',
+        'bin',
+        'data',
+        'demo',
         'src',
         //'test',
         'vendor',
@@ -28,6 +28,7 @@ return [
 
     'suppress_issue_types' => [
         'PhanUnreferencedUseNormal',
+        'PhanRedundantArrayValuesCall',
     ],
 
     'target_php_version' => null,

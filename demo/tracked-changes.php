@@ -36,6 +36,9 @@ foreach ($results as $result) {
         case ReportingCloud::TRACKED_CHANGE_INSERTED_TEXT:
             $word = 'inserted';
             break;
+        default:
+            $word = '';
+            break;
     }
 
     ConsoleUtils::writeLn('Change kind was "%s" ("%s").', $word, $result['change_kind']);
@@ -49,6 +52,9 @@ foreach ($results as $result) {
             break;
         case ReportingCloud::HIGHLIGHT_MODE_ALWAYS:
             $word = 'always';
+            break;
+        default:
+            $word = '';
             break;
     }
 
