@@ -4,11 +4,11 @@ declare(strict_types=1);
 return [
 
     'directory_list' => [
-        'bin',
-        'data',
-        'demo',
+        //'bin',
+        //'data',
+        //'demo',
         'src',
-        'test',
+        //'test',
         'vendor',
     ],
 

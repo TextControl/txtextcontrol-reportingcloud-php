@@ -48,7 +48,7 @@ trait FilterTimestampToDateTimeTrait
             $dateTime     = new DateTime();
             $dateTime->setTimestamp($timestamp);
             $dateTime->setTimezone($dateTimeZone);
-            if ($dateTime instanceof $dateTime) {
+            if ($dateTime instanceof DateTime) {
                 $ret = $dateTime->format($dateFormat);
             }
         } catch (Exception $e) {
