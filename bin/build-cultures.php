@@ -40,14 +40,15 @@ $dom->loadHtmlFile($url);
 
 $xpath = new DOMXPath($dom);
 $nodes = $xpath->query("//tr/td[1]");
-foreach ($nodes as $node) {
-    $values[] = trim($node->nodeValue);
-}
 
-if (0 === count($values)) {
-    $format  = 'Cannot download the available cultures from "%s".';
+if (!$nodes instanceof DOMNodeList || 0 === $nodes->count()) {
+    $format  = 'Cannot download the available cultures from "%s"';
     $message = sprintf($format, $url);
     throw new RuntimeException($message);
+}
+
+foreach ($nodes as $node) {
+    $values[] = trim($node->nodeValue);
 }
 
 natcasesort($values);
