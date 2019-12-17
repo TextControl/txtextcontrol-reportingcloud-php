@@ -38,8 +38,6 @@ trait FilterTimestampToDateTimeTrait
      */
     public static function filterTimestampToDateTime(int $timestamp): string
     {
-        $ret = '';
-
         $timeZone   = ReportingCloud::DEFAULT_TIME_ZONE;
         $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
 
