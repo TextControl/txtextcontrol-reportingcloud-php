@@ -134,6 +134,11 @@ trait PostTraitTest
     abstract public static function assertArrayHasKey($key, $array, string $message = ''): void;
 
     /**
+     * @param string $exception
+     */
+    abstract public function expectException(string $exception): void;
+
+    /**
      * @return string
      */
     abstract protected function getTestTemplateFilename(): string;

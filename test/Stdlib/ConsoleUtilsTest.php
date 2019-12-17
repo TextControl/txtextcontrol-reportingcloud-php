@@ -73,7 +73,7 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
     {
         ob_start();
         ConsoleUtils::dump([1, 2, 3, 4, 5]);
-        $actual = ob_get_clean();
+        $actual = (string) ob_get_clean();
 
         $this->assertStringContainsString('array(5)', $actual);
 

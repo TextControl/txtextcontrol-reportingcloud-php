@@ -8,7 +8,7 @@ return [
         'data',
         'demo',
         'src',
-        //'test',
+        'test',
         'vendor',
     ],
 
@@ -32,5 +32,4 @@ return [
     ],
 
     'target_php_version' => null,
-
 ];

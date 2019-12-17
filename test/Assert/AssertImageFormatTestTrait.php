@@ -34,6 +34,16 @@ trait AssertImageFormatTestTrait
      */
     abstract public static function assertTrue($condition, string $message = ''): void;
 
+    /**
+     * @param string $exception
+     */
+    abstract public function expectException(string $exception): void;
+
+    /**
+     * @param string $message
+     */
+    abstract public function expectExceptionMessage(string $message): void;
+
     // </editor-fold>
 
     public function testAssertImageFormat(): void

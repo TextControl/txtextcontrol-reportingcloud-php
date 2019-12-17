@@ -40,6 +40,11 @@ trait PutTraitTest
     abstract public static function assertNotEmpty($actual, string $message = ''): void;
 
     /**
+     * @param string $exception
+     */
+    abstract public function expectException(string $exception): void;
+
+    /**
      *
      */
     abstract protected function deleteAllApiKeys(): void;
