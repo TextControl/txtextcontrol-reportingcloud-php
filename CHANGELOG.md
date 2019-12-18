@@ -4,8 +4,6 @@
 
 ## dev-master
 
-## dev-php-7.4
-
 * Added support for PHP 7.4.
 * Improved code quality, using static analysis.
 * Updated to PHPUnit 8.
