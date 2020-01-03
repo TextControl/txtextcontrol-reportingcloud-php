@@ -1,22 +1,12 @@
 {
     "name": "textcontrol/txtextcontrol-reportingcloud",
-    "description": "PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.",
-    "license": "BSD-3-Clause",
     "type": "library",
+    "description": "PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.",
     "keywords": [
         "reporting cloud",
         "reportingcloud"
     ],
-    "autoload": {
-        "psr-4": {
-            "TxTextControl\\ReportingCloud\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "TxTextControlTest\\ReportingCloud\\": "test/"
-        }
-    },
+    "license": "BSD-3-Clause",
     "require": {
         "php": "^7.1",
         "guzzlehttp/guzzle": "^6.5"
@@ -32,23 +22,33 @@
         "symfony/var-dumper": "^4.0 || ^5.0",
         "vimeo/psalm": "^3.7"
     },
+    "autoload": {
+        "psr-4": {
+            "TxTextControl\\ReportingCloud\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TxTextControlTest\\ReportingCloud\\": "test/"
+        }
+    },
     "scripts": {
-        "test": "vendor/bin/phpunit",
-        "phpstan": "vendor/bin/phpstan analyse --configuration=phpstan.neon",
-        "phan": "vendor/bin/phan --config-file=phan.php",
-        "psalm": "vendor/bin/psalm --config=psalm.xml",
-        "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
-        "stan": [
-            "@phpstan",
-            "@psalm",
-            "@phan"
-        ],
         "git-pre-commit": [
             "@phpcs"
         ],
         "git-pre-push": [
             "@stan",
             "@test"
-        ]
+        ],
+        "phan": "vendor/bin/phan --config-file=phan.php",
+        "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
+        "phpstan": "vendor/bin/phpstan analyse --configuration=phpstan.neon",
+        "psalm": "vendor/bin/psalm --config=psalm.xml",
+        "stan": [
+            "@phpstan",
+            "@psalm",
+            "@phan"
+        ],
+        "test": "vendor/bin/phpunit"
     }
 }
