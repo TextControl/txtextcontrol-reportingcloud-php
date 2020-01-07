@@ -22,9 +22,9 @@ Additionally, when using the PHP ReportingCloud Wrapper 1.x in an application no
 
 For these two reasons, the PHP ReportingCloud Wrapper 2.0 no longer depends upon ZF. The required validation functionality is provided by [Assert](https://github.com/webmozart/assert), which has no further dependencies and, in comparison to ZF, is extremely lightweight.
 
-### Added Support for Zend Framework
+### Added Support for Laminas (formerly [Zend Framework 3](https://github.com/TextControl/txtextcontrol-reportingcloud-php-laminas-module/blob/master/doc/zend-framework.md))
 
-Since the PHP ReportingCloud Wrapper is popular in the Zend Framework community, we do not want to alienate this group of developers. Therefore, if you are maintaining or planning a ZF3 based application, take a look at the official [ReportingCloud Zend Framework 3 Module](https://github.com/TextControl/txtextcontrol-reportingcloud-php-zf-module). This ZF3 module tightly integrates ReportingCloud into the ZF3 [View](https://github.com/zendframework/zend-view) (as a View Helper) and [Mvc](https://github.com/zendframework/zend-mvc) (as a Controller Plugin) components. Furthermore, the ReportingCloud service can be accessed during dependency injection in the [ServiceManager](https://github.com/zendframework/zend-servicemanager).
+Since the PHP ReportingCloud Wrapper is popular in the Laminas community, we do not want to alienate this group of developers. Therefore, if you are maintaining or planning a Laminas based application, take a look at the official [ReportingCloud Laminas Module](https://github.com/TextControl/txtextcontrol-reportingcloud-php-laminas-module). This Laminas module tightly integrates ReportingCloud into the Laminas [View](https://github.com/laminas/laminas-view) (as a View Helper) and [Mvc](https://github.com/laminas/laminas-mvc) (as a Controller Plugin) components. Furthermore, the ReportingCloud service can be accessed during dependency injection in the [ServiceManager](https://github.com/laminas/laminas-servicemanager).
 
 ### Increased Minimum PHP Version
 

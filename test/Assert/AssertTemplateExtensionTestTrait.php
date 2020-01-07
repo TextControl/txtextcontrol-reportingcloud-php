@@ -7,8 +7,8 @@ declare(strict_types=1);
  * PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.
  *
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
- * @link      https://github.com/TextControl/txtextcontrol-reportingcloud-php for the canonical source repository
- * @license   https://github.com/TextControl/txtextcontrol-reportingcloud-php/blob/master/LICENSE.md
+ * @link      https://git.io/Jejj2 for the canonical source repository
+ * @license   https://git.io/Jejjr
  * @copyright © 2020 Text Control GmbH
  */
 
