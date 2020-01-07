@@ -2,6 +2,10 @@
 
 # CHANGELOG
 
+## 2.6.1 - 2020-01-07
+
+* Improved documentation for [Laminas](https://getlaminas.org/) migration. 
+
 ## 2.6.0 - 2019-12-18
 
 * Added support for PHP 7.4.
