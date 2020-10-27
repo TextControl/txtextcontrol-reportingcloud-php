@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @copyright © 2020 Text Control GmbH
  */
 
-namespace TxTextControlTest\ReportingCloud\TextInMergeDataIsInDocument;
+namespace TxTextControlTest\ReportingCloud\ReportingCloud\TextInMergeDataIsInDocument;
 
 use PHPUnit\Framework\TestCase;
 use Smalot\PdfParser\Parser as PdfParser;

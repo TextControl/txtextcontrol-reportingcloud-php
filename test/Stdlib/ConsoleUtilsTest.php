@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @copyright © 2020 Text Control GmbH
  */
 
-namespace TxTextControlTest\ReportingCloud\Path;
+namespace TxTextControlTest\ReportingCloud\Stdlib;
 
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 use TxTextControlTest\ReportingCloud\AbstractReportingCloudTest;
