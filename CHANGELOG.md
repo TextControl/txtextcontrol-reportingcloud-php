@@ -2,6 +2,11 @@
 
 # CHANGELOG
 
+## 2.6.2 - 2020-01-07
+
+* Improved [Composer 2.0](https://blog.packagist.com/composer-2-0-is-now-available/) compatibility.
+* Fixed PSR-4 autoloading issue in tests.
+
 ## 2.6.1 - 2020-01-07
 
 * Improved documentation for [Laminas](https://getlaminas.org/) migration. 
