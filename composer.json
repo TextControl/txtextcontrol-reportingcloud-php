@@ -8,12 +8,12 @@
     ],
     "license": "BSD-3-Clause",
     "require": {
-        "php": "^7.1",
+        "php": "^7.2 || ^8.0",
         "guzzlehttp/guzzle": "^6.5"
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.9",
-        "phan/phan": "^2.4",
+        "fzaninotto/faker": "dev-master as 2.0",
+        "phan/phan": "^4.0",
         "phpstan/phpstan": "^0.12",
         "phpunit/phpunit": "^7.0 || ^8.0",
         "riimu/kit-phpencoder": "^2.4",
