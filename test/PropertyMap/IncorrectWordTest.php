@@ -37,7 +37,7 @@ class IncorrectWordTest extends TestCase
 
     public function tearDown(): void
     {
-        // $this->propertyMap = null;
+        unset($this->propertyMap);
     }
 
     public function testValid(): void

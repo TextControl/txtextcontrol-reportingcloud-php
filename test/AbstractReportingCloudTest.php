@@ -32,6 +32,8 @@ abstract class AbstractReportingCloudTest extends TestCase
      */
     protected $reportingCloud;
 
+    // <editor-fold desc="Scaffolding">
+
     public function setUp(): void
     {
         $apiKey = ConsoleUtils::apiKey();
@@ -39,14 +41,18 @@ abstract class AbstractReportingCloudTest extends TestCase
         self::assertNotEmpty($apiKey);
 
         $this->reportingCloud = new ReportingCloud([
-           'api_key' => $apiKey,
-        ]);
+                                                       'api_key' => $apiKey,
+                                                   ]);
     }
 
     public function tearDown(): void
     {
         // $this->reportingCloud = null;
     }
+
+    // </editor-fold>
+
+    // <editor-fold desc="Helpers">
 
     private function getTempPath(): string
     {
@@ -219,4 +225,6 @@ abstract class AbstractReportingCloudTest extends TestCase
         self::assertEquals(ConsoleUtils::apiKey(), $apiKeys[0]['key']);
         self::assertTrue($apiKeys[0]['active']);
     }
+
+    // </editor-fold>
 }
