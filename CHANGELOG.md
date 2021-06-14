@@ -2,6 +2,10 @@
 
 # CHANGELOG
 
+## dev-guzzle-7
+
+* Added support for Guzzle 7.0.
+
 ## 2.6.2 - 2020-10-28
 
 * Improved [Composer 2.0](https://blog.packagist.com/composer-2-0-is-now-available/) compatibility.

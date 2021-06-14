@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://git.io/Jejj2 for the canonical source repository
  * @license   https://git.io/Jejjr
- * @copyright © 2020 Text Control GmbH
+ * @copyright © 2021 Text Control GmbH
  */
 
 namespace TxTextControl\ReportingCloud\Stdlib;
@@ -32,10 +32,12 @@ class FileUtils extends AbstractStdlib
      */
     public static function read(string $filename, bool $base64Encode = false): string
     {
-        $binaryData = (string) file_get_contents($filename);
+        $binaryData = file_get_contents($filename);
+        assert(is_string($binaryData));
 
         if ($base64Encode) {
-            $binaryData = (string) base64_encode($binaryData);
+            $binaryData = base64_encode($binaryData);
+            assert(is_string($binaryData));
         }
 
         return $binaryData;
@@ -54,17 +56,12 @@ class FileUtils extends AbstractStdlib
     public static function write(string $filename, string $binaryData, bool $base64Encoded = false): bool
     {
         if ($base64Encoded) {
-            $binaryData = (string) base64_decode($binaryData);
+            $binaryData = base64_decode($binaryData, true);
+            assert(is_string($binaryData));
         }
 
         $result = file_put_contents($filename, $binaryData);
 
-        if (is_int($result) && $result > 0) {
-            $ret = true;
-        } else {
-            $ret = false;
-        }
-
-        return $ret;
+        return is_int($result) && $result > 0;
     }
 }

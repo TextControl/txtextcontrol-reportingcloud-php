@@ -9,12 +9,14 @@
     "license": "BSD-3-Clause",
     "require": {
         "php": "^7.1",
-        "guzzlehttp/guzzle": "^6.5"
+        "guzzlehttp/guzzle": "^6.5 || ^7.0"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9",
         "phan/phan": "^2.4",
+        "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-strict-rules": "^0.12.9",
         "phpunit/phpunit": "^7.0 || ^8.0",
         "riimu/kit-phpencoder": "^2.4",
         "smalot/pdfparser": "^0.14",
@@ -37,17 +39,16 @@
             "@phpcs"
         ],
         "git-pre-push": [
-            "@stan",
+            "@qa",
             "@test"
         ],
-        "phan": "vendor/bin/phan --config-file=phan.php",
-        "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
+        "phpcbf": "php vendor/bin/phpcbf",
+        "phpcs": "php vendor/bin/phpcs",
         "phpstan": "vendor/bin/phpstan analyse --configuration=phpstan.neon",
-        "psalm": "vendor/bin/psalm --config=psalm.xml",
-        "stan": [
-            "@phpstan",
-            "@psalm",
-            "@phan"
+        "qa": [
+            "@phpcbf",
+            "@phpcs",
+            "@phpstan"
         ],
         "test": "vendor/bin/phpunit"
     }

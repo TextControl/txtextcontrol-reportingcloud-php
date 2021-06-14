@@ -1,12 +1,19 @@
 parameters:
+    level: max
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    parallel:
+        jobSize: 64
+        maximumNumberOfProcesses: 4
+        minimumNumberOfJobsPerProcess: 4
+        processTimeout: 240.0
+    scanFiles:
+        -  %currentWorkingDirectory%/vendor/autoload.php
     paths:
         - bin
         - data
         - demo
         - src
-        - test
-    level: max
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
-    ignoreErrors:
-        - '#has parameter (.*) with no typehint specified#'
+#        - test
+    fileExtensions:
+        - php
