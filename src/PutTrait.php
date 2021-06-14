@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
-use TxTextControl\ReportingCloud\StatusCode\StatusCode;
+use Ctw\Http\HttpStatus;
 
 /**
  * Trait PutTrait
@@ -74,7 +74,7 @@ trait PutTrait
      */
     public function createApiKey(): string
     {
-        return $this->put('/account/apikey', null, null, StatusCode::CREATED);
+        return $this->put('/account/apikey', null, null, HttpStatus::STATUS_CREATED);
     }
 
     /**

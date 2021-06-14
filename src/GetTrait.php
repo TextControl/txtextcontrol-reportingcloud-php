@@ -26,7 +26,7 @@ use TxTextControl\ReportingCloud\PropertyMap\ApiKey as ApiKeyPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as IncorrectWordMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
-use TxTextControl\ReportingCloud\StatusCode\StatusCode;
+use Ctw\Http\HttpStatus;
 
 /**
  * Trait GetTrait
@@ -84,7 +84,7 @@ trait GetTrait
 
         $propertyMap = new ApiKeyPropertyMap();
 
-        $result = $this->get('/account/apikeys', null, null, StatusCode::OK);
+        $result = $this->get('/account/apikeys', null, null, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             foreach ($result as $record) {
@@ -125,7 +125,7 @@ trait GetTrait
             'language' => $language,
         ];
 
-        $result = $this->get('/proofing/check', $query, null, StatusCode::OK);
+        $result = $this->get('/proofing/check', $query, null, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -143,7 +143,7 @@ trait GetTrait
     {
         $ret = [];
 
-        $result = $this->get('/proofing/availabledictionaries', null, null, StatusCode::OK);
+        $result = $this->get('/proofing/availabledictionaries', null, null, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = array_map('trim', $result);
@@ -176,7 +176,7 @@ trait GetTrait
             'max'      => $max,
         ];
 
-        $result = $this->get('/proofing/suggestions', $query, null, StatusCode::OK);
+        $result = $this->get('/proofing/suggestions', $query, null, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = array_map('trim', $result);
@@ -205,7 +205,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        $result = $this->get('/templates/info', $query, null, StatusCode::OK);
+        $result = $this->get('/templates/info', $query, null, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -250,7 +250,7 @@ trait GetTrait
             'imageFormat'  => $imageFormat,
         ];
 
-        $result = $this->get('/templates/thumbnails', $query, null, StatusCode::OK);
+        $result = $this->get('/templates/thumbnails', $query, null, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = array_map('base64_decode', $result);
@@ -266,7 +266,7 @@ trait GetTrait
      */
     public function getTemplateCount(): int
     {
-        return (int) $this->get('/templates/count', null, null, StatusCode::OK);
+        return (int) $this->get('/templates/count', null, null, HttpStatus::STATUS_OK);
     }
 
     /**
@@ -280,7 +280,7 @@ trait GetTrait
 
         $propertyMap = new TemplateListPropertyMap();
 
-        $result = $this->get('/templates/list', null, null, StatusCode::OK);
+        $result = $this->get('/templates/list', null, null, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -312,7 +312,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        return (int) $this->get('/templates/pagecount', $query, null, StatusCode::OK);
+        return (int) $this->get('/templates/pagecount', $query, null, HttpStatus::STATUS_OK);
     }
 
     /**
@@ -331,7 +331,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        return (bool) $this->get('/templates/exists', $query, null, StatusCode::OK);
+        return (bool) $this->get('/templates/exists', $query, null, HttpStatus::STATUS_OK);
     }
 
     /**
@@ -343,7 +343,7 @@ trait GetTrait
     {
         $ret = [];
 
-        $result = $this->get('/fonts/list', null, null, StatusCode::OK);
+        $result = $this->get('/fonts/list', null, null, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = array_map('trim', $result);
@@ -364,7 +364,7 @@ trait GetTrait
 
         $propertyMap = new AccountSettingsPropertyMap();
 
-        $result = $this->get('/account/settings', null, null, StatusCode::OK);
+        $result = $this->get('/account/settings', null, null, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -394,7 +394,7 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        $result = (string) $this->get('/templates/download', $query, null, StatusCode::OK);
+        $result = (string) $this->get('/templates/download', $query, null, HttpStatus::STATUS_OK);
 
         if (strlen($result) > 0) {
             $decoded = base64_decode($result, true);

@@ -25,9 +25,9 @@ interface PropertyMapInterface
     /**
      * Return the property map
      *
-     * @return array|null
+     * @return array
      */
-    public function getMap(): ?array;
+    public function getMap(): array;
 
     /**
      * Set the property map

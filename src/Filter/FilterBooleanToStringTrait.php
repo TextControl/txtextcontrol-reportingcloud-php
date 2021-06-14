@@ -36,6 +36,6 @@ trait FilterBooleanToStringTrait
      */
     public static function filterBooleanToString(bool $param): string
     {
-        return ($param) ? 'true' : 'false';
+        return $param ? 'true' : 'false';
     }
 }

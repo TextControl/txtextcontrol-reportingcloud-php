@@ -26,18 +26,18 @@ abstract class AbstractPropertyMap implements PropertyMapInterface
      * Assoc array of properties
      * camelCase properties => Lower case underscore array keys
      *
-     * @var array|null
+     * @var array
      */
     protected $map;
 
     /**
      * Return the property map
      *
-     * @return array|null
+     * @return array
      */
-    public function getMap(): ?array
+    public function getMap(): array
     {
-        return $this->map;
+        return $this->map ?? [];
     }
 
     /**

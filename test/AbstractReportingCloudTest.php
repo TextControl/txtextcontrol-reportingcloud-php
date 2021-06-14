@@ -40,9 +40,11 @@ abstract class AbstractReportingCloudTest extends TestCase
 
         self::assertNotEmpty($apiKey);
 
-        $this->reportingCloud = new ReportingCloud([
-                                                       'api_key' => $apiKey,
-                                                   ]);
+        $options = [
+            'api_key' => $apiKey,
+        ];
+
+        $this->reportingCloud = new ReportingCloud($options);
     }
 
     public function tearDown(): void

@@ -23,7 +23,7 @@ use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\ModifiedDocument as ModifiedDocumentPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TrackedChanges as TrackedChangesPropertyMap;
-use TxTextControl\ReportingCloud\StatusCode\StatusCode;
+use Ctw\Http\HttpStatus;
 use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 
 /**
@@ -125,7 +125,7 @@ trait PostTrait
             'templateName' => $templateName,
         ];
 
-        $result = $this->post('/templates/upload', $query, $data, StatusCode::CREATED);
+        $result = $this->post('/templates/upload', $query, $data, HttpStatus::STATUS_CREATED);
 
         return (null === $result) ? true : false;
     }
@@ -171,7 +171,7 @@ trait PostTrait
 
         $data   = FileUtils::read($documentFilename, true);
 
-        $result = (string) $this->post('/document/convert', $query, $data, StatusCode::OK);
+        $result = (string) $this->post('/document/convert', $query, $data, HttpStatus::STATUS_OK);
 
         $ret    = (string) base64_decode($result, true);
 
@@ -231,7 +231,7 @@ trait PostTrait
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $result = $this->post('/document/merge', $query, $json, StatusCode::OK);
+        $result = $this->post('/document/merge', $query, $json, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = array_map('base64_decode', $result);
@@ -268,7 +268,7 @@ trait PostTrait
             $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
         }
 
-        $result = (string) $this->post('/document/append', $query, $json, StatusCode::OK);
+        $result = (string) $this->post('/document/append', $query, $json, HttpStatus::STATUS_OK);
 
         $ret    = (string) base64_decode($result, true);
 
@@ -318,7 +318,7 @@ trait PostTrait
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $result = (string) $this->post('/document/findandreplace', $query, $json, StatusCode::OK);
+        $result = (string) $this->post('/document/findandreplace', $query, $json, HttpStatus::STATUS_OK);
 
         $ret    = (string) base64_decode($result, true);
 
@@ -363,7 +363,7 @@ trait PostTrait
 
         $data   = FileUtils::read($documentFilename, true);
 
-        $result = $this->post('/document/thumbnails', $query, $data, StatusCode::OK);
+        $result = $this->post('/document/thumbnails', $query, $data, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = array_map('base64_decode', $result);
@@ -392,7 +392,7 @@ trait PostTrait
 
         $data   = FileUtils::read($documentFilename, true);
 
-        $result = $this->post('/processing/review/trackedchanges', null, $data, StatusCode::OK);
+        $result = $this->post('/processing/review/trackedchanges', null, $data, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -439,7 +439,7 @@ trait PostTrait
 
         $data   = FileUtils::read($documentFilename, true);
 
-        $result = $this->post('/processing/review/removetrackedchange', $query, $data, StatusCode::OK);
+        $result = $this->post('/processing/review/removetrackedchange', $query, $data, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);

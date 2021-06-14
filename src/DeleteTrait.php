@@ -19,7 +19,7 @@ use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
-use TxTextControl\ReportingCloud\StatusCode\StatusCode;
+use Ctw\Http\HttpStatus;
 
 /**
  * Trait DeleteTrait
@@ -72,7 +72,7 @@ trait DeleteTrait
             'key' => $key,
         ];
 
-        return $this->delete('/account/apikey', $query, null, StatusCode::OK);
+        return $this->delete('/account/apikey', $query, null, HttpStatus::STATUS_OK);
     }
 
     /**
@@ -91,7 +91,7 @@ trait DeleteTrait
             'templateName' => $templateName,
         ];
 
-        return $this->delete('/templates/delete', $query, null, StatusCode::NO_CONTENT);
+        return $this->delete('/templates/delete', $query, null, HttpStatus::STATUS_NO_CONTENT);
     }
 
     /**
