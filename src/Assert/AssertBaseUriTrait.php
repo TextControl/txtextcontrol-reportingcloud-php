@@ -43,7 +43,7 @@ trait AssertBaseUriTrait
     {
         $baseUri = ReportingCloud::DEFAULT_BASE_URI;
 
-        $host1 = (string) parse_url($baseUri, PHP_URL_HOST);
+        $host1 = parse_url($baseUri, PHP_URL_HOST);
         $host2 = (string) parse_url($value, PHP_URL_HOST);
 
         if (!StringUtils::endsWith($host2, $host1)) {

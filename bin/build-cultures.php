@@ -36,7 +36,7 @@ $values   = [];
 libxml_use_internal_errors(true);
 
 $dom = new DOMDocument();
-$dom->loadHtmlFile($url);
+$dom->loadHTMLFile($url);
 
 $xpath = new DOMXPath($dom);
 $nodes = $xpath->query("//tr/td[1]");

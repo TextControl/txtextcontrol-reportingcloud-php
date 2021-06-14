@@ -142,8 +142,6 @@ END;
      */
     public static function writeLn(string $format = '', ...$args): void
     {
-        $args = (array) $args;
-
         if (count($args) > 0) {
             echo vsprintf($format, $args);
         } else {
@@ -196,6 +194,7 @@ END;
 
         return null;
     }
+
     /**
      * Return a value from an environmental variable
      *

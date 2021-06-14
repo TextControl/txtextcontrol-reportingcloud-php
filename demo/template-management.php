@@ -48,7 +48,7 @@ ConsoleUtils::writeLn('"%s" contains %d page%s.', $templateName, $pageCount, $pa
 
 $binaryData = $reportingCloud->downloadTemplate($templateName);
 
-if ($binaryData) {
+if (strlen($binaryData) > 0) {
     ConsoleUtils::writeLn('"%s" was downloaded.', $templateName);
     // Write the document's binary data to disk
     FileUtils::write($destinationFilename, $binaryData);

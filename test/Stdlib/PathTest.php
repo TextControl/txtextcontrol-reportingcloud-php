@@ -29,7 +29,7 @@ class PathTest extends AbstractReportingCloudTest
     {
         $expected = dirname(__FILE__, 3);
         $actual   = Path::root();
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testOthers(): void
@@ -45,8 +45,9 @@ class PathTest extends AbstractReportingCloudTest
 
         foreach ($paths as $path) {
             $expected = sprintf('%s/%s', Path::root(), $path);
+            // @phpstan-ignore-next-line
             $actual   = Path::$path();
-            $this->assertEquals($expected, $actual);
+            self::assertEquals($expected, $actual);
         }
     }
 }

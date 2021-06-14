@@ -629,7 +629,7 @@ abstract class AbstractReportingCloud
             }
             $response = $client->request($method, $uri, $options);
         } catch (TransferException $e) {
-            $message = (string) $e->getMessage();
+            $message = $e->getMessage();
             $code    = (int) $e->getCode();
             throw new RuntimeException($message, $code);
         }

@@ -94,14 +94,10 @@ trait AssertDateTimeTrait
         try {
             $dateTime = new DateTime('now', $dateTimeZone);
             $ret      = strlen($dateTime->format($dateFormat));
+            unset($dateTime);
+            unset($dateTimeZone);
         } catch (Exception $e) {
             // continue;
-        }
-
-        unset($dateTimeZone);
-
-        if (isset($dateTime)) {
-            unset($dateTime);
         }
 
         return $ret;

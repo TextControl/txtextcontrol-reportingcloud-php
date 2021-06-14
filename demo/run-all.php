@@ -29,10 +29,10 @@ $getDemos = function (): ArrayObject {
     ];
 
     foreach ($iterator as $fileInfo) {
-        if (!in_array($fileInfo->getExtension(), $extensions)) {
+        if (!in_array($fileInfo->getExtension(), $extensions, true)) {
             continue;
         }
-        if (in_array($fileInfo->getFilename(), $skipFiles)) {
+        if (in_array($fileInfo->getFilename(), $skipFiles, true)) {
             continue;
         }
         $index = $fileInfo->getFilename();

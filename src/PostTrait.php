@@ -173,7 +173,7 @@ trait PostTrait
 
         $result = (string) $this->post('/document/convert', $query, $data, StatusCode::OK);
 
-        $ret    = (string) base64_decode($result);
+        $ret    = (string) base64_decode($result, true);
 
         return $ret;
     }
@@ -270,7 +270,7 @@ trait PostTrait
 
         $result = (string) $this->post('/document/append', $query, $json, StatusCode::OK);
 
-        $ret    = (string) base64_decode($result);
+        $ret    = (string) base64_decode($result, true);
 
         return $ret;
     }
@@ -320,7 +320,7 @@ trait PostTrait
 
         $result = (string) $this->post('/document/findandreplace', $query, $json, StatusCode::OK);
 
-        $ret    = (string) base64_decode($result);
+        $ret    = (string) base64_decode($result, true);
 
         return $ret;
     }
@@ -445,7 +445,7 @@ trait PostTrait
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
             $key = 'document';
             if (isset($ret[$key])) {
-                $ret[$key] = (string) base64_decode($ret[$key]);
+                $ret[$key] = base64_decode($ret[$key], true);
             }
         }
 
