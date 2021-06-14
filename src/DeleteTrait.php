@@ -100,7 +100,7 @@ trait DeleteTrait
      * @param string     $uri        URI
      * @param array|null $query      Query
      * @param mixed|null $json       JSON
-     * @param int|null   $statusCode Required HTTP status code for response
+     * @param int        $statusCode Required HTTP status code for response
      *
      * @return bool
      */
@@ -108,7 +108,7 @@ trait DeleteTrait
         string $uri,
         ?array $query = null,
         $json = null,
-        ?int $statusCode = null
+        int $statusCode = 0
     ): bool {
         $ret = false;
 

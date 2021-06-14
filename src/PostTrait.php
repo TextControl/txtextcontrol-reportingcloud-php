@@ -458,7 +458,7 @@ trait PostTrait
      * @param string     $uri        URI
      * @param array|null $query      Query
      * @param mixed|null $json       JSON
-     * @param int|null   $statusCode Required HTTP status code for response
+     * @param int        $statusCode Required HTTP status code for response
      *
      * @return mixed|null
      */
@@ -466,7 +466,7 @@ trait PostTrait
         string $uri,
         ?array $query = null,
         $json = null,
-        ?int $statusCode = null
+        int $statusCode = 0
     ) {
         $ret = '';
 
