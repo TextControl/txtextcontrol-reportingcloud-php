@@ -49,7 +49,7 @@ trait AssertZoomFactorTestTrait
     {
         Assert::assertZoomFactor(250);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertZoomFactorInvalidTooSmall(): void

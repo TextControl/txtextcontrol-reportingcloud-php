@@ -47,6 +47,6 @@ class ApiKeyTest extends TestCase
             'active' => 'active',
         ];
 
-        $this->assertSame($expected, $this->propertyMap->getMap());
+        self::assertSame($expected, $this->propertyMap->getMap());
     }
 }

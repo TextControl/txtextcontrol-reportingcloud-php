@@ -97,10 +97,10 @@ trait DeleteTraitTest
         $this->deleteAllApiKeys();
 
         $apiKey = $this->reportingCloud->createApiKey();
-        $this->assertNotEmpty($apiKey);
+        self::assertNotEmpty($apiKey);
 
         $response = $this->reportingCloud->deleteApiKey($apiKey);
-        $this->assertTrue($response);
+        self::assertTrue($response);
     }
 
     // </editor-fold>
@@ -113,23 +113,23 @@ trait DeleteTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $templateNames = [];
         $templateList  = $this->reportingCloud->getTemplateList();
         foreach ($templateList as $record) {
             $templateNames[] = $record['template_name'];
         }
-        $this->assertContains($tempTemplateName, $templateNames);
+        self::assertContains($tempTemplateName, $templateNames);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
     }

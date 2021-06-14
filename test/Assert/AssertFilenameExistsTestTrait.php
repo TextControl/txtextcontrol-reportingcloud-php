@@ -52,7 +52,7 @@ trait AssertFilenameExistsTestTrait
         Assert::assertFilenameExists($filename);
         unlink($filename);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertFilenameExistsInvalidDoesContainAbsolutePathAndFile(): void

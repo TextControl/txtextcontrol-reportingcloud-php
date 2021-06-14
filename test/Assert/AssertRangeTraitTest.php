@@ -51,7 +51,7 @@ trait AssertRangeTraitTest
         Assert::assertRange(1, 1, 10);
         Assert::assertRange(10, 1, 10);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertRangeWithInvalidValue(): void

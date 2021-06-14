@@ -51,7 +51,7 @@ trait AssertLanguageTestTrait
         Assert::assertLanguage('pt_BR.dic');
         Assert::assertLanguage('nb_NO.dic');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertLanguageInvalid(): void

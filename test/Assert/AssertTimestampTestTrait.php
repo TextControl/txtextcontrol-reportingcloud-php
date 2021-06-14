@@ -53,7 +53,7 @@ trait AssertTimestampTestTrait
         Assert::assertTimestamp(10000000);
         Assert::assertTimestamp(PHP_INT_MAX);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertTimestampInvalidTooSmall(): void

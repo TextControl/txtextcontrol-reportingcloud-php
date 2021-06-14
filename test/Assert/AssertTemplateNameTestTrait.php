@@ -55,7 +55,7 @@ trait AssertTemplateNameTestTrait
         Assert::assertTemplateName('template.DOC');
         Assert::assertTemplateName('TEMPLATE.DOC');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertTemplateNameInvalidUnsupportedFileExtension(): void

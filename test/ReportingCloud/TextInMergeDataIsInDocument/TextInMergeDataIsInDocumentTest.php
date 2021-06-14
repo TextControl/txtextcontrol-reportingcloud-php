@@ -48,8 +48,8 @@ class TextInMergeDataIsInDocumentTest extends TestCase
 
     public function tearDown(): void
     {
-        $this->reportingCloud = null;
-        $this->pdfParser      = null;
+        unset($this->reportingCloud);
+        unset($this->pdfParser);
     }
 
     public function testTextInMergeDataIsInDocument(): void
@@ -82,12 +82,12 @@ class TextInMergeDataIsInDocumentTest extends TestCase
                 $templateFilename
             );
 
-            $this->assertArrayHasKey(0, $arrayOfBinaryData);
+            self::assertArrayHasKey(0, $arrayOfBinaryData);
 
             file_put_contents($destinationFilename, $arrayOfBinaryData[0]);
 
-            $this->assertTrue(is_file($destinationFilename));
-            $this->assertTrue(filesize($destinationFilename) > 0);
+            self::assertTrue(is_file($destinationFilename));
+            self::assertTrue(filesize($destinationFilename) > 0);
 
             $pdf = $this->pdfParser->parseFile($destinationFilename);
 
@@ -109,12 +109,12 @@ class TextInMergeDataIsInDocumentTest extends TestCase
             ];
 
             foreach ($expected as $value) {
-                $this->assertStringContainsString($value, $pdf->getText());
+                self::assertStringContainsString($value, $pdf->getText());
             }
 
             unlink($destinationFilename);
 
-            $this->assertFalse(is_file($destinationFilename));
+            self::assertFalse(is_file($destinationFilename));
         }
     }
 }

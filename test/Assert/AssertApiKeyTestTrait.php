@@ -49,7 +49,7 @@ trait AssertApiKeyTestTrait
     {
         Assert::assertApiKey('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertApiKeyInvalidTooShort(): void

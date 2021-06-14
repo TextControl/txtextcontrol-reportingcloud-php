@@ -51,7 +51,7 @@ trait AssertDocumentDividerTestTrait
         Assert::assertDocumentDivider(2);
         Assert::assertDocumentDivider(3);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertDocumentDividerInvalid(): void

@@ -47,6 +47,6 @@ class ModifiedDocumentTest extends TestCase
             'removed'  => 'removed',
         ];
 
-        $this->assertSame($expected, $this->propertyMap->getMap());
+        self::assertSame($expected, $this->propertyMap->getMap());
     }
 }

@@ -51,7 +51,7 @@ trait AssertPageTestTrait
         Assert::assertPage(2);
         Assert::assertPage(PHP_INT_MAX);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertPageInvalidTooSmall(): void

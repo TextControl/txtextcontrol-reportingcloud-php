@@ -53,6 +53,6 @@ class AccountSettingsTest extends TestCase
             'maxProofingTransactions' => 'max_proofing_transactions',
         ];
 
-        $this->assertSame($expected, $this->propertyMap->getMap());
+        self::assertSame($expected, $this->propertyMap->getMap());
     }
 }

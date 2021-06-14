@@ -50,6 +50,6 @@ class IncorrectWordTest extends TestCase
             'language'    => 'language',
         ];
 
-        $this->assertSame($expected, $this->propertyMap->getMap());
+        self::assertSame($expected, $this->propertyMap->getMap());
     }
 }

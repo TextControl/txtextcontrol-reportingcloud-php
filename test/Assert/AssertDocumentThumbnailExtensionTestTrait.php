@@ -65,7 +65,7 @@ trait AssertDocumentThumbnailExtensionTestTrait
         Assert::assertDocumentThumbnailExtension('c:\path\to\document.doc');
         Assert::assertDocumentThumbnailExtension('c:\PATH\TO\DOCUMENT.DOC');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertDocumentThumbnailExtensionInvalid(): void

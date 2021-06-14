@@ -62,7 +62,7 @@ trait AssertDocumentExtensionTestTrait
         Assert::assertDocumentExtension('c:\path\to\document.doc');
         Assert::assertDocumentExtension('c:\PATH\TO\DOCUMENT.DOC');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertDocumentExtensionInvalid(): void

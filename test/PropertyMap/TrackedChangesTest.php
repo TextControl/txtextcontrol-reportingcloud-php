@@ -55,6 +55,6 @@ class TrackedChangesTest extends TestCase
             'userName'              => 'username',
         ];
 
-        $this->assertSame($expected, $this->propertyMap->getMap());
+        self::assertSame($expected, $this->propertyMap->getMap());
     }
 }

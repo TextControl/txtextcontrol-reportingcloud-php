@@ -56,6 +56,6 @@ class TemplateInfoTest extends TestCase
             'userDocumentProperties' => 'user_document_properties',
         ];
 
-        $this->assertSame($expected, $this->propertyMap->getMap());
+        self::assertSame($expected, $this->propertyMap->getMap());
     }
 }

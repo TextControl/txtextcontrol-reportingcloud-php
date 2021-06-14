@@ -42,8 +42,8 @@ trait AssertBase64DataTrait
      */
     public static function assertBase64Data(string $value, string $message = ''): void
     {
-        $binary = base64_decode($value, true);
-        if (is_bool($binary) || 0 === strlen($binary)) {
+        $binaryData = base64_decode($value, true);
+        if (is_bool($binaryData) || 0 === strlen($binaryData)) {
             $format  = 0 === strlen($message) ? '%1$s must be base64 encoded' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);

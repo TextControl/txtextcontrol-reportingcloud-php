@@ -49,10 +49,10 @@ class TimestampToDateTimeTest extends TestCase
      */
     public function testValid(string $timeZone, string $dateTimeString, int $timestamp): void
     {
-        $identifiers = (array) timezone_identifiers_list();
-        if (in_array($timeZone, $identifiers)) {
+        $identifiers = timezone_identifiers_list();
+        if (in_array($timeZone, $identifiers, true)) {
             date_default_timezone_set($timeZone);
-            $this->assertSame($dateTimeString, Filter::filterTimestampToDateTime($timestamp));
+            self::assertSame($dateTimeString, Filter::filterTimestampToDateTime($timestamp));
         }
     }
 }

@@ -95,7 +95,7 @@ trait AssertReturnFormatTestTrait
         Assert::assertReturnFormat($fileFormat);
         Assert::assertReturnFormat($fileFormatLc);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertReturnFormatInvalid(): void

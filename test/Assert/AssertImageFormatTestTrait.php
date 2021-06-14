@@ -54,7 +54,7 @@ trait AssertImageFormatTestTrait
         Assert::assertImageFormat($fileFormat);
         Assert::assertImageFormat($fileFormatLc);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertImageFormatInvalid(): void

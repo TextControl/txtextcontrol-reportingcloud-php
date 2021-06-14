@@ -51,7 +51,7 @@ trait AssertCultureTestTrait
         Assert::assertCulture('fr-FR');
         Assert::assertCulture('en-US');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertCultureInvalid(): void

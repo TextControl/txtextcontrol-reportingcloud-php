@@ -50,7 +50,7 @@ trait AssertDateTimeTestTrait
         Assert::assertDateTime('2016-06-02T15:49:57+00:00');
         Assert::assertDateTime('1980-06-02T15:49:57+00:00');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertDateTimeInvalidLength(): void

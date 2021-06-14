@@ -50,7 +50,7 @@ trait AssertBooleanTraitTest
         Assert::assertBoolean(true);
         Assert::assertBoolean(false);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertBooleanWithInteger(): void
@@ -60,7 +60,7 @@ trait AssertBooleanTraitTest
 
         Assert::assertBoolean(1);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertBooleanWithString(): void
@@ -70,7 +70,7 @@ trait AssertBooleanTraitTest
 
         Assert::assertBoolean('a');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertBooleanWithArray(): void
@@ -80,6 +80,6 @@ trait AssertBooleanTraitTest
 
         Assert::assertBoolean([1]);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 }

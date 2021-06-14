@@ -33,11 +33,11 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
 
         putenv("${key}=");
 
-        $this->assertFalse(ConsoleUtils::checkCredentials());
+        self::assertFalse(ConsoleUtils::checkCredentials());
 
         putenv("${key}={$oldValue}");
 
-        $this->assertTrue(ConsoleUtils::checkCredentials());
+        self::assertTrue(ConsoleUtils::checkCredentials());
     }
 
     public function testApiKeyFromEnv(): void
@@ -49,7 +49,7 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
 
         putenv("${key}={$value}");
 
-        $this->assertEquals(ConsoleUtils::apiKey(), $value);
+        self::assertEquals(ConsoleUtils::apiKey(), $value);
 
         putenv("${key}={$oldValue}");
     }
@@ -58,12 +58,12 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
     {
         $errorMessage = ConsoleUtils::errorMessage();
 
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             'Error: ReportingCloud API key not defined.',
             $errorMessage
         );
 
-        $this->assertStringContainsString(
+        self::assertStringContainsString(
             'For further assistance and customer service please refer to:',
             $errorMessage
         );
@@ -75,19 +75,19 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
         ConsoleUtils::dump([1, 2, 3, 4, 5]);
         $actual = (string) ob_get_clean();
 
-        $this->assertStringContainsString('array(5)', $actual);
+        self::assertStringContainsString('array(5)', $actual);
 
-        $this->assertStringContainsString('[0]', $actual);
-        $this->assertStringContainsString('[1]', $actual);
-        $this->assertStringContainsString('[2]', $actual);
-        $this->assertStringContainsString('[3]', $actual);
-        $this->assertStringContainsString('[4]', $actual);
+        self::assertStringContainsString('[0]', $actual);
+        self::assertStringContainsString('[1]', $actual);
+        self::assertStringContainsString('[2]', $actual);
+        self::assertStringContainsString('[3]', $actual);
+        self::assertStringContainsString('[4]', $actual);
 
-        $this->assertStringContainsString('int(1)', $actual);
-        $this->assertStringContainsString('int(2)', $actual);
-        $this->assertStringContainsString('int(3)', $actual);
-        $this->assertStringContainsString('int(4)', $actual);
-        $this->assertStringContainsString('int(5)', $actual);
+        self::assertStringContainsString('int(1)', $actual);
+        self::assertStringContainsString('int(2)', $actual);
+        self::assertStringContainsString('int(3)', $actual);
+        self::assertStringContainsString('int(4)', $actual);
+        self::assertStringContainsString('int(5)', $actual);
     }
 
     public function testWriteLineWith0Args(): void
@@ -98,7 +98,7 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
         ConsoleUtils::writeLn('10 hello "world".');
         $actual = ob_get_clean();
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testWriteLineWith1Arg(): void
@@ -109,7 +109,7 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
         ConsoleUtils::writeLn('%d x hello.', 10);
         $actual = ob_get_clean();
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testWriteLineWith2Args(): void
@@ -120,6 +120,6 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
         ConsoleUtils::writeLn('%d x hello "%s".', 10, 'world');
         $actual = ob_get_clean();
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

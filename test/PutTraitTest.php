@@ -57,7 +57,7 @@ trait PutTraitTest
         $this->deleteAllApiKeys();
 
         $apiKey = $this->reportingCloud->createApiKey();
-        $this->assertNotEmpty($apiKey);
+        self::assertNotEmpty($apiKey);
     }
 
     public function testCreateApiKeyTooManyApiKeys(): void
@@ -68,7 +68,7 @@ trait PutTraitTest
 
         // only 10 API keys are allowed
         for ($i = 1; $i <= 11; $i++) {
-            $this->assertNotEmpty($this->reportingCloud->createApiKey());
+            self::assertNotEmpty($this->reportingCloud->createApiKey());
         }
     }
     // </editor-fold>

@@ -54,7 +54,7 @@ trait AssertTemplateFormatTestTrait
         Assert::assertTemplateFormat($fileFormat);
         Assert::assertTemplateFormat($fileFormatLc);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertTemplateFormatInvalid(): void

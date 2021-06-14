@@ -55,28 +55,28 @@ class AssertTest extends TestCase
     {
         $expected = 'null';
         $actual   = Assert::publicValueToString(null);
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValueToStringTrue(): void
     {
         $expected = 'true';
         $actual   = Assert::publicValueToString(true);
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValueToStringFalse(): void
     {
         $expected = 'false';
         $actual   = Assert::publicValueToString(false);
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValueToStringArray(): void
     {
         $expected = 'array';
         $actual   = Assert::publicValueToString([1, 2, 3]);
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValueToStringObject(): void
@@ -86,7 +86,7 @@ class AssertTest extends TestCase
         $expected = get_class($stdClass);
         $actual   = Assert::publicValueToString($stdClass);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValueToStringObjectWithToString(): void
@@ -102,7 +102,7 @@ class AssertTest extends TestCase
         $expected = sprintf('%1$s: %2$s', get_class($stdClass), Assert::publicValueToString($stdClass->__toString()));
         $actual   = Assert::publicValueToString($stdClass);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValueToStringResource(): void
@@ -112,13 +112,13 @@ class AssertTest extends TestCase
         $expected = 'resource';
         $actual   = Assert::publicValueToString($handle);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     public function testValueToStringString(): void
     {
         $expected = '"abc"';
         $actual   = Assert::publicValueToString('abc');
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 }

@@ -48,6 +48,6 @@ class TemplateListTest extends TestCase
             'size'         => 'size',
         ];
 
-        $this->assertSame($expected, $this->propertyMap->getMap());
+        self::assertSame($expected, $this->propertyMap->getMap());
     }
 }

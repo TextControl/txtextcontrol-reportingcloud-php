@@ -49,7 +49,7 @@ trait AssertBaseUriTestTrait
     {
         Assert::assertBaseUri('https://phpunit-api.reporting.cloud');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertBaseUriWithInvalidBaseUri(): void
@@ -60,7 +60,7 @@ trait AssertBaseUriTestTrait
 
         Assert::assertBaseUri('https://api.example.com');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertBaseUriInvalidBaseUriKnownHost(): void
@@ -71,6 +71,6 @@ trait AssertBaseUriTestTrait
 
         Assert::assertBaseUri('https://api.reporting.cloud.de');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 }

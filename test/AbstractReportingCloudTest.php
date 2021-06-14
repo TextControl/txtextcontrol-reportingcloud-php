@@ -36,7 +36,7 @@ abstract class AbstractReportingCloudTest extends TestCase
     {
         $apiKey = ConsoleUtils::apiKey();
 
-        $this->assertNotEmpty($apiKey);
+        self::assertNotEmpty($apiKey);
 
         $this->reportingCloud = new ReportingCloud([
            'api_key' => $apiKey,
@@ -209,22 +209,22 @@ abstract class AbstractReportingCloudTest extends TestCase
                 if ($apiKey['key'] == ConsoleUtils::apiKey()) {
                     continue;
                 }
-                $this->assertArrayHasKey('key', $apiKey);
-                $this->assertArrayHasKey('active', $apiKey);
+                self::assertArrayHasKey('key', $apiKey);
+                self::assertArrayHasKey('active', $apiKey);
                 $this->reportingCloud->deleteApiKey($apiKey['key']);
             }
         }
 
         $apiKeys = $this->reportingCloud->getApiKeys();
 
-        $this->assertTrue(1 === count($apiKeys));
+        self::assertTrue(1 === count($apiKeys));
 
-        $this->assertArrayHasKey(0, $apiKeys);
+        self::assertArrayHasKey(0, $apiKeys);
 
-        $this->assertArrayHasKey('key', $apiKeys[0]);
-        $this->assertArrayHasKey('active', $apiKeys[0]);
+        self::assertArrayHasKey('key', $apiKeys[0]);
+        self::assertArrayHasKey('active', $apiKeys[0]);
 
-        $this->assertEquals(ConsoleUtils::apiKey(), $apiKeys[0]['key']);
-        $this->assertTrue($apiKeys[0]['active']);
+        self::assertEquals(ConsoleUtils::apiKey(), $apiKeys[0]['key']);
+        self::assertTrue($apiKeys[0]['active']);
     }
 }

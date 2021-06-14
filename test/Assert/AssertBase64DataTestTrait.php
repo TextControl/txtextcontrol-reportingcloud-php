@@ -50,7 +50,7 @@ trait AssertBase64DataTestTrait
         $value = base64_encode('ReportingCloud rocks!');
         Assert::assertBase64Data($value);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertBase64DataInvalidCharacters(): void

@@ -71,7 +71,7 @@ trait AssertTemplateExtensionTestTrait
         Assert::assertTemplateExtension('a.tx');
         Assert::assertTemplateExtension('A.TX');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertTemplateExtensionInvalid(): void

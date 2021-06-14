@@ -225,29 +225,29 @@ trait PostTraitTest
     {
         $documentFilename = $this->getTestDocumentFilename();
 
-        $this->assertFileExists($documentFilename);
+        self::assertFileExists($documentFilename);
 
         $response = $this->reportingCloud->convertDocument(
             $documentFilename,
             ReportingCloud::FILE_FORMAT_PDF
         );
 
-        $this->assertGreaterThanOrEqual(1024, mb_strlen($response));
+        self::assertGreaterThanOrEqual(1024, mb_strlen($response));
     }
 
     public function testConvertDocumentToTxt(): void
     {
         $documentFilename = $this->getTestDocumentFilename();
 
-        $this->assertFileExists($documentFilename);
+        self::assertFileExists($documentFilename);
 
         $response = $this->reportingCloud->convertDocument(
             $documentFilename,
             ReportingCloud::FILE_FORMAT_TXT
         );
 
-        $this->assertNotFalse($response);
-        $this->assertEquals("A Test File\r\n", $response);
+        self::assertNotFalse($response);
+        self::assertEquals("A Test File\r\n", $response);
     }
 
     public function testConvertDocumentInvalidDocumentFilenameUnsupportedExtension(): void
@@ -312,7 +312,7 @@ trait PostTraitTest
 
         $testTemplateFilename = $this->getTestTemplateFindAndReplaceFilename();
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         foreach ($returnFormats as $returnFormat) {
 
@@ -324,7 +324,7 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertGreaterThanOrEqual(64, mb_strlen($response));
+            self::assertGreaterThanOrEqual(64, mb_strlen($response));
         }
     }
 
@@ -339,15 +339,15 @@ trait PostTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
 
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
 
@@ -361,12 +361,12 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertGreaterThanOrEqual(64, mb_strlen($response));
+            self::assertGreaterThanOrEqual(64, mb_strlen($response));
         }
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
     }
 
     public function testFindAndReplaceDocumentInvalidReturnFormat(): void
@@ -456,7 +456,7 @@ trait PostTraitTest
 
         $templateFilename = $this->getTestTemplateFindAndReplaceFilename();
 
-        $this->assertFileExists($templateFilename);
+        self::assertFileExists($templateFilename);
 
         // value must be boolean
         $mergeSettings['remove_empty_blocks'] = 'invalid';
@@ -481,7 +481,7 @@ trait PostTraitTest
 
         $templateFilename = $this->getTestTemplateFindAndReplaceFilename();
 
-        $this->assertFileExists($templateFilename);
+        self::assertFileExists($templateFilename);
 
         // value must be timestamp
         $mergeSettings['creation_date']          = -1;
@@ -511,15 +511,15 @@ trait PostTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
 
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
 
@@ -534,18 +534,18 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertArrayHasKey(0, $response);
+            self::assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
-                $this->assertTrue(is_int($key));
-                $this->assertNotNull($page);
-                $this->assertNotFalse($page);
+                self::assertTrue(is_int($key));
+                self::assertNotNull($page);
+                self::assertNotFalse($page);
             }
         }
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
     }
 
     public function testMergeDocumentWithTemplateFilename(): void
@@ -557,7 +557,7 @@ trait PostTraitTest
 
         $testTemplateFilename = $this->getTestTemplateFilename();
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         foreach ($returnFormats as $returnFormat) {
 
@@ -570,12 +570,12 @@ trait PostTraitTest
                 $mergeSettings
             );
 
-            $this->assertArrayHasKey(0, $response);
+            self::assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
                 $page = (string) $page;
-                $this->assertTrue(is_int($key));
-                $this->assertGreaterThanOrEqual(128, mb_strlen($page));
+                self::assertTrue(is_int($key));
+                self::assertGreaterThanOrEqual(128, mb_strlen($page));
             }
         }
     }
@@ -667,7 +667,7 @@ trait PostTraitTest
 
         $templateFilename = $this->getTestTemplateFilename();
 
-        $this->assertFileExists($templateFilename);
+        self::assertFileExists($templateFilename);
 
         // value must be boolean
         $mergeSettings['remove_empty_blocks'] = 'invalid';
@@ -693,7 +693,7 @@ trait PostTraitTest
 
         $templateFilename = $this->getTestTemplateFilename();
 
-        $this->assertFileExists($templateFilename);
+        self::assertFileExists($templateFilename);
 
         $mergeSettings['culture'] = 'invalid';
 
@@ -716,7 +716,7 @@ trait PostTraitTest
 
         $templateFilename = $this->getTestTemplateFilename();
 
-        $this->assertFileExists($templateFilename);
+        self::assertFileExists($templateFilename);
 
         // value must be timestamp
         $mergeSettings['creation_date']          = -1;
@@ -742,16 +742,16 @@ trait PostTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
     }
@@ -794,19 +794,19 @@ trait PostTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $tempTemplateBinary = (string) file_get_contents($tempTemplateFilename);
         $tempTemplateBase64 = base64_encode($tempTemplateBinary);
 
         $response = $this->reportingCloud->uploadTemplateFromBase64($tempTemplateBase64, $tempTemplateName);
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
     }
@@ -819,7 +819,7 @@ trait PostTraitTest
     {
         $testDocumentFilename = $this->getTestDocumentFilename();
 
-        $this->assertFileExists($testDocumentFilename);
+        self::assertFileExists($testDocumentFilename);
 
         $response = $this->reportingCloud->getDocumentThumbnails(
             $testDocumentFilename,
@@ -829,9 +829,9 @@ trait PostTraitTest
             ReportingCloud::FILE_FORMAT_PNG
         );
 
-        $this->assertArrayHasKey(0, $response);
+        self::assertArrayHasKey(0, $response);
 
-        $this->assertTrue(mb_strlen($response[0]) > 2048);
+        self::assertTrue(mb_strlen($response[0]) > 2048);
     }
 
     // </editor-fold>
@@ -843,24 +843,24 @@ trait PostTraitTest
     {
         $testDocumentFilename = $this->getTestDocumentTrackedChangesFilename();
 
-        $this->assertFileExists($testDocumentFilename);
+        self::assertFileExists($testDocumentFilename);
 
         $response = $this->reportingCloud->getTrackedChanges(
             $testDocumentFilename
         );
 
-        $this->assertArrayHasKey(0, $response);
+        self::assertArrayHasKey(0, $response);
 
-        $this->assertArrayHasKey('change_kind', $response[0]);
-        $this->assertArrayHasKey('change_time', $response[0]);
-        $this->assertArrayHasKey('default_highlight_color', $response[0]);
-        $this->assertArrayHasKey('highlight_color', $response[0]);
-        $this->assertArrayHasKey('highlight_mode', $response[0]);
-        $this->assertArrayHasKey('length', $response[0]);
-        $this->assertArrayHasKey('start', $response[0]);
-        $this->assertArrayHasKey('id', $response[0]);
-        $this->assertArrayHasKey('text', $response[0]);
-        $this->assertArrayHasKey('username', $response[0]);
+        self::assertArrayHasKey('change_kind', $response[0]);
+        self::assertArrayHasKey('change_time', $response[0]);
+        self::assertArrayHasKey('default_highlight_color', $response[0]);
+        self::assertArrayHasKey('highlight_color', $response[0]);
+        self::assertArrayHasKey('highlight_mode', $response[0]);
+        self::assertArrayHasKey('length', $response[0]);
+        self::assertArrayHasKey('start', $response[0]);
+        self::assertArrayHasKey('id', $response[0]);
+        self::assertArrayHasKey('text', $response[0]);
+        self::assertArrayHasKey('username', $response[0]);
     }
 
     // </editor-fold>
@@ -871,7 +871,7 @@ trait PostTraitTest
     {
         $testDocumentFilename = $this->getTestDocumentTrackedChangesFilename();
 
-        $this->assertFileExists($testDocumentFilename);
+        self::assertFileExists($testDocumentFilename);
 
         $response = $this->reportingCloud->removeTrackedChange(
             $testDocumentFilename,
@@ -879,8 +879,8 @@ trait PostTraitTest
             true
         );
 
-        $this->assertArrayHasKey('document', $response);
-        $this->assertArrayHasKey('removed', $response);
+        self::assertArrayHasKey('document', $response);
+        self::assertArrayHasKey('removed', $response);
     }
 
     // </editor-fold>

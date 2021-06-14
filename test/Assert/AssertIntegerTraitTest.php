@@ -53,7 +53,7 @@ trait AssertIntegerTraitTest
         Assert::assertInteger(-1);
         Assert::assertInteger(-2);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertIntegerWithArray(): void
@@ -63,7 +63,7 @@ trait AssertIntegerTraitTest
 
         Assert::assertInteger(['a']);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertIntegerWithBoolean(): void
@@ -73,7 +73,7 @@ trait AssertIntegerTraitTest
 
         Assert::assertInteger(false);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertIntegerWithString(): void
@@ -83,6 +83,6 @@ trait AssertIntegerTraitTest
 
         Assert::assertInteger('a');
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 }

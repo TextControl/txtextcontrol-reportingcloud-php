@@ -163,20 +163,20 @@ trait GetTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response       = $this->reportingCloud->downloadTemplate($tempTemplateName);
         $responseLength = mb_strlen($response);
-        $this->assertGreaterThanOrEqual(1024, $responseLength);
+        self::assertGreaterThanOrEqual(1024, $responseLength);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
     }
@@ -199,19 +199,19 @@ trait GetTraitTest
     {
         $response = $this->reportingCloud->getAccountSettings();
 
-        $this->assertArrayHasKey('serial_number', $response);
-        $this->assertArrayHasKey('created_documents', $response);
-        $this->assertArrayHasKey('uploaded_templates', $response);
-        $this->assertArrayHasKey('max_documents', $response);
-        $this->assertArrayHasKey('max_templates', $response);
-        $this->assertArrayHasKey('valid_until', $response);
+        self::assertArrayHasKey('serial_number', $response);
+        self::assertArrayHasKey('created_documents', $response);
+        self::assertArrayHasKey('uploaded_templates', $response);
+        self::assertArrayHasKey('max_documents', $response);
+        self::assertArrayHasKey('max_templates', $response);
+        self::assertArrayHasKey('valid_until', $response);
 
-        $this->assertTrue(is_string($response['serial_number']));
-        $this->assertTrue(is_int($response['created_documents']));
-        $this->assertTrue(is_int($response['uploaded_templates']));
-        $this->assertTrue(is_int($response['max_documents']));
-        $this->assertTrue(is_int($response['max_templates']));
-        $this->assertTrue(is_int($response['valid_until']));
+        self::assertTrue(is_string($response['serial_number']));
+        self::assertTrue(is_int($response['created_documents']));
+        self::assertTrue(is_int($response['uploaded_templates']));
+        self::assertTrue(is_int($response['max_documents']));
+        self::assertTrue(is_int($response['max_templates']));
+        self::assertTrue(is_int($response['valid_until']));
     }
 
     // </editor-fold>
@@ -223,14 +223,14 @@ trait GetTraitTest
         $this->deleteAllApiKeys();
 
         $apiKey = $this->reportingCloud->createApiKey();
-        $this->assertNotEmpty($apiKey);
+        self::assertNotEmpty($apiKey);
 
         $apiKeys = $this->reportingCloud->getApiKeys();
-        $this->assertArrayHasKey(0, $apiKeys);
-        $this->assertArrayHasKey('key', $apiKeys[0]);
-        $this->assertArrayHasKey('active', $apiKeys[0]);
-        $this->assertTrue(is_string($apiKeys[0]['key']));
-        $this->assertTrue(is_bool($apiKeys[0]['active']));
+        self::assertArrayHasKey(0, $apiKeys);
+        self::assertArrayHasKey('key', $apiKeys[0]);
+        self::assertArrayHasKey('active', $apiKeys[0]);
+        self::assertTrue(is_string($apiKeys[0]['key']));
+        self::assertTrue(is_bool($apiKeys[0]['active']));
     }
 
     // </editor-fold>
@@ -247,7 +247,7 @@ trait GetTraitTest
         sort($actual);
         sort($expected);
 
-        $this->assertEquals($expected, $actual);
+        self::assertEquals($expected, $actual);
     }
 
     // </editor-fold>
@@ -258,13 +258,13 @@ trait GetTraitTest
     {
         $fonts = $this->reportingCloud->getFontList();
 
-        $this->assertContains('Times New Roman', $fonts);
-        $this->assertContains('Arial', $fonts);
-        $this->assertContains('Courier New', $fonts);
+        self::assertContains('Times New Roman', $fonts);
+        self::assertContains('Arial', $fonts);
+        self::assertContains('Courier New', $fonts);
 
-        $this->assertArrayHasKey(0, $fonts);
-        $this->assertArrayHasKey(1, $fonts);
-        $this->assertArrayHasKey(2, $fonts);
+        self::assertArrayHasKey(0, $fonts);
+        self::assertArrayHasKey(1, $fonts);
+        self::assertArrayHasKey(2, $fonts);
     }
 
     // </editor-fold>
@@ -275,9 +275,9 @@ trait GetTraitTest
     {
         $response = $this->reportingCloud->getProofingSuggestions('Thiss', 'en_US.dic', 5);
 
-        $this->assertTrue(5 === count($response));
+        self::assertTrue(5 === count($response));
 
-        $this->assertContains('This', $response);
+        self::assertContains('This', $response);
     }
 
     // </editor-fold>
@@ -290,23 +290,23 @@ trait GetTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
 
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->getTemplateCount();
 
-        $this->assertGreaterThan(0, $response);
+        self::assertGreaterThan(0, $response);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
     }
@@ -321,54 +321,54 @@ trait GetTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
 
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->getTemplateInfo($tempTemplateName);
 
-        $this->assertArrayHasKey('template_name', $response);
+        self::assertArrayHasKey('template_name', $response);
 
-        $this->assertArrayHasKey('merge_blocks', $response);
+        self::assertArrayHasKey('merge_blocks', $response);
 
-        $this->assertArrayHasKey(0, $response['merge_blocks']);
+        self::assertArrayHasKey(0, $response['merge_blocks']);
 
-        $this->assertArrayHasKey('name', $response['merge_blocks'][0]);
-        $this->assertArrayHasKey('merge_fields', $response['merge_blocks'][0]);
+        self::assertArrayHasKey('name', $response['merge_blocks'][0]);
+        self::assertArrayHasKey('merge_fields', $response['merge_blocks'][0]);
 
-        $this->assertArrayHasKey(0, $response['merge_blocks'][0]['merge_fields']);
+        self::assertArrayHasKey(0, $response['merge_blocks'][0]['merge_fields']);
 
-        $this->assertArrayHasKey('date_time_format', $response['merge_blocks'][0]['merge_fields'][0]);
-        $this->assertArrayHasKey('numeric_format', $response['merge_blocks'][0]['merge_fields'][0]);
-        $this->assertArrayHasKey('preserve_formatting', $response['merge_blocks'][0]['merge_fields'][0]);
-        $this->assertArrayHasKey('text', $response['merge_blocks'][0]['merge_fields'][0]);
-        $this->assertArrayHasKey('text_after', $response['merge_blocks'][0]['merge_fields'][0]);
-        $this->assertArrayHasKey('text_before', $response['merge_blocks'][0]['merge_fields'][0]);
+        self::assertArrayHasKey('date_time_format', $response['merge_blocks'][0]['merge_fields'][0]);
+        self::assertArrayHasKey('numeric_format', $response['merge_blocks'][0]['merge_fields'][0]);
+        self::assertArrayHasKey('preserve_formatting', $response['merge_blocks'][0]['merge_fields'][0]);
+        self::assertArrayHasKey('text', $response['merge_blocks'][0]['merge_fields'][0]);
+        self::assertArrayHasKey('text_after', $response['merge_blocks'][0]['merge_fields'][0]);
+        self::assertArrayHasKey('text_before', $response['merge_blocks'][0]['merge_fields'][0]);
 
-        $this->assertArrayHasKey('merge_fields', $response);
+        self::assertArrayHasKey('merge_fields', $response);
 
-        $this->assertArrayHasKey(0, $response['merge_fields']);
+        self::assertArrayHasKey(0, $response['merge_fields']);
 
-        $this->assertArrayHasKey('date_time_format', $response['merge_fields'][0]);
-        $this->assertArrayHasKey('numeric_format', $response['merge_fields'][0]);
-        $this->assertArrayHasKey('preserve_formatting', $response['merge_fields'][0]);
-        $this->assertArrayHasKey('text', $response['merge_fields'][0]);
-        $this->assertArrayHasKey('text_after', $response['merge_fields'][0]);
-        $this->assertArrayHasKey('text_before', $response['merge_fields'][0]);
+        self::assertArrayHasKey('date_time_format', $response['merge_fields'][0]);
+        self::assertArrayHasKey('numeric_format', $response['merge_fields'][0]);
+        self::assertArrayHasKey('preserve_formatting', $response['merge_fields'][0]);
+        self::assertArrayHasKey('text', $response['merge_fields'][0]);
+        self::assertArrayHasKey('text_after', $response['merge_fields'][0]);
+        self::assertArrayHasKey('text_before', $response['merge_fields'][0]);
 
-        $this->assertArrayHasKey('user_document_properties', $response);
+        self::assertArrayHasKey('user_document_properties', $response);
 
-        $this->assertEquals(true, is_array($response['user_document_properties']));
+        self::assertEquals(true, is_array($response['user_document_properties']));
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
     }
@@ -383,31 +383,31 @@ trait GetTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
 
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->getTemplateList();
 
-        $this->assertArrayHasKey(0, $response);
+        self::assertArrayHasKey(0, $response);
 
-        $this->assertArrayHasKey('template_name', $response[0]);
-        $this->assertArrayHasKey('modified', $response[0]);
-        $this->assertArrayHasKey('size', $response[0]);
+        self::assertArrayHasKey('template_name', $response[0]);
+        self::assertArrayHasKey('modified', $response[0]);
+        self::assertArrayHasKey('size', $response[0]);
 
-        $this->assertTrue(is_string($response[0]['template_name']));
-        $this->assertTrue(is_int($response[0]['modified']));
-        $this->assertTrue(is_int($response[0]['size']));
+        self::assertTrue(is_string($response[0]['template_name']));
+        self::assertTrue(is_int($response[0]['modified']));
+        self::assertTrue(is_int($response[0]['size']));
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
     }
@@ -422,23 +422,23 @@ trait GetTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
 
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->getTemplatePageCount($tempTemplateName);
 
-        $this->assertSame(1, $response);
+        self::assertSame(1, $response);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
     }
@@ -461,15 +461,15 @@ trait GetTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
 
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->getTemplateThumbnails(
             $tempTemplateName,
@@ -479,11 +479,11 @@ trait GetTraitTest
             ReportingCloud::FILE_FORMAT_PNG
         );
 
-        $this->assertArrayHasKey(0, $response);
+        self::assertArrayHasKey(0, $response);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         unlink($tempTemplateFilename);
     }
@@ -561,21 +561,21 @@ trait GetTraitTest
     {
         $response = $this->reportingCloud->proofingCheck('Thiss is a dog', 'en_US.dic');
 
-        $this->assertArrayHasKey(0, $response);
+        self::assertArrayHasKey(0, $response);
 
         $response = $response[0];
 
-        $this->assertArrayHasKey('length', $response);
-        $this->assertArrayHasKey('start', $response);
-        $this->assertArrayHasKey('text', $response);
-        $this->assertArrayHasKey('is_duplicate', $response);
-        $this->assertArrayHasKey('language', $response);
+        self::assertArrayHasKey('length', $response);
+        self::assertArrayHasKey('start', $response);
+        self::assertArrayHasKey('text', $response);
+        self::assertArrayHasKey('is_duplicate', $response);
+        self::assertArrayHasKey('language', $response);
 
-        $this->assertEquals(5, $response['length']);
-        $this->assertEquals(0, $response['start']);
-        $this->assertEquals('Thiss', $response['text']);
-        $this->assertEquals(false, $response['is_duplicate']);
-        $this->assertEquals('en_US.dic', $response['language']);
+        self::assertEquals(5, $response['length']);
+        self::assertEquals(0, $response['start']);
+        self::assertEquals('Thiss', $response['text']);
+        self::assertEquals(false, $response['is_duplicate']);
+        self::assertEquals('en_US.dic', $response['language']);
     }
 
     // </editor-fold>
@@ -588,27 +588,27 @@ trait GetTraitTest
         $tempTemplateFilename = $this->getTempTemplateFilename();
         $tempTemplateName     = basename($tempTemplateFilename);
 
-        $this->assertFileExists($testTemplateFilename);
+        self::assertFileExists($testTemplateFilename);
 
         copy($testTemplateFilename, $tempTemplateFilename);
 
-        $this->assertFileExists($tempTemplateFilename);
+        self::assertFileExists($tempTemplateFilename);
 
         $response = $this->reportingCloud->uploadTemplate($tempTemplateFilename);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->templateExists($tempTemplateName);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->deleteTemplate($tempTemplateName);
 
-        $this->assertTrue($response);
+        self::assertTrue($response);
 
         $response = $this->reportingCloud->templateExists($tempTemplateName);
 
-        $this->assertFalse($response);
+        self::assertFalse($response);
 
         unlink($tempTemplateFilename);
     }

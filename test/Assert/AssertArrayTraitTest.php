@@ -49,7 +49,7 @@ trait AssertArrayTraitTest
     {
         Assert::assertArray([1]);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertArrayWithBoolean(): void
@@ -59,7 +59,7 @@ trait AssertArrayTraitTest
 
         Assert::assertArray(true);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertArrayWithInteger(): void
@@ -69,7 +69,7 @@ trait AssertArrayTraitTest
 
         Assert::assertArray(1);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertArrayWithString(): void
@@ -79,6 +79,6 @@ trait AssertArrayTraitTest
 
         Assert::assertArray("1");
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 }

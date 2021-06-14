@@ -33,7 +33,7 @@ class FileUtilsTest extends AbstractReportingCloudTest
 
         $binaryData = FileUtils::read($sourceFilename);
         $valid      = (preg_match(self::BINARY_PATTERN, $binaryData) > 0);
-        $this->assertTrue($valid);
+        self::assertTrue($valid);
     }
 
     public function testReadBase64EncodeTrue(): void
@@ -41,12 +41,13 @@ class FileUtilsTest extends AbstractReportingCloudTest
         $sourceFilename = $this->getTestDocumentFilename();
 
         $base64EncodedData = FileUtils::read($sourceFilename, true);
-        if (base64_decode($base64EncodedData, true)) {
+        $binaryData        = base64_decode($base64EncodedData, true);
+        if (is_string($binaryData) && strlen($binaryData) > 0) {
             $valid = true;
         } else {
             $valid = false;
         }
-        $this->assertTrue($valid);
+        self::assertTrue($valid);
     }
 
     public function testWriteBase64EncodedFalse(): void
@@ -59,11 +60,11 @@ class FileUtilsTest extends AbstractReportingCloudTest
         FileUtils::write($destinationFilename, $binaryData, false);
 
         $valid = file_exists($destinationFilename);
-        $this->assertTrue($valid);
+        self::assertTrue($valid);
 
         $binaryData = (string) file_get_contents($destinationFilename);
         $valid      = (preg_match(self::BINARY_PATTERN, $binaryData) > 0);
-        $this->assertTrue($valid);
+        self::assertTrue($valid);
     }
 
     public function testWriteBase64EncodedTrue(): void
@@ -76,10 +77,10 @@ class FileUtilsTest extends AbstractReportingCloudTest
         FileUtils::write($destinationFilename, $binaryData, true);
 
         $valid = file_exists($destinationFilename);
-        $this->assertTrue($valid);
+        self::assertTrue($valid);
 
         $binaryData = (string) file_get_contents($destinationFilename);
         $valid      = (preg_match(self::BINARY_PATTERN, $binaryData) > 0);
-        $this->assertTrue($valid);
+        self::assertTrue($valid);
     }
 }

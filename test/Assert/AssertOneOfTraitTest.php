@@ -50,7 +50,7 @@ trait AssertOneOfTraitTest
         Assert::assertOneOf('a', ['a', 'b', 'c',]);
         Assert::assertOneOf(1, [1, 2, 3,]);
 
-        $this->assertTrue(true);
+        self::assertTrue(true);
     }
 
     public function testAssertOneOfWithInvalidValue(): void

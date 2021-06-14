@@ -50,15 +50,15 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->deleteAllApiKeys();
 
         $apiKey = $this->reportingCloud->createApiKey();
-        $this->assertNotEmpty($apiKey);
+        self::assertNotEmpty($apiKey);
 
         $reportingCloud2 = new ReportingCloud();
 
         $reportingCloud2->setTest(true);
         $reportingCloud2->setApiKey($apiKey);
 
-        $this->assertEquals($apiKey, $reportingCloud2->getApiKey());
-        $this->assertContains('Times New Roman', $reportingCloud2->getFontList());
+        self::assertEquals($apiKey, $reportingCloud2->getApiKey());
+        self::assertContains('Times New Roman', $reportingCloud2->getFontList());
 
         $this->deleteAllApiKeys();
 
@@ -79,14 +79,14 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
         $reportingCloud = new ReportingCloud($options);
 
-        $this->assertSame('phpunit-username', $reportingCloud->getUsername());
-        $this->assertSame('phpunit-password', $reportingCloud->getPassword());
-        $this->assertSame('https://api.example.com', $reportingCloud->getBaseUri());
-        $this->assertSame(100, $reportingCloud->getTimeout());
-        $this->assertSame('v1', $reportingCloud->getVersion());
+        self::assertSame('phpunit-username', $reportingCloud->getUsername());
+        self::assertSame('phpunit-password', $reportingCloud->getPassword());
+        self::assertSame('https://api.example.com', $reportingCloud->getBaseUri());
+        self::assertSame(100, $reportingCloud->getTimeout());
+        self::assertSame('v1', $reportingCloud->getVersion());
 
-        $this->assertTrue($reportingCloud->getDebug());
-        $this->assertTrue($reportingCloud->getTest());
+        self::assertTrue($reportingCloud->getDebug());
+        self::assertTrue($reportingCloud->getTest());
 
         unset($reportingCloud);
     }
@@ -101,19 +101,19 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->setDebug(true);
         $this->reportingCloud->setTest(true);
 
-        $this->assertSame('phpunit-username', $this->reportingCloud->getUsername());
-        $this->assertSame('phpunit-password', $this->reportingCloud->getPassword());
-        $this->assertSame('https://api.example.com', $this->reportingCloud->getBaseUri());
-        $this->assertSame(100, $this->reportingCloud->getTimeout());
-        $this->assertSame('v1', $this->reportingCloud->getVersion());
+        self::assertSame('phpunit-username', $this->reportingCloud->getUsername());
+        self::assertSame('phpunit-password', $this->reportingCloud->getPassword());
+        self::assertSame('https://api.example.com', $this->reportingCloud->getBaseUri());
+        self::assertSame(100, $this->reportingCloud->getTimeout());
+        self::assertSame('v1', $this->reportingCloud->getVersion());
 
-        $this->assertTrue($this->reportingCloud->getDebug());
-        $this->assertTrue($this->reportingCloud->getTest());
+        self::assertTrue($this->reportingCloud->getDebug());
+        self::assertTrue($this->reportingCloud->getTest());
     }
 
     public function testGetClientInstanceOf(): void
     {
-        $this->assertInstanceOf(Client::class, $this->reportingCloud->getClient());
+        self::assertInstanceOf(Client::class, $this->reportingCloud->getClient());
     }
 
     public function testGetClientWithUsernameAndPassword(): void
@@ -122,28 +122,28 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->setUsername('phpunit-username');
         $this->reportingCloud->setPassword('phpunit-password');
 
-        $this->assertInstanceOf(Client::class, $this->reportingCloud->getClient());
+        self::assertInstanceOf(Client::class, $this->reportingCloud->getClient());
     }
 
     public function testDefaultProperties(): void
     {
         $reportingCloud = new ReportingCloud();
 
-        $this->assertEmpty($reportingCloud->getUsername());
-        $this->assertEmpty($reportingCloud->getPassword());
+        self::assertEmpty($reportingCloud->getUsername());
+        self::assertEmpty($reportingCloud->getPassword());
 
         $envVarName = ConsoleUtils::BASE_URI;
         $baseUri    = getenv($envVarName);
-        if (is_string($baseUri) && !empty($baseUri)) {
+        if (is_string($baseUri) && strlen($baseUri) > 0) {
             $expected = $baseUri;
         } else {
             $expected = 'https://api.reporting.cloud';
         }
-        $this->assertSame($expected, $reportingCloud->getBaseUri());
-        $this->assertSame(120, $reportingCloud->getTimeout());
-        $this->assertSame('v1', $reportingCloud->getVersion());
+        self::assertSame($expected, $reportingCloud->getBaseUri());
+        self::assertSame(120, $reportingCloud->getTimeout());
+        self::assertSame('v1', $reportingCloud->getVersion());
 
-        $this->assertFalse($reportingCloud->getDebug());
+        self::assertFalse($reportingCloud->getDebug());
 
         unset($reportingCloud);
     }
@@ -152,9 +152,9 @@ class ReportingCloudTest extends AbstractReportingCloudTest
     {
         $baseUri = ConsoleUtils::baseUri();
 
-        if (is_string($baseUri) && !empty($baseUri)) {
+        if (is_string($baseUri) && strlen($baseUri) > 0) {
             $reportingCloud = new ReportingCloud();
-            $this->assertSame($baseUri, $reportingCloud->getBaseUri());
+            self::assertSame($baseUri, $reportingCloud->getBaseUri());
             unset($reportingCloud);
         }
     }
@@ -167,7 +167,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         putenv("{$envVarName}");
 
         $reportingCloud = new ReportingCloud();
-        $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
+        self::assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
         unset($reportingCloud);
 
         putenv("{$envVarName}={$baseUri}");
@@ -181,7 +181,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         putenv("{$envVarName}=");
 
         $reportingCloud = new ReportingCloud();
-        $this->assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
+        self::assertSame('https://api.reporting.cloud', $reportingCloud->getBaseUri());
         unset($reportingCloud);
 
         putenv("{$envVarName}={$baseUri}");
@@ -191,14 +191,14 @@ class ReportingCloudTest extends AbstractReportingCloudTest
     {
         $envVarName = ConsoleUtils::BASE_URI;
         $baseUri    = getenv($envVarName);
-        if (is_string($baseUri) && !empty($baseUri)) {
+        if (is_string($baseUri) && strlen($baseUri) > 0) {
             putenv("{$envVarName}=https://www.example.com");
             try {
                 $reportingCloud = new ReportingCloud();
             } catch (InvalidArgumentException $e) {
                 putenv("{$envVarName}={$baseUri}");
                 $expected = 'Expected base URI to end in "api.reporting.cloud". Got "https://www.example.com"';
-                $this->assertSame($expected, $e->getMessage());
+                self::assertSame($expected, $e->getMessage());
             }
             if (isset($reportingCloud)) {
                 unset($reportingCloud);

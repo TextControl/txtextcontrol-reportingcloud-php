@@ -58,6 +58,6 @@ class MergeSettingsTest extends TestCase
             'userPassword'             => 'user_password',
         ];
 
-        $this->assertSame($expected, $this->propertyMap->getMap());
+        self::assertSame($expected, $this->propertyMap->getMap());
     }
 }
