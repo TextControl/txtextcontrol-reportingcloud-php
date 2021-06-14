@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud\Assert;
 
 /**
- * Trait AssertApiKeyTrait
+ * Trait ValueToStringTrait
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
