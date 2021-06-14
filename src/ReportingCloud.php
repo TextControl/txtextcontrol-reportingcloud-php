@@ -33,11 +33,11 @@ class ReportingCloud extends AbstractReportingCloud
     /**
      * ReportingCloud constructor
      *
-     * @param array|null $options
+     * @param array $options
      */
-    public function __construct(?array $options = null)
+    public function __construct(array $options = [])
     {
-        if (is_array($options)) {
+        if (count($options) > 0) {
 
             $methods = [
                 // Credentials

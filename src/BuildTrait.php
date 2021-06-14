@@ -109,7 +109,7 @@ trait BuildTrait
 
         $map = $propertyMap->getMap();
 
-        if (!is_array($map)) {
+        if (0 === count($map)) {
             return $ret;
         }
 
@@ -145,7 +145,7 @@ trait BuildTrait
 
         $map = $propertyMap->getMap();
 
-        if (!is_array($map)) {
+        if (0 === count($map)) {
             return $ret;
         }
 
