@@ -26,12 +26,7 @@ use TxTextControl\ReportingCloud\Stdlib\StringUtils;
  */
 trait AssertBaseUriTrait
 {
-    /**
-     * @param mixed $value
-     *
-     * @return string
-     */
-    abstract protected static function valueToString($value): string;
+    use ValueToStringTrait;
 
     /**
      * Check value is a known base URI

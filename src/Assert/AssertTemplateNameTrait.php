@@ -24,23 +24,8 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertTemplateNameTrait
 {
-    /**
-     * Check value is a valid template format
-     *
-     * @param string $value
-     * @param string $message
-     *
-     * @return void
-     * @throws InvalidArgumentException
-     */
-    abstract public static function assertTemplateFormat(string $value, string $message = ''): void;
-
-    /**
-     * @param mixed $value
-     *
-     * @return string
-     */
-    abstract protected static function valueToString($value): string;
+    use ValueToStringTrait;
+    use AssertTemplateFormatTrait;
 
     /**
      * Check value is a valid template name

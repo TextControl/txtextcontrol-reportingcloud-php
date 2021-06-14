@@ -28,12 +28,7 @@ use TxTextControl\ReportingCloud\ReportingCloud;
  */
 trait AssertDateTimeTrait
 {
-    /**
-     * @param mixed $value
-     *
-     * @return string
-     */
-    abstract protected static function valueToString($value): string;
+    use ValueToStringTrait;
 
     /**
      * Check value is a valid DateTime string

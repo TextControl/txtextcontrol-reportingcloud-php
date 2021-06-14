@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace TxTextControlTest\ReportingCloud\Assert\TestAsset;
 
 use TxTextControl\ReportingCloud\Assert\AbstractAssert;
+use TxTextControl\ReportingCloud\Assert\ValueToStringTrait;
 
 /**
  * Class ConcreteAssert (for testing only)
@@ -24,6 +25,8 @@ use TxTextControl\ReportingCloud\Assert\AbstractAssert;
  */
 class ConcreteAssert extends AbstractAssert
 {
+    use ValueToStringTrait;
+
     /**
      * Convert value to string (public version for testing)
      *

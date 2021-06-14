@@ -25,19 +25,8 @@ use TxTextControl\ReportingCloud\Stdlib\Path;
  */
 trait AssertCultureTrait
 {
-    /**
-     * @param mixed  $value
-     * @param array  $values
-     * @param string $message
-     */
-    abstract public static function assertOneOf($value, array $values, string $message = ''): void;
-
-    /**
-     * @param mixed $value
-     *
-     * @return string
-     */
-    abstract protected static function valueToString($value): string;
+    use ValueToStringTrait;
+    use AssertOneOfTrait;
 
     /**
      * Check value is a valid culture

@@ -24,12 +24,7 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertIntegerTrait
 {
-    /**
-     * @param mixed $value
-     *
-     * @return string
-     */
-    abstract protected static function valueToString($value): string;
+    use ValueToStringTrait;
 
     /**
      * Check value is an integer

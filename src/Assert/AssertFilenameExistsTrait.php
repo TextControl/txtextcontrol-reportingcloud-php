@@ -24,12 +24,7 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertFilenameExistsTrait
 {
-    /**
-     * @param mixed $value
-     *
-     * @return string
-     */
-    abstract protected static function valueToString($value): string;
+    use ValueToStringTrait;
 
     /**
      * Check filename exists and is readable

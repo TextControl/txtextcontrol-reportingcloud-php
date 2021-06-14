@@ -46,4 +46,5 @@ class Assert extends AbstractAssert
     use AssertTemplateNameTrait;
     use AssertTimestampTrait;
     use AssertZoomFactorTrait;
+    use ValueToStringTrait;
 }

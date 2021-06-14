@@ -24,12 +24,7 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertBase64DataTrait
 {
-    /**
-     * @param mixed $value
-     *
-     * @return string
-     */
-    abstract protected static function valueToString($value): string;
+    use ValueToStringTrait;
 
     /**
      * Check value is valid base64 encoded data

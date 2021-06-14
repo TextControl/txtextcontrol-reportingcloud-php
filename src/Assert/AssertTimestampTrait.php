@@ -24,20 +24,8 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
  */
 trait AssertTimestampTrait
 {
-    /**
-     * @param int    $value
-     * @param int    $min
-     * @param int    $max
-     * @param string $message
-     */
-    abstract public static function assertRange(int $value, int $min, int $max, string $message = ''): void;
-
-    /**
-     * @param mixed $value
-     *
-     * @return string
-     */
-    abstract protected static function valueToString($value): string;
+    use ValueToStringTrait;
+    use AssertRangeTrait;
 
     /**
      * Minimum timestamp (EPOC)

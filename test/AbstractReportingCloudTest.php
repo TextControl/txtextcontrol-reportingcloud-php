@@ -76,17 +76,15 @@ abstract class AbstractReportingCloudTest extends TestCase
     protected function getTempDocumentFilename(): string
     {
         $format = '%s/test_document_%d.docx';
-        $ret    = sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
 
-        return $ret;
+        return sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
     }
 
     protected function getTempTemplateFilename(): string
     {
         $format = '%s/test_template_%d.tx';
-        $ret    = sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
 
-        return $ret;
+        return sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
     }
 
     protected function getTestTemplateMergeData(): array
@@ -158,17 +156,15 @@ abstract class AbstractReportingCloudTest extends TestCase
 
     protected function getTestTemplateFindAndReplaceData(): array
     {
-        $ret = [
+        return [
             '%%FIELD1%%' => 'hello field 1',
             '%%FIELD2%%' => 'hello field 2',
         ];
-
-        return $ret;
     }
 
     protected function getTestDocumentSettings(): array
     {
-        $ret = [
+        return [
             'author'                 => 'James Henry Trotter',
             'creation_date'          => time(),
             'creator_application'    => 'An awesome creator',
@@ -177,13 +173,11 @@ abstract class AbstractReportingCloudTest extends TestCase
             'last_modification_date' => time(),
             'user_password'          => '123456789',
         ];
-
-        return $ret;
     }
 
     protected function getTestMergeSettings(): array
     {
-        $ret = [
+        return [
             'creation_date'              => time(),
             'last_modification_date'     => time(),
             'remove_empty_blocks'        => true,
@@ -196,8 +190,6 @@ abstract class AbstractReportingCloudTest extends TestCase
             'document_title'             => 'James and the Giant Peach',
             'user_password'              => '123456789',
         ];
-
-        return $ret;
     }
 
     protected function deleteAllApiKeys(): void

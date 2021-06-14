@@ -2,9 +2,12 @@
 
 # CHANGELOG
 
-## dev-guzzle-7
+## 2.7.0 - 2021-06-xx
 
-* Added support for Guzzle 7.0.
+* Added support for [Guzzle ^7.0](https://github.com/guzzle/guzzle).
+* Removed all static analysis tools except PHPStan.
+* Brought code up to [PHPStan Strict Rules](https://github.com/phpstan/phpstan-strict-rules).
+* Set the minimum PHP version to 7.3.
 
 ## 2.6.2 - 2020-10-28
 
