@@ -189,7 +189,7 @@ END;
         if (defined($key)) {
             $ret = (string) constant($key);
             $ret = trim($ret);
-            if (!empty($ret)) {
+            if (strlen($ret) > 0) {
                 return $ret;
             }
         }
@@ -205,10 +205,11 @@ END;
      */
     private static function getValueFromEnvVar(string $key): ?string
     {
-        if (getenv($key)) {
-            $ret = (string) getenv($key);
-            $ret = trim($ret);
-            if (!empty($ret)) {
+        $env = getenv($key);
+
+        if (is_string($env)) {
+            $ret = trim($env);
+            if (strlen($ret) > 0) {
                 return $ret;
             }
         }

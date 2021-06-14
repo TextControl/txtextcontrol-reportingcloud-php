@@ -40,7 +40,7 @@ trait AssertIntegerTrait
     public static function assertInteger($value, string $message = ''): void
     {
         if (!is_int($value)) {
-            $format  = $message ?: 'Expected an integer. Got: %1$s';
+            $format  = 0 === strlen($message) ? 'Expected an integer. Got: %1$s' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

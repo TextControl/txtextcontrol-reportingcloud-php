@@ -40,7 +40,7 @@ trait AssertBooleanTrait
     public static function assertBoolean($value, string $message = ''): void
     {
         if (!is_bool($value)) {
-            $format  = $message ?: 'Expected a boolean. Got: %1$s';
+            $format  = 0 === strlen($message) ? 'Expected a boolean. Got: %1$s' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

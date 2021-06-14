@@ -50,7 +50,7 @@ trait AssertDateTimeTrait
         $dateFormat = ReportingCloud::DEFAULT_DATE_FORMAT;
 
         if (self::getDateTimeLength() !== strlen($value)) {
-            $format  = $message ?: '%1$s has an invalid number of characters in it';
+            $format  = 0 === strlen($message) ? '%1$s has an invalid number of characters in it' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
@@ -61,17 +61,17 @@ trait AssertDateTimeTrait
             $dateTime = DateTime::createFromFormat($dateFormat, $value, $dateTimeZone);
             if ($dateTime instanceof DateTime) {
                 if (0 !== $dateTime->getOffset()) {
-                    $format  = $message ?: '%1$s has an invalid offset';
+                    $format  = 0 === strlen($message) ? '%1$s has an invalid offset' : $message;
                     $message = sprintf($format, self::valueToString($value));
                     throw new InvalidArgumentException($message);
                 }
             } else {
-                $format  = $message ?: '%1$s is syntactically invalid';
+                $format  = 0 === strlen($message) ? '%1$s is syntactically invalid' : $message;
                 $message = sprintf($format, self::valueToString($value));
                 throw new InvalidArgumentException($message);
             }
         } catch (Exception $e) {
-            $format  = $message ?: 'Internal error validating %1$s - %2$s';
+            $format  = 0 === strlen($message) ? 'Internal error validating %1$s - %2$s' : $message;
             $message = sprintf($format, self::valueToString($value), self::valueToString($e->getMessage()));
             throw new InvalidArgumentException($message);
         }

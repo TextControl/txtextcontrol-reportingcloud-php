@@ -55,6 +55,7 @@ class ReportingCloud extends AbstractReportingCloud
 
             foreach ($methods as $key => $method) {
                 if (array_key_exists($key, $options)) {
+                    // @phpstan-ignore-next-line
                     $this->$method($options[$key]);
                 }
             }

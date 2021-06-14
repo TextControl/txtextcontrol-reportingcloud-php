@@ -43,13 +43,13 @@ trait AssertFilenameExistsTrait
     public static function assertFilenameExists(string $value, string $message = ''): void
     {
         if (!is_readable($value)) {
-            $format  = $message ?: '%1$s does not exist or is not readable';
+            $format  = 0 === strlen($message) ? '%1$s does not exist or is not readable' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
 
         if (!is_file($value)) {
-            $format  = $message ?: '%1$s is not a regular file';
+            $format  = 0 === strlen($message) ? '%1$s is not a regular file' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

@@ -64,7 +64,7 @@ trait AssertPageTrait
      */
     public static function assertPage(int $value, string $message = ''): void
     {
-        $format  = $message ?: 'Page number (%1$s) must be in the range [%2$s..%3$s]';
+        $format  = 0 === strlen($message) ? 'Page number (%1$s) must be in the range [%2$s..%3$s]' : $message;
         $message = sprintf(
             $format,
             self::valueToString($value),

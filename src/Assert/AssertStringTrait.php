@@ -40,7 +40,7 @@ trait AssertStringTrait
     public static function assertString($value, string $message = ''): void
     {
         if (!is_string($value)) {
-            $format  = $message ?: 'Expected a string. Got: %1$s';
+            $format  = 0 === strlen($message) ? 'Expected a string. Got: %1$s' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

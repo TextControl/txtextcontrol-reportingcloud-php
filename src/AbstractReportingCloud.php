@@ -661,14 +661,14 @@ abstract class AbstractReportingCloud
     {
         $apiKey = (string) $this->getApiKey();
 
-        if (!empty($apiKey)) {
+        if (strlen($apiKey) > 0) {
             return sprintf('ReportingCloud-APIKey %s', $apiKey);
         }
 
         $username = (string) $this->getUsername();
         $password = (string) $this->getPassword();
 
-        if (!empty($username) && !empty($password)) {
+        if (strlen($username) > 0 && strlen($password) > 0) {
             $value = sprintf('%s:%s', $username, $password);
             return sprintf('Basic %s', base64_encode($value));
         }

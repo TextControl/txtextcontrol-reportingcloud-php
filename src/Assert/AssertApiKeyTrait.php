@@ -66,7 +66,7 @@ trait AssertApiKeyTrait
     {
         $len = strlen($value);
 
-        $format  = $message ?: 'Length of API key (%1$s) must be in the range [%2$s..%3$s]';
+        $format  = 0 === strlen($message) ? 'Length of API key (%1$s) must be in the range [%2$s..%3$s]' : $message;
         $message = sprintf(
             $format,
             self::valueToString($value),

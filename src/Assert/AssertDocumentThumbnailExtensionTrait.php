@@ -57,7 +57,9 @@ trait AssertDocumentThumbnailExtensionTrait
         $extension = pathinfo($value, PATHINFO_EXTENSION);
         $extension = strtoupper($extension);
 
-        $format  = $message ?: '%1$s contains an unsupported document thumbnail format file extension';
+        $format  = 0 === strlen($message)
+            ? '%1$s contains an unsupported document thumbnail format file extension'
+            : $message;
         $message = sprintf($format, self::valueToString($value));
 
         $fileFormats = array_merge(

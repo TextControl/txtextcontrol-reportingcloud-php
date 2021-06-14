@@ -49,7 +49,7 @@ trait AssertOneOfTrait
                 $array[$key] = self::valueToString($record);
             }
             $valuesString = implode(', ', $array);
-            $format       = $message ?: 'Expected one of %2$s. Got %1$s';
+            $format  = 0 === strlen($message) ? 'Expected one of %2$s. Got %1$s' : $message;
             $message      = sprintf($format, self::valueToString($value), $valuesString);
             throw new InvalidArgumentException($message);
         }

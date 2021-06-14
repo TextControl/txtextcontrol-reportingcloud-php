@@ -45,7 +45,7 @@ trait AssertRangeTrait
     public static function assertRange(int $value, int $min, int $max, string $message = ''): void
     {
         if ($value < $min || $value > $max) {
-            $format  = $message ?: 'Expected a value between %2$s and %3$s. Got: %1$s';
+            $format  = 0 === strlen($message) ? 'Expected a value between %2$s and %3$s. Got: %1$s' : $message;
             $message = sprintf(
                 $format,
                 self::valueToString($value),

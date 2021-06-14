@@ -37,7 +37,6 @@ class FileUtils extends AbstractStdlib
 
         if ($base64Encode) {
             $binaryData = base64_encode($binaryData);
-            assert(is_string($binaryData));
         }
 
         return $binaryData;

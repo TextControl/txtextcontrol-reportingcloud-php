@@ -47,11 +47,11 @@ trait FilterDateTimeToTimestampTrait
             $dateTimeZone = new DateTimeZone($timeZone);
             $dateTime     = DateTime::createFromFormat($dateFormat, $dateTimeString, $dateTimeZone);
             if ($dateTime instanceof DateTime) {
-                $ret = (int) $dateTime->getTimestamp();
+                $ret = $dateTime->getTimestamp();
             }
         } catch (Exception $e) {
             throw new InvalidArgumentException(
-                (string) $e->getMessage(),
+                $e->getMessage(),
                 (int) $e->getCode()
             );
         }

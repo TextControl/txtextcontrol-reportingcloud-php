@@ -49,7 +49,7 @@ trait FilterTimestampToDateTimeTrait
             $ret = $dateTime->format($dateFormat);
         } catch (Exception $e) {
             throw new InvalidArgumentException(
-                (string) $e->getMessage(),
+                $e->getMessage(),
                 (int) $e->getCode()
             );
         }

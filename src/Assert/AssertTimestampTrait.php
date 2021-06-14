@@ -64,7 +64,7 @@ trait AssertTimestampTrait
      */
     public static function assertTimestamp(int $value, string $message = ''): void
     {
-        $format  = $message ?: 'Timestamp (%1$s) must be in the range [%2$s..%3$s]';
+        $format  = 0 === strlen($message) ? 'Timestamp (%1$s) must be in the range [%2$s..%3$s]' : $message;
         $message = sprintf(
             $format,
             self::valueToString($value),

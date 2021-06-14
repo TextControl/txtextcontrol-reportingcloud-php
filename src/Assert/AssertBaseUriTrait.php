@@ -47,7 +47,7 @@ trait AssertBaseUriTrait
         $host2 = (string) parse_url($value, PHP_URL_HOST);
 
         if (!StringUtils::endsWith($host2, $host1)) {
-            $format  = $message ?: 'Expected base URI to end in %2$s. Got %1$s';
+            $format  = 0 === strlen($message) ? 'Expected base URI to end in %2$s. Got %1$s' : $message;
             $message = sprintf($format, self::valueToString($value), self::valueToString($host1));
             throw new InvalidArgumentException($message);
         }

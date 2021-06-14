@@ -396,8 +396,8 @@ trait GetTrait
 
         $result = (string) $this->get('/templates/download', $query, null, StatusCode::OK);
 
-        if (!empty($result)) {
-            $decoded = base64_decode($result);
+        if (strlen($result) > 0) {
+            $decoded = base64_decode($result, true);
             if (is_string($decoded)) {
                 $result = $decoded;
             }

@@ -40,7 +40,7 @@ trait AssertArrayTrait
     public static function assertArray($value, string $message = ''): void
     {
         if (!is_array($value)) {
-            $format  = $message ?: 'Expected an array. Got: %1$s';
+            $format  = 0 === strlen($message) ? 'Expected an array. Got: %1$s' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }
