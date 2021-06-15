@@ -98,7 +98,7 @@ trait BuildTrait
      *
      * @param array $array
      *
-     * @return array
+     * @return array<string, bool|int|string>
      * @throws InvalidArgumentException
      */
     protected function buildDocumentSettingsArray(array $array): array

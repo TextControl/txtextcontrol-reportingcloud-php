@@ -180,12 +180,12 @@ trait PostTrait
      * Merge data into a template and return an array of binary data.
      * Each record in the array is the binary data of one document
      *
-     * @param array  $mergeData        Array of merge data
-     * @param string $returnFormat     Return format
-     * @param string $templateName     Template name
-     * @param string $templateFilename Template filename on local file system
-     * @param bool   $append           Append flag
-     * @param array  $mergeSettings    Array of merge settings
+     * @param array<int|string, array|bool|int|string> $mergeData        Array of merge data
+     * @param string                                   $returnFormat     Return format
+     * @param string                                   $templateName     Template name
+     * @param string                                   $templateFilename Template filename on local file system
+     * @param bool                                     $append           Append flag
+     * @param array<string, bool|int|string>           $mergeSettings    Array of merge settings
      *
      * @return array
      * @throws InvalidArgumentException
@@ -239,9 +239,9 @@ trait PostTrait
     }
 
     /**
-     * Combine documents to appending them, divided by a new section, paragraph or nothing
+     * Combine documents by appending them, divided by a new section, paragraph or nothing
      *
-     * @param array  $documentsData
+     * @param array<int|string, array|bool|int|string>  $documentsData
      * @param string $returnFormat
      * @param array  $documentSettings
      *
