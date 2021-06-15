@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This is the new first major version since the release of the wrapper in May 2016.
+This is the second major version since the release of the wrapper in May 2016.
 
 ## Notable Changes
 

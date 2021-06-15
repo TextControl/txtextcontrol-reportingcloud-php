@@ -33,7 +33,7 @@ Since [ReportingCloud PHP SDK 3.0](/doc/release-3.0.0.md), the PHP SDK requires 
 
 All versions of PHPs prior to 7.3 have reached [end-of-life](http://php.net/eol.php) and consequently, no further security updates will be released for them. If your application is running in an older environment, it is highly advisable to update to a more current version of PHP.
 
-If you are unable or unwilling to update your PHP installation, you may consider using ReportingCloud PHP SDK 1.0, which supports PHP 7.1, or ReportingCloud PHP SDK 1.0, which supports PHP 5.6. 
+If you are unable or unwilling to update your PHP installation, you may consider using ReportingCloud PHP SDK 2.0, which supports PHP 7.1, or ReportingCloud PHP SDK 1.0, which supports PHP 5.6. 
 
 Please note, however, these versions are no longer maintained.
 
