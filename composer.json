@@ -9,12 +9,14 @@
     "license": "BSD-3-Clause",
     "require": {
         "php": "^7.4",
+        "ext-dom": "*",
+        "ext-json": "*",
         "ctw/ctw-http": "^1.0",
         "guzzlehttp/guzzle": "^6.5 || ^7.0",
-        "ext-dom": "*"
+        "ext-libxml": "*"
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.9",
+        "fakerphp/faker": "^1.14",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan": "^0.12",
         "phpstan/phpstan-strict-rules": "^0.12",

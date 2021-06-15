@@ -74,8 +74,6 @@ trait AssertDocumentDividerTrait
             return false;
         }, ARRAY_FILTER_USE_KEY);
 
-        $ret = array_values($ret);
-
-        return $ret;
+        return array_values($ret);
     }
 }

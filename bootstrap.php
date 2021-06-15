@@ -25,7 +25,7 @@ $autoloadFilename = function (): string {
         // when installed as a dependency to another project
         dirname(__FILE__, 3),
         // when installed as a GIT clone
-        dirname(__FILE__, 1) . '/vendor',
+        dirname(__FILE__) . '/vendor',
     ];
 
     foreach ($paths as $path) {
@@ -40,9 +40,6 @@ $autoloadFilename = function (): string {
     throw new RuntimeException($message);
 };
 
-/**
- * @psalm-suppress UnresolvableInclude
- */
 include $autoloadFilename();
 
 if (!ConsoleUtils::checkCredentials()) {

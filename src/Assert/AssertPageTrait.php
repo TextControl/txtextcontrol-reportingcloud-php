@@ -32,14 +32,14 @@ trait AssertPageTrait
      *
      * @var int
      */
-    private static $pageMin = 1;
+    private static int $pageMin = 1;
 
     /**
      * Maximum page number (PHP_INT_MAX)
      *
      * @var int
      */
-    private static $pageMax = PHP_INT_MAX;
+    private static int $pageMax = PHP_INT_MAX;
 
     /**
      * Check value is a valid page number

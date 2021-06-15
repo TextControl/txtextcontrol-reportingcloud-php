@@ -46,6 +46,9 @@ class TextInMergeDataIsInDocumentTest extends TestCase
         unset($this->pdfParser);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testTextInMergeDataIsInDocument(): void
     {
         $fileTypes = [

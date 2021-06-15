@@ -77,7 +77,7 @@ trait AssertDateTimeTrait
      *
      * @return int
      */
-    private static function getDateTimeLength()
+    private static function getDateTimeLength(): int
     {
         $ret = 0;
 

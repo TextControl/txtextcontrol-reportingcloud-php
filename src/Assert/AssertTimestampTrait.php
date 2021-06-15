@@ -32,14 +32,14 @@ trait AssertTimestampTrait
      *
      * @var int
      */
-    private static $timestampMin = 0;
+    private static int $timestampMin = 0;
 
     /**
      * Maximum timestamp (PHP_INT_MAX)
      *
      * @var int
      */
-    private static $timestampMax = PHP_INT_MAX;
+    private static int $timestampMax = PHP_INT_MAX;
 
     /**
      * Check value is a valid timestamp

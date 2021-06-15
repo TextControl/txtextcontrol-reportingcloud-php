@@ -31,11 +31,11 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
 
         $oldValue = getenv($key);
 
-        putenv("${key}=");
+        putenv("{$key}=");
 
         self::assertFalse(ConsoleUtils::checkCredentials());
 
-        putenv("${key}={$oldValue}");
+        putenv("{$key}={$oldValue}");
 
         self::assertTrue(ConsoleUtils::checkCredentials());
     }
@@ -47,11 +47,11 @@ class ConsoleUtilsTest extends AbstractReportingCloudTest
 
         $oldValue = getenv($key);
 
-        putenv("${key}={$value}");
+        putenv("{$key}={$value}");
 
         self::assertEquals(ConsoleUtils::apiKey(), $value);
 
-        putenv("${key}={$oldValue}");
+        putenv("{$key}={$oldValue}");
     }
 
     public function testErrorMessage(): void

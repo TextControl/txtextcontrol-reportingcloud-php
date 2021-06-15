@@ -32,14 +32,14 @@ trait AssertApiKeyTrait
      *
      * @var int
      */
-    private static $apiKeyMinLength = 20;
+    private static int $apiKeyMinLength = 20;
 
     /**
      * Maximum length of API key
      *
      * @var int
      */
-    private static $apiKeyMaxLength = 45;
+    private static int $apiKeyMaxLength = 45;
 
     /**
      * Check value is a syntactically valid API key

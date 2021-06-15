@@ -113,9 +113,8 @@ END;
         $value = 'your-api-key';
 
         $ret = sprintf($format, $name, $key, $value, $key, $value);
-        $ret = wordwrap($ret, 80);
 
-        return $ret;
+        return wordwrap($ret, 80);
     }
 
     /**

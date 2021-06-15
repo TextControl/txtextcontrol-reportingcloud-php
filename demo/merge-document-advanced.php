@@ -12,9 +12,10 @@ use TxTextControl\ReportingCloud\Stdlib\Path;
 // ---------------------------------------------------------------------------------------------------------------------
 
 /**
- * Using Faker, return some random merge data to insert into the template
+ * Return some random merge data to insert into the template
  *
  * @return array
+ * @throws Exception
  */
 $getMergeDataRecord = function (): array {
 

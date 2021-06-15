@@ -57,18 +57,9 @@ $fileInfos = $getDemos();
 
 foreach ($fileInfos as $fileInfo) {
 
-    ConsoleUtils::writeLn(
-        '%d/%d) Executing "%s"...',
-        $counter,
-        $fileInfos->count(),
-        $fileInfo->getFilename()
-    );
+    ConsoleUtils::writeLn('%d/%d) Executing "%s"...', $counter, $fileInfos->count(), $fileInfo->getFilename());
     ConsoleUtils::writeLn();
-    $command = sprintf(
-        '%s %s',
-        escapeshellarg(PHP_BINARY),
-        escapeshellarg($fileInfo->getPathname())
-    );
+    $command = sprintf('%s %s', escapeshellarg(PHP_BINARY), escapeshellarg($fileInfo->getPathname()));
     passthru($command);
     ConsoleUtils::writeLn();
     ConsoleUtils::writeLn('...DONE.');

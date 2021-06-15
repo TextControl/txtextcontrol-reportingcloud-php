@@ -173,9 +173,7 @@ trait PostTrait
 
         $result = (string) $this->post('/document/convert', $query, $data, HttpStatus::STATUS_OK);
 
-        $ret    = (string) base64_decode($result, true);
-
-        return $ret;
+        return (string) base64_decode($result, true);
     }
 
     /**
@@ -270,9 +268,7 @@ trait PostTrait
 
         $result = (string) $this->post('/document/append', $query, $json, HttpStatus::STATUS_OK);
 
-        $ret    = (string) base64_decode($result, true);
-
-        return $ret;
+        return (string) base64_decode($result, true);
     }
 
     /**
@@ -320,9 +316,7 @@ trait PostTrait
 
         $result = (string) $this->post('/document/findandreplace', $query, $json, HttpStatus::STATUS_OK);
 
-        $ret    = (string) base64_decode($result, true);
-
-        return $ret;
+        return (string) base64_decode($result, true);
     }
 
     /**

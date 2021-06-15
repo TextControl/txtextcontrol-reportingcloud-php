@@ -23,8 +23,7 @@ ConsoleUtils::dump(
 ConsoleUtils::dump(
     $reportingCloud->getProofingSuggestions(
         'ssky',
-        'en_US.dic',
-        10
+        'en_US.dic'
     )
 );
 

@@ -32,14 +32,14 @@ trait AssertZoomFactorTrait
      *
      * @var int
      */
-    private static $zoomFactorMin = 1;
+    private static int $zoomFactorMin = 1;
 
     /**
      * Maximum zoom factor
      *
      * @var int
      */
-    private static $zoomFactorMax = 400;
+    private static int $zoomFactorMax = 400;
 
     /**
      * Check value is a valid zoom factor
