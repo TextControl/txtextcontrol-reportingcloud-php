@@ -27,10 +27,7 @@ use TxTextControl\ReportingCloud\Stdlib\Path;
  */
 abstract class AbstractReportingCloudTest extends TestCase
 {
-    /**
-     * @var ReportingCloud
-     */
-    protected $reportingCloud;
+    protected ReportingCloud $reportingCloud;
 
     // <editor-fold desc="Scaffolding">
 

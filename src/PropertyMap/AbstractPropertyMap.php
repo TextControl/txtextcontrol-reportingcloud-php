@@ -28,7 +28,7 @@ abstract class AbstractPropertyMap implements PropertyMapInterface
      *
      * @var array
      */
-    protected $map;
+    protected array $map;
 
     /**
      * Return the property map

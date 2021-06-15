@@ -27,15 +27,9 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
  */
 class TextInMergeDataIsInDocumentTest extends TestCase
 {
-    /**
-     * @var ReportingCloud
-     */
-    protected $reportingCloud;
+    protected ReportingCloud $reportingCloud;
 
-    /**
-     * @var PdfParser
-     */
-    protected $pdfParser;
+    protected PdfParser      $pdfParser;
 
     public function setUp(): void
     {

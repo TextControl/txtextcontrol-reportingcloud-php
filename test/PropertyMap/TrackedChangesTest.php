@@ -25,10 +25,7 @@ use TxTextControl\ReportingCloud\PropertyMap\TrackedChanges as PropertyMap;
  */
 class TrackedChangesTest extends TestCase
 {
-    /**
-     * @var PropertyMap
-     */
-    protected $propertyMap;
+    protected PropertyMap $propertyMap;
 
     public function setUp(): void
     {

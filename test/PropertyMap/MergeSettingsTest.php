@@ -25,10 +25,7 @@ use TxTextControl\ReportingCloud\PropertyMap\MergeSettings as PropertyMap;
  */
 class MergeSettingsTest extends TestCase
 {
-    /**
-     * @var PropertyMap
-     */
-    protected $propertyMap;
+    protected PropertyMap $propertyMap;
 
     public function setUp(): void
     {

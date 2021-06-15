@@ -25,10 +25,7 @@ use TxTextControl\ReportingCloud\Filter\Filter;
  */
 class TimestampToDateTimeTest extends TestCase
 {
-    /**
-     * @var string
-     */
-    protected $defaultTimezone;
+    protected string $defaultTimezone;
 
     public function setUp(): void
     {

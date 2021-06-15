@@ -25,10 +25,7 @@ use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as PropertyMap;
  */
 class TemplateInfoTest extends TestCase
 {
-    /**
-     * @var PropertyMap
-     */
-    protected $propertyMap;
+    protected PropertyMap $propertyMap;
 
     public function setUp(): void
     {

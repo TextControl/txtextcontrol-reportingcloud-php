@@ -25,10 +25,7 @@ use TxTextControl\ReportingCloud\PropertyMap\DocumentSettings as PropertyMap;
  */
 class DocumentSettingsTest extends TestCase
 {
-    /**
-     * @var PropertyMap
-     */
-    protected $propertyMap;
+    protected PropertyMap $propertyMap;
 
     public function setUp(): void
     {

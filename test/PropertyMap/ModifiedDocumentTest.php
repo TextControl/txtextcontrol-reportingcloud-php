@@ -25,10 +25,7 @@ use TxTextControl\ReportingCloud\PropertyMap\ModifiedDocument as PropertyMap;
  */
 class ModifiedDocumentTest extends TestCase
 {
-    /**
-     * @var PropertyMap
-     */
-    protected $propertyMap;
+    protected PropertyMap $propertyMap;
 
     public function setUp(): void
     {
