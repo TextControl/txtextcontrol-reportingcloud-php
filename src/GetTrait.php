@@ -225,7 +225,7 @@ trait GetTrait
      * @param string $imageFormat  Image format
      *
      * @throws InvalidArgumentException
-     * @return array
+     * @return array<int, string>
      */
     public function getTemplateThumbnails(
         string $templateName,
@@ -276,7 +276,7 @@ trait GetTrait
     /**
      * Return an array properties for the templates in template storage
      *
-     * @return array
+     * @return array<int, array<string, bool|int|string>>
      */
     public function getTemplateList(): array
     {
@@ -296,6 +296,8 @@ trait GetTrait
                 }
             });
         }
+
+        dump($ret);
 
         return $ret;
     }
