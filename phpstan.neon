@@ -1,10 +1,7 @@
+includes:
+    - phpstan-baseline.neon
 parameters:
     level: max
-    parallel:
-        jobSize: 64
-        maximumNumberOfProcesses: 4
-        minimumNumberOfJobsPerProcess: 4
-        processTimeout: 240.0
     scanFiles:
         -  %currentWorkingDirectory%/vendor/autoload.php
     paths:
@@ -15,14 +12,4 @@ parameters:
         - test
     fileExtensions:
         - php
-    ignoreErrors:
-        -
-            message: '#no value type specified in iterable type array#'
-            paths:
-                - src/AbstractReportingCloud.php
-                - src/BuildTrait.php
-                - src/DeleteTrait.php
-                - src/GetTrait.php
-                - src/PostTrait.php
-                - src/PutTrait.php
-                - src/ReportingCloud.php
+

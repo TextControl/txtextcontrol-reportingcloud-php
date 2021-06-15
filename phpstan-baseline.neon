@@ -1,0 +1,172 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\AbstractReportingCloud\\:\\:request\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/AbstractReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:appendDocument\\(\\) has parameter \\$documentSettings with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:appendDocument\\(\\) has parameter \\$documentsData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildDocumentSettingsArray\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildDocumentSettingsArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildDocumentsArray\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildDocumentsArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildFindAndReplaceDataArray\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildFindAndReplaceDataArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildMergeSettingsArray\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildMergeSettingsArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildPropertyMapArray\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildPropertyMapArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:delete\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:findAndReplaceDocument\\(\\) has parameter \\$findAndReplaceData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:findAndReplaceDocument\\(\\) has parameter \\$mergeSettings with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:get\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getAccountSettings\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getApiKeys\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getAvailableDictionaries\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getDocumentThumbnails\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getFontList\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getProofingSuggestions\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getTemplateInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getTemplateList\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getTemplateThumbnails\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getTrackedChanges\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:mergeDocument\\(\\) has parameter \\$mergeData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:mergeDocument\\(\\) has parameter \\$mergeSettings with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:mergeDocument\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:post\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:proofingCheck\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:put\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
+		-
+			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:removeTrackedChange\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ReportingCloud.php
+
