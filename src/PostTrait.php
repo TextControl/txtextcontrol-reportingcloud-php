@@ -381,7 +381,7 @@ trait PostTrait
      * @param string $documentFilename Document filename
      *
      * @throws InvalidArgumentException
-     * @return array
+     * @return array<int|string, array|bool|int|string>
      */
     public function getTrackedChanges(
         string $documentFilename
@@ -408,6 +408,8 @@ trait PostTrait
                 }
             });
         }
+
+        dump($ret);
 
         return $ret;
     }

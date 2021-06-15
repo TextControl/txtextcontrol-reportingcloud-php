@@ -23,6 +23,8 @@ $results = $reportingCloud->getTrackedChanges($sourceFilename);
 
 foreach ($results as $result) {
 
+    assert(is_array($result));
+
     foreach ($result as $key => $value) {
         ConsoleUtils::writeLn('%s: %s', $key, $value);
     }

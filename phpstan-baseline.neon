@@ -11,11 +11,6 @@ parameters:
 			path: src/ReportingCloud.php
 
 		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getTrackedChanges\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
 			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:mergeDocument\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/ReportingCloud.php

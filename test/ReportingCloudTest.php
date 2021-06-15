@@ -1417,6 +1417,8 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
         self::assertArrayHasKey(0, $response);
 
+        assert(is_array($response[0]));
+
         self::assertArrayHasKey('change_kind', $response[0]);
         self::assertArrayHasKey('change_time', $response[0]);
         self::assertArrayHasKey('default_highlight_color', $response[0]);
