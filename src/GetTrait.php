@@ -76,7 +76,7 @@ trait GetTrait
     /**
      * Return an associative array of API keys associated with the Reporting Cloud account
      *
-     * @return array
+     * @return array<int, array<int|string, array|bool|int|string>>
      */
     public function getApiKeys(): array
     {

@@ -15,6 +15,8 @@ $reportingCloud = new ReportingCloud([
 // Loop through all API keys, deleting each one, except for the one you are currently using
 
 foreach ($reportingCloud->getApiKeys() as $apiKey) {
+    assert(isset($apiKey['key']));
+    assert(is_string($apiKey['key']));
     if ($apiKey['key'] === $reportingCloud->getApiKey()) {
         ConsoleUtils::writeLn('Keeping API key "%s" (in use).', $apiKey['key']);
         continue;
