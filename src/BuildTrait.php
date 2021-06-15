@@ -64,7 +64,7 @@ trait BuildTrait
      *
      * @param array<int|string, array|bool|int|string> $array
      *
-     * @return array
+     * @return array<int, array>
      * @throws InvalidArgumentException
      */
     protected function buildDocumentsArray(array $array): array

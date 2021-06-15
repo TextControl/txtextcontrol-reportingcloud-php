@@ -407,8 +407,6 @@ trait PostTrait
             });
         }
 
-        dump($ret);
-
         return $ret;
     }
 
@@ -420,7 +418,7 @@ trait PostTrait
      * @param bool $accept             Specifies whether the tracked change should be accepted or not (reject)
      *
      * @throws InvalidArgumentException
-     * @return array
+     * @return array<int|string, array|bool|int|string>
      *
      */
     public function removeTrackedChange(

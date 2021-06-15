@@ -69,7 +69,7 @@ foreach ($results as $result) {
 
 $result = $reportingCloud->removeTrackedChange($sourceFilename, 1, true);
 
-if (isset($result['document'])) {
+if (isset($result['document']) && is_string($result['document'])) {
     FileUtils::write($destinationFilename, $result['document']);
     ConsoleUtils::writeLn('Written updated document to "%s".', $destinationFilename);
 }
