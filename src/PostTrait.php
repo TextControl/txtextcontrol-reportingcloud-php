@@ -232,7 +232,11 @@ trait PostTrait
         $result = $this->post('/document/merge', $query, $json, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
-            $ret = array_map('base64_decode', $result);
+            foreach ($result as $key => $value) {
+                $value = base64_decode($value, true);
+                assert(is_string($value));
+                $result[$key] = $value;
+            }
         }
 
         return $ret;
@@ -331,7 +335,7 @@ trait PostTrait
      * @param string $imageFormat      Image format
      *
      * @throws InvalidArgumentException
-     * @return array
+     * @return array<int, string>
      */
     public function getDocumentThumbnails(
         string $documentFilename,
@@ -361,7 +365,11 @@ trait PostTrait
         $result = $this->post('/document/thumbnails', $query, $data, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
-            $ret = array_map('base64_decode', $result);
+            foreach ($result as $key => $value) {
+                $value = base64_decode($value, true);
+                assert(is_string($value));
+                $result[$key] = $value;
+            }
         }
 
         return $ret;

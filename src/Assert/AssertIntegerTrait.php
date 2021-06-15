@@ -21,8 +21,6 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
- *
- * @deprecated Not necessary in PHP 7.4
  */
 trait AssertIntegerTrait
 {

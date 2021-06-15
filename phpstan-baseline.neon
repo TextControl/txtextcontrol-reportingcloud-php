@@ -26,21 +26,6 @@ parameters:
 			path: src/ReportingCloud.php
 
 		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getDocumentThumbnails\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getFontList\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getProofingSuggestions\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
 			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:getTemplateInfo\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/ReportingCloud.php

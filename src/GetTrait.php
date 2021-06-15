@@ -159,7 +159,7 @@ trait GetTrait
      * @param string $language Language of specified text
      * @param int    $max      Maximum number of suggestions to return
      *
-     * @return array
+     * @return array<int, string>
      * @throws InvalidArgumentException
      */
     public function getProofingSuggestions(string $word, string $language, int $max = 10): array
@@ -253,7 +253,11 @@ trait GetTrait
         $result = $this->get('/templates/thumbnails', $query, '', HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
-            $ret = array_map('base64_decode', $result);
+            foreach ($result as $key => $value) {
+                $value = base64_decode($value, true);
+                assert(is_string($value));
+                $result[$key] = $value;
+            }
         }
 
         return $ret;
@@ -337,7 +341,7 @@ trait GetTrait
     /**
      * Return an array of available fonts on the Reporting Cloud service
      *
-     * @return array
+     * @return array<int, string>
      */
     public function getFontList(): array
     {

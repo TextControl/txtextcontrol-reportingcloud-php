@@ -161,8 +161,8 @@ trait BuildTrait
                 Assert::assertCulture($value);
             }
             if (StringUtils::startsWith($key, 'remove_')) {
-                //Assert::assertBoolean($value);
                 assert(is_bool($value));
+                Assert::assertBoolean($value);
             }
             if (StringUtils::endsWith($key, '_date')) {
                 assert(is_int($value));
