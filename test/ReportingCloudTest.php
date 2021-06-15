@@ -243,6 +243,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $templateNames = [];
         $templateList  = $this->reportingCloud->getTemplateList();
         foreach ($templateList as $record) {
+            assert(is_array($record));
             $templateNames[] = $record['template_name'];
         }
         self::assertContains($tempTemplateName, $templateNames);
@@ -456,6 +457,8 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
         self::assertArrayHasKey('merge_blocks', $response);
 
+        assert(is_array($response['merge_blocks']));
+
         self::assertArrayHasKey(0, $response['merge_blocks']);
 
         self::assertArrayHasKey('name', $response['merge_blocks'][0]);
@@ -471,6 +474,8 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         self::assertArrayHasKey('text_before', $response['merge_blocks'][0]['merge_fields'][0]);
 
         self::assertArrayHasKey('merge_fields', $response);
+
+        assert(is_array($response['merge_fields']));
 
         self::assertArrayHasKey(0, $response['merge_fields']);
 
@@ -514,8 +519,10 @@ class ReportingCloudTest extends AbstractReportingCloudTest
 
         $response = $this->reportingCloud->getTemplateList();
 
+        assert(isset($response[0]));
         self::assertArrayHasKey(0, $response);
 
+        assert(is_array($response[0]));
         self::assertArrayHasKey('template_name', $response[0]);
         self::assertArrayHasKey('modified', $response[0]);
         self::assertArrayHasKey('size', $response[0]);

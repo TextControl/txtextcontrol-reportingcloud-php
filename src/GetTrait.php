@@ -190,7 +190,7 @@ trait GetTrait
      *
      * @param string $templateName Template name
      *
-     * @return array
+     * @return array<int|string, array|bool|int|string>
      * @throws InvalidArgumentException
      */
     public function getTemplateInfo(string $templateName): array
@@ -276,7 +276,7 @@ trait GetTrait
     /**
      * Return an array properties for the templates in template storage
      *
-     * @return array<int, array<string, bool|int|string>>
+     * @return array<int|string, array|bool|int|string>
      */
     public function getTemplateList(): array
     {
@@ -296,8 +296,6 @@ trait GetTrait
                 }
             });
         }
-
-        dump($ret);
 
         return $ret;
     }

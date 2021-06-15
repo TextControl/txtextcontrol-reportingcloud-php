@@ -71,7 +71,13 @@ ConsoleUtils::writeLn("They are as follows:");
 
 foreach ($reportingCloud->getTemplateList() as $record) {
 
+    assert(is_array($record));
+
+    assert(isset($record['modified']));
+    assert(isset($record['template_name']));
+
     assert(is_int($record['modified']));
+    assert(is_string($record['template_name']));
 
     $templateName      = $record['template_name'];
     $modifiedFormatted = date('r', $record['modified']);    // modified is a unix timestamp
@@ -83,8 +89,6 @@ foreach ($reportingCloud->getTemplateList() as $record) {
 
 
 // Delete a template in template storage
-
-assert(is_string($templateName));
 
 if ($reportingCloud->deleteTemplate($templateName)) {
     ConsoleUtils::writeLn('"%s" was deleted.', $templateName);
