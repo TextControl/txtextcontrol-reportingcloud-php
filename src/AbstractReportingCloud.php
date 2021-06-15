@@ -617,9 +617,9 @@ abstract class AbstractReportingCloud
     /**
      * Request the URI with options
      *
-     * @param string $method  HTTP method
-     * @param string $uri     URI
-     * @param array  $options Options
+     * @param string                               $method  HTTP method
+     * @param string                               $uri     URI
+     * @param array<string, array|bool|int|string> $options Options
      *
      * @return ResponseInterface
      * @throws RuntimeException
@@ -631,6 +631,7 @@ abstract class AbstractReportingCloud
         try {
             $test = $this->getTest();
             if ($test) {
+                assert(is_array($options[RequestOptions::QUERY]));
                 $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($test);
             }
             $response = $client->request($method, $uri, $options);

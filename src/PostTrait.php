@@ -241,9 +241,9 @@ trait PostTrait
     /**
      * Combine documents by appending them, divided by a new section, paragraph or nothing
      *
-     * @param array<int|string, array|bool|int|string>  $documentsData
-     * @param string $returnFormat
-     * @param array  $documentSettings
+     * @param array<int|string, array|bool|int|string> $documentsData
+     * @param string                                   $returnFormat
+     * @param array<string, bool|int|string>           $documentSettings
      *
      * @return string
      * @throws InvalidArgumentException
@@ -253,6 +253,7 @@ trait PostTrait
         string $returnFormat,
         array $documentSettings = []
     ): string {
+
         $query = [];
         $json  = [];
 
@@ -274,11 +275,11 @@ trait PostTrait
     /**
      * Perform find and replace in document and return binary data.
      *
-     * @param array  $findAndReplaceData Array of find and replace data
-     * @param string $returnFormat       Return format
-     * @param string $templateName       Template name
-     * @param string $templateFilename   Template filename on local file system
-     * @param array  $mergeSettings      Array of merge settings
+     * @param array<string, string>          $findAndReplaceData Array of find and replace data
+     * @param string                         $returnFormat       Return format
+     * @param string                         $templateName       Template name
+     * @param string                         $templateFilename   Template filename on local file system
+     * @param array<string, bool|int|string> $mergeSettings      Array of merge settings
      *
      * @return string
      * @throws InvalidArgumentException

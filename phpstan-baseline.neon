@@ -1,52 +1,12 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\AbstractReportingCloud\\:\\:request\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/AbstractReportingCloud.php
-
-		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:appendDocument\\(\\) has parameter \\$documentSettings with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildDocumentSettingsArray\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildDocumentsArray\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
 			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildDocumentsArray\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/ReportingCloud.php
 
 		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildFindAndReplaceDataArray\\(\\) has parameter \\$array with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildFindAndReplaceDataArray\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
 			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildMergeSettingsArray\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:findAndReplaceDocument\\(\\) has parameter \\$findAndReplaceData with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:findAndReplaceDocument\\(\\) has parameter \\$mergeSettings with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/ReportingCloud.php
 

@@ -62,7 +62,7 @@ trait BuildTrait
     /**
      * Using passed documentsData array, build array for backend
      *
-     * @param array $array
+     * @param array<int|string, array|bool|int|string> $array
      *
      * @return array
      * @throws InvalidArgumentException
@@ -72,16 +72,19 @@ trait BuildTrait
         $ret = [];
 
         foreach ($array as $inner) {
-            Assert::assertArray($inner);
+            //Assert::assertArray($inner);
+            assert(is_array($inner));
             $document = [];
             foreach ($inner as $key => $value) {
                 switch ($key) {
                     case 'filename':
+                        assert(is_string($value));
                         Assert::assertFilenameExists($value);
                         Assert::assertDocumentExtension($value);
                         $document['document'] = FileUtils::read($value, true);
                         break;
                     case 'divider':
+                        assert(is_int($value));
                         Assert::assertDocumentDivider($value);
                         $document['documentDivider'] = $value;
                         break;
@@ -96,7 +99,7 @@ trait BuildTrait
     /**
      * Using passed documentsSettings array, build array for backend
      *
-     * @param array $array
+     * @param array<string, bool|int|string> $array
      *
      * @return array<string, bool|int|string>
      * @throws InvalidArgumentException
@@ -118,7 +121,7 @@ trait BuildTrait
                 continue;
             }
             $value = $array[$key];
-            if (StringUtils::endsWith($key, '_date')) {
+            if (StringUtils::endsWith($key, '_date') && is_int($value)) {
                 Assert::assertTimestamp($value);
                 $value = Filter::filterTimestampToDateTime($value);
             }
@@ -158,7 +161,8 @@ trait BuildTrait
                 Assert::assertCulture($value);
             }
             if (StringUtils::startsWith($key, 'remove_')) {
-                Assert::assertBoolean($value);
+                //Assert::assertBoolean($value);
+                assert(is_bool($value));
             }
             if (StringUtils::endsWith($key, '_date')) {
                 assert(is_int($value));
@@ -174,9 +178,9 @@ trait BuildTrait
     /**
      * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
      *
-     * @param array $array
+     * @param array<string, string> $array
      *
-     * @return array
+     * @return array<int, array<int, int|string>>
      */
     protected function buildFindAndReplaceDataArray(array $array): array
     {
