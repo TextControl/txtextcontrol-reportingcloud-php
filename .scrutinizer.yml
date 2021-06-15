@@ -31,5 +31,5 @@ build:
                     -
                         command: composer test
                         coverage:
-                            file: phpunit/clover.xml
+                            file: build/phpunit/clover.xml
                             format: php-clover

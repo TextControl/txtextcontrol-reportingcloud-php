@@ -6,12 +6,13 @@
 
 * Upgraded minimum PHP requirement to 7.4.
 * Added typed properties, removing `null`.
+* Added support for PHP 8.0.
 * Updated to [Guzzle 7.0](https://github.com/guzzle/guzzle).
 * Updated to [PHPUnit 9.5](https://phpunit.readthedocs.io/en/9.5/).
 * Removed class `TxTextControl\ReportingCloud\StatusCode\StatusCode`.
+* Added package `ctw/ctw-http` as a dependency to work with HTTP status codes. 
 * Switched to PHPStan for static analysis, with [strict rules](https://github.com/phpstan/phpstan-strict-rules).
-* Deprecated username and password authentication.
-* Added support for PHP 8.0.
+* Deprecated username and password authentication, in favor of API key authentication.
 
 ## 2.6.2 - 2020-10-28
 
