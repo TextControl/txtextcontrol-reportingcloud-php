@@ -72,7 +72,7 @@ trait DeleteTrait
             'key' => $key,
         ];
 
-        return $this->delete('/account/apikey', $query, null, HttpStatus::STATUS_OK);
+        return $this->delete('/account/apikey', $query, '', HttpStatus::STATUS_OK);
     }
 
     /**
@@ -91,23 +91,23 @@ trait DeleteTrait
             'templateName' => $templateName,
         ];
 
-        return $this->delete('/templates/delete', $query, null, HttpStatus::STATUS_NO_CONTENT);
+        return $this->delete('/templates/delete', $query, '', HttpStatus::STATUS_NO_CONTENT);
     }
 
     /**
      * Execute a DELETE request via REST client
      *
      * @param string     $uri        URI
-     * @param array|null $query      Query
-     * @param mixed|null $json       JSON
+     * @param array      $query      Query
+     * @param mixed      $json       JSON
      * @param int        $statusCode Required HTTP status code for response
      *
      * @return bool
      */
     private function delete(
         string $uri,
-        ?array $query = null,
-        $json = null,
+        array $query = [],
+        $json = '',
         int $statusCode = 0
     ): bool {
         $ret = false;

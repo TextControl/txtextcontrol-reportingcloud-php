@@ -60,8 +60,6 @@ class ReportingCloud extends AbstractReportingCloud
                 }
             }
         }
-
-        $this->setDefaultOptions();
     }
 
     // </editor-fold>

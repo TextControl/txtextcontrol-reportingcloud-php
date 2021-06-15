@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
+use Ctw\Http\HttpStatus;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
@@ -23,7 +24,6 @@ use TxTextControl\ReportingCloud\Filter\Filter;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\ModifiedDocument as ModifiedDocumentPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TrackedChanges as TrackedChangesPropertyMap;
-use Ctw\Http\HttpStatus;
 use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 
 /**
@@ -182,12 +182,12 @@ trait PostTrait
      * Merge data into a template and return an array of binary data.
      * Each record in the array is the binary data of one document
      *
-     * @param array       $mergeData        Array of merge data
-     * @param string      $returnFormat     Return format
-     * @param string|null $templateName     Template name
-     * @param string|null $templateFilename Template filename on local file system
-     * @param bool|null   $append           Append flag
-     * @param array|null  $mergeSettings    Array of merge settings
+     * @param array  $mergeData        Array of merge data
+     * @param string $returnFormat     Return format
+     * @param string $templateName     Template name
+     * @param string $templateFilename Template filename on local file system
+     * @param bool   $append           Append flag
+     * @param array  $mergeSettings    Array of merge settings
      *
      * @return array
      * @throws InvalidArgumentException
@@ -195,10 +195,10 @@ trait PostTrait
     public function mergeDocument(
         array $mergeData,
         string $returnFormat,
-        ?string $templateName = null,
-        ?string $templateFilename = null,
-        ?bool $append = null,
-        ?array $mergeSettings = null
+        string $templateName = '',
+        string $templateFilename = '',
+        bool $append = false,
+        array $mergeSettings = []
     ): array {
         $ret = [];
 
@@ -211,23 +211,23 @@ trait PostTrait
         Assert::assertReturnFormat($returnFormat);
         $query['returnFormat'] = $returnFormat;
 
-        if (null !== $templateName) {
+        if (strlen($templateName) > 0) {
             Assert::assertTemplateName($templateName);
             $query['templateName'] = $templateName;
         }
 
-        if (null !== $templateFilename) {
+        if (strlen($templateFilename) > 0) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::assertFilenameExists($templateFilename);
             $json['template'] = FileUtils::read($templateFilename, true);
         }
 
-        if (null !== $append) {
+        if ($append) {
             //Assert::assertBoolean($append);
             $query['append'] = Filter::filterBooleanToString($append);
         }
 
-        if (is_array($mergeSettings)) {
+        if (count($mergeSettings) > 0) {
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
@@ -243,9 +243,9 @@ trait PostTrait
     /**
      * Combine documents to appending them, divided by a new section, paragraph or nothing
      *
-     * @param array      $documentsData
-     * @param string     $returnFormat
-     * @param array|null $documentSettings
+     * @param array  $documentsData
+     * @param string $returnFormat
+     * @param array  $documentSettings
      *
      * @return string
      * @throws InvalidArgumentException
@@ -253,7 +253,7 @@ trait PostTrait
     public function appendDocument(
         array $documentsData,
         string $returnFormat,
-        ?array $documentSettings = null
+        array $documentSettings = []
     ): string {
         $query = [];
         $json  = [];
@@ -264,7 +264,7 @@ trait PostTrait
         Assert::assertReturnFormat($returnFormat);
         $query['returnFormat'] = $returnFormat;
 
-        if (is_array($documentSettings)) {
+        if (count($documentSettings) > 0) {
             $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
         }
 
@@ -278,11 +278,11 @@ trait PostTrait
     /**
      * Perform find and replace in document and return binary data.
      *
-     * @param array       $findAndReplaceData Array of find and replace data
-     * @param string      $returnFormat       Return format
-     * @param string|null $templateName       Template name
-     * @param string|null $templateFilename   Template filename on local file system
-     * @param array|null  $mergeSettings      Array of merge settings
+     * @param array  $findAndReplaceData Array of find and replace data
+     * @param string $returnFormat       Return format
+     * @param string $templateName       Template name
+     * @param string $templateFilename   Template filename on local file system
+     * @param array  $mergeSettings      Array of merge settings
      *
      * @return string
      * @throws InvalidArgumentException
@@ -290,9 +290,9 @@ trait PostTrait
     public function findAndReplaceDocument(
         array $findAndReplaceData,
         string $returnFormat,
-        ?string $templateName = null,
-        ?string $templateFilename = null,
-        ?array $mergeSettings = null
+        string $templateName = '',
+        string $templateFilename = '',
+        array $mergeSettings = []
     ): string {
         $query = [];
         $json  = [];
@@ -303,18 +303,18 @@ trait PostTrait
         Assert::assertReturnFormat($returnFormat);
         $query['returnFormat'] = $returnFormat;
 
-        if (null !== $templateName) {
+        if (strlen($templateName) > 0) {
             Assert::assertTemplateName($templateName);
             $query['templateName'] = $templateName;
         }
 
-        if (null !== $templateFilename) {
+        if (strlen($templateFilename) > 0) {
             Assert::assertTemplateExtension($templateFilename);
             Assert::assertFilenameExists($templateFilename);
             $json['template'] = FileUtils::read($templateFilename, true);
         }
 
-        if (is_array($mergeSettings)) {
+        if (count($mergeSettings) > 0) {
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
@@ -392,7 +392,7 @@ trait PostTrait
 
         $data   = FileUtils::read($documentFilename, true);
 
-        $result = $this->post('/processing/review/trackedchanges', null, $data, HttpStatus::STATUS_OK);
+        $result = $this->post('/processing/review/trackedchanges', [], $data, HttpStatus::STATUS_OK);
 
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
@@ -455,17 +455,17 @@ trait PostTrait
     /**
      * Execute a POST request via REST client
      *
-     * @param string     $uri        URI
-     * @param array|null $query      Query
-     * @param mixed|null $json       JSON
-     * @param int        $statusCode Required HTTP status code for response
+     * @param string $uri        URI
+     * @param array  $query      Query
+     * @param mixed  $json       JSON
+     * @param int    $statusCode Required HTTP status code for response
      *
      * @return mixed|null
      */
     private function post(
         string $uri,
-        ?array $query = null,
-        $json = null,
+        array $query = [],
+        $json = '',
         int $statusCode = 0
     ) {
         $ret = '';

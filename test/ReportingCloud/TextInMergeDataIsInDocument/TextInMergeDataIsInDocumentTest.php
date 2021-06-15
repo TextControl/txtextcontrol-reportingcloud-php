@@ -78,7 +78,7 @@ class TextInMergeDataIsInDocumentTest extends TestCase
             $arrayOfBinaryData = $this->reportingCloud->mergeDocument(
                 $mergeData,
                 ReportingCloud::FILE_FORMAT_PDF,
-                null,
+                '',
                 $templateFilename
             );
 

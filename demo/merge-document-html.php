@@ -41,9 +41,9 @@ $mergeSettings = [
 $arrayOfBinaryData = $reportingCloud->mergeDocument(
     $mergeData,
     ReportingCloud::FILE_FORMAT_PDF,
-    null,
+    '',
     $sourceFilename,
-    null,
+    false,
     $mergeSettings
 );
 

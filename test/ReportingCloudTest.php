@@ -151,7 +151,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
     {
         $baseUri = ConsoleUtils::baseUri();
 
-        if (is_string($baseUri) && strlen($baseUri) > 0) {
+        if (strlen($baseUri) > 0) {
             $reportingCloud = new ReportingCloud();
             self::assertSame($baseUri, $reportingCloud->getBaseUri());
             unset($reportingCloud);
@@ -878,7 +878,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
             $response = $this->reportingCloud->findAndReplaceDocument(
                 $findAndReplaceData,
                 $returnFormat,
-                null,
+                '',
                 $testTemplateFilename,
                 $mergeSettings
             );
@@ -916,7 +916,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
                 $findAndReplaceData,
                 $returnFormat,
                 $tempTemplateName,
-                null,
+                '',
                 $mergeSettings
             );
 
@@ -959,7 +959,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->findAndReplaceDocument(
             $findAndReplaceData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             '/invalid/path/template.xxx'
         );
     }
@@ -973,7 +973,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->findAndReplaceDocument(
             $findAndReplaceData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             '/invalid/path/template'
         );
     }
@@ -987,7 +987,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->findAndReplaceDocument(
             $findAndReplaceData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             '/invalid/path/template/'
         );
     }
@@ -1001,7 +1001,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->findAndReplaceDocument(
             $findAndReplaceData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             '/invalid/path/template.doc'
         );
     }
@@ -1025,7 +1025,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->findAndReplaceDocument(
             $findAndReplaceData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             $templateFilename,
             $mergeSettings
         );
@@ -1049,7 +1049,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->findAndReplaceDocument(
             $findAndReplaceData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             $templateFilename,
             $mergeSettings
         );
@@ -1088,7 +1088,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
                 $mergeData,
                 $returnFormat,
                 $tempTemplateName,
-                null,
+                '',
                 false,
                 $mergeSettings
             );
@@ -1123,7 +1123,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
             $response = $this->reportingCloud->mergeDocument(
                 $mergeData,
                 $returnFormat,
-                null,
+                '',
                 $testTemplateFilename,
                 false,
                 $mergeSettings
@@ -1170,7 +1170,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->mergeDocument(
             $mergeData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             '/invalid/path/template.xxx'
         );
     }
@@ -1184,7 +1184,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->mergeDocument(
             $mergeData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             '/invalid/path/template'
         );
     }
@@ -1198,7 +1198,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->mergeDocument(
             $mergeData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             '/invalid/path/template/'
         );
     }
@@ -1212,7 +1212,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->mergeDocument(
             $mergeData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             '/invalid/path/template.doc'
         );
     }
@@ -1236,7 +1236,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->mergeDocument(
             $mergeData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             $templateFilename,
             false,
             $mergeSettings
@@ -1259,7 +1259,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->mergeDocument(
             $mergeData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             $templateFilename,
             false,
             $mergeSettings
@@ -1284,7 +1284,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         $this->reportingCloud->mergeDocument(
             $mergeData,
             ReportingCloud::FILE_FORMAT_PDF,
-            null,
+            '',
             $templateFilename,
             false,
             $mergeSettings

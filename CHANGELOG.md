@@ -2,12 +2,12 @@
 
 # CHANGELOG
 
-## 2.7.0 - 2021-06-xx
+## 3.0.0 - 2021-xx-xx
 
-* Added support for [Guzzle ^7.0](https://github.com/guzzle/guzzle).
-* Removed all static analysis tools except PHPStan.
-* Brought code up to [PHPStan Strict Rules](https://github.com/phpstan/phpstan-strict-rules).
-* Set the minimum PHP version to 7.3.
+* Set the minimum PHP version to 7.4.
+* Added typed properties.
+* Upgraded to [Guzzle ^7.0](https://github.com/guzzle/guzzle).
+* Standardized on [PHPStan Strict Rules](https://github.com/phpstan/phpstan-strict-rules) for static analysis.
 
 ## 2.6.2 - 2020-10-28
 

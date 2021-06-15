@@ -43,19 +43,15 @@ class ConsoleUtils extends AbstractStdlib
      */
     public static function checkCredentials(): bool
     {
-        if (null !== self::apiKey()) {
-            return true;
-        }
-
-        return false;
+        return strlen(self::apiKey()) > 0;
     }
 
     /**
      * Return the ReportingCloud API key from a PHP constant or environmental variable
      *
-     * @return string|null
+     * @return string
      */
-    public static function apiKey(): ?string
+    public static function apiKey(): string
     {
         return self::getValueFromConstOrEnvVar(self::API_KEY);
     }
@@ -63,9 +59,9 @@ class ConsoleUtils extends AbstractStdlib
     /**
      * Return the ReportingCloud base URI from a PHP constant or environmental variable
      *
-     * @return string|null
+     * @return string
      */
-    public static function baseUri(): ?string
+    public static function baseUri(): string
     {
         return self::getValueFromConstOrEnvVar(self::BASE_URI);
     }
@@ -126,12 +122,12 @@ END;
      * Dump information about a variable
      * (var_dump is wrapped to suppress psalm warning)
      *
-     * @param mixed|null $array
+     * @param mixed $value
      *
      */
-    public static function dump($array): void
+    public static function dump($value): void
     {
-        var_dump($array);
+        var_dump($value);
     }
 
     /**
@@ -156,23 +152,23 @@ END;
      *
      * @param string $key
      *
-     * @return string|null
+     * @return string
      */
-    private static function getValueFromConstOrEnvVar(string $key): ?string
+    private static function getValueFromConstOrEnvVar(string $key): string
     {
         $ret = self::getValueFromConst($key);
 
-        if (null !== $ret) {
+        if (strlen($ret) > 0) {
             return $ret;
         }
 
         $ret = self::getValueFromEnvVar($key);
 
-        if (null !== $ret) {
+        if (strlen($ret) > 0) {
             return $ret;
         }
 
-        return null;
+        return '';
     }
 
     /**
@@ -180,9 +176,9 @@ END;
      *
      * @param string $key
      *
-     * @return string|null
+     * @return string
      */
-    private static function getValueFromConst(string $key): ?string
+    private static function getValueFromConst(string $key): string
     {
         if (defined($key)) {
             $ret = (string) constant($key);
@@ -192,7 +188,7 @@ END;
             }
         }
 
-        return null;
+        return '';
     }
 
     /**
@@ -200,9 +196,9 @@ END;
      *
      * @param string $key
      *
-     * @return string|null
+     * @return string
      */
-    private static function getValueFromEnvVar(string $key): ?string
+    private static function getValueFromEnvVar(string $key): string
     {
         $env = getenv($key);
 
@@ -213,6 +209,6 @@ END;
             }
         }
 
-        return null;
+        return '';
     }
 }

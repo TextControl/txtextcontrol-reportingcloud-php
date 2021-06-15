@@ -272,66 +272,66 @@ abstract class AbstractReportingCloud
     /**
      * Backend API key
      *
-     * @var string|null
+     * @var string
      */
-    private $apiKey;
+    private string $apiKey;
 
     /**
      * Backend username
      *
-     * @var string|null
+     * @var string
      */
-    private $username;
+    private string $username;
 
     /**
      * Backend password
      *
-     * @var string|null
+     * @var string
      */
-    private $password;
+    private string $password;
 
     /**
      * Backend base URI
      *
-     * @var string|null
+     * @var string
      */
-    private $baseUri;
+    private string $baseUri;
 
     /**
      * Debug flag of REST client
      *
-     * @var bool|null
+     * @var bool
      */
-    private $debug;
+    private bool $debug;
 
     /**
      * When true, API call does not count against quota
      * "TEST MODE" watermark is added to document
      *
-     * @var bool|null
+     * @var bool
      */
-    private $test;
+    private bool $test;
 
     /**
      * Backend timeout in seconds
      *
-     * @var int|null
+     * @var int
      */
-    private $timeout;
+    private int $timeout;
 
     /**
      * Backend version string
      *
-     * @var string|null
+     * @var string
      */
-    private $version;
+    private string $version;
 
     /**
      * REST client to backend
      *
-     * @var Client|null
+     * @var Client
      */
-    private $client;
+    private Client $client;
 
     // </editor-fold>
 
@@ -340,11 +340,11 @@ abstract class AbstractReportingCloud
     /**
      * Return the API key
      *
-     * @return string|null
+     * @return string
      */
-    public function getApiKey(): ?string
+    public function getApiKey(): string
     {
-        return $this->apiKey;
+        return $this->apiKey ?? '';
     }
 
     /**
@@ -364,11 +364,11 @@ abstract class AbstractReportingCloud
     /**
      * Return the username
      *
-     * @return string|null
+     * @return string
      */
-    public function getUsername(): ?string
+    public function getUsername(): string
     {
-        return $this->username;
+        return $this->username ?? '';
     }
 
     /**
@@ -388,11 +388,11 @@ abstract class AbstractReportingCloud
     /**
      * Return the password
      *
-     * @return string|null
+     * @return string
      */
-    public function getPassword(): ?string
+    public function getPassword(): string
     {
-        return $this->password;
+        return $this->password ?? '';
     }
 
     /**
@@ -412,10 +412,19 @@ abstract class AbstractReportingCloud
     /**
      * Return the base URI of the backend web service
      *
-     * @return string|null
+     * @return string
      */
-    public function getBaseUri(): ?string
+    public function getBaseUri(): string
     {
+        if (!isset($this->baseUri)) {
+            $baseUri = ConsoleUtils::baseUri();
+            if (0 === strlen($baseUri)) {
+                $baseUri = self::DEFAULT_BASE_URI;
+            }
+            Assert::assertBaseUri($baseUri);
+            $this->setBaseUri($baseUri);
+        }
+
         return $this->baseUri;
     }
 
@@ -436,11 +445,11 @@ abstract class AbstractReportingCloud
     /**
      * Return the debug flag
      *
-     * @return bool|null
+     * @return bool
      */
-    public function getDebug(): ?bool
+    public function getDebug(): bool
     {
-        return $this->debug;
+        return $this->debug ?? self::DEFAULT_DEBUG;
     }
 
     /**
@@ -460,11 +469,11 @@ abstract class AbstractReportingCloud
     /**
      * Return the test flag
      *
-     * @return bool|null
+     * @return bool
      */
-    public function getTest(): ?bool
+    public function getTest(): bool
     {
-        return $this->test;
+        return $this->test ?? self::DEFAULT_TEST;
     }
 
     /**
@@ -484,11 +493,11 @@ abstract class AbstractReportingCloud
     /**
      * Get the timeout (in seconds) of the backend web service
      *
-     * @return int|null
+     * @return int
      */
-    public function getTimeout(): ?int
+    public function getTimeout(): int
     {
-        return $this->timeout;
+        return $this->timeout ?? self::DEFAULT_TIMEOUT;
     }
 
     /**
@@ -508,11 +517,11 @@ abstract class AbstractReportingCloud
     /**
      * Get the version string of the backend web service
      *
-     * @return string|null
+     * @return string
      */
-    public function getVersion(): ?string
+    public function getVersion(): string
     {
-        return $this->version;
+        return $this->version ?? self::DEFAULT_VERSION;
     }
 
     /**
@@ -532,11 +541,11 @@ abstract class AbstractReportingCloud
     /**
      * Return the REST client of the backend web service
      *
-     * @return Client|null
+     * @return Client
      */
-    public function getClient(): ?Client
+    public function getClient(): Client
     {
-        if (!$this->client instanceof Client) {
+        if (!isset($this->client)) {
 
             $headers = [
                 'Authorization' => $this->getAuthorizationHeader(),
@@ -572,38 +581,6 @@ abstract class AbstractReportingCloud
     }
 
     /**
-     * Assign default values to option properties
-     *
-     * @return AbstractReportingCloud
-     */
-    protected function setDefaultOptions(): self
-    {
-        if (null === $this->getBaseUri()) {
-            $baseUri = ConsoleUtils::baseUri() ?? self::DEFAULT_BASE_URI;
-            Assert::assertBaseUri($baseUri);
-            $this->setBaseUri($baseUri);
-        }
-
-        if (null === $this->getDebug()) {
-            $this->setDebug(self::DEFAULT_DEBUG);
-        }
-
-        if (null === $this->getTest()) {
-            $this->setTest(self::DEFAULT_TEST);
-        }
-
-        if (null === $this->getTimeout()) {
-            $this->setTimeout(self::DEFAULT_TIMEOUT);
-        }
-
-        if (null === $this->getVersion()) {
-            $this->setVersion(self::DEFAULT_VERSION);
-        }
-
-        return $this;
-    }
-
-    /**
      * Request the URI with options
      *
      * @param string $method  HTTP method
@@ -617,13 +594,8 @@ abstract class AbstractReportingCloud
     {
         $client = $this->getClient();
 
-        if (null === $client) {
-            $message = 'No HTTP Client has been set.';
-            throw new RuntimeException($message);
-        }
-
         try {
-            $test = (bool) $this->getTest();
+            $test = $this->getTest();
             if ($test) {
                 $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($test);
             }
@@ -646,7 +618,7 @@ abstract class AbstractReportingCloud
      */
     protected function uri(string $uri): string
     {
-        $version = (string) $this->getVersion();
+        $version = $this->getVersion();
 
         return sprintf('/%s%s', $version, $uri);
     }
@@ -659,14 +631,14 @@ abstract class AbstractReportingCloud
      */
     private function getAuthorizationHeader(): string
     {
-        $apiKey = (string) $this->getApiKey();
+        $apiKey = $this->getApiKey();
 
         if (strlen($apiKey) > 0) {
             return sprintf('ReportingCloud-APIKey %s', $apiKey);
         }
 
-        $username = (string) $this->getUsername();
-        $password = (string) $this->getPassword();
+        $username = $this->getUsername();
+        $password = $this->getPassword();
 
         if (strlen($username) > 0 && strlen($password) > 0) {
             $value = sprintf('%s:%s', $username, $password);
