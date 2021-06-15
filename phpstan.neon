@@ -1,6 +1,6 @@
 parameters:
     level: max
-    checkMissingIterableValueType: false
+#    checkMissingIterableValueType: false
     parallel:
         jobSize: 64
         maximumNumberOfProcesses: 4
@@ -9,10 +9,10 @@ parameters:
     scanFiles:
         -  %currentWorkingDirectory%/vendor/autoload.php
     paths:
-        - bin
-        - data
-        - demo
-        - src
-        - test
+        #- bin
+        #- data
+        #- demo
+        - src/Assert
+        #- test
     fileExtensions:
         - php

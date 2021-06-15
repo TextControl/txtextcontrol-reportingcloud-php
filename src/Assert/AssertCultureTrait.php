@@ -59,7 +59,7 @@ trait AssertCultureTrait
     /**
      * Return cultures array
      *
-     * @return array
+     * @return array<int, string>
      */
     private static function getCultures(): array
     {

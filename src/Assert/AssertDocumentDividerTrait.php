@@ -52,7 +52,7 @@ trait AssertDocumentDividerTrait
     /**
      * Return document dividers array
      *
-     * @return array
+     * @return array<int, int>
      */
     private static function getDocumentDividers(): array
     {

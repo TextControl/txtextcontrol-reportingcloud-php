@@ -29,9 +29,9 @@ trait AssertOneOfTrait
     /**
      * Check value is in values
      *
-     * @param mixed  $value
-     * @param array  $values
-     * @param string $message
+     * @param mixed                  $value
+     * @param array<int, int|string> $values
+     * @param string                 $message
      *
      * @return void
      * @throws InvalidArgumentException
@@ -44,7 +44,7 @@ trait AssertOneOfTrait
                 $array[$key] = self::valueToString($record);
             }
             $valuesString = implode(', ', $array);
-            $format  = 0 === strlen($message) ? 'Expected one of %2$s. Got %1$s' : $message;
+            $format       = 0 === strlen($message) ? 'Expected one of %2$s. Got %1$s' : $message;
             $message      = sprintf($format, self::valueToString($value), $valuesString);
             throw new InvalidArgumentException($message);
         }

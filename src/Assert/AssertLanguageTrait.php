@@ -59,7 +59,7 @@ trait AssertLanguageTrait
     /**
      * Return languages aka dictionaries array
      *
-     * @return array
+     * @return array<int, string>
      */
     private static function getDictionaries(): array
     {
