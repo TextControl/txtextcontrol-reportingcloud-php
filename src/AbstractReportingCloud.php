@@ -371,7 +371,7 @@ abstract class AbstractReportingCloud
      * Return the username
      *
      * @return string
-     * @deprecated Use $this->getApiKey() instead
+     * @deprecated Use $this->getApiKey(): string instead
      */
     public function getUsername(): string
     {
@@ -388,7 +388,7 @@ abstract class AbstractReportingCloud
      * @param string $username
      *
      * @return self
-     * @deprecated Use $this->setApiKey() instead
+     * @deprecated Use $this->setApiKey(string $apiKey): self instead
      */
     public function setUsername(string $username): self
     {
@@ -418,7 +418,7 @@ abstract class AbstractReportingCloud
      * @param string $password
      *
      * @return self
-     * @deprecated Use $this->setApiKey() instead
+     * @deprecated Use $this->setApiKey(string $apiKey): self instead
      */
     public function setPassword(string $password): self
     {
