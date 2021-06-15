@@ -27,9 +27,9 @@ class ArrayUtils extends AbstractStdlib
     /**
      * Write the array of passed data to a file as a PHP structure
      *
-     * @param string $filename
-     * @param array  $values
-     * @param string $generator
+     * @param string                                   $filename
+     * @param array<int|string, array|bool|int|string> $values
+     * @param string                                   $generator
      *
      * @return int
      */
@@ -68,6 +68,12 @@ class ArrayUtils extends AbstractStdlib
 
         $buffer = sprintf($format, $prefix, $encoder->encode($values));
 
-        return (int) file_put_contents($filename, $buffer);
+        $ret = file_put_contents($filename, $buffer);
+
+        if (!is_int($ret)) {
+            $ret = 0;
+        }
+
+        return $ret;
     }
 }

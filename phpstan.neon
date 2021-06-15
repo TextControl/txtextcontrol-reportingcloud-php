@@ -12,7 +12,7 @@ parameters:
         #- bin
         #- data
         #- demo
-        - src/PropertyMap
+        - src/Stdlib
         #- test
     fileExtensions:
         - php
