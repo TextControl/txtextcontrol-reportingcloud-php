@@ -41,11 +41,6 @@ parameters:
 			path: src/ReportingCloud.php
 
 		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:buildPropertyMapArray\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
 			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:findAndReplaceDocument\\(\\) has parameter \\$findAndReplaceData with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/ReportingCloud.php

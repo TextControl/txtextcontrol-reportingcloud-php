@@ -369,7 +369,7 @@ trait GetTrait
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
             $key = 'valid_until';
-            if ($ret[$key]) {
+            if (isset($ret[$key]) && is_string($ret[$key])) {
                 Assert::assertDateTime($ret[$key]);
                 $ret[$key] = Filter::filterDateTimeToTimestamp($ret[$key]);
             }

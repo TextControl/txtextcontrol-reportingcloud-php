@@ -438,7 +438,7 @@ trait PostTrait
         if (is_array($result)) {
             $ret = $this->buildPropertyMapArray($result, $propertyMap);
             $key = 'document';
-            if (isset($ret[$key])) {
+            if (isset($ret[$key]) && is_string($ret[$key])) {
                 $ret[$key] = base64_decode($ret[$key], true);
             }
         }
