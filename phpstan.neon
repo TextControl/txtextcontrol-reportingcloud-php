@@ -1,6 +1,5 @@
 parameters:
     level: max
-#    checkMissingIterableValueType: false
     parallel:
         jobSize: 64
         maximumNumberOfProcesses: 4
