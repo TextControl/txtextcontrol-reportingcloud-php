@@ -289,7 +289,7 @@ foreach ($arrayOfBinaryData as $index => $binaryData) {
 
     // Write the document's binary data to disk
 
-    FileUtils::write($destinationFilename, (string) $binaryData);
+    FileUtils::write($destinationFilename, $binaryData);
 
     // Output to console the location of the generated document
 

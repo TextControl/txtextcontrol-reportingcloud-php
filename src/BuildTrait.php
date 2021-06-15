@@ -136,7 +136,7 @@ trait BuildTrait
      *
      * @param array<string, bool|int|string> $array MergeSettings array
      *
-     * @return array
+     * @return array<string, bool|int|string>
      * @throws InvalidArgumentException
      */
     protected function buildMergeSettingsArray(array $array): array
@@ -161,8 +161,8 @@ trait BuildTrait
                 Assert::assertCulture($value);
             }
             if (StringUtils::startsWith($key, 'remove_')) {
-                assert(is_bool($value));
                 Assert::assertBoolean($value);
+                assert(is_bool($value));
             }
             if (StringUtils::endsWith($key, '_date')) {
                 assert(is_int($value));

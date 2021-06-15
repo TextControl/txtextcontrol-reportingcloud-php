@@ -187,7 +187,7 @@ trait PostTrait
      * @param bool                                     $append           Append flag
      * @param array<string, bool|int|string>           $mergeSettings    Array of merge settings
      *
-     * @return array
+     * @return array<int, string>
      * @throws InvalidArgumentException
      */
     public function mergeDocument(
@@ -198,7 +198,6 @@ trait PostTrait
         bool $append = false,
         array $mergeSettings = []
     ): array {
-        $ret = [];
 
         $query = [];
         $json  = [];
@@ -239,7 +238,7 @@ trait PostTrait
             }
         }
 
-        return $ret;
+        return $result;
     }
 
     /**
@@ -344,7 +343,6 @@ trait PostTrait
         int $toPage,
         string $imageFormat
     ): array {
-        $ret = [];
 
         Assert::assertDocumentThumbnailExtension($documentFilename);
         Assert::assertFilenameExists($documentFilename);
@@ -372,7 +370,7 @@ trait PostTrait
             }
         }
 
-        return $ret;
+        return $result;
     }
 
     /**

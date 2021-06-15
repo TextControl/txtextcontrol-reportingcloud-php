@@ -1104,7 +1104,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
             self::assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
-                self::assertTrue(is_int($key));
+                self::assertIsInt($key);
                 self::assertNotNull($page);
                 self::assertNotFalse($page);
             }
@@ -1140,8 +1140,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
             self::assertArrayHasKey(0, $response);
 
             foreach ($response as $key => $page) {
-                $page = (string) $page;
-                self::assertTrue(is_int($key));
+                self::assertIsInt($key);
                 self::assertGreaterThanOrEqual(128, mb_strlen($page));
             }
         }

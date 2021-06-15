@@ -234,7 +234,6 @@ trait GetTrait
         int $toPage,
         string $imageFormat
     ): array {
-        $ret = [];
 
         Assert::assertTemplateName($templateName);
         Assert::assertZoomFactor($zoomFactor);
@@ -260,7 +259,7 @@ trait GetTrait
             }
         }
 
-        return $ret;
+        return $result;
     }
 
     /**
