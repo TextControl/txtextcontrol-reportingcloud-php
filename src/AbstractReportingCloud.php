@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace TxTextControl\ReportingCloud;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\TransferException;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
@@ -280,6 +280,7 @@ abstract class AbstractReportingCloud
      * Backend username
      *
      * @var string
+     * @deprecated Use $this->apiKey instead
      */
     private string $username;
 
@@ -287,6 +288,7 @@ abstract class AbstractReportingCloud
      * Backend password
      *
      * @var string
+     * @deprecated Use $this->apiKey instead
      */
     private string $password;
 
@@ -344,7 +346,11 @@ abstract class AbstractReportingCloud
      */
     public function getApiKey(): string
     {
-        return $this->apiKey ?? '';
+        if (!isset($this->apiKey)) {
+            $this->apiKey = '';
+        }
+
+        return $this->apiKey;
     }
 
     /**
@@ -352,7 +358,7 @@ abstract class AbstractReportingCloud
      *
      * @param string $apiKey
      *
-     * @return AbstractReportingCloud
+     * @return self
      */
     public function setApiKey(string $apiKey): self
     {
@@ -365,10 +371,15 @@ abstract class AbstractReportingCloud
      * Return the username
      *
      * @return string
+     * @deprecated Use $this->getApiKey() instead
      */
     public function getUsername(): string
     {
-        return $this->username ?? '';
+        if (!isset($this->username)) {
+            $this->username = '';
+        }
+
+        return $this->username;
     }
 
     /**
@@ -376,7 +387,8 @@ abstract class AbstractReportingCloud
      *
      * @param string $username
      *
-     * @return AbstractReportingCloud
+     * @return self
+     * @deprecated Use $this->setApiKey() instead
      */
     public function setUsername(string $username): self
     {
@@ -389,10 +401,15 @@ abstract class AbstractReportingCloud
      * Return the password
      *
      * @return string
+     * @deprecated Use $this->getApiKey() instead
      */
     public function getPassword(): string
     {
-        return $this->password ?? '';
+        if (!isset($this->password)) {
+            $this->password = '';
+        }
+
+        return $this->password;
     }
 
     /**
@@ -400,7 +417,8 @@ abstract class AbstractReportingCloud
      *
      * @param string $password
      *
-     * @return AbstractReportingCloud
+     * @return self
+     * @deprecated Use $this->setApiKey() instead
      */
     public function setPassword(string $password): self
     {
@@ -433,7 +451,7 @@ abstract class AbstractReportingCloud
      *
      * @param string $baseUri
      *
-     * @return AbstractReportingCloud
+     * @return self
      */
     public function setBaseUri(string $baseUri): self
     {
@@ -449,7 +467,11 @@ abstract class AbstractReportingCloud
      */
     public function getDebug(): bool
     {
-        return $this->debug ?? self::DEFAULT_DEBUG;
+        if (!isset($this->debug)) {
+            $this->debug = self::DEFAULT_DEBUG;
+        }
+
+        return $this->debug;
     }
 
     /**
@@ -457,7 +479,7 @@ abstract class AbstractReportingCloud
      *
      * @param bool $debug Debug flag
      *
-     * @return AbstractReportingCloud
+     * @return self
      */
     public function setDebug(bool $debug): self
     {
@@ -473,7 +495,11 @@ abstract class AbstractReportingCloud
      */
     public function getTest(): bool
     {
-        return $this->test ?? self::DEFAULT_TEST;
+        if (!isset($this->test)) {
+            $this->test = self::DEFAULT_TEST;
+        }
+
+        return $this->test;
     }
 
     /**
@@ -481,7 +507,7 @@ abstract class AbstractReportingCloud
      *
      * @param bool $test
      *
-     * @return AbstractReportingCloud
+     * @return self
      */
     public function setTest(bool $test): self
     {
@@ -497,7 +523,11 @@ abstract class AbstractReportingCloud
      */
     public function getTimeout(): int
     {
-        return $this->timeout ?? self::DEFAULT_TIMEOUT;
+        if (!isset($this->timeout)) {
+            $this->timeout = self::DEFAULT_TIMEOUT;
+        }
+
+        return $this->timeout;
     }
 
     /**
@@ -505,7 +535,7 @@ abstract class AbstractReportingCloud
      *
      * @param int $timeout
      *
-     * @return AbstractReportingCloud
+     * @return self
      */
     public function setTimeout(int $timeout): self
     {
@@ -521,7 +551,11 @@ abstract class AbstractReportingCloud
      */
     public function getVersion(): string
     {
-        return $this->version ?? self::DEFAULT_VERSION;
+        if (!isset($this->version)) {
+            $this->version = self::DEFAULT_VERSION;
+        }
+
+        return $this->version;
     }
 
     /**
@@ -529,7 +563,7 @@ abstract class AbstractReportingCloud
      *
      * @param string $version
      *
-     * @return AbstractReportingCloud
+     * @return self
      */
     public function setVersion(string $version): self
     {
@@ -571,7 +605,7 @@ abstract class AbstractReportingCloud
      *
      * @param Client $client
      *
-     * @return AbstractReportingCloud
+     * @return self
      */
     public function setClient(Client $client): self
     {
@@ -600,7 +634,7 @@ abstract class AbstractReportingCloud
                 $options[RequestOptions::QUERY]['test'] = Filter::filterBooleanToString($test);
             }
             $response = $client->request($method, $uri, $options);
-        } catch (TransferException $e) {
+        } catch (GuzzleException $e) {
             $message = $e->getMessage();
             $code    = (int) $e->getCode();
             throw new RuntimeException($message, $code);
@@ -618,9 +652,7 @@ abstract class AbstractReportingCloud
      */
     protected function uri(string $uri): string
     {
-        $version = $this->getVersion();
-
-        return sprintf('/%s%s', $version, $uri);
+        return sprintf('/%s%s', $this->getVersion(), $uri);
     }
 
     /**

@@ -27,3 +27,27 @@ The ReportingCloud PHP SDK 3.0
 ### Standardized on PHPStan for Static Analysis
 
 In ReportingCloud PHP SDK 2.0, three static analysis tools were configured to check the quality of the code. Since then PHPStan has gained much traction and has become the standard static analysis tool for this project. In particular, the [strict rules](https://github.com/phpstan/phpstan-strict-rules) have been applied.
+
+### Deprecated Credentials Authentication
+
+The backend allows authentication via username and password or API key. The former has been deprecated. Please use the latter.
+
+#### Deprecated Properties
+```
+ReportingCloud->username;
+ReportingCloud->password;
+```
+
+#### Deprecated Methods
+
+```
+ReportingCloud->setUsername(string $username): self
+ReportingCloud->getUsername(): string
+```
+
+```
+ReportingCloud->setPassword(string $username): self
+ReportingCloud->getPassword(): string
+```
+
+The above properties and methods will be removed in the next major version.

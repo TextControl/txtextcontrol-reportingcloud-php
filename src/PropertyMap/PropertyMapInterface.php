@@ -34,7 +34,7 @@ interface PropertyMapInterface
      *
      * @param array $map Assoc array of property data
      *
-     * @return AbstractPropertyMap
+     * @return self
      */
-    public function setMap(array $map): AbstractPropertyMap;
+    public function setMap(array $map): self;
 }
