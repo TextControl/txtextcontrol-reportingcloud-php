@@ -43,7 +43,7 @@ trait AssertDocumentDividerTrait
     public static function assertDocumentDivider(int $value, string $message = ''): void
     {
         $haystack = self::getDocumentDividers();
-        $format  = 0 === strlen($message) ? '%1$s contains an unsupported document divider' : $message;
+        $format   = 0 === strlen($message) ? '%1$s contains an unsupported document divider' : $message;
         $message  = sprintf($format, self::valueToString($value));
 
         self::assertOneOf($value, $haystack, $message);
