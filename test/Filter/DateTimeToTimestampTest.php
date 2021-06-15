@@ -45,7 +45,7 @@ class DateTimeToTimestampTest extends TestCase
      * @param string $dateTimeString
      * @param int    $timestamp
      *
-     * @dataProvider TxTextControlTest\ReportingCloud\Filter\TestAsset\DefaultProvider::defaultProvider
+     * @dataProvider \TxTextControlTest\ReportingCloud\Filter\TestAsset\DefaultProvider::defaultProvider
      */
     public function testValid(string $timeZone, string $dateTimeString, int $timestamp): void
     {

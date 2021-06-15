@@ -214,7 +214,7 @@ abstract class AbstractReportingCloudTest extends TestCase
         $apiKeys = $this->reportingCloud->getApiKeys();
         if (count($apiKeys) > 0) {
             foreach ($apiKeys as $apiKey) {
-                if ($apiKey['key'] == ConsoleUtils::apiKey()) {
+                if ($apiKey['key'] === ConsoleUtils::apiKey()) {
                     continue;
                 }
                 self::assertArrayHasKey('key', $apiKey);

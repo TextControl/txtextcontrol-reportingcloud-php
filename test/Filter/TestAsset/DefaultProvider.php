@@ -159,11 +159,6 @@ class DefaultProvider
                 570347996,
             ],
             [
-                'Australia/Currie',
-                '1991-02-03T12:47:04+00:00',
-                665585224,
-            ],
-            [
                 'Australia/Hobart',
                 '1970-03-26T15:23:43+00:00',
                 7313023,
