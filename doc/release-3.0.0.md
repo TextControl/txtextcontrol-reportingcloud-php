@@ -12,13 +12,13 @@ This is the third major version since the release of the SDK in May 2016. This v
 
 ReportingCloud PHP SDK 3.0 requires PHP 7.4 or newer in order to be installed. If you are using an earlier version of PHP, you may continue using using ReportingCloud PHP SDK 2.0, which supports PHP 7.1, or ReportingCloud PHP SDK 1.0, which supports PHP 5.6. Note however, that new backend features will only be added to the most current version of the SDK.
 
-### Added Support for PHP 8.0
-
-ReportingCloud PHP SDK 3.0 can now be installed on PHP 8.0 systems.
-
 ### Added Typed Properties
 
 One of most discussed new features of PHP 7.4 is [typed properties](https://stitcher.io/blog/typed-properties-in-php-74). ReportingCloud PHP SDK 3.0 now uses typed properties in all classes, resulting in improved security and code quality.
+
+### Added Support for PHP 8.0
+
+ReportingCloud PHP SDK 3.0 can now be installed on PHP 8.0 systems.
 
 ### Updated to Guzzle 7.0
 
