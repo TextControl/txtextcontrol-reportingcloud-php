@@ -36,8 +36,8 @@ trait BuildTrait
     /**
      * Using the passed propertyMap, recursively build array
      *
-     * @param array       $array       Array
-     * @param PropertyMap $propertyMap PropertyMap
+     * @param array<string, array|bool|int|string> $array       Array
+     * @param PropertyMap                          $propertyMap PropertyMap
      *
      * @return array
      */
