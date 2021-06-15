@@ -1,7 +1,6 @@
 parameters:
     level: max
     checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
     parallel:
         jobSize: 64
         maximumNumberOfProcesses: 4
