@@ -38,11 +38,11 @@
     },
     "scripts": {
         "git-pre-commit": [
+            "@phpcbf",
             "@phpcs"
         ],
         "git-pre-push": [
-            "@qa",
-            "@test"
+            "@phpstan"
         ],
         "phpcbf": "php vendor/bin/phpcbf",
         "phpcs": "php vendor/bin/phpcs",

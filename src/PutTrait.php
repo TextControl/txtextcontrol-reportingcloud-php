@@ -80,10 +80,10 @@ trait PutTrait
     /**
      * Execute a PUT request via REST client
      *
-     * @param string $uri        URI
-     * @param array  $query      Query
-     * @param mixed  $json       JSON
-     * @param int    $statusCode Required HTTP status code for response
+     * @param string  $uri        URI
+     * @param array[] $query      Query
+     * @param mixed   $json       JSON
+     * @param int     $statusCode Required HTTP status code for response
      *
      * @return string
      */

@@ -66,11 +66,6 @@ parameters:
 			path: src/ReportingCloud.php
 
 		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:delete\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
 			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:findAndReplaceDocument\\(\\) has parameter \\$findAndReplaceData with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/ReportingCloud.php
@@ -157,11 +152,6 @@ parameters:
 
 		-
 			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:proofingCheck\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:put\\(\\) has parameter \\$query with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/ReportingCloud.php
 
