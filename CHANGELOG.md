@@ -4,10 +4,14 @@
 
 ## 3.0.0 - 2021-xx-xx
 
-* Set the minimum PHP version to 7.4.
-* Added typed properties.
-* Upgraded to [Guzzle ^7.0](https://github.com/guzzle/guzzle).
-* Standardized on [PHPStan Strict Rules](https://github.com/phpstan/phpstan-strict-rules) for static analysis.
+* Upgraded minimum PHP requirement to 7.4.
+* Added typed properties, removing `null`.
+* Updated to [Guzzle 7.0](https://github.com/guzzle/guzzle).
+* Updated to [PHPUnit 9.5](https://phpunit.readthedocs.io/en/9.5/).
+* Removed class `TxTextControl\ReportingCloud\StatusCode\StatusCode`.
+* Switched to PHPStan for static analysis, with [strict rules](https://github.com/phpstan/phpstan-strict-rules).
+* Deprecated username and password authentication.
+* Added support for PHP 8.0.
 
 ## 2.6.2 - 2020-10-28
 
