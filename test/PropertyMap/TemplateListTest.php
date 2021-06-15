@@ -40,9 +40,9 @@ class TemplateListTest extends TestCase
     public function testValid(): void
     {
         $expected = [
-            'templateName' => 'template_name',
             'modified'     => 'modified',
             'size'         => 'size',
+            'templateName' => 'template_name',
         ];
 
         self::assertSame($expected, $this->propertyMap->getMap());

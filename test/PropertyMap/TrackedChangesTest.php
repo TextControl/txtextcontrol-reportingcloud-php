@@ -45,9 +45,9 @@ class TrackedChangesTest extends TestCase
             'defaultHighlightColor' => 'default_highlight_color',
             'highlightColor'        => 'highlight_color',
             'highlightMode'         => 'highlight_mode',
+            'id'                    => 'id',
             'length'                => 'length',
             'start'                 => 'start',
-            'id'                    => 'id',
             'text'                  => 'text',
             'userName'              => 'username',
         ];

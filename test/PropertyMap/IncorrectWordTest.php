@@ -40,11 +40,11 @@ class IncorrectWordTest extends TestCase
     public function testValid(): void
     {
         $expected = [
+            'isDuplicate' => 'is_duplicate',
+            'language'    => 'language',
             'length'      => 'length',
             'start'       => 'start',
             'text'        => 'text',
-            'isDuplicate' => 'is_duplicate',
-            'language'    => 'language',
         ];
 
         self::assertSame($expected, $this->propertyMap->getMap());

@@ -40,8 +40,8 @@ class ApiKeyTest extends TestCase
     public function testValid(): void
     {
         $expected = [
-            'key'    => 'key',
             'active' => 'active',
+            'key'    => 'key',
         ];
 
         self::assertSame($expected, $this->propertyMap->getMap());

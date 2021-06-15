@@ -40,14 +40,14 @@ class AccountSettingsTest extends TestCase
     public function testValid(): void
     {
         $expected = [
-            'serialNumber'            => 'serial_number',
             'createdDocuments'        => 'created_documents',
-            'uploadedTemplates'       => 'uploaded_templates',
             'maxDocuments'            => 'max_documents',
-            'maxTemplates'            => 'max_templates',
-            'validUntil'              => 'valid_until',
-            'proofingTransactions'    => 'proofing_transactions',
             'maxProofingTransactions' => 'max_proofing_transactions',
+            'maxTemplates'            => 'max_templates',
+            'proofingTransactions'    => 'proofing_transactions',
+            'serialNumber'            => 'serial_number',
+            'uploadedTemplates'       => 'uploaded_templates',
+            'validUntil'              => 'valid_until',
         ];
 
         self::assertSame($expected, $this->propertyMap->getMap());

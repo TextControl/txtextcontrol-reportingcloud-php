@@ -28,9 +28,9 @@ class TemplateList extends AbstractPropertyMap
     public function __construct()
     {
         $map = [
-            'templateName' => 'template_name',
             'modified'     => 'modified',
             'size'         => 'size',
+            'templateName' => 'template_name',
         ];
 
         $this->setMap($map);

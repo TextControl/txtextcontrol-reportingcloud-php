@@ -28,14 +28,14 @@ class AccountSettings extends AbstractPropertyMap
     public function __construct()
     {
         $map = [
-            'serialNumber'            => 'serial_number',
             'createdDocuments'        => 'created_documents',
-            'uploadedTemplates'       => 'uploaded_templates',
             'maxDocuments'            => 'max_documents',
-            'maxTemplates'            => 'max_templates',
-            'validUntil'              => 'valid_until',
-            'proofingTransactions'    => 'proofing_transactions',
             'maxProofingTransactions' => 'max_proofing_transactions',
+            'maxTemplates'            => 'max_templates',
+            'proofingTransactions'    => 'proofing_transactions',
+            'serialNumber'            => 'serial_number',
+            'uploadedTemplates'       => 'uploaded_templates',
+            'validUntil'              => 'valid_until',
         ];
 
         $this->setMap($map);

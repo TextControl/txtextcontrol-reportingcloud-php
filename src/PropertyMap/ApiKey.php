@@ -28,8 +28,8 @@ class ApiKey extends AbstractPropertyMap
     public function __construct()
     {
         $map = [
-            'key'    => 'key',
             'active' => 'active',
+            'key'    => 'key',
         ];
 
         $this->setMap($map);
