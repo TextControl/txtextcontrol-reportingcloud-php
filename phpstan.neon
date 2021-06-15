@@ -9,10 +9,21 @@ parameters:
     scanFiles:
         -  %currentWorkingDirectory%/vendor/autoload.php
     paths:
-        #- bin
-        #- data
-        #- demo
-        - src/Stdlib
-        #- test
+        - bin
+        - data
+        - demo
+        - src
+        - test
     fileExtensions:
         - php
+    ignoreErrors:
+        -
+            message: '#no value type specified in iterable type array#'
+            paths:
+                - src/AbstractReportingCloud.php
+                - src/BuildTrait.php
+                - src/DeleteTrait.php
+                - src/GetTrait.php
+                - src/PostTrait.php
+                - src/PutTrait.php
+                - src/ReportingCloud.php

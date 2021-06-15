@@ -149,7 +149,6 @@ trait BuildTrait
         }
 
         foreach ($map as $property => $key) {
-            $key = (string) $key;
             if (!isset($array[$key])) {
                 continue;
             }

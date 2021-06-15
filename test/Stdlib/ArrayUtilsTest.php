@@ -25,6 +25,9 @@ use TxTextControl\ReportingCloud\Stdlib\ArrayUtils;
  */
 class ArrayUtilsTest extends AbstractReportingCloudTest
 {
+    /**
+     * @return array<string, array<int, int>|string>
+     */
     private function getTestData(): array
     {
         return [

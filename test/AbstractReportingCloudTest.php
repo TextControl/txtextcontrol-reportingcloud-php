@@ -92,6 +92,9 @@ abstract class AbstractReportingCloudTest extends TestCase
         return sprintf($format, $this->getTempPath(), rand(0, PHP_INT_MAX));
     }
 
+    /**
+     * @return array<int, array<string, array<int, array<string, float|int|string>>|float|string>>
+     */
     protected function getTestTemplateMergeData(): array
     {
         $ret = [
@@ -159,6 +162,9 @@ abstract class AbstractReportingCloudTest extends TestCase
         return $ret;
     }
 
+    /**
+     * @return array<string, string>
+     */
     protected function getTestTemplateFindAndReplaceData(): array
     {
         return [
@@ -167,6 +173,9 @@ abstract class AbstractReportingCloudTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<string, int|string>
+     */
     protected function getTestDocumentSettings(): array
     {
         return [
@@ -180,6 +189,9 @@ abstract class AbstractReportingCloudTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<string, int|bool|string>
+     */
     protected function getTestMergeSettings(): array
     {
         return [
