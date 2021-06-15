@@ -26,14 +26,14 @@ abstract class AbstractPropertyMap implements PropertyMapInterface
      * Assoc array of properties
      * camelCase properties => Lower case underscore array keys
      *
-     * @var array
+     * @var array<string, string>
      */
     protected array $map;
 
     /**
      * Return the property map
      *
-     * @return array
+     * @return array<string, string>
      */
     public function getMap(): array
     {
@@ -43,7 +43,7 @@ abstract class AbstractPropertyMap implements PropertyMapInterface
     /**
      * Set the property map
      *
-     * @param array $map Assoc array of property data
+     * @param array<string, string> $map Assoc array of property data
      *
      * @return self
      */

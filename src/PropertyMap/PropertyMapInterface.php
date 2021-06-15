@@ -25,14 +25,14 @@ interface PropertyMapInterface
     /**
      * Return the property map
      *
-     * @return array
+     * @return array<string, string>
      */
     public function getMap(): array;
 
     /**
      * Set the property map
      *
-     * @param array $map Assoc array of property data
+     * @param array<string, string> $map Assoc array of property data
      *
      * @return self
      */
