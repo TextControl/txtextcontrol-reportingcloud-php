@@ -409,10 +409,10 @@ trait GetTrait
     /**
      * Execute a GET request via REST client
      *
-     * @param string $uri        URI
-     * @param array  $query      Query
-     * @param mixed  $json       JSON
-     * @param int    $statusCode Required HTTP status code for response
+     * @param string                    $uri        URI
+     * @param array<string, int|string> $query      Query
+     * @param mixed                     $json       JSON
+     * @param int                       $statusCode Required HTTP status code for response
      *
      * @return mixed
      */
