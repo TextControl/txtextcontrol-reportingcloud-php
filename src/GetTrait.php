@@ -137,7 +137,7 @@ trait GetTrait
     /**
      * Return an array of available dictionaries on the Reporting Cloud service
      *
-     * @return array
+     * @return array<int, string>
      */
     public function getAvailableDictionaries(): array
     {
@@ -359,7 +359,7 @@ trait GetTrait
     /**
      * Return an array properties for the ReportingCloud account
      *
-     * @return array
+     * @return array<int|string, array|bool|int|string>
      * @throws InvalidArgumentException
      */
     public function getAccountSettings(): array
