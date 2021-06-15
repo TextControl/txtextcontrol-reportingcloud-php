@@ -14,12 +14,12 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
+use Ctw\Http\HttpStatus;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
-use Ctw\Http\HttpStatus;
 
 /**
  * Trait DeleteTrait
@@ -97,10 +97,10 @@ trait DeleteTrait
     /**
      * Execute a DELETE request via REST client
      *
-     * @param string     $uri        URI
-     * @param array      $query      Query
-     * @param mixed      $json       JSON
-     * @param int        $statusCode Required HTTP status code for response
+     * @param string $uri        URI
+     * @param array  $query      Query
+     * @param mixed  $json       JSON
+     * @param int    $statusCode Required HTTP status code for response
      *
      * @return bool
      */
@@ -110,7 +110,6 @@ trait DeleteTrait
         $json = '',
         int $statusCode = 0
     ): bool {
-        $ret = false;
 
         $options = [
             RequestOptions::QUERY => $query,
@@ -119,11 +118,7 @@ trait DeleteTrait
 
         $response = $this->request('DELETE', $this->uri($uri), $options);
 
-        if ($statusCode === $response->getStatusCode()) {
-            $ret = true;
-        }
-
-        return $ret;
+        return $statusCode === $response->getStatusCode();
     }
 
     // </editor-fold>

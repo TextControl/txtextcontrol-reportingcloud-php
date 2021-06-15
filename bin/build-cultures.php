@@ -8,9 +8,13 @@ declare(strict_types=1);
  *
  *    https://www.textcontrol.com/blog/2017/10/13/
  *
- * ReportingCloud uses the culture values as defined at
+ * ReportingCloud uses the culture values as defined at:
  *
  *   https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx
+ *
+ * Moved to:
+ *
+ *   https://docs.microsoft.com/en-us/previous-versions/commerce-server/ee825488(v=cs.20)
  *
  * This script downloads these culture values and writes them to the file:
  *
@@ -30,7 +34,7 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 // ---------------------------------------------------------------------------------------------------------------------
 
 $filename = Assert::getCulturesFilename();
-$url      = 'https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx';
+$url      = 'https://docs.microsoft.com/en-us/previous-versions/commerce-server/ee825488(v=cs.20)';
 $values   = [];
 
 libxml_use_internal_errors(true);

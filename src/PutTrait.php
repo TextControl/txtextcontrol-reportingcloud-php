@@ -14,12 +14,12 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
+use Ctw\Http\HttpStatus;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Exception\RuntimeException;
 use TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap as PropertyMap;
-use Ctw\Http\HttpStatus;
 
 /**
  * Trait PutTrait
@@ -80,10 +80,10 @@ trait PutTrait
     /**
      * Execute a PUT request via REST client
      *
-     * @param string     $uri        URI
-     * @param array      $query      Query
-     * @param mixed      $json       JSON
-     * @param int        $statusCode Required HTTP status code for response
+     * @param string $uri        URI
+     * @param array  $query      Query
+     * @param mixed  $json       JSON
+     * @param int    $statusCode Required HTTP status code for response
      *
      * @return string
      */
@@ -92,7 +92,8 @@ trait PutTrait
         array $query = [],
         $json = '',
         int $statusCode = 0
-    ) {
+    ): string {
+
         $ret = '';
 
         $options = [

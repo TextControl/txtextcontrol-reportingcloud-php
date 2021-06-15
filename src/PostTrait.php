@@ -127,7 +127,7 @@ trait PostTrait
 
         $result = $this->post('/templates/upload', $query, $data, HttpStatus::STATUS_CREATED);
 
-        return (null === $result) ? true : false;
+        return null === $result;
     }
 
     /**
@@ -460,7 +460,7 @@ trait PostTrait
      * @param mixed  $json       JSON
      * @param int    $statusCode Required HTTP status code for response
      *
-     * @return mixed|null
+     * @return mixed
      */
     private function post(
         string $uri,
@@ -468,6 +468,7 @@ trait PostTrait
         $json = '',
         int $statusCode = 0
     ) {
+
         $ret = '';
 
         $options = [

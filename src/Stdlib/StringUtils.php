@@ -34,7 +34,7 @@ class StringUtils extends AbstractStdlib
     {
         $len = strlen($needle);
 
-        return ($needle === substr($haystack, 0, $len));
+        return $needle === substr($haystack, 0, $len);
     }
 
     /**
@@ -49,6 +49,6 @@ class StringUtils extends AbstractStdlib
     {
         $len = strlen($needle);
 
-        return ($needle === substr($haystack, -$len));
+        return $needle === substr($haystack, -$len);
     }
 }

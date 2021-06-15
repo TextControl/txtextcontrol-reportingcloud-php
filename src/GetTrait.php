@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
+use Ctw\Http\HttpStatus;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use TxTextControl\ReportingCloud\Assert\Assert;
@@ -26,7 +27,6 @@ use TxTextControl\ReportingCloud\PropertyMap\ApiKey as ApiKeyPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\IncorrectWord as IncorrectWordMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateInfo as TemplateInfoPropertyMap;
 use TxTextControl\ReportingCloud\PropertyMap\TemplateList as TemplateListPropertyMap;
-use Ctw\Http\HttpStatus;
 
 /**
  * Trait GetTrait
@@ -409,12 +409,12 @@ trait GetTrait
     /**
      * Execute a GET request via REST client
      *
-     * @param string     $uri        URI
-     * @param array      $query      Query
-     * @param mixed      $json       JSON
-     * @param int        $statusCode Required HTTP status code for response
+     * @param string $uri        URI
+     * @param array  $query      Query
+     * @param mixed  $json       JSON
+     * @param int    $statusCode Required HTTP status code for response
      *
-     * @return mixed|null
+     * @return mixed
      */
     private function get(
         string $uri,
@@ -422,6 +422,7 @@ trait GetTrait
         $json = '',
         int $statusCode = 0
     ) {
+
         $ret = '';
 
         $options = [
