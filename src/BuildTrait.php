@@ -131,7 +131,7 @@ trait BuildTrait
     /**
      * Using passed mergeSettings array, build array for backend
      *
-     * @param array $array MergeSettings array
+     * @param array<string, bool|int|string> $array MergeSettings array
      *
      * @return array
      * @throws InvalidArgumentException
@@ -154,12 +154,15 @@ trait BuildTrait
             }
             $value = $array[$key];
             if ('culture' === $key) {
+                assert(is_string($value));
                 Assert::assertCulture($value);
             }
             if (StringUtils::startsWith($key, 'remove_')) {
+                assert(is_bool($value));
                 Assert::assertBoolean($value);
             }
             if (StringUtils::endsWith($key, '_date')) {
+                assert(is_int($value));
                 Assert::assertTimestamp($value);
                 $value = Filter::filterTimestampToDateTime($value);
             }
