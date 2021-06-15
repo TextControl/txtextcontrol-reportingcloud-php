@@ -39,7 +39,7 @@ trait BuildTrait
      * @param array<string, array|bool|int|string> $array       Array
      * @param PropertyMap                          $propertyMap PropertyMap
      *
-     * @return array<string, array|bool|int|string>
+     * @return array<int|string, array|bool|int|string>
      */
     protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array
     {

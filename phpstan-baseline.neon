@@ -51,11 +51,6 @@ parameters:
 			path: src/ReportingCloud.php
 
 		-
-			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:proofingCheck\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/ReportingCloud.php
-
-		-
 			message: "#^Method TxTextControl\\\\ReportingCloud\\\\ReportingCloud\\:\\:removeTrackedChange\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/ReportingCloud.php

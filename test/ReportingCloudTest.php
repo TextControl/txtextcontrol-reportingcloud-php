@@ -683,6 +683,7 @@ class ReportingCloudTest extends AbstractReportingCloudTest
         self::assertArrayHasKey(0, $response);
 
         $response = $response[0];
+        assert(is_array($response));
 
         self::assertArrayHasKey('length', $response);
         self::assertArrayHasKey('start', $response);

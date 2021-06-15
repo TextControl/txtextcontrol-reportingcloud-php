@@ -108,7 +108,7 @@ trait GetTrait
      * @param string $text     Corpus of text that should be spell checked
      * @param string $language Language of specified text
      *
-     * @return array
+     * @return array<int|string, array|bool|int|string>
      * @throws InvalidArgumentException
      */
     public function proofingCheck(string $text, string $language): array
