@@ -29,7 +29,7 @@ Learn more about ReportingCloud PHP SDK at:
 
 ## Minimum Requirements
 
-Since [ReportingCloud PHP SDK 3.0](/doc/release-3.0.0.md), the PHP SDK requires **PHP 7.4** or newer.
+Since [ReportingCloud PHP SDK 3.0](/doc/release-3.0.0.md), the PHP SDK requires **PHP 7.4** or **PHP 8.0**.
 
 All versions of PHPs prior to 7.3 have reached [end-of-life](http://php.net/eol.php) and consequently, no further security updates will be released for them. If your application is running in an older environment, it is highly advisable to update to a more current version of PHP.
 
@@ -89,7 +89,7 @@ The [PHP Quickstart Tutorial](https://docs.reporting.cloud/docs/chapter/quicksta
 
 In addition, the ReportingCloud PHP SDK ships with a number of sample applications (see directory `/demo`). These samples applications, which are well commented, have been written to demonstrate all parts of ReportingCloud.
 
- ## Getting Support
+## Getting Support
 
 The ReportingCloud PHP SDK is authored and supported by Text Control GmbH, the manufacturer of the ReportingCloud Web API.
 

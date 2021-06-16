@@ -4,29 +4,33 @@
 
 ## Introduction
 
-This is the third major version since the release of the SDK in May 2016. This version improves the security, performance and code quality of the SDK.
+This is the third major version since the release of the SDK in May 2016. 
+
+**This version adds support for PHP 8.0 and improves the security and code quality of the SDK.**
 
 ## Notable Changes
 
+### Added Support for PHP 8.0
+
+ReportingCloud PHP SDK 3.0 is fully tested on PHP 8.0.
+
 ### Upgraded Minimum PHP Requirement to 7.4
 
-ReportingCloud PHP SDK 3.0 requires PHP 7.4 or newer in order to be installed. If you are using an earlier version of PHP, you may continue using using ReportingCloud PHP SDK 2.0, which supports PHP 7.1, or ReportingCloud PHP SDK 1.0, which supports PHP 5.6. Note however, that new backend features will only be added to the most current version of the SDK.
+ReportingCloud PHP SDK 3.0 requires PHP 7.4 or newer in order to be installed. 
+
+If you are using an earlier version of PHP, you may continue using using ReportingCloud PHP SDK 2.0, which supports PHP 7.1, or ReportingCloud PHP SDK 1.0, which supports PHP 5.6. Note however, that new backend features will only be added to the most current version of the SDK.
 
 ### Added Typed Properties
 
-One of most discussed new features of PHP 7.4 is [typed properties](https://stitcher.io/blog/typed-properties-in-php-74). ReportingCloud PHP SDK 3.0 now uses typed properties in all classes, resulting in improved security and code quality.
+One of most discussed new features of PHP 7.4 was [typed properties](https://stitcher.io/blog/typed-properties-in-php-74). ReportingCloud PHP SDK 3.0 now uses typed properties in all classes, resulting in improved security and code quality.
 
-### Added Support for PHP 8.0
+### Update to Guzzle 7.0
 
-ReportingCloud PHP SDK 3.0 can now be installed on PHP 8.0 systems.
-
-### Updated to Guzzle 7.0
-
-At the request of several users (especially those from the Laravel community), the SDK now uses [Guzzle 7.0](https://laravel-news.com/guzzle-7-released).
+At the request of several users – in particular, those those from the Laravel community – the SDK now uses [Guzzle 7.0](https://laravel-news.com/guzzle-7-released).
 
 ### Updated to PHPUnit 9.5
 
-The SDK now uses PHPUnit 9.5, which at the time of writing, is the most current version of PHPUnit.
+The SDK now uses PHPUnit 9.5 for unit tests.
 
 ### Removed class `StatusCode`
 
@@ -34,7 +38,7 @@ Versions prior to ReportingCloud PHP SDK 3.0 shipped with `TxTextControl\Reporti
 
 ### PHPStan for Static Analysis
 
-ReportingCloud PHP SDK 2.0 three static analysis tools to check the code quality:
+ReportingCloud PHP SDK 2.0 used three static analysis tools to check the code quality:
 
 - [PHPStan](https://github.com/phpstan/phpstan)
 - [Psalm](https://psalm.dev)
@@ -44,7 +48,7 @@ ReportingCloud PHP SDK 3.0 uses just PHPStan, with the [strict rules](https://gi
 
 ### Deprecated Username and Password Authentication
 
-The backend allows authentication via username and password or API key. The former has been deprecated:
+The backend allows authentication via username and password or [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey). The former has been deprecated:
 
 #### Deprecated Properties
 
@@ -67,6 +71,16 @@ ReportingCloud->getPassword(): string
 
 All the demos have been updated to use the API key authentication method.
 
-Please updated your code to use the API key authentication method in due course.
+Please updated your code to use the [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) authentication method in due course.
 
 The above properties and methods are marked with a `@deprecated` tag and will be removed in the next major version.
+
+## Need Help?
+
+The ReportingCloud PHP SDK is authored and supported by Text Control GmbH, the manufacturer of the ReportingCloud Web API.
+
+Despite our best efforts to create understandable documentation, demo applications and unit tests, we understand that there are times when you may need some technical assistance.
+
+If you have a question about ReportingCloud or the PHP SDK, we want to help you.
+
+Please refer to the [Getting Support](https://docs.reporting.cloud/docs/chapter/introduction/support) section of the ReportingCloud [documentation](https://docs.reporting.cloud/) to learn more about the support channels at your disposition.

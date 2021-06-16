@@ -13,13 +13,13 @@
         "ext-json": "*",
         "ext-libxml": "*",
         "ctw/ctw-http": "^1.0",
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^6.5 || ^7.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.14",
         "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan": "^0.12.89",
-        "phpstan/phpstan-strict-rules": "^0.12.9",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-strict-rules": "^0.12",
         "phpunit/phpunit": "^9.5",
         "riimu/kit-phpencoder": "^2.4",
         "smalot/pdfparser": "^0.14",
@@ -47,7 +47,6 @@
         "phpcbf": "php vendor/bin/phpcbf",
         "phpcs": "php vendor/bin/phpcs",
         "phpstan": "php vendor/bin/phpstan analyse --configuration=phpstan.neon",
-        "phpstan-baseline": "php vendor/bin/phpstan analyse --configuration=phpstan.neon --generate-baseline",
         "qa": [
             "@phpcbf",
             "@phpcs",
