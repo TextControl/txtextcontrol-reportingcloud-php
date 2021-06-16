@@ -17,9 +17,9 @@ build:
                 override:
                     - php-scrutinizer-run
                     -
-                        command: vendor/bin/phpunit --coverage-clover=coverage74
+                        command: vendor/bin/phpunit --coverage-clover=coverage74.xml
                         coverage:
-                            file: coverage74
+                            file: coverage74.xml
                             format: php-clover
         php80:
             environment:
@@ -29,7 +29,7 @@ build:
                 override:
                     - php-scrutinizer-run
                     -
-                        command: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage80
+                        command: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage80.xml
                         coverage:
-                            file: coverage80
+                            file: coverage80.xml
                             format: php-clover

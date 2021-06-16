@@ -40,7 +40,7 @@ trait AssertTemplateExtensionTrait
     public static function assertTemplateExtension(string $value, string $message = ''): void
     {
         $extension = pathinfo($value, PATHINFO_EXTENSION);
-        $extension = strtoupper($extension);
+        $extension = strtoupper(/** @scrutinizer ignore-type */ $extension);
 
         $format  = 0 === strlen($message) ? '%1$s contains an unsupported template format file extension' : $message;
         $message = sprintf($format, self::valueToString($value));

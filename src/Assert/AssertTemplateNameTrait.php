@@ -47,7 +47,7 @@ trait AssertTemplateNameTrait
         $extension = pathinfo($value, PATHINFO_EXTENSION);
 
         try {
-            self::assertTemplateFormat($extension);
+            self::assertTemplateFormat(/** @scrutinizer ignore-type */ $extension);
         } catch (InvalidArgumentException $e) {
             $format  = 0 === strlen($message) ? '%1$s contains an unsupported file extension' : $message;
             $message = sprintf($format, self::valueToString($value));

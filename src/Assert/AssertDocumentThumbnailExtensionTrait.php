@@ -44,7 +44,7 @@ trait AssertDocumentThumbnailExtensionTrait
     public static function assertDocumentThumbnailExtension(string $value, string $message = ''): void
     {
         $extension = pathinfo($value, PATHINFO_EXTENSION);
-        $extension = strtoupper($extension);
+        $extension = strtoupper(/** @scrutinizer ignore-type */ $extension);
 
         $format  = 0 === strlen($message)
             ? '%1$s contains an unsupported document thumbnail format file extension'
