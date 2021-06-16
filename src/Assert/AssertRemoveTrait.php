@@ -35,7 +35,7 @@ trait AssertRemoveTrait
     public static function assertRemove($value, string $message = ''): void
     {
         if (!is_bool($value)) {
-            $format  = 0 === strlen($message) ? 'Expected a boolean. Got: %1$s' : $message;
+            $format  = 0 === strlen($message) ? 'Expected true or false. Got: %1$s' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

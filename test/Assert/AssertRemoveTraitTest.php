@@ -56,7 +56,7 @@ trait AssertRemoveTraitTest
     public function testAssertRemoveWithInteger(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a boolean. Got: 1');
+        $this->expectExceptionMessage('Expected true or false. Got: 1');
 
         Assert::assertRemove(1);
 
@@ -66,7 +66,7 @@ trait AssertRemoveTraitTest
     public function testAssertRemoveWithString(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a boolean. Got: "a"');
+        $this->expectExceptionMessage('Expected true or false. Got: "a"');
 
         Assert::assertRemove('a');
 
@@ -76,7 +76,7 @@ trait AssertRemoveTraitTest
     public function testAssertRemoveWithArray(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Expected a boolean. Got: array');
+        $this->expectExceptionMessage('Expected true or false. Got: array');
 
         Assert::assertRemove([1]);
 
