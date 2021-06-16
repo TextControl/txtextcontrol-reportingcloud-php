@@ -18,12 +18,12 @@ use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 use TxTextControl\ReportingCloud\Assert\Assert;
 
 /**
- * Trait AssertBooleanTraitTest
+ * Trait AssertRemoveTraitTest
  *
  * @package TxTextControlTest\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertBooleanTraitTest
+trait AssertRemoveTraitTest
 {
     // <editor-fold desc="Abstract methods">
 
@@ -45,40 +45,40 @@ trait AssertBooleanTraitTest
 
     // </editor-fold>
 
-    public function testAssertBoolean(): void
+    public function testAssertRemove(): void
     {
-        Assert::assertBoolean(true);
-        Assert::assertBoolean(false);
+        Assert::assertRemove(true);
+        Assert::assertRemove(false);
 
         self::assertTrue(true);
     }
 
-    public function testAssertBooleanWithInteger(): void
+    public function testAssertRemoveWithInteger(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected a boolean. Got: 1');
 
-        Assert::assertBoolean(1);
+        Assert::assertRemove(1);
 
         self::assertTrue(true);
     }
 
-    public function testAssertBooleanWithString(): void
+    public function testAssertRemoveWithString(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected a boolean. Got: "a"');
 
-        Assert::assertBoolean('a');
+        Assert::assertRemove('a');
 
         self::assertTrue(true);
     }
 
-    public function testAssertBooleanWithArray(): void
+    public function testAssertRemoveWithArray(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Expected a boolean. Got: array');
 
-        Assert::assertBoolean([1]);
+        Assert::assertRemove([1]);
 
         self::assertTrue(true);
     }

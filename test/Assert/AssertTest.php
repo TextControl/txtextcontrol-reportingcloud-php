@@ -41,7 +41,7 @@ class AssertTest extends TestCase
     use AssertOneOfTraitTest;
     use AssertPageTestTrait;
     use AssertRangeTraitTest;
-    use AssertRemoveTrait;
+    use AssertRemoveTraitTest;
     use AssertReturnFormatTestTrait;
     use AssertTemplateExtensionTestTrait;
     use AssertTemplateFormatTestTrait;
