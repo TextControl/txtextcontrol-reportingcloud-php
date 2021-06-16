@@ -202,7 +202,6 @@ trait PostTrait
         $query = [];
         $json  = [];
 
-        //Assert::assertArray($mergeData);
         $json['mergeData'] = $mergeData;
 
         Assert::assertReturnFormat($returnFormat);
@@ -260,7 +259,6 @@ trait PostTrait
         $query = [];
         $json  = [];
 
-        //Assert::assertArray($documentsData);
         $json['documents'] = $this->buildDocumentsArray($documentsData);
 
         Assert::assertReturnFormat($returnFormat);
@@ -297,7 +295,6 @@ trait PostTrait
         $query = [];
         $json  = [];
 
-        //Assert::assertArray($findAndReplaceData);
         $json['findAndReplaceData'] = $this->buildFindAndReplaceDataArray($findAndReplaceData);
 
         Assert::assertReturnFormat($returnFormat);

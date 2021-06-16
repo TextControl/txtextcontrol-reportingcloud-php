@@ -38,6 +38,7 @@ class DateTimeToTimestampTest extends TestCase
     public function tearDown(): void
     {
         date_default_timezone_set($this->defaultTimezone);
+        unset($this->defaultTimezone);
     }
 
     /**

@@ -23,10 +23,8 @@ namespace TxTextControl\ReportingCloud\Assert;
 class Assert extends AbstractAssert
 {
     use AssertApiKeyTrait;
-    use AssertArrayTrait;
     use AssertBase64DataTrait;
     use AssertBaseUriTrait;
-    use AssertBooleanTrait;
     use AssertCultureTrait;
     use AssertDateTimeTrait;
     use AssertDocumentDividerTrait;
@@ -34,13 +32,12 @@ class Assert extends AbstractAssert
     use AssertDocumentThumbnailExtensionTrait;
     use AssertFilenameExistsTrait;
     use AssertImageFormatTrait;
-    use AssertIntegerTrait;
     use AssertLanguageTrait;
     use AssertOneOfTrait;
     use AssertPageTrait;
     use AssertRangeTrait;
+    use AssertRemoveTrait;
     use AssertReturnFormatTrait;
-    use AssertStringTrait;
     use AssertTemplateExtensionTrait;
     use AssertTemplateFormatTrait;
     use AssertTemplateNameTrait;

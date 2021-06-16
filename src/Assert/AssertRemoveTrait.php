@@ -17,25 +17,25 @@ namespace TxTextControl\ReportingCloud\Assert;
 use TxTextControl\ReportingCloud\Exception\InvalidArgumentException;
 
 /**
- * Trait AssertStringTrait
+ * Trait AssertRemoveTrait
  *
  * @package TxTextControl\ReportingCloud
  * @author  Jonathan Maron (@JonathanMaron)
  */
-trait AssertStringTrait
+trait AssertRemoveTrait
 {
     use ValueToStringTrait;
 
     /**
-     * Check value is a string
+     * Check value is a "remove_*" value
      *
      * @param mixed  $value
      * @param string $message
      */
-    public static function assertString($value, string $message = ''): void
+    public static function assertRemove($value, string $message = ''): void
     {
-        if (!is_string($value)) {
-            $format  = 0 === strlen($message) ? 'Expected a string. Got: %1$s' : $message;
+        if (!is_bool($value)) {
+            $format  = 0 === strlen($message) ? 'Expected a boolean. Got: %1$s' : $message;
             $message = sprintf($format, self::valueToString($value));
             throw new InvalidArgumentException($message);
         }

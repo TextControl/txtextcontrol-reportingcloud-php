@@ -16,6 +16,7 @@ namespace TxTextControlTest\ReportingCloud\Assert;
 
 use PHPUnit\Framework\TestCase;
 use stdClass;
+use TxTextControl\ReportingCloud\Assert\AssertRemoveTrait;
 use TxTextControlTest\ReportingCloud\Assert\TestAsset\ConcreteAssert as Assert;
 
 /**
@@ -34,22 +35,19 @@ class AssertTest extends TestCase
     use AssertDocumentDividerTestTrait;
     use AssertDocumentExtensionTestTrait;
     use AssertDocumentThumbnailExtensionTestTrait;
+    use AssertFilenameExistsTestTrait;
     use AssertImageFormatTestTrait;
     use AssertLanguageTestTrait;
+    use AssertOneOfTraitTest;
     use AssertPageTestTrait;
+    use AssertRangeTraitTest;
+    use AssertRemoveTrait;
     use AssertReturnFormatTestTrait;
     use AssertTemplateExtensionTestTrait;
     use AssertTemplateFormatTestTrait;
     use AssertTemplateNameTestTrait;
     use AssertTimestampTestTrait;
     use AssertZoomFactorTestTrait;
-    use AssertFilenameExistsTestTrait;
-    use AssertOneOfTraitTest;
-    use AssertRangeTraitTest;
-    use AssertArrayTraitTest;
-    use AssertStringTraitTest;
-    use AssertIntegerTraitTest;
-    use AssertBooleanTraitTest;
 
     public function testValueToStringNull(): void
     {

@@ -46,7 +46,7 @@ abstract class AbstractReportingCloudTest extends TestCase
 
     public function tearDown(): void
     {
-        // $this->reportingCloud = null;
+        unset($this->reportingCloud);
     }
 
     // </editor-fold>

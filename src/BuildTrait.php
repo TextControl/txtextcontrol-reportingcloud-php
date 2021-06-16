@@ -72,7 +72,6 @@ trait BuildTrait
         $ret = [];
 
         foreach ($array as $inner) {
-            //Assert::assertArray($inner);
             assert(is_array($inner));
             $document = [];
             foreach ($inner as $key => $value) {
@@ -161,8 +160,7 @@ trait BuildTrait
                 Assert::assertCulture($value);
             }
             if (StringUtils::startsWith($key, 'remove_')) {
-                Assert::assertBoolean($value);
-                assert(is_bool($value));
+                Assert::assertRemove($value);
             }
             if (StringUtils::endsWith($key, '_date')) {
                 assert(is_int($value));
