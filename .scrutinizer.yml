@@ -10,10 +10,11 @@ filter:
         - src/*
 
 build:
+    environment:
+        php:
+            version: 7.4
     nodes:
-        php74:
-            environment:
-                php: 7.4
-        php80:
-            environment:
-                php: 8.0
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run
