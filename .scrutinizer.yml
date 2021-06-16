@@ -9,12 +9,11 @@ filter:
     paths:
         - src/*
 
-analysis:
-    tests:
-        override:
-            - php-scrutinizer-run
-
 build:
+    analysis:
+        tests:
+            override:
+                - php-scrutinizer-run
     nodes:
         php74:
             environment:
