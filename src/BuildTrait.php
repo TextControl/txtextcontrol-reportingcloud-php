@@ -161,6 +161,7 @@ trait BuildTrait
             }
             if (StringUtils::startsWith($key, 'remove_')) {
                 Assert::assertRemove($value);
+                assert(is_bool($value));
             }
             if (StringUtils::endsWith($key, '_date')) {
                 assert(is_int($value));
