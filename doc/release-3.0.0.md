@@ -24,6 +24,44 @@ If you are using an earlier version of PHP, you may continue using using Reporti
 
 One of most discussed new features of PHP 7.4 was [typed properties](https://stitcher.io/blog/typed-properties-in-php-74). ReportingCloud PHP SDK 3.0 now uses typed properties in all classes, resulting in improved security and code quality.
 
+### Removed Nullable Types From Public Method Parameters
+
+Since migrating to strict types and typed properties, it makes sense to disallow `null` in public method signatures. 
+
+Consider the following example:
+
+#### Old Function Signature
+
+    public function mergeDocument(
+        array   $mergeData,
+        string  $returnFormat,
+        ?string $templateName     = null,
+        ?string $templateFilename = null,
+        ?bool   $append           = null,
+        ?array  $mergeSettings    = null
+    ): array { }
+
+#### New Function Signature
+
+    public function mergeDocument(
+        array  $mergeData,
+        string $returnFormat,
+        string $templateName     = '',      /* 3rd parameter */
+        string $templateFilename = '',      /* 4th parameter */
+        bool   $append           = false,   /* 5th parameter */
+        array  $mergeSettings    = []       /* 6th parameter */
+    ): array { }
+
+Here the 3rd, 4th, 5th and 6th parameters have an empty value or false as default and not `null`.
+
+You will only be affected by this change, if you have explicitly set `null` as a default value in your application code. In this case, you will see the following error when running your unit tests:
+
+    PHP Fatal error:  Uncaught TypeError: Argument 3 passed to TxTextControl\ReportingCloud\ReportingCloud::mergeDocument() must be of the type string, null given, called in [..]
+
+All you have to do is replace the `null` with the correct value (`''`, `[]`, `0` or `true|false`).
+
+The above example shows just the `mergeDocument()` method signature, however this change affects all public methods.
+
 ### Update to Guzzle 7.0
 
 At the request of several users – in particular, those those from the Laravel community – the SDK now uses [Guzzle 7.0](https://laravel-news.com/guzzle-7-released).

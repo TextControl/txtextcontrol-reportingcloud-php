@@ -39,7 +39,8 @@ trait AssertBaseUriTrait
         $baseUri = ReportingCloud::DEFAULT_BASE_URI;
 
         $host1 = parse_url($baseUri, PHP_URL_HOST);
-        $host2 = (string) parse_url($value, PHP_URL_HOST);
+        $host2 = parse_url($value, PHP_URL_HOST);
+        assert(is_string($host2));
 
         if (!StringUtils::endsWith($host2, $host1)) {
             $format  = 0 === strlen($message) ? 'Expected base URI to end in %2$s. Got %1$s' : $message;

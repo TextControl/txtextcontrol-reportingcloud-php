@@ -48,10 +48,10 @@ trait FilterTimestampToDateTimeTrait
             $dateTime->setTimezone($dateTimeZone);
             $ret = $dateTime->format($dateFormat);
         } catch (Exception $e) {
-            throw new InvalidArgumentException(
-                $e->getMessage(),
-                (int) $e->getCode()
-            );
+            $message = $e->getMessage();
+            $code    = $e->getCode();
+            assert(is_int($code));
+            throw new InvalidArgumentException($message, $code);
         }
 
         return $ret;

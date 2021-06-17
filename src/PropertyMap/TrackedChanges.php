@@ -27,7 +27,6 @@ class TrackedChanges extends AbstractPropertyMap
      */
     public function __construct()
     {
-        //@todo Updated case of properties
         $map = [
             'changeKind'            => 'change_kind',
             'changeTime'            => 'change_time',

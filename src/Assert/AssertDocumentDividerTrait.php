@@ -71,6 +71,7 @@ trait AssertDocumentDividerTrait
             if (StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_')) {
                 return true;
             }
+
             return false;
         }, ARRAY_FILTER_USE_KEY);
 

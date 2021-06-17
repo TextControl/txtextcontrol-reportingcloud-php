@@ -32,9 +32,9 @@ class StringUtils extends AbstractStdlib
      */
     public static function startsWith(string $haystack, string $needle): bool
     {
-        $len = strlen($needle);
+        // Source: https://git.io/JnWmc
 
-        return $needle === substr($haystack, 0, $len);
+        return 0 === strncmp($haystack, $needle, strlen($needle));
     }
 
     /**
@@ -47,8 +47,8 @@ class StringUtils extends AbstractStdlib
      */
     public static function endsWith(string $haystack, string $needle): bool
     {
-        $len = strlen($needle);
+        // Source: https://git.io/JnWml
 
-        return $needle === substr($haystack, -$len);
+        return '' === $needle || ('' !== $haystack && 0 === substr_compare($haystack, $needle, -strlen($needle)));
     }
 }

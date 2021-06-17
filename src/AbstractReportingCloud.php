@@ -637,7 +637,8 @@ abstract class AbstractReportingCloud
             $response = $client->request($method, $uri, $options);
         } catch (GuzzleException $e) {
             $message = $e->getMessage();
-            $code    = (int) $e->getCode();
+            $code    = $e->getCode();
+            assert(is_int($code));
             throw new RuntimeException($message, $code);
         }
 

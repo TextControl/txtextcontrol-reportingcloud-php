@@ -73,31 +73,38 @@ class ConsoleUtils extends AbstractStdlib
      */
     public static function errorMessage(): string
     {
+        // phpcs:disable
+
         $format   = <<<END
 
-Error: ReportingCloud API key not defined.
+\e[41m\e[1mError: ReportingCloud API key not defined.\e[0m
 
-In order to execute %s, you must first set your ReportingCloud API key.
+In order to execute \e[32m%s\e[0m, you must first set your ReportingCloud API key.
 
 There are two ways in which you can do this:
 
-1) Define the following PHP constant:
+1) Define a PHP constant:
 
-    define('%s', '%s');
+    \e[1mdefine('%s', '%s');\e[0m
 
-2) Set environmental variable (for example in .bashrc)
+2) Set an environmental variable (for example in .bashrc)
     
-    export %s='%s'
+    \e[1mexport %s='%s'\e[0m
 
 Note, these instructions apply only to the demo scripts and phpunit tests. 
-When you use ReportingCloud in your application, set credentials in your constructor 
-or using the setApiKey(\$apiKey). For an example, see '/demo/instantiation.php'.
+
+When you use ReportingCloud in your application, set the API key in your constructor or using the 'setApiKey(string \$apiKey):self' method. 
+
+For an example, see \e[32m'/demo/instantiation.php'\e[0m.
 
 For further assistance and customer service please refer to:
 
     https://www.reporting.cloud
+    
 
 END;
+        // phpcs:enable
+
         $filename = $_SERVER['argv'][0] ?? '';
         $filename = realpath($filename);
 
@@ -119,14 +126,13 @@ END;
 
     /**
      * Dump information about a variable
-     * (var_dump is wrapped to suppress psalm warning)
      *
      * @param mixed $value
      *
      */
     public static function dump($value): void
     {
-        var_dump($value);
+        /** @scrutinizer ignore-call */ var_dump($value);
     }
 
     /**
@@ -155,16 +161,16 @@ END;
      */
     private static function getValueFromConstOrEnvVar(string $key): string
     {
-        $ret = self::getValueFromConst($key);
+        $value = self::getValueFromConst($key);
 
-        if (strlen($ret) > 0) {
-            return $ret;
+        if (strlen($value) > 0) {
+            return $value;
         }
 
-        $ret = self::getValueFromEnvVar($key);
+        $value = self::getValueFromEnvVar($key);
 
-        if (strlen($ret) > 0) {
-            return $ret;
+        if (strlen($value) > 0) {
+            return $value;
         }
 
         return '';
@@ -180,10 +186,12 @@ END;
     private static function getValueFromConst(string $key): string
     {
         if (defined($key)) {
-            $ret = (string) constant($key);
-            $ret = trim($ret);
-            if (strlen($ret) > 0) {
-                return $ret;
+            $value = constant($key);
+            if (is_string($value)) {
+                $value = trim($value);
+                if (strlen($value) > 0) {
+                    return $value;
+                }
             }
         }
 
@@ -199,12 +207,12 @@ END;
      */
     private static function getValueFromEnvVar(string $key): string
     {
-        $env = getenv($key);
+        $value = getenv($key);
 
-        if (is_string($env)) {
-            $ret = trim($env);
-            if (strlen($ret) > 0) {
-                return $ret;
+        if (is_string($value)) {
+            $value = trim($value);
+            if (strlen($value) > 0) {
+                return $value;
             }
         }
 

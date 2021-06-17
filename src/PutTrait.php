@@ -105,7 +105,8 @@ trait PutTrait
         $response = $this->request(HttpMethod::METHOD_PUT, $this->uri($uri), $options);
 
         if ($statusCode === $response->getStatusCode()) {
-            $ret = (string) json_decode($response->getBody()->getContents());
+            $ret = json_decode($response->getBody()->getContents(), true);
+            assert(is_string($ret));
         }
 
         return $ret;

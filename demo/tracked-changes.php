@@ -29,7 +29,7 @@ foreach ($results as $result) {
         ConsoleUtils::writeLn('%s: %s', $key, $value);
     }
 
-    ConsoleUtils::writeLn('');
+    ConsoleUtils::writeLn();
 
     switch ($result['change_kind']) {
         case ReportingCloud::TRACKED_CHANGE_DELETED_TEXT:
@@ -62,7 +62,7 @@ foreach ($results as $result) {
 
     ConsoleUtils::writeLn('Highlight mode was "%s" ("%s").', $word, $result['highlight_mode']);
 
-    ConsoleUtils::writeLn('');
+    ConsoleUtils::writeLn();
 }
 
 // Remove tracked change with ID 1
