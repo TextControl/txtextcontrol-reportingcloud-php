@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace TxTextControl\ReportingCloud;
 
+use Ctw\Http\HttpMethod;
 use Ctw\Http\HttpStatus;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
@@ -430,7 +431,7 @@ trait GetTrait
             RequestOptions::JSON  => $json,
         ];
 
-        $response = $this->request('GET', $this->uri($uri), $options);
+        $response = $this->request(HttpMethod::METHOD_GET, $this->uri($uri), $options);
 
         if ($statusCode === $response->getStatusCode()) {
             $ret = json_decode($response->getBody()->getContents(), true);
