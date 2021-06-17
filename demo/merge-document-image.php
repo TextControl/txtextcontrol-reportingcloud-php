@@ -24,14 +24,14 @@ $destinationFilename = sprintf('%s/test_template_image_merged.pdf', Path::output
 // Load the image data from disk, base64 encoding them before assigning to ReportingCloud.
 // See: https://www.textcontrol.com/blog/2016/07/18/
 
-$imageBinaryData              = (string) file_get_contents($imageFilename);
+$imageBinaryData              = FileUtils::read($imageFilename);
 $imageBinaryDataBase64Encoded = base64_encode($imageBinaryData);
 
 // Specify array of merge data
 
 $mergeData = [
     'title'  => 'Retro Speedometer from Classic Car',
-    'source' => 'http://www.4freephotos.com/Retro-speedometer-from-classic-car-6342.html',
+    'source' => 'https://www.4freephotos.com/Retro-speedometer-from-classic-car-6342.html',
     'photo'  => $imageBinaryDataBase64Encoded
 ];
 
