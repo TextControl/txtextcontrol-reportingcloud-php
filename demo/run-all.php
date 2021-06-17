@@ -57,6 +57,8 @@ $fileInfos = $getDemos();
 
 foreach ($fileInfos as $fileInfo) {
 
+    /** @var SplFileInfo $fileInfo */
+
     ConsoleUtils::writeLn('%d/%d) Executing "%s"...', $counter, $fileInfos->count(), $fileInfo->getFilename());
     ConsoleUtils::writeLn();
     $command = sprintf('%s %s', escapeshellarg(PHP_BINARY), escapeshellarg($fileInfo->getPathname()));

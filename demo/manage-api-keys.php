@@ -6,7 +6,7 @@ include_once __DIR__ . '/bootstrap.php';
 use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
-// Instantiate ReportingCloud, using your API key
+// Instantiate with API key via constructor options
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),
@@ -33,7 +33,7 @@ $newApiKey = $reportingCloud->createApiKey();
 
 unset($reportingCloud);
 
-// Instantiate ReportingCloud again, using the new API key created above
+// Instantiate with API key via constructor options again, using the new API key created above
 
 $reportingCloud = new ReportingCloud([
     'api_key' => $newApiKey,

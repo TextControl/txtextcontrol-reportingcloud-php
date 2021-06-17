@@ -8,7 +8,7 @@ use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-// Instantiate with API key via constructor option
+// Instantiate with API key via constructor options
 
 $reportingCloud = new ReportingCloud([
     'api_key' => 'xxxxxxxx',

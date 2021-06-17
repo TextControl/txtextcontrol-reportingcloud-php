@@ -94,7 +94,7 @@ $getMergeDataRecord = function (): array {
 
 // ---------------------------------------------------------------------------------------------------------------------
 
-// Instantiate ReportingCloud, using your API key
+// Instantiate with API key via constructor options
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),

@@ -7,7 +7,7 @@ use TxTextControl\ReportingCloud\ReportingCloud;
 use TxTextControl\ReportingCloud\Stdlib\ConsoleUtils;
 use TxTextControl\ReportingCloud\Stdlib\Path;
 
-// Instantiate ReportingCloud, using your API key
+// Instantiate with API key via constructor options
 
 $reportingCloud = new ReportingCloud([
     'api_key' => ConsoleUtils::apiKey(),

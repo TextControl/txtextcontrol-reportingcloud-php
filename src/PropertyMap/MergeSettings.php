@@ -27,7 +27,6 @@ class MergeSettings extends AbstractPropertyMap
      */
     public function __construct()
     {
-        //@todo Updated case of properties
         $map = [
             'author'                   => 'author',
             'creationDate'             => 'creation_date',
