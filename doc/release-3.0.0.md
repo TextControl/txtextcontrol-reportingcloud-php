@@ -52,7 +52,7 @@ Consider the following example:
         array  $mergeSettings    = []       /* 6th parameter */
     ): array { }
 
-Here the 3rd, 4th, 5th and 6th parameters have an empty value or false as default and not `null`.
+Here the 3rd, 4th, 5th and 6th parameters have an empty value or false as default and no longer `null`.
 
 You will only be affected by this change, if you have explicitly set `null` as a default value in your application code. In this case, you will see the following error when running your unit tests:
 
@@ -117,10 +117,10 @@ The above properties and methods are marked with a `@deprecated` tag and will be
 
 ## Need Help?
 
-The ReportingCloud PHP SDK is authored and supported by Text Control GmbH, the manufacturer of the ReportingCloud Web API.
+ReportingCloud PHP SDK 3.0 is authored and supported by Text Control GmbH, the manufacturer of the ReportingCloud Web API.
 
 Despite our best efforts to create understandable documentation, demo applications and unit tests, we understand that there are times when you may need some technical assistance.
 
-If you have a question about ReportingCloud or the PHP SDK, we want to help you.
+If you have a question about ReportingCloud or ReportingCloud PHP SDK 3.0, we are here to help you.
 
 Please refer to the [Getting Support](https://docs.reporting.cloud/docs/chapter/introduction/support) section of the ReportingCloud [documentation](https://docs.reporting.cloud/) to learn more about the support channels at your disposition.
