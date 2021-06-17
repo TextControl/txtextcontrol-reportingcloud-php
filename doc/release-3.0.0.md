@@ -56,7 +56,9 @@ Here the 3rd, 4th, 5th and 6th parameters have an empty value or false as defaul
 
 You will only be affected by this change, if you have explicitly set `null` as a default value in your application code. In this case, you will see the following error when running your unit tests:
 
-    PHP Fatal error:  Uncaught TypeError: Argument 3 passed to TxTextControl\ReportingCloud\ReportingCloud::mergeDocument() must be of the type string, null given, called in [..]
+    PHP Fatal error:  Uncaught TypeError: 
+    Argument 3 passed to TxTextControl\ReportingCloud\ReportingCloud::mergeDocument() 
+    must be of the type string, null given, called in [..]
 
 All you have to do is replace the `null` with the correct value (`''`, `[]`, `0` or `true|false`).
 
