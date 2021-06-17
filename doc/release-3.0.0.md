@@ -60,7 +60,7 @@ You will only be affected by this change, if you have explicitly set `null` as a
     Argument 3 passed to TxTextControl\ReportingCloud\ReportingCloud::mergeDocument() 
     must be of the type string, null given, called in [..]
 
-All you have to do is replace the `null` with the correct value (`''`, `[]`, `0` or `true|false`).
+All you have to do is replace the `null` with the correct value (`''`, `[]`, `0` `true` or `false`).
 
 The above example shows just the `mergeDocument()` method signature, however this change affects all public methods.
 
