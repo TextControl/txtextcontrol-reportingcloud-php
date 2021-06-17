@@ -6,7 +6,8 @@
 
 * Added support for PHP 8.0.
 * Upgraded minimum PHP requirement to 7.4.
-* Added typed properties, removing `null`.
+* Added typed properties.
+* Removed nullable type from public method parameters.
 * Updated to [Guzzle 7.0](https://github.com/guzzle/guzzle).
 * Updated to [PHPUnit 9.5](https://phpunit.readthedocs.io/en/9.5/).
 * Removed class `TxTextControl\ReportingCloud\StatusCode\StatusCode`.
