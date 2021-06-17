@@ -4,15 +4,17 @@
 
 ## 3.0.0 - 2021-xx-xx
 
+For a full description of changes, see [release-3.0.0.md](./doc/release-3.0.0.md).
+
 * Added support for PHP 8.0.
 * Upgraded minimum PHP requirement to 7.4.
 * Added typed properties.
 * Removed nullable type from public method parameters.
 * Updated to [Guzzle 7.0](https://github.com/guzzle/guzzle).
 * Updated to [PHPUnit 9.5](https://phpunit.readthedocs.io/en/9.5/).
-* Removed class `TxTextControl\ReportingCloud\StatusCode\StatusCode`.
-* Added package `ctw/ctw-http` as a dependency to work with HTTP status codes. 
-* Switched to PHPStan for static analysis, with [strict rules](https://github.com/phpstan/phpstan-strict-rules).
+* Removed class `StatusCode`.
+* Added [ctw/ctw-http](https://packagist.org/packages/ctw/ctw-http) as a replacement for `StatusCode`. 
+* Switched to [PHPStan](https://github.com/phpstan/phpstan) for static analysis, with [strict rules](https://github.com/phpstan/phpstan-strict-rules).
 * Deprecated username and password authentication, in favor of API key authentication.
 
 ## 2.6.2 - 2020-10-28
