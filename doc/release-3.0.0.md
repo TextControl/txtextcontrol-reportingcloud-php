@@ -24,7 +24,7 @@ If you are using an earlier version of PHP, you may continue using using Reporti
 
 One of most discussed new features of PHP 7.4 was [typed properties](https://stitcher.io/blog/typed-properties-in-php-74). ReportingCloud PHP SDK 3.0 now uses typed properties in all classes, resulting in improved security and code quality.
 
-### Removed Nullable Types From Public Method Parameters
+### Removed Nullable Type From Public Method Parameters
 
 Since migrating to strict types and typed properties, it makes sense to disallow `null` in public method signatures. 
 
