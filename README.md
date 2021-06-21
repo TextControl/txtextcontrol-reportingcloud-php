@@ -41,27 +41,23 @@ Alternatively, it is possible to use ReportingCloud by directly accessing the [W
 
 ## Install Using Composer
 
-Install the ReportingCloud PHP SDK in your project using [Composer](http://getcomposer.org):
+Install ReportingCloud PHP SDK 3.0 in your project using [Composer](http://getcomposer.org):
 
 ```bash
 composer require textcontrol/txtextcontrol-reportingcloud:^3.0
 ```
 
-After installing, you need to include Composer's autoloader:
+After installing, you just need to include Composer's autoloader:
 
 ```php
 include_once 'vendor/autoload.php';
 ```
 
-You can then later update the ReportingCloud PHP SDK using Composer:
-
-```bash
-composer update
-```
+You are now ready to use the SDK.
 
 ## API Key for Demos and Unit Tests
 
-The ReportingCloud PHP SDK ships with a number of sample applications (see directory `/demo`) and phpunit tests (see directory `/test`). The scripts in each of these directories require an [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) for ReportingCloud in order to be executed. So that the API key is not made inadvertently publicly available via a public GIT repository, you will first need to specify it. There are two ways in which you can do this:
+ReportingCloud PHP SDK ships with a number of sample applications (see directory `/demo`) and phpunit tests (see directory `/test`). The scripts in each of these directories require an [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) for ReportingCloud in order to be executed. So that the API key is not made inadvertently publicly available via a public GIT repository, you will first need to specify it. There are two ways in which you can do this:
 
 ### Using PHP Constants:
 
@@ -79,9 +75,9 @@ Note, these instructions apply only to the demo scripts and phpunit tests. When 
 
 ## Getting Started
 
-The [PHP Quickstart Tutorial](https://docs.reporting.cloud/docs/chapter/quickstart/php) in the ReportingCloud [documentation](https://docs.reporting.cloud/) is your starting point to using the ReportingCloud PHP SDK in your own applications.
+The [PHP Quickstart Tutorial](https://docs.reporting.cloud/docs/chapter/quickstart/php) in the ReportingCloud [documentation](https://docs.reporting.cloud/) is your starting point to using ReportingCloud PHP SDK in your own applications.
 
-In addition, the ReportingCloud PHP SDK ships with a number of sample applications (see directory `/demo`). These samples applications, which are well commented, have been written to demonstrate all parts of ReportingCloud.
+In addition, ReportingCloud PHP SDK ships with a number of sample applications (see directory `/demo`). These samples applications, which are well commented, have been written to demonstrate all parts of ReportingCloud.
 
 ## Getting Support
 
