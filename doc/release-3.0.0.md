@@ -111,7 +111,7 @@ ReportingCloud->getPassword(): string
 
 All the demos have been updated to use the API key authentication method.
 
-Please updated your code to use the [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) authentication method in due course.
+Please update your code to use the [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) authentication method in due course.
 
 The above properties and methods are marked with a `@deprecated` tag and will be removed in the next major version.
 

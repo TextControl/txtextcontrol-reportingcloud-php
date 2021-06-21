@@ -59,12 +59,6 @@ You can then later update the ReportingCloud PHP SDK using Composer:
 composer update
 ```
 
-and for best auto-loading performance consequently execute:
-
-```bash
-composer dump-autoload --optimize
-```
-
 ## API Key for Demos and Unit Tests
 
 The ReportingCloud PHP SDK ships with a number of sample applications (see directory `/demo`) and phpunit tests (see directory `/test`). The scripts in each of these directories require an [API key](https://docs.reporting.cloud/docs/chapter/introduction/apikey) for ReportingCloud in order to be executed. So that the API key is not made inadvertently publicly available via a public GIT repository, you will first need to specify it. There are two ways in which you can do this:
