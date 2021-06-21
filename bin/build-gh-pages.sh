@@ -11,13 +11,14 @@ git clone git@github.com:TextControl/txtextcontrol-reportingcloud-php.git --bran
 
 # ----------------------------------------------------------------------------------------------------------------------
 
-# composer global require phpdocumentor/phpdocumentor
+# download phar from https://github.com/phpDocumentor/phpDocumentor/releases
+# and copy to ~/.composer/vendor/bin/phpdoc
 
 rm -fr ${GH_PATH}/docs-api
 
 mkdir -p ${GH_PATH}/docs-api
 
-~/.composer/vendor/bin/phpdoc run --directory ${RC_PATH}/src --target ${GH_PATH}/docs-api --template clean
+~/.composer/vendor/bin/phpdoc run --cache-folder /tmp/ --directory ${RC_PATH}/src --target ${GH_PATH}/docs-api --template clean
 
 cd ${GH_PATH}
 

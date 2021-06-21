@@ -30,7 +30,7 @@ git config user.email "johndoe@users.noreply.github.com"
 ## Tag and Release Version
 
 ```bash
-git tag release-1.1.x && git push origin --tags
+git tag release-3.0.x && git push origin --tags
 ```
 
 ## API Documentation (phpdoc)
