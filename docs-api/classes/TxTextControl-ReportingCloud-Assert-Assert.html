@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/txtextcontrol.html"><abbr title="\TxTextControl">TxTextControl</abbr></a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">6</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1856447559"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1856447559" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1922234247"></a>
+                                <a href="../namespaces/txtextcontrol.html" style="margin-left: 30px; padding-left: 0">TxTextControl</a>
+            </div>
+            <div id="namespace-1922234247" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1918310592"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud.html" style="margin-left: 30px; padding-left: 0">ReportingCloud</a>
+            </div>
+            <div id="namespace-1918310592" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-579244695"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-assert.html" style="margin-left: 30px; padding-left: 0">Assert</a>
+            </div>
+            <div id="namespace-579244695" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertApiKeyTrait">AssertApiKeyTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBase64DataTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertBase64DataTrait">AssertBase64DataTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBaseUriTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertBaseUriTrait">AssertBaseUriTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertCultureTrait">AssertCultureTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDateTimeTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDateTimeTrait">AssertDateTimeTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentDividerTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDocumentDividerTrait">AssertDocumentDividerTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentExtensionTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDocumentExtensionTrait">AssertDocumentExtensionTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentThumbnailExtensionTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDocumentThumbnailExtensionTrait">AssertDocumentThumbnailExtensionTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertFilenameExistsTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertFilenameExistsTrait">AssertFilenameExistsTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertImageFormatTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertImageFormatTrait">AssertImageFormatTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertLanguageTrait">AssertLanguageTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertOneOfTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertOneOfTrait">AssertOneOfTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertPageTrait">AssertPageTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRangeTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertRangeTrait">AssertRangeTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRemoveTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertRemoveTrait">AssertRemoveTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertReturnFormatTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertReturnFormatTrait">AssertReturnFormatTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateExtensionTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTemplateExtensionTrait">AssertTemplateExtensionTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateFormatTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTemplateFormatTrait">AssertTemplateFormatTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateNameTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTemplateNameTrait">AssertTemplateNameTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTimestampTrait">AssertTimestampTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertZoomFactorTrait">AssertZoomFactorTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-ValueToStringTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\ValueToStringTrait">ValueToStringTrait</abbr></a></li>
+                                                                            <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Assert-AbstractAssert.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AbstractAssert">AbstractAssert</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Assert-Assert.html"><abbr title="\TxTextControl\ReportingCloud\Assert\Assert">Assert</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-530970151"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-530970151" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/TxTextControl-ReportingCloud-Exception-ExceptionInterface.html"><abbr title="\TxTextControl\ReportingCloud\Exception\ExceptionInterface">ExceptionInterface</abbr></a></li>
+                                                                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Exception-InvalidArgumentException.html"><abbr title="\TxTextControl\ReportingCloud\Exception\InvalidArgumentException">InvalidArgumentException</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Exception-RuntimeException.html"><abbr title="\TxTextControl\ReportingCloud\Exception\RuntimeException">RuntimeException</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-534780413"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-filter.html" style="margin-left: 30px; padding-left: 0">Filter</a>
+            </div>
+            <div id="namespace-534780413" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Filter-FilterBooleanToStringTrait.html"><abbr title="\TxTextControl\ReportingCloud\Filter\FilterBooleanToStringTrait">FilterBooleanToStringTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Filter-FilterDateTimeToTimestampTrait.html"><abbr title="\TxTextControl\ReportingCloud\Filter\FilterDateTimeToTimestampTrait">FilterDateTimeToTimestampTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Filter-FilterTimestampToDateTimeTrait.html"><abbr title="\TxTextControl\ReportingCloud\Filter\FilterTimestampToDateTimeTrait">FilterTimestampToDateTimeTrait</abbr></a></li>
+                                                                            <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Filter-AbstractFilter.html"><abbr title="\TxTextControl\ReportingCloud\Filter\AbstractFilter">AbstractFilter</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Filter-Filter.html"><abbr title="\TxTextControl\ReportingCloud\Filter\Filter">Filter</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-563291222"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-propertymap.html" style="margin-left: 30px; padding-left: 0">PropertyMap</a>
+            </div>
+            <div id="namespace-563291222" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-PropertyMapInterface.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\PropertyMapInterface">PropertyMapInterface</abbr></a></li>
+                                                                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-AbstractPropertyMap.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap">AbstractPropertyMap</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-AccountSettings.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\AccountSettings">AccountSettings</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-ApiKey.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\ApiKey">ApiKey</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-DocumentSettings.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\DocumentSettings">DocumentSettings</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-IncorrectWord.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\IncorrectWord">IncorrectWord</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-MergeSettings.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\MergeSettings">MergeSettings</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-ModifiedDocument.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\ModifiedDocument">ModifiedDocument</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TemplateInfo.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TemplateInfo">TemplateInfo</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TemplateList.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TemplateList">TemplateList</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TrackedChanges.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TrackedChanges">TrackedChanges</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-278420103"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-stdlib.html" style="margin-left: 30px; padding-left: 0">Stdlib</a>
+            </div>
+            <div id="namespace-278420103" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-AbstractStdlib.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\AbstractStdlib">AbstractStdlib</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-ArrayUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\ArrayUtils">ArrayUtils</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-ConsoleUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\ConsoleUtils">ConsoleUtils</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-FileUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\FileUtils">FileUtils</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-Path.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\Path">Path</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-StringUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\StringUtils">StringUtils</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-BuildTrait.html"><abbr title="\TxTextControl\ReportingCloud\BuildTrait">BuildTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-DeleteTrait.html"><abbr title="\TxTextControl\ReportingCloud\DeleteTrait">DeleteTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-GetTrait.html"><abbr title="\TxTextControl\ReportingCloud\GetTrait">GetTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-PostTrait.html"><abbr title="\TxTextControl\ReportingCloud\PostTrait">PostTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-PutTrait.html"><abbr title="\TxTextControl\ReportingCloud\PutTrait">PutTrait</abbr></a></li>
+                                                                            <li class="class"><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><abbr title="\TxTextControl\ReportingCloud\AbstractReportingCloud">AbstractReportingCloud</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-ReportingCloud.html"><abbr title="\TxTextControl\ReportingCloud\ReportingCloud">ReportingCloud</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/txtextcontrol-reportingcloud-assert.html"><abbr title="\TxTextControl\ReportingCloud\Assert">Assert</abbr></a> <i class="icon-level-up"></i>
+                                            </nav>
+                    
+                    <h1><small>\TxTextControl\ReportingCloud\Assert</small>Assert</h1>
+                    <p><em>Class Assert</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html#method_assertApiKey" class="">assertApiKey()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBase64DataTrait.html#method_assertBase64Data" class="">assertBase64Data()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBaseUriTrait.html#method_assertBaseUri" class="">assertBaseUri()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html#method_assertCulture" class="">assertCulture()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html#method_getCulturesFilename" class="">getCulturesFilename()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDateTimeTrait.html#method_assertDateTime" class="">assertDateTime()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentDividerTrait.html#method_assertDocumentDivider" class="">assertDocumentDivider()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentExtensionTrait.html#method_assertDocumentExtension" class="">assertDocumentExtension()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentThumbnailExtensionTrait.html#method_assertDocumentThumbnailExtension" class="">assertDocumentThumbnailExtension()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertFilenameExistsTrait.html#method_assertFilenameExists" class="">assertFilenameExists()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertImageFormatTrait.html#method_assertImageFormat" class="">assertImageFormat()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html#method_assertLanguage" class="">assertLanguage()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html#method_getDictionariesFilename" class="">getDictionariesFilename()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertOneOfTrait.html#method_assertOneOf" class="">assertOneOf()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html#method_assertPage" class="">assertPage()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRangeTrait.html#method_assertRange" class="">assertRange()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRemoveTrait.html#method_assertRemove" class="">assertRemove()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertReturnFormatTrait.html#method_assertReturnFormat" class="">assertReturnFormat()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateExtensionTrait.html#method_assertTemplateExtension" class="">assertTemplateExtension()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateFormatTrait.html#method_assertTemplateFormat" class="">assertTemplateFormat()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateNameTrait.html#method_assertTemplateName" class="">assertTemplateName()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html#method_assertTimestamp" class="">assertTimestamp()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html#method_assertZoomFactor" class="">assertZoomFactor()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-ValueToStringTrait.html#method_valueToString" class="">valueToString()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html#method_getCultures" class="">getCultures()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDateTimeTrait.html#method_getDateTimeLength" class="">getDateTimeLength()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentDividerTrait.html#method_getDocumentDividers" class="">getDocumentDividers()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html#method_getDictionaries" class="">getDictionaries()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html#property_apiKeyMinLength" class="">$apiKeyMinLength</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html#property_apiKeyMaxLength" class="">$apiKeyMaxLength</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html#property_pageMin" class="">$pageMin</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html#property_pageMax" class="">$pageMax</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html#property_timestampMin" class="">$timestampMin</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html#property_timestampMax" class="">$timestampMax</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html#property_zoomFactorMin" class="">$zoomFactorMin</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html#property_zoomFactorMax" class="">$zoomFactorMax</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/assert-assert.html"><div class="path-wrapper">Assert/Assert.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">TxTextControl\ReportingCloud</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper"><a href="../classes/TxTextControl-ReportingCloud-Assert-AbstractAssert.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AbstractAssert">AbstractAssert</abbr></a></div>
+                                                                                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\Assert</div>
+                            </dd>
+
+                        
+                                                                                    <dt>Uses traits</dt>
+                                                        <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertApiKeyTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBase64DataTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertBase64DataTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBaseUriTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertBaseUriTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertCultureTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDateTimeTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDateTimeTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentDividerTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDocumentDividerTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentExtensionTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDocumentExtensionTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentThumbnailExtensionTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDocumentThumbnailExtensionTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertFilenameExistsTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertFilenameExistsTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertImageFormatTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertImageFormatTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertLanguageTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertOneOfTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertOneOfTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertPageTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRangeTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertRangeTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRemoveTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertRemoveTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertReturnFormatTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertReturnFormatTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateExtensionTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTemplateExtensionTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateFormatTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTemplateFormatTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateNameTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTemplateNameTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTimestampTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\AssertZoomFactorTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/TxTextControl-ReportingCloud-Assert-ValueToStringTrait.html">                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\Assert\ValueToStringTrait</div>
+                                </a>                            </dd>
+                        
+                        
+                                                
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                                                        <p>Jonathan Maron (@JonathanMaron)</p>
+
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_apiKeyMinLength" name="property_apiKeyMinLength" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$apiKeyMinLength</h3>
+                <pre class="signature">$apiKeyMinLength : int</pre>
+                <p><em>Minimum length of API key</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../int"><abbr title="int">int</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertApiKeyTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_apiKeyMaxLength" name="property_apiKeyMaxLength" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$apiKeyMaxLength</h3>
+                <pre class="signature">$apiKeyMaxLength : int</pre>
+                <p><em>Maximum length of API key</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../int"><abbr title="int">int</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertApiKeyTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_pageMin" name="property_pageMin" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$pageMin</h3>
+                <pre class="signature">$pageMin : int</pre>
+                <p><em>Minimum page number</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../int"><abbr title="int">int</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertPageTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_pageMax" name="property_pageMax" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$pageMax</h3>
+                <pre class="signature">$pageMax : int</pre>
+                <p><em>Maximum page number (PHP_INT_MAX)</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../int"><abbr title="int">int</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertPageTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_timestampMin" name="property_timestampMin" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$timestampMin</h3>
+                <pre class="signature">$timestampMin : int</pre>
+                <p><em>Minimum timestamp (EPOC)</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../int"><abbr title="int">int</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTimestampTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_timestampMax" name="property_timestampMax" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$timestampMax</h3>
+                <pre class="signature">$timestampMax : int</pre>
+                <p><em>Maximum timestamp (PHP_INT_MAX)</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../int"><abbr title="int">int</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTimestampTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_zoomFactorMin" name="property_zoomFactorMin" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$zoomFactorMin</h3>
+                <pre class="signature">$zoomFactorMin : int</pre>
+                <p><em>Minimum zoom factor</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../int"><abbr title="int">int</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertZoomFactorTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_zoomFactorMax" name="property_zoomFactorMax" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$zoomFactorMax</h3>
+                <pre class="signature">$zoomFactorMax : int</pre>
+                <p><em>Maximum zoom factor</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../int"><abbr title="int">int</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertZoomFactorTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertApiKey" name="method_assertApiKey" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertApiKey()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertApiKey(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a syntactically valid API key</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertApiKeyTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertBase64Data" name="method_assertBase64Data" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertBase64Data()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertBase64Data(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is valid base64 encoded data</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBase64DataTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertBase64DataTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertBaseUri" name="method_assertBaseUri" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertBaseUri()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertBaseUri(mixed  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a known base URI</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBaseUriTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertBaseUriTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertCulture" name="method_assertCulture" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertCulture()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertCulture(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid culture</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertCultureTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCulturesFilename" name="method_getCulturesFilename" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCulturesFilename()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCulturesFilename() : string</pre>
+                <p><em>Return the filename, containing cultures array</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertCultureTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertDateTime" name="method_assertDateTime" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertDateTime()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertDateTime(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid DateTime string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDateTimeTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDateTimeTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertDocumentDivider" name="method_assertDocumentDivider" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertDocumentDivider()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertDocumentDivider(int  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid document divider</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentDividerTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDocumentDividerTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertDocumentExtension" name="method_assertDocumentExtension" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertDocumentExtension()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertDocumentExtension(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid document format extension</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentExtensionTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDocumentExtensionTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertDocumentThumbnailExtension" name="method_assertDocumentThumbnailExtension" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertDocumentThumbnailExtension()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertDocumentThumbnailExtension(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid document thumbnail format extension</em></p>
+                <p>This is a special case assert method that is used only by
+TxTextControl\ReportingCloud\ReportingCloud::getDocumentThumbnails()
+as this method additionally accepts files in XLSX format. No other methods do.</p>
+
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentThumbnailExtensionTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDocumentThumbnailExtensionTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertFilenameExists" name="method_assertFilenameExists" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertFilenameExists()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertFilenameExists(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check filename exists and is readable</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertFilenameExistsTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertFilenameExistsTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertImageFormat" name="method_assertImageFormat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertImageFormat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertImageFormat(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is valid image format extension</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertImageFormatTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertImageFormatTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertLanguage" name="method_assertLanguage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertLanguage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertLanguage(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid language</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertLanguageTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDictionariesFilename" name="method_getDictionariesFilename" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDictionariesFilename()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDictionariesFilename() : string</pre>
+                <p><em>Return the filename, containing languages aka dictionaries array</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertLanguageTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertOneOf" name="method_assertOneOf" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertOneOf()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertOneOf(mixed  <span class="argument">$value</span>, array&lt;int,int|string&gt;  <span class="argument">$values</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is in values</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array<int,int|string></td>
+                                <td>$values </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertOneOfTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertOneOfTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertPage" name="method_assertPage" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertPage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertPage(int  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid page number</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertPageTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertRange" name="method_assertRange" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertRange()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertRange(int  <span class="argument">$value</span>, int  <span class="argument">$min</span>, int  <span class="argument">$max</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is in range min..max</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>int</td>
+                                <td>$min </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>int</td>
+                                <td>$max </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRangeTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertRangeTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertRemove" name="method_assertRemove" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertRemove()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertRemove(mixed  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a &quot;remove_*&quot; value</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRemoveTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertRemoveTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertReturnFormat" name="method_assertReturnFormat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertReturnFormat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertReturnFormat(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid return format extension</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertReturnFormatTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertReturnFormatTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertTemplateExtension" name="method_assertTemplateExtension" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertTemplateExtension()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertTemplateExtension(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid template extension</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateExtensionTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTemplateExtensionTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertTemplateFormat" name="method_assertTemplateFormat" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertTemplateFormat()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertTemplateFormat(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid template format</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateFormatTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTemplateFormatTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertTemplateName" name="method_assertTemplateName" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertTemplateName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertTemplateName(string  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid template name</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateNameTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTemplateNameTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertTimestamp" name="method_assertTimestamp" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertTimestamp()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertTimestamp(int  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid timestamp</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertTimestampTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_assertZoomFactor" name="method_assertZoomFactor" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">assertZoomFactor()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">assertZoomFactor(int  <span class="argument">$value</span>, string  <span class="argument">$message = &#039;&#039;</span>) : void</pre>
+                <p><em>Check value is a valid zoom factor</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertZoomFactorTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_valueToString" name="method_valueToString" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">valueToString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">valueToString(mixed  <span class="argument">$value</span>) : string</pre>
+                <p><em>Convert value to string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-ValueToStringTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\ValueToStringTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCultures" name="method_getCultures" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getCultures()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCultures() : array&lt;int,string&gt;</pre>
+                <p><em>Return cultures array</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array<int,string>
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertCultureTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDateTimeLength" name="method_getDateTimeLength" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getDateTimeLength()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDateTimeLength() : int</pre>
+                <p><em>Get the length of the required dateTime string</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDateTimeTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDateTimeTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDocumentDividers" name="method_getDocumentDividers" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getDocumentDividers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDocumentDividers() : array&lt;int,int&gt;</pre>
+                <p><em>Return document dividers array</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array<int,int>
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentDividerTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertDocumentDividerTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDictionaries" name="method_getDictionaries" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getDictionaries()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDictionaries() : array&lt;int,string&gt;</pre>
+                <p><em>Return languages aka dictionaries array</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array<int,string>
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\Assert\AssertLanguageTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Assert.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Assert/Assert.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/txtextcontrol.html"><abbr title="\TxTextControl">TxTextControl</abbr></a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="https://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on June 21st, 2021 at 14:55.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

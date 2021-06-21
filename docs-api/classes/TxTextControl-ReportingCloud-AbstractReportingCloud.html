@@ -1,0 +1,2373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/txtextcontrol.html"><abbr title="\TxTextControl">TxTextControl</abbr></a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">6</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-142986205"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-142986205" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-578985070"></a>
+                                <a href="../namespaces/txtextcontrol.html" style="margin-left: 30px; padding-left: 0">TxTextControl</a>
+            </div>
+            <div id="namespace-578985070" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1869238346"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud.html" style="margin-left: 30px; padding-left: 0">ReportingCloud</a>
+            </div>
+            <div id="namespace-1869238346" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-606228547"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-assert.html" style="margin-left: 30px; padding-left: 0">Assert</a>
+            </div>
+            <div id="namespace-606228547" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertApiKeyTrait">AssertApiKeyTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBase64DataTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertBase64DataTrait">AssertBase64DataTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBaseUriTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertBaseUriTrait">AssertBaseUriTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertCultureTrait">AssertCultureTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDateTimeTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDateTimeTrait">AssertDateTimeTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentDividerTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDocumentDividerTrait">AssertDocumentDividerTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentExtensionTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDocumentExtensionTrait">AssertDocumentExtensionTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentThumbnailExtensionTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDocumentThumbnailExtensionTrait">AssertDocumentThumbnailExtensionTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertFilenameExistsTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertFilenameExistsTrait">AssertFilenameExistsTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertImageFormatTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertImageFormatTrait">AssertImageFormatTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertLanguageTrait">AssertLanguageTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertOneOfTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertOneOfTrait">AssertOneOfTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertPageTrait">AssertPageTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRangeTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertRangeTrait">AssertRangeTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRemoveTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertRemoveTrait">AssertRemoveTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertReturnFormatTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertReturnFormatTrait">AssertReturnFormatTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateExtensionTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTemplateExtensionTrait">AssertTemplateExtensionTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateFormatTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTemplateFormatTrait">AssertTemplateFormatTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateNameTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTemplateNameTrait">AssertTemplateNameTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTimestampTrait">AssertTimestampTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertZoomFactorTrait">AssertZoomFactorTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-ValueToStringTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\ValueToStringTrait">ValueToStringTrait</abbr></a></li>
+                                                                            <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Assert-AbstractAssert.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AbstractAssert">AbstractAssert</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Assert-Assert.html"><abbr title="\TxTextControl\ReportingCloud\Assert\Assert">Assert</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-448487596"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-448487596" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/TxTextControl-ReportingCloud-Exception-ExceptionInterface.html"><abbr title="\TxTextControl\ReportingCloud\Exception\ExceptionInterface">ExceptionInterface</abbr></a></li>
+                                                                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Exception-InvalidArgumentException.html"><abbr title="\TxTextControl\ReportingCloud\Exception\InvalidArgumentException">InvalidArgumentException</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Exception-RuntimeException.html"><abbr title="\TxTextControl\ReportingCloud\Exception\RuntimeException">RuntimeException</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1105658181"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-filter.html" style="margin-left: 30px; padding-left: 0">Filter</a>
+            </div>
+            <div id="namespace-1105658181" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Filter-FilterBooleanToStringTrait.html"><abbr title="\TxTextControl\ReportingCloud\Filter\FilterBooleanToStringTrait">FilterBooleanToStringTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Filter-FilterDateTimeToTimestampTrait.html"><abbr title="\TxTextControl\ReportingCloud\Filter\FilterDateTimeToTimestampTrait">FilterDateTimeToTimestampTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Filter-FilterTimestampToDateTimeTrait.html"><abbr title="\TxTextControl\ReportingCloud\Filter\FilterTimestampToDateTimeTrait">FilterTimestampToDateTimeTrait</abbr></a></li>
+                                                                            <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Filter-AbstractFilter.html"><abbr title="\TxTextControl\ReportingCloud\Filter\AbstractFilter">AbstractFilter</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Filter-Filter.html"><abbr title="\TxTextControl\ReportingCloud\Filter\Filter">Filter</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-323355125"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-propertymap.html" style="margin-left: 30px; padding-left: 0">PropertyMap</a>
+            </div>
+            <div id="namespace-323355125" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-PropertyMapInterface.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\PropertyMapInterface">PropertyMapInterface</abbr></a></li>
+                                                                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-AbstractPropertyMap.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap">AbstractPropertyMap</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-AccountSettings.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\AccountSettings">AccountSettings</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-ApiKey.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\ApiKey">ApiKey</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-DocumentSettings.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\DocumentSettings">DocumentSettings</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-IncorrectWord.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\IncorrectWord">IncorrectWord</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-MergeSettings.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\MergeSettings">MergeSettings</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-ModifiedDocument.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\ModifiedDocument">ModifiedDocument</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TemplateInfo.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TemplateInfo">TemplateInfo</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TemplateList.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TemplateList">TemplateList</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TrackedChanges.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TrackedChanges">TrackedChanges</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-342620728"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-stdlib.html" style="margin-left: 30px; padding-left: 0">Stdlib</a>
+            </div>
+            <div id="namespace-342620728" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-AbstractStdlib.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\AbstractStdlib">AbstractStdlib</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-ArrayUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\ArrayUtils">ArrayUtils</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-ConsoleUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\ConsoleUtils">ConsoleUtils</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-FileUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\FileUtils">FileUtils</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-Path.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\Path">Path</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-StringUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\StringUtils">StringUtils</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-BuildTrait.html"><abbr title="\TxTextControl\ReportingCloud\BuildTrait">BuildTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-DeleteTrait.html"><abbr title="\TxTextControl\ReportingCloud\DeleteTrait">DeleteTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-GetTrait.html"><abbr title="\TxTextControl\ReportingCloud\GetTrait">GetTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-PostTrait.html"><abbr title="\TxTextControl\ReportingCloud\PostTrait">PostTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-PutTrait.html"><abbr title="\TxTextControl\ReportingCloud\PutTrait">PutTrait</abbr></a></li>
+                                                                            <li class="class"><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><abbr title="\TxTextControl\ReportingCloud\AbstractReportingCloud">AbstractReportingCloud</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-ReportingCloud.html"><abbr title="\TxTextControl\ReportingCloud\ReportingCloud">ReportingCloud</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/txtextcontrol-reportingcloud.html"><abbr title="\TxTextControl\ReportingCloud">ReportingCloud</abbr></a> <i class="icon-level-up"></i>
+                                            </nav>
+                    
+                    <h1><small>\TxTextControl\ReportingCloud</small>AbstractReportingCloud</h1>
+                    <p><em>Abstract ReportingCloud</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getApiKey" class="">getApiKey()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_setApiKey" class="">setApiKey()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getUsername" class="deprecated">getUsername()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_setUsername" class="deprecated">setUsername()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getPassword" class="deprecated">getPassword()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_setPassword" class="deprecated">setPassword()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getBaseUri" class="">getBaseUri()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_setBaseUri" class="">setBaseUri()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getDebug" class="">getDebug()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_setDebug" class="">setDebug()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getTest" class="">getTest()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_setTest" class="">setTest()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getTimeout" class="">getTimeout()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_setTimeout" class="">setTimeout()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getVersion" class="">getVersion()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_setVersion" class="">setVersion()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getClient" class="">getClient()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_setClient" class="">setClient()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DEFAULT_DATE_FORMAT" class="">DEFAULT_DATE_FORMAT</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DEFAULT_TIME_ZONE" class="">DEFAULT_TIME_ZONE</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DEFAULT_BASE_URI" class="">DEFAULT_BASE_URI</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DEFAULT_DEBUG" class="">DEFAULT_DEBUG</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DEFAULT_TEST" class="">DEFAULT_TEST</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DEFAULT_TIMEOUT" class="">DEFAULT_TIMEOUT</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DEFAULT_VERSION" class="">DEFAULT_VERSION</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DOCUMENT_DIVIDER_NONE" class="">DOCUMENT_DIVIDER_NONE</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DOCUMENT_DIVIDER_NEW_PARAGRAPH" class="">DOCUMENT_DIVIDER_NEW_PARAGRAPH</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_DOCUMENT_DIVIDER_NEW_SECTION" class="">DOCUMENT_DIVIDER_NEW_SECTION</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_DOC" class="">FILE_FORMAT_DOC</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_DOCX" class="">FILE_FORMAT_DOCX</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_HTML" class="">FILE_FORMAT_HTML</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_PDF" class="">FILE_FORMAT_PDF</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_PDFA" class="">FILE_FORMAT_PDFA</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_RTF" class="">FILE_FORMAT_RTF</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_TX" class="">FILE_FORMAT_TX</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_TXT" class="">FILE_FORMAT_TXT</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_BMP" class="">FILE_FORMAT_BMP</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_GIF" class="">FILE_FORMAT_GIF</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_JPG" class="">FILE_FORMAT_JPG</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_PNG" class="">FILE_FORMAT_PNG</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMAT_XLSX" class="">FILE_FORMAT_XLSX</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_TRACKED_CHANGE_INSERTED_TEXT" class="">TRACKED_CHANGE_INSERTED_TEXT</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_TRACKED_CHANGE_DELETED_TEXT" class="">TRACKED_CHANGE_DELETED_TEXT</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_HIGHLIGHT_MODE_NEVER" class="">HIGHLIGHT_MODE_NEVER</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_HIGHLIGHT_MODE_ACTIVATED" class="">HIGHLIGHT_MODE_ACTIVATED</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_HIGHLIGHT_MODE_ALWAYS" class="">HIGHLIGHT_MODE_ALWAYS</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMATS_IMAGE" class="">FILE_FORMATS_IMAGE</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMATS_TEMPLATE" class="">FILE_FORMATS_TEMPLATE</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMATS_DOCUMENT" class="">FILE_FORMATS_DOCUMENT</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#constant_FILE_FORMATS_RETURN" class="">FILE_FORMATS_RETURN</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_request" class="">request()</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_uri" class="">uri()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#method_getAuthorizationHeader" class="">getAuthorizationHeader()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#property_apiKey" class="">$apiKey</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#property_username" class="deprecated">$username</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#property_password" class="deprecated">$password</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#property_baseUri" class="">$baseUri</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#property_debug" class="">$debug</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#property_test" class="">$test</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#property_timeout" class="">$timeout</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#property_version" class="">$version</a><br />
+                                                                    <a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html#property_client" class="">$client</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                            <span class="label label-info">abstract</span>
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">TxTextControl\ReportingCloud</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                author
+                            </th>
+                            <td>
+                                                                                                        <p>Jonathan Maron (@JonathanMaron)</p>
+
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_DATE_FORMAT" name="constant_DEFAULT_DATE_FORMAT" class="anchor"></a>
+            <article id="constant_DEFAULT_DATE_FORMAT" class="constant">
+                <h3 class="">DEFAULT_DATE_FORMAT</h3>
+                <pre class="signature">DEFAULT_DATE_FORMAT = &#039;Y-m-d\TH:i:sP&#039;</pre>
+                <p><em>Default date/time format of backend is &#039;ISO 8601&#039;</em></p>
+                <p>Note, last letter is 'P' and not 'O':</p>
+<p>O - Difference to Greenwich time (GMT) in hours (e.g. +0200)
+P - Difference to Greenwich time (GMT) with colon between hours and minutes (e.g. +02:00)</p>
+<p>Backend uses the 'P' variant</p>
+
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                                                            <p>DEFAULT_DATE_FORMAT</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_TIME_ZONE" name="constant_DEFAULT_TIME_ZONE" class="anchor"></a>
+            <article id="constant_DEFAULT_TIME_ZONE" class="constant">
+                <h3 class="">DEFAULT_TIME_ZONE</h3>
+                <pre class="signature">DEFAULT_TIME_ZONE = &#039;UTC&#039;</pre>
+                <p><em>Default time zone of backend</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                                                            <p>DEFAULT_TIME_ZONE</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_BASE_URI" name="constant_DEFAULT_BASE_URI" class="anchor"></a>
+            <article id="constant_DEFAULT_BASE_URI" class="constant">
+                <h3 class="">DEFAULT_BASE_URI</h3>
+                <pre class="signature">DEFAULT_BASE_URI = &#039;https://api.reporting.cloud&#039;</pre>
+                <p><em>Default base URI of backend</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                                                            <p>DEFAULT_BASE_URI</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_DEBUG" name="constant_DEFAULT_DEBUG" class="anchor"></a>
+            <article id="constant_DEFAULT_DEBUG" class="constant">
+                <h3 class="">DEFAULT_DEBUG</h3>
+                <pre class="signature">DEFAULT_DEBUG = false</pre>
+                <p><em>Default debug flag of REST client</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                                                            <p>DEFAULT_DEBUG</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_TEST" name="constant_DEFAULT_TEST" class="anchor"></a>
+            <article id="constant_DEFAULT_TEST" class="constant">
+                <h3 class="">DEFAULT_TEST</h3>
+                <pre class="signature">DEFAULT_TEST = false</pre>
+                <p><em>Default test flag of backend</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                                                            <p>DEFAULT_TEST</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_TIMEOUT" name="constant_DEFAULT_TIMEOUT" class="anchor"></a>
+            <article id="constant_DEFAULT_TIMEOUT" class="constant">
+                <h3 class="">DEFAULT_TIMEOUT</h3>
+                <pre class="signature">DEFAULT_TIMEOUT = 120</pre>
+                <p><em>Default timeout of backend in seconds</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                                                            <p>DEFAULT_TIMEOUT</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_VERSION" name="constant_DEFAULT_VERSION" class="anchor"></a>
+            <article id="constant_DEFAULT_VERSION" class="constant">
+                <h3 class="">DEFAULT_VERSION</h3>
+                <pre class="signature">DEFAULT_VERSION = &#039;v1&#039;</pre>
+                <p><em>Default version string of backend</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            const
+                        </th>
+                        <td>
+                                                                                            <p>DEFAULT_VERSION</p>
+
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DOCUMENT_DIVIDER_NONE" name="constant_DOCUMENT_DIVIDER_NONE" class="anchor"></a>
+            <article id="constant_DOCUMENT_DIVIDER_NONE" class="constant">
+                <h3 class="">DOCUMENT_DIVIDER_NONE</h3>
+                <pre class="signature">DOCUMENT_DIVIDER_NONE = 1</pre>
+                <p><em>Document divider - none</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DOCUMENT_DIVIDER_NEW_PARAGRAPH" name="constant_DOCUMENT_DIVIDER_NEW_PARAGRAPH" class="anchor"></a>
+            <article id="constant_DOCUMENT_DIVIDER_NEW_PARAGRAPH" class="constant">
+                <h3 class="">DOCUMENT_DIVIDER_NEW_PARAGRAPH</h3>
+                <pre class="signature">DOCUMENT_DIVIDER_NEW_PARAGRAPH = 2</pre>
+                <p><em>Document divider - new paragraph</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DOCUMENT_DIVIDER_NEW_SECTION" name="constant_DOCUMENT_DIVIDER_NEW_SECTION" class="anchor"></a>
+            <article id="constant_DOCUMENT_DIVIDER_NEW_SECTION" class="constant">
+                <h3 class="">DOCUMENT_DIVIDER_NEW_SECTION</h3>
+                <pre class="signature">DOCUMENT_DIVIDER_NEW_SECTION = 3</pre>
+                <p><em>Document divider - new section</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_DOC" name="constant_FILE_FORMAT_DOC" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_DOC" class="constant">
+                <h3 class="">FILE_FORMAT_DOC</h3>
+                <pre class="signature">FILE_FORMAT_DOC = &#039;DOC&#039;</pre>
+                <p><em>DOC file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_DOCX" name="constant_FILE_FORMAT_DOCX" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_DOCX" class="constant">
+                <h3 class="">FILE_FORMAT_DOCX</h3>
+                <pre class="signature">FILE_FORMAT_DOCX = &#039;DOCX&#039;</pre>
+                <p><em>DOCX file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_HTML" name="constant_FILE_FORMAT_HTML" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_HTML" class="constant">
+                <h3 class="">FILE_FORMAT_HTML</h3>
+                <pre class="signature">FILE_FORMAT_HTML = &#039;HTML&#039;</pre>
+                <p><em>HTML file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_PDF" name="constant_FILE_FORMAT_PDF" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_PDF" class="constant">
+                <h3 class="">FILE_FORMAT_PDF</h3>
+                <pre class="signature">FILE_FORMAT_PDF = &#039;PDF&#039;</pre>
+                <p><em>PDF file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_PDFA" name="constant_FILE_FORMAT_PDFA" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_PDFA" class="constant">
+                <h3 class="">FILE_FORMAT_PDFA</h3>
+                <pre class="signature">FILE_FORMAT_PDFA = &#039;PDFA&#039;</pre>
+                <p><em>PDF/A file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_RTF" name="constant_FILE_FORMAT_RTF" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_RTF" class="constant">
+                <h3 class="">FILE_FORMAT_RTF</h3>
+                <pre class="signature">FILE_FORMAT_RTF = &#039;RTF&#039;</pre>
+                <p><em>RTF file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_TX" name="constant_FILE_FORMAT_TX" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_TX" class="constant">
+                <h3 class="">FILE_FORMAT_TX</h3>
+                <pre class="signature">FILE_FORMAT_TX = &#039;TX&#039;</pre>
+                <p><em>TX (Text Control) file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_TXT" name="constant_FILE_FORMAT_TXT" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_TXT" class="constant">
+                <h3 class="">FILE_FORMAT_TXT</h3>
+                <pre class="signature">FILE_FORMAT_TXT = &#039;TXT&#039;</pre>
+                <p><em>Pure text file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_BMP" name="constant_FILE_FORMAT_BMP" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_BMP" class="constant">
+                <h3 class="">FILE_FORMAT_BMP</h3>
+                <pre class="signature">FILE_FORMAT_BMP = &#039;BMP&#039;</pre>
+                <p><em>Bitmap file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_GIF" name="constant_FILE_FORMAT_GIF" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_GIF" class="constant">
+                <h3 class="">FILE_FORMAT_GIF</h3>
+                <pre class="signature">FILE_FORMAT_GIF = &#039;GIF&#039;</pre>
+                <p><em>GIF file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_JPG" name="constant_FILE_FORMAT_JPG" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_JPG" class="constant">
+                <h3 class="">FILE_FORMAT_JPG</h3>
+                <pre class="signature">FILE_FORMAT_JPG = &#039;JPG&#039;</pre>
+                <p><em>JPEG file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_PNG" name="constant_FILE_FORMAT_PNG" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_PNG" class="constant">
+                <h3 class="">FILE_FORMAT_PNG</h3>
+                <pre class="signature">FILE_FORMAT_PNG = &#039;PNG&#039;</pre>
+                <p><em>PNG file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMAT_XLSX" name="constant_FILE_FORMAT_XLSX" class="anchor"></a>
+            <article id="constant_FILE_FORMAT_XLSX" class="constant">
+                <h3 class="">FILE_FORMAT_XLSX</h3>
+                <pre class="signature">FILE_FORMAT_XLSX = &#039;XLSX&#039;</pre>
+                <p><em>XLSX file format</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TRACKED_CHANGE_INSERTED_TEXT" name="constant_TRACKED_CHANGE_INSERTED_TEXT" class="anchor"></a>
+            <article id="constant_TRACKED_CHANGE_INSERTED_TEXT" class="constant">
+                <h3 class="">TRACKED_CHANGE_INSERTED_TEXT</h3>
+                <pre class="signature">TRACKED_CHANGE_INSERTED_TEXT = 4096</pre>
+                <p><em>InsertedText tracked change</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_TRACKED_CHANGE_DELETED_TEXT" name="constant_TRACKED_CHANGE_DELETED_TEXT" class="anchor"></a>
+            <article id="constant_TRACKED_CHANGE_DELETED_TEXT" class="constant">
+                <h3 class="">TRACKED_CHANGE_DELETED_TEXT</h3>
+                <pre class="signature">TRACKED_CHANGE_DELETED_TEXT = 8192</pre>
+                <p><em>DeletedText tracked change</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HIGHLIGHT_MODE_NEVER" name="constant_HIGHLIGHT_MODE_NEVER" class="anchor"></a>
+            <article id="constant_HIGHLIGHT_MODE_NEVER" class="constant">
+                <h3 class="">HIGHLIGHT_MODE_NEVER</h3>
+                <pre class="signature">HIGHLIGHT_MODE_NEVER = 1</pre>
+                <p><em>Never highlight mode</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HIGHLIGHT_MODE_ACTIVATED" name="constant_HIGHLIGHT_MODE_ACTIVATED" class="anchor"></a>
+            <article id="constant_HIGHLIGHT_MODE_ACTIVATED" class="constant">
+                <h3 class="">HIGHLIGHT_MODE_ACTIVATED</h3>
+                <pre class="signature">HIGHLIGHT_MODE_ACTIVATED = 2</pre>
+                <p><em>Activated highlight mode</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HIGHLIGHT_MODE_ALWAYS" name="constant_HIGHLIGHT_MODE_ALWAYS" class="anchor"></a>
+            <article id="constant_HIGHLIGHT_MODE_ALWAYS" class="constant">
+                <h3 class="">HIGHLIGHT_MODE_ALWAYS</h3>
+                <pre class="signature">HIGHLIGHT_MODE_ALWAYS = 3</pre>
+                <p><em>Always highlight mode</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMATS_IMAGE" name="constant_FILE_FORMATS_IMAGE" class="anchor"></a>
+            <article id="constant_FILE_FORMATS_IMAGE" class="constant">
+                <h3 class="">FILE_FORMATS_IMAGE</h3>
+                <pre class="signature">FILE_FORMATS_IMAGE = [self::FILE_FORMAT_BMP, self::FILE_FORMAT_GIF, self::FILE_FORMAT_JPG, self::FILE_FORMAT_PNG]</pre>
+                <p><em>Image file formats</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMATS_TEMPLATE" name="constant_FILE_FORMATS_TEMPLATE" class="anchor"></a>
+            <article id="constant_FILE_FORMATS_TEMPLATE" class="constant">
+                <h3 class="">FILE_FORMATS_TEMPLATE</h3>
+                <pre class="signature">FILE_FORMATS_TEMPLATE = [self::FILE_FORMAT_DOC, self::FILE_FORMAT_DOCX, self::FILE_FORMAT_RTF, self::FILE_FORMAT_TX]</pre>
+                <p><em>Template file formats</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMATS_DOCUMENT" name="constant_FILE_FORMATS_DOCUMENT" class="anchor"></a>
+            <article id="constant_FILE_FORMATS_DOCUMENT" class="constant">
+                <h3 class="">FILE_FORMATS_DOCUMENT</h3>
+                <pre class="signature">FILE_FORMATS_DOCUMENT = [self::FILE_FORMAT_DOC, self::FILE_FORMAT_DOCX, self::FILE_FORMAT_HTML, self::FILE_FORMAT_PDF, self::FILE_FORMAT_RTF, self::FILE_FORMAT_TX]</pre>
+                <p><em>Document file formats</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FILE_FORMATS_RETURN" name="constant_FILE_FORMATS_RETURN" class="anchor"></a>
+            <article id="constant_FILE_FORMATS_RETURN" class="constant">
+                <h3 class="">FILE_FORMATS_RETURN</h3>
+                <pre class="signature">FILE_FORMATS_RETURN = [self::FILE_FORMAT_DOC, self::FILE_FORMAT_DOCX, self::FILE_FORMAT_HTML, self::FILE_FORMAT_PDF, self::FILE_FORMAT_PDFA, self::FILE_FORMAT_RTF, self::FILE_FORMAT_TX, self::FILE_FORMAT_TXT]</pre>
+                <p><em>Return file formats</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href="../files/abstractreportingcloud.html"><div class="path-wrapper">AbstractReportingCloud.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_apiKey" name="property_apiKey" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$apiKey</h3>
+                <pre class="signature">$apiKey : string</pre>
+                <p><em>Backend API key</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../string"><abbr title="string">string</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_username" name="property_username" class="anchor"></a>
+            <article class="property">
+                <h3 class="private deprecated">$username</h3>
+                <pre class="signature">$username : string</pre>
+                <p><em>Backend username</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../string"><abbr title="string">string</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    Use $this-&gt;apiKey instead
+                </aside>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_password" name="property_password" class="anchor"></a>
+            <article class="property">
+                <h3 class="private deprecated">$password</h3>
+                <pre class="signature">$password : string</pre>
+                <p><em>Backend password</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../string"><abbr title="string">string</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    Use $this-&gt;apiKey instead
+                </aside>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_baseUri" name="property_baseUri" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$baseUri</h3>
+                <pre class="signature">$baseUri : string</pre>
+                <p><em>Backend base URI</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../string"><abbr title="string">string</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_debug" name="property_debug" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$debug</h3>
+                <pre class="signature">$debug : bool</pre>
+                <p><em>Debug flag of REST client</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../bool"><abbr title="bool">bool</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_test" name="property_test" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$test</h3>
+                <pre class="signature">$test : bool</pre>
+                <p><em>When true, API call does not count against quota
+&quot;TEST MODE&quot; watermark is added to document</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../bool"><abbr title="bool">bool</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_timeout" name="property_timeout" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$timeout</h3>
+                <pre class="signature">$timeout : int</pre>
+                <p><em>Backend timeout in seconds</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../int"><abbr title="int">int</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_version" name="property_version" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$version</h3>
+                <pre class="signature">$version : string</pre>
+                <p><em>Backend version string</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../string"><abbr title="string">string</abbr></a>
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_client" name="property_client" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$client</h3>
+                <pre class="signature">$client : \GuzzleHttp\Client</pre>
+                <p><em>REST client to backend</em></p>
+                
+
+                                <h4>Type</h4>
+                \GuzzleHttp\Client
+                &mdash;                             </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getApiKey" name="method_getApiKey" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getApiKey()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getApiKey() : string</pre>
+                <p><em>Return the API key</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setApiKey" name="method_setApiKey" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setApiKey()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setApiKey(string  <span class="argument">$apiKey</span>) : self</pre>
+                <p><em>Set the API key</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$apiKey </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUsername" name="method_getUsername" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">getUsername()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUsername() : string</pre>
+                <p><em>Return the username</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    Use $this-&gt;getApiKey(): string instead
+                </aside>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setUsername" name="method_setUsername" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">setUsername()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setUsername(string  <span class="argument">$username</span>) : self</pre>
+                <p><em>Set the username</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$username </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    Use $this-&gt;setApiKey(string $apiKey): self instead
+                </aside>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPassword" name="method_getPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">getPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPassword() : string</pre>
+                <p><em>Return the password</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    Use $this-&gt;getApiKey() instead
+                </aside>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setPassword" name="method_setPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="public deprecated">setPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setPassword(string  <span class="argument">$password</span>) : self</pre>
+                <p><em>Set the password</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$password </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                                <aside class="alert alert-block alert-error">
+                    <h4>Deprecated</h4>
+                    Use $this-&gt;setApiKey(string $apiKey): self instead
+                </aside>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getBaseUri" name="method_getBaseUri" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getBaseUri()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getBaseUri() : string</pre>
+                <p><em>Return the base URI of the backend web service</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setBaseUri" name="method_setBaseUri" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setBaseUri()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setBaseUri(string  <span class="argument">$baseUri</span>) : self</pre>
+                <p><em>Set the base URI of the backend web service</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$baseUri </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDebug" name="method_getDebug" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDebug()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDebug() : bool</pre>
+                <p><em>Return the debug flag</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDebug" name="method_setDebug" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDebug()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDebug(bool  <span class="argument">$debug</span>) : self</pre>
+                <p><em>Set the debug flag</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$debug </td>
+                                <td><p>Debug flag</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTest" name="method_getTest" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTest() : bool</pre>
+                <p><em>Return the test flag</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    bool
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setTest" name="method_setTest" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setTest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setTest(bool  <span class="argument">$test</span>) : self</pre>
+                <p><em>Set the test flag</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>bool</td>
+                                <td>$test </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getTimeout" name="method_getTimeout" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getTimeout()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getTimeout() : int</pre>
+                <p><em>Get the timeout (in seconds) of the backend web service</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    int
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setTimeout" name="method_setTimeout" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setTimeout()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setTimeout(int  <span class="argument">$timeout</span>) : self</pre>
+                <p><em>Set the timeout (in seconds) of the backend web service</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>int</td>
+                                <td>$timeout </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getVersion" name="method_getVersion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getVersion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getVersion() : string</pre>
+                <p><em>Get the version string of the backend web service</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setVersion" name="method_setVersion" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setVersion()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setVersion(string  <span class="argument">$version</span>) : self</pre>
+                <p><em>Set the version string of the backend web service</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$version </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getClient" name="method_getClient" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getClient()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getClient() : \GuzzleHttp\Client</pre>
+                <p><em>Return the REST client of the backend web service</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    \GuzzleHttp\Client
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setClient" name="method_setClient" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setClient()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setClient(\GuzzleHttp\Client  <span class="argument">$client</span>) : self</pre>
+                <p><em>Set the REST client of the backend web service</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\GuzzleHttp\Client</td>
+                                <td>$client </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    self
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_request" name="method_request" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">request()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">request(string  <span class="argument">$method</span>, string  <span class="argument">$uri</span>, array&lt;string,array|bool|int|string&gt;  <span class="argument">$options</span>) : \Psr\Http\Message\ResponseInterface</pre>
+                <p><em>Request the URI with options</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$method </td>
+                                <td><p>HTTP method</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$uri </td>
+                                <td><p>URI</p>
+</td>
+                            </tr>
+                                                    <tr>
+                                <td>array<string,array|bool|int|string></td>
+                                <td>$options </td>
+                                <td><p>Options</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\RuntimeException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Psr\Http\Message\ResponseInterface
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_uri" name="method_uri" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">uri()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">uri(string  <span class="argument">$uri</span>) : string</pre>
+                <p><em>Construct URI with version number</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$uri </td>
+                                <td><p>URI</p>
+</td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getAuthorizationHeader" name="method_getAuthorizationHeader" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getAuthorizationHeader()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getAuthorizationHeader() : string</pre>
+                <p><em>Return Authorization Header, with either API key or username and password</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\TxTextControl\ReportingCloud\Exception\InvalidArgumentException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; 
+                                    
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><div class="path-wrapper">\TxTextControl\ReportingCloud\AbstractReportingCloud</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">AbstractReportingCloud.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/AbstractReportingCloud.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/txtextcontrol.html"><abbr title="\TxTextControl">TxTextControl</abbr></a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="https://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on June 21st, 2021 at 14:55.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist, is empty or trying to view from localhost';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/txtextcontrol.html"><abbr title="\TxTextControl">TxTextControl</abbr></a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">6</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1459542137"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1459542137" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1524819308"></a>
+                                <a href="../namespaces/txtextcontrol.html" style="margin-left: 30px; padding-left: 0">TxTextControl</a>
+            </div>
+            <div id="namespace-1524819308" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-547475278"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud.html" style="margin-left: 30px; padding-left: 0">ReportingCloud</a>
+            </div>
+            <div id="namespace-547475278" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-592784649"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-assert.html" style="margin-left: 30px; padding-left: 0">Assert</a>
+            </div>
+            <div id="namespace-592784649" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertApiKeyTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertApiKeyTrait">AssertApiKeyTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBase64DataTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertBase64DataTrait">AssertBase64DataTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertBaseUriTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertBaseUriTrait">AssertBaseUriTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertCultureTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertCultureTrait">AssertCultureTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDateTimeTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDateTimeTrait">AssertDateTimeTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentDividerTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDocumentDividerTrait">AssertDocumentDividerTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentExtensionTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDocumentExtensionTrait">AssertDocumentExtensionTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertDocumentThumbnailExtensionTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertDocumentThumbnailExtensionTrait">AssertDocumentThumbnailExtensionTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertFilenameExistsTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertFilenameExistsTrait">AssertFilenameExistsTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertImageFormatTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertImageFormatTrait">AssertImageFormatTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertLanguageTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertLanguageTrait">AssertLanguageTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertOneOfTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertOneOfTrait">AssertOneOfTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertPageTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertPageTrait">AssertPageTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRangeTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertRangeTrait">AssertRangeTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertRemoveTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertRemoveTrait">AssertRemoveTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertReturnFormatTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertReturnFormatTrait">AssertReturnFormatTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateExtensionTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTemplateExtensionTrait">AssertTemplateExtensionTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateFormatTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTemplateFormatTrait">AssertTemplateFormatTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTemplateNameTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTemplateNameTrait">AssertTemplateNameTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertTimestampTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertTimestampTrait">AssertTimestampTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-AssertZoomFactorTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AssertZoomFactorTrait">AssertZoomFactorTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Assert-ValueToStringTrait.html"><abbr title="\TxTextControl\ReportingCloud\Assert\ValueToStringTrait">ValueToStringTrait</abbr></a></li>
+                                                                            <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Assert-AbstractAssert.html"><abbr title="\TxTextControl\ReportingCloud\Assert\AbstractAssert">AbstractAssert</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Assert-Assert.html"><abbr title="\TxTextControl\ReportingCloud\Assert\Assert">Assert</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1987209705"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-exception.html" style="margin-left: 30px; padding-left: 0">Exception</a>
+            </div>
+            <div id="namespace-1987209705" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/TxTextControl-ReportingCloud-Exception-ExceptionInterface.html"><abbr title="\TxTextControl\ReportingCloud\Exception\ExceptionInterface">ExceptionInterface</abbr></a></li>
+                                                                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Exception-InvalidArgumentException.html"><abbr title="\TxTextControl\ReportingCloud\Exception\InvalidArgumentException">InvalidArgumentException</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Exception-RuntimeException.html"><abbr title="\TxTextControl\ReportingCloud\Exception\RuntimeException">RuntimeException</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1000135638"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-filter.html" style="margin-left: 30px; padding-left: 0">Filter</a>
+            </div>
+            <div id="namespace-1000135638" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Filter-FilterBooleanToStringTrait.html"><abbr title="\TxTextControl\ReportingCloud\Filter\FilterBooleanToStringTrait">FilterBooleanToStringTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Filter-FilterDateTimeToTimestampTrait.html"><abbr title="\TxTextControl\ReportingCloud\Filter\FilterDateTimeToTimestampTrait">FilterDateTimeToTimestampTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-Filter-FilterTimestampToDateTimeTrait.html"><abbr title="\TxTextControl\ReportingCloud\Filter\FilterTimestampToDateTimeTrait">FilterTimestampToDateTimeTrait</abbr></a></li>
+                                                                            <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Filter-AbstractFilter.html"><abbr title="\TxTextControl\ReportingCloud\Filter\AbstractFilter">AbstractFilter</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Filter-Filter.html"><abbr title="\TxTextControl\ReportingCloud\Filter\Filter">Filter</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-701681744"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-propertymap.html" style="margin-left: 30px; padding-left: 0">PropertyMap</a>
+            </div>
+            <div id="namespace-701681744" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-PropertyMapInterface.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\PropertyMapInterface">PropertyMapInterface</abbr></a></li>
+                                                                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-AbstractPropertyMap.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\AbstractPropertyMap">AbstractPropertyMap</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-AccountSettings.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\AccountSettings">AccountSettings</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-ApiKey.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\ApiKey">ApiKey</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-DocumentSettings.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\DocumentSettings">DocumentSettings</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-IncorrectWord.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\IncorrectWord">IncorrectWord</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-MergeSettings.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\MergeSettings">MergeSettings</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-ModifiedDocument.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\ModifiedDocument">ModifiedDocument</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TemplateInfo.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TemplateInfo">TemplateInfo</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TemplateList.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TemplateList">TemplateList</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TrackedChanges.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TrackedChanges">TrackedChanges</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1299520968"></a>
+                                <a href="../namespaces/txtextcontrol-reportingcloud-stdlib.html" style="margin-left: 30px; padding-left: 0">Stdlib</a>
+            </div>
+            <div id="namespace-1299520968" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-AbstractStdlib.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\AbstractStdlib">AbstractStdlib</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-ArrayUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\ArrayUtils">ArrayUtils</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-ConsoleUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\ConsoleUtils">ConsoleUtils</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-FileUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\FileUtils">FileUtils</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-Path.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\Path">Path</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-Stdlib-StringUtils.html"><abbr title="\TxTextControl\ReportingCloud\Stdlib\StringUtils">StringUtils</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-BuildTrait.html"><abbr title="\TxTextControl\ReportingCloud\BuildTrait">BuildTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-DeleteTrait.html"><abbr title="\TxTextControl\ReportingCloud\DeleteTrait">DeleteTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-GetTrait.html"><abbr title="\TxTextControl\ReportingCloud\GetTrait">GetTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-PostTrait.html"><abbr title="\TxTextControl\ReportingCloud\PostTrait">PostTrait</abbr></a></li>
+                                                    <li class="trait"><a href="../classes/TxTextControl-ReportingCloud-PutTrait.html"><abbr title="\TxTextControl\ReportingCloud\PutTrait">PutTrait</abbr></a></li>
+                                                                            <li class="class"><a href="../classes/TxTextControl-ReportingCloud-AbstractReportingCloud.html"><abbr title="\TxTextControl\ReportingCloud\AbstractReportingCloud">AbstractReportingCloud</abbr></a></li>
+                                                    <li class="class"><a href="../classes/TxTextControl-ReportingCloud-ReportingCloud.html"><abbr title="\TxTextControl\ReportingCloud\ReportingCloud">ReportingCloud</abbr></a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content file">
+                    <nav>
+                                                                    </nav>
+
+                                        <h1><small>PropertyMap</small>TemplateList.php</h1>
+                    <p><em>ReportingCloud PHP SDK</em></p>
+                    <p>PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.</p>
+
+
+                    
+                    
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/TxTextControl-ReportingCloud-PropertyMap-TemplateList.html"><abbr title="\TxTextControl\ReportingCloud\PropertyMap\TemplateList">TemplateList</abbr></a></td>
+                            <td><em>TemplateList property map</em></td>
+                        </tr>
+                                        </table>
+                                    </div>
+
+                <aside class="span4 detailsbar">
+                    <dl>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                                                                                    <dt>See also</dt>
+                                                                                        <dd><a href="https://www.reporting.cloud"><div class="namespace-wrapper">to learn more about ReportingCloud</div></a></dd>
+                                                            <dd><a href="https://git.io/Jejj2"><div class="namespace-wrapper">for the canonical source repository</div></a></dd>
+                                                    
+                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr>
+                                <th>
+                                    license
+                                </th>
+                                <td>
+                                                                                                                    <p>https://git.io/Jejjr</p>
+
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    copyright
+                                </th>
+                                <td>
+                                                                                                                    <p>© 2021 Text Control GmbH</p>
+
+                                                                    </td>
+                            </tr>
+                                            </table>
+
+                </aside>
+            </div>
+
+            
+            
+        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/PropertyMap/TemplateList.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/txtextcontrol.html"><abbr title="\TxTextControl">TxTextControl</abbr></a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="https://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on June 21st, 2021 at 14:55.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
