@@ -2,7 +2,7 @@
 
 # CHANGELOG
 
-## 3.0.0 - 2021-06-22
+## 3.0.0 - 2021-06-21
 
 For a full description of changes, see [release-3.0.0.md](./doc/release-3.0.0.md).
 
