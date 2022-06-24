@@ -1,19 +1,19 @@
 {
     "name": "textcontrol/txtextcontrol-reportingcloud",
-    "type": "library",
     "description": "PHP SDK for ReportingCloud Web API. Authored and supported by Text Control GmbH.",
+    "license": "BSD-3-Clause",
+    "type": "library",
     "keywords": [
         "reporting cloud",
         "reportingcloud"
     ],
-    "license": "BSD-3-Clause",
     "require": {
         "php": "^7.4 || ^8.1",
         "ext-dom": "*",
         "ext-json": "*",
         "ext-libxml": "*",
-        "ctw/ctw-http": "^1.0",
-        "guzzlehttp/guzzle": "^6.5 || ^7.0"
+        "ctw/ctw-http": "dev-php81",
+        "guzzlehttp/guzzle": "^6.5 || ^7.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.14",
@@ -24,8 +24,10 @@
         "riimu/kit-phpencoder": "^2.4",
         "smalot/pdfparser": "^0.14",
         "squizlabs/php_codesniffer": "^3.6",
-        "symfony/var-dumper": "^5.3"
+        "symfony/var-dumper": "^6.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "TxTextControl\\ReportingCloud\\": "src/"
@@ -53,5 +55,10 @@
             "@phpstan"
         ],
         "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     }
 }
