@@ -8,7 +8,7 @@
         "reportingcloud"
     ],
     "require": {
-        "php": "^7.4 || ^8.1",
+        "php": "^8.1",
         "ext-dom": "*",
         "ext-json": "*",
         "ext-libxml": "*",
