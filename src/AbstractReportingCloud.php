@@ -617,9 +617,9 @@ abstract class AbstractReportingCloud
     /**
      * Request the URI with options
      *
-     * @param string                               $method  HTTP method
-     * @param string                               $uri     URI
-     * @param array<string, array|bool|int|string> $options Options
+     * @param string $method  HTTP method
+     * @param string $uri     URI
+     * @param array  $options Options
      *
      * @return ResponseInterface
      * @throws RuntimeException
@@ -636,10 +636,7 @@ abstract class AbstractReportingCloud
             }
             $response = $client->request($method, $uri, $options);
         } catch (GuzzleException $e) {
-            $message = $e->getMessage();
-            $code    = $e->getCode();
-            assert(is_int($code));
-            throw new RuntimeException($message, $code);
+            throw new RuntimeException($e->getMessage(), $e->getCode());
         }
 
         return $response;

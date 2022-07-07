@@ -77,7 +77,7 @@ trait GetTrait
     /**
      * Return an associative array of API keys associated with the Reporting Cloud account
      *
-     * @return array<int, array<int|string, array|bool|int|string>>
+     * @return array
      */
     public function getApiKeys(): array
     {
@@ -109,7 +109,7 @@ trait GetTrait
      * @param string $text     Corpus of text that should be spell checked
      * @param string $language Language of specified text
      *
-     * @return array<int|string, array|bool|int|string>
+     * @return array
      * @throws InvalidArgumentException
      */
     public function proofingCheck(string $text, string $language): array
@@ -137,7 +137,7 @@ trait GetTrait
     /**
      * Return an array of available dictionaries on the Reporting Cloud service
      *
-     * @return array<int, string>
+     * @return array
      */
     public function getAvailableDictionaries(): array
     {
@@ -159,7 +159,7 @@ trait GetTrait
      * @param string $language Language of specified text
      * @param int    $max      Maximum number of suggestions to return
      *
-     * @return array<int, string>
+     * @return array
      * @throws InvalidArgumentException
      */
     public function getProofingSuggestions(string $word, string $language, int $max = 10): array
@@ -188,7 +188,7 @@ trait GetTrait
      *
      * @param string $templateName Template name
      *
-     * @return array<int|string, array|bool|int|string>
+     * @return array
      * @throws InvalidArgumentException
      */
     public function getTemplateInfo(string $templateName): array
@@ -222,8 +222,8 @@ trait GetTrait
      * @param int    $toPage       To page
      * @param string $imageFormat  Image format
      *
+     * @return array
      * @throws InvalidArgumentException
-     * @return array<int, string>
      */
     public function getTemplateThumbnails(
         string $templateName,
@@ -255,9 +255,10 @@ trait GetTrait
                 assert(is_string($value));
                 $result[$key] = $value;
             }
+            return $result;
         }
 
-        return $result;
+        return [];
     }
 
     /**
@@ -267,13 +268,21 @@ trait GetTrait
      */
     public function getTemplateCount(): int
     {
-        return (int) $this->get('/templates/count', [], '', HttpStatus::STATUS_OK);
+        $count = $this->get('/templates/count', [], '', HttpStatus::STATUS_OK);
+
+        if (is_numeric($count)) {
+            $count = (int) $count;
+        } else {
+            $count = 0;
+        }
+
+        return $count;
     }
 
     /**
      * Return an array properties for the templates in template storage
      *
-     * @return array<int|string, array|bool|int|string>
+     * @return array
      */
     public function getTemplateList(): array
     {
@@ -313,7 +322,15 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        return (int) $this->get('/templates/pagecount', $query, '', HttpStatus::STATUS_OK);
+        $count = $this->get('/templates/pagecount', $query, '', HttpStatus::STATUS_OK);
+
+        if (is_numeric($count)) {
+            $count = (int) $count;
+        } else {
+            $count = 0;
+        }
+
+        return $count;
     }
 
     /**
@@ -338,7 +355,7 @@ trait GetTrait
     /**
      * Return an array of available fonts on the Reporting Cloud service
      *
-     * @return array<int, string>
+     * @return array
      */
     public function getFontList(): array
     {
@@ -356,7 +373,7 @@ trait GetTrait
     /**
      * Return an array properties for the ReportingCloud account
      *
-     * @return array<int|string, array|bool|int|string>
+     * @return array
      * @throws InvalidArgumentException
      */
     public function getAccountSettings(): array
@@ -395,25 +412,25 @@ trait GetTrait
             'templateName' => $templateName,
         ];
 
-        $result = (string) $this->get('/templates/download', $query, '', HttpStatus::STATUS_OK);
+        $result = $this->get('/templates/download', $query, '', HttpStatus::STATUS_OK);
 
-        if (strlen($result) > 0) {
+        if (is_string($result) && strlen($result) > 0) {
             $decoded = base64_decode($result, true);
             if (is_string($decoded)) {
-                $result = $decoded;
+                return $decoded;
             }
         }
 
-        return $result;
+        return '';
     }
 
     /**
      * Execute a GET request via REST client
      *
-     * @param string                    $uri        URI
-     * @param array<string, int|string> $query      Query
-     * @param mixed                     $json       JSON
-     * @param int                       $statusCode Required HTTP status code for response
+     * @param string $uri        URI
+     * @param array  $query      Query
+     * @param mixed  $json       JSON
+     * @param int    $statusCode Required HTTP status code for response
      *
      * @return mixed
      */

@@ -66,6 +66,7 @@ trait AssertDateTimeTrait
                 throw new InvalidArgumentException($message);
             }
         } catch (Exception $e) {
+            // @phpstan-ignore-next-line
             $format  = 0 === strlen($message) ? 'Internal error validating %1$s - %2$s' : $message;
             $message = sprintf($format, self::valueToString($value), self::valueToString($e->getMessage()));
             throw new InvalidArgumentException($message);

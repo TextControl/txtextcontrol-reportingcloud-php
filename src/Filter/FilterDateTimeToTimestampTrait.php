@@ -50,10 +50,7 @@ trait FilterDateTimeToTimestampTrait
                 $ret = $dateTime->getTimestamp();
             }
         } catch (Exception $e) {
-            $message = $e->getMessage();
-            $code    = $e->getCode();
-            assert(is_int($code));
-            throw new InvalidArgumentException($message, $code);
+            throw new InvalidArgumentException($e->getMessage(), (int) $e->getCode());
         }
 
         return $ret;

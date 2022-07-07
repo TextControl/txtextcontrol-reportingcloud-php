@@ -36,7 +36,6 @@ use TxTextControl\ReportingCloud\Stdlib\FileUtils;
 trait PostTrait
 {
     // <editor-fold desc="Abstract methods">
-
     /**
      * Construct URI with version number
      *
@@ -166,29 +165,36 @@ trait PostTrait
         Assert::assertFilenameExists($documentFilename);
         Assert::assertReturnFormat($returnFormat);
 
-        $query  = [
+        $query = [
             'returnFormat' => $returnFormat,
         ];
 
-        $data   = FileUtils::read($documentFilename, true);
+        $data = FileUtils::read($documentFilename, true);
 
-        $result = (string) $this->post('/document/convert', $query, $data, HttpStatus::STATUS_OK);
+        $result = $this->post('/document/convert', $query, $data, HttpStatus::STATUS_OK);
 
-        return (string) base64_decode($result, true);
+        if (is_string($result) && strlen($result) > 0) {
+            $decoded = base64_decode($result, true);
+            if (is_string($decoded)) {
+                return $decoded;
+            }
+        }
+
+        return '';
     }
 
     /**
      * Merge data into a template and return an array of binary data.
      * Each record in the array is the binary data of one document
      *
-     * @param array<int|string, array|bool|int|string> $mergeData        Array of merge data
-     * @param string                                   $returnFormat     Return format
-     * @param string                                   $templateName     Template name
-     * @param string                                   $templateFilename Template filename on local file system
-     * @param bool                                     $append           Append flag
-     * @param array<string, bool|int|string>           $mergeSettings    Array of merge settings
+     * @param array  $mergeData        Array of merge data
+     * @param string $returnFormat     Return format
+     * @param string $templateName     Template name
+     * @param string $templateFilename Template filename on local file system
+     * @param bool   $append           Append flag
+     * @param array  $mergeSettings    Array of merge settings
      *
-     * @return array<int, string>
+     * @return array
      * @throws InvalidArgumentException
      */
     public function mergeDocument(
@@ -236,17 +242,18 @@ trait PostTrait
                 assert(is_string($value));
                 $result[$key] = $value;
             }
+            return $result;
         }
 
-        return $result;
+        return [];
     }
 
     /**
      * Combine documents by appending them, divided by a new section, paragraph or nothing
      *
-     * @param array<int|string, array|bool|int|string> $documentsData
-     * @param string                                   $returnFormat
-     * @param array<string, bool|int|string>           $documentSettings
+     * @param array  $documentsData
+     * @param string $returnFormat
+     * @param array  $documentSettings
      *
      * @return string
      * @throws InvalidArgumentException
@@ -269,19 +276,26 @@ trait PostTrait
             $json['documentSettings'] = $this->buildDocumentSettingsArray($documentSettings);
         }
 
-        $result = (string) $this->post('/document/append', $query, $json, HttpStatus::STATUS_OK);
+        $result = $this->post('/document/append', $query, $json, HttpStatus::STATUS_OK);
 
-        return (string) base64_decode($result, true);
+        if (is_string($result) && strlen($result) > 0) {
+            $decoded = base64_decode($result, true);
+            if (is_string($decoded)) {
+                return $decoded;
+            }
+        }
+
+        return '';
     }
 
     /**
      * Perform find and replace in document and return binary data.
      *
-     * @param array<string, string>          $findAndReplaceData Array of find and replace data
-     * @param string                         $returnFormat       Return format
-     * @param string                         $templateName       Template name
-     * @param string                         $templateFilename   Template filename on local file system
-     * @param array<string, bool|int|string> $mergeSettings      Array of merge settings
+     * @param array  $findAndReplaceData Array of find and replace data
+     * @param string $returnFormat       Return format
+     * @param string $templateName       Template name
+     * @param string $templateFilename   Template filename on local file system
+     * @param array  $mergeSettings      Array of merge settings
      *
      * @return string
      * @throws InvalidArgumentException
@@ -316,9 +330,16 @@ trait PostTrait
             $json['mergeSettings'] = $this->buildMergeSettingsArray($mergeSettings);
         }
 
-        $result = (string) $this->post('/document/findandreplace', $query, $json, HttpStatus::STATUS_OK);
+        $result = $this->post('/document/findandreplace', $query, $json, HttpStatus::STATUS_OK);
 
-        return (string) base64_decode($result, true);
+        if (is_string($result) && strlen($result) > 0) {
+            $decoded = base64_decode($result, true);
+            if (is_string($decoded)) {
+                return $decoded;
+            }
+        }
+
+        return '';
     }
 
     /**
@@ -331,8 +352,8 @@ trait PostTrait
      * @param int    $toPage           To page
      * @param string $imageFormat      Image format
      *
+     * @return array
      * @throws InvalidArgumentException
-     * @return array<int, string>
      */
     public function getDocumentThumbnails(
         string $documentFilename,
@@ -350,13 +371,13 @@ trait PostTrait
         Assert::assertImageFormat($imageFormat);
 
         $query = [
-            'zoomFactor'   => $zoomFactor,
-            'fromPage'     => $fromPage,
-            'toPage'       => $toPage,
-            'imageFormat'  => $imageFormat,
+            'zoomFactor'  => $zoomFactor,
+            'fromPage'    => $fromPage,
+            'toPage'      => $toPage,
+            'imageFormat' => $imageFormat,
         ];
 
-        $data   = FileUtils::read($documentFilename, true);
+        $data = FileUtils::read($documentFilename, true);
 
         $result = $this->post('/document/thumbnails', $query, $data, HttpStatus::STATUS_OK);
 
@@ -366,9 +387,10 @@ trait PostTrait
                 assert(is_string($value));
                 $result[$key] = $value;
             }
+            return $result;
         }
 
-        return $result;
+        return [];
     }
 
     /**
@@ -376,12 +398,11 @@ trait PostTrait
      *
      * @param string $documentFilename Document filename
      *
+     * @return array
      * @throws InvalidArgumentException
-     * @return array<int|string, array|bool|int|string>
      */
-    public function getTrackedChanges(
-        string $documentFilename
-    ): array {
+    public function getTrackedChanges(string $documentFilename): array
+    {
         $ret = [];
 
         $propertyMap = new TrackedChangesPropertyMap();
@@ -389,7 +410,7 @@ trait PostTrait
         Assert::assertDocumentExtension($documentFilename);
         Assert::assertFilenameExists($documentFilename);
 
-        $data   = FileUtils::read($documentFilename, true);
+        $data = FileUtils::read($documentFilename, true);
 
         $result = $this->post('/processing/review/trackedchanges', [], $data, HttpStatus::STATUS_OK);
 
@@ -412,12 +433,12 @@ trait PostTrait
      * Removes a specific tracked change and returns the resulting document.
      *
      * @param string $documentFilename Document filename
-     * @param int $id                  The ID of the tracked change that needs to be removed
-     * @param bool $accept             Specifies whether the tracked change should be accepted or not (reject)
+     * @param int    $id               The ID of the tracked change that needs to be removed
+     * @param bool   $accept           Specifies whether the tracked change should be accepted or not (reject)
+     *
+     * @return array
      *
      * @throws InvalidArgumentException
-     * @return array<int|string, array|bool|int|string>
-     *
      */
     public function removeTrackedChange(
         string $documentFilename,
@@ -431,12 +452,12 @@ trait PostTrait
         Assert::assertDocumentExtension($documentFilename);
         Assert::assertFilenameExists($documentFilename);
 
-        $query  = [
+        $query = [
             'id'     => $id,
             'accept' => Filter::filterBooleanToString($accept),
         ];
 
-        $data   = FileUtils::read($documentFilename, true);
+        $data = FileUtils::read($documentFilename, true);
 
         $result = $this->post('/processing/review/removetrackedchange', $query, $data, HttpStatus::STATUS_OK);
 
@@ -454,10 +475,10 @@ trait PostTrait
     /**
      * Execute a POST request via REST client
      *
-     * @param string                            $uri        URI
-     * @param array<string, int|string>|array[] $query      Query
-     * @param mixed                             $json       JSON
-     * @param int                               $statusCode Required HTTP status code for response
+     * @param string $uri        URI
+     * @param array  $query      Query
+     * @param mixed  $json       JSON
+     * @param int    $statusCode Required HTTP status code for response
      *
      * @return mixed
      */

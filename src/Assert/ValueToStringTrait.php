@@ -67,6 +67,7 @@ trait ValueToStringTrait
             return sprintf($format, $value);
         }
 
+        // @phpstan-ignore-next-line
         return (string) $value;
     }
 }

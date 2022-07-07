@@ -31,10 +31,10 @@ trait AssertBaseUriTrait
     /**
      * Check value is a known base URI
      *
-     * @param mixed  $value
+     * @param string $value
      * @param string $message
      */
-    public static function assertBaseUri($value, string $message = ''): void
+    public static function assertBaseUri(string $value, string $message = ''): void
     {
         $baseUri = ReportingCloud::DEFAULT_BASE_URI;
 

@@ -2,6 +2,11 @@
 
 # CHANGELOG
 
+## dev-php81 (future 4.0.0)
+
+* Removed PHP 7.4 support.
+* Minor refactoring for PHP 8.1 compatibility.
+
 ## 3.0.0 - 2021-06-21
 
 For a full description of changes, see [release-3.0.0.md](./doc/release-3.0.0.md).

@@ -52,7 +52,7 @@ if (!$nodes instanceof DOMNodeList || 0 === $nodes->count()) {
 }
 
 foreach ($nodes as $node) {
-    $values[] = trim($node->nodeValue);
+    $values[] = trim((string) $node->nodeValue);
 }
 
 natcasesort($values);

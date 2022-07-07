@@ -52,7 +52,7 @@ trait AssertDocumentDividerTrait
     /**
      * Return document dividers array
      *
-     * @return array<int, int>
+     * @return array
      */
     private static function getDocumentDividers(): array
     {
@@ -64,10 +64,9 @@ trait AssertDocumentDividerTrait
             $constants       = $reflectionClass->getConstants();
             unset($reportingCloud);
         } catch (ReflectionException $e) {
-            // continue
         }
 
-        $ret = array_filter($constants, function (string $constantKey): bool {
+        $array = array_filter($constants, function (string $constantKey): bool {
             if (StringUtils::startsWith($constantKey, 'DOCUMENT_DIVIDER_')) {
                 return true;
             }
@@ -75,6 +74,8 @@ trait AssertDocumentDividerTrait
             return false;
         }, ARRAY_FILTER_USE_KEY);
 
-        return array_values($ret);
+        $array = array_values($array);
+
+        return $array;
     }
 }

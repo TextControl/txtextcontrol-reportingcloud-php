@@ -32,14 +32,13 @@ use TxTextControl\ReportingCloud\Stdlib\StringUtils;
 trait BuildTrait
 {
     // <editor-fold desc="Methods">
-
     /**
      * Using the passed propertyMap, recursively build array
      *
-     * @param array<int|string, array|bool|int|string> $array       Array
-     * @param PropertyMap                              $propertyMap PropertyMap
+     * @param array       $array       Array
+     * @param PropertyMap $propertyMap PropertyMap
      *
-     * @return array<int|string, array|bool|int|string>
+     * @return array
      */
     protected function buildPropertyMapArray(array $array, PropertyMap $propertyMap): array
     {
@@ -62,9 +61,9 @@ trait BuildTrait
     /**
      * Using passed documentsData array, build array for backend
      *
-     * @param array<int|string, array|bool|int|string> $array
+     * @param array $array
      *
-     * @return array<int, array>
+     * @return array
      * @throws InvalidArgumentException
      */
     protected function buildDocumentsArray(array $array): array
@@ -98,9 +97,9 @@ trait BuildTrait
     /**
      * Using passed documentsSettings array, build array for backend
      *
-     * @param array<string, bool|int|string> $array
+     * @param array $array
      *
-     * @return array<string, bool|int|string>
+     * @return array
      * @throws InvalidArgumentException
      */
     protected function buildDocumentSettingsArray(array $array): array
@@ -133,9 +132,9 @@ trait BuildTrait
     /**
      * Using passed mergeSettings array, build array for backend
      *
-     * @param array<string, bool|int|string> $array MergeSettings array
+     * @param array $array MergeSettings array
      *
-     * @return array<string, bool|int|string>
+     * @return array
      * @throws InvalidArgumentException
      */
     protected function buildMergeSettingsArray(array $array): array
@@ -177,9 +176,9 @@ trait BuildTrait
     /**
      * Using passed findAndReplaceData associative array (key-value), build array for backend (list of string arrays)
      *
-     * @param array<string, string> $array
+     * @param array $array
      *
-     * @return array<int, array<int, int|string>>
+     * @return array
      */
     protected function buildFindAndReplaceDataArray(array $array): array
     {

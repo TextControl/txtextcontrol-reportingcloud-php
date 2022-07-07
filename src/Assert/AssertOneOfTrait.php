@@ -30,7 +30,7 @@ trait AssertOneOfTrait
      * Check value is in values
      *
      * @param mixed                  $value
-     * @param array<int, int|string> $values
+     * @param array $values
      * @param string                 $message
      *
      * @return void
