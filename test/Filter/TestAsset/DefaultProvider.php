@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @link      https://www.reporting.cloud to learn more about ReportingCloud
  * @link      https://git.io/Jejj2 for the canonical source repository
  * @license   https://git.io/Jejjr
- * @copyright © 2021 Text Control GmbH
+ * @copyright © 2022 Text Control GmbH
  */
 
 namespace TxTextControlTest\ReportingCloud\Filter\TestAsset;
