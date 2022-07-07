@@ -16,7 +16,7 @@
         </report>
     </coverage>
     <testsuites>
-        <testsuite name="TxTextControlTest\ReportingCloud">
+        <testsuite name="textcontrol/txtextcontrol-reportingcloud">
             <directory>test</directory>
         </testsuite>
     </testsuites>
