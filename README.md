@@ -1,12 +1,12 @@
 ![Logo](./resource/rc_logo_512.png)
 
-## Abandoned Package -- Migrate Now!
+# Abandoned Package -- Migrate Now!
 
 As of September 10, 2023, this package is no longer being maintained.
 
 Please update to the new version at:
 
-- (https://github.com/TextControl/textcontrol-reportingcloud)[https://github.com/TextControl/textcontrol-reportingcloud]
+- [https://github.com/TextControl/textcontrol-reportingcloud](https://github.com/TextControl/textcontrol-reportingcloud)
 
 
 # ReportingCloud PHP SDK
