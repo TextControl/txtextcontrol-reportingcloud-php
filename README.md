@@ -6,6 +6,8 @@ As of September 10, 2023, this package is no longer being maintained.
 
 Please update to the new version at [https://github.com/TextControl/textcontrol-reportingcloud](https://github.com/TextControl/textcontrol-reportingcloud).
 
+⚠️ Be sure to review the `CHANGELOG.md` of the new package.
+
 
 # ReportingCloud PHP SDK
 
