@@ -1,5 +1,14 @@
 ![Logo](./resource/rc_logo_512.png)
 
+## Abandoned Package -- Migrate Now!
+
+As of September 10, 2023, this package is no longer being maintained.
+
+Please update to the new version at:
+
+- (https://github.com/TextControl/textcontrol-reportingcloud)[https://github.com/TextControl/textcontrol-reportingcloud]
+
+
 # ReportingCloud PHP SDK
 
 [![Build Status](https://scrutinizer-ci.com/g/TextControl/txtextcontrol-reportingcloud-php/badges/build.png?b=master)](https://scrutinizer-ci.com/g/TextControl/txtextcontrol-reportingcloud-php/build-status/master)
